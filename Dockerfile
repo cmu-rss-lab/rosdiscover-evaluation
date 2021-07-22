@@ -193,25 +193,26 @@ RUN sudo -H pip install wheel \
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
-RUN sudo wstool init -j8 /src_pre_bug /install/pre_bug.rosinstall \
+RUN mkdir /pre_bug && mkdir /bug && mkdir /bug_fix \
+&& sudo wstool init -j8 /pre_bug/src /install/pre_bug.rosinstall \
 && rosdep update \
-&& rosdep install -i -y -r --from-paths /src_pre_bug \
+&& rosdep install -i -y -r --from-paths /pre_bug/src/ \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}" \
-&& sudo chmod o+r+w+x -R /src_pre_bug \
-&& sudo wstool init -j8 /src_bug /install/bug.rosinstall \
-&& rosdep install -i -y -r --from-paths /src_bug \
+&& sudo chmod o+r+w+x -R /pre_bug/src \
+&& sudo wstool init -j8 /bug/src /install/bug.rosinstall \
+&& rosdep install -i -y -r --from-paths /bug/src \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}" \
-&& sudo chmod o+r+w+x -R /src_bug \
-&& sudo wstool init -j8 /src_bug_fix /install/bug_fix.rosinstall \
-&& rosdep install -i -y -r --from-paths /src_bug_fix \
+&& sudo chmod o+r+w+x -R /bug/src \
+&& sudo wstool init -j8 /bug_fix/src /install/bug_fix.rosinstall \
+&& rosdep install -i -y -r --from-paths /bug_fix/src \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}"  \
-&& sudo chmod o+r+w+x -R /src_bug_fix \
+&& sudo chmod o+r+w+x -R /bug_fix/src \
 && sudo chmod o+r+w+x -R /opt/ros/ 
 
 #COPY "${DIRECTORY}" /.dockerinstall/
@@ -229,6 +230,6 @@ RUN (test "${GZWEB}" = "yes" \
 
 ARG ROOTFS
 
-#COPY "${ROOTFS}" /
+COPY "${ROOTFS}" /
 
 #RUN make all -j64 -l64
