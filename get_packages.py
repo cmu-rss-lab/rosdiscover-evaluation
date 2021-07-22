@@ -7,9 +7,8 @@ def get_packages(repo):
 
 	definedPackages = set()
 	usedPackages = set()
-
 	for path in Path(repo).rglob('package.xml'):
-		mytree = ET.parse(path)
+		mytree = ET.parse(str(path))
 		myroot = mytree.getroot()
 		for x in myroot.findall('name'):
 			definedPackages.add(x.text)
