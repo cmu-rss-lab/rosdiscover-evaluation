@@ -36,7 +36,7 @@ RUN apt-get update \
 
 #RUN git clone https://github.com/tobiasduerschmid/rosinstall_generator_time_machine.git /rgtm
 #RUN /rgtm/docker/build.sh
-#RUN /rgtm/rosinstall_generator_time_machine/rosinstall_generator_tm.sh '2016-04-15T19:41:20' indigo "{$PACKAGES}" --deps --tar > deps.rosinstall
+#RUN /rgtm/rosinstall_generator_time_machine/rosinstall_generator_tm.sh '2016-04-15T19:41:20' ${DISTRO} "{$PACKAGES}" --deps --tar > deps.rosinstall
 
 
 # NOTE: We need to install the cmake_modules to avoid some build failures
@@ -50,15 +50,28 @@ ENV LC_ALL C.UTF-8
 COPY --from=gzweb /opt/gzweb /opt/gzweb
 COPY rootfs /
 WORKDIR /ros_ws
-ENTRYPOINT ["/ros_ws/entrypoint.sh"]
-CMD ["/bin/bash"]
+#ENTRYPOINT ["/ros_ws/entrypoint.sh"]
+#CMD ["/bin/bash"]
 
-RUN apt-get update \
+RUN apt-get clean && apt-get update && apt-get upgrade -y \
  && apt-get install -y --no-install-recommends \
       apt-utils \
       bzip2 \
       cmake \
       clang \
+      libssl-dev \
+      zlib1g-dev \
+      libbz2-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      llvm \
+      libncurses5-dev \
+      libncursesw5-dev \
+      xz-utils \
+      tk-dev \
+      libffi-dev \
+      liblzma-dev \
+      python-openssl\
       build-essential \
       ca-certificates \
       curl \
@@ -75,13 +88,41 @@ RUN apt-get update \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
- && apt-get update \
- && pip install \
-      catkin-tools==0.4.5 \
-      coverage==5.1 \
-      rosinstall-generator==0.1.18 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && apt-get update 
+
+RUN sudo apt-get clean \
+ && sudo apt-get update && sudo apt-get upgrade -y --force-yes \
+ && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && sudo wget http://packages.ros.org/ros.key -O - | sudo apt-key add - 
+
+RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash 
+RUN exec $SHELL \
+&& export PYENV_ROOT="$HOME/.pyenv" \
+&& export PATH="$PYENV_ROOT/bin:$PATH" \
+&& eval "$(pyenv init --path)" \
+&& eval "$(pyenv init -)" \
+&& eval "$(pyenv virtualenv-init -)" \
+&& pyenv install 2.7.18 \
+&& pyenv global 2.7.18 \
+&& sudo -H pip install setuptools
+
+RUN sudo apt-get update && sudo apt-get update \
+&& sudo apt-get install -y python-coverage \
+ python-catkin-pkg \
+ python-rosdep \
+ python-rosdistro \
+ python-rosinstall \
+ python-rosinstall-generator \
+ python-rospkg \
+ python-vcstools \
+ python-wstool 
+
+#RUN pip install \
+#      catkin-tools==0.4.5 \
+#      coverage==5.1 \
+#      rosinstall-generator==0.1.18 \
+# && apt-get clean \
+# && rm -rf /var/lib/apt/lists/*
 
 # install gzweb deps
 ENV NODE_PATH /opt/nodejs
@@ -102,6 +143,20 @@ RUN apt-get update \
  && mkdir -p "${NODE_PATH}" \
  && tar -xJvf "${NODE_RELEASE}.tar.xz" -C "${NODE_PATH}" \
  && rm -f "${NODE_RELEASE}.tar.xz"
+
+
+RUN sudo apt-get clean \
+ && sudo apt-get update && sudo apt-get upgrade -y --force-yes \
+ && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && sudo wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
+ && sudo apt-get update \
+ && sudo apt-get install python-rosinstall -y --force-yes \
+ && python2.7 -m pip install \
+      catkin-tools==0.4.5 \
+      coverage==5.1 \
+      rosinstall-generator==0.1.18 \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/*
 
 # install vncserver
 RUN apt-get update \
@@ -127,37 +182,43 @@ RUN chmod +x /bin/tini
 # Get commit date using `git show -s --format=%ci 84169473a3f72aea8a400464f5b673f3c77c6b8c`
 #ENV COMMIT_DATE git show -s --format=%ci "{COMMIT}" 
 #'2016-04-15 19:41:20 +0900'
+RUN sudo -H pip install wheel \
+&& sudo -H pip install -U pip \
+&& sudo apt-get install software-properties-common \
+&& sudo apt-add-repository universe \
+&& sudo apt-get update \
+&& sudo apt-get install python-pip
 
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
-RUN sudo wstool init -j8 src_pre_bug /install/pre_bug.rosinstall \
+RUN sudo wstool init -j8 /src_pre_bug /install/pre_bug.rosinstall \
 && rosdep update \
-&& rosdep install -i -y -r --from-paths src_pre_bug \
+&& rosdep install -i -y -r --from-paths /src_pre_bug \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="indigo" \
+      --rosdistro="${DISTRO}" \
 && sudo chmod o+r+w+x -R /src_pre_bug \
-&& sudo wstool init -j8 src_bug /install/bug.rosinstall \
-&& rosdep install -i -y -r --from-paths src_bug \
+&& sudo wstool init -j8 /src_bug /install/bug.rosinstall \
+&& rosdep install -i -y -r --from-paths /src_bug \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="indigo" \
+      --rosdistro="${DISTRO}" \
 && sudo chmod o+r+w+x -R /src_bug \
-&& sudo wstool init -j8 src_bug_fix /install/bug_fix.rosinstall \
-&& rosdep install -i -y -r --from-paths src_bug_fix \
+&& sudo wstool init -j8 /src_bug_fix /install/bug_fix.rosinstall \
+&& rosdep install -i -y -r --from-paths /src_bug_fix \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="indigo"  \
+      --rosdistro="${DISTRO}"  \
 && sudo chmod o+r+w+x -R /src_bug_fix \
 && sudo chmod o+r+w+x -R /opt/ros/ 
 
-COPY "${DIRECTORY}" /.dockerinstall/
-RUN ls -al /.dockerinstall
-RUN (test -f /.dockerinstall/prebuild.sh \
-     && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
-     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
+#COPY "${DIRECTORY}" /.dockerinstall/
+#RUN ls -al /.dockerinstall
+#RUN (test -f /.dockerinstall/prebuild.sh \
+#     && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+#     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
 # optionally add gzweb support
 ARG GZWEB="no"
@@ -168,6 +229,6 @@ RUN (test "${GZWEB}" = "yes" \
 
 ARG ROOTFS
 
-COPY "${ROOTFS}" /
+#COPY "${ROOTFS}" /
 
-RUN make all -j64 -l64
+#RUN make all -j64 -l64

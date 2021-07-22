@@ -24,4 +24,4 @@ autoware-05:
 	python create_image.py bugs/autoware-05 Dockerfile-k
 
 ros_tms-01:
-	python create_image.py bugs/ros_tms-01 none
+	python create_image.py bugs/ros_tms-01 Dockerfile
