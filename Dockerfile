@@ -129,30 +129,6 @@ RUN chmod +x /bin/tini
 #'2016-04-15 19:41:20 +0900'
 
 
-# build package
-ARG DIRECTORY
-COPY "${DIRECTORY}"/pkgs.rosinstall "${DIRECTORY}"/apt.list* /.dockerinstall/
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
- && apt-get update \
- && (test -f /.dockerinstall/apt.list \
-     && xargs -a /.dockerinstall/apt.list apt-get install -y --no-install-recommends \
-     || exit 0) \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-
-# Generate package install file with time machine
-
-RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/pkgs.rosinstall \
- && apt-get update \
- && wstool init -j8 src pkgs.rosinstall \
- && rosdep update \
- && rosdep install -i -y -r --from-paths src \
-      --ignore-src \
-      --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="${ROS_DISTRO}" \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
@@ -161,21 +137,21 @@ RUN sudo wstool init -j8 src_pre_bug /install/pre_bug.rosinstall \
 && rosdep install -i -y -r --from-paths src_pre_bug \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="${ROS_DISTRO}" \
+      --rosdistro="indigo" \
 && sudo chmod o+r+w+x -R /src_pre_bug \
 && sudo wstool init -j8 src_bug /install/bug.rosinstall \
 && rosdep install -i -y -r --from-paths src_bug \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="${ROS_DISTRO}" \
+      --rosdistro="indigo" \
 && sudo chmod o+r+w+x -R /src_bug \
 && sudo wstool init -j8 src_bug_fix /install/bug_fix.rosinstall \
 && rosdep install -i -y -r --from-paths src_bug_fix \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
-      --rosdistro="${ROS_DISTRO}"  \
-&& sudo chmod o+r+w+x -R /src_bug_fix
-
+      --rosdistro="indigo"  \
+&& sudo chmod o+r+w+x -R /src_bug_fix \
+&& sudo chmod o+r+w+x -R /opt/ros/ 
 
 COPY "${DIRECTORY}" /.dockerinstall/
 RUN ls -al /.dockerinstall
@@ -183,12 +159,15 @@ RUN (test -f /.dockerinstall/prebuild.sh \
      && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
-ARG BUILD_COMMAND="catkin_make"
-RUN . /ros/${ROS_DISTRO}/setup.sh \
- && eval "${BUILD_COMMAND}"
-
 # optionally add gzweb support
 ARG GZWEB="no"
 RUN (test "${GZWEB}" = "yes" \
      && (echo "running gzweb installation scripts..." && /.dockerinstall/install-gzweb.sh || exit 1) \
      || (echo "skipping gzweb installation step" && exit 0))
+
+
+ARG ROOTFS
+
+COPY "${ROOTFS}" /
+
+RUN make all -j64 -l64
