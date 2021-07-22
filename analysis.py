@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 from git import *
-rgtm_dir = "~/rosinstall_generator_time_machine"
+rgtm_dir = "./rosinstall_generator_time_machine"
 tempdir = "./ros-temp/"
 
 with open(sys.argv[1] + "/bug.yml") as f:
