@@ -1,6 +1,9 @@
 autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05
 all-bugs = $(autoware-bugs)
 
+init:
+	bash ./setup.sh
+
 all: autoware
 
 autoware: $(autoware-bugs)
