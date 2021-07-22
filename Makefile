@@ -26,5 +26,5 @@ autoware-05:
 ros_tms-01:
 	python create_image.py bugs/ros_tms-01 Dockerfile
 
-industrial_core01:
-	python create_image.py bugs/industrial_core Dockerfile
+industrial_core-01:
+	python create_image.py bugs/industrial_core-01 Dockerfile
