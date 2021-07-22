@@ -30,3 +30,6 @@ ros_tms-01:
 
 industrial_core-01:
 	python create_image.py bugs/industrial_core-01 Dockerfile
+
+mavros-01:
+	python create_image.py bugs/mavros-01 Dockerfile
