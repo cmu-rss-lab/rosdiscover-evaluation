@@ -161,7 +161,7 @@ RUN sudo apt-get clean \
 # install vncserver
 RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
- && apt-get install -y \
+ && apt-get install -y --no-install-recommends\
       supervisor \
       vnc4server \
       xfce4 \
@@ -183,14 +183,14 @@ RUN chmod +x /bin/tini
 #ENV COMMIT_DATE git show -s --format=%ci "{COMMIT}" 
 #'2016-04-15 19:41:20 +0900'
 RUN sudo -H pip install wheel \
-&& sudo -H pip install -U pip \
+#&& pip install --upgrade pip \
+&& sudo -H pip install -U pip==19.0.1 \
 && sudo apt-get install software-properties-common \
 && sudo apt-add-repository universe \
 && sudo apt-get update  
 
-
 ARG APT_GET_PACKAGES
-RUN sudo apt-get install -y python-pip ${APT_GET_PACKAGES}
+RUN sudo apt-get install -y ${APT_GET_PACKAGES}
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/

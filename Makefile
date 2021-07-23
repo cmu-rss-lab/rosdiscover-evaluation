@@ -1,10 +1,10 @@
-autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05
+autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06
 all-bugs = $(autoware-bugs)
 
 init:
 	bash ./setup.sh
 
-all: autoware
+all: autoware mavros-01
 
 install-only:
 	for bug in $(autoware-bugs); do \
@@ -26,7 +26,7 @@ autoware-04_d:
 autoware-04:
 	python create_image.py bugs/autoware-04 Dockerfile-k_4
 autoware-05:
-	python create_image.py bugs/autoware-05 Dockerfile-k
+	python create_image.py bugs/autoware-05 Dockerfile
 autoware-06:
 	python create_image.py bugs/autoware-06 Dockerfile-i
 
@@ -37,4 +37,4 @@ industrial_core-01:
 	python create_image.py bugs/industrial_core-01 Dockerfile
 
 mavros-01:
-	python create_image.py bugs/mavros-01 Dockerfile-m
+	python create_image.py bugs/mavros-01 Dockerfile
