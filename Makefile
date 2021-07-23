@@ -12,12 +12,17 @@ install-only:
 	done
 
 autoware: $(autoware-bugs)
+autoware-01_d:
+	python create_image.py bugs/autoware-01 Dockerfile_g
+
 autoware-01:
 	python create_image.py bugs/autoware-01 Dockerfile-i
 autoware-02:
 	python create_image.py bugs/autoware-02 Dockerfile-i
 autoware-03:
 	python create_image.py bugs/autoware-03 Dockerfile-i
+autoware-04_d:
+	python create_image.py bugs/autoware-04 Dockerfile
 autoware-04:
 	python create_image.py bugs/autoware-04 Dockerfile-k_4
 autoware-05:
@@ -32,4 +37,4 @@ industrial_core-01:
 	python create_image.py bugs/industrial_core-01 Dockerfile
 
 mavros-01:
-	python create_image.py bugs/mavros-01 Dockerfile
+	python create_image.py bugs/mavros-01 Dockerfile-m

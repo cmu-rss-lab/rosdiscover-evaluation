@@ -186,11 +186,9 @@ RUN sudo -H pip install wheel \
 && sudo -H pip install -U pip \
 && sudo apt-get install software-properties-common \
 && sudo apt-add-repository universe \
-&& sudo apt-get update  
+&& sudo apt-get update \
+&& sudo apt-get install python-pip
 
-
-ARG APT_GET_PACKAGES
-RUN sudo apt-get install -y python-pip ${APT_GET_PACKAGES}
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
@@ -234,4 +232,7 @@ ARG ROOTFS
 
 COPY "${ROOTFS}" /
 
-RUN cd / && make all
+RUN /bin/bash /install_geographiclib_datasets.sh 
+
+RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
+ && cd / && make all

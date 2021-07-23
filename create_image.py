@@ -28,6 +28,7 @@ localReposPath = tempdir    + "repos/"
 out_dir = tempdir    + bug_id + "/time/"
 distro = data["ros-distro"]
 additional_packages = data["additional-packages"] if "additional-packages" in data else ""
+apt_get_packages = data["apt-get-packages"] if "apt-get-packages" in data else "" 
 
 if not os.path.exists(out_dir):
     Path(out_dir).mkdir(parents=True)
@@ -85,8 +86,10 @@ if not os.path.exists(out_dir+"/bug_fix.rosinstall"):
     file3.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+bug_fix_commit)
     file3.close()
 
+
 print(docker_dir)
 if docker_dir != 'none':
-    dockerCmd = "docker build . -t "+ bug_id + " --build-arg ROOTFS='./"+sys.argv[1]+"/rootfs/' --build-arg DISTRO="+distro+" --build-arg DIRECTORY="+out_dir+" -f "+docker_dir
+
+    dockerCmd = "docker build . -t "+ bug_id + " --build-arg APT_GET_PACKAGES='"+apt_get_packages+"' --build-arg ROOTFS='./"+sys.argv[1]+"/rootfs/' --build-arg DISTRO="+distro+" --build-arg DIRECTORY="+out_dir+" -f "+docker_dir
     print(dockerCmd)
     res = os.system(dockerCmd)
