@@ -6,3 +6,5 @@ bug:
 	/bin/bash -c 'cd /bug/src/repo/ros; ./catkin_make_release' 
 bug-fix:
 	/bin/bash -c 'cd /bug_fix/src/repo/ros; ./catkin_make_release'
+
+.PHONY: pre-bug bug bug-fix

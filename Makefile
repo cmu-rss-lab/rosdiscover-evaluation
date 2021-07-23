@@ -16,25 +16,27 @@ autoware-01_d:
 	python create_image.py bugs/autoware-01 Dockerfile_g
 
 autoware-01:
-	python create_image.py bugs/autoware-01 Dockerfile-i
+	python create_image.py bugs/$@ Dockerfile-i
 autoware-02:
-	python create_image.py bugs/autoware-02 Dockerfile-i
+	python create_image.py bugs/$@ Dockerfile-i
 autoware-03:
-	python create_image.py bugs/autoware-03 Dockerfile-i
+	python create_image.py bugs/$@ Dockerfile-i
 autoware-04_d:
 	python create_image.py bugs/autoware-04 Dockerfile
 autoware-04:
-	python create_image.py bugs/autoware-04 Dockerfile-k_4
+	python create_image.py bugs/$@ Dockerfile-k_4
 autoware-05:
-	python create_image.py bugs/autoware-05 Dockerfile
+	python create_image.py bugs/$@ Dockerfile
 autoware-06:
-	python create_image.py bugs/autoware-06 Dockerfile-i
+	python create_image.py bugs/$@ Dockerfile-i
 
 ros_tms-01:
-	python create_image.py bugs/ros_tms-01 Dockerfile
+	python create_image.py bugs/$@ Dockerfile
 
 industrial_core-01:
-	python create_image.py bugs/industrial_core-01 Dockerfile
+	python create_image.py bugs/$@ Dockerfile
 
 mavros-01:
-	python create_image.py bugs/mavros-01 Dockerfile
+	python create_image.py bugs/$@ Dockerfile
+
+
