@@ -27,6 +27,7 @@ bug_id = data["bugid"]
 localReposPath = tempdir    + "repos/"
 out_dir = tempdir    + bug_id + "/time/"
 distro = data["ros-distro"]
+additional_packages = data["additional-packages"] if "additional-packages" in data else ""
 
 if not os.path.exists(out_dir):
     Path(out_dir).mkdir(parents=True)
@@ -49,7 +50,7 @@ if not os.path.exists(out_dir+"/pre_bug.rosinstall"):
     for submodule in r.submodules:
         submodule.update(init=True)
     neededPackages = gp.get_packages(localRepoPath)
-    pc = ' '.join(neededPackages)
+    pc = ' '.join(neededPackages) + " " + additional_packages
     command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/pre_bug.rosinstall"
     os.system(command)
     file1 = open(out_dir+"/pre_bug.rosinstall", "a")  # append mode
@@ -63,7 +64,7 @@ if not os.path.exists(out_dir+"/bug.rosinstall"):
     for submodule in r.submodules:
         submodule.update(init=True)
     neededPackages = gp.get_packages(localRepoPath)
-    pc = ' '.join(neededPackages)
+    pc = ' '.join(neededPackages) + " " + additional_packages
     command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug.rosinstall"
     os.system(command)
     file2 = open(out_dir+"/bug.rosinstall", "a")  # append mode
@@ -77,7 +78,7 @@ if not os.path.exists(out_dir+"/bug_fix.rosinstall"):
     for submodule in r.submodules:
         submodule.update(init=True)
     neededPackages = gp.get_packages(localRepoPath)
-    pc = ' '.join(neededPackages)
+    pc = ' '.join(neededPackages) + " " + additional_packages
     command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug_fix.rosinstall"
     os.system(command)
     file3 = open(out_dir+"/bug_fix.rosinstall", "a")  # append mode
