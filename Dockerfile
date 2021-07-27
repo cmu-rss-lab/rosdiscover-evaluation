@@ -90,10 +90,10 @@ RUN apt-get clean && apt-get update && apt-get upgrade -y \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update 
 
-RUN sudo apt-get clean \
- && sudo apt-get update && sudo apt-get upgrade -y --force-yes \
- && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
- && sudo wget http://packages.ros.org/ros.key -O - | sudo apt-key add - 
+RUN apt-get clean \
+ && apt-get update && apt-get upgrade -y --force-yes \
+ && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && wget http://packages.ros.org/ros.key -O - | apt-key add - 
 
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash 
 RUN exec $SHELL \
@@ -104,10 +104,10 @@ RUN exec $SHELL \
 && eval "$(pyenv virtualenv-init -)" \
 && pyenv install 2.7.18 \
 && pyenv global 2.7.18 \
-&& sudo -H pip install setuptools
+&& pip install setuptools
 
-RUN sudo apt-get update && sudo apt-get update \
-&& sudo apt-get install -y python-coverage \
+RUN apt-get update && apt-get update \
+&& apt-get install -y python-coverage \
  python-catkin-pkg \
  python-rosdep \
  python-rosdistro \
@@ -145,18 +145,18 @@ RUN apt-get update \
  && rm -f "${NODE_RELEASE}.tar.xz"
 
 
-RUN sudo apt-get clean \
- && sudo apt-get update && sudo apt-get upgrade -y --force-yes \
- && sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
- && sudo wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
- && sudo apt-get update \
- && sudo apt-get install python-rosinstall -y --force-yes \
+RUN apt-get clean \
+ && apt-get update && apt-get upgrade -y --force-yes \
+ && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && wget http://packages.ros.org/ros.key -O - | apt-key add - \
+ && apt-get update \
+ && apt-get install python-rosinstall -y --force-yes \
  && python2.7 -m pip install \
       catkin-tools==0.4.5 \
       coverage==5.1 \
       rosinstall-generator==0.1.18 \
- && sudo apt-get clean \
- && sudo rm -rf /var/lib/apt/lists/*
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # install vncserver
 RUN apt-get update \
@@ -182,40 +182,45 @@ RUN chmod +x /bin/tini
 # Get commit date using `git show -s --format=%ci 84169473a3f72aea8a400464f5b673f3c77c6b8c`
 #ENV COMMIT_DATE git show -s --format=%ci "{COMMIT}" 
 #'2016-04-15 19:41:20 +0900'
-RUN sudo -H pip install wheel \
+RUN pip install wheel \
 #&& pip install --upgrade pip \
-&& sudo -H pip install -U pip==19.0.1 \
-&& sudo apt-get install software-properties-common \
-&& sudo apt-add-repository universe \
-&& sudo apt-get update  
+&& pip install -U pip==19.0.1 \
+&& apt-get install software-properties-common \
+&& apt-add-repository universe \
+&& apt-get update  
 
 ARG APT_GET_PACKAGES
-RUN sudo apt-get install -y ${APT_GET_PACKAGES}
+RUN apt-get install -y ${APT_GET_PACKAGES}
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
+
+RUN (test -f /preinstall.sh \
+     && ((echo "running preinstall step..." && apt-get update && /bin/bash /preinstall.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping preinstall step [no preinstall.sh]" && exit 0))
+
 RUN mkdir /pre_bug && mkdir /bug && mkdir /bug_fix \
-&& sudo wstool init -j8 /pre_bug/src /install/pre_bug.rosinstall \
+&& wstool init -j8 /pre_bug/src /install/pre_bug.rosinstall \
 && rosdep update \
 && rosdep install -i -y -r --from-paths /pre_bug/src/ \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}" \
-&& sudo chmod o+r+w+x -R /pre_bug/src \
-&& sudo wstool init -j8 /bug/src /install/bug.rosinstall \
+&& chmod o+r+w+x -R /pre_bug/src \
+&& wstool init -j8 /bug/src /install/bug.rosinstall \
 && rosdep install -i -y -r --from-paths /bug/src \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}" \
-&& sudo chmod o+r+w+x -R /bug/src \
-&& sudo wstool init -j8 /bug_fix/src /install/bug_fix.rosinstall \
+&& chmod o+r+w+x -R /bug/src \
+&& wstool init -j8 /bug_fix/src /install/bug_fix.rosinstall \
 && rosdep install -i -y -r --from-paths /bug_fix/src \
       --ignore-src \
       --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
       --rosdistro="${DISTRO}"  \
-&& sudo chmod o+r+w+x -R /bug_fix/src \
-&& sudo chmod o+r+w+x -R /opt/ros/ 
+&& chmod o+r+w+x -R /bug_fix/src \
+&& chmod o+r+w+x -R /opt/ros/ 
 
 #COPY "${DIRECTORY}" /.dockerinstall/
 #RUN ls -al /.dockerinstall
@@ -234,4 +239,12 @@ ARG ROOTFS
 
 COPY "${ROOTFS}" /
 
+RUN (test -f /prebuild.sh \
+     && ((echo "running prebuild step..." && apt-get update && /bin/bash /prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
+
 RUN cd / && make all
+
+RUN (test -f /postbuild.sh \
+     && ((echo "running postbuild step..." && apt-get update && /bin/bash /postbuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping postbuild step [no postbuild.sh]" && exit 0))
