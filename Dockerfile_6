@@ -38,6 +38,7 @@ RUN apt-get update \
 #RUN /rgtm/docker/build.sh
 #RUN /rgtm/rosinstall_generator_time_machine/rosinstall_generator_tm.sh '2016-04-15T19:41:20' ${DISTRO} "{$PACKAGES}" --deps --tar > deps.rosinstall
 
+
 # NOTE: We need to install the cmake_modules to avoid some build failures
 # that are due to unspecified dependencies.
 # (https://github.com/ros-industrial/industrial_calibration/issues/50)
@@ -89,10 +90,7 @@ RUN apt-get clean && apt-get update && apt-get upgrade -y \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update 
 
-RUN apt-get update \
- && apt-get install -y build-essential checkinstall\
- && apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev\
- && cd /usr/src \
+RUN cd /usr/src \
  && wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz \
  && tar xzf Python-2.7.18.tgz \
  && cd Python-2.7.18 \
@@ -104,7 +102,6 @@ RUN apt-get update \
 
 
 RUN apt-get clean \
- && apt-get update && apt-get upgrade -y --force-yes \
  && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - 
 
@@ -130,7 +127,7 @@ RUN apt-get update && apt-get update \
  python-vcstools \
  python-wstool 
 
-#RUN python2.7 -m pip install \
+#RUN pip install \
 #      catkin-tools==0.4.5 \
 #      coverage==5.1 \
 #      rosinstall-generator==0.1.18 \
@@ -159,7 +156,6 @@ RUN apt-get update \
 
 
 RUN apt-get clean \
- && apt-get update && apt-get upgrade -y --force-yes \
  && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
@@ -174,7 +170,7 @@ RUN apt-get clean \
 # install vncserver
 RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
- && apt-get install -y --no-install-recommends \
+ && apt-get install -y --no-install-recommends\
       supervisor \
       vnc4server \
       xfce4 \
@@ -196,17 +192,22 @@ RUN chmod +x /bin/tini
 #ENV COMMIT_DATE git show -s --format=%ci "{COMMIT}" 
 #'2016-04-15 19:41:20 +0900'
 RUN pip install wheel \
-&& pip install -U pip \
+#&& pip install --upgrade pip \
+&& pip install -U pip==19.0.1 \
 && apt-get install software-properties-common \
 && apt-add-repository universe \
 && apt-get update  
 
-
 ARG APT_GET_PACKAGES
-RUN apt-get install -y python-pip ${APT_GET_PACKAGES}
+RUN apt-get install -y ${APT_GET_PACKAGES}
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
+
+
+RUN (test -f /preinstall.sh \
+     && ((echo "running preinstall step..." && apt-get update && /bin/bash /preinstall.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping preinstall step [no preinstall.sh]" && exit 0))
 
 RUN mkdir /pre_bug && mkdir /bug && mkdir /bug_fix \
 && wstool init -j8 /pre_bug/src /install/pre_bug.rosinstall \
@@ -247,4 +248,12 @@ ARG ROOTFS
 
 COPY "${ROOTFS}" /
 
+RUN (test -f /prebuild.sh \
+     && ((echo "running prebuild step..." && apt-get update && /bin/bash /prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
+
 #RUN cd / && make all
+
+RUN (test -f /postbuild.sh \
+     && ((echo "running postbuild step..." && apt-get update && /bin/bash /postbuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     || (echo "skipping postbuild step [no postbuild.sh]" && exit 0))

@@ -90,6 +90,17 @@ RUN apt-get clean && apt-get update && apt-get upgrade -y \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update 
 
+RUN cd /usr/src \
+ && wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz \
+ && tar xzf Python-2.7.18.tgz \
+ && cd Python-2.7.18 \
+ && ./configure --enable-optimizations \
+ && make altinstall \
+ && apt update \
+ && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7 \
+ && python2.7 -m pip install -U wstools 
+
+
 RUN apt-get clean \
  && apt-get update && apt-get upgrade -y --force-yes \
  && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
@@ -190,7 +201,7 @@ RUN pip install wheel \
 && apt-get update  
 
 ARG APT_GET_PACKAGES
-RUN apt-get install -y ${APT_GET_PACKAGES}
+RUN apt-get update && apt-get install -y ${APT_GET_PACKAGES} && apt-get clean
 
 ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
@@ -243,7 +254,7 @@ RUN (test -f /prebuild.sh \
      && ((echo "running prebuild step..." && apt-get update && /bin/bash /prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
-RUN cd / && make all
+RUN cd / && . /opt/ros/${ROS_DISTRO}/setup.sh && make all
 
 RUN (test -f /postbuild.sh \
      && ((echo "running postbuild step..." && apt-get update && /bin/bash /postbuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \

@@ -104,7 +104,7 @@ ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
 RUN (test -f /preinstall.sh \
-     && ((echo "running preinstall step..." && apt-get update && /bin/bash /preinstall.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     && ((echo "running preinstall step..." && sudo apt-get update && /bin/bash /preinstall.sh && sudo apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping preinstall step [no preinstall.sh]" && exit 0))
 
 RUN sudo mkdir /pre_bug && sudo mkdir /bug && sudo mkdir /bug_fix \
@@ -171,12 +171,12 @@ ARG ROOTFS
 COPY "${ROOTFS}" /
 
 RUN (test -f /prebuild.sh \
-     && ((echo "running prebuild step..." && apt-get update && /bin/bash /prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     && ((echo "running prebuild step..." && sudo apt-get update && /bin/bash /prebuild.sh && sudo apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
 RUN make all -j3
 
 
 RUN (test -f /postbuild.sh \
-     && ((echo "running postbuild step..." && apt-get update && /bin/bash /postbuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     && ((echo "running postbuild step..." && sudo apt-get update && /bin/bash /postbuild.sh && sudo apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping postbuild step [no postbuild.sh]" && exit 0))
