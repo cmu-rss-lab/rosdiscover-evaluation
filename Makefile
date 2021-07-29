@@ -21,12 +21,13 @@ autoware-03:
 autoware-03_d:
 	python create_image.py bugs/autoware-03 Dockerfile_6
 autoware-04:
-	python create_image.py bugs/$@ Dockerfile
+	python create_image.py bugs/$@ Dockerfile-k
 autoware-05:
 	python create_image.py bugs/$@ Dockerfile_6
 autoware-06:
-	python create_image.py bugs/$@ Dockerfile_6
-
+	python create_image.py bugs/$@ Dockerfile-i
+autoware-06_k:
+	python create_image.py bugs/$@ Dockerfile_k
 autoware-06_d:
 	python create_image.py bugs/autoware-06 Dockerfile
 
