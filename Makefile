@@ -18,18 +18,18 @@ autoware-02:
 	python create_image.py bugs/$@ Dockerfile
 autoware-03:
 	python create_image.py bugs/$@ Dockerfile
-autoware-03_d:
-	python create_image.py bugs/autoware-03 Dockerfile_6
 autoware-04:
 	python create_image.py bugs/$@ Dockerfile-k
 autoware-05:
 	python create_image.py bugs/$@ Dockerfile_6
 autoware-06:
-	python create_image.py bugs/$@ Dockerfile-i
+	python create_image.py bugs/$@ Dockerfile_6
 autoware-06_k:
 	python create_image.py bugs/$@ Dockerfile_k
 autoware-06_d:
 	python create_image.py bugs/autoware-06 Dockerfile
+autoware-07:
+	python create_image.py bugs/$@ Dockerfile
 
 ros_tms-01:
 	python create_image.py bugs/$@ Dockerfile

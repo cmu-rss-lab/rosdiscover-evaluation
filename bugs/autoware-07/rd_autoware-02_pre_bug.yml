@@ -1,0 +1,13 @@
+image: autoware-02
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /pre_bug/src/repo/ros/devel/setup.bash
+launches:
+- filename: /pre_bug/src/repo/ros/src/computing/planning/motion/packages/driving_planner/launch/lattice_trajectory_gen.launch
+- filename: /pre_bug/src/repo/ros/src/util/packages/model_publisher/launch/vehicle_model.launch
+  arguments: 
+    model_path: /pre_bug/src/repo/ros/src/.config/model/default.urdf
+- filename: /pre_bug/src/repo/ros/src/computing/planning/motion/packages/waypoint_follower/launch/wf_simulator.launch
+  arguments: 
+    model_path: /pre_bug/src/repo/ros/src/.config/model/default.urdf
