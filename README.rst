@@ -1,8 +1,12 @@
-# ROS Discover Evaluation
+ROS Discover Evaluation
+=======================
+
 Image Creation and Evaluation Infrastructure for ROS Discover
 
 
-# Dependencies 
+Dependencies
+------------
+
 * Python 3.9.5
 
 # Installation
