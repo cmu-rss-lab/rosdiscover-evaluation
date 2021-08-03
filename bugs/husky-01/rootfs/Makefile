@@ -7,5 +7,4 @@ bug:
 bug-fix:
 	/bin/bash -c 'cd /bug_fix/; catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
-
 .PHONY: pre-bug bug bug-fix

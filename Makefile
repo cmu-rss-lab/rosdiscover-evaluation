@@ -1,10 +1,11 @@
-autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06
-all-bugs = $(autoware-bugs) mavros-01
+autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06  autoware-07
+mavros-bugs = mavros-01 mavros-02
+all-bugs = $(autoware-bugs) $(mavors-bugs) husky-01 industrial_core-01
 
 init:
 	bash ./setup.sh
 
-all: autoware mavros-01
+all: $(all-bugs)
 
 install-only:
 	for bug in $(all-bugs); do \
@@ -12,32 +13,14 @@ install-only:
 	done
 
 autoware: $(autoware-bugs)
-autoware-01:
-	python create_image.py bugs/$@ Dockerfile
-autoware-02:
-	python create_image.py bugs/$@ Dockerfile
-autoware-03:
-	python create_image.py bugs/$@ Dockerfile
-autoware-04:
-	python create_image.py bugs/$@ Dockerfile-k
-autoware-05:
-	python create_image.py bugs/$@ Dockerfile_6
-autoware-06:
-	python create_image.py bugs/$@ Dockerfile_6
-autoware-06_k:
-	python create_image.py bugs/$@ Dockerfile_k
-autoware-06_d:
-	python create_image.py bugs/autoware-06 Dockerfile
-autoware-07:
+
+launch-all:
+	for bug in $(all-bugs); do \
+		bash run_rosdiscover.sh $$bug; \
+	done
+
+%: 
 	python create_image.py bugs/$@ Dockerfile
 
-ros_tms-01:
-	python create_image.py bugs/$@ Dockerfile
-
-industrial_core-01:
-	python create_image.py bugs/$@ Dockerfile
-
-mavros-01:
-	python create_image.py bugs/$@ Dockerfile
-
-
+%_b: 
+	python create_image.py bugs/$(subst _b,,$@) Dockerfile_6

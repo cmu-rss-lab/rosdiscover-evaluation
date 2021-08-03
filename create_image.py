@@ -4,17 +4,18 @@ import get_packages as gp
 import xml.etree.ElementTree as ET
 import os
 import yaml
-from yaml.loader import SafeLoader
-
 from pathlib import Path
 
+from git import Git
+from git import Repo
 
-from git import *
-rgtm_dir = "./rosinstall_generator_time_machine"
-tempdir = "./ros-temp/"
+THIS_DIR = os.path.dirname(__file__)
+rgtm_dir = os.path.join(THIS_DIR, "rosinstall_generator_time_machine")
+tempdir = os.path.join(THIS_DIR, "ros-temp")
+ 
 
 with open(sys.argv[1] + "/bug.yml") as f:
-    data = yaml.load(f, Loader=SafeLoader)
+    data = yaml.safe_load(f)
 
 docker_dir = sys.argv[2]
 
@@ -24,8 +25,9 @@ pre_bug_commit = data["pre-bug-commit"]
 bug_commit = data["bug-commit"]
 bug_fix_commit = data["bug-fix-commit"]
 bug_id = data["bugid"]
-localReposPath = tempdir    + "repos/"
-out_dir = tempdir    + bug_id + "/time/"
+localReposPath = os.path.join(tempdir,"repos")
+relative_out_dir = os.path.join("ros-temp", bug_id, "time")
+out_dir = os.path.join(tempdir, bug_id, "time")
 distro = data["ros-distro"]
 additional_packages = data["additional-packages"] if "additional-packages" in data else ""
 apt_get_packages = data["apt-get-packages"] if "apt-get-packages" in data else "" 
@@ -35,7 +37,7 @@ if not os.path.exists(out_dir):
 if not os.path.exists(localReposPath):
     Path(localReposPath).mkdir(parents=True)
 
-localRepoPath = localReposPath + repo_name
+localRepoPath = os.path.join(localReposPath, repo_name)
 if not os.path.exists(localRepoPath):
     print("Cloning repo into " + localRepoPath)
     p = Git(localReposPath).clone(repo_url)
@@ -44,12 +46,12 @@ g = Git(localRepoPath)
 r = Repo(localRepoPath)
 repoUrl = r.remotes[0].url
 
-if not os.path.exists(out_dir+"/pre_bug.rosinstall"):
+if not os.path.exists(os.path.join(out_dir,"pre_bug.rosinstall")):
     c = r.commit(pre_bug_commit)
     c_date = c.authored_datetime.isoformat()
     g.checkout(pre_bug_commit)
     for submodule in r.submodules:
-        submodule.update(init=True)
+        submodule.update(init=True, recursive=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
     command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/pre_bug.rosinstall"
@@ -58,21 +60,21 @@ if not os.path.exists(out_dir+"/pre_bug.rosinstall"):
     file1.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+pre_bug_commit)
     file1.close()
 
-if not os.path.exists(out_dir+"/bug.rosinstall"):
+if not os.path.exists(os.path.join(out_dir,"bug.rosinstall")):
     c = r.commit(bug_commit)
     c_date = c.authored_datetime.isoformat()
     g.checkout(bug_commit)
     for submodule in r.submodules:
-        submodule.update(init=True)
+        submodule.update(init=True, recursive=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
-    command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug.rosinstall"
+    command = "yes | "+ os.path.join(rgtm_dir,"rosinstall_generator_tm.sh '") +c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug.rosinstall"
+    print(command)
     os.system(command)
-    file2 = open(out_dir+"/bug.rosinstall", "a")  # append mode
-    file2.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+bug_commit)
-    file2.close()
+    with open(out_dir+"/bug.rosinstall", "a") as file2: # append mode
+        file2.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+bug_commit)
 
-if not os.path.exists(out_dir+"/bug_fix.rosinstall"):
+if not os.path.exists(os.path.join(out_dir,"bug_fix.rosinstall")):
     c = r.commit(bug_fix_commit)
     c_date = c.authored_datetime.isoformat()
     g.checkout(bug_fix_commit)
@@ -90,6 +92,6 @@ if not os.path.exists(out_dir+"/bug_fix.rosinstall"):
 print(docker_dir)
 if docker_dir != 'none':
 
-    dockerCmd = "docker build . -t "+ bug_id + " --build-arg APT_GET_PACKAGES='"+apt_get_packages+"' --build-arg ROOTFS='./"+sys.argv[1]+"/rootfs/' --build-arg DISTRO="+distro+" --build-arg DIRECTORY="+out_dir+" -f "+docker_dir
+    dockerCmd = "docker build . -t "+ bug_id + " --build-arg APT_GET_PACKAGES='"+apt_get_packages+"' --build-arg ROOTFS='./"+sys.argv[1]+"/rootfs/' --build-arg DISTRO="+distro+" --build-arg DIRECTORY="+relative_out_dir+" -f "+docker_dir
     print(dockerCmd)
     res = os.system(dockerCmd)

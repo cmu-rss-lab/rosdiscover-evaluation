@@ -90,35 +90,32 @@ RUN apt-get clean && apt-get update && apt-get upgrade -y \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update 
 
-RUN cd /usr/src \
- && wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz \
- && tar xzf Python-2.7.18.tgz \
- && cd Python-2.7.18 \
- && ./configure --enable-optimizations \
- && make altinstall \
- && apt update \
- && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7 \
- && python2.7 -m pip install -U wstools 
 
-
-RUN apt-get clean \
- && apt-get update && apt-get upgrade -y --force-yes \
- && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
- && wget http://packages.ros.org/ros.key -O - | apt-key add - 
-
-RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash 
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && wget http://packages.ros.org/ros.key -O - | apt-key add - \
+ && curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash 
 RUN exec $SHELL \
-&& export PYENV_ROOT="$HOME/.pyenv" \
-&& export PATH="$PYENV_ROOT/bin:$PATH" \
-&& eval "$(pyenv init --path)" \
-&& eval "$(pyenv init -)" \
-&& eval "$(pyenv virtualenv-init -)" \
-&& pyenv install 2.7.18 \
-&& pyenv global 2.7.18 \
-&& pip install setuptools
+ && export PYENV_ROOT="$HOME/.pyenv" \
+ && export PATH="$PYENV_ROOT/bin:$PATH" \
+ && eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && exec $SHELL \
+ && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
+ && pyenv global 2.7.18 \
+ && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
+ && pip install wheel \
+ && pip install -U pip==19.0.1 \
+ && pip install -U wstools \
+ && pip install setuptools \
+ && pip install \
+      catkin-tools==0.4.5 \
+      coverage==5.1 \
+      rosinstall-generator==0.1.18 
+ #&& apt-get clean \
+ #&& rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get update \
-&& apt-get install -y python-coverage \
+RUN apt-get install -y python-coverage \
  python-catkin-pkg \
  python-rosdep \
  python-rosdistro \
@@ -153,24 +150,11 @@ RUN apt-get update \
  && wget -nv "https://nodejs.org/dist/${NODE_VERSION}/${NODE_RELEASE}.tar.xz" \
  && mkdir -p "${NODE_PATH}" \
  && tar -xJvf "${NODE_RELEASE}.tar.xz" -C "${NODE_PATH}" \
- && rm -f "${NODE_RELEASE}.tar.xz"
-
-
-RUN apt-get clean \
- && apt-get update && apt-get upgrade -y --force-yes \
+ && rm -f "${NODE_RELEASE}.tar.xz" \
  && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
  && apt-get install python-rosinstall -y --force-yes \
- && python2.7 -m pip install \
-      catkin-tools==0.4.5 \
-      coverage==5.1 \
-      rosinstall-generator==0.1.18 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-
-# install vncserver
-RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
  && apt-get install -y --no-install-recommends\
       supervisor \
@@ -182,6 +166,7 @@ RUN apt-get update \
       xterm \
       xvfb \
       x11vnc \
+      python-catkin-tools \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir ~/.vnc \
@@ -193,12 +178,8 @@ RUN chmod +x /bin/tini
 # Get commit date using `git show -s --format=%ci 84169473a3f72aea8a400464f5b673f3c77c6b8c`
 #ENV COMMIT_DATE git show -s --format=%ci "{COMMIT}" 
 #'2016-04-15 19:41:20 +0900'
-RUN pip install wheel \
-#&& pip install --upgrade pip \
-&& pip install -U pip==19.0.1 \
-&& apt-get install software-properties-common \
-&& apt-add-repository universe \
-&& apt-get update  
+RUN apt-get install software-properties-common \
+&& apt-add-repository universe 
 
 ARG APT_GET_PACKAGES
 RUN apt-get update && apt-get install -y ${APT_GET_PACKAGES} && apt-get clean
@@ -207,11 +188,23 @@ ARG DIRECTORY
 COPY "${DIRECTORY}" /install/
 
 
+ARG ROOTFS
+
+COPY "${ROOTFS}" /
+
 RUN (test -f /preinstall.sh \
      && ((echo "running preinstall step..." && apt-get update && /bin/bash /preinstall.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping preinstall step [no preinstall.sh]" && exit 0))
 
-RUN mkdir /pre_bug && mkdir /bug && mkdir /bug_fix \
+RUN export PYENV_ROOT="$HOME/.pyenv" \
+ && export PATH="$PYENV_ROOT/bin:$PATH" \
+ && eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && exec $SHELL \
+ && pyenv global 2.7.18 \
+ && apt-get update && \
+mkdir /pre_bug && mkdir /bug && mkdir /bug_fix \
 && wstool init -j8 /pre_bug/src /install/pre_bug.rosinstall \
 && rosdep update \
 && rosdep install -i -y -r --from-paths /pre_bug/src/ \
@@ -245,10 +238,6 @@ RUN (test "${GZWEB}" = "yes" \
      && (echo "running gzweb installation scripts..." && /.dockerinstall/install-gzweb.sh || exit 1) \
      || (echo "skipping gzweb installation step" && exit 0))
 
-
-ARG ROOTFS
-
-COPY "${ROOTFS}" /
 
 RUN (test -f /prebuild.sh \
      && ((echo "running prebuild step..." && apt-get update && /bin/bash /prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
