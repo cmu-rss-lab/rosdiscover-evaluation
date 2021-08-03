@@ -1,6 +1,7 @@
-autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06 autoware-07 autoware-08 autoware-09 autoware-10
+autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06 autoware-07 autoware-08 autoware-09 autoware-10 autoware-11 autoware-12
 mavros-bugs = mavros-01 mavros-02
-all-bugs = $(autoware-bugs) $(mavros-bugs) husky-01 industrial_core-01
+husky-bugs = husky-01 husky-02 husky-03 husky-04 husky-05
+all-bugs = $(autoware-bugs) $(mavros-bugs) $(husky-bugs) industrial_core-01
 
 init:
 	bash ./setup.sh
@@ -13,6 +14,8 @@ install-only:
 	done
 
 autoware: $(autoware-bugs)
+
+huksy: $(husky-bugs)
 
 launch-all:
 	for bug in $(all-bugs); do \
