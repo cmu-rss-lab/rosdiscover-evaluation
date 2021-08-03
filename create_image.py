@@ -54,7 +54,7 @@ if not os.path.exists(os.path.join(out_dir,"pre_bug.rosinstall")):
         submodule.update(init=True, recursive=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
-    command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/pre_bug.rosinstall"
+    command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps --tar | sed -e 's/geometry_experimental-release/geometry2-release/g' > "+out_dir+"/pre_bug.rosinstall"
     os.system(command)
     file1 = open(out_dir+"/pre_bug.rosinstall", "a")  # append mode
     file1.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+pre_bug_commit)
@@ -68,7 +68,7 @@ if not os.path.exists(os.path.join(out_dir,"bug.rosinstall")):
         submodule.update(init=True, recursive=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
-    command = "yes | "+ os.path.join(rgtm_dir,"rosinstall_generator_tm.sh '") +c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug.rosinstall"
+    command = "yes | "+ os.path.join(rgtm_dir,"rosinstall_generator_tm.sh '") +c_date+"' "+distro+" "+pc+" --deps --tar | sed -e 's/geometry_experimental-release/geometry2-release/g' > "+out_dir+"/bug.rosinstall"
     print(command)
     os.system(command)
     with open(out_dir+"/bug.rosinstall", "a") as file2: # append mode
@@ -82,7 +82,7 @@ if not os.path.exists(os.path.join(out_dir,"bug_fix.rosinstall")):
         submodule.update(init=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
-    command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps > "+out_dir+"/bug_fix.rosinstall"
+    command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps --tar | sed -e 's/geometry_experimental-release/geometry2-release/g' > "+out_dir+"/bug_fix.rosinstall"
     os.system(command)
     file3 = open(out_dir+"/bug_fix.rosinstall", "a")  # append mode
     file3.write("- git:\n    local-name: repo\n    uri:  "+repoUrl+"\n    version: "+bug_fix_commit)
