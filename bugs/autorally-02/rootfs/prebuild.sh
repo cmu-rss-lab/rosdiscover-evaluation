@@ -5,7 +5,7 @@ sudo apt-get install -y curl
 cd ~
 git clone https://bitbucket.org/gtborg/gtsam.git
 cd gtsam 
-git checkout 2c0c3d195558375632fa86ed42df772fce7af42b
+git checkout c827d4cd6b11f78f3d2d9d52b335ac562a2757fc
 mkdir build
 cd build
 cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=ON -DGTSAM_WITH_EIGEN_MKL=OFF ..

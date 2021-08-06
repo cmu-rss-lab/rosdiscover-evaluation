@@ -79,7 +79,7 @@ if not os.path.exists(os.path.join(out_dir,"bug_fix.rosinstall")):
     c_date = c.authored_datetime.isoformat()
     g.checkout(bug_fix_commit)
     for submodule in r.submodules:
-        submodule.update(init=True)
+        submodule.update(init=True, recursive=True)
     neededPackages = gp.get_packages(localRepoPath)
     pc = ' '.join(neededPackages) + " " + additional_packages
     command = "yes | "+rgtm_dir+"/rosinstall_generator_tm.sh '"+c_date+"' "+distro+" "+pc+" --deps --tar | sed -e 's/geometry_experimental-release/geometry2-release/g' > "+out_dir+"/bug_fix.rosinstall"

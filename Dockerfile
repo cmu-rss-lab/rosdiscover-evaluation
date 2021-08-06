@@ -159,7 +159,8 @@ ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN chmod +x /bin/tini \
   && apt-get install software-properties-common \
-  && apt-add-repository universe 
+  && apt-add-repository universe \
+  && apt-get update && apt-get install -y ros-"${ROS_DISTRO}"-desktop-full
 
 # optionally add gzweb support
 ARG GZWEB="no"
