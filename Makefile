@@ -26,6 +26,10 @@ launch-all:
 		bash run_rosdiscover.sh $$bug; \
 	done
 
+autware-static: 
+	python create_image.py bugs/$@ Dockerfile_clean
+
+
 %: 
 	python create_image.py bugs/$@ Dockerfile
 
