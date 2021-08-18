@@ -17,3 +17,12 @@ Methodology
   * A full-system launch configuration consists of a sequence of launch files that should be launched to bring up the system in simulation.
   * This is obtained by looking at provided examples, documentation, and tutorials.
   * We restrict our attention to system configurations that can be reproduced in simulation (i.e., we ignore hardware-specific configurations).
+
+
+Systems
+-------
+
+* `Autoware-AI (v1.11.0) <https://github.com/Autoware-AI/autoware.ai/tree/1.11.0>`_
+* `AutoRally (c2692f2) <https://github.com/AutoRally/autorally/commit/c2692f2970da6874ad9ddfeea3908adaf05b4b09>`_
+* `TurtleBot 3 (v1.2.5) <https://github.com/ROBOTIS-GIT/turtlebot3/releases/tag/1.2.5>`_
+* `Champ (91a5b5e) <https://github.com/chvmp/champ/tree/91a5b5e7ee3a35ded0333a39e22a916f075c733d>`_
