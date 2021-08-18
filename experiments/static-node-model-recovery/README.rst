@@ -26,3 +26,6 @@ Systems
 * `AutoRally (c2692f2) <https://github.com/AutoRally/autorally/commit/c2692f2970da6874ad9ddfeea3908adaf05b4b09>`_
 * `TurtleBot 3 (v1.2.5) <https://github.com/ROBOTIS-GIT/turtlebot3/releases/tag/1.2.5>`_
 * `Champ (91a5b5e) <https://github.com/chvmp/champ/tree/91a5b5e7ee3a35ded0333a39e22a916f075c733d>`_
+* `Linorobot (v1.4.0) <https://github.com/linorobot/linorobot/releases/tag/v1.4.0>`_
+* `Spot Mini Mini (v2.2.0) <https://github.com/OpenQuadruped/spot_mini_mini/releases/tag/v2.2.0>`_
+* `ur5_ROS-Gazebo (2f7b9b0) <https://github.com/lihuang3/ur5_ROS-Gazebo>`_
