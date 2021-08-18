@@ -18,6 +18,15 @@ Methodology
   * This is obtained by looking at provided examples, documentation, and tutorials.
   * We restrict our attention to system configurations that can be reproduced in simulation (i.e., we ignore hardware-specific configurations).
 
+4. We manually launched the system inside a Docker container, waited for it to reach a stable state, and then used ROSDiscover to record the architecture.
+
+  * Due to limitations within ROS, the architectural information that we can gather for each node is limited.
+  * We can find the topics to which a node publishes and subscribes, and the services and action servers advertised by that node, but we cannot observe the services or action servers that are used by a given component.
+  * We save a description of the observed architecture for each system, named :code:`observed.yml`, to the associated subdirectory for that system.
+  * **Nodelets may cause us trouble!**
+
+5. We statically recover the architecture for each system and save it to a file named :code:`recovered.yml` in the system's associated subdirectory.
+
 
 Systems
 -------
