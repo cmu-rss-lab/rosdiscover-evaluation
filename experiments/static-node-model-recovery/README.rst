@@ -29,3 +29,4 @@ Systems
 * `Linorobot (v1.4.0) <https://github.com/linorobot/linorobot/releases/tag/v1.4.0>`_
 * `Spot Mini Mini (v2.2.0) <https://github.com/OpenQuadruped/spot_mini_mini/releases/tag/v2.2.0>`_
 * `ur5_ROS-Gazebo (2f7b9b0) <https://github.com/lihuang3/ur5_ROS-Gazebo>`_
+* `HyphaROS MiniCar (fef61e1) <https://github.com/Hypha-ROS/hypharos_minicar/tree/fef61e1757d3e9715aca6f993af1d9f946208a4e>`_
