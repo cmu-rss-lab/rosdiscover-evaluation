@@ -7,6 +7,7 @@ Methodology
 1. We identified the `N-most popular ROS systems on GitHub <https://github.com/topics/ros?o=desc&s=stars>`_ (measured by number of stars).
 
    * We looked at 5,118 repositories that have the `ros` topic.
+   * Alternatively, we could look at the N-most popular systems in Ivano's list.
    * We ignore repositories that provide standalone components (e.g., navigation, moveit) and libraries (e.g., geometry2) but not full systems.
      (However, most of these components are transitively included by some of the full systems that we studied.)
 
