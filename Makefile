@@ -27,7 +27,7 @@ launch-all:
 	done
 
 autoware-static: 
-	python create_image.py bugs/$@ Dockerfile_clean
+	docker build . -t autoware-static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
 
 
 %: 
