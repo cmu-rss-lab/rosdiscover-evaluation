@@ -1,0 +1,40 @@
+FROM autoware/autoware:1.14.0-melodic
+
+ENV DEBIAN_FRONTEND noninteractive
+# install vncserver
+RUN sudo bash -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
+ && wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
+ && sudo apt-get update \
+ && sudo apt-get install -y \
+      dialog \
+      apt-utils \
+      supervisor \
+      vnc4server \
+      xfce4 \
+      xfce4-goodies \
+      xfce4-terminal \
+      xserver-xorg-core \
+      xterm \
+      xvfb \
+      x11vnc \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && sudo mkdir ~/.vnc \
+ && sudo /bin/bash -c "echo -e 'r0sD!sc0ver\nr0sD!sc0ver\nn' | vncpasswd"
+ENV TINI_VERSION v0.9.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
+RUN sudo chmod +x /bin/tini
+
+
+ARG ROOTFS
+
+COPY "${ROOTFS}" /
+
+RUN pushd ~ \ 
+  && mkdir .autoware \
+  && pushd .autoware \
+  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
+  && tar zxfv sample_moriyama_data.tar.gz \ 
+  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh \ 
+  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \  
+  && tar zxfv sample_moriyama_150324.tar.gz
