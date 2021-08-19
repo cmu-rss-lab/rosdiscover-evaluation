@@ -1,4 +1,4 @@
-autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06 autoware-07 autoware-08 autoware-09 autoware-10 autoware-11 autoware-12
+autoware-bugs = autoware-01 autoware-02 autoware-03 autoware-04 autoware-05 autoware-06 autoware-07 autoware-08 autoware-09 autoware-10 autoware-11 autoware-12 autoware-static
 mavros-bugs = mavros-01 mavros-02
 husky-bugs = husky-01 husky-02 husky-03 husky-04 husky-05
 autorally-bugs = autorally-01 autorally-02 autorally-03 autorally-04 autorally-05
