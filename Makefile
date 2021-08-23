@@ -4,7 +4,8 @@ mavros-bugs = mavros-01 mavros-02
 husky-bugs = husky-01 husky-02 husky-03 husky-04 husky-05
 autorally-bugs = autorally-01 autorally-02 autorally-03 autorally-04 autorally-05 autorally-06 autorally-07 autorally-08
 igvc-bugs = igvc-01 igvc-02 igvc-03
-all-bugs = $(autoware-bugs) $(mavros-bugs) $(husky-bugs) $(autorally-bugs) $(igvc-bugs) industrial_core-01 ros_tms-01
+turtlebot-bugs = turtlebot-01 turtlebot-02
+all-bugs = $(autoware-bugs) $(mavros-bugs) $(husky-bugs) $(autorally-bugs) $(igvc-bugs) $(turtlebot-bugs) industrial_core-01 ros_tms-01
 
 init:
 	bash ./setup.sh
