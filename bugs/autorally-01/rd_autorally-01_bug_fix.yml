@@ -4,8 +4,13 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /bug_fix/devel/setup.bash
 - /bug_fix/src/repo/autorally_util/setupEnvLocal.sh
-environment:
-  ROSLAUNCH_SSH_UNKNOWN: true
-  MASTER_HOSTNAME: 127.0.01
 launches:
 - /bug_fix/src/repo/autorally_core/launch/stateEstimator.launch
+node_sources:
+  - package: autorally_core
+    node: imuGpsEstimator
+    sources:
+      - src/StateEstimator/IMU_GPS.cpp
+    restrict-analysis-to-paths:
+      - /bug_fix/devel/include/autorally_control
+      - /bug_fix/src/repo/autorally_control
