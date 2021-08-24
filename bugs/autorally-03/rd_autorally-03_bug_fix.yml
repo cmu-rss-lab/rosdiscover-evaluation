@@ -1,0 +1,17 @@
+image: autorally-03
+
+sources:
+- /opt/ros/kinetic/setup.bash
+- /bug_fix/devel/setup.bash
+- /bug_fix/src/repo/autorally_util/setupEnvLocal.sh
+launches:
+- /bug_fix/src/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /bug_fix/src/autorally_gazebo/launch/autoRallyTrackWorld.launch
+node_sources:
+  - package: autorally_core
+    node: imuGpsEstimator
+    sources:
+      - src/StateEstimator/IMU_GPS.cpp
+    restrict-analysis-to-paths:
+      - /bug_fix/devel/include/autorally_core
+      - /bug_fix/src/repo/autorally_core
