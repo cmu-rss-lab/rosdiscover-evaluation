@@ -1,20 +1,20 @@
-image: autorally-05
+image: autorally-07
 
 sources:
 - /opt/ros/indigo/setup.bash
-- /bug/devel/setup.bash
-- /bug/src/repo/autorally_util/setupEnvLocal.sh
+- /pre_bug/devel/setup.bash
+- /pre_bug/src/repo/autorally_util/setupEnvLocal.sh
 
 launches:
-- /bug/src/repo/autorally_control/launch/path_integral_bf.launch
+- /pre_bug/src/repo/autorally_core/launch/camera.launch
 
 node_sources:
   - package: autorally_control
-    node: imuGpsEstimator
+    node: path_integral_bf
     sources:
       - src/path_integral/path_integral_main.cu
       - src/path_integral/autorally_plant.cpp
       - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_control
-      - /bug/src/repo/autorally_control
+      - /pre_bug/devel/include/autorally_core
+      - /pre_bug/src/repo/autorally_core

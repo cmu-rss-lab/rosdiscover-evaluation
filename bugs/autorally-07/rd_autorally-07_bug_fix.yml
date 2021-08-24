@@ -1,12 +1,12 @@
-image: autorally-05
+image: autorally-07
 
 sources:
 - /opt/ros/indigo/setup.bash
-- /bug/devel/setup.bash
-- /bug/src/repo/autorally_util/setupEnvLocal.sh
+- /bug_fix/devel/setup.bash
+- /bug_fix/src/repo/autorally_util/setupEnvLocal.sh
 
 launches:
-- /bug/src/repo/autorally_control/launch/path_integral_bf.launch
+- /bug_fix/src/repo/autorally_core/launch/camera.launch
 
 node_sources:
   - package: autorally_control
@@ -16,5 +16,5 @@ node_sources:
       - src/path_integral/autorally_plant.cpp
       - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_control
-      - /bug/src/repo/autorally_control
+      - /bug_fix/devel/include/autorally_core
+      - /bug_fix/src/repo/autorally_core
