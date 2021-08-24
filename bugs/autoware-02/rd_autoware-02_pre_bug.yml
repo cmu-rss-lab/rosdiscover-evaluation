@@ -11,3 +11,17 @@ launches:
 - filename: /pre_bug/src/repo/ros/src/computing/planning/motion/packages/waypoint_follower/launch/wf_simulator.launch
   arguments: 
     model_path: /pre_bug/src/repo/ros/src/.config/model/default.urdf
+
+node_sources:
+- package: waypoint_follower
+  node: odom_gen
+  sources:
+    - nodes/odom_gen/odom_gen.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+- package: driving_planner
+  node: lattice_trajectory_gen
+  sources:
+    - nodes/lattice_trajectory_gen/lattice_trajectory_gen.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
