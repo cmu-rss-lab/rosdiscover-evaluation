@@ -3,5 +3,16 @@ image: autorally-04
 sources:
 - /opt/ros/indigo/setup.bash
 - /pre_bug/devel/setup.bash
+- /pre_bug/src/repo/autorally_util/setupEnvLocal.sh
+
 launches:
 - /pre_bug/src/repo/autorally_core/launch/camera.launch
+
+node_sources:
+  - package: autorally_core
+    node: imuGpsEstimator
+    sources:
+      - src/StateEstimator/IMU_GPS.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
