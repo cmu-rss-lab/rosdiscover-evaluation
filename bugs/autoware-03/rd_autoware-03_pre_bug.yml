@@ -6,3 +6,17 @@ sources:
 launches:
 - /pre_bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
 - /pre_bug/src/repo/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+
+node_sources:
+- package: waypoint_maker
+  node: waypoint_loader
+  sources:
+    - nodes/waypoint_loader/waypoint_loader.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+- package: lane_planner
+  node: lane_navi
+  sources:
+    - nodes/lane_navi/lane_navi.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
