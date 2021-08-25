@@ -28,6 +28,16 @@ launch-all:
 		bash run_rosdiscover.sh $$bug; \
 	done
 
+launch-autoware:
+	for bug in $(autoware-bugs); do \
+		bash run_rosdiscover.sh $$bug; \
+	done
+
+launch-autorally:
+	for bug in $(autorally-bugs); do \
+		bash run_rosdiscover.sh $$bug; \
+	done
+
 autoware-static: 
 	docker build . -t autoware-static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
 
