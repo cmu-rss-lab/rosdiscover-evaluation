@@ -38,7 +38,7 @@ launch-autoware-debug:
 		bash run_rosdiscover_debug.sh $$bug; \
 	done
 
-launch-autorally_debug:
+launch-autorally-debug:
 	for bug in $(autorally-bugs); do \
 		bash run_rosdiscover_debug.sh $$bug; \
 	done
