@@ -1,7 +1,23 @@
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_6.5-14_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1404_6.5-14_amd64.deb
+sudo apt-get update -y
+sudo apt-get install -y --no-install-recommends cuda
+
 sudo echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list
 sudo echo 'deb http://cz.archive.ubuntu.com/ubuntu xenial main universe' >> /etc/apt/sources.list
 sudo apt-get update 
 sudo apt-get install -y curl
+
+git clone https://github.com/rogersce/cnpy.git
+cd cnpy 
+git checkout cf4aab6de4338679b589cda00c24566a49213eec
+cd ..
+mkdir build
+cd build 
+cmake ../cnpy
+make
+make install
+
 cd ~
 git clone https://bitbucket.org/gtborg/gtsam.git
 cd gtsam 
