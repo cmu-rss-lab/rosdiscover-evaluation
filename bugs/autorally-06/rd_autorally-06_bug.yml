@@ -1,4 +1,4 @@
-image: autorally-05
+image: autorally-06
 
 sources:
 - /opt/ros/indigo/setup.bash
@@ -7,6 +7,8 @@ sources:
 
 launches:
 - /bug/src/repo/autorally_control/launch/path_integral_bf.launch
+- /bug/src/repo/autorally_control/launch/path_integral_nn.launch
+- /bug/src/repo/autorally_control/launch/path_integral_nodelet.launch
 
 node_sources:
   - package: autorally_control
@@ -31,6 +33,17 @@ node_sources:
     node: path_integral_monitor
     sources:
       - src/path_integral/status_monitor.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_control
+      - /bug/src/repo/autorally_control
+  - package: autorally_control
+    node: MPPI
+    type: nodelet
+    entrypoint: autorally_control::MPPI::onInit
+    sources:
+      - src/path_integral/mppi.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
       - /bug/devel/include/autorally_control
       - /bug/src/repo/autorally_control
