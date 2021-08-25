@@ -4,13 +4,38 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /pre_bug/devel/setup.bash
 - /pre_bug/src/repo/autorally_util/setupEnvLocal.sh
+
 launches:
 - /pre_bug/src/repo/autorally_core/launch/stateEstimator.launch
+- /pre_bug/src/repo/autorally_core/launch/baseStation.launch
+
 node_sources:
   - package: autorally_core
     node: imuGpsEstimator
     sources:
       - src/StateEstimator/IMU_GPS.cpp
+    restrict-analysis-to-paths:
+      - /pre_bug/devel/include/autorally_core
+      - /pre_bug/src/repo/autorally_core
+  - package: autorally_core
+    node: gpsHemisphereInterface
+    sources:
+      - src/gps/GPSHemisphere.cpp
+    restrict-analysis-to-paths:
+      - /pre_bug/devel/include/autorally_core
+      - /pre_bug/src/repo/autorally_core
+  - package: autorally_core
+    node: xbeeCoordinator
+    sources:
+      - src/xbee/XbeeCoordinator.cpp
+      - src/xbee/XbeeInterface.cpp
+    restrict-analysis-to-paths:
+      - /pre_bug/devel/include/autorally_core
+      - /pre_bug/src/repo/autorally_core
+  - package: autorally_core
+    node: runStop
+    sources:
+      - src/RunStop/RunStop.cpp
     restrict-analysis-to-paths:
       - /pre_bug/devel/include/autorally_core
       - /pre_bug/src/repo/autorally_core
