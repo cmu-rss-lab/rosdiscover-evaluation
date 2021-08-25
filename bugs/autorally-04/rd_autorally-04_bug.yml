@@ -9,10 +9,12 @@ launches:
 - /bug/src/repo/autorally_core/launch/camera.launch
 
 node_sources:
-  - package: autorally_core
-    node: imuGpsEstimator
+  - package: pointgrey_camera_driver
+    node: ConstantSpeedController
+    type: nodelet
+    entrypoint: autorally_control::ConstantSpeedController::onInit
     sources:
-      - src/StateEstimator/IMU_GPS.cpp
+      - src/ConstantSpeedController/ConstantSpeedController.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_core
-      - /bug/src/repo/autorally_core
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control

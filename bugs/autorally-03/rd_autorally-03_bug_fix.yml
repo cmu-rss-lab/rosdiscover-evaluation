@@ -8,10 +8,11 @@ launches:
 - /bug_fix/src/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
 - /bug_fix/src/autorally_gazebo/launch/autoRallyTrackWorld.launch
 node_sources:
-  - package: autorally_core
-    node: imuGpsEstimator
+  - package: autorally_control
+    node: joystickController
     sources:
-      - src/StateEstimator/IMU_GPS.cpp
+      - src/joystick/JoystickControl.cpp
+      - src/joystick/joystickControlMain.cpp
     restrict-analysis-to-paths:
-      - /bug_fix/devel/include/autorally_core
-      - /bug_fix/src/repo/autorally_core
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
