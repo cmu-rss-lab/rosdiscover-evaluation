@@ -5,3 +5,12 @@ sources:
 - /bug/src/repo/ros/devel/setup.bash
 launches:
 - /bug/src/repo/ros/src/computing/perception/detection/packages/cv_tracker/launch/ranging.launch
+
+node_sources:
+  #ranging.launch: range_fusion
+  - package: cv_tracker
+  node: range_fusion
+  sources:
+    - nodes/range_fusion/range_fusion.cpp
+  restrict-analysis-to-paths:
+    - /bug/src/repo/
