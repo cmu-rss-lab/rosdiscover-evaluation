@@ -33,6 +33,16 @@ launch-autoware:
 		bash run_rosdiscover.sh $$bug; \
 	done
 
+launch-autoware-debug:
+	for bug in $(autoware-bugs); do \
+		bash run_rosdiscover_debug.sh $$bug; \
+	done
+
+launch-autorally_debug:
+	for bug in $(autorally-bugs); do \
+		bash run_rosdiscover_debug.sh $$bug; \
+	done
+
 launch-autorally:
 	for bug in $(autorally-bugs); do \
 		bash run_rosdiscover.sh $$bug; \
