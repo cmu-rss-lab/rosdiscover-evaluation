@@ -1,12 +1,12 @@
-image: autorally-04
+image: autorally-08
 
 sources:
 - /opt/ros/indigo/setup.bash
-- /pre_bug/devel/setup.bash
-- /pre_bug/src/repo/autorally_util/setupEnvLocal.sh
+- /bug_fix/devel/setup.bash
+- /bug_fix/src/repo/autorally_util/setupEnvLocal.sh
 
 launches:
-- /pre_bug/src/repo/autorally_core/launch/camera.launch
+- /bug_fix/src/repo/autorally_core/launch/camera.launch
 
 node_sources:
   - package: autorally_core
@@ -16,8 +16,8 @@ node_sources:
     sources:
       - src/ImageRepublisher/ImageRepublisher.cpp
     restrict-analysis-to-paths:
-      - /pre_bug/devel/include/autorally_core
-      - /pre_bug/src/repo/autorally_core
+      - /bug_fix/devel/include/autorally_core
+      - /bug_fix/src/repo/autorally_core
   - package: autorally_core
     node: CameraAutoBalance 
     type: nodelet
@@ -25,5 +25,5 @@ node_sources:
     sources:
       - src/CameraAutoBalance/CameraAutoBalance.cpp
     restrict-analysis-to-paths:
-      - /pre_bug/devel/include/autorally_core
-      - /pre_bug/src/repo/autorally_core
+      - /bug_fix/devel/include/autorally_core
+      - /bug_fix/src/repo/autorally_core

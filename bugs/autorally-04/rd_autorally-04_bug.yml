@@ -9,12 +9,21 @@ launches:
 - /bug/src/repo/autorally_core/launch/camera.launch
 
 node_sources:
-  - package: pointgrey_camera_driver
-    node: ConstantSpeedController
+  - package: autorally_core
+    node: ImageRepublisher 
     type: nodelet
-    entrypoint: autorally_control::ConstantSpeedController::onInit
+    entrypoint: autorally_core::ImageRepublisher::onInit
     sources:
-      - src/ConstantSpeedController/ConstantSpeedController.cpp
+      - src/ImageRepublisher/ImageRepublisher.cpp
     restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_control
-      - /ros_ws/src/autorally/autorally_control
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: CameraAutoBalance 
+    type: nodelet
+    entrypoint: autorally_core::CameraAutoBalance::onInit
+    sources:
+      - src/CameraAutoBalance/CameraAutoBalance.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
