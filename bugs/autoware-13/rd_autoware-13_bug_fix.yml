@@ -5,3 +5,21 @@ sources:
 - /bug_fix/src/repo/ros/devel/setup.bash
 launches:
 - /bug_fix/src/repo/ros/src/computing/perception/detection/lidar_detector/packages/lidar_fake_perception/launch/lidar_fake_perception.launch
+
+node_sources:
+# lidar_fake_perception.launch: lidar_fake_perception_node, visualize_detected_objects
+- package: lidar_fake_perception
+  node: lidar_fake_perception_node
+  sources:
+    - nodes/lidar_fake_perception.cpp
+    - nodes/lidar_fake_perception_node.cpp
+  restrict-analysis-to-paths:
+    - /bug_fix/src/repo/
+- package: detected_objects_visualizer
+  node: visualize_detected_objects
+  sources:
+    - include/visualize_detected_objects.h
+    - src/visualize_detected_objects_main.cpp
+    - src/visualize_detected_objects.cpp
+  restrict-analysis-to-paths:
+    - /bug_fix/src/repo/
