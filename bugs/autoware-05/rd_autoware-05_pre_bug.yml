@@ -6,3 +6,55 @@ sources:
 launches:
 - /pre_bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
 - /pre_bug/src/repo/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+
+node_sources:
+#ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch (waypoint_loader, waypoint_marker_publisher):
+- package: waypoint_maker
+  node: waypoint_loader
+  sources:
+    - nodes/waypoint_loader/waypoint_loader_core.cpp
+    - nodes/waypoint_loader/velocity_replanner.cpp
+    - nodes/waypoint_loader/waypoint_loader_node.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+- package: waypoint_maker
+  node: waypoint_marker_publisher
+  sources:
+    - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+    
+# ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch (lane_navi, lane_rule, lane_stop):    
+- package: lane_planner
+  node: lane_navi
+  sources:
+    - nodes/lane_navi/lane_navi.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+- package: lane_planner
+  node: lane_rule
+  sources:
+    - nodes/lane_rule/lane_rule.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+
+- package: lane_planner
+  node: lane_stop
+  sources:
+    - nodes/lane_stop/lane_stop.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+
+# includes tablet_socket.launch (tablet_receiver, tablet_sender):
+- package: tablet_socket
+  node: tablet_receiver
+  sources:
+    - nodes/tablet_receiver/tablet_receiver.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+- package: tablet_socket
+  node: tablet_sender
+  sources:
+    - nodes/tablet_sender/tablet_sender.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/  
