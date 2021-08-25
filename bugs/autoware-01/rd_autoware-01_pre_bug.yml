@@ -4,6 +4,8 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /pre_bug/src/repo/ros/devel/setup.bash
 launches:
+- filename: /pre_bug/src/repo/ros/src/computing/perception/detection/packages/road_wizard/launch/feat_proj.launch
+- filename: /pre_bug/src/repo/ros/src/computing/planning/motion/packages/driving_planner/launch/velocity_set.launch
 - filename: /pre_bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
 - filename: /pre_bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch
   arguments: 
@@ -24,5 +26,19 @@ node_sources:
   node: lane_rule
   sources:
     - nodes/lane_rule/lane_rule.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+
+- package: road_wizard
+  node: feat_proj
+  sources:
+    - nodes/feat_proj/feat_proj.cpp
+  restrict-analysis-to-paths:
+    - /pre_bug/src/repo/
+
+- package: driving_planner
+  node: velocity_set
+  sources:
+    - nodes/velocity_set/velocity_set.cpp
   restrict-analysis-to-paths:
     - /pre_bug/src/repo/

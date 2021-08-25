@@ -4,6 +4,9 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /bug/src/repo/ros/devel/setup.bash
 launches:
+#- filename: /bug/src/repo/ros/src/.config/quick_start/sample_lidar_camera/detection.launch
+- filename: /bug/src/repo/ros/src/computing/perception/detection/packages/road_wizard/launch/feat_proj.launch
+- filename: /bug/src/repo/ros/src/computing/planning/motion/packages/driving_planner/launch/velocity_set.launch
 - filename: /bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
 - filename: /bug/src/repo/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch
   arguments: 
@@ -23,5 +26,19 @@ node_sources:
   node: lane_rule
   sources:
     - nodes/lane_rule/lane_rule.cpp
+  restrict-analysis-to-paths:
+    - /bug/src/repo/
+
+- package: road_wizard
+  node: feat_proj
+  sources:
+    - nodes/feat_proj/feat_proj.cpp
+  restrict-analysis-to-paths:
+    - /bug/src/repo/
+
+- package: driving_planner
+  node: velocity_set
+  sources:
+    - nodes/velocity_set/velocity_set.cpp
   restrict-analysis-to-paths:
     - /bug/src/repo/
