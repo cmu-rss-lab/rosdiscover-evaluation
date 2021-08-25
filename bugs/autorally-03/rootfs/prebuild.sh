@@ -54,3 +54,19 @@ cd build
 cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
+
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_6.5-14_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1404_6.5-14_amd64.deb
+sudo apt-get update -y
+sudo apt-get install -y --no-install-recommends cuda
+
+cd ~
+git clone https://github.com/rogersce/cnpy.git
+cd cnpy 
+git checkout cf4aab6de4338679b589cda00c24566a49213eec
+cd ..
+mkdir build
+cd build 
+cmake ../cnpy
+make
+make install
