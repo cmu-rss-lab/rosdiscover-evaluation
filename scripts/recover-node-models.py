@@ -7,6 +7,8 @@ import tempfile
 import typing as t
 
 from loguru import logger
+logger.remove()
+
 import rosdiscover
 import rosdiscover.cli
 
@@ -110,9 +112,8 @@ def recover_node_from_sources(
             args += ["--restrict-to", restrict_to]
         args += sources
 
-        # TODO setup log recording
         file_logger = logger.add(log_filename, level="DEBUG")
-        logger.info(f"calling rosdiscover: {args}")
+        logger.debug(f"calling rosdiscover: {args}")
         rosdiscover.cli.main(args)
         logger.remove(file_logger)
 
@@ -135,6 +136,14 @@ def error(message: str) -> t.NoReturn:
 
 
 def main() -> None:
+    # remove all existing loggers
+    stderr_logger = logger.add(
+        sys.stderr,
+        colorize=True,
+        format="<bold><level>{level}:</level></bold> {message}",
+        level="INFO",
+    )
+
     parser = argparse.ArgumentParser("statically recovers node models")
     parser.add_argument(
         "configuration",
