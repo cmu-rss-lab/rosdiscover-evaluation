@@ -4,5 +4,12 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /pre_bug/src/repo/ros/devel/setup.bash
 launches:
-- /pre_bug/src/repo/ros/src/.config/quick_start/sample_lidar_camera/detection.launch
-- /pre_bug/src/repo/ros/src/computing/perception/detection/packages/cv_tracker/launch/kf_tracking.launch
+- /sync_obj_reproj.launch
+
+node_sources:
+  - package: synchronization
+    node: sync_obj_reproj
+    sources:
+      - computing/perception/detection/packages/cv_tracker/nodes/obj_reproj/sync_car_obj_reproj.cpp
+    restrict-analysis-to-paths:
+      - /pre_bug/src/repo/
