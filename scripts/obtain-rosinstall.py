@@ -19,3 +19,18 @@ def obtain_rosinstall_for_repo_versions(
     assert repos
     assert os.path.isabs(output_filename)
     raise NotImplementedError
+
+
+def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
+    raise NotImplementedError
+
+
+def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig) -> None:
+    raise NotImplementedError
+
+
+def obtain_rosinstall_for_experiment(filename: str) -> None:
+    # TODO load the experiment
+
+    # TODO invoke the appropriate obtain method
+    raise NotImplementedError
