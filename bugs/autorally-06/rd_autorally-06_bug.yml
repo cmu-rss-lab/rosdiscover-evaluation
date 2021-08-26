@@ -4,15 +4,46 @@ sources:
 - /opt/ros/kinetic/setup.bash
 - /bug/devel/setup.bash
 - /bug/src/repo/autorally_util/setupEnvLocal.sh
+
 launches:
-- /bug/src/repo/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
-- /bug/src/repo/autorally_gazebo/launch/autoRallyTrackWorld.launch
+- /bug/src/repo/autorally_control/launch/path_integral_bf.launch
+- /bug/src/repo/autorally_control/launch/path_integral_nn.launch
+- /bug/src/repo/autorally_control/launch/path_integral_nodelet.launch
+
 node_sources:
   - package: autorally_control
-    node: joystickController
+    node: path_integral_bf
     sources:
-      - src/joystick/JoystickControl.cpp
-      - src/joystick/joystickControlMain.cpp
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_control
+      - /bug/src/repo/autorally_control
+  - package: autorally_control
+    node: path_integral_nn
+    sources:
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_control
+      - /bug/src/repo/autorally_control
+  - package: autorally_control
+    node: path_integral_monitor
+    sources:
+      - src/path_integral/status_monitor.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_control
+      - /bug/src/repo/autorally_control
+  - package: autorally_control
+    node: MPPI
+    type: nodelet
+    entrypoint: autorally_control::MPPI::onInit
+    sources:
+      - src/path_integral/mppi.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
       - /bug/devel/include/autorally_control
       - /bug/src/repo/autorally_control
