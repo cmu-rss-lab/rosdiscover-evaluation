@@ -23,6 +23,7 @@ class NodeSources(t.TypedDict):
 
 
 class ExperimentConfig(t.TypedDict):
+    directory: str
     subject: str
     version: str
     distro: str
@@ -69,17 +70,24 @@ def recover_node_from_sources(
     experiment_config: ExperimentConfig,
     node_sources: NodeSources,
 ) -> None:
+    entrypoint = node_sources.get("entrypoint", "main")
+    package = node_sources["package"]
+    node = node_sources["node"]
+    sources = node_sources["sources"]
+    restrict_to_paths = node_sources["restrict_analysis_to_paths"]
+
+    # ensure that a models output directory exists for this system
+    experiment_directory = experiment_config["directory"]
+    models_directory = os.path.join(experiment_directory, "models")
+    os.makedirs(models_directory, exist_ok=True)
+    model_filename = os.path.join(models_directory, f"{package}__{node}.json")
+
     recovery_config: t.Dict[str, t.Any] = {
         "image": experiment_config["image"],
         "sources": list(experiment_config["sources"]),
         "launches": list(experiment_config["launches"]),
     }
 
-    entrypoint = node_sources.get("entrypoint", "main")
-    package = node_sources["package"]
-    node = node_sources["node"]
-    sources = node_sources["sources"]
-    restrict_to_paths = node_sources["restrict_analysis_to_paths"]
 
     try:
         recovery_config_filename: str = tempfile.mkstemp(suffix=".rosdiscover.yml")[1]
@@ -88,6 +96,8 @@ def recover_node_from_sources(
 
         args = [
             "recover",
+            "--save-to",
+            model_filename,
             recovery_config_filename,
             package,
             node,
@@ -103,6 +113,15 @@ def recover_node_from_sources(
 
     finally:
         os.remove(recovery_config_filename)
+
+
+def load_experiment_config(filename: str) -> ExperimentConfig:
+    abs_filename = os.path.abspath(filename)
+    experiment_directory = os.path.dirname(abs_filename)
+    with open(filename, "r") as fh:
+        config = yaml.safe_load(fh)
+        config["directory"] = experiment_directory
+        return config
 
 
 def error(message: str) -> t.NoReturn:
@@ -140,8 +159,8 @@ def main() -> None:
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
-    with open(experiment_filename, "r") as fh:
-        config = yaml.safe_load(fh)
+    # load experiment config
+    config = load_experiment_config(experiment_filename)
 
     # determine if we should recover all models or just one
     should_recover_all = not args.node
