@@ -25,7 +25,8 @@ def obtain_rosinstall_for_repo_versions(
 
 
 def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
-    raise NotImplementedError
+    output_filename = os.path.join(config["directory"], "pkgs.rosinstall")
+    obtain_rosinstall_for_repo_versions(config["repositories"])
 
 
 def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig) -> None:
