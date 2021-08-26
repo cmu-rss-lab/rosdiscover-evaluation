@@ -12,8 +12,6 @@
 #   instead as a means of avoiding certain build issues.
 # DISTRO: specifies the ROS distribution that should be used by the base image
 # DIRECTORY: specifies the directory that provides files for the robot
-# GZWEB: use to specify whether GzWeb support should be added to the image
-#   values should be "yes" or "no".
 #
 # References
 # ----------
@@ -26,16 +24,6 @@
 # * https://stackoverflow.com/questions/48601146/docker-how-to-set-tightvncserver-password
 ARG DISTRO
 
-FROM ubuntu:18.04 AS gzweb
-ENV GZWEB_RELEASE 5781220babcd95b217b28e69f6f8b6542be014b9
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      ca-certificates \
-      git \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* \
- && git clone https://github.com/osrf/gzweb /opt/gzweb -u "${GZWEB_RELEASE}"
-
 # NOTE: We need to install the cmake_modules to avoid some build failures
 # that are due to unspecified dependencies.
 # (https://github.com/ros-industrial/industrial_calibration/issues/50)
@@ -44,7 +32,6 @@ FROM ros:${DISTRO} AS main
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-COPY --from=gzweb /opt/gzweb /opt/gzweb
 COPY rootfs /
 WORKDIR /ros_ws
 ENTRYPOINT ["/ros_ws/entrypoint.sh"]
@@ -79,26 +66,6 @@ RUN apt-get update \
       rosinstall-generator==0.1.18 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-# install gzweb deps
-ENV NODE_PATH /opt/nodejs
-ENV NODE_VERSION v6.17.1
-ENV NODE_DISTRO linux-x64
-ENV NODE_RELEASE "node-${NODE_VERSION}-${NODE_DISTRO}"
-ENV PATH "${NODE_PATH}/${NODE_RELEASE}/bin:${PATH}"
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      imagemagick \
-      libjansson-dev \
-      libboost-dev \
-      libtinyxml-dev \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* \
- && cd /tmp \
- && wget -nv "https://nodejs.org/dist/${NODE_VERSION}/${NODE_RELEASE}.tar.xz" \
- && mkdir -p "${NODE_PATH}" \
- && tar -xJvf "${NODE_RELEASE}.tar.xz" -C "${NODE_PATH}" \
- && rm -f "${NODE_RELEASE}.tar.xz"
 
 # install vncserver
 RUN apt-get update \
@@ -152,9 +119,3 @@ RUN (test -f /.dockerinstall/prebuild.sh \
 ARG BUILD_COMMAND="catkin_make"
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
  && eval "${BUILD_COMMAND} -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-
-# optionally add gzweb support
-ARG GZWEB="no"
-RUN (test "${GZWEB}" = "yes" \
-     && (echo "running gzweb installation scripts..." && /.dockerinstall/install-gzweb.sh || exit 1) \
-     || (echo "skipping gzweb installation step" && exit 0))
