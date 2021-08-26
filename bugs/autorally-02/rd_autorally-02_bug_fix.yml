@@ -2,12 +2,12 @@ image: autorally-02
 
 sources:
 - /opt/ros/kinetic/setup.bash
-- /bug/devel/setup.bash
-- /bug/src/repo/autorally_util/setupEnvLocal.sh
+- /bug_fix/devel/setup.bash
+- /bug_fix/src/repo/autorally_util/setupEnvLocal.sh
 
 launches:
-- /bug/src/repo/autorally_control/launch/path_integral_bf.launch
-- /bug/src/repo/autorally_control/launch/path_integral_nn.launch
+- /bug_fix/src/repo/autorally_control/launch/path_integral_bf.launch
+- /bug_fix/src/repo/autorally_control/launch/path_integral_nn.launch
 
 node_sources:
   - package: autorally_control
@@ -17,8 +17,8 @@ node_sources:
       - src/path_integral/autorally_plant.cpp
       - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_control
-      - /bug/src/repo/autorally_control
+      - /bug_fix/devel/include/autorally_control
+      - /bug_fix/src/repo/autorally_control
   - package: autorally_control
     node: path_integral_nn
     sources:
@@ -26,12 +26,12 @@ node_sources:
       - src/path_integral/autorally_plant.cpp
       - src/path_integral/param_getter.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_control
-      - /bug/src/repo/autorally_control
+      - /bug_fix/devel/include/autorally_control
+      - /bug_fix/src/repo/autorally_control
   - package: autorally_control
     node: path_integral_monitor
     sources:
       - src/path_integral/status_monitor.cpp
     restrict-analysis-to-paths:
-      - /bug/devel/include/autorally_control
-      - /bug/src/repo/autorally_control
+      - /bug_fix/devel/include/autorally_control
+      - /bug_fix/src/repo/autorally_control
