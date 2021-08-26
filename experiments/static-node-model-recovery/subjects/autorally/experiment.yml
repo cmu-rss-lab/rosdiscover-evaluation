@@ -1,4 +1,5 @@
 subject: autorally
+image: therobotcooperative/autorally
 version: c2692f2
 distro: melodic
 sources:
@@ -8,4 +9,34 @@ sources:
 launches:
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
 node_sources:
-- TODO
+  - package: autorally_control
+    node: gpsWaypoint
+    sources:
+      - src/gpsWaypoint/gpsWaypoint.cpp
+    restrict_analysis_to_paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: joystickController
+    sources:
+      - src/joystick/JoystickControl.cpp
+      - src/joystick/joystickControlMain.cpp
+    restrict_analysis_to_paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: ConstantSpeedController
+    type: nodelet
+    entrypoint: autorally_control::ConstantSpeedController::onInit
+    sources:
+      - src/ConstantSpeedController/ConstantSpeedController.cpp
+    restrict_analysis_to_paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_core
+    node: imuGpsEstimator
+    sources:
+      - src/StateEstimator/IMU_GPS.cpp
+    restrict_analysis_to_paths:
+      - /ros_ws/devel/include/autorally_core
+      - /ros_ws/src/autorally/autorally_core

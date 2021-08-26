@@ -46,10 +46,25 @@ def find_node_sources(
     raise ValueError(f"failed to find sources for node [{node}] in package [{package}]")
 
 
+def recover_all(experiment_config: ExperimentConfig) -> None:
+    logger.info("recovering all node models for system")
+    for node_sources in experiment_config["node_sources"]:
+        recover_node_from_sources(experiment_config, node_sources)
+    logger.info("recovered all node models for system")
+
+
 def recover_node(
     experiment_config: ExperimentConfig,
     package: str,
     node: str,
+) -> None:
+    node_sources = find_node_sources(experiment_config, package, node)
+    return recover_node_from_sources(experiment_config, node_sources)
+
+
+def recover_node_from_sources(
+    experiment_config: ExperimentConfig,
+    node_sources: NodeSources,
 ) -> None:
     recovery_config: t.Dict[str, t.Any] = {
         "image": experiment_config["image"],
@@ -57,7 +72,6 @@ def recover_node(
         "launches": list(experiment_config["launches"]),
     }
 
-    node_sources = find_node_sources(experiment_config, package, node)
     entrypoint = node_sources["entrypoint"]
     sources = node_sources["sources"]
     restrict_to_paths = node_sources["restrict_analysis_to_paths"]
@@ -84,16 +98,46 @@ def recover_node(
         os.remove(recovery_config_filename)
 
 
-def main() -> None:
-    # TODO allow script to be run on a system or a single node
-    if not sys.argv[1]:
-        print(f"USAGE: {sys.argv[0]} [experiment.yml]")
-        sys.exit(1)
+def error(message: str) -> t.NoReturn:
+    print(f"ERROR: {message}")
+    sys.exit(1)
 
-    experiment_filename: str = sys.argv[1]
+
+def main() -> None:
+    parser = argparse.ArgumentParser("statically recovers node models")
+    parser.add_argument(
+        "configuration",
+        help="the path to the configuration file for the system",
+    )
+    parser.add_argument(
+        "--package",
+        default=None,
+        required=False,
+        help="the name of the package containing the node whose model should be recovered",
+    )
+    parser.add_argument(
+        "--node",
+        default=None,
+        required=False,
+        help="the name of the node whose model should be recovered",
+    )
+    args = parser.parse_args()
+
+    if args.node and not args.package:
+        error(f"expected package name to be specified for node [{args.node}]")
+
+    if args.package and not args.node:
+        error(f"expected node name to be specified along with package [{args.package}]")
+
+    experiment_filename: str = args.configuration
+    if not os.path.exists(experiment_filename):
+        error(f"configuration file not found: {experiment_filename}")
+
     with open(experiment_filename, "r") as fh:
         config = yaml.safe_load(fh)
 
 
+
 if __name__ == "__main__":
+
     main()
