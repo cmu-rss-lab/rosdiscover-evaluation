@@ -1,4 +1,5 @@
 subject: autorally
+image: therobotcooperative/autorally
 version: c2692f2
 distro: melodic
 sources:
@@ -10,7 +11,7 @@ node_sources:
     node: gpsWaypoint
     sources:
       - src/gpsWaypoint/gpsWaypoint.cpp
-    restrict-analysis-to-paths:
+    restrict_analysis_to_paths:
       - /ros_ws/devel/include/autorally_control
       - /ros_ws/src/autorally/autorally_control
   - package: autorally_control
@@ -18,7 +19,7 @@ node_sources:
     sources:
       - src/joystick/JoystickControl.cpp
       - src/joystick/joystickControlMain.cpp
-    restrict-analysis-to-paths:
+    restrict_analysis_to_paths:
       - /ros_ws/devel/include/autorally_control
       - /ros_ws/src/autorally/autorally_control
   - package: autorally_control
@@ -27,13 +28,13 @@ node_sources:
     entrypoint: autorally_control::ConstantSpeedController::onInit
     sources:
       - src/ConstantSpeedController/ConstantSpeedController.cpp
-    restrict-analysis-to-paths:
+    restrict_analysis_to_paths:
       - /ros_ws/devel/include/autorally_control
       - /ros_ws/src/autorally/autorally_control
   - package: autorally_core
     node: imuGpsEstimator
     sources:
       - src/StateEstimator/IMU_GPS.cpp
-    restrict-analysis-to-paths:
+    restrict_analysis_to_paths:
       - /ros_ws/devel/include/autorally_core
       - /ros_ws/src/autorally/autorally_core
