@@ -84,7 +84,7 @@ def recover_node_from_sources(
     try:
         recovery_config_filename: str = tempfile.mkstemp(suffix=".rosdiscover.yml")[1]
         with open(recovery_config_filename, "w") as fh:
-            yaml.dump(recovery_config)
+            yaml.dump(recovery_config, fh, default_flow_style=False)
 
         args = [
             "recover",
@@ -97,6 +97,7 @@ def recover_node_from_sources(
             args += ["--restrict-to", restrict_to]
         args += sources
 
+        # TODO setup log recording
         logger.info(f"calling rosdiscover: {args}")
         rosdiscover.cli.main(args)
 
