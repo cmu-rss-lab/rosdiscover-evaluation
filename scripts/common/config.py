@@ -5,6 +5,7 @@ __all__ = (
     "NodeSources",
     "RecoveryExperimentConfig",
     "RepoVersion",
+    "SystemVersion",
 )
 
 import os
@@ -28,6 +29,11 @@ class RepoVersion(t.TypedDict):
     release: str
 
 
+class SystemVersion(t.TypedDict):
+    image: str
+    repositories: t.Collection[RepoVersion]
+
+
 class ExperimentConfig(t.TypedDict):
     type: t.Union[t.Literal["detection"], t.Literal["recovery"]]
     directory: str
@@ -40,13 +46,8 @@ class ExperimentConfig(t.TypedDict):
 
 
 class RecoveryExperimentConfig(ExperimentConfig):
-    directory: str
-    subject: str
-    version: str
-    distro: str
-    image: str
-    sources: t.Sequence[str]
-    node_sources: t.Collection[NodeSources]
+    buggy: SystemVersion
+    fixed: SystemVersion
 
 
 class DetectionExperimentConfig(ExperimentConfig):
