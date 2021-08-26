@@ -14,24 +14,11 @@ import rosdiscover.cli
 
 import yaml
 
-
-class NodeSources(t.TypedDict):
-    package: str
-    node: str
-    entrypoint: t.Optional[str]
-    sources: t.Collection[str]
-    type: t.Optional[t.Union[t.Literal["nodelet"], t.Literal["node"]]]
-    restrict_analysis_to_paths: t.Collection[str]
-
-
-class ExperimentConfig(t.TypedDict):
-    directory: str
-    subject: str
-    version: str
-    distro: str
-    image: str
-    sources: t.Sequence[str]
-    node_sources: t.Collection[NodeSources]
+from common.config import (
+    NodeSources,
+    RecoveryExperimentConfig,
+    load_config
+)
 
 
 class RecoveryConfig(t.TypedDict):
@@ -42,7 +29,7 @@ class RecoveryConfig(t.TypedDict):
 
 
 def find_node_sources(
-    experiment_config: ExperimentConfig,
+    experiment_config: RecoveryExperimentConfig,
     package: str,
     node: str,
 ) -> NodeSources:
@@ -52,7 +39,7 @@ def find_node_sources(
     raise ValueError(f"failed to find sources for node [{node}] in package [{package}]")
 
 
-def recover_all(experiment_config: ExperimentConfig) -> None:
+def recover_all(experiment_config: RecoveryExperimentConfig) -> None:
     logger.info("recovering all node models for system")
     for node_sources in experiment_config["node_sources"]:
         recover_node_from_sources(experiment_config, node_sources)
@@ -60,7 +47,7 @@ def recover_all(experiment_config: ExperimentConfig) -> None:
 
 
 def recover_node(
-    experiment_config: ExperimentConfig,
+    experiment_config: RecoveryExperimentConfig,
     package: str,
     node: str,
 ) -> None:
@@ -69,7 +56,7 @@ def recover_node(
 
 
 def recover_node_from_sources(
-    experiment_config: ExperimentConfig,
+    experiment_config: RecoveryExperimentConfig,
     node_sources: NodeSources,
 ) -> None:
     entrypoint = node_sources.get("entrypoint", "main")
@@ -128,15 +115,6 @@ def recover_node_from_sources(
         os.remove(recovery_config_filename)
 
 
-def load_experiment_config(filename: str) -> ExperimentConfig:
-    abs_filename = os.path.abspath(filename)
-    experiment_directory = os.path.dirname(abs_filename)
-    with open(filename, "r") as fh:
-        config = yaml.safe_load(fh)
-        config["directory"] = experiment_directory
-        return config
-
-
 def error(message: str) -> t.NoReturn:
     print(f"ERROR: {message}")
     sys.exit(1)
@@ -181,7 +159,9 @@ def main() -> None:
         error(f"configuration file not found: {experiment_filename}")
 
     # load experiment config
-    config = load_experiment_config(experiment_filename)
+    config = load_config(experiment_filename)
+    if config["type"] != "recovery":
+        error(f"this script can only be run on recovery experiments")
 
     # determine if we should recover all models or just one
     should_recover_all = not args.node

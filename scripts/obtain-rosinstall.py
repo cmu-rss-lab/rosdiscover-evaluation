@@ -30,7 +30,11 @@ def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) 
 
 
 def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig) -> None:
-    raise NotImplementedError
+    bug_rosinstall_filename = os.path.join(config["directory"], "bug.rosinstall")
+    fix_rosinstall_filename = os.path.join(config["directory"], "fix.rosinstall")
+
+    obtain_rosinstall_for_repo_versions(config["buggy"]["repositories"], bug_rosinstall_file)
+    obtain_rosinstall_for_repo_versions(config["fixed"]["repositories"], fix_rosinstall_file)
 
 
 def obtain_rosinstall_for_experiment(filename: str) -> None:
