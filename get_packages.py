@@ -18,6 +18,8 @@ def get_packages(repo):
             usedPackages.add(x.text)
         for x in myroot.findall('depend'):
             usedPackages.add(x.text)
-        
+        for x in myroot.findall('run_depend'):
+            usedPackages.add(x.text)
+            
     neededPackages = usedPackages - definedPackages
     return neededPackages
