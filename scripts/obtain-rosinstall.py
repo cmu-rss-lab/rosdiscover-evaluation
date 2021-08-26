@@ -5,11 +5,14 @@ import argparse
 import os
 import typing as t
 
+from loguru import logger
 
-class RepoVersion(t.TypedDict):
-    name: str
-    url: str
-    release: str
+from common.config import (
+    DetectionExperimentConfig,
+    ExperimentConfig,
+    RecoveryExperimentConfig,
+    RepoVersion,
+)
 
 
 def obtain_rosinstall_for_repo_versions(
@@ -30,7 +33,25 @@ def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig
 
 
 def obtain_rosinstall_for_experiment(filename: str) -> None:
-    # TODO load the experiment
+    config: ExperimentConfig = load_config(filename)
+    if config["type"] == "detection":
+        obtain_rosinstall_for_detection_experiment(config)
+    elif config["type"] == "recovery":
+        obtain_rosinstall_for_recovery_experiment(config)
+    else:
+        raise ValueError(f"unknown experiment type: {config['type']}")
 
-    # TODO invoke the appropriate obtain method
-    raise NotImplementedError
+
+def main(args: t.Optional[t.Sequence[str]] = None) -> None:
+    parser = argparse.ArgumentParser("Obtains .rosinstall files for experiments")
+    parser.add_argument("filename", help="the file for the experiment")
+    parsed_args = parser.parse_args(args)
+
+    filename = args.filename
+    logger.info(f"obtaining .rosinstall files for experiment: {filename}")
+    obtain_rosinstall_for_experiment(filename)
+    logger.info(f"obtained .rosinstall files for experiment: {filename}")
+
+
+if __name__ == "__main__":
+    main()
