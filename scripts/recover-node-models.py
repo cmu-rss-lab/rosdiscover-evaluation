@@ -3,10 +3,12 @@
 import argparse
 import os
 import sys
+import tempfile
 import typing as t
 
 from loguru import logger
 import rosdiscover
+import rosdiscover.cli
 
 import yaml
 
@@ -73,12 +75,14 @@ def recover_node_from_sources(
         "launches": list(experiment_config["launches"]),
     }
 
-    entrypoint = node_sources["entrypoint"]
+    entrypoint = node_sources.get("entrypoint", "main")
+    package = node_sources["package"]
+    node = node_sources["node"]
     sources = node_sources["sources"]
     restrict_to_paths = node_sources["restrict_analysis_to_paths"]
 
     try:
-        recovery_config_filename: str = tempfile.mkstemp()[1]
+        recovery_config_filename: str = tempfile.mkstemp(suffix=".rosdiscover.yml")[1]
         with open(recovery_config_filename, "w") as fh:
             yaml.dump(recovery_config)
 
@@ -93,7 +97,8 @@ def recover_node_from_sources(
             args += ["--restrict-to", restrict_to]
         args += sources
 
-        rosdiscover.cli.main()
+        logger.info(f"calling rosdiscover: {args}")
+        rosdiscover.cli.main(args)
 
     finally:
         os.remove(recovery_config_filename)
@@ -137,8 +142,13 @@ def main() -> None:
     with open(experiment_filename, "r") as fh:
         config = yaml.safe_load(fh)
 
+    # determine if we should recover all models or just one
+    should_recover_all = not args.node
+    if should_recover_all:
+        recover_all(config)
+    else:
+        recover_node(config, args.package, args.node)
 
 
 if __name__ == "__main__":
-
     main()
