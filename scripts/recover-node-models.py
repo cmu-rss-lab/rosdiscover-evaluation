@@ -77,6 +77,7 @@ def recover_node_from_sources(
     node = node_sources["node"]
     sources = node_sources["sources"]
     restrict_to_paths = node_sources["restrict_analysis_to_paths"]
+    logger.info(f"statically recovering model for node [{node}] in package [{package}]")
 
     # ensure that a models output directory exists for this system
     experiment_directory = experiment_config["directory"]
@@ -114,8 +115,14 @@ def recover_node_from_sources(
 
         file_logger = logger.add(log_filename, level="DEBUG")
         logger.debug(f"calling rosdiscover: {args}")
-        rosdiscover.cli.main(args)
-        logger.remove(file_logger)
+        try:
+            rosdiscover.cli.main(args)
+        except Exception:
+            logger.exception(f"failed to statically recover model for node [{node}] in package [{package}]")
+        finally:
+            logger.remove(file_logger)
+
+        logger.info(f"statically recovered model for node [{node}] in package [{package}]")
 
     finally:
         os.remove(recovery_config_filename)
