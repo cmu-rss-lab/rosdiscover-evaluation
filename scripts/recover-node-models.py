@@ -79,8 +79,11 @@ def recover_node_from_sources(
     # ensure that a models output directory exists for this system
     experiment_directory = experiment_config["directory"]
     models_directory = os.path.join(experiment_directory, "models")
+    logs_directory = os.path.join(experiment_directory, "logs")
     os.makedirs(models_directory, exist_ok=True)
+    os.makedirs(logs_directory, exist_ok=True)
     model_filename = os.path.join(models_directory, f"{package}__{node}.json")
+    log_filename = os.path.join(logs_directory, f"{package}__{node}.log")
 
     recovery_config: t.Dict[str, t.Any] = {
         "image": experiment_config["image"],
@@ -108,8 +111,10 @@ def recover_node_from_sources(
         args += sources
 
         # TODO setup log recording
+        file_logger = logger.add(log_filename, level="DEBUG")
         logger.info(f"calling rosdiscover: {args}")
         rosdiscover.cli.main(args)
+        logger.remove(file_logger)
 
     finally:
         os.remove(recovery_config_filename)
