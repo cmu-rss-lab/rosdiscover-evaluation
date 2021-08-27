@@ -7,6 +7,8 @@
 #
 # Build arguments
 # ---------------
+# APT_PACKAGES: a space-delimited list of missing packages that should be installed
+# via apt
 # BUILD_COMMAND: the command that should be used to build the Catkin workspace.
 #   By default, catkin_make is used, but one may also use "catkin build"
 #   instead as a means of avoiding certain build issues.
@@ -32,7 +34,8 @@ FROM ros:${DISTRO} AS main
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-COPY rootfs /
+ARG COMMON_ROOTFS
+COPY "${COMMON_ROOTFS}" /
 WORKDIR /ros_ws
 ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
@@ -88,16 +91,16 @@ ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN chmod +x /bin/tini
 
-# build package
-ARG DIRECTORY
-COPY "${DIRECTORY}"/pkgs.rosinstall "${DIRECTORY}"/apt.list* /.dockerinstall/
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
- && apt-get update \
- && (test -f /.dockerinstall/apt.list \
-     && xargs -a /.dockerinstall/apt.list apt-get install -y --no-install-recommends \
-     || exit 0) \
+# apt packages
+ARG APT_PACKAGES ""
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ${APT_GET_PACKAGES} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+# build package
+ARG DIRECTORY
+COPY "${DIRECTORY}"/pkgs.rosinstall /.dockerinstall/
 
 RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/pkgs.rosinstall \
  && apt-get update \
