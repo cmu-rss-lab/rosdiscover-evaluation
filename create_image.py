@@ -10,7 +10,7 @@ from git import Git
 from git import Repo
 
 THIS_DIR = os.path.dirname(__file__)
-rgtm_dir = os.path.join(THIS_DIR, "rosinstall_generator_time_machine")
+rgtm_dir = os.path.join(THIS_DIR, "deps/rosinstall_generator_time_machine")
 tempdir = os.path.join(THIS_DIR, "ros-temp")
  
 
