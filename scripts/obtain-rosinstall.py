@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """This script is used to build the .rosinstall files for a given experiment."""
+from datetime import datetime, timezone
 import argparse
 import os
 import typing as t
@@ -64,9 +65,27 @@ def find_repo_package_dependencies(repos: t.Collection[RepoVersion]) -> t.Collec
     return deps
 
 
+def determine_time_machine_datetime(repos: t.Collection[RepoVersion]) -> str:
+    logger.info("determining datetime for RGTM...")
+    latest = None
+    for repo_version in repos:
+        repo_path = repo_dir(repo_version["name"])
+        repo = git.Repo(repo_path)
+        commit = repo.commit(repo_version["version"])
+        commit_datetime = commit.authored_datetime
+        if latest is None:
+            latest = commit_datetime
+        else:
+            latest = max(commit_datetime, latest)
+    assert latest is not None
+    iso_datetime = latest.isoformat()
+    logger.info(f"determined datetime for RGTM: {iso_datetime}")
+    return iso_datetime
+
+
 def rosinstall(
     distro: str,
-    date: str,  # TODO we should be careful with this!
+    iso_datetime: str,  # ISO 8601 datetime
     save_to: str,
 ) -> None:
     raise NotImplementedError
@@ -90,12 +109,11 @@ def obtain_rosinstall_for_repo_versions(
     repo_package_deps = sorted(find_repo_package_dependencies(repos))
     logger.info(f"found repo package dependencies: {', '.join(repo_package_deps)}")
 
-    # TODO determine time machine date
-    raise NotImplementedError
+    iso_datetime = determine_time_machine_datetime(repos)
 
     # use the time machine to create a .rosinstall file for the deps
     deps: t.Set[str] = set(repo_package_deps).union(extra_packages)
-    rosinstall(distro, date, output_filename)
+    rosinstall(distro, iso_datetime, output_filename)
 
     # add the system under test to the generated .rosinstall file
     with open(output_filename, "r") as fh:
