@@ -76,7 +76,7 @@ def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     parser = argparse.ArgumentParser("Builds Docker images for experiments")
     parser.add_argument("filename", help="the file for the experiment")
     parsed_args = parser.parse_args(args)
-    build_images_for_experiment(args.filename)
+    build_images_for_experiment(parsed_args.filename)
 
 
 if __name__ == "__main__":
