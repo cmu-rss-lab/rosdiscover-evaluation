@@ -9,13 +9,16 @@ from common.config import (
     RecoveryExperimentConfig,
 )
 
+EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
+DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
+DOCKERFILE_PATH = os.path.join(DOCKER_DIR, "Dockerfile")
+
 
 def build_image(
     image: str,
     directory: str,
     distro: str,
     rosinstall_filename: str,
-    rootfs: str,
     build_command: str,
     apt_packages: t.Optional[t.Sequence[str]],
 ) -> None:
@@ -26,7 +29,18 @@ def build_image(
         apt_packages = []
 
     apt_packages_arg = " ".join(apt_packages)
-    raise NotImplementedError
+
+    command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
+    command_args += ["-t", image]
+    command_args += ["--build-arg", "COMMON_ROOTFS", "docker/rootfs"]
+    command_args += ["--build-arg", "APT_PACKAGES", f"'{apt_packages_arg}'"]
+    command_args += ["--build-arg", "BUILD_COMMAND", build_command]
+    command_args += ["--build-arg", "DIRECTORY", directory]
+    command_args += ["--build-arg", "ROSINSTALL_FILENAME", rosinstall_filename]
+    command_args += ["--build-arg", "DISTRO", distro]
+    commands_args += ["."]
+
+    subprocess.check_call(" ".join(command_args), cwd=EVALUATION_DIR, shell=True)
 
 
 def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
