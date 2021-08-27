@@ -6,6 +6,8 @@ import os
 import typing as t
 
 from loguru import logger
+import git
+import yaml
 
 from common.config import (
     DetectionExperimentConfig,
@@ -17,6 +19,8 @@ from common.config import (
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
 RGTM_DIR = os.path.join(EVALUATION_DIR, "rosinstall_generator_time_machine")
 RGTM_PATH = os.path.join(RGTM_DIR, "rosinstall_generator_tm.sh")
+WORK_DIR = os.path.join(EVALUATION_DIR, ".workdir")
+WORK_REPO_DIR = os.path.join(EVALUATION_DIR, ".workdir", ".repos")
 
 
 def obtain_rosinstall_for_repo_versions(
@@ -29,6 +33,16 @@ def obtain_rosinstall_for_repo_versions(
 
     if not extra_packages:
         extra_packages = []
+
+    # clone each of the repos into the workdir
+    os.makedirs(WORK_REPO_DIR, exist_ok=True)
+    for repo_version in repos:
+        repo_path = os.path.join(WORK_REPO_DIR, repo_version["name"])
+
+        if not os.path.exists(repo_path):
+            repo = git.Repo.clone_from(repo_version["url"])
+        else:
+            repo = git.Repo(repo_path)
 
     raise NotImplementedError
 
