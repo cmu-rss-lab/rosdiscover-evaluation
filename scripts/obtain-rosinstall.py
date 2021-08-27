@@ -4,6 +4,7 @@
 from datetime import datetime, timezone
 import argparse
 import os
+import subprocess
 import typing as t
 
 from loguru import logger
@@ -86,9 +87,22 @@ def determine_time_machine_datetime(repos: t.Collection[RepoVersion]) -> str:
 def rosinstall(
     distro: str,
     iso_datetime: str,  # ISO 8601 datetime
+    packages: t.Collection[str],
     save_to: str,
 ) -> None:
-    raise NotImplementedError
+    command_args = ["yes", "|"]
+    command_args += [RGTM_PATH, iso_datetime, distro]
+    command_args += packages
+    command_args += ["--deps", "--tar", "|"]
+    command_args += ["sed", "-e", "'s/geometry_experimental-release/geometry2-release/g'"]
+    command = " ".join(command_args)
+
+    logger.info(f"running RGTM: {command}")
+    output = subprocess.check_output(command, shell=True, encoding="utf8")
+    logger.info(f"finished RGTM:\n{output}")
+
+    with open(save_to, "w") as fh:
+        fh.write(output)
 
 
 def obtain_rosinstall_for_repo_versions(
@@ -113,7 +127,7 @@ def obtain_rosinstall_for_repo_versions(
 
     # use the time machine to create a .rosinstall file for the deps
     deps: t.Set[str] = set(repo_package_deps).union(extra_packages)
-    rosinstall(distro, iso_datetime, output_filename)
+    rosinstall(distro, iso_datetime, deps, output_filename)
 
     # add the system under test to the generated .rosinstall file
     with open(output_filename, "r") as fh:
@@ -132,7 +146,6 @@ def obtain_rosinstall_for_repo_versions(
         yaml.dump(rosinstall_contents, fh, default_flow_style=False)
 
     logger.debug(f"generated .rosinstall file: {output_filename}")
-    raise NotImplementedError
 
 
 def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
