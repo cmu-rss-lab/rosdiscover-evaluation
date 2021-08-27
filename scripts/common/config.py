@@ -42,6 +42,7 @@ class ExperimentConfig(t.TypedDict):
     version: str
     distro: str
     apt_packages: t.Optional[t.Collection[str]]
+    missing_ros_packages: t.Optional[t.Collection[str]]
     sources: t.Sequence[str]
     node_sources: t.Collection[NodeSources]
 
