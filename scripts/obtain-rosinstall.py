@@ -14,6 +14,10 @@ from common.config import (
     RepoVersion,
 )
 
+EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
+RGTM_DIR = os.path.join(EVALUATION_DIR, "rosinstall_generator_time_machine")
+RGTM_PATH = os.path.join(RGTM_DIR, "rosinstall_generator_tm.sh")
+
 
 def obtain_rosinstall_for_repo_versions(
     repos: t.Collection[RepoVersion],
