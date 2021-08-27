@@ -14,6 +14,7 @@ from common.config import (
     ExperimentConfig,
     RecoveryExperimentConfig,
     RepoVersion,
+    load_config,
 )
 
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -21,6 +22,33 @@ RGTM_DIR = os.path.join(EVALUATION_DIR, "rosinstall_generator_time_machine")
 RGTM_PATH = os.path.join(RGTM_DIR, "rosinstall_generator_tm.sh")
 WORK_DIR = os.path.join(EVALUATION_DIR, ".workdir")
 WORK_REPO_DIR = os.path.join(EVALUATION_DIR, ".workdir", ".repos")
+
+
+def clone_repos(repos: t.Collection[RepoVersion]) -> None:
+    os.makedirs(WORK_REPO_DIR, exist_ok=True)
+    for repo_version in repos:
+        repo_path = os.path.join(WORK_REPO_DIR, repo_version["name"])
+        repo_url = repo_version["url"]
+
+        if not os.path.exists(repo_path):
+            logger.info(f"cloning repo: {repo_url}")
+            repo = git.Repo.clone_from(repo_url, repo_path)
+            logger.info(f"cloned repo: {repo_url}")
+        else:
+            logger.info(f"repo already cloned: {repo_url}")
+
+
+def checkout_repos(repos: t.Collection[RepoVersion]) -> None:
+    for repo_version in repos:
+        path = os.path.join(WORK_REPO_DIR, repo_version["name"])
+        url = repo_version["url"]
+        version = repo_version["version"]
+        repo = git.Repo(path)
+        logger.info(f"checking out repo [{url}] to version: {version}")
+        git.Git(path).checkout(version)
+        for submodule in repo.submodules:
+            submodule.update(init=True, recursive=True)
+        logger.info(f"checked out repo [{url}] to version: {version}")
 
 
 def obtain_rosinstall_for_repo_versions(
@@ -34,15 +62,8 @@ def obtain_rosinstall_for_repo_versions(
     if not extra_packages:
         extra_packages = []
 
-    # clone each of the repos into the workdir
-    os.makedirs(WORK_REPO_DIR, exist_ok=True)
-    for repo_version in repos:
-        repo_path = os.path.join(WORK_REPO_DIR, repo_version["name"])
-
-        if not os.path.exists(repo_path):
-            repo = git.Repo.clone_from(repo_version["url"])
-        else:
-            repo = git.Repo(repo_path)
+    clone_repos(repos)
+    checkout_repos(repos)
 
     raise NotImplementedError
 
