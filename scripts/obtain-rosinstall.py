@@ -64,7 +64,16 @@ def find_repo_package_dependencies(repos: t.Collection[RepoVersion]) -> t.Collec
     return deps
 
 
+def rosinstall(
+    distro: str,
+    date: str,  # TODO we should be careful with this!
+    save_to: str,
+) -> None:
+    raise NotImplementedError
+
+
 def obtain_rosinstall_for_repo_versions(
+    distro: str,
     repos: t.Collection[RepoVersion],
     extra_packages: t.Optional[t.Collection[str]],
     output_filename: str,
@@ -78,9 +87,33 @@ def obtain_rosinstall_for_repo_versions(
     clone_repos(repos)
     checkout_repos(repos)
     logger.info("finding repo package dependencies...")
-    repo_package_deps = find_repo_package_dependencies(repos)
+    repo_package_deps = sorted(find_repo_package_dependencies(repos))
     logger.info(f"found repo package dependencies: {', '.join(repo_package_deps)}")
 
+    # TODO determine time machine date
+    raise NotImplementedError
+
+    # use the time machine to create a .rosinstall file for the deps
+    deps: t.Set[str] = set(repo_package_deps).union(extra_packages)
+    rosinstall(distro, date, output_filename)
+
+    # add the system under test to the generated .rosinstall file
+    with open(output_filename, "r") as fh:
+        rosinstall_contents = yaml.safe_load(fh)
+
+    logger.debug(f"adding SUT to .rosinstall file: {output_filename}")
+    rosinstall_contents += [
+        {"git": {
+            "local-name": repo_version["name"],
+            "uri": repo_version["url"],
+            "version": repo_version["version"],
+        }} for repo_version in repos
+    ]
+
+    with open(output_filename, "w") as fh:
+        yaml.dump(rosinstall_contents, fh, default_flow_style=False)
+
+    logger.debug(f"generated .rosinstall file: {output_filename}")
     raise NotImplementedError
 
 
@@ -88,6 +121,7 @@ def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) 
     extra_packages = config.get("missing_ros_packages", [])
     output_filename = os.path.join(config["directory"], "pkgs.rosinstall")
     obtain_rosinstall_for_repo_versions(
+        distro=config["distro"],
         repos=config["repositories"],
         extra_packages=extra_packages,
         output_filename=output_filename,
@@ -100,11 +134,13 @@ def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig
     fix_rosinstall_filename = os.path.join(config["directory"], "fix.rosinstall")
 
     obtain_rosinstall_for_repo_versions(
+        distro=config["distro"],
         repos=config["buggy"]["repositories"],
         extra_packages=extra_packages,
         output_filename=bug_rosinstall_file,
     )
     obtain_rosinstall_for_repo_versions(
+        distro=config["distro"],
         repos=config["fixed"]["repositories"],
         extra_packages=extra_packages,
         output_filename=fix_rosinstall_file,
