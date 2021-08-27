@@ -17,24 +17,43 @@ from common.config import (
 
 def obtain_rosinstall_for_repo_versions(
     repos: t.Collection[RepoVersion],
+    extra_packages: t.Optional[t.Collection[str]],
     output_filename: str,
 ) -> None:
     assert repos
     assert os.path.isabs(output_filename)
+
+    if not extra_packages:
+        extra_packages = []
+
     raise NotImplementedError
 
 
 def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
+    extra_packages = config.get("missing_ros_packages", [])
     output_filename = os.path.join(config["directory"], "pkgs.rosinstall")
-    obtain_rosinstall_for_repo_versions(config["repositories"])
+    obtain_rosinstall_for_repo_versions(
+        repos=config["repositories"],
+        extra_packages=extra_packages,
+        output_filename=output_filename,
+    )
 
 
 def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig) -> None:
+    extra_packages = config.get("missing_ros_packages", [])
     bug_rosinstall_filename = os.path.join(config["directory"], "bug.rosinstall")
     fix_rosinstall_filename = os.path.join(config["directory"], "fix.rosinstall")
 
-    obtain_rosinstall_for_repo_versions(config["buggy"]["repositories"], bug_rosinstall_file)
-    obtain_rosinstall_for_repo_versions(config["fixed"]["repositories"], fix_rosinstall_file)
+    obtain_rosinstall_for_repo_versions(
+        repos=config["buggy"]["repositories"],
+        extra_packages=extra_packages,
+        output_filename=bug_rosinstall_file,
+    )
+    obtain_rosinstall_for_repo_versions(
+        repos=config["fixed"]["repositories"],
+        extra_packages=extra_packages,
+        output_filename=fix_rosinstall_file,
+    )
 
 
 def obtain_rosinstall_for_experiment(filename: str) -> None:
