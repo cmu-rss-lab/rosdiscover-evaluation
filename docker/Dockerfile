@@ -14,6 +14,8 @@
 #   instead as a means of avoiding certain build issues.
 # DISTRO: specifies the ROS distribution that should be used by the base image
 # DIRECTORY: specifies the directory that provides files for the robot
+# ROSINSTALL_FILENAME: the name of the file that provides a .rosinstall for this
+#   system
 #
 # References
 # ----------

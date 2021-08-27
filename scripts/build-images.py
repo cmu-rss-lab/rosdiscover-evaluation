@@ -6,9 +6,12 @@ import os
 import subprocess
 import typing as t
 
+from loguru import logger
+
 from common.config import (
     DetectionExperimentConfig,
     RecoveryExperimentConfig,
+    load_config,
 )
 
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -24,8 +27,7 @@ def build_image(
     build_command: str,
     apt_packages: t.Optional[t.Sequence[str]],
 ) -> None:
-    assert os.path.isabs(rootfs)
-    assert os.path.exists(rootfs)
+    assert os.path.exists(directory)
 
     if not apt_packages:
         apt_packages = []
@@ -37,22 +39,24 @@ def build_image(
     command_args += ["--build-arg", "COMMON_ROOTFS", "docker/rootfs"]
     command_args += ["--build-arg", "APT_PACKAGES", f"'{apt_packages_arg}'"]
     command_args += ["--build-arg", "BUILD_COMMAND", build_command]
-    command_args += ["--build-arg", "DIRECTORY", directory]
+    command_args += ["--build-arg", "DIRECTORY", os.path.relpath(directory, EVALUATION_DIR)]
     command_args += ["--build-arg", "ROSINSTALL_FILENAME", rosinstall_filename]
     command_args += ["--build-arg", "DISTRO", distro]
-    commands_args += ["."]
+    command_args += ["."]
+    command = " ".join(command_args)
 
-    subprocess.check_call(" ".join(command_args), cwd=EVALUATION_DIR, shell=True)
+    logger.info(f"building image: {command}")
+    subprocess.check_call(command, cwd=EVALUATION_DIR, shell=True)
 
 
 def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
-    build(
+    build_image(
         image=config["image"],
         directory=config["directory"],
         distro=config["distro"],
         rosinstall_filename="pkgs.rosinstall",
         build_command=config["build_command"],
-        apt_packages=config["apt_packages"],
+        apt_packages=config.get("apt_packages", []),
     )
 
 
