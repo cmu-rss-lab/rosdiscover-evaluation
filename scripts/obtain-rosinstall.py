@@ -89,7 +89,7 @@ def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     parser.add_argument("filename", help="the file for the experiment")
     parsed_args = parser.parse_args(args)
 
-    filename = args.filename
+    filename = parsed_args.filename
     logger.info(f"obtaining .rosinstall files for experiment: {filename}")
     obtain_rosinstall_for_experiment(filename)
     logger.info(f"obtained .rosinstall files for experiment: {filename}")
