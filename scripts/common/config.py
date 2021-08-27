@@ -26,7 +26,7 @@ class NodeSources(t.TypedDict):
 class RepoVersion(t.TypedDict):
     name: str
     url: str
-    release: str
+    version: str
 
 
 class SystemVersion(t.TypedDict):
@@ -39,7 +39,6 @@ class ExperimentConfig(t.TypedDict):
     type: t.Union[t.Literal["detection"], t.Literal["recovery"]]
     directory: str
     subject: str
-    version: str
     distro: str
     apt_packages: t.Optional[t.Collection[str]]
     missing_ros_packages: t.Optional[t.Collection[str]]
@@ -50,6 +49,7 @@ class ExperimentConfig(t.TypedDict):
 class RecoveryExperimentConfig(ExperimentConfig):
     image: str
     build_command: str
+    version: str
     repositories: t.Collection[RepoVersion]
 
 
