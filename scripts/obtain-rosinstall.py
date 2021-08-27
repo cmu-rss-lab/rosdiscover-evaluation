@@ -24,10 +24,14 @@ WORK_DIR = os.path.join(EVALUATION_DIR, ".workdir")
 WORK_REPO_DIR = os.path.join(EVALUATION_DIR, ".workdir", ".repos")
 
 
+def repo_dir(name: str) -> str:
+    return os.path.join(WORK_REPO_DIR, repo_version["name"])
+
+
 def clone_repos(repos: t.Collection[RepoVersion]) -> None:
     os.makedirs(WORK_REPO_DIR, exist_ok=True)
     for repo_version in repos:
-        repo_path = os.path.join(WORK_REPO_DIR, repo_version["name"])
+        repo_path = repo_dir(repo_version["name"])
         repo_url = repo_version["url"]
 
         if not os.path.exists(repo_path):
@@ -40,7 +44,7 @@ def clone_repos(repos: t.Collection[RepoVersion]) -> None:
 
 def checkout_repos(repos: t.Collection[RepoVersion]) -> None:
     for repo_version in repos:
-        path = os.path.join(WORK_REPO_DIR, repo_version["name"])
+        path = repo_dir(repo_version["name"])
         url = repo_version["url"]
         version = repo_version["version"]
         repo = git.Repo(path)
@@ -49,6 +53,14 @@ def checkout_repos(repos: t.Collection[RepoVersion]) -> None:
         for submodule in repo.submodules:
             submodule.update(init=True, recursive=True)
         logger.info(f"checked out repo [{url}] to version: {version}")
+
+
+def find_repo_package_dependencies(repos: t.Collection[RepoVersion]) -> t.Collection[str]:
+    deps: t.Set[str] = set()
+    for repo_version in repos:
+        path = repo_dir(repo_version["name"])
+        deps.update(find_package_dependencies(path))
+    return deps
 
 
 def obtain_rosinstall_for_repo_versions(
@@ -64,6 +76,9 @@ def obtain_rosinstall_for_repo_versions(
 
     clone_repos(repos)
     checkout_repos(repos)
+    logger.info("finding repo package dependencies...")
+    repo_package_deps = find_repo_package_dependencies(repos)
+    logger.info("found repo package dependencies: {' '.join(repo_package_deps)}")
 
     raise NotImplementedError
 
