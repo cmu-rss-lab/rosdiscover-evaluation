@@ -16,6 +16,7 @@ from common.config import (
     RepoVersion,
     load_config,
 )
+from common.find_package_dependencies import find_all_package_dependencies
 
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
 RGTM_DIR = os.path.join(EVALUATION_DIR, "rosinstall_generator_time_machine")
@@ -25,7 +26,7 @@ WORK_REPO_DIR = os.path.join(EVALUATION_DIR, ".workdir", ".repos")
 
 
 def repo_dir(name: str) -> str:
-    return os.path.join(WORK_REPO_DIR, repo_version["name"])
+    return os.path.join(WORK_REPO_DIR, name)
 
 
 def clone_repos(repos: t.Collection[RepoVersion]) -> None:
@@ -59,7 +60,7 @@ def find_repo_package_dependencies(repos: t.Collection[RepoVersion]) -> t.Collec
     deps: t.Set[str] = set()
     for repo_version in repos:
         path = repo_dir(repo_version["name"])
-        deps.update(find_package_dependencies(path))
+        deps.update(find_all_package_dependencies(path))
     return deps
 
 
@@ -78,7 +79,7 @@ def obtain_rosinstall_for_repo_versions(
     checkout_repos(repos)
     logger.info("finding repo package dependencies...")
     repo_package_deps = find_repo_package_dependencies(repos)
-    logger.info("found repo package dependencies: {' '.join(repo_package_deps)}")
+    logger.info(f"found repo package dependencies: {', '.join(repo_package_deps)}")
 
     raise NotImplementedError
 

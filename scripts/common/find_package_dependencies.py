@@ -15,7 +15,7 @@ def find_package_xml_files(directory: str) -> t.Collection[str]:
     found: t.List[str] = []
     for root, _, files in os.walk(directory):
         if "package.xml" in files:
-            found.add(os.path.join(root, "package.xml"))
+            found.append(os.path.join(root, "package.xml"))
     return found
 
 
@@ -30,5 +30,5 @@ def find_all_package_dependencies(directory: str) -> t.Set[str]:
         for tag in ("depend", "build_depend", "build_export_depend", "run_depend"):
             used_packages.update(t.text for t in root.findall(tag))
 
-    dependencies = defined_packages - used_packages
+    dependencies = used_packages - defined_packages
     return dependencies
