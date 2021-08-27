@@ -31,6 +31,7 @@ class RepoVersion(t.TypedDict):
 
 class SystemVersion(t.TypedDict):
     image: str
+    build_command: str
     repositories: t.Collection[RepoVersion]
 
 
@@ -40,19 +41,20 @@ class ExperimentConfig(t.TypedDict):
     subject: str
     version: str
     distro: str
-    image: str
+    apt_packages: t.Optional[t.Collection[str]]
     sources: t.Sequence[str]
     node_sources: t.Collection[NodeSources]
 
 
 class RecoveryExperimentConfig(ExperimentConfig):
-    buggy: SystemVersion
-    fixed: SystemVersion
+    image: str
+    build_command: str
+    repositories: t.Collection[RepoVersion]
 
 
 class DetectionExperimentConfig(ExperimentConfig):
-    image: str
-    repositories: t.Collection[RepoVersion]
+    buggy: SystemVersion
+    fixed: SystemVersion
 
 
 def load_config(filename: str) -> ExperimentConfig:
