@@ -35,14 +35,14 @@ def build_image(
     apt_packages_arg = " ".join(apt_packages)
 
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
-    command_args += ["-t", image]
-    command_args += ["--build-arg", "COMMON_ROOTFS", "docker/rootfs"]
-    command_args += ["--build-arg", "APT_PACKAGES", f"'{apt_packages_arg}'"]
-    command_args += ["--build-arg", "BUILD_COMMAND", build_command]
-    command_args += ["--build-arg", "DIRECTORY", os.path.relpath(directory, EVALUATION_DIR)]
-    command_args += ["--build-arg", "ROSINSTALL_FILENAME", rosinstall_filename]
-    command_args += ["--build-arg", "DISTRO", distro]
+    command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
+    command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
+    command_args += ["--build-arg", f"BUILD_COMMAND={build_command}"]
+    command_args += ["--build-arg", f"DIRECTORY={os.path.relpath(directory, EVALUATION_DIR)}"]
+    command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
+    command_args += ["--build-arg", f"DISTRO={distro}"]
     command_args += ["."]
+    command_args += ["-t", image]
     command = " ".join(command_args)
 
     logger.info(f"building image: {command}")

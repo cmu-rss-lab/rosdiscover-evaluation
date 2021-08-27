@@ -94,7 +94,7 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/
 RUN chmod +x /bin/tini
 
 # apt packages
-ARG APT_PACKAGES ""
+ARG APT_PACKAGES
 RUN apt-get update \
  && apt-get install -y --no-install-recommends ${APT_GET_PACKAGES} \
  && apt-get clean \
@@ -102,11 +102,11 @@ RUN apt-get update \
 
 # build package
 ARG DIRECTORY
-COPY "${DIRECTORY}"/pkgs.rosinstall /.dockerinstall/
-
-RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/pkgs.rosinstall \
+ARG ROSINSTALL_FILENAME
+COPY "${DIRECTORY}/${ROSINSTALL_FILENAME}" /.dockerinstall/
+RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get update \
- && wstool init -j8 src pkgs.rosinstall \
+ && wstool init -j8 src ${ROSINSTALL_FILENAME} \
  && rosdep update \
  && rosdep install -i -y -r --from-paths src \
       --ignore-src \
@@ -115,7 +115,7 @@ RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/pkgs.rosinstall \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY "${DIRECTORY}" /.dockerinstall/
+COPY "${DIRECTORY}/docker" /.dockerinstall/
 RUN ls -al /.dockerinstall
 RUN (test -f /.dockerinstall/prebuild.sh \
      && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
