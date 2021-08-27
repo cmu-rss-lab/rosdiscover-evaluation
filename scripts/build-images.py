@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """This script builds all of the Docker images for a given experiment."""
+import argparse
 import os
+import subprocess
 import typing as t
 
 from common.config import (
