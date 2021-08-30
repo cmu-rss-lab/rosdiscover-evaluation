@@ -39,6 +39,7 @@ ENV LC_ALL C.UTF-8
 ARG COMMON_ROOTFS
 COPY "${COMMON_ROOTFS}" /
 WORKDIR /ros_ws
+RUN chmod +x /ros_ws/entrypoint.sh
 ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
@@ -62,6 +63,13 @@ RUN apt-get update \
       tmux \
       vim \
       wget \
+      curl \
+      zlib1g-dev \
+      libbz2-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      python-openssl\
  && echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
@@ -111,7 +119,7 @@ RUN chmod +x /bin/tini
 # apt packages
 ARG APT_PACKAGES
 RUN apt-get update \
- && apt-get install -y --no-install-recommends ${APT_GET_PACKAGES} \
+ && apt-get install -y ${APT_GET_PACKAGES} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -119,7 +127,7 @@ RUN apt-get update \
 ARG DIRECTORY
 ARG ROSINSTALL_FILENAME
 COPY "${DIRECTORY}/${ROSINSTALL_FILENAME}" /.dockerinstall/
-RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/${ROSINSTALL_FILENAME} \
+RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get update \
  && wstool init -j8 src ${ROSINSTALL_FILENAME} \
  && rosdep update \
@@ -137,5 +145,7 @@ RUN (test -f /.dockerinstall/prebuild.sh \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
- && eval "${BUILD_COMMAND}"
+ARG BUILD="yes"
+RUN (test "${BUILD}" = "yes"  && (. /opt/ros/${ROS_DISTRO}/setup.sh  \
+ && eval "${BUILD_COMMAND}")) \
+ || (echo "skipping build" && exit 0)
