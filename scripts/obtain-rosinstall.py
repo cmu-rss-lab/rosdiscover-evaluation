@@ -88,13 +88,17 @@ def rosinstall(
     distro: str,
     iso_datetime: str,  # ISO 8601 datetime
     packages: t.Collection[str],
+    exclude_packages: t.Optional[t.Collection[str]],
     save_to: str,
 ) -> None:
     command_args = ["yes", "|"]
     command_args += [RGTM_PATH, iso_datetime, distro]
     command_args += packages
-    command_args += ["--deps", "--tar", "|"]
-    command_args += ["sed", "-e", "'s/geometry_experimental-release/geometry2-release/g'"]
+    command_args += ["--deps", "--tar"]
+    if exclude_packages:
+        command_args += ["--exclude"]
+        command_args += exclude_packages
+    command_args += [ "|", "sed", "-e", "'s/geometry_experimental-release/geometry2-release/g'"]
     command = " ".join(command_args)
 
     logger.info(f"running RGTM: {command}")
@@ -109,6 +113,7 @@ def obtain_rosinstall_for_repo_versions(
     distro: str,
     repos: t.Collection[RepoVersion],
     extra_packages: t.Optional[t.Collection[str]],
+    exclude_packages: t.Optional[t.Collection[str]],
     output_filename: str,
 ) -> None:
     assert repos
@@ -127,7 +132,7 @@ def obtain_rosinstall_for_repo_versions(
 
     # use the time machine to create a .rosinstall file for the deps
     deps: t.Set[str] = set(repo_package_deps).union(extra_packages)
-    rosinstall(distro, iso_datetime, deps, output_filename)
+    rosinstall(distro, iso_datetime, deps, exclude_packages, output_filename)
 
     # add the system under test to the generated .rosinstall file
     with open(output_filename, "r") as fh:
@@ -150,17 +155,20 @@ def obtain_rosinstall_for_repo_versions(
 
 def obtain_rosinstall_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     extra_packages = config.get("missing_ros_packages", [])
+    exclude_packages = config.get("exclude_ros_packages", [])
     output_filename = os.path.join(config["directory"], "pkgs.rosinstall")
     obtain_rosinstall_for_repo_versions(
         distro=config["distro"],
         repos=config["repositories"],
         extra_packages=extra_packages,
         output_filename=output_filename,
+        exclude_packages=exclude_packages,
     )
 
 
 def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig) -> None:
     extra_packages = config.get("missing_ros_packages", [])
+    exclude_packages = config.get("exclude_ros_packages", [])
     bug_rosinstall_filename = os.path.join(config["directory"], "bug.rosinstall")
     fix_rosinstall_filename = os.path.join(config["directory"], "fix.rosinstall")
 
@@ -169,12 +177,14 @@ def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig
         repos=config["buggy"]["repositories"],
         extra_packages=extra_packages,
         output_filename=bug_rosinstall_file,
+        exclude_packages=exclude_packages,
     )
     obtain_rosinstall_for_repo_versions(
         distro=config["distro"],
         repos=config["fixed"]["repositories"],
         extra_packages=extra_packages,
         output_filename=fix_rosinstall_file,
+        exclude_packages=exclude_packages,
     )
 
 

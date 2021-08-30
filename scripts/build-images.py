@@ -37,7 +37,7 @@ def build_image(
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
     command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
-    command_args += ["--build-arg", f"BUILD_COMMAND={build_command}"]
+    command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
     command_args += ["--build-arg", f"DIRECTORY={os.path.relpath(directory, EVALUATION_DIR)}"]
     command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
     command_args += ["--build-arg", f"DISTRO={distro}"]
@@ -61,7 +61,23 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
-    raise NotImplementedError
+    build_image(
+        image=config["bug-image"],
+        directory=config["directory"],
+        distro=config["distro"],
+        rosinstall_filename="pkgs.rosinstall",
+        build_command=config["build_command"],
+        apt_packages=config.get("apt_packages", []),
+    )
+
+    build_image(
+        image=config["fix-image"],
+        directory=config["directory"],
+        distro=config["distro"],
+        rosinstall_filename="pkgs.rosinstall",
+        build_command=config["build_command"],
+        apt_packages=config.get("apt_packages", []),
+    )
 
 
 def build_images_for_experiment(filename: str) -> None:

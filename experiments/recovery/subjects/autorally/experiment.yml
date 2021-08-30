@@ -2,8 +2,8 @@ type: recovery
 subject: autorally
 image: rosdiscover-experiments/autorally:c2692f2
 distro: melodic
-build_command: catkin_make
-missing_ros_packages: []
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+exclude_ros_packages: [orocos_kdl, pointgrey_camera_driver] 
 apt_packages:
   - cmake-curses-gui
   - cutecom
@@ -31,40 +31,41 @@ repositories:
   url: https://github.com/ros-drivers/pointgrey_camera_driver.git
   version: 6c3e4cb82f67e00980fce33bdc4d4fb251a4a06b
 sources:
-- /opt/ros/melodic/setup.bash
-- /ros_ws/devel/setup.bash
-- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+- /opt/ros/indigo/setup.bash
+- /bug/devel/setup.bash
+- /bug/src/repo/autorally_util/setupEnvLocal.sh
+
 launches:
-- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /bug/src/repo/autorally_core/launch/stateEstimator.launch
+- /bug/src/repo/autorally_core/launch/baseStation.launch
+
 node_sources:
-  - package: autorally_control
-    node: gpsWaypoint
-    sources:
-      - src/gpsWaypoint/gpsWaypoint.cpp
-    restrict_analysis_to_paths:
-      - /ros_ws/devel/include/autorally_control
-      - /ros_ws/src/autorally/autorally_control
-  - package: autorally_control
-    node: joystickController
-    sources:
-      - src/joystick/JoystickControl.cpp
-      - src/joystick/joystickControlMain.cpp
-    restrict_analysis_to_paths:
-      - /ros_ws/devel/include/autorally_control
-      - /ros_ws/src/autorally/autorally_control
-  - package: autorally_control
-    node: ConstantSpeedController
-    type: nodelet
-    entrypoint: autorally_control::ConstantSpeedController::onInit
-    sources:
-      - src/ConstantSpeedController/ConstantSpeedController.cpp
-    restrict_analysis_to_paths:
-      - /ros_ws/devel/include/autorally_control
-      - /ros_ws/src/autorally/autorally_control
   - package: autorally_core
     node: imuGpsEstimator
     sources:
       - src/StateEstimator/IMU_GPS.cpp
-    restrict_analysis_to_paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: gpsHemisphereInterface
+    sources:
+      - src/gps/GPSHemisphere.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: xbeeCoordinator
+    sources:
+      - src/xbee/XbeeCoordinator.cpp
+      - src/xbee/XbeeInterface.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: runStop
+    sources:
+      - src/RunStop/RunStop.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core

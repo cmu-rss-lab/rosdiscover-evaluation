@@ -49,6 +49,8 @@ RUN apt-get update \
       cmake \
       clang \
       build-essential \
+      libcurl3-gnutls \
+      apt-transport-https \
       ca-certificates \
       curl \
       gcc \
@@ -65,6 +67,19 @@ RUN apt-get update \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
+ && curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash 
+
+ENV PYENV_ROOT "/root/.pyenv" 
+ENV PATH="/root/.pyenv/bin:$PATH" 
+RUN eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && exec $SHELL \
+ && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
+ && pyenv global 2.7.18 \
+ && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
+ && pip install wheel \
+ && pip install -U pip==19.0.1 \
  && pip install \
       catkin-tools==0.4.5 \
       coverage==5.1 \
@@ -75,7 +90,7 @@ RUN apt-get update \
 # install vncserver
 RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
- && apt-get install -y \
+ && apt-get install -y --no-install-recommends\
       supervisor \
       vnc4server \
       xfce4 \
@@ -121,6 +136,6 @@ RUN (test -f /.dockerinstall/prebuild.sh \
      && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
-ARG BUILD_COMMAND="catkin_make"
+ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
- && eval "${BUILD_COMMAND} -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+ && eval "${BUILD_COMMAND}"
