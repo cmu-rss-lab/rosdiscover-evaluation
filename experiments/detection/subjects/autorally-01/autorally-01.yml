@@ -1,0 +1,51 @@
+type: detection
+subject: autorally
+repo-url: https://github.com/AutoRally/autorally.git
+repo-name: autorally
+bugid: autorally-01
+pre-bug-commit: 8ae7307299c48266ddf1bfede1c2256bafc94259  
+bug-commit: 3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
+bug-fix-commit: 8ae7307299c48266ddf1bfede1c2256bafc94259
+ros-distro: indigo
+apt-get-packages: git doxygen openssh-server libusb-dev lm-sensors acpi gpsd-clients usbutils ros-indigo-controller-manager ros-indigo-joy
+
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /bug/devel/setup.bash
+- /bug/src/repo/autorally_util/setupEnvLocal.sh
+
+launches:
+- /bug/src/repo/autorally_core/launch/stateEstimator.launch
+- /bug/src/repo/autorally_core/launch/baseStation.launch
+
+node_sources:
+  - package: autorally_core
+    node: imuGpsEstimator
+    sources:
+      - src/StateEstimator/IMU_GPS.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: gpsHemisphereInterface
+    sources:
+      - src/gps/GPSHemisphere.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: xbeeCoordinator
+    sources:
+      - src/xbee/XbeeCoordinator.cpp
+      - src/xbee/XbeeInterface.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
+  - package: autorally_core
+    node: runStop
+    sources:
+      - src/RunStop/RunStop.cpp
+    restrict-analysis-to-paths:
+      - /bug/devel/include/autorally_core
+      - /bug/src/repo/autorally_core
