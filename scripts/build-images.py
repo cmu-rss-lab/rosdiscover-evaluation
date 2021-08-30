@@ -33,7 +33,7 @@ def build_image(
         apt_packages = []
 
     apt_packages_arg = " ".join(apt_packages)
-
+    logger.info(f"apt_packages_arg: {apt_packages_arg}")
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
     command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
@@ -61,20 +61,23 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
+    bug_commit = config["bug-commit"]
+    fix_commit = config["fix-commit"]
+    image=config["image"]
     build_image(
-        image=config["bug-image"],
+        image=image.replace("$COMMIT", bug_commit),
         directory=config["directory"],
         distro=config["distro"],
-        rosinstall_filename="pkgs.rosinstall",
+        rosinstall_filename="bug.rosinstall",
         build_command=config["build_command"],
         apt_packages=config.get("apt_packages", []),
     )
 
     build_image(
-        image=config["fix-image"],
+        image=image.replace("$COMMIT", fix_commit),
         directory=config["directory"],
         distro=config["distro"],
-        rosinstall_filename="pkgs.rosinstall",
+        rosinstall_filename="fix.rosinstall",
         build_command=config["build_command"],
         apt_packages=config.get("apt_packages", []),
     )

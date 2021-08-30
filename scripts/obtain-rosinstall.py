@@ -176,14 +176,14 @@ def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig
         distro=config["distro"],
         repos=config["buggy"]["repositories"],
         extra_packages=extra_packages,
-        output_filename=bug_rosinstall_file,
+        output_filename=bug_rosinstall_filename,
         exclude_packages=exclude_packages,
     )
     obtain_rosinstall_for_repo_versions(
         distro=config["distro"],
         repos=config["fixed"]["repositories"],
         extra_packages=extra_packages,
-        output_filename=fix_rosinstall_file,
+        output_filename=fix_rosinstall_filename,
         exclude_packages=exclude_packages,
     )
 
