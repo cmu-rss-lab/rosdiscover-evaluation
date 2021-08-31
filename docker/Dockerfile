@@ -49,9 +49,20 @@ RUN apt-get update \
       bzip2 \
       cmake \
       clang \
+      libssl-dev \
+      zlib1g-dev \
+      libbz2-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      llvm \
+      libncurses5-dev \
+      libncursesw5-dev \
+      xz-utils \
+      tk-dev \
+      libffi-dev \
+      liblzma-dev \
+      python-openssl\
       build-essential \
-      libcurl3-gnutls \
-      apt-transport-https \
       ca-certificates \
       curl \
       gcc \
@@ -64,12 +75,9 @@ RUN apt-get update \
       vim \
       wget \
       curl \
-      zlib1g-dev \
-      libbz2-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      libssl-dev \
-      python-openssl\
+      libcurl3-gnutls \
+      apt-transport-https \
+
  && echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
@@ -145,7 +153,7 @@ RUN (test -f /.dockerinstall/prebuild.sh \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-ARG BUILD="yes"
+ARG BUILD="no"
 RUN (test "${BUILD}" = "yes"  && (. /opt/ros/${ROS_DISTRO}/setup.sh  \
  && eval "${BUILD_COMMAND}")) \
  || (echo "skipping build" && exit 0)
