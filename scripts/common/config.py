@@ -9,7 +9,9 @@ __all__ = (
     "SystemVersion",
 )
 
+import contextlib
 import os
+import tempfile
 import typing as t
 
 import yaml
@@ -31,6 +33,7 @@ class ROSDiscoverConfig(t.TypedDict):
     node_sources: t.Collection[NodeSources]
 
     @classmethod
+    @contextlib.contextmanager
     def create_temporary(cls, config: "ROSDiscoverConfig") -> t.Iterator[str]:
         """Creates a scope-managed temporary file on disk from a given config."""
         try:
