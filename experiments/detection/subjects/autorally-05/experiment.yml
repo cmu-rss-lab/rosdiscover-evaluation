@@ -1,0 +1,70 @@
+type: detection
+subject: autorally
+bug-commit: 3ae64dad2107baccac836b70f80c2bb4bc8669cd
+fix-commit: 5366f48da3ff6b19bf493d3aed39f37a02c950e6
+image: rosdiscover-experiments/autorally:$COMMIT
+distro: indigo
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+apt_packages:
+  - git
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - lm-sensors
+  - acpi
+  - gpsd-clients
+  - usbutils 
+  - ros-indigo-orocos-kdl
+buggy:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 3ae64dad2107baccac836b70f80c2bb4bc8669cd
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f
+fixed:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 5366f48da3ff6b19bf493d3aed39f37a02c950e6
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f    
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+
+launches:
+- /ros_ws/src/autorally/autorally_control/launch/path_integral_bf.launch
+
+node_sources:
+  - package: autorally_control
+    node: path_integral_bf
+    sources:
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: path_integral_nn
+    sources:
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: path_integral_monitor
+    sources:
+      - src/path_integral/status_monitor.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control

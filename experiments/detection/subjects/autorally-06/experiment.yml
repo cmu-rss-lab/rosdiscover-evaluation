@@ -1,0 +1,100 @@
+type: detection
+subject: autorally
+bug-commit: 7a49fbf584d5d14700d10a7a5d6226fa76ab30ee
+fix-commit: 6ddb07745dc93e62a6386c83f5304147a98a9696
+image: rosdiscover-experiments/autorally:$COMMIT
+distro: kinetic
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: [orocos_kdl, python_orocos_kdl, opencv3] 
+apt_packages:
+  - git
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - lm-sensors
+  - acpi
+  - gpsd-clients
+  - cutecom
+  - cmake-curses-gui
+  - synaptic
+  - python-termcolor
+  - libraw1394-11
+  - libgtkmm-2.4-1v5
+  - libglademm-2.4-1v5
+  - libglademm-2.4-dev
+  - libgtkglextmm-x11-1.2-dev
+  - libgtkglextmm-x11-1.2
+  - libusb-1.0-0
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - texinfo
+  - cutecom
+  - cmake-curses-gui
+  - synaptic
+  - ros-kinetic-rqt-publisher
+  - ros-kinetic-orocos-kdl
+buggy:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 7a49fbf584d5d14700d10a7a5d6226fa76ab30ee
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 7345cbe09f926d1680df5782feeb2899b5b8b274
+fixed:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 6ddb07745dc93e62a6386c83f5304147a98a9696
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 7345cbe09f926d1680df5782feeb2899b5b8b274    
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+
+launches:
+- /ros_ws/src/autorally/autorally_control/launch/path_integral_bf.launch
+- /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch
+- /ros_ws/src/autorally/autorally_control/launch/path_integral_nodelet.launch
+
+node_sources:
+  - package: autorally_control
+    node: path_integral_bf
+    sources:
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: path_integral_nn
+    sources:
+      - src/path_integral/path_integral_main.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: path_integral_monitor
+    sources:
+      - src/path_integral/status_monitor.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
+  - package: autorally_control
+    node: MPPI
+    type: nodelet
+    entrypoint: autorally_control::MPPI::onInit
+    sources:
+      - src/path_integral/mppi.cu
+      - src/path_integral/autorally_plant.cpp
+      - src/path_integral/param_getter.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control

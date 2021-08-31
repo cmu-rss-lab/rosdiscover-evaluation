@@ -1,0 +1,53 @@
+type: detection
+subject: autorally
+bug-commit: 279c6642e5547876beeb536cced74661c8e46b50
+fix-commit: 7b36814b5b2938345028a26381f96b5b625d0219
+image: rosdiscover-experiments/autorally:$COMMIT
+distro: indigo
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+apt_packages:
+  - git
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - lm-sensors
+  - acpi
+  - gpsd-clients
+  - usbutils 
+  - ros-indigo-orocos-kdl
+buggy:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 279c6642e5547876beeb536cced74661c8e46b50
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: e3e288dc8b82be4d498a051253920498e3192083
+fixed:
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 7b36814b5b2938345028a26381f96b5b625d0219
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: e3e288dc8b82be4d498a051253920498e3192083    
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+
+launches:
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch
+node_sources:
+  - package: autorally_control
+    node: joystickController
+    sources:
+      - src/joystick/JoystickControl.cpp
+      - src/joystick/joystickControlMain.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_control
+      - /ros_ws/src/autorally/autorally_control
