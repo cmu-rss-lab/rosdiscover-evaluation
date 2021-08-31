@@ -126,8 +126,9 @@ RUN chmod +x /bin/tini
 
 # apt packages
 ARG APT_PACKAGES
-RUN apt-get update \
- && apt-get install -y ${APT_GET_PACKAGES} \
+RUN apt-add-repository universe \
+ && apt-get update \
+ && apt-get install -y ${APT_PACKAGES} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
