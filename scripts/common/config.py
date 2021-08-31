@@ -5,10 +5,13 @@ __all__ = (
     "NodeSources",
     "RecoveryExperimentConfig",
     "RepoVersion",
+    "ROSDiscoverConfig",
     "SystemVersion",
 )
 
+import contextlib
 import os
+import tempfile
 import typing as t
 
 import yaml
@@ -21,6 +24,25 @@ class NodeSources(t.TypedDict):
     sources: t.Collection[str]
     type: t.Optional[t.Union[t.Literal["nodelet"], t.Literal["node"]]]
     restrict_analysis_to_paths: t.Collection[str]
+
+
+class ROSDiscoverConfig(t.TypedDict):
+    image: str
+    sources: t.Sequence[str]
+    launches: t.Sequence[str]
+    node_sources: t.Collection[NodeSources]
+
+    @classmethod
+    @contextlib.contextmanager
+    def create_temporary(cls, config: "ROSDiscoverConfig") -> t.Iterator[str]:
+        """Creates a scope-managed temporary file on disk from a given config."""
+        try:
+            filename: str = tempfile.mkstemp(suffix=".rosdiscover.yml")[1]
+            with open(filename, "w") as fh:
+                yaml.dump(config, fh, default_flow_style=False)
+            yield filename
+        finally:
+            os.remove(filename)
 
 
 class RepoVersion(t.TypedDict):
