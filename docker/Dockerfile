@@ -131,10 +131,7 @@ RUN mv /.dockerinstall/pkgs.rosinstall /ros_ws/${ROSINSTALL_FILENAME} \
  && rm -rf /var/lib/apt/lists/*
 
 COPY "${DIRECTORY}/docker" /.dockerinstall/
-RUN ls -al /.dockerinstall
-RUN (test -f /.dockerinstall/prebuild.sh \
-     && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
-     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
+RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh \
