@@ -122,13 +122,13 @@ RUN apt-get update \
  && /bin/bash -c "echo -e 'password\npassword\nn' | vncpasswd"
 ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
-RUN chmod +x /bin/tini
+RUN chmod +x /bin/tini \
+ && apt-add-repository universe \
+ && apt-get update && apt-get install -y ros-"${ROS_DISTRO}"-desktop-full
 
 # apt packages
 ARG APT_PACKAGES
-RUN apt-add-repository universe \
- && apt-get update \
- && apt-get install -y ${APT_PACKAGES} \
+RUN apt-get install -y ${APT_PACKAGES} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -150,11 +150,11 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
 COPY "${DIRECTORY}/docker" /.dockerinstall/
 RUN ls -al /.dockerinstall
 RUN (test -f /.dockerinstall/prebuild.sh \
-     && ((echo "running prebuild step..." && apt-get update && /bin/bash /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
+     && ((echo "running prebuild step..." && apt-get update && /bin/bash -eu /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
      || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-ARG BUILD="no"
+ARG BUILD="yes"
 RUN (test "${BUILD}" = "yes"  && (. /opt/ros/${ROS_DISTRO}/setup.sh  \
  && eval "${BUILD_COMMAND}")) \
  || (echo "skipping build" && exit 0)
