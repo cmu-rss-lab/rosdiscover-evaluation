@@ -26,7 +26,7 @@ echo "installed geographiclib"
 echo "installing gtsam"
 git clone https://github.com/borglab/gtsam /opt/gtsam
 cd /opt/gtsam
-git checkout 2c0c3d195558375632fa86ed42df772fce7af42b
+git checkout 2c44ee459bc8090364ca8034e2988d3e8a01c422
 mkdir build
 cd build
 cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=OFF -DGTSAM_WITH_EIGEN_MKL=OFF ..
@@ -38,7 +38,7 @@ echo "installed gtsam"
 echo "installing cnpy"
 git clone https://github.com/rogersce/cnpy.git /opt/cnpy
 cd /opt/cnpy
-git checkout cf4aab6de4338679b589cda00c24566a49213eec
+git checkout be30d504dd810f4a444b1c4ac08db58dc6fbd39c
 cd ..
 mkdir build
 cd build 
@@ -53,7 +53,7 @@ apt-get install -y libgtkmm-2.4-1v5
 apt --fix-broken install -y
 mkdir /opt/flycapture
 cd /opt/flycapture
-tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu18.04.tgz
+tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu16.04.tgz
 cd flycapture*
 dpkg -i libflycapture-2*
 dpkg -i libflycapturegui-2*

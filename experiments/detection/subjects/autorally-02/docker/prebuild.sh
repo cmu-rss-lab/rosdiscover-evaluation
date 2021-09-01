@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eu
 
 EIGEN_VERSION="3.3.7"
 
@@ -78,3 +77,4 @@ cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
 
+apt-get install -y gcc

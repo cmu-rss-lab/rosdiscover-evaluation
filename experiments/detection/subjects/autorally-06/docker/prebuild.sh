@@ -3,6 +3,27 @@ set -e
 
 EIGEN_VERSION="3.3.7"
 
+echo "installing flycapture"
+apt-get update
+apt-get install -y libgtkmm-2.4-1v5
+apt --fix-broken install -y
+mkdir /opt/flycapture
+cd /opt/flycapture
+tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu16.04.tgz
+cd flycapture*
+dpkg -i libflycapture-2*
+dpkg -i libflycapturegui-2*
+dpkg -i libflycapturevideo-2*
+dpkg -i libflycapture-c-2*
+dpkg -i libflycapturegui-c-2*
+dpkg -i libflycapturevideo-c-2*
+dpkg -i libmultisync-2*
+dpkg -i libmultisync-c-2*
+dpkg -i flycap-2*
+dpkg -i flycapture-doc-2*
+dpkg -i updatorgui*
+echo "installed flycapture"
+
 echo "installing cuda"
 sudo apt-get clean
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
@@ -26,7 +47,7 @@ echo "installed geographiclib"
 echo "installing gtsam"
 git clone https://github.com/borglab/gtsam /opt/gtsam
 cd /opt/gtsam
-git checkout 2c0c3d195558375632fa86ed42df772fce7af42b
+git checkout 2c44ee459bc8090364ca8034e2988d3e8a01c422
 mkdir build
 cd build
 cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=OFF -DGTSAM_WITH_EIGEN_MKL=OFF ..
@@ -38,7 +59,7 @@ echo "installed gtsam"
 echo "installing cnpy"
 git clone https://github.com/rogersce/cnpy.git /opt/cnpy
 cd /opt/cnpy
-git checkout cf4aab6de4338679b589cda00c24566a49213eec
+git checkout 4e8810b1a8637695171ed346ce68f6984e585ef4
 cd ..
 mkdir build
 cd build 
@@ -46,27 +67,6 @@ cmake ../cnpy
 make
 make install
 echo "installed cnpy"
-
-echo "installing flycapture"
-apt-get update
-apt-get install -y libgtkmm-2.4-1v5
-apt --fix-broken install -y
-mkdir /opt/flycapture
-cd /opt/flycapture
-tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu18.04.tgz
-cd flycapture*
-dpkg -i libflycapture-2*
-dpkg -i libflycapturegui-2*
-dpkg -i libflycapturevideo-2*
-dpkg -i libflycapture-c-2*
-dpkg -i libflycapturegui-c-2*
-dpkg -i libflycapturevideo-c-2*
-dpkg -i libmultisync-2*
-dpkg -i libmultisync-c-2*
-dpkg -i flycap-2*
-dpkg -i flycapture-doc-2*
-dpkg -i updatorgui*
-echo "installed flycapture"
 
 echo "building eigen ${EIGEN_VERSION}"
 git clone https://github.com/eigenteam/eigen-git-mirror /opt/eigen
