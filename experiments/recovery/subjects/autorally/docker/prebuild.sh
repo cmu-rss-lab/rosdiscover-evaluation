@@ -1,7 +1,16 @@
 #!/bin/bash
-set -e
+set -eu
 
 EIGEN_VERSION="3.3.7"
+
+echo "installing cuda"
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
+sudo apt-get update
+sudo apt-get -y install cuda
+echo "installed cuda"
 
 echo "installing geographiclib"
 cd /tmp
@@ -26,6 +35,7 @@ make -j8
 make install
 ldconfig
 echo "installed gtsam"
+
 
 echo "installing flycapture"
 mkdir /opt/flycapture
@@ -54,6 +64,7 @@ cd build
 cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
+
 
 # SEE: https://github.com/AutoRally/autorally/issues/88
 cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
