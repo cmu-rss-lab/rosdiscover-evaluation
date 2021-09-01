@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eu
+
+PREBUILD_FILENAME=/.dockerinstall/prebuild.sh
+
+if [[ -f "${PREBUILD_FILENAME}}" ]]; then
+  echo "running prebuild step..."
+  apt-get update
+  /bin/bash "${PREBUILD_FILENAME}"
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+else
+  echo "skipping prebuild step [no prebuild.sh]"
+fi

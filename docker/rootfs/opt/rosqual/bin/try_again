@@ -1,0 +1,8 @@
+#!/bin/bash
+command=$1
+attempts=$2
+for ((i = 0; i < $attempts; i++)); do
+  $command && exit 0
+done
+echo "ERROR: command failed after ${attempts} attempts: ${command}"
+exit 1

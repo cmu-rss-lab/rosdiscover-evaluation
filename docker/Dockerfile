@@ -36,6 +36,7 @@ FROM ros:${DISTRO} AS main
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
+ENV PATH "/opt/rosqual/bin:${PATH}"
 ARG COMMON_ROOTFS
 COPY "${COMMON_ROOTFS}" /
 WORKDIR /ros_ws
@@ -83,10 +84,9 @@ RUN apt-get update \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
- && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash 
-
-ENV PYENV_ROOT "/root/.pyenv" 
-ENV PATH="/root/.pyenv/bin:$PATH" 
+ && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash
+ENV PYENV_ROOT "/root/.pyenv"
+ENV PATH="/root/.pyenv/bin:$PATH"
 RUN eval "$(pyenv init --path)" \
  && eval "$(pyenv init -)" \
  && eval "$(pyenv virtualenv-init -)" \
@@ -148,13 +148,8 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && rm -rf /var/lib/apt/lists/*
 
 COPY "${DIRECTORY}/docker" /.dockerinstall/
-RUN ls -al /.dockerinstall
-RUN (test -f /.dockerinstall/prebuild.sh \
-     && ((echo "running prebuild step..." && apt-get update && /bin/bash -eu /.dockerinstall/prebuild.sh && apt-get clean && rm -rf /var/lib/apt/lists/* )|| exit 1) \
-     || (echo "skipping prebuild step [no prebuild.sh]" && exit 0))
+RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 ARG BUILD="yes"
-RUN (test "${BUILD}" = "yes"  && (. /opt/ros/${ROS_DISTRO}/setup.sh  \
- && eval "${BUILD_COMMAND}")) \
- || (echo "skipping build" && exit 0)
+#RUN . /opt/ros/${ROS_DISTRO}/setup.sh && eval "${BUILD_COMMAND}"
