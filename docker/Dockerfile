@@ -147,9 +147,9 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY "${DIRECTORY}/docker" /.dockerinstall/
+COPY "${DIRECTORY}/docker" /.dockerinstall/  
 RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 ARG BUILD="yes"
-#RUN . /opt/ros/${ROS_DISTRO}/setup.sh && eval "${BUILD_COMMAND}"
+RUN . /opt/ros/${ROS_DISTRO}/setup.sh && eval "${BUILD_COMMAND}"
