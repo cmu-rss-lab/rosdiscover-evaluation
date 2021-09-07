@@ -125,7 +125,8 @@ RUN chmod +x /bin/tini \
  && apt-add-repository universe \
  && apt-get update && apt-get install -y ros-"${ROS_DISTRO}"-desktop-full
 
-# apt packages
+# apt packages 
+# Should not use --no-install-recommends argument because we need some of the package dependencies
 ARG APT_PACKAGES
 RUN apt-get install -y ${APT_PACKAGES} \
  && apt-get clean \
