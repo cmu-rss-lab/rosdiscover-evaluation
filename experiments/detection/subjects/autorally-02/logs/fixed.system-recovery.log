@@ -1,0 +1,133 @@
+2021-09-07 13:18:33.116 | DEBUG    | __main__:recover_system:87 - calling rosdiscover: ['launch', '/tmp/tmpk9mv5cer.rosdiscover.yml', '--output', '/home/tdurschm/rosdiscover-evaluation/experiments/detection/subjects/autorally-02/fixed.architecture.yml']
+2021-09-07 13:18:33.119 | DEBUG    | rosdiscover.config:from_yaml_string:209 - loading config from YAML string:
+<_io.TextIOWrapper name='/tmp/tmpk9mv5cer.rosdiscover.yml' mode='r' encoding='UTF-8'>
+2021-09-07 13:18:33.124 | DEBUG    | roswire.roswire:__init__:40 - no workspace specified: using default workspace.
+2021-09-07 13:18:33.124 | DEBUG    | roswire.roswire:__init__:43 - default workspace: /home/tdurschm/.roswire
+2021-09-07 13:18:33.128 | DEBUG    | rosdiscover.config:from_yaml_string:212 - loaded config from YAML string: Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash', '/ros_ws/devel/setup.bash', '/ros_ws/src/autorally/autorally_util/setupEnvLocal.sh'), launches=(Launch(filename='/ros_ws/src/autorally/autorally_control/launch/path_integral_bf.launch', arguments={}), Launch(filename='/ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch', arguments={})), environment=mappingproxy({}), node_sources={('autorally_control', 'path_integral_bf'): NodeSourceInfo(package_name='autorally_control', node_name='path_integral_bf', node_kind=<ROSNodeKind.NODE: 'node'>, restrict_to_paths=['/ros_ws/devel/include/autorally_control', '/ros_ws/src/autorally/autorally_control'], entrypoint='main', sources=['src/path_integral/path_integral_main.cu', 'src/path_integral/autorally_plant.cpp', 'src/path_integral/param_getter.cpp']), ('autorally_control', 'path_integral_nn'): NodeSourceInfo(package_name='autorally_control', node_name='path_integral_nn', node_kind=<ROSNodeKind.NODE: 'node'>, restrict_to_paths=['/ros_ws/devel/include/autorally_control', '/ros_ws/src/autorally/autorally_control'], entrypoint='main', sources=['src/path_integral/path_integral_main.cu', 'src/path_integral/autorally_plant.cpp', 'src/path_integral/param_getter.cpp']), ('autorally_control', 'path_integral_monitor'): NodeSourceInfo(package_name='autorally_control', node_name='path_integral_monitor', node_kind=<ROSNodeKind.NODE: 'node'>, restrict_to_paths=['/ros_ws/devel/include/autorally_control', '/ros_ws/src/autorally/autorally_control'], entrypoint='main', sources=['src/path_integral/status_monitor.cpp'])}, app=App(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash', '/ros_ws/devel/setup.bash', '/ros_ws/src/autorally/autorally_util/setupEnvLocal.sh')))
+2021-09-07 13:18:33.128 | INFO     | rosdiscover.cli:_launch:47 - reconstructing architecture for image [rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd]
+2021-09-07 13:18:33.128 | DEBUG    | roswire.roswire:__init__:40 - no workspace specified: using default workspace.
+2021-09-07 13:18:33.128 | DEBUG    | roswire.roswire:__init__:43 - default workspace: /home/tdurschm/.roswire
+2021-09-07 13:18:34.433 | ERROR    | __main__:recover_system:91 - failed to statically recover system architecture for image [rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd]
+Traceback (most recent call last):
+
+  File "/home/tdurschm/rosdiscover-evaluation/scripts/recover-system.py", line 127, in <module>
+    main()
+    └ <function main at 0x7fae853d6ca0>
+
+  File "/home/tdurschm/rosdiscover-evaluation/scripts/recover-system.py", line 123, in main
+    recover(config)
+    │       └ {'type': 'detection', 'subject': 'autorally', 'bug-commit': '257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', 'fix-commit': 'd39ac4...
+    └ <function recover at 0x7fae8b378310>
+
+  File "/home/tdurschm/rosdiscover-evaluation/scripts/recover-system.py", line 29, in recover
+    ({
+
+  File "/home/tdurschm/rosdiscover-evaluation/scripts/recover-system.py", line 42, in _recover_for_detection_experiment
+    recover_system(
+    └ <function recover_system at 0x7fae853d6b80>
+
+> File "/home/tdurschm/rosdiscover-evaluation/scripts/recover-system.py", line 89, in recover_system
+    rosdiscover.cli.main(args)
+    │           │   │    └ ['launch', '/tmp/tmpk9mv5cer.rosdiscover.yml', '--output', '/home/tdurschm/rosdiscover-evaluation/experiments/detection/subje...
+    │           │   └ <function main at 0x7fae853d6670>
+    │           └ <module 'rosdiscover.cli' from '/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/cli.py'>
+    └ <module 'rosdiscover' from '/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/__init__.py'>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/cli.py", line 242, in main
+    parsed_args.func(parsed_args)
+    │           │    └ Namespace(output='/home/tdurschm/rosdiscover-evaluation/experiments/detection/subjects/autorally-02/fixed.architecture.yml', ...
+    │           └ <function launch at 0x7fae853d6310>
+    └ Namespace(output='/home/tdurschm/rosdiscover-evaluation/experiments/detection/subjects/autorally-02/fixed.architecture.yml', ...
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/cli.py", line 64, in launch
+    summary = _launch_config(args)
+              │              └ Namespace(output='/home/tdurschm/rosdiscover-evaluation/experiments/detection/subjects/autorally-02/fixed.architecture.yml', ...
+              └ <function _launch_config at 0x7fae853ece50>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/cli.py", line 59, in _launch_config
+    return _launch(config)
+           │       └ Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.b...
+           └ <function _launch at 0x7fae853bd940>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/cli.py", line 48, in _launch
+    with Interpreter.for_config(config) as interpreter:
+         │           │          └ Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.b...
+         │           └ <classmethod object at 0x7fae875cbdc0>
+         └ <class 'rosdiscover.interpreter.interpreter.Interpreter'>
+
+  File "/home/tdurschm/.pyenv/versions/3.9.5/lib/python3.9/contextlib.py", line 117, in __enter__
+    return next(self.gen)
+                │    └ <generator object Interpreter.for_config at 0x7fae853f5190>
+                └ <contextlib._GeneratorContextManager object at 0x7fae853f1670>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/rosdiscover/src/rosdiscover/interpreter/interpreter.py", line 35, in for_config
+    with rsw.launch(config.image, config.sources, environment=config.environment) as app:
+         │   │      │      │      │      │                    │      └ <member 'environment' of 'Config' objects>
+         │   │      │      │      │      │                    └ Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.b...
+         │   │      │      │      │      └ <member 'sources' of 'Config' objects>
+         │   │      │      │      └ Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.b...
+         │   │      │      └ <member 'image' of 'Config' objects>
+         │   │      └ Config(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.b...
+         │   └ <function ROSWire.launch at 0x7fae875d2550>
+         └ ROSWire(workspace='/home/tdurschm/.roswire')
+
+  File "/home/tdurschm/.pyenv/versions/3.9.5/lib/python3.9/contextlib.py", line 117, in __enter__
+    return next(self.gen)
+                │    └ <generator object ROSWire.launch at 0x7fae853f5200>
+                └ <contextlib._GeneratorContextManager object at 0x7fae854a17f0>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/roswire.py", line 127, in launch
+    with app.launch(
+         │   └ <function App.launch at 0x7fae875d0af0>
+         └ App(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash...
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/app/app.py", line 142, in launch
+    self.describe()
+    │    └ <function App.describe at 0x7fae875d0a60>
+    └ App(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash...
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/app/app.py", line 93, in describe
+    description = AppDescription.for_app(self)
+                  │              │       └ App(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash...
+                  │              └ <classmethod object at 0x7fae858b7820>
+                  └ <class 'roswire.app.description.AppDescription'>
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/app/description.py", line 127, in for_app
+    with app.launch(require_description=False) as app_instance:
+         │   └ <function App.launch at 0x7fae875d0af0>
+         └ App(image='rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd', sources=('/opt/ros/kinetic/setup.bash...
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/app/app.py", line 166, in launch
+    instance = AppInstance(
+               └ <class 'roswire.app.instance.AppInstance'>
+
+  File "<attrs generated init roswire.app.instance.AppInstance>", line 6, in __init__
+    self.__attrs_post_init__()
+    │    └ <function AppInstance.__attrs_post_init__ at 0x7fae875e2ca0>
+    └ AppInstance(_dockerblade=Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa1...
+
+  File "/home/tdurschm/rosdiscover-evaluation/deps/roswire/src/roswire/app/instance.py", line 59, in __attrs_post_init__
+    shell = dockerblade.shell("/bin/bash", sources=self.app.sources)
+            │           │                          │    └ <member 'app' of 'AppInstance' objects>
+            │           │                          └ AppInstance(_dockerblade=Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa1...
+            │           └ <function Container.shell at 0x7fae85eb1040>
+            └ Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa182f610ad073df2f5e0059213e...
+
+  File "/home/tdurschm/.local/share/virtualenvs/rosdiscover-evaluation-5m_FEEDo/lib/python3.9/site-packages/dockerblade/container.py", line 65, in shell
+    return Shell(self, path, sources=sources, environment=environment)
+           │     │     │             │                    └ {}
+           │     │     │             └ ('/opt/ros/kinetic/setup.bash', '/ros_ws/devel/setup.bash', '/ros_ws/src/autorally/autorally_util/setupEnvLocal.sh')
+           │     │     └ '/bin/bash'
+           │     └ Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa182f610ad073df2f5e0059213e...
+           └ <class 'dockerblade.shell.Shell'>
+  File "<attrs generated init dockerblade.shell.Shell>", line 12, in __init__
+    self.__attrs_post_init__()
+    │    └ <function Shell.__attrs_post_init__ at 0x7fae85ea63a0>
+    └ Shell(container=Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa182f610ad0...
+  File "/home/tdurschm/.local/share/virtualenvs/rosdiscover-evaluation-5m_FEEDo/lib/python3.9/site-packages/dockerblade/shell.py", line 94, in __attrs_post_init__
+    raise ContainerFileNotFound(container_id=self.container.id,
+          │                                  │    └ <member 'container' of 'Shell' objects>
+          │                                  └ Shell(container=Container(daemon=DockerDaemon(url='unix:///run/user/1006/docker.sock'), id='8ed3851186ddc7b005271aa182f610ad0...
+          └ <class 'dockerblade.exceptions.ContainerFileNotFound'>
+
+dockerblade.exceptions.ContainerFileNotFound: File not found [/ros_ws/devel/setup.bash] in container [8ed3851186ddc7b005271aa182f610ad073df2f5e0059213e537f731a4265b33]

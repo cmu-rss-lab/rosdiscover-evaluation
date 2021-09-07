@@ -4,7 +4,7 @@ set -eu
 #echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list
 #echo 'deb http://cz.archive.ubuntu.com/ubuntu xenial main universe' >> /etc/apt/sources.list
 #apt-get update
-#apt-get upgrade -y curl wget
+#apt-get install -y curl
 #
 #echo "installing cuda"
 #export DEBIAN_FRONTEND=noninteractive \

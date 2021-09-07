@@ -1,8 +1,8 @@
 type: detection
 subject: autorally
-bug-commit: f60077125d67d6e0a011d10b8fce6ba70aa6295c
-fix-commit: 63106bcaed7306a51c3bb8b4a165f28e3fbaae26
-image: rosdiscover-experiments/autorally:$COMMIT
+bug-commit: 3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
+fix-commit: 8ae7307299c48266ddf1bfede1c2256bafc94259
+image: rosdiscover-experiments/autorally:3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
 distro: indigo
 build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
@@ -17,48 +17,58 @@ apt_packages:
   - gpsd-clients
   - usbutils 
   - ros-indigo-orocos-kdl
+  - ros-indigo-gazebo-ros-control
 buggy:
-  image: rosdiscover-experiments/autorally:f60077125d67d6e0a011d10b8fce6ba70aa6295c
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
-    version: f60077125d67d6e0a011d10b8fce6ba70aa6295c
+    version: 3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
   - name: imu_3dm_gx4
     url: https://github.com/AutoRally/imu_3dm_gx4.git
-    version: 13578756595a0e339b4024f517828e191628002f
+    version: e3e288dc8b82be4d498a051253920498e3192083
 fixed:
-  image: rosdiscover-experiments/autorally:63106bcaed7306a51c3bb8b4a165f28e3fbaae26
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
-    version: 63106bcaed7306a51c3bb8b4a165f28e3fbaae26
+    version: 8ae7307299c48266ddf1bfede1c2256bafc94259
   - name: imu_3dm_gx4
     url: https://github.com/AutoRally/imu_3dm_gx4.git
-    version: 13578756595a0e339b4024f517828e191628002f    
+    version: e3e288dc8b82be4d498a051253920498e3192083    
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
-
 launches:
-- /ros_ws/src/autorally/autorally_core/launch/camera.launch
+- /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
+- /ros_ws/src/autorally/autorally_core/launch/baseStation.launch
 
 node_sources:
   - package: autorally_core
-    node: ImageRepublisher 
-    type: nodelet
-    entrypoint: autorally_core::ImageRepublisher::onInit
+    node: imuGpsEstimator
     sources:
-      - src/ImageRepublisher/ImageRepublisher.cpp
+      - src/StateEstimator/IMU_GPS.cpp
     restrict-analysis-to-paths:
       - /ros_ws/devel/include/autorally_core
       - /ros_ws/src/autorally/autorally_core
   - package: autorally_core
-    node: CameraAutoBalance 
-    type: nodelet
-    entrypoint: autorally_core::CameraAutoBalance::onInit
+    node: gpsHemisphereInterface
     sources:
-      - src/CameraAutoBalance/CameraAutoBalance.cpp
+      - src/gps/GPSHemisphere.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_core
+      - /ros_ws/src/autorally/autorally_core
+  - package: autorally_core
+    node: xbeeCoordinator
+    sources:
+      - src/xbee/XbeeCoordinator.cpp
+      - src/xbee/XbeeInterface.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/devel/include/autorally_core
+      - /ros_ws/src/autorally/autorally_core
+  - package: autorally_core
+    node: runStop
+    sources:
+      - src/RunStop/RunStop.cpp
     restrict-analysis-to-paths:
       - /ros_ws/devel/include/autorally_core
       - /ros_ws/src/autorally/autorally_core
