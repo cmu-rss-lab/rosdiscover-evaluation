@@ -61,26 +61,15 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
-    bug_commit = config["bug-commit"]
-    fix_commit = config["fix-commit"]
-    image=config["image"]
-    build_image(
-        image=image.replace("$COMMIT", bug_commit),
-        directory=config["directory"],
-        distro=config["distro"],
-        rosinstall_filename="bug.rosinstall",
-        build_command=config["build_command"],
-        apt_packages=config.get("apt_packages", []),
-    )
-
-    build_image(
-        image=image.replace("$COMMIT", fix_commit),
-        directory=config["directory"],
-        distro=config["distro"],
-        rosinstall_filename="fix.rosinstall",
-        build_command=config["build_command"],
-        apt_packages=config.get("apt_packages", []),
-    )
+    for version in ("buggy", "fixed"):
+        build_image(
+            image=config[version]["image"],
+            directory=config["directory"],
+            distro=config["distro"],
+            rosinstall_filename="bug.rosinstall",
+            build_command=config["build_command"],
+            apt_packages=config.get("apt_packages", []),
+        )
 
 
 def build_images_for_experiment(filename: str) -> None:
