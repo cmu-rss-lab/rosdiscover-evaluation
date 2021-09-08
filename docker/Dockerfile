@@ -45,6 +45,7 @@ ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
 RUN apt-get update \
+ && apt-get --only-upgrade -y install libssl1.0.0 openssl \
  && apt-get install -y --no-install-recommends \
       apt-utils \
       bzip2 \
@@ -78,6 +79,7 @@ RUN apt-get update \
       curl \
       libcurl3-gnutls \
       apt-transport-https \
+      python-catkin-tools \
  && echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
