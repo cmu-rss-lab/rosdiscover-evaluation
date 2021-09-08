@@ -55,7 +55,7 @@ autoware-static:
 
 
 %: 
-	python create_image.py bugs/$@ Dockerfile
+	pipenv run python scripts/build-images.py experiments/detection/subjects/$@/experiment.yml;\
 
 %_nb: 
 	python create_image.py bugs/$(subst _nb,,$@) Dockerfile_no_build
