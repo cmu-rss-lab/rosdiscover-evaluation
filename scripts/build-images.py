@@ -61,15 +61,22 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
-    for version in ("buggy", "fixed"):
-        build_image(
-            image=config[version]["image"],
-            directory=config["directory"],
-            distro=config["distro"],
-            rosinstall_filename="bug.rosinstall",
-            build_command=config["build_command"],
-            apt_packages=config.get("apt_packages", []),
-        )
+    build_image(
+        image=config["buggy"]["image"],
+        directory=config["directory"],
+        distro=config["distro"],
+        rosinstall_filename="bug.rosinstall",
+        build_command=config["build_command"],
+        apt_packages=config.get("apt_packages", []),
+    )
+    build_image(
+        image=config["fixed"]["image"],
+        directory=config["directory"],
+        distro=config["distro"],
+        rosinstall_filename="fix.rosinstall",
+        build_command=config["build_command"],
+        apt_packages=config.get("apt_packages", []),
+    )
 
 
 def build_images_for_experiment(filename: str) -> None:
