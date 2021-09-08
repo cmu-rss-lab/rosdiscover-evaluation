@@ -34,11 +34,13 @@ def build_image(
 
     apt_packages_arg = " ".join(apt_packages)
     logger.info(f"apt_packages_arg: {apt_packages_arg}")
+    experimentDir = os.path.relpath(directory, EVALUATION_DIR)
+    os.makedirs(os.path.join(experimentDir,"docker"), exist_ok=True)
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
     command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
     command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
-    command_args += ["--build-arg", f"DIRECTORY={os.path.relpath(directory, EVALUATION_DIR)}"]
+    command_args += ["--build-arg", f"DIRECTORY={experimentDir}"]
     command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
     command_args += ["--build-arg", f"DISTRO={distro}"]
     command_args += ["."]
