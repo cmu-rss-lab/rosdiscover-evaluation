@@ -136,6 +136,8 @@ RUN apt-get install -y ${APT_PACKAGES} \
 ARG DIRECTORY
 ARG ROSINSTALL_FILENAME
 COPY "${DIRECTORY}/${ROSINSTALL_FILENAME}" /.dockerinstall/
+COPY "${DIRECTORY}/docker" /.dockerinstall/  
+RUN do_preinstall
 RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get update \
  && wstool init -j8 src ${ROSINSTALL_FILENAME} \
@@ -147,7 +149,6 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY "${DIRECTORY}/docker" /.dockerinstall/  
 RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
