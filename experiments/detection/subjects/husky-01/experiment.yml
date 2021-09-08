@@ -1,9 +1,11 @@
 type: detection
 subject: husky
 distro: kinetic
-build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3] 
+apt_packages:
+  - ros-kinetic-orocos-kdl
 buggy:
   image: rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
   repositories:

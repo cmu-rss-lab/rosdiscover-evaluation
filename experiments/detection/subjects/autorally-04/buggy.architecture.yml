@@ -1,0 +1,243 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera.launch
+  fullname: /left_image_proc_debayer
+  kind: debayer
+  name: left_image_proc_debayer
+  namespace: /
+  nodelet: true
+  package: image_proc
+  placeholder: false
+  provides: []
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_color
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_mono
+  reads:
+  - dynamic: false
+    name: /left_image_proc_debayer/debayer
+  subs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_raw
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera.launch
+  fullname: /left_image_proc_rect_mono
+  kind: rectify
+  name: left_image_proc_rect_mono
+  namespace: /
+  nodelet: true
+  package: image_proc
+  placeholder: false
+  provides: []
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_mono_rect
+  reads:
+  - dynamic: false
+    name: /left_image_proc_rect_mono/queue_size
+  - dynamic: false
+    name: /left_image_proc_rect_mono/interpolation
+  subs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_mono
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera_info
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera.launch
+  fullname: /left_image_proc_rect_color
+  kind: rectify
+  name: left_image_proc_rect_color
+  namespace: /
+  nodelet: true
+  package: image_proc
+  placeholder: false
+  provides: []
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_color_rect
+  reads:
+  - dynamic: false
+    name: /left_image_proc_rect_color/interpolation
+  - dynamic: false
+    name: /left_image_proc_rect_color/queue_size
+  subs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_color
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera_info
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera.launch
+  fullname: /left_ImageRepublisher
+  kind: ImageRepublisher
+  name: left_ImageRepublisher
+  namespace: /
+  nodelet: false
+  package: autorally_core
+  placeholder: false
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: \unknown
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera.launch
+  fullname: /left_camera_nodelet
+  kind: PointGreyCameraNodelet
+  name: left_camera_nodelet
+  namespace: /
+  nodelet: true
+  package: pointgrey_camera_driver
+  placeholder: false
+  provides: []
+  pubs:
+  - format: diagnostics_msg/DiagnosticArray
+    implicit: false
+    name: /diagnostics
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /left_camera_nodelet/camera_info
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera_nodelet/image_raw/compressedDepth
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera_nodelet/image_raw/compressed
+  - format: theora_image_transport/Packet
+    implicit: false
+    name: /left_camera_nodelet/image_raw/theora
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera_nodelet/image_raw
+  reads:
+  - dynamic: false
+    name: /format7_roi_width
+  - dynamic: true
+    name: /auto_white_balance
+  - dynamic: true
+    name: /enable_trigger_delay
+  - dynamic: false
+    name: /camera_info_url
+  - dynamic: false
+    name: /frame_id
+  - dynamic: true
+    name: /white_balance_blue
+  - dynamic: true
+    name: /gamma
+  - dynamic: true
+    name: /white_balance_red
+  - dynamic: false
+    name: /packet_delay
+  - dynamic: true
+    name: /strobe1_duration
+  - dynamic: false
+    name: /packet_size
+  - dynamic: true
+    name: /gain
+  - dynamic: false
+    name: /freq_tolerance
+  - dynamic: false
+    name: /min_freq
+  - dynamic: true
+    name: /auto_exposure
+  - dynamic: true
+    name: /trigger_delay
+  - dynamic: true
+    name: /auto_shutter
+  - dynamic: true
+    name: /strobe1_delay
+  - dynamic: false
+    name: /min_acceptable_delay
+  - dynamic: true
+    name: /format7_y_offset
+  - dynamic: true
+    name: /trigger_source
+  - dynamic: false
+    name: /serial
+  - dynamic: true
+    name: /strobe1_polarity
+  - dynamic: false
+    name: /desired_freq
+  - dynamic: true
+    name: /frame_rate
+  - dynamic: true
+    name: /video_mode
+  - dynamic: true
+    name: /format7_x_offset
+  - dynamic: false
+    name: /window_size
+  - dynamic: true
+    name: /brightness
+  - dynamic: true
+    name: /format7_color_coding
+  - dynamic: true
+    name: /trigger_parameter
+  - dynamic: false
+    name: /auto_packet_size
+  - dynamic: true
+    name: /enable_strobe1
+  - dynamic: false
+    name: /max_acceptable_delay
+  - dynamic: true
+    name: /tilt
+  - dynamic: true
+    name: /pan
+  - dynamic: false
+    name: /max_freq
+  - dynamic: true
+    name: /format7_roi_height
+  - dynamic: true
+    name: /exposure
+  - dynamic: true
+    name: /auto_gain
+  - dynamic: true
+    name: /enable_trigger
+  - dynamic: true
+    name: /trigger_mode
+  - dynamic: true
+    name: /shutter_speed
+  - dynamic: true
+    name: /trigger_polarity
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/camera_auto_balance.launch
+  fullname: /left_CameraAutoBalance
+  kind: CameraAutoBalance
+  name: left_CameraAutoBalance
+  namespace: /
+  nodelet: false
+  package: autorally_core
+  placeholder: false
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: \unknown
+  subs: []
+  uses: []
+  writes: []
