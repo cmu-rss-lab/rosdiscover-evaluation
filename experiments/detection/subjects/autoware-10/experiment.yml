@@ -50,9 +50,9 @@ fixed:
 
 sources:
 - /opt/ros/indigo/setup.bash
-- /ros_was/src/autoware/ros/devel/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
 launches:
-- /ros_was/src/autoware/ros/src/computing/perception/detection/packages/cv_tracker/launch/reprojection.launch
+- /ros_ws/src/autoware/ros/src/computing/perception/detection/packages/cv_tracker/launch/reprojection.launch
 
 node_sources:
   - package: reprojection
@@ -60,10 +60,10 @@ node_sources:
     sources:
       - nodes/obj_reproj/obj_reproj.cpp
     restrict-analysis-to-paths:
-      - /ros_was/src/autoware/
+      - /ros_ws/src/autoware/
   - package: synchronization
     node: sync_obj_reproj
     sources:
       - computing/perception/detection/packages/cv_tracker/nodes/obj_reproj/sync_obj_reproj.cpp
     restrict-analysis-to-paths:
-      - /ros_was/src/autoware/
+      - /ros_ws/src/autoware/
