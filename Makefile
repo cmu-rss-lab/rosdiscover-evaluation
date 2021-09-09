@@ -25,12 +25,12 @@ autorally: $(autorally-bugs)
 
 launch-all:
 	for bug in $(all-bugs); do \
-		pipenv run python scripts/recover-system.py experiments/detection/subjects/$@/experiment.yml;\
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
 launch-autoware:
 	for bug in $(autoware-bugs); do \
-		pipenv run python scripts/recover-system.py experiments/detection/subjects/$@/experiment.yml;\
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
 launch-autoware-debug:
@@ -47,7 +47,7 @@ launch-autorally-debug:
 
 launch-autorally:
 	for bug in $(autorally-bugs); do \
-		pipenv run python scripts/recover-system.py experiments/detection/subjects/$@/experiment.yml;\
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
 autoware-static: 
