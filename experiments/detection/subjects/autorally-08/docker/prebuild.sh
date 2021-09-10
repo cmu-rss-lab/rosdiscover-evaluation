@@ -36,17 +36,3 @@ make -j16
 make install
 ldconfig
 echo "installed gtsam"
-
-#echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list
-#echo 'deb http://cz.archive.ubuntu.com/ubuntu xenial main universe' >> /etc/apt/sources.list
-#apt-get update
-#apt-get upgrade -y curl wget
-#
-#
-#echo "installing cuda"
-#export DEBIAN_FRONTEND=noninteractive \
-#&& wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_6.5-14_amd64.deb \
-#&& dpkg -i cuda-repo-ubuntu1404_6.5-14_amd64.deb \
-#&& apt-get update -y \
-#&& apt-get install -y --no-install-recommends cuda
-#echo "installed cuda"

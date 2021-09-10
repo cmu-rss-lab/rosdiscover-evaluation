@@ -3,14 +3,6 @@ set -e
 
 EIGEN_VERSION="3.3.7"
 
-echo "installing cuda"
-sudo apt-get clean
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
-sudo apt-get update -y
-sudo apt-get install -y --no-install-recommends cuda
-echo "installed cuda"
-
 echo "installing geographiclib"
 cd /tmp
 wget -nv https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.50.1.tar.gz

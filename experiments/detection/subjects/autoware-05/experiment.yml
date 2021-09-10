@@ -1,7 +1,8 @@
 type: detection
 subject: autoware
 distro: kinetic
-build_command: cd /ros_ws/src/autoware/ros; catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+build_command: export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; cd /ros_ws/src/autoware/ros; catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs
+cuda_version: 8-0
 missing_ros_packages: []
 exclude_ros_packages: [] 
 apt_packages:

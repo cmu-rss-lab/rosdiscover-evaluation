@@ -1,19 +1,6 @@
 #!/bin/bash
 set -eu
 
-#echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list
-#echo 'deb http://cz.archive.ubuntu.com/ubuntu xenial main universe' >> /etc/apt/sources.list
-#apt-get update
-#apt-get install -y curl
-#
-echo "installing cuda"
-export DEBIAN_FRONTEND=noninteractive \
-&& wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_6.5-14_amd64.deb \
-&& dpkg -i cuda-repo-ubuntu1404_6.5-14_amd64.deb \
-&& apt-get update -y \
-&& apt-get install -y --no-install-recommends cuda
-echo "installed cuda"
-
 echo "installing cnpy"
 git clone https://github.com/rogersce/cnpy.git /opt/cnpy
 cd /opt/cnpy
