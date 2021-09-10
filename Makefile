@@ -50,6 +50,9 @@ launch-autorally:
 		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
+autorally-static: 
+	pipenv run python scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml;\
+
 autoware-static: 
 	docker build . -t autoware-static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
 
