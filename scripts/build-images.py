@@ -26,6 +26,7 @@ def build_image(
     rosinstall_filename: str,
     build_command: str,
     apt_packages: t.Optional[t.Sequence[str]],
+    cuda_version,
 ) -> None:
     assert os.path.exists(directory)
 
@@ -38,6 +39,7 @@ def build_image(
     os.makedirs(os.path.join(experimentDir,"docker"), exist_ok=True)
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
+    command_args += ["--build-arg", f"CUDA_VERSION='{cuda_version}'"]
     command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
     command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
     command_args += ["--build-arg", f"DIRECTORY={experimentDir}"]
@@ -59,6 +61,7 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
         rosinstall_filename="pkgs.rosinstall",
         build_command=config["build_command"],
         apt_packages=config.get("apt_packages", []),
+        cuda_version=config.get("cuda_version", 0),
     )
 
 
@@ -70,6 +73,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
         rosinstall_filename="bug.rosinstall",
         build_command=config["build_command"],
         apt_packages=config.get("apt_packages", []),
+        cuda_version=config.get("cuda_version", 0),
     )
     build_image(
         image=config["fixed"]["image"],
@@ -78,6 +82,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
         rosinstall_filename="fix.rosinstall",
         build_command=config["build_command"],
         apt_packages=config.get("apt_packages", []),
+        cuda_version=config.get("cuda_version", 0),
     )
 
 

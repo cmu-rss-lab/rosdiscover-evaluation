@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eu	
+
+if [ ${CUDA_VERSION} == "0" ]; then
+	echo "SKIP CUDA"
+	exit 0; fi
+
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
+apt-get update -y
+apt-get install -y --no-install-recommends cuda

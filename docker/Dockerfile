@@ -45,7 +45,7 @@ ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
 RUN apt-get update \
- && apt-get --only-upgrade -y install libssl1.0.0 openssl \
+ && apt-get install -y libssl1.0.0 openssl distro-info-data \
  && apt-get install -y --no-install-recommends \
       apt-utils \
       bzip2 \
@@ -86,6 +86,7 @@ RUN apt-get update \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
  && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash
+
 ENV PYENV_ROOT "/root/.pyenv"
 ENV PATH="/root/.pyenv/bin:$PATH"
 RUN eval "$(pyenv init --path)" \
@@ -126,6 +127,10 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/
 RUN chmod +x /bin/tini \
  && apt-add-repository universe \
  && apt-get update && apt-get install -y ros-"${ROS_DISTRO}"-desktop-full
+
+ARG CUDA_VERSION="0"
+ENV CUDA_VERSION ${CUDA_VERSION}
+RUN install_cuda_"${ROS_DISTRO}"
 
 # apt packages 
 # Should not use --no-install-recommends argument because we need some of the package dependencies
