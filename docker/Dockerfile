@@ -40,7 +40,6 @@ ENV PATH "/opt/rosqual/bin:${PATH}"
 ARG COMMON_ROOTFS
 COPY "${COMMON_ROOTFS}" /
 WORKDIR /ros_ws
-RUN chmod +x /ros_ws/entrypoint.sh
 ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
