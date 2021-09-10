@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu	
+
+if [ ${CUDA_VERSION} == "0" ]; then
+	echo "SKIP CUDA"
+	exit 0; fi
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1704/x86_64/cuda-ubuntu1704.pin
+mv cuda-ubuntu1704.pin /etc/apt/preferences.d/cuda-repository-pin-600
+apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1704/x86_64/7fa2af80.pub
+add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1704/x86_64/ /"
+apt-get update
+apt-get -y install cuda-"${CUDA_VERSION}"
