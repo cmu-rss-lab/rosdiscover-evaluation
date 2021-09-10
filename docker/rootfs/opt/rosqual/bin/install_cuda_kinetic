@@ -5,7 +5,13 @@ if [ ${CUDA_VERSION} == "0" ]; then
 	echo "SKIP CUDA"
 	exit 0; fi
 
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
-dpkg -i cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
-apt-get update -y
-apt-get install -y --no-install-recommends cuda
+# retrieve and add gpg keys from nvidia
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub -P /tmp
+apt-key add /tmp/7fa2af80.pub
+
+# add nvidia link to apt sources
+apt-add-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"
+
+# install cuda 10
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y  --no-install-recommends cuda-"${CUDA_VERSION}"
