@@ -1,31 +1,23 @@
 type: detection
 subject: autoware
 distro: kinetic
-build_command: export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; cd /ros_ws/src/autoware/ros; catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release
-cuda_version: 8-0
+build_command: cd /ros_ws/src/autoware/ros; catkin_make clean -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release; source devel/setup.bash; export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; catkin_make -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release
+cuda_version: 0
 missing_ros_packages: []
 exclude_ros_packages: [] 
 apt_packages:
   - ros-kinetic-autoware-msgs
   - ros-kinetic-gazebo-ros-control
   - ros-kinetic-automotive-platform-msgs
-  - ros-kinetic-automotive-platform-msgs
   - libproj-dev
-  - ros-kinetic-pcl-ros
   - ros-kinetic-velodyne-pointcloud
   - ros-kinetic-sound-play
-  - ros-kinetic-image-transport
-  - ros-kinetic-cv-bridge
   - ros-kinetic-roslint
   - ros-kinetic-camera-info-manager
   - ros-kinetic-rviz
-  - ros-kinetic-nmea-msgs
-  - ros-kinetic-jsk-recognition-msgs
-  - ros-kinetic-jsk-rviz-plugins
   - ros-kinetic-grid-map-ros
   - ros-kinetic-gps-common
   - ros-kinetic-xacro
-  - ros-kinetic-automotive-navigation-msgs
   - ros-kinetic-pacmod-msgs
   - ros-kinetic-rqt-gui
   - ros-kinetic-rqt-gui-py
@@ -38,10 +30,6 @@ apt_packages:
   - ros-kinetic-image-transport
   - ros-kinetic-image-transport-plugins
   - ros-kinetic-pcl-ros
-  - ros-kinetic-roslint
-  - ros-kinetic-velodyne-pointcloud
-  - ros-kinetic-sound-play
-  - ros-kinetic-camera-info-manager
   - ros-kinetic-jsk-recognition-msgs
   - libqt5opengl5-dev
   - libssh2-1-dev
@@ -78,6 +66,9 @@ apt_packages:
   - x264
   - v4l-utils
   - unzip
+  - libglew-dev
+  - ros-kinetic-jsk-rviz-plugins
+  - ros-kinetic-automotive-navigation-msgs
 
 buggy:
   image: rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
