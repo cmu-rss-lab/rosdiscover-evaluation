@@ -14,6 +14,7 @@ import os
 import tempfile
 import typing as t
 
+from loguru import logger
 import yaml
 
 
@@ -40,6 +41,9 @@ class ROSDiscoverConfig(t.TypedDict):
             filename: str = tempfile.mkstemp(suffix=".rosdiscover.yml")[1]
             with open(filename, "w") as fh:
                 yaml.dump(config, fh, default_flow_style=False)
+            with open(filename, "r") as fh:
+                logger.debug(f"generated temporary ROSDiscover config file [{filename}]:\n{fh.read()}")
+
             yield filename
         finally:
             os.remove(filename)
