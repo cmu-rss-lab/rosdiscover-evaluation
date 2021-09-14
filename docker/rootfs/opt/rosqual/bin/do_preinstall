@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eu
 
-PREINSTALLL_FILENAME=/.dockerinstall/preinstall.sh
+PREINSTALL_FILENAME=/.dockerinstall/preinstall.sh
 
-if [[ -f "${PREINSTALLL_FILENAME}" ]]; then
+if [[ -f "${PREINSTALL_FILENAME}" ]]; then
   echo "running preinstall step..."
   apt-get update
-  /bin/bash "${PREINSTALLL_FILENAME}"
+  /bin/bash "${PREINSTALL_FILENAME}"
   apt-get clean
   rm -rf /var/lib/apt/lists/*
 else
