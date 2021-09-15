@@ -31,7 +31,7 @@ class ROSDiscoverConfig(t.TypedDict):
     image: str
     sources: t.Sequence[str]
     launches: t.Sequence[str]
-    node_sources: t.Collection[NodeSources]
+    node_sources: t.Optional[t.Collection[NodeSources]]
 
     @classmethod
     @contextlib.contextmanager
@@ -96,4 +96,5 @@ def load_config(filename: str) -> ExperimentConfig:
 
     config["filename"] = abs_filename
     config["directory"] = experiment_directory
+    config["node-sources"] = config["node-sources"] or []
     return config
