@@ -1,0 +1,148 @@
+type: detection
+subject: autoware
+distro: kinetic
+build_command: cd /ros_ws/src/autoware/ros; catkin_make clean -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release; source devel/setup.bash; export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; catkin_make -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release
+cuda_version: 0
+missing_ros_packages: []
+exclude_ros_packages: [] 
+apt_packages:
+  - ros-kinetic-autoware-msgs
+  - ros-kinetic-gazebo-ros-control
+  - ros-kinetic-automotive-platform-msgs
+  - libproj-dev
+  - ros-kinetic-velodyne-pointcloud
+  - ros-kinetic-sound-play
+  - ros-kinetic-roslint
+  - ros-kinetic-camera-info-manager
+  - ros-kinetic-rviz
+  - ros-kinetic-grid-map-ros
+  - ros-kinetic-gps-common
+  - ros-kinetic-xacro
+  - ros-kinetic-pacmod-msgs
+  - ros-kinetic-rqt-gui
+  - ros-kinetic-rqt-gui-py
+  - ros-kinetic-tf2-geometry-msgs
+  - ros-kinetic-robot-state-publisher
+  - ros-kinetic-joint-state-controller
+  - ros-kinetic-nmea-msgs
+  - qt5-default
+  - ros-kinetic-cv-bridge
+  - ros-kinetic-image-transport
+  - ros-kinetic-image-transport-plugins
+  - ros-kinetic-pcl-ros
+  - ros-kinetic-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+  - libdc1394-22
+  - libdc1394-22-dev
+  - libjpeg-dev
+  - libpng12-0
+  - libjasper-dev
+  - libavcodec-dev
+  - libavformat-dev
+  - libswscale-dev
+  - libgstreamer0.10-dev
+  - libgstreamer-plugins-base0.10-dev
+  - libv4l-dev
+  - libtbb-dev
+  - libqt4-dev
+  - libmp3lame-dev
+  - libopencore-amrnb-dev
+  - libopencore-amrwb-dev
+  - libtheora-dev
+  - libvorbis-dev
+  - libxvidcore-dev
+  - x264
+  - v4l-utils
+  - unzip
+  - libglew-dev
+  - ros-kinetic-jsk-rviz-plugins
+  - ros-kinetic-automotive-navigation-msgs
+
+buggy:
+  image: rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 8bf1c47fbc18a0303fda23c601dfe959a3afbc41  
+fixed:
+  image: rosdiscover-experiments/autoware:6a7d1b9f66fd353eb5c6ad8df942c433fff8e2a1
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 6a7d1b9f66fd353eb5c6ad8df942c433fff8e2a1
+
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
+launches:
+- /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+
+
+node_sources:
+#
+#TODO: deal with  <node pkg="rostopic" type="rostopic" name="config_waypoint_loader_rostopic"  args="pub -l /config/waypoint_loader autoware_config_msgs/ConfigWaypointLoader {multi_lane_csv: '$(env HOME)/.autoware/data/path/moriyama_path.txt', replanning_mode: false, velocity_max: 20.0, velocity_min: 4.0, accel_limit: 0.98, decel_limit: 0.98, radius_thresh: 20.0, radius_min: 6.0, resample_mode: true, resample_interval: 1.0, velocity_offset: 4, end_point_offset: 5}' "/>
+#
+
+
+  # lane_rule, lane_stop, lane_select
+- package: lane_planner
+  node: lane_rule
+  sources:
+    - nodes/lane_rule/lane_rule.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+- package: lane_planner
+  node: lane_stop
+  sources:
+    - nodes/lane_stop/lane_stop.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+- package: lane_planner
+  node: lane_select
+  sources:
+    - nodes/lane_select/lane_select_node.cpp
+    - nodes/lane_select/lane_select_core.cpp
+    - nodes/lane_select/hermite_curve.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+# waypoint_loader.launch: waypoint_loader, waypoint_marker_publisher
+- package: waypoint_maker
+  node: waypoint_loader
+  sources:
+    - nodes/waypoint_loader/waypoint_loader_core.cpp
+    - nodes/waypoint_loader/waypoint_loader_node.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+- package: waypoint_maker
+  node: waypoint_marker_publisher
+  sources:
+    - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+# vel_pose_connect.launch: can_status_translator, relay
+- package: autoware_connector
+  node: can_status_translator
+  sources:
+    - nodes/can_status_translator/can_status_translator_node.cpp
+    - nodes/can_status_translator/can_status_translator_core.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+#
+# TODO: deal with <node pkg="topic_tools" type="relay" name="pose_relay" output="log" args="$(arg topic_pose_stamped) /current_pose"/>
+#

@@ -25,12 +25,12 @@ autorally: $(autorally-bugs)
 
 launch-all:
 	for bug in $(all-bugs); do \
-		bash run_rosdiscover.sh $$bug; \
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
 launch-autoware:
 	for bug in $(autoware-bugs); do \
-		bash run_rosdiscover.sh $$bug; \
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
 launch-autoware-debug:
@@ -47,15 +47,18 @@ launch-autorally-debug:
 
 launch-autorally:
 	for bug in $(autorally-bugs); do \
-		bash run_rosdiscover.sh $$bug; \
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
+
+autorally-static: 
+	pipenv run python scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml;\
 
 autoware-static: 
 	docker build . -t autoware-static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
 
 
 %: 
-	python create_image.py bugs/$@ Dockerfile
+	pipenv run python scripts/build-images.py experiments/detection/subjects/$@/experiment.yml;\
 
 %_nb: 
 	python create_image.py bugs/$(subst _nb,,$@) Dockerfile_no_build

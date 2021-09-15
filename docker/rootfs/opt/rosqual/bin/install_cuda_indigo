@@ -1,0 +1,30 @@
+#!/bin/bash
+set -eu	
+
+if [ ${CUDA_VERSION} == "0" ]; then
+	echo "SKIP CUDA"
+	exit 0; fi
+
+echo "installing CUDA ${CUDA_VERSION}"
+
+# add xenial repos to sources.list
+echo "deb http://security.ubuntu.com/ubuntu xenial-security main" >> /etc/apt/sources.list
+echo "deb http://cz.archive.ubuntu.com/ubuntu xenial main universe" >> /etc/apt/sources.list
+
+# upgrade curl from the xeinal repo
+apt-get update
+apt-get install -y curl --no-install-recommends
+
+# remove xenial repos from sources.list
+head -n -2 /etc/apt/sources.list | tee /etc/apt/sources.list
+
+# retrieve and add gpg keys from nvidia
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/7fa2af80.pub -P /tmp
+apt-key add /tmp/7fa2af80.pub
+
+# add nvidia link to apt sources
+apt-add-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64 /"
+
+# install cuda 10
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y  --no-install-recommends cuda-"${CUDA_VERSION}"

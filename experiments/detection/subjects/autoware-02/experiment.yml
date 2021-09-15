@@ -1,0 +1,69 @@
+type: detection
+subject: autoware
+distro: indigo
+build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+cuda_version: 6-5
+missing_ros_packages: []
+exclude_ros_packages: [] 
+apt_packages:
+  - ros-indigo-joint-state-publisher
+  - ros-indigo-robot-state-publisher
+  - ros-indigo-nmea-msgs
+  - ros-indigo-gazebo-ros-control
+  - ros-indigo-automotive-platform-msgs
+  - qt5-default
+  - ros-indigo-cv-bridge
+  - ros-indigo-image-transport
+  - ros-indigo-image-transport-plugins
+  - ros-indigo-pcl-ros
+  - ros-indigo-roslint
+  - ros-indigo-velodyne-pointcloud
+  - ros-indigo-sound-play
+  - ros-indigo-camera-info-manager
+  - ros-indigo-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+
+buggy:
+  image: rosdiscover-experiments/autoware:30eed1453e97eb4beb7b696ff22f5312ad80f5f6
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 30eed1453e97eb4beb7b696ff22f5312ad80f5f6  
+fixed:
+  image: rosdiscover-experiments/autoware:84169473a3f72aea8a400464f5b673f3c77c6b8c
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 84169473a3f72aea8a400464f5b673f3c77c6b8c
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
+launches:
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/lattice_trajectory_gen.launch
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_follower/launch/wf_simulator.launch
+
+node_sources:
+- package: waypoint_follower
+  node: odom_gen
+  sources:
+    - nodes/odom_gen/odom_gen.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+- package: driving_planner
+  node: lattice_trajectory_gen
+  sources:
+    - nodes/lattice_trajectory_gen/lattice_trajectory_gen.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/

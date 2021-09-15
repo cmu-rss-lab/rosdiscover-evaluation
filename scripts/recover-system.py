@@ -66,7 +66,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
 
 def recover_system(
     image: str,
-    sources: str,
+    sources: t.Sequence[str],
     launches: t.Sequence[str],  # FIXME
     node_sources: NodeSources,
     output_filename: str,

@@ -1,0 +1,64 @@
+type: detection
+subject: autorally
+distro: kinetic
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+cuda_version: 8-0
+exclude_ros_packages: [orocos_kdl, python_orocos_kdl, opencv3, laser_geometry, tf, actionlib] 
+apt_packages:
+  - git
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - lm-sensors
+  - acpi
+  - gpsd-clients
+  - cutecom
+  - cmake-curses-gui
+  - synaptic
+  - python-termcolor
+  - libraw1394-11
+  - libgtkmm-2.4-1v5
+  - libglademm-2.4-1v5
+  - libglademm-2.4-dev
+  - libgtkglextmm-x11-1.2-dev
+  - libgtkglextmm-x11-1.2
+  - libusb-1.0-0
+  - texinfo
+  - ros-kinetic-rqt-publisher
+  - ros-kinetic-orocos-kdl
+  - ros-kinetic-gazebo-ros-control
+buggy:
+  image: rosdiscover-experiments/autorally:5032de9b8e008a8d3871f906897de2bd2c6ae893
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 5032de9b8e008a8d3871f906897de2bd2c6ae893
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 95b67d9278e90748ec478ce8c3b0a9e577cdf914
+fixed:
+  image: rosdiscover-experiments/autorally:60a9514dc328744da3e1842639d210b195e6d331
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 60a9514dc328744da3e1842639d210b195e6d331
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 95b67d9278e90748ec478ce8c3b0a9e577cdf914    
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+launches:
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch
+node_sources:
+  - package: autorally_control
+    node: joystickController
+    sources:
+      - src/joystick/JoystickControl.cpp
+      - src/joystick/joystickControlMain.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/src/autorally/devel/include/autorally_control
+      - /ros_ws/src/autorally/src/autorally/autorally_control

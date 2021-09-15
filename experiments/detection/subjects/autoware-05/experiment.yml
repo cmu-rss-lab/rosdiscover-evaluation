@@ -1,0 +1,152 @@
+type: detection
+subject: autoware
+distro: kinetic
+build_command: export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; cd /ros_ws/src/autoware/ros; catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs
+cuda_version: 8-0
+missing_ros_packages: []
+exclude_ros_packages: [] 
+apt_packages:
+  - ros-kinetic-autoware-msgs
+  - ros-kinetic-gazebo-ros-control
+  - ros-kinetic-automotive-platform-msgs
+  - ros-kinetic-automotive-platform-msgs
+  - libproj-dev
+  - ros-kinetic-pcl-ros
+  - ros-kinetic-velodyne-pointcloud
+  - ros-kinetic-sound-play
+  - ros-kinetic-image-transport
+  - ros-kinetic-cv-bridge
+  - ros-kinetic-roslint
+  - ros-kinetic-camera-info-manager
+  - ros-kinetic-rviz
+  - ros-kinetic-nmea-msgs
+  - ros-kinetic-jsk-recognition-msgs
+  - ros-kinetic-jsk-rviz-plugins
+  - ros-kinetic-grid-map-ros
+  - ros-kinetic-gps-common
+  - ros-kinetic-xacro
+  - ros-kinetic-automotive-navigation-msgs
+  - ros-kinetic-pacmod-msgs
+  - ros-kinetic-rqt-gui
+  - ros-kinetic-rqt-gui-py
+  - ros-kinetic-tf2-geometry-msgs
+  - ros-kinetic-robot-state-publisher
+  - ros-kinetic-joint-state-controller
+  - ros-kinetic-nmea-msgs
+  - qt5-default
+  - ros-kinetic-cv-bridge
+  - ros-kinetic-image-transport
+  - ros-kinetic-image-transport-plugins
+  - ros-kinetic-pcl-ros
+  - ros-kinetic-roslint
+  - ros-kinetic-velodyne-pointcloud
+  - ros-kinetic-sound-play
+  - ros-kinetic-camera-info-manager
+  - ros-kinetic-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+  - libdc1394-22
+  - libdc1394-22-dev
+  - libjpeg-dev
+  - libpng12-0
+  - libjasper-dev
+  - libavcodec-dev
+  - libavformat-dev
+  - libswscale-dev
+  - libgstreamer0.10-dev
+  - libgstreamer-plugins-base0.10-dev
+  - libv4l-dev
+  - libtbb-dev
+  - libqt4-dev
+  - libmp3lame-dev
+  - libopencore-amrnb-dev
+  - libopencore-amrwb-dev
+  - libtheora-dev
+  - libvorbis-dev
+  - libxvidcore-dev
+  - x264
+  - v4l-utils
+  - unzip
+
+buggy:
+  image: rosdiscover-experiments/autoware:47d36ea2c3eff9fb0161b3a14097b70450b2c1b6
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 47d36ea2c3eff9fb0161b3a14097b70450b2c1b6  
+fixed:
+  image: rosdiscover-experiments/autoware:37b9feba82e6a6fabfa689fcf9d210c3c8f287f6
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 37b9feba82e6a6fabfa689fcf9d210c3c8f287f6
+
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
+launches:
+- /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/launch/imm_ukf_pda_track.launch
+
+
+node_sources:
+#ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch (waypoint_loader, waypoint_marker_publisher):
+- package: waypoint_maker
+  node: waypoint_loader
+  sources:
+    - nodes/waypoint_loader/waypoint_loader_core.cpp
+    - nodes/waypoint_loader/velocity_replanner.cpp
+    - nodes/waypoint_loader/waypoint_loader_node.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+- package: waypoint_maker
+  node: waypoint_marker_publisher
+  sources:
+    - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+# ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch (lane_navi, lane_rule, lane_stop):    
+- package: lane_planner
+  node: lane_navi
+  sources:
+    - nodes/lane_navi/lane_navi.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+- package: lane_planner
+  node: lane_rule
+  sources:
+    - nodes/lane_rule/lane_rule.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+- package: lane_planner
+  node: lane_stop
+  sources:
+    - nodes/lane_stop/lane_stop.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+
+# includes tablet_socket.launch (tablet_receiver, tablet_sender):
+- package: tablet_socket
+  node: tablet_receiver
+  sources:
+    - nodes/tablet_receiver/tablet_receiver.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/
+- package: tablet_socket
+  node: tablet_sender
+  sources:
+    - nodes/tablet_sender/tablet_sender.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/autoware/  

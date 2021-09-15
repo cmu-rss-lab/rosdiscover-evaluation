@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 EIGEN_VERSION="3.3.7"
 
@@ -26,6 +26,7 @@ make -j8
 make install
 ldconfig
 echo "installed gtsam"
+
 
 echo "installing flycapture"
 mkdir /opt/flycapture
@@ -54,6 +55,7 @@ cd build
 cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
+
 
 # SEE: https://github.com/AutoRally/autorally/issues/88
 cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt

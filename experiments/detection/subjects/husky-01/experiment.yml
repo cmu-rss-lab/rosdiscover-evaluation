@@ -1,0 +1,48 @@
+type: detection
+subject: husky
+distro: kinetic
+build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3] 
+apt_packages:
+  - ros-kinetic-orocos-kdl
+buggy:
+  image: rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+fixed:
+  image: rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+launches:
+- /ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch
+
+node_sources:
+#/ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch (pointcloud_to_laserscan_node, spawn_model)
+#TODO: Add pointcloud_to_laserscan_node model
+#TODO: Add spawn_model model
+- package: pointcloud_to_laserscan
+  node: pointcloud_to_laserscan_node
+  sources:
+    - nodes/waypoint_loader/waypoint_loader_core.cpp
+    - nodes/waypoint_loader/velocity_replanner.cpp
+    - nodes/waypoint_loader/waypoint_loader_node.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/husky/
+- package: waypoint_maker
+  node: waypoint_marker_publisher
+  sources:
+    - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+  restrict-analysis-to-paths:
+    - /ros_ws/src/husky/
+
+
+#control.launch ()

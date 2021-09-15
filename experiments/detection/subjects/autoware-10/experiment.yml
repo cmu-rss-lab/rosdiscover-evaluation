@@ -1,0 +1,70 @@
+type: detection
+subject: autoware
+distro: indigo
+build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+cuda_version: 6-5
+missing_ros_packages: []
+exclude_ros_packages: [] 
+apt_packages:
+  - ros-indigo-rviz
+  - ros-indigo-joint-state-publisher
+  - ros-indigo-robot-state-publisher
+  - ros-indigo-nmea-msgs
+  - ros-indigo-gazebo-ros-control
+  - ros-indigo-automotive-platform-msgs
+  - qt5-default
+  - ros-indigo-cv-bridge
+  - ros-indigo-image-transport
+  - ros-indigo-image-transport-plugins
+  - ros-indigo-pcl-ros
+  - ros-indigo-roslint
+  - ros-indigo-velodyne-pointcloud
+  - ros-indigo-sound-play
+  - ros-indigo-camera-info-manager
+  - ros-indigo-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+
+buggy:
+  image: rosdiscover-experiments/autoware:0583e6d128450b2c567732cb9a00b828af7cd93e
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 0583e6d128450b2c567732cb9a00b828af7cd93e  
+fixed:
+  image: rosdiscover-experiments/autoware:939ef1836bcdf0ff2a6c98d1c1ced940b0e242dd
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 939ef1836bcdf0ff2a6c98d1c1ced940b0e242dd
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
+launches:
+- /ros_ws/src/autoware/ros/src/computing/perception/detection/packages/cv_tracker/launch/reprojection.launch
+
+node_sources:
+  - package: reprojection
+    node: obj_reproj
+    sources:
+      - nodes/obj_reproj/obj_reproj.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/src/autoware/
+  - package: synchronization
+    node: sync_obj_reproj
+    sources:
+      - computing/perception/detection/packages/cv_tracker/nodes/obj_reproj/sync_obj_reproj.cpp
+    restrict-analysis-to-paths:
+      - /ros_ws/src/autoware/
