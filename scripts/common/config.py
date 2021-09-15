@@ -96,5 +96,5 @@ def load_config(filename: str) -> ExperimentConfig:
 
     config["filename"] = abs_filename
     config["directory"] = experiment_directory
-    config["node-sources"] = config.get("node-sources") or []
+    config["node_sources"] = config.get("node_sources") or []
     return config
