@@ -2,7 +2,7 @@ type: recovery
 subject: autorally
 image: rosdiscover-experiments/autorally:c2692f2
 distro: melodic
-build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1  -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1  -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1  -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc|| catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 || catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1  -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc
+build_command: try_again "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc" 6
 cuda_version: 11-4
 missing_ros_packages: []
 exclude_ros_packages: [orocos_kdl, pointgrey_camera_driver] 
