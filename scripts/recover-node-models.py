@@ -167,14 +167,6 @@ def error(message: str) -> t.NoReturn:
 
 
 def main() -> None:
-    # remove all existing loggers
-    stderr_logger = logger.add(
-        sys.stderr,
-        colorize=True,
-        format="<bold><level>{level}:</level></bold> {message}",
-        level="INFO",
-    )
-
     parser = argparse.ArgumentParser("statically recovers node models")
     parser.add_argument(
         "configuration",
@@ -192,7 +184,21 @@ def main() -> None:
         required=False,
         help="the name of the node whose model should be recovered",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="enables verbose logging for debugging purposes",
+    )
     args = parser.parse_args()
+
+    # enable logging
+    debug_level = "DEBUG" if args.debug else "INFO"
+    stderr_logger = logger.add(
+        sys.stderr,
+        colorize=True,
+        format="<bold><level>{level}:</level></bold> {message}",
+        level=debug_level,
+    )
 
     if args.node and not args.package:
         error(f"expected package name to be specified for node [{args.node}]")
