@@ -67,6 +67,7 @@ def generate_node_sources(
         try:
             rosdiscover.cli.main(args)
         except Exception:
+            logger.exception("failure occurred when recovering node sources")
             error(f"failed to obtain node sources for experiment [{experiment_config['filename']}]")
 
 
