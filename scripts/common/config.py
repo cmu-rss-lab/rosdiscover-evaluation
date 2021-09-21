@@ -77,6 +77,7 @@ class RecoveryExperimentConfig(ExperimentConfig):
     build_command: str
     version: str
     repositories: t.Collection[RepoVersion]
+    config_with_node_sources_filename: str
 
 
 class DetectionExperimentConfig(ExperimentConfig):
@@ -97,4 +98,11 @@ def load_config(filename: str) -> ExperimentConfig:
     config["filename"] = abs_filename
     config["directory"] = experiment_directory
     config["node_sources"] = config.get("node_sources") or []
+
+    if config["type"] == "recovery":
+        config["config_with_node_sources_filename"] = os.path.join(
+            config["directory"],
+            "rosdiscover-config-with-sources.yml",
+        )
+
     return config
