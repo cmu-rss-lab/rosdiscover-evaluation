@@ -29,7 +29,7 @@ class RecoveryConfig(t.TypedDict):
 
 
 @contextlib.contextmanager
-def temporary_recovery_config(
+def generate_temporary_recovery_config(
     experiment_config: RecoveryExperimentConfig,
 ) -> t.Iterator[str]:
     """Creates a temporary ROSDiscover config file for a given recovery experiment."""
@@ -55,7 +55,7 @@ def generate_node_sources(
 ) -> None:
     """Generates a config file with node/nodelet sources information for a given experiment."""
     config_with_node_sources_filename = experiment_config["config_with_node_sources_filename"]
-    with temporary_recovery_config(experiment_config) as recovery_config_filename:
+    with generate_temporary_recovery_config(experiment_config) as recovery_config_filename:
         args = [
             "sources",
             "--save-to",
@@ -132,7 +132,7 @@ def recover_node_from_sources(
     model_filename = os.path.join(models_directory, f"{package}__{node}.json")
     log_filename = os.path.join(logs_directory, f"{package}__{node}.log")
 
-    with temporary_recovery_config(experiment_config) as recovery_config_filename:
+    with generate_temporary_recovery_config(experiment_config) as recovery_config_filename:
         args = [
             "recover",
             "--save-to",
