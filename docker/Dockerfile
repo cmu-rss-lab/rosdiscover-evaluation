@@ -131,7 +131,7 @@ ARG CUDA_VERSION="0"
 ENV CUDA_VERSION ${CUDA_VERSION}
 RUN install_cuda_"${ROS_DISTRO}"
 
-# apt packages 
+# apt packages
 # Should not use --no-install-recommends argument because we need some of the package dependencies
 ARG APT_PACKAGES
 RUN apt-get install -y ${APT_PACKAGES} \
@@ -142,7 +142,7 @@ RUN apt-get install -y ${APT_PACKAGES} \
 ARG DIRECTORY
 ARG ROSINSTALL_FILENAME
 COPY "${DIRECTORY}/${ROSINSTALL_FILENAME}" /.dockerinstall/
-COPY "${DIRECTORY}/docker" /.dockerinstall/  
+COPY "${DIRECTORY}/docker" /.dockerinstall/
 RUN do_preinstall
 RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get update \
