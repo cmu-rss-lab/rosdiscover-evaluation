@@ -44,41 +44,50 @@ ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
 RUN apt-get update \
- && apt-get install -y libssl1.0.0 openssl distro-info-data \
+ && /bin/bash -c "if [ \"${ROS_DISTRO}\" == \"melodic\" ]; then apt-get install -y libssl1.0.0; fi" \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# removed apt packages [conflicts with pyenv python/pip install]
+# * python-catkin-tools
+# * python-openssl
+# * python-pip
+
+RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      "ros-${ROS_DISTRO}-cmake-modules" \
+      apt-transport-https \
       apt-utils \
+      build-essential \
       bzip2 \
-      cmake \
+      ca-certificates \
       clang \
-      libssl-dev \
-      zlib1g-dev \
+      cmake \
+      curl \
+      curl \
+      distro-info-data \
+      g++ \
+      gcc \
+      git \
       libbz2-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      llvm \
-      libncurses5-dev \
-      libncursesw5-dev \
-      xz-utils \
-      tk-dev \
+      libcurl3-gnutls \
       libffi-dev \
       liblzma-dev \
-      python-openssl\
-      build-essential \
-      ca-certificates \
-      curl \
-      gcc \
-      g++ \
+      libncurses5-dev \
+      libncursesw5-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      llvm \
       mercurial \
-      python-pip \
-      "ros-${ROS_DISTRO}-cmake-modules" \
+      openssl \
       software-properties-common \
+      tk-dev \
       tmux \
       vim \
       wget \
-      curl \
-      libcurl3-gnutls \
-      apt-transport-https \
-      python-catkin-tools \
+      xz-utils \
+      zlib1g-dev \
  && echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
