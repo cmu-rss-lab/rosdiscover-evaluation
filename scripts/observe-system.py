@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
 import os
-import sys
-import tempfile
 import typing as t
 
 
@@ -11,8 +9,6 @@ logger.remove()
 
 import rosdiscover
 import rosdiscover.cli
-
-import yaml
 
 from common.config import (
     DetectionExperimentConfig,
@@ -23,6 +19,8 @@ from common.config import (
     load_config
 )
 
+from recover_system import generate_and_check_acme
+
 
 def observe(config: ExperimentConfig) -> None:
     ({
@@ -30,8 +28,10 @@ def observe(config: ExperimentConfig) -> None:
         "recovery": _observe_for_recovery_experiment,
     })[config["type"]](config)
 
+
 def _error_not_supported(config: RecoveryExperimentConfig) -> None:
     error(f"{config['type']} not supported for dynamic recovery")
+
 
 def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
@@ -56,6 +56,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         log_filename=acme_log_filename,
     )
 
+
 def observe_system(
     image: str,
     sources: t.Sequence[str],
@@ -69,7 +70,7 @@ def observe_system(
 
     # Add in display variable for the gazebo client
     embellished_environment = dict(environment)
-    embellished_environment["DISPLAY"] = ":0.1"
+    embellished_environment["DISPLAY"] = ":1.0"
 
     with ROSDiscoverConfig.create_temporary({
         "image": image,
@@ -90,9 +91,11 @@ def observe_system(
             logger.remove(file_logger)
         logger.info(f"dynamically recovered system architecture for image [{image}]")
 
+
 def error(message: str) -> t.NoReturn:
     print(f"ERROR: {message}")
     sys.exit(1)
+
 
 def main() -> None:
     # remove all existing loggers
@@ -116,6 +119,7 @@ def main() -> None:
 
     config = load_config(experiment_filename)
     observe(config)
+
 
 if __name__ == "__main__":
     main()
