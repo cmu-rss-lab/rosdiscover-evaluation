@@ -47,6 +47,15 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         log_filename=log_filename,
     )
 
+    acme_filename = os.path.join(config_directory, "observed.archiecture.acme")
+    acme_log_filename = os.path.join(log_directory, "acme-and-check-observed.log")
+    generate_and_check_acme(
+        image=config["image"],
+        input_filename=output_filename,
+        output_filename=acme_filename,
+        log_filename=acme_log_filename,
+    )
+
 def observe_system(
     image: str,
     sources: t.Sequence[str],
