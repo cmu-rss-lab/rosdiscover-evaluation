@@ -4,19 +4,17 @@
 import argparse
 import os
 import sys
-import tempfile
 import typing as t
 
 from loguru import logger
+
 logger.remove()
 
 import rosdiscover
 import rosdiscover.cli
 
-import yaml
-
+from common import generate_and_check_acme
 from common.config import (
-    DetectionExperimentConfig,
     ExperimentConfig,
     NodeSources,
     RecoveryExperimentConfig,
@@ -70,30 +68,6 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         output_filename=acme_filename,
         log_filename=acme_log_filename,
     )
-
-def generate_and_check_acme(
-    image: str,
-    input_filename: str,
-    output_filename: str,
-    log_filename: str,
-) -> None:
-    os.makedirs(os.path.dirname(log_filename), exists_ok=True)
-    with ROSDiscoverConfig.create_temporary({
-        "image": image,
-    }) as config_filename:
-        args = ["acme", config_filename]
-        args += ["--from-yml", input_filename]
-        args += ["--acme", output_filename]
-        args += ["--check"]
-        file_logger = logger.add(log_filename, level="DEBUG")
-        logger.debug(f"Calling rosdiscover: {args}")
-        try:
-            rosdiscover.cli.main(args)
-        except Exception:
-            logger.exception(f"Failed to convert yml file to Acme for [{image}] captured in [{input_filename}]")
-        finally:
-            logger.remove(file_logger)
-
 
 def recover_system(
     image: str,
