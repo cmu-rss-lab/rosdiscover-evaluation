@@ -63,7 +63,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         log_filename=log_filename,
     )
     acme_filename = os.path.join(config_directory, "recovered.archiecture.acme")
-    acme_log_filename = os.path.join(log_directory, "acme-and-check.log")
+    acme_log_filename = os.path.join(log_directory, "acme-and-check-recovered.log")
     generate_and_check_acme(
         image=config["image"],
         input_filename=output_filename,
