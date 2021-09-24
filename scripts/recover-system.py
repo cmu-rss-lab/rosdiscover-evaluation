@@ -90,7 +90,7 @@ def generate_and_check_acme(
         try:
             rosdiscover.cli.main(args)
         except Exception:
-            logger.exception(f"Failed to convert yml file to Acme for [{image}] captured in [{input_filename}")
+            logger.exception(f"Failed to convert yml file to Acme for [{image}] captured in [{input_filename}]")
         finally:
             logger.remove(file_logger)
 
