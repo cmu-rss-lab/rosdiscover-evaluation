@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""This script is used to statically recover run-time architectures for entire ROS systems."""
 import argparse
 import os
 import sys
@@ -16,52 +14,40 @@ import rosdiscover.cli
 from common import generate_and_check_acme
 from common.config import (
     ExperimentConfig,
-    NodeSources,
     RecoveryExperimentConfig,
     ROSDiscoverConfig,
     load_config
 )
 
 
-def recover(config: ExperimentConfig) -> None:
+
+def observe(config: ExperimentConfig) -> None:
     ({
-        "detection": _recover_for_detection_experiment,
-        "recovery": _recover_for_recovery_experiment,
+        "detection": _error_not_supported,
+        "recovery": _observe_for_recovery_experiment,
     })[config["type"]](config)
 
 
-def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
+def _error_not_supported(config: RecoveryExperimentConfig) -> None:
+    error(f"{config['type']} not supported for dynamic recovery")
+
+
+def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
-
-    for version in ("buggy", "fixed"):
-        output_filename = os.path.join(config_directory, f"{version}.architecture.yml")
-        log_filename = os.path.join(log_directory, f"{version}.system-recovery.log")
-        recover_system(
-            image=config[version]["image"],
-            sources=config["sources"],
-            launches=config["launches"],
-            node_sources=config["node_sources"],
-            output_filename=output_filename,
-            log_filename=log_filename,
-        )
-
-
-def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
-    config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    output_filename = os.path.join(config_directory, "recovered.architecture.yml")
+    output_filename = os.path.join(config_directory, "observed.architecture.yml")
     log_filename = os.path.join(log_directory, "system-recovery.log")
-    recover_system(
+    observe_system(
         image=config["image"],
         sources=config["sources"],
+        environment=config["environment"],
         launches=config["launches"],
-        node_sources=config["node_sources"],
         output_filename=output_filename,
         log_filename=log_filename,
     )
-    acme_filename = os.path.join(config_directory, "recovered.archiecture.acme")
-    acme_log_filename = os.path.join(log_directory, "acme-and-check-recovered.log")
+
+    acme_filename = os.path.join(config_directory, "observed.archiecture.acme")
+    acme_log_filename = os.path.join(log_directory, "acme-and-check-observed.log")
     generate_and_check_acme(
         image=config["image"],
         input_filename=output_filename,
@@ -69,34 +55,40 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         log_filename=acme_log_filename,
     )
 
-def recover_system(
+
+def observe_system(
     image: str,
     sources: t.Sequence[str],
+    environment: t.Mapping[str, str],
     launches: t.Sequence[str],  # FIXME
-    node_sources: NodeSources,
     output_filename: str,
     log_filename: str,
 ) -> None:
     # ensure that the logs directory exists
-    os.makedirs(os.path.dirname(log_filename), exist_ok=True)
+    os.makedirs(os.path.dirname(log_filename), exists_ok=True)
+
+    # Add in display variable for the gazebo client
+    embellished_environment = dict(environment)
+    embellished_environment["DISPLAY"] = ":1.0"
 
     with ROSDiscoverConfig.create_temporary({
         "image": image,
         "sources": list(sources),
         "launches": list(launches),
-        "node_sources": list(node_sources),
+        "environment": embellished_environment,
     }) as config_filename:
-        args = ["launch", config_filename]
+        args = ["observe", config_filename]
         args += ["--output", output_filename]
+        args += ["--duration",  "600",  "--interval", "30",
+                 "--do-launch",  "--launch-sleep", "30"]
         file_logger = logger.add(log_filename, level="DEBUG")
-        logger.debug(f"calling rosdiscover: {args}")
         try:
             rosdiscover.cli.main(args)
         except Exception:
             logger.exception(f"failed to statically recover system architecture for image [{image}]")
         finally:
             logger.remove(file_logger)
-        logger.info(f"statically recovered system architecture for image [{image}]")
+        logger.info(f"dynamically recovered system architecture for image [{image}]")
 
 
 def error(message: str) -> t.NoReturn:
@@ -113,7 +105,7 @@ def main() -> None:
         level="INFO",
     )
 
-    parser = argparse.ArgumentParser("statically recovers ROS system architectures")
+    parser = argparse.ArgumentParser("dynamically recovers ROS system architectures")
     parser.add_argument(
         "configuration",
         help="the path to the configuration file for this experiment",
@@ -125,7 +117,7 @@ def main() -> None:
         error(f"configuration file not found: {experiment_filename}")
 
     config = load_config(experiment_filename)
-    recover(config)
+    observe(config)
 
 
 if __name__ == "__main__":
