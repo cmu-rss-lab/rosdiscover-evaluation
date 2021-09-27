@@ -20,7 +20,6 @@ from common.config import (
 )
 
 
-
 def observe(config: ExperimentConfig) -> None:
     ({
         "detection": _error_not_supported,
@@ -65,7 +64,7 @@ def observe_system(
     log_filename: str,
 ) -> None:
     # ensure that the logs directory exists
-    os.makedirs(os.path.dirname(log_filename), exists_ok=True)
+    os.makedirs(os.path.dirname(log_filename), exist_ok=True)
 
     # Add in display variable for the gazebo client
     embellished_environment = dict(environment)
