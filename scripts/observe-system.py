@@ -11,6 +11,7 @@ logger.remove()
 import rosdiscover
 import rosdiscover.cli
 
+from common import generate_and_check_acme
 from common.config import (
     ExperimentConfig,
     RecoveryExperimentConfig,
@@ -18,7 +19,6 @@ from common.config import (
     load_config
 )
 
-from common import generate_and_check_acme
 
 
 def observe(config: ExperimentConfig) -> None:
@@ -79,7 +79,7 @@ def observe_system(
     }) as config_filename:
         args = ["observe", config_filename]
         args += ["--output", output_filename]
-        args += ["--duration",  "30",  "--interval", "10",
+        args += ["--duration",  "600",  "--interval", "30",
                  "--do-launch",  "--launch-sleep", "30"]
         file_logger = logger.add(log_filename, level="DEBUG")
         try:
