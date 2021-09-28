@@ -15,7 +15,7 @@ def generate_and_check_acme(
     output_filename: str,
     log_filename: str,
 ) -> None:
-    os.makedirs(os.path.dirname(log_filename), exists_ok=True)
+    os.makedirs(os.path.dirname(log_filename), exist_ok=True)
     with ROSDiscoverConfig.create_temporary({
         "image": image,
     }) as config_filename:
