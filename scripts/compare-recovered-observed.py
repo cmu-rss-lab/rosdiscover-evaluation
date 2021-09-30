@@ -91,8 +91,8 @@ def compare(config: ExperimentConfig) -> None:
         recovered_architecture = yaml.load(f, Loader=yaml.SafeLoader)
 
     with open(comparison_file, 'w') as f:
-        observed_node_names = {("ph", n["name"]) for n in observed_architecture}
-        recovered_node_names = {("ph", n["name"]) for n in recovered_architecture}
+        observed_node_names = {("ph", n["fullname"]) for n in observed_architecture}
+        recovered_node_names = {("ph", n["fullname"]) for n in recovered_architecture}
 
         f.write(compare_sets("Nodes", "/", observed_node_names, recovered_node_names))
 
