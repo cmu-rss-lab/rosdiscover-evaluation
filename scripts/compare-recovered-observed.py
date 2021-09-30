@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
 import os
@@ -8,7 +9,7 @@ import typing as t
 import yaml
 from loguru import logger
 
-from scripts.common.config import ExperimentConfig, load_config
+from common.config import ExperimentConfig, load_config
 
 
 def compare_sets(
@@ -30,27 +31,42 @@ def compare_sets(
     return differences
 
 
-def remove_actions_from_recovered(recovered_publishers, recovered_subscribers, recovered_action_clients,
-                                  recovered_action_servers):
-    for action_info in recovered_action_clients:
-        node_name = action_info[0]
-        action = action_info[1]
+def safe_dict_add(dict_, key1, key2, val):
+    if key1 not in dict_:
+        dict_[key1] = {}
+    dict_[key1][key2] = val
 
-        recovered_publishers.remove((node_name, f"{action}/result"))
-        recovered_publishers.remove((node_name, f"{action}/feedback"))
-        recovered_publishers.remove((node_name, f"{action}/status"))
-        recovered_subscribers.remove((node_name, f"{action}/goal"))
-        recovered_subscribers.remove((node_name, f"{action}/cancel"))
 
-    for action_info in recovered_action_servers:
-        node_name = action_info[0]
-        action = action_info[1]
+def filter_actions_from_observed(observed_publishers, observed_action_servers, observed_action_clients):
+    """
+    Takes topics from observed publishers that are associated with actions and
+    remove them from list and add them as actions
+    """
+    pass
 
-        recovered_subscribers.remove((node_name, f"{action}/result"))
-        recovered_subscribers.remove((node_name, f"{action}/feedback"))
-        recovered_subscribers.remove((node_name, f"{action}/status"))
-        recovered_publishers.remove((node_name, f"{action}/goal"))
-        recovered_publishers.remove((node_name, f"{action}/cancel"))
+
+def filter_actions_from_recovered(recovered_publishers,
+                                  recovered_subscribers,
+                                  recovered_action_servers,
+                                  recovered_action_clients):
+
+    for server in recovered_action_servers:
+        node = server[0]
+        act_srv = server[1]
+        recovered_publishers.remove((node, f"{act_srv}/feedback"))
+        recovered_publishers.remove((node, f"{act_srv}/result"))
+        recovered_publishers.remove((node, f"{act_srv}/status"))
+        recovered_subscribers.remove((node, f"{act_srv}/goal"))
+        recovered_subscribers.remove((node, f"{act_srv}/cancel"))
+
+    for client in recovered_action_clients:
+        node = client[0]
+        act_clt = client[1]
+        recovered_subscribers.remove((node, f"{act_clt}/feedback"))
+        recovered_subscribers.remove((node, f"{act_clt}/result"))
+        recovered_subscribers.remove((node, f"{act_clt}/status"))
+        recovered_publishers.remove((node, f"{act_clt}/goal"))
+        recovered_publishers.remove((node, f"{act_clt}/cancel"))
 
 
 def compare(config: ExperimentConfig) -> None:
@@ -69,51 +85,41 @@ def compare(config: ExperimentConfig) -> None:
     if not os.path.exists(recovered_yml_file):
         error(f"[{recovered_yml_file}] not found. Perhaps recover-system was not run "
               f"for this configuration.")
-
-    observed_architecture = yaml.load(observed_yml_file, Loader=yaml.SafeLoader)
-    recovered_architecture = yaml.load(recovered_yml_file, Loader=yaml.SafeLoader)
+    with open(observed_yml_file, 'r') as f:
+        observed_architecture = yaml.load(f, Loader=yaml.SafeLoader)
+    with open(recovered_yml_file, 'r') as f:
+        recovered_architecture = yaml.load(f, Loader=yaml.SafeLoader)
 
     with open(comparison_file, 'w') as f:
-        observed_node_names = {(n["package"], n["name"]) for n in observed_architecture}
-        recovered_node_names = {(n["package"], n["name"]) for n in recovered_architecture}
+        observed_node_names = {("ph", n["name"]) for n in observed_architecture}
+        recovered_node_names = {("ph", n["name"]) for n in recovered_architecture}
 
         f.write(compare_sets("Nodes", "/", observed_node_names, recovered_node_names))
 
         observed_publishers, observed_subscribers, observed_providers, observed_action_clients, observed_action_servers\
             = extract_architecture_elements(observed_architecture)
-
         recovered_publishers, recovered_subscribers, recovered_providers, recovered_action_clients, \
             recovered_action_servers = extract_architecture_elements(recovered_architecture)
 
-        remove_actions_from_recovered(recovered_publishers, recovered_subscribers, recovered_action_clients,
-                                      recovered_action_servers)
+        filter_actions_from_observed(observed_publishers, observed_action_servers, observed_action_clients)
+        filter_actions_from_recovered(recovered_publishers, recovered_subscribers, recovered_action_servers,
+                                      recovered_action_clients)
+
         f.write(compare_sets("Publishers", "->", observed_publishers, recovered_publishers))
         f.write(compare_sets("Subscribers", "<-", observed_subscribers, recovered_subscribers))
         f.write(compare_sets("Providers", ":", observed_providers, recovered_providers))
-        f.write(compare_sets("Action Servers", "^-", observed_action_servers, recovered_action_servers))
-        f.write(compare_sets("Action Clients", "-^", observed_action_clients, recovered_action_clients))
+        f.write(compare_sets("Action Clients", "^-", observed_action_clients, recovered_action_clients))
+        f.write(compare_sets("Action Servers", "-^", observed_action_servers, recovered_action_servers))
         f.write("\nCannot observer service clients")
-
-
-def include_element(element: str) -> bool:
-    if element.endswith("parameter_updates"):
-        return False
-    if element.endswith("parameter_descriptions"):
-        return False
-    if element.endswith("set_parameter"):
-        return False
-    return True
 
 
 def extract_architecture_elements(
     architecture: t.List[t.Any]
-) -> t.Tuple[
-    t.Set[t.Tuple[str, str]],
-    t.Set[t.Tuple[str, str]],
-    t.Set[t.Tuple[str, str]],
-    t.Set[t.Tuple[str, str]],
-    t.Set[t.Tuple[str, str]],
-]:
+) -> t.Tuple[t.Set[t.Tuple[str, str]],
+             t.Set[t.Tuple[str, str]],
+             t.Set[t.Tuple[str, str]],
+             t.Set[t.Tuple[str, str]],
+             t.Set[t.Tuple[str, str]]]:
     publishers: t.Set[t.Tuple[str, str]] = set()
     subscribers: t.Set[t.Tuple[str, str]] = set()
     providers: t.Set[t.Tuple[str, str]] = set()
@@ -121,22 +127,32 @@ def extract_architecture_elements(
     action_servers: t.Set[t.Tuple[str, str]] = set()
 
     for node in architecture:
-        node_name = node["name"]
         for topic in node["pubs"]:
-            if include_element(topic["name"]):
-                publishers.add((node_name, topic["name"]))
+            if include_element(topic):
+                publishers.add((node["name"], topic["name"]))
         for topic in node["subs"]:
-            if include_element((topic["name"])):
-                subscribers.add((node_name, topic["name"]))
+            if include_element(topic):
+                subscribers.add((node["name"], topic["name"]))
         for service in node["provides"]:
-            if include_element(service["name"]):
-                providers.add((node_name, service["name"]))
+            if include_element(service):
+                providers.add((node["name"], service["name"]))
         for client in node["action-clients"]:
-            action_clients.add((node_name, client["name"]))
+            action_clients.add((node["name"], client["name"]))
         for server in node["action-servers"]:
-            action_servers.add((node_name, server["name"]))
+            action_servers.add((node["name"], server["name"]))
 
     return publishers, subscribers, providers, action_clients, action_servers
+
+
+def include_element(named: t.Dict[str, t.Any]) -> bool:
+    name = named["name"]
+    if name.endswith("parameter_descriptions"):
+        return False
+    if name.endswith("parameter_updates"):
+        return False
+    if name.endswith("set_parameters"):
+        return False
+    return True
 
 
 def error(message: str) -> t.NoReturn:
