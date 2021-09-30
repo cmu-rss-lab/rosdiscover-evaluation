@@ -46,7 +46,8 @@ class ROSDiscoverConfig(t.TypedDict):
 
             yield filename
         finally:
-            os.remove(filename)
+            if filename:
+                os.remove(filename)
 
 
 class RepoVersion(t.TypedDict):
@@ -69,6 +70,8 @@ class ExperimentConfig(t.TypedDict):
     apt_packages: t.Optional[t.Collection[str]]
     missing_ros_packages: t.Optional[t.Collection[str]]
     sources: t.Sequence[str]
+    environment: t.Mapping[str, str]
+    launches: t.Sequence[str]
     node_sources: t.Collection[NodeSources]
 
 
