@@ -15,12 +15,13 @@ Installation
 
 * clone the repo
 * create a `pipenv` for the directory and execute all following commands in the pipenv shell
-* call `make init`
+* call `./scripts/setup`
 
 .. code::
 
   $ git submodule update --init --recursive
   $ pipenv --python 3.9 install
+  $ ./scripts/setup
 
 
 Usage
