@@ -91,10 +91,6 @@ def compare(config: ExperimentConfig) -> None:
         recovered_architecture = yaml.load(f, Loader=yaml.SafeLoader)
 
     with open(comparison_file, 'w') as f:
-        observed_node_names = {("ph", n["fullname"]) for n in observed_architecture}
-        recovered_node_names = {("ph", n["fullname"]) for n in recovered_architecture}
-
-        f.write(compare_sets("Nodes", "/", observed_node_names, recovered_node_names))
 
         observed_publishers, observed_subscribers, observed_providers, observed_action_clients, observed_action_servers\
             = extract_architecture_elements(observed_architecture)
@@ -105,12 +101,66 @@ def compare(config: ExperimentConfig) -> None:
         filter_actions_from_recovered(recovered_publishers, recovered_subscribers, recovered_action_servers,
                                       recovered_action_clients)
 
+        observed_node_names = {("ph", n["fullname"]) for n in observed_architecture}
+        recovered_node_names = {("ph", n["fullname"]) for n in recovered_architecture}
+
+        f.write("Observed architecture summary:\n")
+        f.write("==============================\n")
+        write_architecture_summary(f, observed_node_names, observed_publishers, observed_subscribers,
+                                   observed_providers, observed_action_servers, observed_action_clients)
+        f.write("\n")
+        f.write("Recoverd architecture summary:\n")
+        f.write("==============================\n")
+
+        write_architecture_summary(f, recovered_node_names, recovered_publishers, recovered_subscribers,
+                                   recovered_providers, recovered_action_servers, recovered_action_clients)
+
+        nodes_in_common = observed_node_names.intersection(recovered_node_names)
+        f.write("\n")
+        f.write("Side-by-side of common nodes:\n")
+        f.write("=============================\n")
+
+        for node in nodes_in_common:
+            f.write(f"  Node: {node[1]}:\n")
+            write_node_element_info(f, node[1][1:], observed_publishers, "Observed Pubs")
+            write_node_element_info(f, node[1][1:], recovered_publishers, "Recovered Pubs")
+            write_node_element_info(f, node[1][1:], observed_subscribers, "Observed Subs")
+            write_node_element_info(f, node[1][1:], recovered_subscribers, "Recovered Subs")
+            write_node_element_info(f, node[1][1:], observed_providers, "Observed Provs")
+            write_node_element_info(f, node[1][1:], recovered_providers, "Recovered Provs")
+            write_node_element_info(f, node[1][1:], observed_action_servers, "Observed Action Servers")
+            write_node_element_info(f, node[1][1:], recovered_action_servers, "Recovered Action Servers")
+            write_node_element_info(f, node[1][1:], observed_action_clients, "Observed Action Clients")
+            write_node_element_info(f, node[1][1:], recovered_action_clients, "Recovered Action Clients")
+
+        f.write("\n")
+        f.write("Differences:\n")
+        f.write("============\n")
+        f.write(compare_sets("Nodes", "/", observed_node_names, recovered_node_names))
         f.write(compare_sets("Publishers", "->", observed_publishers, recovered_publishers))
         f.write(compare_sets("Subscribers", "<-", observed_subscribers, recovered_subscribers))
         f.write(compare_sets("Providers", ":", observed_providers, recovered_providers))
         f.write(compare_sets("Action Clients", "^-", observed_action_clients, recovered_action_clients))
         f.write(compare_sets("Action Servers", "-^", observed_action_servers, recovered_action_servers))
         f.write("\nCannot observer service clients")
+
+
+def write_architecture_summary(f, node_names, publishers, subscribers, providers, action_servers, action_clients):
+    sorted_node_names = list(node_names)
+    sorted_node_names.sort(key=lambda x: x[1])
+    for node in node_names:
+        f.write(f"  Node: {node[1]}:\n")
+        write_node_element_info(f, node[1][1:], publishers, "Publishers")
+        write_node_element_info(f, node[1][1:], subscribers, "Subscribers")
+        write_node_element_info(f, node[1][1:], providers, "Provides")
+        write_node_element_info(f, node[1][1:], action_servers, "Action Servers")
+        write_node_element_info(f, node[1][1:], action_clients, "Action Clients")
+
+
+def write_node_element_info(f, node, elements, prefix):
+    sorted_elements = [t[1] for t in elements if t[0] == node]
+    sorted_elements.sort()
+    f.write(f"    {prefix}: {', '.join(sorted_elements)}\n")
 
 
 def extract_architecture_elements(
