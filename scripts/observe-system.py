@@ -35,7 +35,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
     output_filename = os.path.join(config_directory, "observed.architecture.yml")
-    log_filename = os.path.join(log_directory, "system-recovery.log")
+    log_filename = os.path.join(log_directory, "system-observe.log")
     observe_system(
         image=config["image"],
         sources=config["sources"],
