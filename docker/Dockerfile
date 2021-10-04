@@ -93,15 +93,17 @@ RUN apt-get update \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
- && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash
+ && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
+# install a fixed version of python, pip, and some important packages
 ENV PYENV_ROOT "/root/.pyenv"
 ENV PATH="/root/.pyenv/bin:$PATH"
 RUN eval "$(pyenv init --path)" \
  && eval "$(pyenv init -)" \
  && eval "$(pyenv virtualenv-init -)" \
- && exec $SHELL \
- && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
+ && CFLAGS=-fPIC PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
  && pyenv global 2.7.18 \
  && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
  && pip install wheel \
@@ -109,9 +111,7 @@ RUN eval "$(pyenv init --path)" \
  && pip install \
       catkin-tools==0.4.5 \
       coverage==5.1 \
-      rosinstall-generator==0.1.18 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+      rosinstall-generator==0.1.18
 
 # install vncserver
 RUN apt-get update \
@@ -167,4 +167,8 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
 RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh && eval "${BUILD_COMMAND}"
+RUN eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && . /opt/ros/${ROS_DISTRO}/setup.sh \
+ && eval "${BUILD_COMMAND}"
