@@ -21,7 +21,7 @@ from common.config import (
 from common.find_package_dependencies import find_all_package_dependencies
 
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
-RGTM_DIR = os.path.join(EVALUATION_DIR, "rosinstall_generator_time_machine")
+RGTM_DIR = os.path.join(EVALUATION_DIR, "deps/rosinstall_generator_time_machine")
 RGTM_PATH = os.path.join(RGTM_DIR, "rosinstall_generator_tm.sh")
 WORK_DIR = os.path.join(EVALUATION_DIR, ".workdir")
 WORK_REPO_DIR = os.path.join(EVALUATION_DIR, ".workdir", ".repos")

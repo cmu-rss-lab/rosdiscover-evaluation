@@ -44,6 +44,7 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
             sources=config["sources"],
             launches=config["launches"],
             node_sources=config["node_sources"],
+            environment=config["environment"],
             output_filename=output_filename,
             log_filename=log_filename,
         )
@@ -58,6 +59,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         image=config["image"],
         sources=config["sources"],
         launches=config["launches"],
+        environment=config["environment"],
         node_sources=config["node_sources"],
         output_filename=output_filename,
         log_filename=log_filename,
@@ -69,6 +71,7 @@ def recover_system(
     sources: t.Sequence[str],
     launches: t.Sequence[str],  # FIXME
     node_sources: NodeSources,
+    environment,
     output_filename: str,
     log_filename: str,
 ) -> None:
@@ -78,6 +81,7 @@ def recover_system(
     with ROSDiscoverConfig.create_temporary({
         "image": image,
         "sources": list(sources),
+        "environment": environment,
         "launches": list(launches),
         "node_sources": list(node_sources),
     }) as config_filename:
