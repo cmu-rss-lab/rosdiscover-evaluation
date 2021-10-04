@@ -45,7 +45,7 @@ class ArchitectureSummary:
     def write_action_servers_for_node(self, f, node: NamePair, prefix: str = "Action Servers"):
         self._write_node_element_info(f, node[1][1:], self.action_servers, prefix)
 
-    def write_architecture_summary(self, f):
+    def write_to_file(self, f):
         sorted_node_names = list(self.nodes)
         sorted_node_names.sort(key=lambda x: x[1])
         for node in sorted_node_names:
@@ -141,11 +141,11 @@ def compare(config: ExperimentConfig) -> None:
 
         f.write("Observed architecture summary:\n")
         f.write("==============================\n")
-        observed_summary.write_architecture_summary(f)
+        observed_summary.write_to_file(f)
         f.write("\n")
         f.write("Recoverd architecture summary:\n")
         f.write("==============================\n")
-        recovered_summary.write_architecture_summary(f)
+        recovered_summary.write_to_file(f)
 
         nodes_in_common = observed_summary.nodes.intersection(recovered_summary.nodes)
         f.write("\n")
