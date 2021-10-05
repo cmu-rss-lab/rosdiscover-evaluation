@@ -46,7 +46,8 @@ class ROSDiscoverConfig(t.TypedDict):
 
             yield filename
         finally:
-            os.remove(filename)
+            if filename:
+                os.remove(filename)
 
 
 class RepoVersion(t.TypedDict):
@@ -69,6 +70,8 @@ class ExperimentConfig(t.TypedDict):
     apt_packages: t.Optional[t.Collection[str]]
     missing_ros_packages: t.Optional[t.Collection[str]]
     sources: t.Sequence[str]
+    environment: t.Mapping[str, str]
+    launches: t.Sequence[str]
     node_sources: t.Collection[NodeSources]
 
 
@@ -77,6 +80,7 @@ class RecoveryExperimentConfig(ExperimentConfig):
     build_command: str
     version: str
     repositories: t.Collection[RepoVersion]
+    config_with_node_sources_filename: str
 
 
 class DetectionExperimentConfig(ExperimentConfig):
@@ -97,4 +101,12 @@ def load_config(filename: str) -> ExperimentConfig:
     config["filename"] = abs_filename
     config["directory"] = experiment_directory
     config["node_sources"] = config.get("node_sources") or []
+    config["environment"] = config.get("environment") or {}
+
+    if config["type"] == "recovery":
+        config["config_with_node_sources_filename"] = os.path.join(
+            config["directory"],
+            "rosdiscover-config-with-sources.yml",
+        )
+
     return config

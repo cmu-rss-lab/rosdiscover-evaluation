@@ -1,54 +1,20 @@
-# this file will provide a ROSDiscover config
 type: recovery
-subject: turtlebot3
-image: rosdiscover-experiments/turtlebot3:latest
+subject: turtlebot
+image: rosdiscover-experiments/turtlebot:2.4.2
 distro: kinetic
-build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-missing_ros_packages: [map_server, amcl, move_base, hls_lfcd_lds_driver]
-environment:
-  TURTLEBOT3_MODEL: burger
-exclude_ros_packages: [] 
-apt_packages: 
-- ros-kinetic-gazebo-plugins 
-- ros-kinetic-image-proc 
-- ros-kinetic-image-transport-plugins
-- ros-kinetic-resource-retriever
-- ros-kinetic-geometry
-- ros-kinetic-geometry2
-- ros-kinetic-pcl-ros
-- ros-kinetic-tf*
-- ros-kinetic-interactive-markers
-- ros-kinetic-gazebo-ros
-- ros-kinetic-urdf*
-- ros-kinetic-rosserial-python
+build_command: catkin_make_isolated -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+apt_packages:
+- ros-kinetic-bfl
+exclude_ros_packages:
+- bfl
 repositories:
-- name: turtlebot3
-  url: https://github.com/ROBOTIS-GIT/turtlebot3.git
-  version: 1.2.2
-- name: turtlebot3_msgs
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
-  version: 1.0.0
-- name: turtlebot3_simulations
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
-  version: 1.2.0
-- name: turtlebot3_applications
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_applications.git
-  version: 1.1.0
-- name: turtlebot3_applications_msgs
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_applications_msgs.git
-  version: 1.0.0
-- name: turtlebot3_autorace
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_autorace.git
-  version: 1.2.0
-- name: turtlebot3_deliver
-  url: https://github.com/ROBOTIS-GIT/turtlebot3_deliver
-  version: 41b2a825fdc943989b13853d5c35b85b2328f1f9
-
+- name: turtlebot_simulator
+  url: https://github.com/turtlebot/turtlebot_simulator.git
+  version: 2.2.3
+- name: turtlebot_apps
+  url: https://github.com/turtlebot/turtlebot_apps.git
+  version: 2.3.7
 sources:
 - /opt/ros/kinetic/setup.bash
 - /ros_ws/devel/setup.bash
-launches:
-- filename: /ros_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_robot.launch 
-- filename: /ros_ws/src/turtlebot3/turtlebot3_navigation/launch/turtlebot3_navigation.launch
-- filename: /ros_ws/src/turtlebot3_simulations/turtlebot3_gazebo/launch/turtlebot3_empty_world.launch
-  map_file: /ros_ws/src/turtlebot3/turtlebot3_navigation/maps/map.yaml
+launches: []

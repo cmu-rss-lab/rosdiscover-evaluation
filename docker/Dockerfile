@@ -44,55 +44,66 @@ ENTRYPOINT ["/ros_ws/entrypoint.sh"]
 CMD ["/bin/bash"]
 
 RUN apt-get update \
- && apt-get install -y libssl1.0.0 openssl distro-info-data \
+ && /bin/bash -c "if [ \"${ROS_DISTRO}\" == \"melodic\" ]; then apt-get install -y libssl1.0.0; fi" \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# removed apt packages [conflicts with pyenv python/pip install]
+# * python-catkin-tools
+# * python-openssl
+# * python-pip
+
+RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      "ros-${ROS_DISTRO}-cmake-modules" \
+      apt-transport-https \
       apt-utils \
+      build-essential \
       bzip2 \
-      cmake \
+      ca-certificates \
       clang \
-      libssl-dev \
-      zlib1g-dev \
+      cmake \
+      curl \
+      curl \
+      distro-info-data \
+      g++ \
+      gcc \
+      git \
       libbz2-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      llvm \
-      libncurses5-dev \
-      libncursesw5-dev \
-      xz-utils \
-      tk-dev \
+      libcurl3-gnutls \
       libffi-dev \
       liblzma-dev \
-      python-openssl\
-      build-essential \
-      ca-certificates \
-      curl \
-      gcc \
-      g++ \
+      libncurses5-dev \
+      libncursesw5-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      llvm \
       mercurial \
-      python-pip \
-      "ros-${ROS_DISTRO}-cmake-modules" \
+      openssl \
       software-properties-common \
+      tk-dev \
       tmux \
       vim \
       wget \
-      curl \
-      libcurl3-gnutls \
-      apt-transport-https \
-      python-catkin-tools \
+      xz-utils \
+      zlib1g-dev \
  && echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
  && wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - \
  && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list \
  && wget http://packages.ros.org/ros.key -O - | apt-key add - \
  && apt-get update \
- && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash
+ && curl -L https://github.com/pyenv/pyenv-installer/raw/4164fced49af78c6275cb436c64369eb39c6acb1/bin/pyenv-installer | bash \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
+# install a fixed version of python, pip, and some important packages
 ENV PYENV_ROOT "/root/.pyenv"
 ENV PATH="/root/.pyenv/bin:$PATH"
 RUN eval "$(pyenv init --path)" \
  && eval "$(pyenv init -)" \
  && eval "$(pyenv virtualenv-init -)" \
- && exec $SHELL \
- && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
+ && CFLAGS=-fPIC PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
  && pyenv global 2.7.18 \
  && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
  && pip install wheel \
@@ -100,9 +111,7 @@ RUN eval "$(pyenv init --path)" \
  && pip install \
       catkin-tools==0.4.5 \
       coverage==5.1 \
-      rosinstall-generator==0.1.18 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+      rosinstall-generator==0.1.18
 
 # install vncserver
 RUN apt-get update \
@@ -131,7 +140,7 @@ ARG CUDA_VERSION="0"
 ENV CUDA_VERSION ${CUDA_VERSION}
 RUN install_cuda_"${ROS_DISTRO}"
 
-# apt packages 
+# apt packages
 # Should not use --no-install-recommends argument because we need some of the package dependencies
 ARG APT_PACKAGES
 RUN apt-get install -y ${APT_PACKAGES} \
@@ -142,7 +151,7 @@ RUN apt-get install -y ${APT_PACKAGES} \
 ARG DIRECTORY
 ARG ROSINSTALL_FILENAME
 COPY "${DIRECTORY}/${ROSINSTALL_FILENAME}" /.dockerinstall/
-COPY "${DIRECTORY}/docker" /.dockerinstall/  
+COPY "${DIRECTORY}/docker" /.dockerinstall/
 RUN do_preinstall
 RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && apt-get update \
@@ -158,4 +167,8 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
 RUN do_prebuild
 
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-RUN . /opt/ros/${ROS_DISTRO}/setup.sh && eval "${BUILD_COMMAND}"
+RUN eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && . /opt/ros/${ROS_DISTRO}/setup.sh \
+ && eval "${BUILD_COMMAND}"

@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "${HERE_DIR}/.."
+
+git submodule update --init --recursive
+cd deps/rosinstall_generator_time_machine/docker
+./build.sh
