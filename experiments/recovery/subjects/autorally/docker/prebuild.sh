@@ -6,6 +6,8 @@ GTSAM_VERSION=2c44ee459bc8090364ca8034e2988d3e8a01c422
 
 # add a missing dependency
 sed -i "11i\ diagnostic_updater" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ imu_3dm_gx4" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
 
 # ensure that the python environment is correctly configured
 eval "$(pyenv init --path)"
