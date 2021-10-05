@@ -100,18 +100,7 @@ RUN apt-get update \
 # install a fixed version of python, pip, and some important packages
 ENV PYENV_ROOT "/root/.pyenv"
 ENV PATH="/root/.pyenv/bin:$PATH"
-RUN eval "$(pyenv init --path)" \
- && eval "$(pyenv init -)" \
- && eval "$(pyenv virtualenv-init -)" \
- && CFLAGS=-fPIC PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 \
- && pyenv global 2.7.18 \
- && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
- && pip install wheel \
- && pip install -U pip==19.0.1 \
- && pip install \
-      catkin-tools==0.4.5 \
-      coverage==5.1 \
-      rosinstall-generator==0.1.18
+RUN /opt/rosqual/bin/install_python
 
 # install vncserver
 RUN apt-get update \
