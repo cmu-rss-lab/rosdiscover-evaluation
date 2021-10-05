@@ -9,6 +9,9 @@ sed -i "11i\ diagnostic_updater" /ros_ws/src/autorally/autorally_core/CMakeLists
 sed -i "6i\ imu_3dm_gx4" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
 sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
 
+# _gencpp has been replaced by _generate_messages_cpp
+find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
+
 # ensure that the python environment is correctly configured
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
