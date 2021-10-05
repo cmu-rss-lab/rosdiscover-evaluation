@@ -7,12 +7,11 @@ GTSAM_VERSION=2c44ee459bc8090364ca8034e2988d3e8a01c422
 # ensure that the python environment is correctly configured
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # install necessary python packages
 pip install \
-  empy==3.3.4
-  numpy==1.16.6 \
+  empy==3.3.4 \
+  numpy==1.16.6
 
 # geographiclib
 echo "installing geographiclib"
