@@ -1,0 +1,247 @@
+import families/ROSFam.acme;
+system _home_tdurschm_rosdiscover-evaluation_experiments_recovery_subjects_turtlebot_turtlebot : ROSFam = new ROSFam extended with {
+   component turtlebot3_core : ROSNodeCompT, PlaceholderT = new ROSNodeCompT, PlaceholderT extended with {
+        
+        property name = "turtlebot3_core";
+        property placeholder = true;
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_core.launch";
+    };
+
+   component turtlebot3_lds : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "turtlebot3_lds";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_lidar.launch";
+    };
+    
+   component turtlebot3_diagnostics : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "turtlebot3_diagnostics";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_robot.launch";
+    };
+    
+   component rviz : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _visualization_marker_array_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "visualization_msgs/MarkerArray";
+        property topic = "/visualization_marker_array";
+    };
+    
+     port _reload_shaders_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/reload_shaders";
+        property args : string = "";
+    };
+    
+        property name = "rviz";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_navigation/launch/turtlebot3_navigation.launch";
+    };
+    
+   component move_base : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _cmd_vel_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/Twist";
+        property topic = "/cmd_vel";
+    };
+    
+     port _move_base_local_costmap_costmap_updates_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGridUpdate";
+        property topic = "/move_base/local_costmap/costmap_updates";
+    };
+    
+     port _move_base_NavfnROS_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/NavfnROS/plan";
+    };
+    
+     port _move_base_DWAPlannerROS_local_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/DWAPlannerROS/local_plan";
+    };
+    
+     port _move_base_DWAPlannerROS_global_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/DWAPlannerROS/global_plan";
+    };
+    
+     port _move_base_global_costmap_costmap_updates_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGridUpdate";
+        property topic = "/move_base/global_costmap/costmap_updates";
+    };
+    
+     port _move_base_local_costmap_voxel_grid_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "costmap_2d/VoxelGrid";
+        property topic = "/move_base/local_costmap/voxel_grid";
+    };
+    
+     port _move_base_global_costmap_voxel_grid_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "costmap_2d/VoxelGrid";
+        property topic = "/move_base/global_costmap/voxel_grid";
+    };
+    
+     port _move_base_local_costmap_costmap_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/move_base/local_costmap/costmap";
+    };
+    
+     port _move_base_global_costmap_costmap_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/move_base/global_costmap/costmap";
+    };
+    
+     port _move_base_current_goal_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped";
+        property topic = "/move_base/current_goal";
+    };
+    
+     port _odom_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/odom";
+    };
+    
+     port _move_base_global_costmap_footprint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/Polygon";
+        property topic = "/move_base/global_costmap/footprint";
+    };
+    
+     port _move_base_local_costmap_footprint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/Polygon";
+        property topic = "/move_base/local_costmap/footprint";
+    };
+    
+     port _move_base_simple_goal_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped";
+        property topic = "/move_base_simple/goal";
+    };
+    
+     port _clear_unknown_space_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/clear_unknown_space";
+        property args : string = "";
+    };
+    
+     port _make_plan_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/GetPlan";
+        property name : string = "/make_plan";
+        property args : string = "";
+    };
+    
+     port _clear_costmaps_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/clear_costmaps";
+        property args : string = "";
+    };
+    
+    port _move_base_srvr: ActionServerPortT = new ActionServerPortT extended with {
+        property action_type : string = "move_base_msgs/MoveBaseAction";
+    };
+    
+        property name = "move_base";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_navigation/launch/move_base.launch";
+    };
+    
+   component amcl : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _amcl_parameter_updates_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "dynamic_reconfigure/Config";
+        property topic = "/amcl/parameter_updates";
+    };
+    
+     port _amcl_pose_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/amcl_pose";
+    };
+    
+     port _particlecloud_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseArray";
+        property topic = "/particlecloud";
+    };
+    
+     port _amcl_parameter_descriptions_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "dynamic_reconfigure/ConfigDescription";
+        property topic = "/amcl/parameter_descriptions";
+    };
+    
+     port _map_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+     port _scan_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/LaserScan";
+        property topic = "/scan";
+    };
+    
+     port _initialpose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/initialpose";
+    };
+    
+     port _global_localization_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/global_localization";
+        property args : string = "";
+    };
+    
+     port _request_nomotion_update_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/request_nomotion_update";
+        property args : string = "";
+    };
+    
+     port _set_map_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/SetMap";
+        property name : string = "/set_map";
+        property args : string = "";
+    };
+    
+        property name = "amcl";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_navigation/launch/amcl.launch";
+    };
+    
+   component map_server : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _map_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+     port _map_metadata_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/MapMetaData";
+        property topic = "/map_metadata";
+    };
+    
+     port _static_map_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/GetMap";
+        property name : string = "/static_map";
+        property args : string = "";
+    };
+    
+        property name = "map_server";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_navigation/launch/turtlebot3_navigation.launch";
+    };
+    
+   component robot_state_publisher : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _tf_static_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "tf2_msgs/TFMessage";
+        property topic = "/tf_static";
+    };
+    
+     port _tf_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "tf2_msgs/TFMessage";
+        property topic = "/tf";
+    };
+    
+     port _joint_states_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/JointState";
+        property topic = "/joint_states";
+    };
+    
+        property name = "robot_state_publisher";
+        property launchedBy = "/ros_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_remote.launch";
+    };
+       connector _map_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role map_server_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role amcl_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+      attachment amcl._map_sub to _map_conn.amcl_sub;
+  attachment map_server._map_pub to _map_conn.map_server_pub;}
