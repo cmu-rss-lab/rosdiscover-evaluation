@@ -54,7 +54,7 @@ autorally-static:
 	pipenv run python scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml;\
 
 turtlebot-static: 
-	pipenv run python scripts/build-images.py experiments/recovery/subjects/turtlebot/experiment.yml;\
+	pipenv run python scripts/build-images.py experiments/recovery/subjects/turtlebot3/experiment.yml;\
 
 autoware-static: 
 	docker build . -t autoware-static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
