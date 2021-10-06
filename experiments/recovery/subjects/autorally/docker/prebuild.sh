@@ -12,9 +12,12 @@ sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.
 sed -i "6i\ diagnostic_updater" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
 sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
 
+# remove a bad dependency
+sed -i "s# RingBuffer)#)#" /ros_ws/src/autorally/autorally_control/src/ConstantSpeedController/CMakeLists.txt
+
 # _gencpp has been replaced by _generate_messages_cpp
 find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
-sed -i "s#autorally_msgs_gencpp#autorally_msgs_generate_messages_cpp#g" /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
+# sed -i "s#autorally_msgs_gencpp#autorally_msgs_generate_messages_cpp#g" /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
 
 # install cnpy
 echo "installing cnpy"
@@ -104,7 +107,7 @@ rm -rf /tmp/eigen
 echo "built eigen ${EIGEN_VERSION}"
 
 # SEE: https://github.com/AutoRally/autorally/issues/88
-cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
+# cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
 
 #echo "fixing shared library locations (see: https://github.com/AutoRally/autorally/issues/84)"
 #ln -s /usr/local/lib/libgtsam.so.4.0.2 /usr/local/lib/libgtsam.so

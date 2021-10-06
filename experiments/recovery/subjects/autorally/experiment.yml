@@ -2,13 +2,19 @@ type: recovery
 subject: autorally
 image: rosdiscover-experiments/autorally:c2692f2
 distro: melodic
-build_command: try_again "catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1" 2
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 11-4
 missing_ros_packages: []
 exclude_ros_packages:
   - orocos_kdl
   - pointgrey_camera_driver
   - rviz
+  - gazebo_ros_pkgs/gazebo_dev
+  - gazebo_ros_pkgs/gazebo_msgs
+  - gazebo_ros_pkgs/gazebo_plugins
+  - gazebo_ros_pkgs/gazebo_ros
+  - gazebo_ros_pkgs/gazebo_ros_control
+  - gazebo_ros_pkgs/gazebo_ros_pkgs
 apt_packages:
   - cmake-curses-gui
   - cutecom
@@ -25,6 +31,7 @@ apt_packages:
   - synaptic
   - texinfo
   - ros-melodic-rqt-publisher
+  - ros-melodic-gazebo-ros-pkgs
 repositories:
 - name: autorally
   url: https://github.com/AutoRally/autorally.git
