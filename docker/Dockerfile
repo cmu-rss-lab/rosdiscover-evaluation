@@ -128,6 +128,9 @@ RUN chmod +x /bin/tini \
 ARG CUDA_VERSION="0"
 ENV CUDA_VERSION ${CUDA_VERSION}
 RUN install_cuda_"${ROS_DISTRO}"
+ENV CUDA_HOME /usr/local/cuda
+ENV LD_LIBRARY_PATH "${LD_LIBRARY_PATH}:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+ENV PATH "${PATH}:${CUDA_HOME}/bin"
 
 # apt packages
 # Should not use --no-install-recommends argument because we need some of the package dependencies

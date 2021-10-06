@@ -3,6 +3,36 @@ set -eu
 
 EIGEN_VERSION="3.3.7"
 GTSAM_VERSION=2c44ee459bc8090364ca8034e2988d3e8a01c422
+CNPY_VERSION=4e8810b1a8637695171ed346ce68f6984e585ef4
+
+# add a missing dependency
+sed -i "11i\ diagnostic_updater" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ imu_3dm_gx4" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ diagnostic_updater" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+
+# remove a bad dependency
+sed -i "s# RingBuffer)#)#" /ros_ws/src/autorally/autorally_control/src/ConstantSpeedController/CMakeLists.txt
+
+# _gencpp has been replaced by _generate_messages_cpp
+find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
+# sed -i "s#autorally_msgs_gencpp#autorally_msgs_generate_messages_cpp#g" /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
+
+# install cnpy
+echo "installing cnpy"
+git clone https://github.com/rogersce/cnpy /tmp/cnpy
+cd /tmp/cnpy
+git checkout "${CNPY_VERSION}"
+mkdir build
+cd build
+cmake ..
+make
+make install
+rm -rf /tmp/cnpy
+cd /tmp
+echo "installed cnpy"
+
 
 # ensure that the python environment is correctly configured
 eval "$(pyenv init --path)"
@@ -77,7 +107,7 @@ rm -rf /tmp/eigen
 echo "built eigen ${EIGEN_VERSION}"
 
 # SEE: https://github.com/AutoRally/autorally/issues/88
-cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
+# cp /.dockerinstall/StateEstimator_CMakeLists.fixed.txt /ros_ws/src/autorally/autorally_core/src/StateEstimator/CMakeLists.txt
 
 #echo "fixing shared library locations (see: https://github.com/AutoRally/autorally/issues/84)"
 #ln -s /usr/local/lib/libgtsam.so.4.0.2 /usr/local/lib/libgtsam.so
