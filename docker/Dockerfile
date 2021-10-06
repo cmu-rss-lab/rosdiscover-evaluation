@@ -158,9 +158,9 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
 
 RUN do_prebuild
 
-# ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-# RUN eval "$(pyenv init --path)" \
-#  && eval "$(pyenv init -)" \
-#  && eval "$(pyenv virtualenv-init -)" \
-#  && . /opt/ros/${ROS_DISTRO}/setup.sh \
-#  && eval "${BUILD_COMMAND}"
+ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+RUN eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \
+ && . /opt/ros/${ROS_DISTRO}/setup.sh \
+ && eval "${BUILD_COMMAND}"
