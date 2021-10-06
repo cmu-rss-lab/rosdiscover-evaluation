@@ -4,10 +4,27 @@ subject: turtlebot3
 image: rosdiscover-experiments/turtlebot3:latest
 distro: kinetic
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-missing_ros_packages: [map_server, amcl, move_base, hls_lfcd_lds_driver]
+missing_ros_packages: 
+  - map_server
+  - amcl
+  - move_base
+  - hls_lfcd_lds_driver
+  - base_local_planner
+  - carrot_planner
+  - clear_costmap_recovery
+  - costmap_2d
+  - fake_localization
+  - global_planner
+  - dwa_local_planner
+  - move_slow_and_clear
+  - nav_core
+  - navfn
+  - navigation 
+  - rotate_recovery
+  - voxel_grid
 environment:
   TURTLEBOT3_MODEL: burger
-exclude_ros_packages: [] 
+exclude_ros_packages: [python_orocos_kdl, robot_pose_ekf] 
 apt_packages: 
 - ros-kinetic-gazebo-plugins 
 - ros-kinetic-image-proc 
@@ -21,6 +38,8 @@ apt_packages:
 - ros-kinetic-gazebo-ros
 - ros-kinetic-urdf*
 - ros-kinetic-rosserial-python
+- ros-kinetic-orocos-kdl
+- ros-kinetic-robot-pose-ekf
 repositories:
 - name: turtlebot3
   url: https://github.com/ROBOTIS-GIT/turtlebot3.git
