@@ -115,6 +115,7 @@ RUN apt-get update \
       xterm \
       xvfb \
       x11vnc \
+      dbus-x11 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir ~/.vnc \
