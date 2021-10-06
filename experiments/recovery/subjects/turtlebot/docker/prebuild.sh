@@ -13,6 +13,11 @@ eval "$(pyenv init -)"
 # - https://github.com/ros/ros_comm/pull/962
 sed -i "s#^  INCLUDE_DIRS include\$#  INCLUDE_DIRS include include/xmlrpcpp#" /ros_ws/src/ros_comm/xmlrpcpp/CMakeLists.txt
 
+# see
+# - https://github.com/wg-perception/people/issues/96
+# - https://github.com/wg-perception/people/pull/97/files
+sed -i "s#\${BFL_INCLUDE_DIRS}#\${BFL_INCLUDE_DIRS}/.." /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt
+
 # fix another broken CMakeLists.txt
 sed -i "4inav_msgs" src/kobuki/kobuki_auto_docking/CMakeLists.txt
 
@@ -26,15 +31,3 @@ cmake ..
 make
 make install
 rm -rf /tmp/*
-
-#cd /tmp
-#wget https://www.riverbankcomputing.com/static/Downloads/sip/4.19.25/sip-4.19.25.tar.gz
-#tar zxf sip-4.19.25.tar.gz
-#cd sip-4.19.25
-#python configure.py
-#make install
-#rm -rf /tmp/*
-
-#cd /tmp
-#wget https://files.pythonhosted.org/packages/19/5a/c50a0ccd211f864972da0f2e101722508ffb4e008347fd2a56a99beab9d0/sip-4.19.2-cp35-cp35m-manylinux1_x86_64.whl
-#pip install sip-4.19.2-cp35-cp35m-manylinux1_x86_64.whl
