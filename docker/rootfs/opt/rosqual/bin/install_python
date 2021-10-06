@@ -1,0 +1,20 @@
+#!/bin/bash
+set -eu
+
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+export CFLAGS="-fPIC ${CFLAGS:-}"
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
+pyenv install 2.7.18
+pyenv global 2.7.18
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
+pip install wheel
+pip install -U pip==19.0.1
+
+# install convenient packages for all images
+pip install \
+  catkin-tools==0.4.5 \
+  coverage==5.1 \
+  rosinstall-generator==0.1.18
