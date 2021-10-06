@@ -2,11 +2,11 @@
 set -eu
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 
 ## install necessary python packages
-#pip install \
-#  sip==4.19.18
+pip install \
+  empy==3.3.4 \
+  numpy==1.16.6
 
 # see
 # - https://github.com/ros/geometry/issues/144
