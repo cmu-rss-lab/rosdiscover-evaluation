@@ -16,7 +16,7 @@ sed -i "s#^  INCLUDE_DIRS include\$#  INCLUDE_DIRS include include/xmlrpcpp#" /r
 # see
 # - https://github.com/wg-perception/people/issues/96
 # - https://github.com/wg-perception/people/pull/97/files
-sed -i "s#\${BFL_INCLUDE_DIRS}#\${BFL_INCLUDE_DIRS}/.." /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt
+sed -i "s#\${BFL_INCLUDE_DIRS}#\${BFL_INCLUDE_DIRS}/..#" /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt
 
 # fix another broken CMakeLists.txt
 sed -i "4inav_msgs" src/kobuki/kobuki_auto_docking/CMakeLists.txt
