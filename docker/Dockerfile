@@ -69,6 +69,7 @@ RUN apt-get update \
       g++ \
       gcc \
       git \
+      less \
       libbz2-dev \
       libcurl3-gnutls \
       libffi-dev \
