@@ -15,6 +15,8 @@ import typing as t
 from loguru import logger
 logger.remove()
 
+from rosdiscover.recover.call import SymbolicRosApiCall
+from rosdiscover.recover.loader import SymbolicProgramLoader
 from roswire.util import Stopwatch
 import attr
 import rosdiscover
@@ -58,6 +60,8 @@ class CrashedNodeModelRecoverySummary(NodeModelRecoverySummary):
 @attr.s(auto_attribs=True, slots=True)
 class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
     functions: int
+    statements: int
+    api_calls: int
 
     @classmethod
     def build(
@@ -70,8 +74,19 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             model = json.load(fh)
             node = model["node-name"]
             package = model["package"]["name"]
-            entrypoint = model["program"]["program"]["entrypoint"]
-            num_functions = len(model["program"]["program"]["functions"])
+            program = SymbolicProgramLoader().load(model["program"])
+            entrypoint = program.entrypoint_name
+            num_functions = len(program.functions)
+
+            # TODO find number of API calls
+            # SymbolicRosApiCall
+            statements = []
+            for function in program.functions.values():
+                statements += list(function.body)
+            num_statements = len(statements)
+
+            api_calls = [s for s in statements if isinstance(s, SymbolicRosApiCall)]
+            num_api_calls = len(api_calls)
 
         return CompletedNodeModelRecoverySummary(
             package=package,
@@ -79,12 +94,16 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             entrypoint=entrypoint,
             time_taken=time_taken,
             functions=num_functions,
+            statements=num_statements,
+            api_calls=num_api_calls,
         )
 
     def to_dict(self) -> t.Dict[str, t.Any]:
         dict_ = super().to_dict()
         dict_["crashed"] = False
         dict_["functions"] = self.functions
+        dict_["statements"] = self.statements
+        dict_["api_calls"] = self.api_calls
         return dict_
 
 
@@ -106,6 +125,8 @@ class NodeModelRecoverySummaries:
                 "crashed",
                 "error_message",
                 "functions",
+                "statements",
+                "api_calls",
             ]
             writer = csv.DictWriter(fh, field_names)
             writer.writeheader()
