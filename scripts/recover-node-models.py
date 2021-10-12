@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
+import abc
 import argparse
 import contextlib
+import csv
+import json
 import os
 import sys
 import tempfile
@@ -24,12 +29,88 @@ from common.config import (
 
 
 @attr.s(auto_attribs=True, slots=True)
-class NodeModelRecoverySummary:
+class NodeModelRecoverySummary(abc.ABC):
     package: str
     node: str
     entrypoint: str
     time_taken: float
-    successful: bool
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        return {
+            "package": self.package,
+            "node": self.node,
+            "entrypoint": self.entrypoint,
+            "time_taken": self.time_taken,
+        }
+
+
+@attr.s(auto_attribs=True, slots=True)
+class CrashedNodeModelRecoverySummary(NodeModelRecoverySummary):
+    error_message: str
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        dict_ = super().to_dict()
+        dict_["crashed"] = True
+        dict_["error_message"] = self.error_message
+        return dict_
+
+
+@attr.s(auto_attribs=True, slots=True)
+class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
+    functions: int
+
+    @classmethod
+    def build(
+        cls,
+        model_filename: str,
+        time_taken: float,
+    ) -> CompletedNodeModelRecoverySummary:
+        # TODO summarize model
+        with open(model_filename, "r") as fh:
+            model = json.load(fh)
+            node = model["node-name"]
+            package = model["package"]["name"]
+            entrypoint = model["program"]["program"]["entrypoint"]
+            num_functions = len(model["program"]["program"]["functions"])
+
+        return CompletedNodeModelRecoverySummary(
+            package=package,
+            node=node,
+            entrypoint=entrypoint,
+            time_taken=time_taken,
+            functions=num_functions,
+        )
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        dict_ = super().to_dict()
+        dict_["crashed"] = False
+        dict_["functions"] = self.functions
+        return dict_
+
+
+@attr.s
+class NodeModelRecoverySummaries:
+    _summaries: t.List[NodeModelRecoverySummary] = attr.ib(factory=list)
+
+    def add(self, summary: NodeModelRecoverySummary) -> None:
+        self._summaries.append(summary)
+
+    def save(self, filename: str) -> None:
+        """Saves this collection of summaries to a CSV file."""
+        with open(filename, "w") as fh:
+            field_names = [
+                "package",
+                "node",
+                "entrypoint",
+                "time_taken",
+                "crashed",
+                "error_message",
+                "functions",
+            ]
+            writer = csv.DictWriter(fh, field_names)
+            writer.writeheader()
+            for summary in self._summaries:
+                writer.writerow(summary.to_dict())
 
 
 class RecoveryConfig(t.TypedDict):
@@ -103,10 +184,17 @@ def recover_all(
     experiment_config: RecoveryExperimentConfig,
 ) -> None:
     logger.info("recovering all node models for system")
+    summaries = NodeModelRecoverySummaries()
     package_node_to_sources = obtain_node_sources(experiment_config)
     for node_sources in package_node_to_sources.values():
-        recover_node_from_sources(experiment_config, node_sources)
+        summary = recover_node_from_sources(experiment_config, node_sources)
+        summaries.add(summary)
     logger.info("recovered all node models for system")
+
+    summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
+    logger.info(f"writing summary to disk: {summary_filename}")
+    summaries.save(summary_filename)
+    logger.info("wrote summary to disk")
 
 
 def recover_single_node(
@@ -160,27 +248,28 @@ def recover_node_from_sources(
         ]
         args += sources
 
+        summary: NodeModelRecoverySummary
         file_logger = logger.add(log_filename, level="DEBUG")
         logger.debug(f"calling rosdiscover: {args}")
         timer = Stopwatch()
         timer.start()
         try:
-            successful = True
             rosdiscover.cli.main(args)
-            logger.info(f"statically recovered model for node [{node}] in package [{package}]")
-        except Exception:
-            successful = False
+            summary = CompletedNodeModelRecoverySummary.build(model_filename, timer.duration)
+            logger.info(f"statically recovered model for node [{node}] in package [{package}]: {summary}")
+        except Exception as err:
+            summary = CrashedNodeModelRecoverySummary(
+                package=package,
+                node=node,
+                entrypoint=entrypoint,
+                time_taken=timer.duration,
+                error_message=str(err),
+            )
             logger.exception(f"failed to statically recover model for node [{node}] in package [{package}]")
         finally:
             logger.remove(file_logger)
 
-        return NodeModelRecoverySummary(
-            package=package,
-            node=node,
-            entrypoint=entrypoint,
-            time_taken=timer.duration,
-            successful=successful,
-        )
+        return summary
 
 
 def error(message: str) -> t.NoReturn:
