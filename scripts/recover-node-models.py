@@ -10,6 +10,8 @@ import typing as t
 from loguru import logger
 logger.remove()
 
+from roswire.util import Stopwatch
+import attr
 import rosdiscover
 import rosdiscover.cli
 import yaml
@@ -19,6 +21,15 @@ from common.config import (
     RecoveryExperimentConfig,
     load_config
 )
+
+
+@attr.s(auto_attribs=True, slots=True)
+class NodeModelRecoverySummary:
+    package: str
+    node: str
+    entrypoint: str
+    time_taken: float
+    successful: bool
 
 
 class RecoveryConfig(t.TypedDict):
@@ -62,7 +73,6 @@ def generate_node_sources(
             config_with_node_sources_filename,
             recovery_config_filename,
         ]
-
         logger.debug(f"calling rosdiscover: {args}")
         try:
             rosdiscover.cli.main(args)
@@ -109,13 +119,13 @@ def recover_single_node(
         node_sources = package_node_to_sources[(package, node)]
     except KeyError:
         error(f"failed to find sources for node [{node}] in package [{package}]")
-    return recover_node_from_sources(experiment_config, node_sources)
+    recover_node_from_sources(experiment_config, node_sources)
 
 
 def recover_node_from_sources(
     experiment_config: RecoveryExperimentConfig,
     node_sources: NodeSources,
-) -> None:
+) -> NodeModelRecoverySummary:
     entrypoint = node_sources.get("entrypoint", "main")
     package = node_sources["package"]
     node = node_sources["node"]
@@ -152,14 +162,25 @@ def recover_node_from_sources(
 
         file_logger = logger.add(log_filename, level="DEBUG")
         logger.debug(f"calling rosdiscover: {args}")
+        timer = Stopwatch()
+        timer.start()
         try:
+            successful = True
             rosdiscover.cli.main(args)
+            logger.info(f"statically recovered model for node [{node}] in package [{package}]")
         except Exception:
+            successful = False
             logger.exception(f"failed to statically recover model for node [{node}] in package [{package}]")
         finally:
             logger.remove(file_logger)
 
-        logger.info(f"statically recovered model for node [{node}] in package [{package}]")
+        return NodeModelRecoverySummary(
+            package=package,
+            node=node,
+            entrypoint=entrypoint,
+            time_taken=timer.duration,
+            successful=successful,
+        )
 
 
 def error(message: str) -> t.NoReturn:
