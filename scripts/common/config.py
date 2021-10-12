@@ -29,6 +29,7 @@ class NodeSources(t.TypedDict):
 
 class ROSDiscoverConfig(t.TypedDict):
     image: str
+    subject: str
     sources: t.Sequence[str]
     launches: t.Sequence[str]
     node_sources: t.Optional[t.Collection[NodeSources]]

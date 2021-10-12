@@ -5,6 +5,7 @@ distro: kinetic
 build_command: catkin_make_isolated -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 apt_packages:
 - ros-kinetic-bfl
+- ros-kinetic-orocos-kdl
 exclude_ros_packages:
 - bfl
 repositories:
@@ -14,7 +15,16 @@ repositories:
 - name: turtlebot_apps
   url: https://github.com/turtlebot/turtlebot_apps.git
   version: 2.3.7
+environment:
+  TURTLEBOT_GAZEBO_WORLD_FILE: /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/worlds/playground.world
+  TURTLEBOT_3D_SENSOR: kinect
+  TURTLEBOT_GAZEBO_MAP_FILE: /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/maps/playground.yaml
 sources:
 - /opt/ros/kinetic/setup.bash
-- /ros_ws/devel/setup.bash
-launches: []
+- /ros_ws/devel_isolated/setup.bash
+launches:
+  - /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch
+  - /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/amcl_demo.launch
+run_script: >
+  rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 2.0, y: 2.0, z: 0.0}, orientation: {w: 1.0}}}'
+
