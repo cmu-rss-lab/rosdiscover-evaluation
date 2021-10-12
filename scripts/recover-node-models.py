@@ -32,6 +32,7 @@ from common.config import (
 
 @attr.s(auto_attribs=True, slots=True)
 class NodeModelRecoverySummary(abc.ABC):
+    system: str
     package: str
     node: str
     entrypoint: str
@@ -39,6 +40,7 @@ class NodeModelRecoverySummary(abc.ABC):
 
     def to_dict(self) -> t.Dict[str, t.Any]:
         return {
+            "system": self.system,
             "package": self.package,
             "node": self.node,
             "entrypoint": self.entrypoint,
@@ -66,6 +68,7 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
     @classmethod
     def build(
         cls,
+        system: str,
         model_filename: str,
         time_taken: float,
     ) -> CompletedNodeModelRecoverySummary:
@@ -78,17 +81,19 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             entrypoint = program.entrypoint_name
             num_functions = len(program.functions)
 
-            # TODO find number of API calls
-            # SymbolicRosApiCall
             statements = []
             for function in program.functions.values():
                 statements += list(function.body)
             num_statements = len(statements)
 
+            # TODO find number of API calls that contain at least one unknown
+
+            # FIXME this is flawed: API calls may be nested inside a statement
             api_calls = [s for s in statements if isinstance(s, SymbolicRosApiCall)]
             num_api_calls = len(api_calls)
 
         return CompletedNodeModelRecoverySummary(
+            system=system,
             package=package,
             node=node,
             entrypoint=entrypoint,
@@ -118,6 +123,7 @@ class NodeModelRecoverySummaries:
         """Saves this collection of summaries to a CSV file."""
         with open(filename, "w") as fh:
             field_names = [
+                "system",
                 "package",
                 "node",
                 "entrypoint",
@@ -276,10 +282,15 @@ def recover_node_from_sources(
         timer.start()
         try:
             rosdiscover.cli.main(args)
-            summary = CompletedNodeModelRecoverySummary.build(model_filename, timer.duration)
+            summary = CompletedNodeModelRecoverySummary.build(
+                system=experiment_config["subject"],
+                model_filename=model_filename,
+                time_taken=timer.duration,
+            )
             logger.info(f"statically recovered model for node [{node}] in package [{package}]: {summary}")
         except Exception as err:
             summary = CrashedNodeModelRecoverySummary(
+                system=experiment_config["subject"],
                 package=package,
                 node=node,
                 entrypoint=entrypoint,
