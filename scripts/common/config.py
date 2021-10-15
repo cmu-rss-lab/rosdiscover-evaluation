@@ -33,6 +33,7 @@ class ROSDiscoverConfig(t.TypedDict):
     sources: t.Sequence[str]
     launches: t.Sequence[str]
     node_sources: t.Optional[t.Collection[NodeSources]]
+    run_script: t.Optional[str]
 
     @classmethod
     @contextlib.contextmanager
