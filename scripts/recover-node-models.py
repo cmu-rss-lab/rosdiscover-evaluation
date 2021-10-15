@@ -193,9 +193,17 @@ def obtain_node_sources(
     experiment_config: RecoveryExperimentConfig,
 ) -> t.Mapping[t.Tuple[str, str], NodeSources]:
     config_with_node_sources_filename = experiment_config["config_with_node_sources_filename"]
-
-    if not os.path.exists(config_with_node_sources_filename):
-        generate_node_sources(experiment_config)
+    experiment_directory = experiment_config["directory"]
+    logs_directory = os.path.join(experiment_directory, "logs")
+    os.makedirs(logs_directory, exist_ok=True)
+    log_filename = os.path.join(logs_directory, f"obtain_node_sources.log")
+    file_logger = logger.add(log_filename, level="DEBUG")
+    try:
+        logger.debug("Obtaining all sources")
+        if not os.path.exists(config_with_node_sources_filename):
+            generate_node_sources(experiment_config)
+    finally:
+        logger.remove(file_logger)
 
     with open(config_with_node_sources_filename, "r") as fh:
         dict_ = yaml.safe_load(fh)
