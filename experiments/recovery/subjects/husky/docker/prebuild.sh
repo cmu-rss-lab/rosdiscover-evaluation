@@ -7,4 +7,6 @@ eval "$(pyenv init -)"
 pip install \
   empy==3.3.4 \
   numpy==1.16.6 \
-  cheetah==2.4.4
+  cheetah==2.4.4 \
+  defusedxml==0.6.0 \
+  netifaces==0.10.7
