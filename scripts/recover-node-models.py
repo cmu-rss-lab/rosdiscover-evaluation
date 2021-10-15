@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
+import abc
 import argparse
 import contextlib
+import csv
+import json
 import os
 import sys
 import tempfile
@@ -10,6 +15,10 @@ import typing as t
 from loguru import logger
 logger.remove()
 
+from rosdiscover.recover.call import SymbolicRosApiCall
+from rosdiscover.recover.loader import SymbolicProgramLoader
+from roswire.util import Stopwatch
+import attr
 import rosdiscover
 import rosdiscover.cli
 import yaml
@@ -19,6 +28,116 @@ from common.config import (
     RecoveryExperimentConfig,
     load_config
 )
+
+
+@attr.s(auto_attribs=True, slots=True)
+class NodeModelRecoverySummary(abc.ABC):
+    system: str
+    package: str
+    node: str
+    entrypoint: str
+    time_taken: float
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        return {
+            "system": self.system,
+            "package": self.package,
+            "node": self.node,
+            "entrypoint": self.entrypoint,
+            "time_taken": self.time_taken,
+        }
+
+
+@attr.s(auto_attribs=True, slots=True)
+class CrashedNodeModelRecoverySummary(NodeModelRecoverySummary):
+    error_message: str
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        dict_ = super().to_dict()
+        dict_["crashed"] = True
+        dict_["error_message"] = self.error_message
+        return dict_
+
+
+@attr.s(auto_attribs=True, slots=True)
+class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
+    functions: int
+    statements: int
+    api_calls: int
+
+    @classmethod
+    def build(
+        cls,
+        system: str,
+        model_filename: str,
+        time_taken: float,
+    ) -> CompletedNodeModelRecoverySummary:
+        # TODO summarize model
+        with open(model_filename, "r") as fh:
+            model = json.load(fh)
+            node = model["node-name"]
+            package = model["package"]["name"]
+            program = SymbolicProgramLoader().load(model["program"])
+            entrypoint = program.entrypoint_name
+            num_functions = len(program.functions)
+
+            statements = []
+            for function in program.functions.values():
+                statements += list(function.body)
+            num_statements = len(statements)
+
+            # TODO find number of API calls that contain at least one unknown
+
+            # FIXME this is flawed: API calls may be nested inside a statement
+            api_calls = [s for s in statements if isinstance(s, SymbolicRosApiCall)]
+            num_api_calls = len(api_calls)
+
+        return CompletedNodeModelRecoverySummary(
+            system=system,
+            package=package,
+            node=node,
+            entrypoint=entrypoint,
+            time_taken=time_taken,
+            functions=num_functions,
+            statements=num_statements,
+            api_calls=num_api_calls,
+        )
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        dict_ = super().to_dict()
+        dict_["crashed"] = False
+        dict_["functions"] = self.functions
+        dict_["statements"] = self.statements
+        dict_["api_calls"] = self.api_calls
+        return dict_
+
+
+@attr.s
+class NodeModelRecoverySummaries:
+    _summaries: t.List[NodeModelRecoverySummary] = attr.ib(factory=list)
+
+    def add(self, summary: NodeModelRecoverySummary) -> None:
+        self._summaries.append(summary)
+
+    def save(self, filename: str) -> None:
+        """Saves this collection of summaries to a CSV file."""
+        with open(filename, "w") as fh:
+            field_names = [
+                "system",
+                "package",
+                "node",
+                "entrypoint",
+                "time_taken",
+                "crashed",
+                "error_message",
+                "functions",
+                "statements",
+                "api_calls",
+            ]
+            writer = csv.DictWriter(fh, field_names)
+            writer.writeheader()
+            for summary in self._summaries:
+                writer.writerow(summary.to_dict())
 
 
 class RecoveryConfig(t.TypedDict):
@@ -62,7 +181,6 @@ def generate_node_sources(
             config_with_node_sources_filename,
             recovery_config_filename,
         ]
-
         logger.debug(f"calling rosdiscover: {args}")
         try:
             rosdiscover.cli.main(args)
@@ -93,10 +211,17 @@ def recover_all(
     experiment_config: RecoveryExperimentConfig,
 ) -> None:
     logger.info("recovering all node models for system")
+    summaries = NodeModelRecoverySummaries()
     package_node_to_sources = obtain_node_sources(experiment_config)
     for node_sources in package_node_to_sources.values():
-        recover_node_from_sources(experiment_config, node_sources)
+        summary = recover_node_from_sources(experiment_config, node_sources)
+        summaries.add(summary)
     logger.info("recovered all node models for system")
+
+    summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
+    logger.info(f"writing summary to disk: {summary_filename}")
+    summaries.save(summary_filename)
+    logger.info("wrote summary to disk")
 
 
 def recover_single_node(
@@ -109,13 +234,13 @@ def recover_single_node(
         node_sources = package_node_to_sources[(package, node)]
     except KeyError:
         error(f"failed to find sources for node [{node}] in package [{package}]")
-    return recover_node_from_sources(experiment_config, node_sources)
+    recover_node_from_sources(experiment_config, node_sources)
 
 
 def recover_node_from_sources(
     experiment_config: RecoveryExperimentConfig,
     node_sources: NodeSources,
-) -> None:
+) -> NodeModelRecoverySummary:
     entrypoint = node_sources.get("entrypoint", "main")
     package = node_sources["package"]
     node = node_sources["node"]
@@ -150,16 +275,33 @@ def recover_node_from_sources(
         ]
         args += sources
 
+        summary: NodeModelRecoverySummary
         file_logger = logger.add(log_filename, level="DEBUG")
         logger.debug(f"calling rosdiscover: {args}")
+        timer = Stopwatch()
+        timer.start()
         try:
             rosdiscover.cli.main(args)
-        except Exception:
+            summary = CompletedNodeModelRecoverySummary.build(
+                system=experiment_config["subject"],
+                model_filename=model_filename,
+                time_taken=timer.duration,
+            )
+            logger.info(f"statically recovered model for node [{node}] in package [{package}]: {summary}")
+        except Exception as err:
+            summary = CrashedNodeModelRecoverySummary(
+                system=experiment_config["subject"],
+                package=package,
+                node=node,
+                entrypoint=entrypoint,
+                time_taken=timer.duration,
+                error_message=str(err),
+            )
             logger.exception(f"failed to statically recover model for node [{node}] in package [{package}]")
         finally:
             logger.remove(file_logger)
 
-        logger.info(f"statically recovered model for node [{node}] in package [{package}]")
+        return summary
 
 
 def error(message: str) -> t.NoReturn:
