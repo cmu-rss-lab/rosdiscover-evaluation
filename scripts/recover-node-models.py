@@ -200,8 +200,7 @@ def obtain_node_sources(
     file_logger = logger.add(log_filename, level="DEBUG")
     try:
         logger.debug("Obtaining all sources")
-        if not os.path.exists(config_with_node_sources_filename):
-            generate_node_sources(experiment_config)
+        generate_node_sources(experiment_config)
     finally:
         logger.remove(file_logger)
 
