@@ -35,7 +35,18 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
     output_filename = os.path.join(config_directory, "observed.architecture.yml")
-    log_filename = os.path.join(log_directory, "system-observe.log")
+    log_filename = os.path.join(log_directory, "system-recovery.log")
+    run_script_filename = None
+    if "run_script" in config and config["run_script"] is not None:
+        run_script_filename = os.path.join(config_directory, "run.while.observing.sh")
+        with open(run_script_filename, 'w') as f:
+            f.write("#!/bin/bash\n")
+            for source in config["sources"]:
+                f.write(f"source {source}\n")
+            for var, val in config["environment"].items():
+                f.write(f"export {var}={val}\n")
+            f.write(config["run_script"] + "\n")
+
     observe_system(
         image=config["image"],
         sources=config["sources"],
@@ -43,6 +54,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         launches=config["launches"],
         output_filename=output_filename,
         log_filename=log_filename,
+        run_filename=run_script_filename,
     )
 
     acme_filename = os.path.join(config_directory, "observed.archiecture.acme")
@@ -62,6 +74,7 @@ def observe_system(
     launches: t.Sequence[str],  # FIXME
     output_filename: str,
     log_filename: str,
+    run_filename: t.Optional[str]
 ) -> None:
     # ensure that the logs directory exists
     os.makedirs(os.path.dirname(log_filename), exist_ok=True)
@@ -80,6 +93,8 @@ def observe_system(
         args += ["--output", output_filename]
         args += ["--duration",  "600",  "--interval", "30",
                  "--do-launch",  "--launch-sleep", "30"]
+        if run_filename is not None:
+            args += ["--run-script", run_filename]
         file_logger = logger.add(log_filename, level="DEBUG")
         try:
             rosdiscover.cli.main(args)
