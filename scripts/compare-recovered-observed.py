@@ -72,7 +72,14 @@ def compare_sets(
     differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in observed_not_recovered)
     differences += f"\n{kind} in recovered that aren't in observed: "
     differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in recovered_not_observed)
-
+    rec_err = len(observed_not_recovered)
+    obs_err = len(recovered_not_observed)
+    if len(observed) > 0:
+        differences += f"\nScore: {rec_err + obs_err} differences from "
+        differences += f"{len(observed)} ground truth = "
+        differences += f"{(len(observed) - rec_err - obs_err) / len(observed) * 100}% recovered"
+    elif len(recovered) != 0:
+        differences += f"\nRecovered {len(recovered)} but observed nothing"
     return differences
 
 
