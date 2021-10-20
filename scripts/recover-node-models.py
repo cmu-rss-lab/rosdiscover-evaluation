@@ -64,6 +64,9 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
     functions: int
     statements: int
     api_calls: int
+    unknown_api_calls: int
+    unreachable_functions: int
+    unreachable_api_calls: int
 
     @classmethod
     def build(
@@ -92,6 +95,15 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             api_calls = [s for s in statements if isinstance(s, SymbolicRosApiCall)]
             num_api_calls = len(api_calls)
 
+            unknown_api_calls = [c for c in api_calls if c.is_unknown()]
+            num_unknown_api_calls = len(unknown_api_calls)
+
+            num_unreachable_functions = len(program.unreachable_functions)
+            unreachable_api_calls = []
+            for function in program.unreachable_functions:
+                unreachable_api_calls += [s for s in function.body if isinstance(s, SymbolicRosApiCall)]
+            num_unreachable_api_calls = len(unreachable_api_calls)
+
         return CompletedNodeModelRecoverySummary(
             system=system,
             package=package,
@@ -101,6 +113,9 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             functions=num_functions,
             statements=num_statements,
             api_calls=num_api_calls,
+            unknown_api_calls=num_unknown_api_calls,
+            unreachable_functions=num_unreachable_functions,
+            unreachable_api_calls=num_unreachable_api_calls,
         )
 
     def to_dict(self) -> t.Dict[str, t.Any]:
@@ -109,6 +124,9 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
         dict_["functions"] = self.functions
         dict_["statements"] = self.statements
         dict_["api_calls"] = self.api_calls
+        dict_["unknown_api_calls"] = self.unknown_api_calls
+        dict_["unreachable_api_calls"] = self.unreachable_api_calls
+        dict_["unreachable_functions"] = self.unreachable_functions
         return dict_
 
 
@@ -133,6 +151,9 @@ class NodeModelRecoverySummaries:
                 "functions",
                 "statements",
                 "api_calls",
+                "unknown_api_calls",
+                "unreachable_functions",
+                "unreachable_api_calls",
             ]
             writer = csv.DictWriter(fh, field_names)
             writer.writeheader()
