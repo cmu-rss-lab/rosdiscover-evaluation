@@ -7,6 +7,8 @@ import typing as t
 
 from loguru import logger
 
+logger.remove()
+
 from common import generate_and_check_acme
 from common.config import (
     DetectionExperimentConfig,
@@ -30,13 +32,13 @@ def _check_for_detection_experiment(config: DetectionExperimentConfig) -> None:
 def _check_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
-    output_filename = os.path.join(config_directory, "observed.architecture.yml")
+    input_filename = os.path.join(config_directory, "observed.architecture.yml")
 
-    acme_filename = os.path.join(config_directory, "observed.archiecture.acme")
+    acme_filename = os.path.join(config_directory, "observed.architecture.acme")
     acme_log_filename = os.path.join(log_directory, "acme-and-check-observed.log")
     generate_and_check_acme(
         image=config["image"],
-        input_filename=output_filename,
+        input_filename=input_filename,
         output_filename=acme_filename,
         log_filename=acme_log_filename,
     )
@@ -55,7 +57,7 @@ def main():
         format="<bold><level>{level}:</level></bold> {message}",
         level="INFO",
     )
-    parser = argparse.ArgumentParser("dynamically recovers ROS system architectures")
+    parser = argparse.ArgumentParser("Checks the architecture by converting to Acme and checking constraints")
     parser.add_argument(
         "configuration",
         help="the path to the configuration file for this experiment",

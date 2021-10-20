@@ -35,7 +35,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
     output_filename = os.path.join(config_directory, "observed.architecture.yml")
-    log_filename = os.path.join(log_directory, "system-obvserved.log")
+    log_filename = os.path.join(log_directory, "system-observed.log")
     run_script_filename = None
     if "run_script" in config and config["run_script"] is not None:
         run_script_filename = os.path.join(config_directory, "run.while.observing.sh")
