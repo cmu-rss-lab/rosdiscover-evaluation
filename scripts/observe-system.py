@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
 import os
@@ -11,7 +12,6 @@ logger.remove()
 import rosdiscover
 import rosdiscover.cli
 
-from common import generate_and_check_acme
 from common.config import (
     ExperimentConfig,
     RecoveryExperimentConfig,
@@ -35,7 +35,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
     output_filename = os.path.join(config_directory, "observed.architecture.yml")
-    log_filename = os.path.join(log_directory, "system-recovery.log")
+    log_filename = os.path.join(log_directory, "system-obvserved.log")
     run_script_filename = None
     if "run_script" in config and config["run_script"] is not None:
         run_script_filename = os.path.join(config_directory, "run.while.observing.sh")
@@ -57,14 +57,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         run_filename=run_script_filename,
     )
 
-    acme_filename = os.path.join(config_directory, "observed.archiecture.acme")
-    acme_log_filename = os.path.join(log_directory, "acme-and-check-observed.log")
-    generate_and_check_acme(
-        image=config["image"],
-        input_filename=output_filename,
-        output_filename=acme_filename,
-        log_filename=acme_log_filename,
-    )
+
 
 
 def observe_system(
