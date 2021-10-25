@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+import csv
 import os
 import sys
 import typing as t
 
+import yaml
 from loguru import logger
+from rosdiscover.interpreter import SystemSummary
 
 logger.remove()
 
@@ -42,6 +45,61 @@ def _check_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         output_filename=acme_filename,
         log_filename=acme_log_filename,
     )
+
+    process_error_data(config['subject'], "Observed", input_filename, acme_log_filename, config_directory)
+
+
+def process_error_data(subject: str,
+                       case: str,
+                       arch_yml_filename: str,
+                       acme_check_log_filename: str,
+                       results_dir: str):
+    with open(arch_yml_filename, 'r') as f:
+        arch = yaml.load(f, Loader=yaml.SafeLoader)
+    assert isinstance(arch, list), type(arch)
+    summary = SystemSummary.from_dict(arch)
+    topics = set()
+    services = set()
+    actions = set()
+
+    for node in summary.values():
+        for t in node.pubs:
+            topics.add(t)
+        for t in node.subs:
+            topics.add(t)
+        for s in node.provides:
+            services.add(s)
+        for s in node.uses:
+            services.add(s)
+        for a in node.action_clients:
+            actions.add(a)
+        for a in node.action_servers:
+            actions.add(a)
+
+    errors = []
+    with open(acme_check_log_filename, 'r') as f:
+        lines = f.readlines()
+        # errors reside on final lines of the log, so iterate through those until "The following problem.."
+        # is detected
+        line = len(lines) - 1
+        while line > 0 and \
+            not ("The following problems were found" in lines[line] or
+                 "Robot architecture has no errors" in lines[line]):
+            errors.insert(0, lines[line])
+            line = line - 1
+
+    with open(os.path.join(results_dir, 'system.observed.csv'), 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(["Subject", "Case", "#Nodes", "#Topics", "#Services", "#Actions", "#Errors"])
+        writer.writerow([subject, case, len(arch), len(topics), len(services), len(actions), len(errors)])
+
+    with open(os.path.join(results_dir, 'observed.errors.csv'), 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(["Node", "Error"])
+        for e in errors:
+            err = e.split('|')[2].split('- ')[1].strip()
+            node = err.split()[0]
+            writer.writerow([node, err])
 
 
 def error(message: str) -> t.NoReturn:
