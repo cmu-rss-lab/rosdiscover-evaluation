@@ -1,0 +1,1086 @@
+environment: {}
+image: rosdiscover-experiments/husky:0.4.10
+launches:
+- arguments: {}
+  filename: /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+- arguments: {}
+  filename: /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
+node_sources:
+- entrypoint: main
+  kind: node
+  node: rrbot
+  origin: /ros_ws/src/ros_controllers/joint_trajectory_controller/CMakeLists.txt:108
+  package: joint_trajectory_controller
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ros_controllers/joint_trajectory_controller
+  sources:
+  - test/rrbot.cpp
+- entrypoint: main
+  kind: node
+  node: rrbot_wrapping
+  origin: /ros_ws/src/ros_controllers/joint_trajectory_controller/CMakeLists.txt:111
+  package: joint_trajectory_controller
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ros_controllers/joint_trajectory_controller
+  sources:
+  - test/rrbot_wrapping.cpp
+- entrypoint: main
+  kind: node
+  node: move_base_node
+  origin: /ros_ws/src/navigation/move_base/CMakeLists.txt:59
+  package: move_base
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/move_base
+  sources:
+  - src/move_base_node.cpp
+- entrypoint: main
+  kind: node
+  node: navfn_node
+  origin: /ros_ws/src/navigation/navfn/CMakeLists.txt:71
+  package: navfn
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/navfn
+  sources:
+  - src/navfn_node.cpp
+- entrypoint: main
+  kind: node
+  node: navtest
+  origin: /ros_ws/src/navigation/navfn/CMakeLists.txt:104
+  package: navfn
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/navfn
+  sources:
+  - src/navwin.cpp
+  - src/navtest.cpp
+- entrypoint: main
+  kind: node
+  node: point_grid
+  origin: /ros_ws/src/navigation/base_local_planner/CMakeLists.txt:129
+  package: base_local_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/base_local_planner
+  sources:
+  - src/point_grid_node.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_markers
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:115
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_markers.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_cloud
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:123
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_cloud.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_node
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:131
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_node.cpp
+- entrypoint: main
+  kind: node
+  node: cloud_node
+  origin: /ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/CMakeLists.txt:1
+  package: velodyne_pointcloud
+  restrict-analysis-to-paths:
+  - /ros_ws/src/velodyne/velodyne_pointcloud
+  sources:
+  - ./src/conversions/cloud_node.cc
+  - ./src/conversions/pointcloudXYZIR.cc
+  - ./src/conversions/convert.cc
+- entrypoint: main
+  kind: node
+  node: ringcolors_node
+  origin: /ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/CMakeLists.txt:17
+  package: velodyne_pointcloud
+  restrict-analysis-to-paths:
+  - /ros_ws/src/velodyne/velodyne_pointcloud
+  sources:
+  - ./src/conversions/ringcolors_node.cc
+  - ./src/conversions/colors.cc
+- entrypoint: main
+  kind: node
+  node: transform_node
+  origin: /ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/CMakeLists.txt:31
+  package: velodyne_pointcloud
+  restrict-analysis-to-paths:
+  - /ros_ws/src/velodyne/velodyne_pointcloud
+  sources:
+  - ./src/conversions/pointcloudXYZIR.cc
+  - ./src/conversions/transform.cc
+  - ./src/conversions/transform_node.cc
+- entrypoint: main
+  kind: node
+  node: velodyne_laserscan_node
+  origin: /ros_ws/src/velodyne/velodyne_laserscan/CMakeLists.txt:35
+  package: velodyne_laserscan
+  restrict-analysis-to-paths:
+  - /ros_ws/src/velodyne/velodyne_laserscan
+  sources:
+  - src/node.cpp
+- entrypoint: main
+  kind: node
+  node: velodyne_node
+  origin: /ros_ws/src/velodyne/velodyne_driver/./src/driver/CMakeLists.txt:2
+  package: velodyne_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/velodyne/velodyne_driver
+  sources:
+  - ./src/driver/velodyne_node.cc
+  - ./src/driver/driver.cc
+- entrypoint: main
+  kind: node
+  node: um7_driver
+  origin: /ros_ws/src/um7/CMakeLists.txt:29
+  package: um7
+  restrict-analysis-to-paths:
+  - /ros_ws/src/um7
+  sources:
+  - src/main.cpp
+  - src/registers.cpp
+  - src/comms.cpp
+- entrypoint: main
+  kind: node
+  node: um6_driver
+  origin: /ros_ws/src/um6/CMakeLists.txt:29
+  package: um6
+  restrict-analysis-to-paths:
+  - /ros_ws/src/um6
+  sources:
+  - src/main.cpp
+  - src/registers.cpp
+  - src/comms.cpp
+- entrypoint: main
+  kind: node
+  node: twist_mux
+  origin: /ros_ws/src/twist_mux/CMakeLists.txt:27
+  package: twist_mux
+  restrict-analysis-to-paths:
+  - /ros_ws/src/twist_mux
+  sources:
+  - src/twist_mux_node.cpp
+  - src/twist_mux_diagnostics.cpp
+  - src/twist_mux.cpp
+- entrypoint: main
+  kind: node
+  node: twist_marker
+  origin: /ros_ws/src/twist_mux/CMakeLists.txt:33
+  package: twist_mux
+  restrict-analysis-to-paths:
+  - /ros_ws/src/twist_mux
+  sources:
+  - src/twist_marker.cpp
+- entrypoint: main
+  kind: node
+  node: laserscan_to_pointcloud_node
+  origin: /ros_ws/src/pointcloud_to_laserscan/CMakeLists.txt:29
+  package: pointcloud_to_laserscan
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointcloud_to_laserscan
+  sources:
+  - src/laserscan_to_pointcloud_node.cpp
+- entrypoint: main
+  kind: node
+  node: pointcloud_to_laserscan_node
+  origin: /ros_ws/src/pointcloud_to_laserscan/CMakeLists.txt:35
+  package: pointcloud_to_laserscan
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointcloud_to_laserscan
+  sources:
+  - src/pointcloud_to_laserscan_node.cpp
+- entrypoint: imu_transformer::ImuTransformerNodelet::onInit
+  kind: nodelet
+  node: imu_transformer_nodelet
+  origin: /ros_ws/src/imu_pipeline/imu_transformer/CMakeLists.txt:28
+  package: imu_transformer
+  restrict-analysis-to-paths:
+  - /ros_ws/src/imu_pipeline/imu_transformer
+  sources:
+  - src/imu_transformer_nodelet.cpp
+- entrypoint: main
+  kind: node
+  node: imu_transformer_node
+  origin: /ros_ws/src/imu_pipeline/imu_transformer/CMakeLists.txt:31
+  package: imu_transformer
+  restrict-analysis-to-paths:
+  - /ros_ws/src/imu_pipeline/imu_transformer
+  sources:
+  - src/imu_transformer_node.cpp
+- entrypoint: main
+  kind: node
+  node: tf2_relay_node
+  origin: /ros_ws/src/cpr_multimaster_tools/tf2_relay/CMakeLists.txt:31
+  package: tf2_relay
+  restrict-analysis-to-paths:
+  - /ros_ws/src/cpr_multimaster_tools/tf2_relay
+  sources:
+  - src/tf2_relay_node.cpp
+- entrypoint: main
+  kind: node
+  node: clock_relay_node
+  origin: /ros_ws/src/cpr_multimaster_tools/clock_relay/CMakeLists.txt:31
+  package: clock_relay
+  restrict-analysis-to-paths:
+  - /ros_ws/src/cpr_multimaster_tools/clock_relay
+  sources:
+  - src/clock_relay_node.cpp
+- entrypoint: main
+  kind: node
+  node: message_relay_node
+  origin: /ros_ws/src/cpr_multimaster_tools/message_relay/CMakeLists.txt:181
+  package: message_relay
+  restrict-analysis-to-paths:
+  - /ros_ws/src/cpr_multimaster_tools/message_relay
+  sources:
+  - src/message_relay_node.cpp
+- entrypoint: main
+  kind: node
+  node: ekf_localization_node
+  origin: /ros_ws/src/robot_localization/CMakeLists.txt:144
+  package: robot_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_localization
+  sources:
+  - src/ekf_localization_node.cpp
+- entrypoint: main
+  kind: node
+  node: ukf_localization_node
+  origin: /ros_ws/src/robot_localization/CMakeLists.txt:145
+  package: robot_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_localization
+  sources:
+  - src/ukf_localization_node.cpp
+- entrypoint: main
+  kind: node
+  node: navsat_transform_node
+  origin: /ros_ws/src/robot_localization/CMakeLists.txt:146
+  package: robot_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_localization
+  sources:
+  - src/navsat_transform_node.cpp
+- entrypoint: main
+  kind: node
+  node: robot_localization_listener_node
+  origin: /ros_ws/src/robot_localization/CMakeLists.txt:147
+  package: robot_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_localization
+  sources:
+  - src/robot_localization_listener_node.cpp
+- entrypoint: main
+  kind: node
+  node: test_ros_robot_localization_listener_publisher
+  origin: /ros_ws/src/robot_localization/CMakeLists.txt:320
+  package: robot_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_localization
+  sources:
+  - test/test_ros_robot_localization_listener_publisher.cpp
+- entrypoint: main
+  kind: node
+  node: imu_filter_node
+  origin: /ros_ws/src/imu_tools/imu_filter_madgwick/CMakeLists.txt:37
+  package: imu_filter_madgwick
+  restrict-analysis-to-paths:
+  - /ros_ws/src/imu_tools/imu_filter_madgwick
+  sources:
+  - src/imu_filter_node.cpp
+- entrypoint: main
+  kind: node
+  node: amcl
+  origin: /ros_ws/src/navigation/amcl/CMakeLists.txt:88
+  package: amcl
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/amcl
+  sources:
+  - src/amcl_node.cpp
+- entrypoint: main
+  kind: node
+  node: imu_node
+  origin: /ros_ws/src/microstrain_3dmgx2_imu/CMakeLists.txt:73
+  package: microstrain_3dmgx2_imu
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_3dmgx2_imu
+  sources:
+  - src/imu_node.cc
+- entrypoint: main
+  kind: node
+  node: get_id
+  origin: /ros_ws/src/microstrain_3dmgx2_imu/CMakeLists.txt:78
+  package: microstrain_3dmgx2_imu
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_3dmgx2_imu
+  sources:
+  - src/get_id.cpp
+- entrypoint: main
+  kind: node
+  node: interactive_marker_twist_server
+  origin: /ros_ws/src/interactive_marker_twist_server/CMakeLists.txt:15
+  package: interactive_marker_twist_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/interactive_marker_twist_server
+  sources:
+  - src/marker_server.cpp
+- entrypoint: main
+  kind: node
+  node: slam_gmapping
+  origin: /ros_ws/src/slam_gmapping/gmapping/CMakeLists.txt:14
+  package: gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/slam_gmapping/gmapping
+  sources:
+  - src/slam_gmapping.cpp
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: slam_gmapping_replay
+  origin: /ros_ws/src/slam_gmapping/gmapping/CMakeLists.txt:23
+  package: gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/slam_gmapping/gmapping
+  sources:
+  - src/replay.cpp
+  - src/slam_gmapping.cpp
+- entrypoint: main
+  kind: node
+  node: GX4-45_Test
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:145
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - MIPSDK/C/Library/Source/mip.c
+  - MIPSDK/C/Library/Source/mip_sdk_system.c
+  - src/GX4-45_Test.c
+  - src/mip_sdk_user_functions.c
+  - MIPSDK/C/Library/Source/mip_sdk_gps.c
+  - MIPSDK/C/Library/Source/mip_sdk_ahrs.c
+  - MIPSDK/C/Library/Source/mip_sdk_inteface.c
+  - MIPSDK/C/Library/Source/mip_sdk_filter.c
+  - MIPSDK/C/Library/Source/ring_buffer.c
+  - MIPSDK/C/Library/Source/mip_sdk_base.c
+  - MIPSDK/C/Library/Source/mip_sdk_3dm.c
+  - MIPSDK/C/Utilities/Source/byteswap_utilities.c
+- entrypoint: main
+  kind: node
+  node: microstrain_mips_node
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:151
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/microstrain_diagnostic_updater.cpp
+  - src/microstrain_3dm_node.cpp
+- entrypoint: main
+  kind: node
+  node: set_accel_bias_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:160
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_accel_bias_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_accel_bias_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:162
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_accel_bias_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_gyro_bias_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:164
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_gyro_bias_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_gyro_bias_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:166
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_gyro_bias_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_hard_iron_values_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:168
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_hard_iron_values_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_hard_iron_values_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:170
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_hard_iron_values_client.cpp
+- entrypoint: main
+  kind: node
+  node: device_report_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:172
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/device_report_client.cpp
+- entrypoint: main
+  kind: node
+  node: gyro_bias_capture_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:174
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/gyro_bias_capture_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_soft_iron_matrix_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:176
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_soft_iron_matrix_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_soft_iron_matrix_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:178
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_soft_iron_matrix_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_complementary_filter_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:180
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_complementary_filter_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_complementary_filter_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:182
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_complementary_filter_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_filter_euler_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:184
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_filter_euler_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_filter_heading_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:186
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_filter_heading_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_accel_bias_model_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:188
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_accel_bias_model_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_accel_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:190
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_accel_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_sensor_vehicle_frame_trans_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:192
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_sensor_vehicle_frame_trans_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_sensor_vehicle_frame_trans_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:194
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_sensor_vehicle_frame_trans_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_sensor_vehicle_frame_offset_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:196
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_sensor_vehicle_frame_offset_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_sensor_vehicle_frame_offset_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:198
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_sensor_vehicle_frame_offset_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_reference_position_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:200
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_reference_position_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_reference_position_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:202
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_reference_position_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_coning_sculling_comp_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:204
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_coning_sculling_comp_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_coning_sculling_comp_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:206
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_coning_sculling_comp_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_estimation_control_flags_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:208
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_estimation_control_flags_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_estimation_control_flags_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:210
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_estimation_control_flags_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_dynamics_mode_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:212
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_dynamics_mode_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_dynamics_mode_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:214
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_dynamics_mode_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_basic_status_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:216
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_basic_status_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_diagnostic_report_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:218
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_diagnostic_report_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_zero_angle_update_threshold_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:220
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_zero_angle_update_threshold_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_zero_angle_update_threshold_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:222
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_zero_angle_update_threshold_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_tare_orientation_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:224
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_tare_orientation_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_accel_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:226
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_accel_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_accel_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:228
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_accel_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_gyro_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:230
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_gyro_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_gyro_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:232
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_gyro_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_mag_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:234
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_mag_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_mag_noise_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:236
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_mag_noise_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_gyro_bias_model_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:238
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_gyro_bias_model_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_gyro_bias_model_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:240
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_gyro_bias_model_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_accel_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:242
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_accel_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_mag_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:244
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_mag_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_mag_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:246
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_mag_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: set_mag_dip_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:248
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/set_mag_dip_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_mag_dip_adaptive_vals_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:250
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_mag_dip_adaptive_vals_client.cpp
+- entrypoint: main
+  kind: node
+  node: get_accel_bias_model_client
+  origin: /ros_ws/src/microstrain_mips/CMakeLists.txt:252
+  package: microstrain_mips
+  restrict-analysis-to-paths:
+  - /ros_ws/src/microstrain_mips
+  sources:
+  - src/get_accel_bias_model_client.cpp
+- entrypoint: main
+  kind: node
+  node: teleop_twist_joy_node
+  origin: /ros_ws/src/teleop_twist_joy/CMakeLists.txt:17
+  package: teleop_twist_joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/teleop_twist_joy
+  sources:
+  - src/teleop_node.cpp
+- entrypoint: main
+  kind: node
+  node: LMS1xx_node
+  origin: /ros_ws/src/lms1xx/CMakeLists.txt:15
+  package: lms1xx
+  restrict-analysis-to-paths:
+  - /ros_ws/src/lms1xx
+  sources:
+  - src/LMS1xx_node.cpp
+- entrypoint: main
+  kind: node
+  node: joy_node
+  origin: /ros_ws/src/joystick_drivers/joy/CMakeLists.txt:25
+  package: joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/joystick_drivers/joy
+  sources:
+  - src/joy_node.cpp
+- entrypoint: main
+  kind: node
+  node: my_publisher
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:19
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_publisher.cpp
+- entrypoint: main
+  kind: node
+  node: my_subscriber
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:24
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_subscriber.cpp
+- entrypoint: main
+  kind: node
+  node: husky_node
+  origin: /ros_ws/src/husky/husky_base/CMakeLists.txt:31
+  package: husky_base
+  restrict-analysis-to-paths:
+  - /ros_ws/src/husky/husky_base
+  sources:
+  - src/husky_diagnostics.cpp
+  - src/husky_hardware.cpp
+  - src/husky_base.cpp
+  - src/horizon_legacy_wrapper.cpp
+- entrypoint: main
+  kind: node
+  node: fake_dynamic_reconfigure_server
+  origin: /ros_ws/src/ddynamic_reconfigure/CMakeLists.txt:35
+  package: ddynamic_reconfigure
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ddynamic_reconfigure
+  sources:
+  - test/fake_dynamic_reconfigure_server.cpp
+- entrypoint: main
+  kind: node
+  node: test_bool_dynamic_reconfigure_server
+  origin: /ros_ws/src/ddynamic_reconfigure/CMakeLists.txt:38
+  package: ddynamic_reconfigure
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ddynamic_reconfigure
+  sources:
+  - test/test_bool_dynamic_reconfigure_server.cpp
+- entrypoint: main
+  kind: node
+  node: ddynamic_reconfigure_auto_update_test
+  origin: /ros_ws/src/ddynamic_reconfigure/CMakeLists.txt:63
+  package: ddynamic_reconfigure
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ddynamic_reconfigure
+  sources:
+  - test/ddynamic_reconfigure_auto_update_test.cpp
+- entrypoint: main
+  kind: node
+  node: nmea_serial_node
+  origin: /ros_ws/src/nmea_comms/CMakeLists.txt:18
+  package: nmea_comms
+  restrict-analysis-to-paths:
+  - /ros_ws/src/nmea_comms
+  sources:
+  - src/serial_node.cpp
+- entrypoint: main
+  kind: node
+  node: nmea_socket_node
+  origin: /ros_ws/src/nmea_comms/CMakeLists.txt:23
+  package: nmea_comms
+  restrict-analysis-to-paths:
+  - /ros_ws/src/nmea_comms
+  sources:
+  - src/socket_node.cpp
+- entrypoint: main
+  kind: node
+  node: map_server
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:53
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: map_server-map_saver
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:61
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - src/map_saver.cpp
+- entrypoint: main
+  kind: node
+  node: rtest
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:88
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - test/rtest.cpp
+  - test/test_constants.cpp
+- entrypoint: main
+  kind: node
+  node: serial_example
+  origin: /ros_ws/src/serial/CMakeLists.txt:58
+  package: serial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/serial
+  sources:
+  - examples/serial_example.cc
+- entrypoint: main
+  kind: node
+  node: autoptr_test
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:34
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - utils/autoptr_test.cpp
+- entrypoint: main
+  kind: node
+  node: log_test
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:75
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - log/log_test.cpp
+- entrypoint: main
+  kind: node
+  node: log_plot
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:77
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - log/log_plot.cpp
+- entrypoint: main
+  kind: node
+  node: scanstudio2carmen
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:79
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - log/scanstudio2carmen.cpp
+- entrypoint: main
+  kind: node
+  node: rdk2carmen
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:81
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - log/rdk2carmen.cpp
+- entrypoint: main
+  kind: node
+  node: configfile_test
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:95
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - configfile/configfile_test.cpp
+- entrypoint: main
+  kind: node
+  node: scanmatch_test
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:109
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - scanmatcher/scanmatch_test.cpp
+- entrypoint: main
+  kind: node
+  node: icptest
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:111
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - scanmatcher/icptest.cpp
+- entrypoint: main
+  kind: node
+  node: gfs2log
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:128
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - gridfastslam/gfs2log.cpp
+- entrypoint: main
+  kind: node
+  node: gfs2rec
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:130
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - gridfastslam/gfs2rec.cpp
+- entrypoint: main
+  kind: node
+  node: gfs2neff
+  origin: /ros_ws/src/openslam_gmapping/CMakeLists.txt:132
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - gridfastslam/gfs2neff.cpp
+- entrypoint: main
+  kind: node
+  node: quux_user-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:33
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: quux_srv-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:40
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/srv_test.cpp
+- entrypoint: main
+  kind: node
+  node: nolangs_exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/nolangs/CMakeLists.txt:9
+  package: nolangs
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/nolangs
+  sources:
+  - main.cpp
+- entrypoint: main
+  kind: node
+  node: leaf
+  origin: /ros_ws/src/catkin/test/mock_resources/src/linker_options/src/leaf_pkg/CMakeLists.txt:6
+  package: leaf_pkg
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/linker_options/src/leaf_pkg
+  sources:
+  - leaf.cpp
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel_isolated/setup.bash
