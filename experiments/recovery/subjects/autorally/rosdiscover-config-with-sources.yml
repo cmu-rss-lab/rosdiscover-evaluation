@@ -1,0 +1,338 @@
+environment: {}
+image: rosdiscover-experiments/autorally:c2692f2
+launches:
+- arguments: {}
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- arguments: {}
+  filename: /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
+- arguments: {}
+  filename: /ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch
+node_sources:
+- entrypoint: main
+  kind: node
+  node: nolangs_exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/nolangs/CMakeLists.txt:9
+  package: nolangs
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/nolangs
+  sources:
+  - main.cpp
+- entrypoint: main
+  kind: node
+  node: quux_user-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:33
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: quux_srv-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:40
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/srv_test.cpp
+- entrypoint: main
+  kind: node
+  node: leaf
+  origin: /ros_ws/src/catkin/test/mock_resources/src/linker_options/src/leaf_pkg/CMakeLists.txt:6
+  package: leaf_pkg
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/linker_options/src/leaf_pkg
+  sources:
+  - leaf.cpp
+- entrypoint: main
+  kind: node
+  node: my_publisher
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:19
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_publisher.cpp
+- entrypoint: main
+  kind: node
+  node: my_subscriber
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:24
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_subscriber.cpp
+- entrypoint: main
+  kind: node
+  node: imu_3dm_gx4
+  origin: /ros_ws/src/imu_3dm_gx4/CMakeLists.txt:23
+  package: imu_3dm_gx4
+  restrict-analysis-to-paths:
+  - /ros_ws/src/imu_3dm_gx4
+  - /ros_ws/devel/include/imu_3dm_gx4
+  sources:
+  - src/imu.cpp
+  - src/imu_3dm_gx4.cpp
+- entrypoint: main
+  kind: node
+  node: joy_node
+  origin: /ros_ws/src/joystick_drivers/joy/CMakeLists.txt:25
+  package: joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/joystick_drivers/joy
+  sources:
+  - src/joy_node.cpp
+- entrypoint: pointgrey_camera_driver::PointGreyCameraNodelet::onInit
+  kind: nodelet
+  node: PointGreyCameraNodelet
+  origin: /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/CMakeLists.txt:60
+  package: pointgrey_camera_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver
+  - /ros_ws/devel/include/pointgrey_camera_driver
+  sources:
+  - src/nodelet.cpp
+- entrypoint: pointgrey_camera_driver::PointGreyStereoCameraNodelet::onInit
+  kind: nodelet
+  node: PointGreyStereoCameraNodelet
+  origin: /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/CMakeLists.txt:64
+  package: pointgrey_camera_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver
+  - /ros_ws/devel/include/pointgrey_camera_driver
+  sources:
+  - src/stereo_nodelet.cpp
+- entrypoint: main
+  kind: node
+  node: pointgrey_camera_node
+  origin: /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/CMakeLists.txt:68
+  package: pointgrey_camera_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver
+  - /ros_ws/devel/include/pointgrey_camera_driver
+  sources:
+  - src/node.cpp
+- entrypoint: main
+  kind: node
+  node: pointgrey_stereo_node
+  origin: /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/CMakeLists.txt:74
+  package: pointgrey_camera_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver
+  - /ros_ws/devel/include/pointgrey_camera_driver
+  sources:
+  - src/stereo_node.cpp
+- entrypoint: main
+  kind: node
+  node: pointgrey_list_cameras
+  origin: /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/CMakeLists.txt:80
+  package: pointgrey_camera_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver
+  - /ros_ws/devel/include/pointgrey_camera_driver
+  sources:
+  - src/list_cameras.cpp
+- entrypoint: main
+  kind: node
+  node: gpsHemisphereInterface
+  origin: /ros_ws/src/autorally/autorally_core/./src/gps/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/gps/GPSHemisphere.cpp
+- entrypoint: main
+  kind: node
+  node: ocs
+  origin: /ros_ws/src/autorally/autorally_core/./src/ocs/CMakeLists.txt:21
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/ocs/DiagnosticsEntry.cpp
+  - ./src/ocs/qnode.cpp
+  - ./src/ocs/main_window.cpp
+  - ./src/ocs/ImageMaskEntry.cpp
+  - ./src/ocs/main.cpp
+- entrypoint: main
+  kind: node
+  node: runStop
+  origin: /ros_ws/src/autorally/autorally_core/./src/RunStop/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/RunStop/RunStop.cpp
+- entrypoint: main
+  kind: node
+  node: xbeeCoordinator
+  origin: /ros_ws/src/autorally/autorally_core/./src/xbee/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/xbee/XbeeCoordinator.cpp
+  - ./src/xbee/XbeeInterface.cpp
+- entrypoint: main
+  kind: node
+  node: xbeeNode
+  origin: /ros_ws/src/autorally/autorally_core/./src/xbee/CMakeLists.txt:3
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/xbee/XbeeNode.cpp
+  - ./src/xbee/XbeeInterface.cpp
+- entrypoint: autorally_core::ImageRepublisher::onInit
+  kind: nodelet
+  node: ImageRepublisher
+  origin: /ros_ws/src/autorally/autorally_core/./src/ImageRepublisher/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/ImageRepublisher/ImageRepublisher.cpp
+- entrypoint: main
+  kind: node
+  node: StateEstimator
+  origin: /ros_ws/src/autorally/autorally_core/./src/StateEstimator/CMakeLists.txt:14
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/StateEstimator/StateEstimator.cpp
+- entrypoint: autorally_core::AutoRallyChassis::onInit
+  kind: nodelet
+  node: AutoRallyChassis
+  origin: /ros_ws/src/autorally/autorally_core/./src/autorally_chassis/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/autorally_chassis/AutoRallyChassis.cpp
+- entrypoint: autorally_core::CameraTrigger::onInit
+  kind: nodelet
+  node: CameraTrigger
+  origin: /ros_ws/src/autorally/autorally_core/./src/camera_trigger/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/camera_trigger/CameraTrigger.cpp
+- entrypoint: autorally_core::CameraAutoBalancePtGrey::onInit
+  kind: nodelet
+  node: CameraAutoBalancePtGrey
+  origin: /ros_ws/src/autorally/autorally_core/./src/CameraAutoBalance/CMakeLists.txt:12
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/CameraAutoBalance/CameraAutoBalancePtGrey.cpp
+- entrypoint: autorally_core::CameraAutoBalanceFLIR::onInit
+  kind: nodelet
+  node: CameraAutoBalanceFLIR
+  origin: /ros_ws/src/autorally/autorally_core/./src/CameraAutoBalance/CMakeLists.txt:33
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/CameraAutoBalance/CameraAutoBalanceFLIR.cpp
+- entrypoint: main
+  kind: node
+  node: WheelOdometry
+  origin: /ros_ws/src/autorally/autorally_core/./src/WheelOdometry/CMakeLists.txt:1
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - ./src/WheelOdometry/wheel_odometry.cpp
+- entrypoint: autorally_control::ConstantSpeedController::onInit
+  kind: nodelet
+  node: ConstantSpeedController
+  origin: /ros_ws/src/autorally/autorally_control/./src/ConstantSpeedController/CMakeLists.txt:1
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/ConstantSpeedController/ConstantSpeedController.cpp
+- entrypoint: main
+  kind: node
+  node: joystickController
+  origin: /ros_ws/src/autorally/autorally_control/./src/joystick/CMakeLists.txt:1
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/joystick/joystickControlMain.cpp
+  - ./src/joystick/JoystickControl.cpp
+- entrypoint: main
+  kind: node
+  node: gpsWaypoint
+  origin: /ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/CMakeLists.txt:7
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/gpsWaypoint/gpsWaypoint.cpp
+- entrypoint: main
+  kind: node
+  node: path_integral_bf
+  origin: /ros_ws/src/autorally/autorally_control/./src/path_integral/CMakeLists.txt:38
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/path_integral/path_integral_main.cu
+  - src/path_integral/param_getter.cpp
+  - src/path_integral/autorally_plant.cpp
+- entrypoint: main
+  kind: node
+  node: path_integral_nn
+  origin: /ros_ws/src/autorally/autorally_control/./src/path_integral/CMakeLists.txt:62
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/path_integral/path_integral_main.cu
+  - src/path_integral/param_getter.cpp
+  - src/path_integral/autorally_plant.cpp
+- entrypoint: main
+  kind: node
+  node: path_integral_monitor
+  origin: /ros_ws/src/autorally/autorally_control/./src/path_integral/CMakeLists.txt:78
+  package: autorally_control
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_control
+  - /ros_ws/src/autorally/autorally_control
+  sources:
+  - ./src/path_integral/status_monitor.cpp
+- entrypoint: main
+  kind: node
+  node: simple_bot_hw
+  origin: /ros_ws/src/ros_controllers/effort_controllers/CMakeLists.txt:77
+  package: effort_controllers
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ros_controllers/effort_controllers
+  sources:
+  - test/simple_bot_hw.cpp
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
