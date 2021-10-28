@@ -18,24 +18,24 @@ from common.config import (
 )
 
 
-def check(config: ExperimentConfig) -> None:
+def check(config: ExperimentConfig, kind: str) -> None:
     ({
         "detection": _check_for_detection_experiment,
         "recovery": _check_for_recovery_experiment,
-    })[config["type"]](config)
+    })[config["type"]](config, kind)
 
 
-def _check_for_detection_experiment(config: DetectionExperimentConfig) -> None:
+def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str) -> None:
     error(f"{config['type']} not yet supported for detection experiment")
 
 
-def _check_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
+def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
-    input_filename = os.path.join(config_directory, "observed.architecture.yml")
+    input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
 
-    acme_filename = os.path.join(config_directory, "observed.architecture.acme")
-    acme_log_filename = os.path.join(log_directory, "acme-and-check-observed.log")
+    acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
+    acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
     generate_and_check_acme(
         image=config["image"],
         input_filename=input_filename,
@@ -58,6 +58,7 @@ def main():
         level="INFO",
     )
     parser = argparse.ArgumentParser("Checks the architecture by converting to Acme and checking constraints")
+    parser.add_argument('kind', type=str, choices=['observed', 'recovered'])
     parser.add_argument(
         "configuration",
         help="the path to the configuration file for this experiment",
@@ -69,7 +70,7 @@ def main():
         error(f"configuration file not found: {experiment_filename}")
     config = load_config(experiment_filename)
 
-    check(config)
+    check(config, args.kind)
 
 
 if __name__ == "__main__":
