@@ -10,7 +10,7 @@ import rosdiscover.cli
 from .config import ROSDiscoverConfig
 
 
-TOPICS_TO_IGNORE = """/clock
+THINGS_TO_IGNORE = """/clock
 /tf
 /tf_static
 /diagnostics
@@ -36,7 +36,7 @@ def generate_and_check_acme(
     }) as config_filename:
         ignore_file: str = tempfile.mkstemp(suffix="ignore.txt")[1]
         with open(ignore_file, 'w') as fh:
-            fh.write(TOPICS_TO_IGNORE)
+            fh.write(THINGS_TO_IGNORE)
 
         args = ["acme", config_filename]
         args += ["--from-yml", input_filename]

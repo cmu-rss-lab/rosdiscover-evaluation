@@ -10,7 +10,7 @@ import attr
 import yaml
 from loguru import logger
 
-from common.acme import TOPICS_TO_IGNORE
+from common.acme import THINGS_TO_IGNORE
 from common.config import ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -237,7 +237,7 @@ def extract_architecture_summary(
 
 def include_element(named: t.Dict[str, t.Any]) -> bool:
     name = named["name"]
-    for ignore in TOPICS_TO_IGNORE.split('\n'):
+    for ignore in THINGS_TO_IGNORE.split('\n'):
         if ignore.startswith("*") and name.startswith(ignore[1:]):
             return False
         if ignore == name:
