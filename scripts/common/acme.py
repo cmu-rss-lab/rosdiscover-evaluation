@@ -18,6 +18,9 @@ TOPICS_TO_IGNORE = """/clock
 */unload_nodelet
 */bond
 */list_controllers
+*/parameter_descriptions
+*/parameter_updates
+*/set_parameters
 """
 
 

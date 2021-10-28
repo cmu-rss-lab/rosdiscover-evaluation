@@ -237,16 +237,10 @@ def extract_architecture_summary(
 
 def include_element(named: t.Dict[str, t.Any]) -> bool:
     name = named["name"]
-    if name.endswith("parameter_descriptions"):
-        return False
-    if name.endswith("parameter_updates"):
-        return False
-    if name.endswith("set_parameters"):
-        return False
     for ignore in TOPICS_TO_IGNORE.split('\n'):
-        if ignore.startswith("*") and named.startswith(ignore[1:]):
+        if ignore.startswith("*") and name.startswith(ignore[1:]):
             return False
-        if ignore == named:
+        if ignore == name:
             return False
     return True
 
