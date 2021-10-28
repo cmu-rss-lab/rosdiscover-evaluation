@@ -10,6 +10,7 @@ import attr
 import yaml
 from loguru import logger
 
+from common.acme import TOPICS_TO_IGNORE
 from common.config import ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -242,6 +243,11 @@ def include_element(named: t.Dict[str, t.Any]) -> bool:
         return False
     if name.endswith("set_parameters"):
         return False
+    for ignore in TOPICS_TO_IGNORE.split('\n'):
+        if ignore.startswith("*") and named.startswith(ignore[1:]):
+            return False
+        if ignore == named:
+            return False
     return True
 
 
