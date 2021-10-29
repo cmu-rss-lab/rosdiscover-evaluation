@@ -19,6 +19,7 @@ THINGS_TO_IGNORE = """/clock
 */bond
 */list_controllers
 */parameter_descriptions
+*/parameter_description
 */parameter_updates
 */set_parameters
 """
