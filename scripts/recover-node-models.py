@@ -71,16 +71,21 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
     @classmethod
     def build(
         cls,
+        experiment_config: RecoveryExperimentConfig,
         system: str,
         model_filename: str,
         time_taken: float,
     ) -> CompletedNodeModelRecoverySummary:
-        # TODO summarize model
+        # we need to load the rosdiscover config
+        config_filename = experiment_config["config_with_node_sources_filename"]
+        config = rosdiscover.Config.load(config_filename)
+
+        # summarize model
         with open(model_filename, "r") as fh:
             model = json.load(fh)
             node = model["node-name"]
             package = model["package"]["name"]
-            program = SymbolicProgramLoader().load(model["program"])
+            program = SymbolicProgramLoader.for_config(config).load(model["program"])
             entrypoint = program.entrypoint_name
             num_functions = len(program.functions)
 
@@ -88,8 +93,6 @@ class CompletedNodeModelRecoverySummary(NodeModelRecoverySummary):
             for function in program.functions.values():
                 statements += list(function.body)
             num_statements = len(statements)
-
-            # TODO find number of API calls that contain at least one unknown
 
             # FIXME this is flawed: API calls may be nested inside a statement
             api_calls = [s for s in statements if isinstance(s, SymbolicRosApiCall)]
@@ -251,7 +254,8 @@ def recover_all(
     )
     for node_sources in package_node_to_sources.values():
         summary = recover_node_from_sources(experiment_config, node_sources)
-        summaries.add(summary)
+        if summary:
+            summaries.add(summary)
     logger.info("recovered all node models for system")
 
     summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
@@ -280,7 +284,7 @@ def recover_single_node(
 def recover_node_from_sources(
     experiment_config: RecoveryExperimentConfig,
     node_sources: NodeSources,
-) -> NodeModelRecoverySummary:
+) -> t.Optional[NodeModelRecoverySummary]:
     entrypoint = node_sources.get("entrypoint", "main")
     package = node_sources["package"]
     node = node_sources["node"]
@@ -323,11 +327,15 @@ def recover_node_from_sources(
         try:
             rosdiscover.cli.main(args)
             summary = CompletedNodeModelRecoverySummary.build(
+                experiment_config=experiment_config,
                 system=experiment_config["subject"],
                 model_filename=model_filename,
                 time_taken=timer.duration,
             )
             logger.info(f"statically recovered model for node [{node}] in package [{package}]: {summary}")
+        except rosdiscover.recover.tool.CompileCommandsNotFound:
+            logger.info(f"ignoring node without compile_commands.json: {node}")
+            return None
         except Exception as err:
             summary = CrashedNodeModelRecoverySummary(
                 system=experiment_config["subject"],
