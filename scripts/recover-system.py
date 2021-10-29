@@ -13,7 +13,6 @@ logger.remove()
 import rosdiscover
 import rosdiscover.cli
 
-from common import generate_and_check_acme
 from common.config import (
     ExperimentConfig,
     NodeSources,
@@ -60,14 +59,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         output_filename=output_filename,
         log_filename=log_filename,
     )
-    acme_filename = os.path.join(config_directory, "recovered.archiecture.acme")
-    acme_log_filename = os.path.join(log_directory, "acme-and-check-recovered.log")
-    generate_and_check_acme(
-        image=config["image"],
-        input_filename=output_filename,
-        output_filename=acme_filename,
-        log_filename=acme_log_filename,
-    )
+
 
 def recover_system(
     image: str,
