@@ -10,6 +10,7 @@ import attr
 import yaml
 from loguru import logger
 
+from common.acme import THINGS_TO_IGNORE
 from common.config import ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -153,6 +154,22 @@ def compare(config: ExperimentConfig) -> None:
         f.write("Recoverd architecture summary:\n")
         f.write("==============================\n")
         recovered_summary.write_to_file(f)
+        f.write("Provenance information:\n")
+        f.write("-----------------------\n")
+
+        def provenance(p: str) -> t.List[str]:
+            return [node['fullname'] for node in recovered_architecture if node['provenance'] == p]
+
+        handwritten = provenance("handwritten")
+        recovered = provenance("recovered")
+        placeholders = provenance("placeholder")
+        unknown = provenance("unknown")
+        f.write(f"HANDWRITTEN ({len(handwritten)}): {', '.join(handwritten)}\n")
+        f.write(f"RECOVERED ({len(recovered)}): {', '.join(recovered)}\n")
+        f.write(f"PLACEHOLDERS ({len(placeholders)}): {', '.join(placeholders)}\n")
+        f.write(f"UNKNOWN ({len(unknown)}): {', '.join(unknown)}\n")
+
+
 
         nodes_in_common = observed_summary.nodes.intersection(recovered_summary.nodes)
         f.write("\n")
@@ -220,12 +237,11 @@ def extract_architecture_summary(
 
 def include_element(named: t.Dict[str, t.Any]) -> bool:
     name = named["name"]
-    if name.endswith("parameter_descriptions"):
-        return False
-    if name.endswith("parameter_updates"):
-        return False
-    if name.endswith("set_parameters"):
-        return False
+    for ignore in THINGS_TO_IGNORE.split('\n'):
+        if ignore.startswith("*") and name.startswith(ignore[1:]):
+            return False
+        if ignore == name:
+            return False
     return True
 
 
