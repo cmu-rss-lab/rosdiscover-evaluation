@@ -1,0 +1,1079 @@
+environment: {}
+image: rosdiscover-experiments/turtlebot:2.4.2
+launches:
+- arguments: {}
+  filename: /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch
+- arguments: {}
+  filename: /ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/amcl_demo.launch
+node_sources:
+- entrypoint: main
+  kind: node
+  node: zeroconf
+  origin: /ros_ws/src/zeroconf_avahi_suite/zeroconf_avahi/./src/node/CMakeLists.txt:5
+  package: zeroconf_avahi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/zeroconf_avahi_suite/zeroconf_avahi
+  sources:
+  - ./src/node/zeroconf.cpp
+- entrypoint: main
+  kind: node
+  node: _node
+  origin: /ros_ws/src/yujin_ocs/yocs_virtual_sensor/CMakeLists.txt:27
+  package: yocs_virtual_sensor
+  restrict-analysis-to-paths:
+  - /ros_ws/src/yujin_ocs/yocs_virtual_sensor
+  sources:
+  - src/virtual_sensor_node.cpp
+- entrypoint: main
+  kind: node
+  node: warehouse_test_dbloader
+  origin: /ros_ws/src/warehouse_ros/CMakeLists.txt:33
+  package: warehouse_ros
+  restrict-analysis-to-paths:
+  - /ros_ws/src/warehouse_ros
+  sources:
+  - src/test_dbloader.cpp
+- entrypoint: main
+  kind: node
+  node: move_base_node
+  origin: /ros_ws/src/navigation/move_base/CMakeLists.txt:58
+  package: move_base
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/move_base
+  sources:
+  - src/move_base_node.cpp
+- entrypoint: main
+  kind: node
+  node: planner
+  origin: /ros_ws/src/navigation/global_planner/CMakeLists.txt:54
+  package: global_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/global_planner
+  sources:
+  - src/plan_node.cpp
+- entrypoint: main
+  kind: node
+  node: navfn_node
+  origin: /ros_ws/src/navigation/navfn/CMakeLists.txt:67
+  package: navfn
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/navfn
+  sources:
+  - src/navfn_node.cpp
+- entrypoint: main
+  kind: node
+  node: navtest
+  origin: /ros_ws/src/navigation/navfn/CMakeLists.txt:96
+  package: navfn
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/navfn
+  sources:
+  - src/navtest.cpp
+  - src/navwin.cpp
+- entrypoint: main
+  kind: node
+  node: point_grid
+  origin: /ros_ws/src/navigation/base_local_planner/CMakeLists.txt:121
+  package: base_local_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/base_local_planner
+  sources:
+  - src/point_grid.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_markers
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:119
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_markers.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_cloud
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:125
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_cloud.cpp
+- entrypoint: main
+  kind: node
+  node: costmap_2d_node
+  origin: /ros_ws/src/navigation/costmap_2d/CMakeLists.txt:131
+  package: costmap_2d
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/costmap_2d
+  sources:
+  - src/costmap_2d_node.cpp
+- entrypoint: main
+  kind: node
+  node: turtlebot_teleop_joy
+  origin: /ros_ws/src/turtlebot/turtlebot_teleop/CMakeLists.txt:19
+  package: turtlebot_teleop
+  restrict-analysis-to-paths:
+  - /ros_ws/src/turtlebot/turtlebot_teleop
+  sources:
+  - src/turtlebot_joy.cpp
+- entrypoint: main
+  kind: node
+  node: laser_footprint_filter
+  origin: /ros_ws/src/turtlebot_apps/turtlebot_navigation/CMakeLists.txt:21
+  package: turtlebot_navigation
+  restrict-analysis-to-paths:
+  - /ros_ws/src/turtlebot_apps/turtlebot_navigation
+  sources:
+  - src/laser_footprint_filter.cpp
+- entrypoint: main
+  kind: node
+  node: turtlebot_move_action_server
+  origin: /ros_ws/src/turtlebot_apps/turtlebot_actions/CMakeLists.txt:29
+  package: turtlebot_actions
+  restrict-analysis-to-paths:
+  - /ros_ws/src/turtlebot_apps/turtlebot_actions
+  sources:
+  - src/turtlebot_move_action_server.cpp
+- entrypoint: main
+  kind: node
+  node: find_fiducial_pose
+  origin: /ros_ws/src/turtlebot_apps/turtlebot_actions/CMakeLists.txt:33
+  package: turtlebot_actions
+  restrict-analysis-to-paths:
+  - /ros_ws/src/turtlebot_apps/turtlebot_actions
+  sources:
+  - src/find_fiducial_pose.cpp
+  - src/detect_calibration_pattern.cpp
+- entrypoint: main
+  kind: node
+  node: stdr_gui_node
+  origin: /ros_ws/src/stdr_simulator/stdr_gui/CMakeLists.txt:76
+  package: stdr_gui
+  restrict-analysis-to-paths:
+  - /ros_ws/src/stdr_simulator/stdr_gui
+  sources:
+  - src/stdr_gui/stdr_robot_creator/stdr_kinematic_properties_loader.cpp
+  - src/stdr_gui/stdr_tools.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_robot_footprint_loader.cpp
+  - src/stdr_gui/stdr_map_loader.cpp
+  - src/stdr_gui/stdr_gui_connector.cpp
+  - src/stdr_gui/stdr_visualization/stdr_laser_visualization.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_co2.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_robot_properties_loader.cpp
+  - src/stdr_gui/stdr_gui_node.cpp
+  - src/stdr_gui/stdr_visualization/stdr_sonar_visualization.cpp
+  - src/stdr_gui/stdr_gui_application.cpp
+  - src/stdr_gui/stdr_gui_controller.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_rfid.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_rfid_antenna_properties_loader.cpp
+  - src/stdr_gui/stdr_map_connector.cpp
+  - src/stdr_gui/stdr_info_loader.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_robot_creator_connector.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_laser.cpp
+  - src/stdr_gui/stdr_map_metainformation/stdr_gui_co2_source.cpp
+  - src/stdr_gui/stdr_map_metainformation/stdr_gui_thermal_source.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_sonar.cpp
+  - src/stdr_gui/stdr_visualization/stdr_robot_visualization.cpp
+  - src/stdr_gui/stdr_map_metainformation/stdr_gui_source.cpp
+  - src/stdr_gui/stdr_map_metainformation/stdr_gui_sound_source.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_sound_sensor_properties_loader.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_thermal_sensor_properties_loader.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_laser_properties_loader.cpp
+  - src/stdr_gui/stdr_map_metainformation/stdr_gui_rfid_tag.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_robot_creator_loader.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_co2_sensor_properties_loader.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_sound.cpp
+  - src/stdr_gui/stdr_gui_loader.cpp
+  - src/stdr_gui/stdr_info_connector.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_thermal.cpp
+  - src/stdr_gui/stdr_robot_creator/stdr_sonar_properties_loader.cpp
+  - src/stdr_gui/stdr_gui_sensors/stdr_gui_robot.cpp
+- entrypoint: main
+  kind: node
+  node: stdr_server_node
+  origin: /ros_ws/src/stdr_simulator/stdr_server/CMakeLists.txt:61
+  package: stdr_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/stdr_simulator/stdr_server
+  sources:
+  - src/stdr_server_node.cpp
+- entrypoint: main
+  kind: node
+  node: load_map
+  origin: /ros_ws/src/stdr_simulator/stdr_server/CMakeLists.txt:67
+  package: stdr_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/stdr_simulator/stdr_server
+  sources:
+  - src/map_loader_node.cpp
+- entrypoint: main
+  kind: node
+  node: robot_handler
+  origin: /ros_ws/src/stdr_simulator/stdr_robot/CMakeLists.txt:98
+  package: stdr_robot
+  restrict-analysis-to-paths:
+  - /ros_ws/src/stdr_simulator/stdr_robot
+  sources:
+  - src/handle_robot_node.cpp
+- entrypoint: main
+  kind: node
+  node: src/robot_pose_publisher.cpp
+  origin: /ros_ws/src/robot_pose_publisher/CMakeLists.txt:28
+  package: robot_pose_publisher
+  restrict-analysis-to-paths:
+  - /ros_ws/src/robot_pose_publisher
+  sources: []
+- entrypoint: main
+  kind: node
+  node: robot_pose_ekf
+  origin: /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt:52
+  package: robot_pose_ekf
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/robot_pose_ekf
+  sources:
+  - src/odom_estimation_node.cpp
+  - src/odom_estimation.cpp
+  - src/nonlinearanalyticconditionalgaussianodo.cpp
+- entrypoint: main
+  kind: node
+  node: test_robot_pose_ekf
+  origin: /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt:90
+  package: robot_pose_ekf
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/robot_pose_ekf
+  sources:
+  - test/test_robot_pose_ekf.cpp
+- entrypoint: main
+  kind: node
+  node: test_robot_pose_ekf_zero_covariance
+  origin: /ros_ws/src/navigation/robot_pose_ekf/CMakeLists.txt:105
+  package: robot_pose_ekf
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/robot_pose_ekf
+  sources:
+  - test/test_robot_pose_ekf_zero_covariance.cpp
+- entrypoint: main
+  kind: node
+  node: get_debug_info
+  origin: /ros_ws/src/realsense_camera/CMakeLists.txt:108
+  package: realsense_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/realsense_camera
+  sources:
+  - src/get_debug_info.cpp
+- entrypoint: main
+  kind: node
+  node: tests_camera_core
+  origin: /ros_ws/src/realsense_camera/CMakeLists.txt:123
+  package: realsense_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/realsense_camera
+  sources:
+  - test/camera_core.cpp
+- entrypoint: main
+  kind: node
+  node: tests_rgbd_topics
+  origin: /ros_ws/src/realsense_camera/CMakeLists.txt:131
+  package: realsense_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/realsense_camera
+  sources:
+  - test/rgbd_topics.cpp
+- entrypoint: main
+  kind: node
+  node: slam_gmapping
+  origin: /ros_ws/src/slam_gmapping/gmapping/CMakeLists.txt:14
+  package: gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/slam_gmapping/gmapping
+  sources:
+  - src/main.cpp
+  - src/slam_gmapping.cpp
+- entrypoint: main
+  kind: node
+  node: slam_gmapping_replay
+  origin: /ros_ws/src/slam_gmapping/gmapping/CMakeLists.txt:20
+  package: gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/slam_gmapping/gmapping
+  sources:
+  - src/replay.cpp
+  - src/slam_gmapping.cpp
+- entrypoint: main
+  kind: node
+  node: fake_localization
+  origin: /ros_ws/src/navigation/fake_localization/CMakeLists.txt:29
+  package: fake_localization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/fake_localization
+  sources:
+  - fake_localization.cpp
+- entrypoint: main
+  kind: node
+  node: amcl
+  origin: /ros_ws/src/navigation/amcl/CMakeLists.txt:59
+  package: amcl
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/amcl
+  sources:
+  - src/amcl_node.cpp
+- entrypoint: main
+  kind: node
+  node: test_wrapper
+  origin: /ros_ws/src/openni2_camera/CMakeLists.txt:47
+  package: openni2_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openni2_camera
+  sources:
+  - test/test_wrapper.cpp
+- entrypoint: main
+  kind: node
+  node: openni2_camera_node
+  origin: /ros_ws/src/openni2_camera/CMakeLists.txt:62
+  package: openni2_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openni2_camera
+  sources:
+  - ros/openni2_camera_node.cpp
+- entrypoint: main
+  kind: node
+  node: list_devices
+  origin: /ros_ws/src/openni2_camera/CMakeLists.txt:68
+  package: openni2_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openni2_camera
+  sources:
+  - src/list_devices.cpp
+- entrypoint: main
+  kind: node
+  node: usb_reset
+  origin: /ros_ws/src/openni2_camera/CMakeLists.txt:74
+  package: openni2_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openni2_camera
+  sources:
+  - src/usb_reset.c
+- entrypoint: main
+  kind: node
+  node: joy_node
+  origin: /ros_ws/src/joystick_drivers/joy/CMakeLists.txt:16
+  package: joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/joystick_drivers/joy
+  sources:
+  - src/joy_node.cpp
+- entrypoint: main
+  kind: node
+  node: freenect_node
+  origin: /ros_ws/src/freenect_stack/freenect_camera/CMakeLists.txt:39
+  package: freenect_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/freenect_stack/freenect_camera
+  sources:
+  - src/nodes/freenect_node.cpp
+- entrypoint: depthimage_to_laserscan::DepthImageToLaserScanNodelet::onInit
+  kind: nodelet
+  node: DepthImageToLaserScanNodelet
+  origin: /ros_ws/src/depthimage_to_laserscan/CMakeLists.txt:27
+  package: depthimage_to_laserscan
+  restrict-analysis-to-paths:
+  - /ros_ws/src/depthimage_to_laserscan
+  sources:
+  - src/DepthImageToLaserScanNodelet.cpp
+- entrypoint: main
+  kind: node
+  node: depthimage_to_laserscan
+  origin: /ros_ws/src/depthimage_to_laserscan/CMakeLists.txt:30
+  package: depthimage_to_laserscan
+  restrict-analysis-to-paths:
+  - /ros_ws/src/depthimage_to_laserscan
+  sources:
+  - src/depthimage_to_laserscan.cpp
+- entrypoint: main
+  kind: node
+  node: astra_camera_node
+  origin: /ros_ws/src/astra_camera/CMakeLists.txt:71
+  package: astra_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/astra_camera
+  sources:
+  - ros/astra_camera_node.cpp
+- entrypoint: main
+  kind: node
+  node: astra_list_devices
+  origin: /ros_ws/src/astra_camera/CMakeLists.txt:77
+  package: astra_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/astra_camera
+  sources:
+  - src/list_devices.cpp
+- entrypoint: main
+  kind: node
+  node: astra_test_wrapper
+  origin: /ros_ws/src/astra_camera/CMakeLists.txt:82
+  package: astra_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/astra_camera
+  sources:
+  - test/test_wrapper.cpp
+- entrypoint: main
+  kind: node
+  node: astra_usb_reset
+  origin: /ros_ws/src/astra_camera/CMakeLists.txt:85
+  package: astra_camera
+  restrict-analysis-to-paths:
+  - /ros_ws/src/astra_camera
+  sources:
+  - src/usb_reset.c
+- entrypoint: main
+  kind: node
+  node: my_publisher
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:19
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_publisher.cpp
+- entrypoint: main
+  kind: node
+  node: my_subscriber
+  origin: /ros_ws/src/image_common/image_transport/tutorial/CMakeLists.txt:24
+  package: tutorial
+  restrict-analysis-to-paths:
+  - /ros_ws/src/image_common/image_transport/tutorial
+  sources:
+  - src/my_subscriber.cpp
+- entrypoint: main
+  kind: node
+  node: map_server
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:50
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: map_server-map_saver
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:58
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - src/map_saver.cpp
+- entrypoint: main
+  kind: node
+  node: rtest
+  origin: /ros_ws/src/navigation/map_server/CMakeLists.txt:85
+  package: map_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/navigation/map_server
+  sources:
+  - test/rtest.cpp
+  - test/test_constants.cpp
+- entrypoint: main
+  kind: node
+  node: keyop
+  origin: /ros_ws/src/kobuki/kobuki_keyop/./src/CMakeLists.txt:11
+  package: kobuki_keyop
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki/kobuki_keyop
+  sources:
+  - ./src/keyop_core.cpp
+  - ./src/main.cpp
+- entrypoint: main
+  kind: node
+  node: kobuki_velocity_commands
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/test/CMakeLists.txt:5
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/test/velocity_commands.cpp
+- entrypoint: main
+  kind: node
+  node: demo_kobuki_initialisation
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/test/CMakeLists.txt:8
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/test/initialisation.cpp
+- entrypoint: main
+  kind: node
+  node: demo_kobuki_sigslots
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/test/CMakeLists.txt:11
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/test/sigslots.cpp
+- entrypoint: main
+  kind: node
+  node: demo_kobuki_simple_loop
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/test/CMakeLists.txt:14
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/test/simple_loop.cpp
+- entrypoint: main
+  kind: node
+  node: version_info
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/tools/CMakeLists.txt:5
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/tools/version_info.cpp
+- entrypoint: main
+  kind: node
+  node: simple_keyop
+  origin: /ros_ws/src/kobuki_core/kobuki_driver/./src/tools/CMakeLists.txt:8
+  package: kobuki_driver
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_driver
+  sources:
+  - ./src/tools/simple_keyop.cpp
+- entrypoint: main
+  kind: node
+  node: gfs_simplegui
+  origin: /ros_ws/src/openslam_gmapping/./gui/CMakeLists.txt:12
+  package: openslam_gmapping
+  restrict-analysis-to-paths:
+  - /ros_ws/src/openslam_gmapping
+  sources:
+  - ./gui/gfs_simplegui.cpp
+  - ./gui/gsp_thread.cpp
+- entrypoint: main
+  kind: node
+  node: c-tutorial-1-depth
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:56
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/c-tutorial-1-depth.c
+- entrypoint: main
+  kind: node
+  node: c-tutorial-2-streams
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:59
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/c-tutorial-2-streams.c
+- entrypoint: main
+  kind: node
+  node: c-tutorial-3-pointcloud
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:62
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/c-tutorial-3-pointcloud.c
+- entrypoint: main
+  kind: node
+  node: cpp-tutorial-1-depth
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:66
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-tutorial-1-depth.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-tutorial-2-streams
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:69
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-tutorial-2-streams.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-tutorial-3-pointcloud
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:72
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-tutorial-3-pointcloud.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-alignimages
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:76
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-alignimages.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-callback
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:79
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-callback.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-callback-2
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:82
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-callback-2.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-capture
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:85
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-capture.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-config-ui
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:88
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-config-ui.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-enumerate-devices
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:91
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-enumerate-devices.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-headless
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:94
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-headless.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-motion-module
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:97
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-motion-module.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-multicam
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:100
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-multicam.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-pointcloud
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:103
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-pointcloud.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-restart
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:106
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-restart.cpp
+- entrypoint: main
+  kind: node
+  node: cpp-stride
+  origin: /ros_ws/src/librealsense/./examples/CMakeLists.txt:109
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./examples/cpp-stride.cpp
+- entrypoint: main
+  kind: node
+  node: F200-live-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:30
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-live.cpp
+  - ./unit-tests/unit-tests-live-f200.cpp
+- entrypoint: main
+  kind: node
+  node: LR200-live-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:33
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-live.cpp
+  - ./unit-tests/unit-tests-live-ds-common.cpp
+  - ./unit-tests/unit-tests-live-lr200.cpp
+- entrypoint: main
+  kind: node
+  node: R200-live-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:36
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-live.cpp
+  - ./unit-tests/unit-tests-live-ds-common.cpp
+  - ./unit-tests/unit-tests-live-r200.cpp
+- entrypoint: main
+  kind: node
+  node: SR300-live-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:39
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-live.cpp
+  - ./unit-tests/unit-tests-live-sr300.cpp
+- entrypoint: main
+  kind: node
+  node: ZR300-live-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:42
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-live-zr300.cpp
+  - ./unit-tests/unit-tests-live.cpp
+  - ./unit-tests/unit-tests-live-ds-common.cpp
+- entrypoint: main
+  kind: node
+  node: offline-test
+  origin: /ros_ws/src/librealsense/./unit-tests/CMakeLists.txt:45
+  package: librealsense
+  restrict-analysis-to-paths:
+  - /ros_ws/src/librealsense
+  sources:
+  - ./unit-tests/unit-tests-offline.cpp
+- entrypoint: main
+  kind: node
+  node: ftdi_scan
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:5
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/ftdi_scan.cpp
+- entrypoint: main
+  kind: node
+  node: ftdi_kobuki
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:8
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/ftdi_kobuki.cpp
+- entrypoint: main
+  kind: node
+  node: ftdi_read_eeprom
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:11
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/ftdi_read_eeprom.cpp
+- entrypoint: main
+  kind: node
+  node: ftdi_write_eeprom
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:14
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/ftdi_write_eeprom.cpp
+- entrypoint: main
+  kind: node
+  node: find_devices
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:17
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/find_devices.cpp
+- entrypoint: main
+  kind: node
+  node: get_serial_number
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:20
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/get_serial_number.cpp
+- entrypoint: main
+  kind: node
+  node: flasher
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:23
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/flasher.cpp
+- entrypoint: main
+  kind: node
+  node: reset_device
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:26
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/reset_device.cpp
+- entrypoint: main
+  kind: node
+  node: overwrite_serial_number
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:29
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/overwrite_serial_number.cpp
+- entrypoint: main
+  kind: node
+  node: unflasher
+  origin: /ros_ws/src/kobuki_core/kobuki_ftdi/./src/CMakeLists.txt:32
+  package: kobuki_ftdi
+  restrict-analysis-to-paths:
+  - /ros_ws/src/kobuki_core/kobuki_ftdi
+  sources:
+  - ./src/unflasher.cpp
+- entrypoint: main
+  kind: node
+  node: demo_console_streams
+  origin: /ros_ws/src/ecl_core/ecl_streams/./src/examples/CMakeLists.txt:5
+  package: ecl_streams
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_streams
+  sources:
+  - ./src/examples/console_streams.cpp
+- entrypoint: main
+  kind: node
+  node: demo_log_streams
+  origin: /ros_ws/src/ecl_core/ecl_streams/./src/examples/CMakeLists.txt:9
+  package: ecl_streams
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_streams
+  sources:
+  - ./src/examples/log_streams.cpp
+- entrypoint: main
+  kind: node
+  node: demo_sigslots_manager
+  origin: /ros_ws/src/ecl_core/ecl_sigslots/./src/examples/CMakeLists.txt:5
+  package: ecl_sigslots
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_sigslots
+  sources:
+  - ./src/examples/sigslots_manager.cpp
+- entrypoint: main
+  kind: node
+  node: demo_sigslots
+  origin: /ros_ws/src/ecl_core/ecl_sigslots/./src/examples/CMakeLists.txt:9
+  package: ecl_sigslots
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_sigslots
+  sources:
+  - ./src/examples/sigslots.cpp
+- entrypoint: main
+  kind: node
+  node: demo_serial_timeouts
+  origin: /ros_ws/src/ecl_core/ecl_devices/./src/examples/CMakeLists.txt:5
+  package: ecl_devices
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_devices
+  sources:
+  - ./src/examples/serial_timeouts.cpp
+- entrypoint: main
+  kind: node
+  node: demo_thread
+  origin: /ros_ws/src/ecl_core/ecl_threads/./src/examples/CMakeLists.txt:5
+  package: ecl_threads
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_threads
+  sources:
+  - ./src/examples/thread.cpp
+- entrypoint: main
+  kind: node
+  node: demo_mutex
+  origin: /ros_ws/src/ecl_core/ecl_threads/./src/examples/CMakeLists.txt:9
+  package: ecl_threads
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_threads
+  sources:
+  - ./src/examples/mutex.cpp
+- entrypoint: main
+  kind: node
+  node: demo_container_formatters
+  origin: /ros_ws/src/ecl_core/ecl_containers/./src/examples/CMakeLists.txt:5
+  package: ecl_containers
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_containers
+  sources:
+  - ./src/examples/formatters.cpp
+- entrypoint: main
+  kind: node
+  node: demo_constructors
+  origin: /ros_ws/src/ecl_core/ecl_utilities/./src/examples/CMakeLists.txt:5
+  package: ecl_utilities
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_utilities
+  sources:
+  - ./src/examples/constructors.cpp
+- entrypoint: main
+  kind: node
+  node: demo_formatters
+  origin: /ros_ws/src/ecl_core/ecl_formatters/./src/examples/CMakeLists.txt:5
+  package: ecl_formatters
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_formatters
+  sources:
+  - ./src/examples/formatters.cpp
+- entrypoint: main
+  kind: node
+  node: demo_float_converters
+  origin: /ros_ws/src/ecl_core/ecl_converters/./src/examples/CMakeLists.txt:5
+  package: ecl_converters
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_converters
+  sources:
+  - ./src/examples/float_converters.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_detect_sizes
+  origin: /ros_ws/src/ecl_core/ecl_type_traits/./src/utils/CMakeLists.txt:5
+  package: ecl_type_traits
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_type_traits
+  sources:
+  - ./src/utils/detect_sizes.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_time_example_random_number_generator
+  origin: /ros_ws/src/ecl_core/ecl_time/./src/examples/CMakeLists.txt:7
+  package: ecl_time
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_time
+  sources:
+  - ./src/examples/random_number_generator.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_time_example_sleep
+  origin: /ros_ws/src/ecl_core/ecl_time/./src/examples/CMakeLists.txt:7
+  package: ecl_time
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_time
+  sources:
+  - ./src/examples/sleep.cpp
+- entrypoint: main
+  kind: node
+  node: demo_time_functions
+  origin: /ros_ws/src/ecl_lite/ecl_time_lite/./src/examples/CMakeLists.txt:5
+  package: ecl_time_lite
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_lite/ecl_time_lite
+  sources:
+  - ./src/examples/time_functions.cpp
+- entrypoint: main
+  kind: node
+  node: demo_exceptions
+  origin: /ros_ws/src/ecl_core/ecl_exceptions/./src/examples/CMakeLists.txt:5
+  package: ecl_exceptions
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_exceptions
+  sources:
+  - ./src/examples/exceptions.cpp
+- entrypoint: main
+  kind: node
+  node: demo_exception_tracer
+  origin: /ros_ws/src/ecl_core/ecl_exceptions/./src/examples/CMakeLists.txt:10
+  package: ecl_exceptions
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_exceptions
+  sources:
+  - ./src/examples/exception_tracer.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_demo_errors
+  origin: /ros_ws/src/ecl_lite/ecl_errors/./src/examples/CMakeLists.txt:5
+  package: ecl_errors
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_lite/ecl_errors
+  sources:
+  - ./src/examples/errors.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_detect_endian
+  origin: /ros_ws/src/ecl_lite/ecl_config/./src/utilities/CMakeLists.txt:5
+  package: ecl_config
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_lite/ecl_config
+  sources:
+  - ./src/utilities/detect_endian.cpp
+- entrypoint: main
+  kind: node
+  node: ecl_detect_posix
+  origin: /ros_ws/src/ecl_lite/ecl_config/./src/utilities/CMakeLists.txt:10
+  package: ecl_config
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_lite/ecl_config
+  sources:
+  - ./src/utilities/detect_posix.cpp
+- entrypoint: main
+  kind: node
+  node: demo_command_line
+  origin: /ros_ws/src/ecl_core/ecl_command_line/./src/examples/CMakeLists.txt:5
+  package: ecl_command_line
+  restrict-analysis-to-paths:
+  - /ros_ws/src/ecl_core/ecl_command_line
+  sources:
+  - ./src/examples/command_line.cpp
+- entrypoint: main
+  kind: node
+  node: nolangs_exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/nolangs/CMakeLists.txt:9
+  package: nolangs
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/nolangs
+  sources:
+  - main.cpp
+- entrypoint: main
+  kind: node
+  node: quux_user-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:34
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/main.cpp
+- entrypoint: main
+  kind: node
+  node: quux_srv-exec
+  origin: /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user/CMakeLists.txt:41
+  package: quux_user
+  restrict-analysis-to-paths:
+  - /ros_ws/src/catkin/test/mock_resources/src/catkin_test/quux_user
+  sources:
+  - src/srv_test.cpp
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/devel_isolated/setup.bash

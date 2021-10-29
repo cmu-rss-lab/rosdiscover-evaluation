@@ -212,6 +212,7 @@ def generate_node_sources(
 
 def obtain_node_sources(
     experiment_config: RecoveryExperimentConfig,
+    should_cache: bool = True,
 ) -> t.Mapping[t.Tuple[str, str], NodeSources]:
     config_with_node_sources_filename = experiment_config["config_with_node_sources_filename"]
     experiment_directory = experiment_config["directory"]
@@ -220,8 +221,11 @@ def obtain_node_sources(
     log_filename = os.path.join(logs_directory, f"obtain_node_sources.log")
     file_logger = logger.add(log_filename, level="DEBUG")
     try:
-        logger.debug("Obtaining all sources")
-        generate_node_sources(experiment_config)
+        if should_cache and os.path.exists(config_with_node_sources_filename):
+            logger.debug("Using cached node sources")
+        else:
+            logger.debug("Obtaining all sources")
+            generate_node_sources(experiment_config)
     finally:
         logger.remove(file_logger)
 
@@ -237,10 +241,14 @@ def obtain_node_sources(
 
 def recover_all(
     experiment_config: RecoveryExperimentConfig,
+    should_cache_sources: bool,
 ) -> None:
     logger.info("recovering all node models for system")
     summaries = NodeModelRecoverySummaries()
-    package_node_to_sources = obtain_node_sources(experiment_config)
+    package_node_to_sources = obtain_node_sources(
+        experiment_config=experiment_config,
+        should_cache=should_cache_sources,
+    )
     for node_sources in package_node_to_sources.values():
         summary = recover_node_from_sources(experiment_config, node_sources)
         summaries.add(summary)
@@ -256,8 +264,12 @@ def recover_single_node(
     experiment_config: RecoveryExperimentConfig,
     package: str,
     node: str,
+    should_cache_sources: bool,
 ) -> None:
-    package_node_to_sources = obtain_node_sources(experiment_config)
+    package_node_to_sources = obtain_node_sources(
+        experiment_config=experiment_config,
+        should_cache=should_cache_sources,
+    )
     try:
         node_sources = package_node_to_sources[(package, node)]
     except KeyError:
@@ -360,6 +372,12 @@ def main() -> None:
         action="store_true",
         help="enables verbose logging for debugging purposes",
     )
+    parser.add_argument(
+        "--no-cache-sources",
+        action="store_false",
+        dest="should_cache_sources",
+        help="disables caching of node sources",
+    )
     args = parser.parse_args()
 
     # enable logging
@@ -389,9 +407,17 @@ def main() -> None:
     # determine if we should recover all models or just one
     should_recover_all = not args.node
     if should_recover_all:
-        recover_all(config)
+        recover_all(
+            experiment_config=config,
+            should_cache_sources=args.should_cache_sources,
+        )
     else:
-        recover_node(config, args.package, args.node)
+        recover_single_node(
+            experiment_config=config,
+            package=args.package,
+            node=args.node,
+            should_cache_sources=args.should_cache_sources,
+        )
 
 
 if __name__ == "__main__":
