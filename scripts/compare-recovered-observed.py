@@ -10,6 +10,7 @@ import attr
 import yaml
 from loguru import logger
 
+from common.acme import THINGS_TO_IGNORE
 from common.config import ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -25,25 +26,33 @@ class ArchitectureSummary:
     action_servers: NamePairSet
     action_clients: NamePairSet
 
-    def _write_node_element_info(self, f, node, elements, prefix):
+    def _write_node_element_info(self, f, node, elements, prefix, highlights=None):
         sorted_elements = [t[1] for t in elements if t[0] == node]
+        if highlights:
+            for h in highlights:
+                if h in sorted_elements:
+                    sorted_elements.remove(h)
+                    sorted_elements.append(h.upper())
         sorted_elements.sort()
         f.write(f"    {prefix}: {', '.join(sorted_elements)}\n")
 
-    def write_publishers_for_node(self, f, node: NamePair, prefix: str = "Publishers"):
-        self._write_node_element_info(f, node[1][1:], self.publishers, prefix)
+    def write_publishers_for_node(self, f, node: NamePair, prefix: str = "Publishers", highlights: t.List[str] = None):
+        self._write_node_element_info(f, node[1][1:], self.publishers, prefix, highlights)
 
-    def write_subscribers_for_node(self, f, node: NamePair, prefix: str = "Subscribers"):
-        self._write_node_element_info(f, node[1][1:], self.subscribers, prefix)
+    def write_subscribers_for_node(self, f, node: NamePair, prefix: str = "Subscribers",
+                                   highlights: t.List[str] = None):
+        self._write_node_element_info(f, node[1][1:], self.subscribers, prefix, highlights)
 
-    def write_providers_for_node(self, f, node: NamePair, prefix: str = "Providers"):
-        self._write_node_element_info(f, node[1][1:], self.providers, prefix)
+    def write_providers_for_node(self, f, node: NamePair, prefix: str = "Providers", highlights: t.List[str] = None):
+        self._write_node_element_info(f, node[1][1:], self.providers, prefix, highlights)
 
-    def write_action_clients_for_node(self, f, node: NamePair, prefix: str = "Action Clients"):
-        self._write_node_element_info(f, node[1][1:], self.action_clients, prefix)
+    def write_action_clients_for_node(self, f, node: NamePair, prefix: str = "Action Clients",
+                                      highlights: t.List[str] = None):
+        self._write_node_element_info(f, node[1][1:], self.action_clients, prefix, highlights)
 
-    def write_action_servers_for_node(self, f, node: NamePair, prefix: str = "Action Servers"):
-        self._write_node_element_info(f, node[1][1:], self.action_servers, prefix)
+    def write_action_servers_for_node(self, f, node: NamePair, prefix: str = "Action Servers",
+                                      highlights: t.List[str] = None):
+        self._write_node_element_info(f, node[1][1:], self.action_servers, prefix, highlights)
 
     def write_to_file(self, f):
         sorted_node_names = list(self.nodes)
@@ -153,6 +162,20 @@ def compare(config: ExperimentConfig) -> None:
         f.write("Recoverd architecture summary:\n")
         f.write("==============================\n")
         recovered_summary.write_to_file(f)
+        f.write("Provenance information:\n")
+        f.write("-----------------------\n")
+
+        def provenance(p: str) -> t.List[str]:
+            return [node['fullname'] for node in recovered_architecture if node['provenance'] == p]
+
+        handwritten = provenance("handwritten")
+        recovered = provenance("recovered")
+        placeholders = provenance("placeholder")
+        unknown = provenance("unknown")
+        f.write(f"HANDWRITTEN ({len(handwritten)}): {', '.join(handwritten)}\n")
+        f.write(f"RECOVERED ({len(recovered)}): {', '.join(recovered)}\n")
+        f.write(f"PLACEHOLDERS ({len(placeholders)}): {', '.join(placeholders)}\n")
+        f.write(f"UNKNOWN ({len(unknown)}): {', '.join(unknown)}\n")
 
         nodes_in_common = observed_summary.nodes.intersection(recovered_summary.nodes)
         f.write("\n")
@@ -160,17 +183,29 @@ def compare(config: ExperimentConfig) -> None:
         f.write("=============================\n")
 
         for node in nodes_in_common:
-            f.write(f"  Node: {node[1]}:\n")
-            observed_summary.write_publishers_for_node(f, node, "Observed Pubs")
-            recovered_summary.write_publishers_for_node(f, node, "Recovered Pubs")
-            observed_summary.write_subscribers_for_node(f, node, "Observed Subs")
-            recovered_summary.write_subscribers_for_node(f, node, "Recovered Subs")
-            observed_summary.write_providers_for_node(f, node, "Observed Provs")
-            recovered_summary.write_providers_for_node(f, node, "Recovered Provs")
-            observed_summary.write_action_servers_for_node(f, node, "Observed Action Servers")
-            recovered_summary.write_action_servers_for_node(f, node, "Recovered Action Servers")
-            observed_summary.write_action_clients_for_node(f, node, "Observed Action Clients")
-            recovered_summary.write_action_clients_for_node(f, node, "Recovered Action Clients")
+            f.write(f"  Node: {node[1]} <- "
+                    f"{[n['filename'] for n in recovered_architecture if n['fullname'] == node[1]]}"
+                    f":\n")
+            observed_summary.write_publishers_for_node(f, node, "Observed Pubs",
+                                                       [t[1] for t in recovered_summary.publishers])
+            recovered_summary.write_publishers_for_node(f, node, "Recovered Pubs",
+                                                        [t[1] for t in observed_summary.publishers])
+            observed_summary.write_subscribers_for_node(f, node, "Observed Subs",
+                                                        [t[1] for t in recovered_summary.subscribers])
+            recovered_summary.write_subscribers_for_node(f, node, "Recovered Subs",
+                                                         [t[1] for t in observed_summary.subscribers])
+            observed_summary.write_providers_for_node(f, node, "Observed Provs",
+                                                      [t[1] for t in recovered_summary.providers])
+            recovered_summary.write_providers_for_node(f, node, "Recovered Provs",
+                                                       [t[1] for t in observed_summary.providers])
+            observed_summary.write_action_servers_for_node(f, node, "Observed Action Servers",
+                                                           [t[1] for t in recovered_summary.action_servers])
+            recovered_summary.write_action_servers_for_node(f, node, "Recovered Action Servers",
+                                                            [t[1] for t in observed_summary.action_servers])
+            observed_summary.write_action_clients_for_node(f, node, "Observed Action Clients",
+                                                           [t[1] for t in recovered_summary.action_clients])
+            recovered_summary.write_action_clients_for_node(f, node, "Recovered Action Clients",
+                                                            [t[1] for t in observed_summary.action_clients])
 
         f.write("\n")
         f.write("Differences:\n")
@@ -220,12 +255,11 @@ def extract_architecture_summary(
 
 def include_element(named: t.Dict[str, t.Any]) -> bool:
     name = named["name"]
-    if name.endswith("parameter_descriptions"):
-        return False
-    if name.endswith("parameter_updates"):
-        return False
-    if name.endswith("set_parameters"):
-        return False
+    for ignore in THINGS_TO_IGNORE.split('\n'):
+        if ignore.startswith("*") and name.endswith(ignore[1:]):
+            return False
+        if ignore == name:
+            return False
     return True
 
 
