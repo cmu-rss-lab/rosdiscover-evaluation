@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "moveit_display_random_state",
+  "package": {
+    "name": "moveit_ros_planning",
+    "path": "/ros_ws/src/moveit/moveit_ros_planning"
+  },
+  "sources": [
+    "/ros_ws/src/moveit/moveit_ros_planning/./planning_components_tools/src/display_random_state.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "display_random_state"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "planning_scene"
+                  }
+                },
+                "format": "moveit_msgs/PlanningScene"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

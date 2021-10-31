@@ -2,20 +2,20 @@
   "image": {
     "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
   },
-  "node-name": "ConstantSpeedController",
+  "node-name": "AutoRallyChassis",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "autorally_core",
+    "path": "/ros_ws/src/autorally/autorally_core"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/ConstantSpeedController/ConstantSpeedController.cpp"
+    "/ros_ws/src/autorally/autorally_core/./src/autorally_chassis/AutoRallyChassis.cpp"
   ],
   "program": {
     "program": {
-      "entrypoint": "autorally_control::ConstantSpeedController::onInit",
+      "entrypoint": "autorally_core::AutoRallyChassis::onInit",
       "functions": [
         {
-          "name": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
+          "name": "autorally_core::AutoRallyChassis::loadChassisCommandPriorities",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -36,7 +36,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "throttleCalibration"
+                      "literal": "chassisCommandProirities"
                     }
                   },
                   "default": {
@@ -48,7 +48,40 @@
           }
         },
         {
-          "name": "autorally_control::ConstantSpeedController::controlCallback",
+          "name": "autorally_core::AutoRallyChassis::loadChassisConfig",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "actuators"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "autorally_core::AutoRallyChassis::onInit",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -64,128 +97,14 @@
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KP"
+                      "kind": "unknown"
                     }
                   }
                 }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KD"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KI"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "IMax"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::ConstantSpeedController::onInit",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
-                "arguments": {}
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "constantSpeedController/speedCommand"
-                  }
-                },
-                "format": "std_msgs/Float64_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "wheelSpeeds"
-                  }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
               },
               {
                 "kind": "publishes-to",
@@ -200,31 +119,56 @@
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "constantSpeedController/chassisCommand"
+                    "literal": "chassisState"
+                  }
+                },
+                "format": "autorally_msgs::chassisState_"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "wheelSpeeds"
+                  }
+                },
+                "format": "autorally_msgs::wheelSpeeds_"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "RC/chassisCommand"
                   }
                 },
                 "format": "autorally_msgs::chassisCommand_"
               },
               {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "speedCommander"
-                    }
-                  }
-                }
+                "kind": "call",
+                "callee": "autorally_core::AutoRallyChassis::loadChassisConfig",
+                "arguments": {}
+              },
+              {
+                "kind": "call",
+                "callee": "autorally_core::AutoRallyChassis::loadChassisCommandPriorities",
+                "arguments": {}
               },
               {
                 "kind": "assignment",
@@ -242,7 +186,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "accelerationRate"
+                      "literal": "commandRate"
                     }
                   }
                 }
@@ -263,7 +207,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "accelerationRate"
+                      "literal": "commandMaxAge"
                     }
                   }
                 }
@@ -284,7 +228,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KP"
+                      "literal": "wheelDiameter"
                     }
                   }
                 }
@@ -305,52 +249,45 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KD"
+                      "literal": "runstopMaxAge"
                     }
                   }
                 }
               },
               {
-                "kind": "assignment",
-                "variable": "v5",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
                       "kind": "string-literal",
-                      "literal": "KI"
+                      "literal": ""
                     }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
                   }
-                }
+                },
+                "format": "autorally_msgs/chassisCommand_"
               },
               {
-                "kind": "assignment",
-                "variable": "v6",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
                       "kind": "string-literal",
-                      "literal": "IMax"
+                      "literal": ""
                     }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/runstop"
                   }
-                }
+                },
+                "format": "autorally_msgs/runstop_"
               }
             ]
           }

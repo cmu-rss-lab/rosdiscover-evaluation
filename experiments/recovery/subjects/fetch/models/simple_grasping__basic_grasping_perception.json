@@ -1,0 +1,143 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "basic_grasping_perception",
+  "package": {
+    "name": "simple_grasping",
+    "path": "/ros_ws/src/simple_grasping"
+  },
+  "sources": [
+    "/ros_ws/src/simple_grasping/src/basic_grasping_perception.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "basic_grasping_perception"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "simple_grasping::BasicGraspingPerception::BasicGraspingPerception",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "simple_grasping::BasicGraspingPerception::BasicGraspingPerception",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "n",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "n"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_debug"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "n"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "frame_id"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "n"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "object_cloud"
+                  }
+                },
+                "format": "pcl/PointCloud"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "n"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "support_cloud"
+                  }
+                },
+                "format": "pcl/PointCloud"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "n"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/head_camera/depth_registered/points"
+                  }
+                },
+                "format": "pcl/PointCloud"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "navfn_node",
+  "package": {
+    "name": "navfn",
+    "path": "/ros_ws/src/navigation/navfn"
+  },
+  "sources": [
+    "/ros_ws/src/navigation/navfn/src/navfn_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "global_planner"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::NavfnWithCostmap",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "navfn::NavfnWithCostmap::NavfnWithCostmap",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "make_plan"
+                  }
+                },
+                "format": "navfn/MakeNavPlan"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "goal"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

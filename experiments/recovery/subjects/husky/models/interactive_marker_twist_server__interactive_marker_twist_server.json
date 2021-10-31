@@ -1,21 +1,48 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
   },
-  "node-name": "ConstantSpeedController",
+  "node-name": "interactive_marker_twist_server",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "interactive_marker_twist_server",
+    "path": "/ros_ws/src/interactive_marker_twist_server"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/ConstantSpeedController/ConstantSpeedController.cpp"
+    "/ros_ws/src/interactive_marker_twist_server/src/marker_server.cpp"
   ],
   "program": {
     "program": {
-      "entrypoint": "autorally_control::ConstantSpeedController::onInit",
+      "entrypoint": "main",
       "functions": [
         {
-          "name": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "marker_server"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "MarkerServer::MarkerServer",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "MarkerServer::MarkerServer",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -36,49 +63,19 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "throttleCalibration"
+                      "literal": "link_name"
                     }
                   },
                   "default": {
                     "kind": "unknown"
                   }
                 }
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::ConstantSpeedController::controlCallback",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KP"
-                    }
-                  }
-                }
               },
               {
                 "kind": "assignment",
                 "variable": "v1",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -90,8 +87,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KD"
+                      "literal": "robot_name"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -111,7 +111,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KI"
+                      "literal": "linear_scale"
                     }
                   }
                 }
@@ -132,159 +132,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "IMax"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::ConstantSpeedController::onInit",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
-                "arguments": {}
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "constantSpeedController/speedCommand"
-                  }
-                },
-                "format": "std_msgs/Float64_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "wheelSpeeds"
-                  }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "constantSpeedController/chassisCommand"
-                  }
-                },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "speedCommander"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "accelerationRate"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "accelerationRate"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KP"
+                      "literal": "linear_scale"
                     }
                   }
                 }
@@ -305,7 +153,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KD"
+                      "literal": "max_positive_linear_velocity"
                     }
                   }
                 }
@@ -326,7 +174,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KI"
+                      "literal": "max_negative_linear_velocity"
                     }
                   }
                 }
@@ -335,7 +183,7 @@
                 "kind": "assignment",
                 "variable": "v6",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -347,10 +195,151 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "IMax"
+                      "literal": "linear_scale"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_positive_linear_velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_negative_linear_velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "angular_scale"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_angular_velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "marker_size_scale"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cmd_vel"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
               }
             ]
           }

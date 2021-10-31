@@ -1,0 +1,128 @@
+{
+  "image": {
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
+  },
+  "node-name": "rrbot",
+  "package": {
+    "name": "joint_trajectory_controller",
+    "path": "/ros_ws/src/ros_controllers/joint_trajectory_controller"
+  },
+  "sources": [
+    "/ros_ws/src/ros_controllers/joint_trajectory_controller/test/rrbot.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "rrbot"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "RRbot::RRbot",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "RRbot::RRbot",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "smoothing"
+                  }
+                },
+                "format": "std_msgs/Float64"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "delay"
+                  }
+                },
+                "format": "std_msgs/Bool"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "upper_bound"
+                  }
+                },
+                "format": "std_msgs/Float64"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "parameter_updated"
+                  }
+                },
+                "format": "std_msgs/Empty"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

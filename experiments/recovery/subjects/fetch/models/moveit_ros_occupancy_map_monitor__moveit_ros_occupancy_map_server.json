@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "moveit_ros_occupancy_map_server",
+  "package": {
+    "name": "moveit_ros_occupancy_map_monitor",
+    "path": "/ros_ws/src/moveit/moveit_ros_occupancy_map_monitor"
+  },
+  "sources": [
+    "/ros_ws/src/moveit/moveit_ros_occupancy_map_monitor/src/occupancy_map_server.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "occupancy_map_server"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "octomap_binary"
+                  }
+                },
+                "format": "octomap_msgs/Octomap"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

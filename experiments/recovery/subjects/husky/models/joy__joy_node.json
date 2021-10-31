@@ -1,254 +1,19 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
   },
-  "node-name": "joystickController",
+  "node-name": "joy_node",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "joy",
+    "path": "/ros_ws/src/joystick_drivers/joy"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/joystick/joystickControlMain.cpp",
-    "/ros_ws/src/autorally/autorally_control/./src/joystick/JoystickControl.cpp"
+    "/ros_ws/src/joystick_drivers/joy/src/joy_node.cpp"
   ],
   "program": {
     "program": {
       "entrypoint": "main",
       "functions": [
-        {
-          "name": "JoystickControl::JoystickControl",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "joy"
-                  }
-                },
-                "format": "sensor_msgs/Joy_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "runstop"
-                  }
-                },
-                "format": "autorally_msgs::runstop_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "joystick/chassisCommand"
-                  }
-                },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/throttleDamping"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/steeringDamping"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/throttleAxis"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/steeringAxis"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v4",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/throttleEnableButton"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v5",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/steeringEnableButton"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v6",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/brakeAxis"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v7",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joystickController/runstopToggleButtons"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              }
-            ]
-          }
-        },
         {
           "name": "main",
           "parameters": [
@@ -265,13 +30,256 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "joystickController"
+                  "literal": "joy_node"
                 }
               },
               {
                 "kind": "call",
-                "callee": "JoystickControl::JoystickControl",
+                "callee": "Joystick::main",
                 "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Joystick::main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joy"
+                  }
+                },
+                "format": "sensor_msgs/Joy"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joy/set_feedback"
+                  }
+                },
+                "format": "sensor_msgs/JoyFeedbackArray"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "dev"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "dev_ff"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "dev_name"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "deadzone"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "autorepeat_rate"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "coalesce_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "default_trig_val"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "sticky_buttons"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }

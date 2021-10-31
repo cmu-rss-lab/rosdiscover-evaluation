@@ -1,14 +1,14 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "5062b460455b9854f9164aa5bfee5af729901003c54fca85b77213c4500dc875"
   },
-  "node-name": "gpsWaypoint",
+  "node-name": "turtlebot_move_action_server",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "turtlebot_actions",
+    "path": "/ros_ws/src/turtlebot_apps/turtlebot_actions"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/gpsWaypoint.cpp"
+    "/ros_ws/src/turtlebot_apps/turtlebot_actions/src/turtlebot_move_action_server.cpp"
   ],
   "program": {
     "program": {
@@ -30,20 +30,26 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "GpsWaypoint"
+                  "literal": "turtlebot_move_action_server"
                 }
               },
               {
                 "kind": "call",
-                "callee": "autorally_control::GpsWaypoint::GpsWaypoint",
+                "callee": "MoveActionServer::MoveActionServer",
                 "arguments": {}
               }
             ]
           }
         },
         {
-          "name": "autorally_control::GpsWaypoint::GpsWaypoint",
-          "parameters": [],
+          "name": "MoveActionServer::MoveActionServer",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -63,7 +69,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointFile"
+                      "literal": "base_frame"
                     }
                   },
                   "default": {
@@ -87,7 +93,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointRadius"
+                      "literal": "odom_frame"
                     }
                   },
                   "default": {
@@ -111,7 +117,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "HeadingP"
+                      "literal": "turn_rate"
                     }
                   },
                   "default": {
@@ -120,40 +126,28 @@
                 }
               },
               {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": "forward_rate"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "Speeds"
+                  "default": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "Odom"
-                  }
-                },
-                "format": "nav_msgs/Odometry_"
+                }
               },
               {
                 "kind": "publishes-to",
@@ -168,46 +162,10 @@
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "chassisCommand"
+                    "literal": "cmd_vel"
                   }
                 },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "markers"
-                  }
-                },
-                "format": "visualization_msgs::Marker_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "imageMask"
-                  }
-                },
-                "format": "autorally_msgs::imageMask_"
+                "format": "geometry_msgs/Twist"
               }
             ]
           }

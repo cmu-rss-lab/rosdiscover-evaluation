@@ -1,14 +1,14 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
   },
-  "node-name": "gpsWaypoint",
+  "node-name": "map_server",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "map_server",
+    "path": "/ros_ws/src/navigation/map_server"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/gpsWaypoint.cpp"
+    "/ros_ws/src/navigation/map_server/src/main.cpp"
   ],
   "program": {
     "program": {
@@ -30,19 +30,19 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "GpsWaypoint"
+                  "literal": "map_server"
                 }
               },
               {
                 "kind": "call",
-                "callee": "autorally_control::GpsWaypoint::GpsWaypoint",
+                "callee": "MapServer::MapServer",
                 "arguments": {}
               }
             ]
           }
         },
         {
-          "name": "autorally_control::GpsWaypoint::GpsWaypoint",
+          "name": "MapServer::MapServer",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -63,7 +63,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointFile"
+                      "literal": "frame_id"
                     }
                   },
                   "default": {
@@ -87,7 +87,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointRadius"
+                      "literal": "negate"
                     }
                   },
                   "default": {
@@ -111,7 +111,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "HeadingP"
+                      "literal": "occupied_thresh"
                     }
                   },
                   "default": {
@@ -120,58 +120,46 @@
                 }
               },
               {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": "free_thresh"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "Speeds"
+                  "default": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
+                }
               },
               {
-                "kind": "subscribes-to",
+                "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "Odom"
+                    "literal": "static_map"
                   }
                 },
-                "format": "nav_msgs/Odometry_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "chassisCommand"
-                  }
-                },
-                "format": "autorally_msgs::chassisCommand_"
+                "format": "nav_msgs/GetMap"
               },
               {
                 "kind": "publishes-to",
@@ -181,15 +169,15 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "markers"
+                    "literal": "map_metadata"
                   }
                 },
-                "format": "visualization_msgs::Marker_"
+                "format": "nav_msgs/MapMetaData"
               },
               {
                 "kind": "publishes-to",
@@ -199,15 +187,15 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "imageMask"
+                    "literal": "map"
                   }
                 },
-                "format": "autorally_msgs::imageMask_"
+                "format": "nav_msgs/OccupancyGrid"
               }
             ]
           }

@@ -1,0 +1,80 @@
+{
+  "image": {
+    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+  },
+  "node-name": "simple_bot_hw",
+  "package": {
+    "name": "effort_controllers",
+    "path": "/ros_ws/src/ros_controllers/effort_controllers"
+  },
+  "sources": [
+    "/ros_ws/src/ros_controllers/effort_controllers/test/simple_bot_hw.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "simple_bot_hw"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/clock"
+                  }
+                },
+                "format": "rosgraph_msgs::Clock_"
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/use_sim_time"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

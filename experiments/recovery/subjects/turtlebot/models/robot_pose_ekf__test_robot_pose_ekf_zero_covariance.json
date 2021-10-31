@@ -1,0 +1,69 @@
+{
+  "image": {
+    "sha256": "5062b460455b9854f9164aa5bfee5af729901003c54fca85b77213c4500dc875"
+  },
+  "node-name": "test_robot_pose_ekf_zero_covariance",
+  "package": {
+    "name": "robot_pose_ekf",
+    "path": "/ros_ws/src/navigation/robot_pose_ekf"
+  },
+  "sources": [
+    "/ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "testEKF"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TestEKF_test_Test::TestBody",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/robot_pose_ekf/odom_combined"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

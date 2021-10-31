@@ -1,0 +1,77 @@
+{
+  "image": {
+    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+  },
+  "node-name": "path_integral_monitor",
+  "package": {
+    "name": "autorally_control",
+    "path": "/ros_ws/src/autorally/autorally_control"
+  },
+  "sources": [
+    "/ros_ws/src/autorally/autorally_control/./src/path_integral/status_monitor.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "mppiStatusMonitor"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "autorally_control::StatusMonitor::StatusMonitor",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "autorally_control::StatusMonitor::StatusMonitor",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/mppi_controller/mppiStatus"
+                  }
+                },
+                "format": "autorally_msgs/pathIntegralStatus_"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

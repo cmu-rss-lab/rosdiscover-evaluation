@@ -2,97 +2,44 @@
   "image": {
     "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
   },
-  "node-name": "joystickController",
+  "node-name": "PointGreyStereoCameraNodelet",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "pointgrey_camera_driver",
+    "path": "/ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/joystick/joystickControlMain.cpp",
-    "/ros_ws/src/autorally/autorally_control/./src/joystick/JoystickControl.cpp"
+    "/ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/src/stereo_nodelet.cpp"
   ],
   "program": {
     "program": {
-      "entrypoint": "main",
+      "entrypoint": "pointgrey_camera_driver::PointGreyStereoCameraNodelet::onInit",
       "functions": [
         {
-          "name": "JoystickControl::JoystickControl",
+          "name": "pointgrey_camera_driver::PointGreyStereoCameraNodelet::onInit",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "joy"
-                  }
-                },
-                "format": "sensor_msgs/Joy_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "runstop"
-                  }
-                },
-                "format": "autorally_msgs::runstop_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "joystick/chassisCommand"
-                  }
-                },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
                 "kind": "assignment",
                 "variable": "v0",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/throttleDamping"
+                      "literal": "first_namespace"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -100,20 +47,22 @@
                 "kind": "assignment",
                 "variable": "v1",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/steeringDamping"
+                      "literal": "second_namespace"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -121,20 +70,22 @@
                 "kind": "assignment",
                 "variable": "v2",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/throttleAxis"
+                      "literal": "serial"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -142,20 +93,22 @@
                 "kind": "assignment",
                 "variable": "v3",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/steeringAxis"
+                      "literal": "camera_info_url"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -163,20 +116,22 @@
                 "kind": "assignment",
                 "variable": "v4",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/throttleEnableButton"
+                      "literal": "second_info_url"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -184,20 +139,22 @@
                 "kind": "assignment",
                 "variable": "v5",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/steeringEnableButton"
+                      "literal": "frame_id"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -205,20 +162,22 @@
                 "kind": "assignment",
                 "variable": "v6",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/brakeAxis"
+                      "literal": "second_frame_id"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -232,46 +191,52 @@
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
-                        "kind": "string-literal",
-                        "literal": ""
+                        "kind": "unknown"
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "joystickController/runstopToggleButtons"
+                      "literal": "timeout"
                     }
                   },
                   "default": {
                     "kind": "unknown"
                   }
                 }
-              }
-            ]
-          }
-        },
-        {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "joystickController"
-                }
               },
               {
-                "kind": "call",
-                "callee": "JoystickControl::JoystickControl",
-                "arguments": {}
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "temp"
+                  }
+                },
+                "format": "std_msgs::Float64_"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_exposure_sequence"
+                  }
+                },
+                "format": "image_exposure_msgs/ExposureSequence_"
               }
             ]
           }

@@ -1,22 +1,84 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
   },
-  "node-name": "ConstantSpeedController",
+  "node-name": "imu_node",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "microstrain_3dmgx2_imu",
+    "path": "/ros_ws/src/microstrain_3dmgx2_imu"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/ConstantSpeedController/ConstantSpeedController.cpp"
+    "/ros_ws/src/microstrain_3dmgx2_imu/src/imu_node.cc"
   ],
   "program": {
     "program": {
-      "entrypoint": "autorally_control::ConstantSpeedController::onInit",
+      "entrypoint": "main",
       "functions": [
         {
-          "name": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "microstrain_3dmgx2_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "ImuNode::ImuNode",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "ImuNode::addOffset",
           "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "time_offset"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ImuNode::ImuNode",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "h",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -36,41 +98,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "throttleCalibration"
+                      "literal": "autocalibrate"
                     }
                   },
                   "default": {
                     "kind": "unknown"
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::ConstantSpeedController::controlCallback",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KP"
-                    }
                   }
                 }
               },
@@ -78,7 +110,7 @@
                 "kind": "assignment",
                 "variable": "v1",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -90,8 +122,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KD"
+                      "literal": "assume_calibrated"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -99,7 +134,7 @@
                 "kind": "assignment",
                 "variable": "v2",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -111,8 +146,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KI"
+                      "literal": "port"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -120,7 +158,7 @@
                 "kind": "assignment",
                 "variable": "v3",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -132,60 +170,13 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "IMax"
+                      "literal": "max_drift_rate"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::ConstantSpeedController::onInit",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "autorally_control::ConstantSpeedController::loadThrottleCalibration",
-                "arguments": {}
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "constantSpeedController/speedCommand"
-                  }
-                },
-                "format": "std_msgs/Float64_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "wheelSpeeds"
-                  }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
               },
               {
                 "kind": "publishes-to",
@@ -194,106 +185,73 @@
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
+                      "kind": "unknown"
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "constantSpeedController/chassisCommand"
+                    "literal": "data"
                   }
                 },
-                "format": "autorally_msgs::chassisCommand_"
+                "format": "sensor_msgs/Imu"
               },
               {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
                       "kind": "string-literal",
-                      "literal": "speedCommander"
+                      "literal": "~"
                     }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "add_offset"
                   }
-                }
+                },
+                "format": "microstrain_3dmgx2_imu/AddOffset"
               },
               {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "accelerationRate"
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
                     }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "calibrate"
                   }
-                }
+                },
+                "format": "std_srvs/Empty"
               },
               {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "accelerationRate"
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
                     }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "is_calibrated"
                   }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "KP"
-                    }
-                  }
-                }
+                },
+                "format": "std_msgs/Bool"
               },
               {
                 "kind": "assignment",
                 "variable": "v4",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -305,8 +263,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KD"
+                      "literal": "frame_id"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -314,7 +275,7 @@
                 "kind": "assignment",
                 "variable": "v5",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -326,8 +287,11 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "KI"
+                      "literal": "time_offset"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               },
@@ -335,7 +299,7 @@
                 "kind": "assignment",
                 "variable": "v6",
                 "value": {
-                  "kind": "reads-param",
+                  "kind": "reads-param-with-default",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
@@ -347,8 +311,59 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "IMax"
+                      "literal": "linear_acceleration_stdev"
                     }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "orientation_stdev"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "angular_velocity_stdev"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
                   }
                 }
               }

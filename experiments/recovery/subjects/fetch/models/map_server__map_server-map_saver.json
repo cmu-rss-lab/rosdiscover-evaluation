@@ -1,0 +1,85 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "map_server-map_saver",
+  "package": {
+    "name": "map_server",
+    "path": "/ros_ws/src/navigation/map_server"
+  },
+  "sources": [
+    "/ros_ws/src/navigation/map_server/src/map_saver.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "map_saver"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "MapGenerator::MapGenerator",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "MapGenerator::MapGenerator",
+          "parameters": [
+            {
+              "index": 2,
+              "name": "threshold_free",
+              "type": "integer"
+            },
+            {
+              "index": 1,
+              "name": "threshold_occupied",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "map"
+                  }
+                },
+                "format": "nav_msgs/OccupancyGrid"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

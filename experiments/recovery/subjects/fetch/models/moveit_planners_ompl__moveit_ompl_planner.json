@@ -1,0 +1,108 @@
+{
+  "image": {
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
+  },
+  "node-name": "moveit_ompl_planner",
+  "package": {
+    "name": "moveit_planners_ompl",
+    "path": "/ros_ws/src/moveit/moveit_planners_ompl"
+  },
+  "sources": [
+    "/ros_ws/src/moveit/moveit_planners_ompl/./ompl_interface/src/ompl_planner.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "OMPLPlannerService::OMPLPlannerService",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "OMPLPlannerService::OMPLPlannerService",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "moveit_msgs/GetMotionPlan"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "display_motion_plan"
+                  }
+                },
+                "format": "moveit_msgs/DisplayTrajectory"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "motion_plan_request"
+                  }
+                },
+                "format": "moveit_msgs/MotionPlanRequest"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

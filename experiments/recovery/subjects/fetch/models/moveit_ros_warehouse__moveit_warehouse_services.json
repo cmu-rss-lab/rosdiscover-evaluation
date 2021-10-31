@@ -1,14 +1,14 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "aa5a80bab088e1a52c24607767023f871189322b6d89abc182793ceac1f13ed3"
   },
-  "node-name": "gpsWaypoint",
+  "node-name": "moveit_warehouse_services",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "moveit_ros_warehouse",
+    "path": "/ros_ws/src/moveit/moveit_ros_warehouse"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/gpsWaypoint.cpp"
+    "/ros_ws/src/moveit/moveit_ros_warehouse/./warehouse/src/warehouse_services.cpp"
   ],
   "program": {
     "program": {
@@ -30,23 +30,9 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "GpsWaypoint"
+                  "literal": "moveit_warehouse_services"
                 }
               },
-              {
-                "kind": "call",
-                "callee": "autorally_control::GpsWaypoint::GpsWaypoint",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "autorally_control::GpsWaypoint::GpsWaypoint",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
               {
                 "kind": "assignment",
                 "variable": "v0",
@@ -58,12 +44,12 @@
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointFile"
+                      "literal": "warehouse_host"
                     }
                   },
                   "default": {
@@ -82,12 +68,12 @@
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointRadius"
+                      "literal": "warehouse_port"
                     }
                   },
                   "default": {
@@ -106,12 +92,12 @@
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "HeadingP"
+                      "literal": "warehouse_db_connection_timeout"
                     }
                   },
                   "default": {
@@ -120,94 +106,136 @@
                 }
               },
               {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": "warehouse_db_connection_retries"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "Speeds"
+                  "default": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "autorally_msgs/wheelSpeeds_"
+                }
               },
               {
-                "kind": "subscribes-to",
+                "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "Odom"
+                    "literal": "save_robot_state"
                   }
                 },
-                "format": "nav_msgs/Odometry_"
+                "format": "moveit_msgs/SaveRobotStateToWarehouse"
               },
               {
-                "kind": "publishes-to",
+                "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "chassisCommand"
+                    "literal": "list_robot_states"
                   }
                 },
-                "format": "autorally_msgs::chassisCommand_"
+                "format": "moveit_msgs/ListRobotStatesInWarehouse"
               },
               {
-                "kind": "publishes-to",
+                "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "markers"
+                    "literal": "get_robot_state"
                   }
                 },
-                "format": "visualization_msgs::Marker_"
+                "format": "moveit_msgs/GetRobotStateFromWarehouse"
               },
               {
-                "kind": "publishes-to",
+                "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "imageMask"
+                    "literal": "has_robot_state"
                   }
                 },
-                "format": "autorally_msgs::imageMask_"
+                "format": "moveit_msgs/CheckIfRobotStateExistsInWarehouse"
+              },
+              {
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "rename_robot_state"
+                  }
+                },
+                "format": "moveit_msgs/RenameRobotStateInWarehouse"
+              },
+              {
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "delete_robot_state"
+                  }
+                },
+                "format": "moveit_msgs/DeleteRobotStateFromWarehouse"
               }
             ]
           }

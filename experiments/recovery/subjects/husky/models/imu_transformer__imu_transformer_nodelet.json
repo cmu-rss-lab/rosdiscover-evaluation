@@ -1,0 +1,125 @@
+{
+  "image": {
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
+  },
+  "node-name": "imu_transformer_nodelet",
+  "package": {
+    "name": "imu_transformer",
+    "path": "/ros_ws/src/imu_pipeline/imu_transformer"
+  },
+  "sources": [
+    "/ros_ws/src/imu_pipeline/imu_transformer/src/imu_transformer_nodelet.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "imu_transformer::ImuTransformerNodelet::onInit",
+      "functions": [
+        {
+          "name": "imu_transformer::ImuTransformerNodelet::magCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "mag"
+                  }
+                },
+                "format": "sensor_msgs/MagneticField"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "mag"
+                  }
+                },
+                "format": "geometry_msgs/Vector3Stamped"
+              }
+            ]
+          }
+        },
+        {
+          "name": "imu_transformer::ImuTransformerNodelet::imuCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "data"
+                  }
+                },
+                "format": "sensor_msgs/Imu"
+              }
+            ]
+          }
+        },
+        {
+          "name": "imu_transformer::ImuTransformerNodelet::onInit",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "target_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

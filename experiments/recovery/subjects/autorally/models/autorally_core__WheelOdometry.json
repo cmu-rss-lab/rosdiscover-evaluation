@@ -2,13 +2,13 @@
   "image": {
     "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
   },
-  "node-name": "gpsWaypoint",
+  "node-name": "WheelOdometry",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "autorally_core",
+    "path": "/ros_ws/src/autorally/autorally_core"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/gpsWaypoint.cpp"
+    "/ros_ws/src/autorally/autorally_core/./src/WheelOdometry/wheel_odometry.cpp"
   ],
   "program": {
     "program": {
@@ -30,19 +30,19 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "GpsWaypoint"
+                  "literal": "WheelOdometry"
                 }
               },
               {
                 "kind": "call",
-                "callee": "autorally_control::GpsWaypoint::GpsWaypoint",
+                "callee": "autorally_core::WheelOdometry::WheelOdometry",
                 "arguments": {}
               }
             ]
           }
         },
         {
-          "name": "autorally_control::GpsWaypoint::GpsWaypoint",
+          "name": "autorally_core::WheelOdometry::WheelOdometry",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -51,23 +51,20 @@
                 "kind": "assignment",
                 "variable": "v0",
                 "value": {
-                  "kind": "reads-param-with-default",
+                  "kind": "reads-param",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointFile"
+                      "literal": "vehicle_wheelbase"
                     }
-                  },
-                  "default": {
-                    "kind": "unknown"
                   }
                 }
               },
@@ -75,23 +72,20 @@
                 "kind": "assignment",
                 "variable": "v1",
                 "value": {
-                  "kind": "reads-param-with-default",
+                  "kind": "reads-param",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointRadius"
+                      "literal": "vehicle_width"
                     }
-                  },
-                  "default": {
-                    "kind": "unknown"
                   }
                 }
               },
@@ -99,23 +93,62 @@
                 "kind": "assignment",
                 "variable": "v2",
                 "value": {
-                  "kind": "reads-param-with-default",
+                  "kind": "reads-param",
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
                       "kind": "node-handle",
                       "namespace": {
                         "kind": "string-literal",
-                        "literal": "~"
+                        "literal": ""
                       }
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "HeadingP"
+                      "literal": "using_sim"
                     }
-                  },
-                  "default": {
-                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "time_delay"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "debug"
+                    }
                   }
                 }
               },
@@ -127,12 +160,30 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "Speeds"
+                    "literal": "chassisState"
+                  }
+                },
+                "format": "autorally_msgs/chassisState_"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "wheelSpeeds"
                   }
                 },
                 "format": "autorally_msgs/wheelSpeeds_"
@@ -145,12 +196,12 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "Odom"
+                    "literal": "pose_estimate"
                   }
                 },
                 "format": "nav_msgs/Odometry_"
@@ -163,51 +214,15 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "chassisCommand"
+                    "literal": "wheel_odom"
                   }
                 },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "markers"
-                  }
-                },
-                "format": "visualization_msgs::Marker_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "imageMask"
-                  }
-                },
-                "format": "autorally_msgs::imageMask_"
+                "format": "nav_msgs::Odometry_"
               }
             ]
           }

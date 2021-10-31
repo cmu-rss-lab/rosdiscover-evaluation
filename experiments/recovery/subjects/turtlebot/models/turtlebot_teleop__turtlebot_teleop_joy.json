@@ -1,14 +1,14 @@
 {
   "image": {
-    "sha256": "837f10530a57dc3438f6e40623ad40e099f84537fa8dd1bee1418d2b3b04116d"
+    "sha256": "5062b460455b9854f9164aa5bfee5af729901003c54fca85b77213c4500dc875"
   },
-  "node-name": "gpsWaypoint",
+  "node-name": "turtlebot_teleop_joy",
   "package": {
-    "name": "autorally_control",
-    "path": "/ros_ws/src/autorally/autorally_control"
+    "name": "turtlebot_teleop",
+    "path": "/ros_ws/src/turtlebot/turtlebot_teleop"
   },
   "sources": [
-    "/ros_ws/src/autorally/autorally_control/./src/gpsWaypoint/gpsWaypoint.cpp"
+    "/ros_ws/src/turtlebot/turtlebot_teleop/src/turtlebot_joy.cpp"
   ],
   "program": {
     "program": {
@@ -30,19 +30,19 @@
                 "kind": "ros-init",
                 "name": {
                   "kind": "string-literal",
-                  "literal": "GpsWaypoint"
+                  "literal": "turtlebot_teleop"
                 }
               },
               {
                 "kind": "call",
-                "callee": "autorally_control::GpsWaypoint::GpsWaypoint",
+                "callee": "TurtlebotTeleop::TurtlebotTeleop",
                 "arguments": {}
               }
             ]
           }
         },
         {
-          "name": "autorally_control::GpsWaypoint::GpsWaypoint",
+          "name": "TurtlebotTeleop::TurtlebotTeleop",
           "parameters": [],
           "body": {
             "kind": "compound",
@@ -63,7 +63,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointFile"
+                      "literal": "axis_linear"
                     }
                   },
                   "default": {
@@ -87,7 +87,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "WaypointRadius"
+                      "literal": "axis_angular"
                     }
                   },
                   "default": {
@@ -111,7 +111,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "HeadingP"
+                      "literal": "axis_deadman"
                     }
                   },
                   "default": {
@@ -120,6 +120,72 @@
                 }
               },
               {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "scale_angular"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "scale_linear"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cmd_vel"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
+              },
+              {
                 "kind": "subscribes-to",
                 "name": {
                   "kind": "concatenate",
@@ -127,87 +193,15 @@
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
-                      "literal": "~"
+                      "literal": ""
                     }
                   },
                   "rhs": {
                     "kind": "string-literal",
-                    "literal": "Speeds"
+                    "literal": "joy"
                   }
                 },
-                "format": "autorally_msgs/wheelSpeeds_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "Odom"
-                  }
-                },
-                "format": "nav_msgs/Odometry_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "chassisCommand"
-                  }
-                },
-                "format": "autorally_msgs::chassisCommand_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "markers"
-                  }
-                },
-                "format": "visualization_msgs::Marker_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "imageMask"
-                  }
-                },
-                "format": "autorally_msgs::imageMask_"
+                "format": "sensor_msgs/Joy"
               }
             ]
           }

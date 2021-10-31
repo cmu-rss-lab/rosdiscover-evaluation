@@ -1,0 +1,84 @@
+{
+  "image": {
+    "sha256": "7d9fc0caa2cc2e4a51f05e20db6e1d50a9697e12b3360b95481ca57c1a6d597d"
+  },
+  "node-name": "transform_node",
+  "package": {
+    "name": "velodyne_pointcloud",
+    "path": "/ros_ws/src/velodyne/velodyne_pointcloud"
+  },
+  "sources": [
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/transform_node.cc",
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/pointcloudXYZIR.cc",
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/transform.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "transform_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::Transform::Transform",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_pointcloud::Transform::Transform",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "node",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

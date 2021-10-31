@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "5062b460455b9854f9164aa5bfee5af729901003c54fca85b77213c4500dc875"
+  },
+  "node-name": "load_map",
+  "package": {
+    "name": "stdr_server",
+    "path": "/ros_ws/src/stdr_simulator/stdr_server"
+  },
+  "sources": [
+    "/ros_ws/src/stdr_simulator/stdr_server/src/map_loader_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "map_loader"
+                }
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/stdr_server/load_static_map_external"
+                  }
+                },
+                "format": "stdr_msgs/LoadExternalMap"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
