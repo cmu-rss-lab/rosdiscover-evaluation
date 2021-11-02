@@ -245,6 +245,7 @@ def obtain_node_sources(
 def recover_all(
     experiment_config: RecoveryExperimentConfig,
     should_cache_sources: bool,
+    num_cores: int,
 ) -> None:
     logger.info("recovering all node models for system")
     summaries = NodeModelRecoverySummaries()
@@ -376,6 +377,11 @@ def main() -> None:
         help="the name of the node whose model should be recovered",
     )
     parser.add_argument(
+        "--cores",
+        default=1,
+        help="the number of cores that the recovery process should be spread across",
+    )
+    parser.add_argument(
         "--debug",
         action="store_true",
         help="enables verbose logging for debugging purposes",
@@ -428,6 +434,7 @@ def main() -> None:
         recover_all(
             experiment_config=config,
             should_cache_sources=args.should_cache_sources,
+            num_cores=args.cores,
         )
     else:
         recover_single_node(
