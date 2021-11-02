@@ -31,8 +31,8 @@ ARG ROOTFS
 COPY "${ROOTFS}" /
 
 RUN pushd ~ \
-  && mkdir .autoware \
-  && pushd .autoware \
+  && mkdir .autowareL \
+  && pushd .autowareL \
   && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
   && tar zxfv sample_moriyama_data.tar.gz \
   && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh \
@@ -42,3 +42,5 @@ RUN pushd ~ \
 RUN cd /home/autoware/Autoware \
   && . /opt/ros/${ROS_DISTRO}/setup.sh \
   && eval 'colcon build --cmake-args "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"'
+
+RUN .autowareL/my_launch.sh
