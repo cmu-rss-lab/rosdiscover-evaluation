@@ -360,8 +360,8 @@ def error(message: str) -> t.NoReturn:
 def main() -> None:
     parser = argparse.ArgumentParser("statically recovers node models")
     parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for the system",
+        "system",
+        help="the name of the system",
     )
     parser.add_argument(
         "--package",
@@ -403,7 +403,17 @@ def main() -> None:
     if args.package and not args.node:
         error(f"expected node name to be specified along with package [{args.package}]")
 
-    experiment_filename: str = args.configuration
+    parser.add_argument(
+        "configuration",
+        help="the path to the configuration file for the system",
+    )
+
+    experiment_filename: str = os.path.join(
+        os.path.dirname(__file__),
+        "../experiments/recovery/subjects",
+        args.system,
+        "experiment.yml",
+    )
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
