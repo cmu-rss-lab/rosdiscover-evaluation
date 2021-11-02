@@ -1,0 +1,18 @@
+# this file will provide a ROSDiscover config
+type: recovery
+subject: autoware
+image: rosdiscover-experiments/autoware:static
+distro: melodic
+build_command: colcon build --cmake-args "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+repositories:
+sources:
+- /opt/ros/melodic/setup.bash
+- /home/autoware/Autoware/install/setup.bash
+- /home/autoware/Autoware/install/local_setup.bash
+launches:
+- /home/autoware/.autoware/my_launch/my_detection.launch
+- /home/autoware/.autoware/my_launch/my_localization.launch
+- /home/autoware/.autoware/my_launch/my_map.launch
+- /home/autoware/.autoware/my_launch/my_mission_planning.launch
+- /home/autoware/.autoware/my_launch/my_motion_planning.launch
+- /home/autoware/.autoware/my_launch/my_sensing.launch
