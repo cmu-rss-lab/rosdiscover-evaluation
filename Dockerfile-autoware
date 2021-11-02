@@ -51,6 +51,6 @@ RUN cd /home/autoware/Autoware \
 
 RUN sudo chmod o+r+w+x /home/autoware/.autoware \
   && pushd /home/autoware/.autoware \
-  && bash  ./my_launch.sh \
-  && cp /home/autoware/ /root/.autoware/ \
-  && sudo chmod o+r+w+x /root/.autoware/
+  && bash  ./my_launch.sh  \
+  && cp -r /home/autoware/.autoware /root/.autoware \
+  && sudo chmod o+r+w+x /root/.autoware
