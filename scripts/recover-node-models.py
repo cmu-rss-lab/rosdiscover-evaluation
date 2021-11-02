@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import abc
 import argparse
 import contextlib
@@ -242,6 +243,11 @@ def obtain_node_sources(
     return package_node_to_sources
 
 
+def do_recover(args) -> t.Optional[NodeModelRecoverySummary]:
+    experiment_config, node_sources = args[0], args[1]
+    return recover_node_from_sources(experiment_config, node_sources)
+
+
 def recover_all(
     experiment_config: RecoveryExperimentConfig,
     should_cache_sources: bool,
@@ -253,10 +259,21 @@ def recover_all(
         experiment_config=experiment_config,
         should_cache=should_cache_sources,
     )
-    for node_sources in package_node_to_sources.values():
-        summary = recover_node_from_sources(experiment_config, node_sources)
-        if summary:
-            summaries.add(summary)
+
+    # we need to load the rosdiscover config
+    config_filename = experiment_config["config_with_node_sources_filename"]
+    config = rosdiscover.Config.load(config_filename)
+
+    # ensure that an app description is built before performing recovery
+    config.app.describe()
+
+    jobs = [(experiment_config, ns) for ns in package_node_to_sources.values()]
+
+    with ThreadPoolExecutor(num_cores) as executor:
+        for summary in executor.map(do_recover, jobs):
+            if summary:
+                summaries.add(summary)
+
     logger.info("recovered all node models for system")
 
     summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
@@ -378,6 +395,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--cores",
+        type=int,
         default=1,
         help="the number of cores that the recovery process should be spread across",
     )
