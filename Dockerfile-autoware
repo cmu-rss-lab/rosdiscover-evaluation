@@ -1,13 +1,12 @@
-FROM autoware/autoware:1.14.0-melodic
+FROM autoware/autoware:1.14.0-melodic-cuda
 
 ENV DEBIAN_FRONTEND noninteractive
 # install vncserver
 RUN sudo bash -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
  && sudo apt-get update \
- && sudo apt-get install -y \
-      dialog \
-      apt-utils \
+ && export DEBIAN_FRONTEND=noninteractive \
+ && apt-get install -y --no-install-recommends\
       supervisor \
       vnc4server \
       xfce4 \
@@ -17,6 +16,7 @@ RUN sudo bash -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs
       xterm \
       xvfb \
       x11vnc \
+      dbus-x11 \
  && sudo apt-get clean \
  && sudo rm -rf /var/lib/apt/lists/* \
  && sudo mkdir ~/.vnc \
@@ -30,17 +30,27 @@ ARG ROOTFS
 
 COPY "${ROOTFS}" /
 
-RUN pushd ~ \
-  && mkdir .autowareL \
-  && pushd .autowareL \
+RUN pushd /home/autoware \
+  && mkdir .autoware \
+  && pushd .autoware \
   && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
   && tar zxfv sample_moriyama_data.tar.gz \
-  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh \
-  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
-  && tar zxfv sample_moriyama_150324.tar.gz
+  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh
+  #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
+  #&& tar zxfv sample_moriyama_150324.tar.gz
 
+#RUN pushd ~ \
+#  && pushd .autoware \
+  #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
+  #&& tar zxfv sample_moriyama_150324.tar.gz
+
+#ENV AUTOWARE_COMPILE_WITH_CUDA true
 RUN cd /home/autoware/Autoware \
   && . /opt/ros/${ROS_DISTRO}/setup.sh \
   && eval 'colcon build --cmake-args "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"'
 
-RUN .autowareL/my_launch.sh
+RUN sudo chmod o+r+w+x /home/autoware/.autoware \
+  && pushd /home/autoware/.autoware \
+  && bash  ./my_launch.sh \
+  && cp /home/autoware/ /root/.autoware/ \
+  && sudo chmod o+r+w+x /root/.autoware/
