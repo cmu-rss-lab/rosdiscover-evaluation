@@ -1,51 +1,12 @@
 type: recovery
 subject: autorally
-image: rosdiscover-experiments/autorally:c2692f2
+image: rosdiscover-experiments/autoware:static
 distro: melodic
-build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-cuda_version: 11-4
-missing_ros_packages: []
-exclude_ros_packages:
-  - orocos_kdl
-  - pointgrey_camera_driver
-  - rviz
-  - gazebo_ros_pkgs/gazebo_dev
-  - gazebo_ros_pkgs/gazebo_msgs
-  - gazebo_ros_pkgs/gazebo_plugins
-  - gazebo_ros_pkgs/gazebo_ros
-  - gazebo_ros_pkgs/gazebo_ros_control
-  - gazebo_ros_pkgs/gazebo_ros_pkgs
-apt_packages:
-  - cmake-curses-gui
-  - cutecom
-  - doxygen
-  - libglademm-2.4-1v5
-  - libglademm-2.4-dev
-  - libgtkglextmm-x11-1.2
-  - libgtkglextmm-x11-1.2-dev
-  - libgtkmm-2.4-1v5
-  - libraw1394-11
-  - libusb-1.0-0
-  - libusb-dev
-  - openssh-server
-  - synaptic
-  - texinfo
-  - ros-melodic-rqt-publisher
-  - ros-melodic-gazebo-ros-pkgs
-repositories:
-- name: autorally
-  url: https://github.com/AutoRally/autorally.git
-  version: c2692f2
-- name: imu_3dm_gx4
-  url: https://github.com/AutoRally/imu_3dm_gx4.git
-  version: c9652c8ab3e002861449eba5b3ea569c90cdd236
-- name: pointgrey_camera_driver
-  url: https://github.com/ros-drivers/pointgrey_camera_driver.git
-  version: 6c3e4cb82f67e00980fce33bdc4d4fb251a4a06b
+build_command: colcon build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 sources:
 - /opt/ros/melodic/setup.bash
-- /ros_ws/devel/setup.bash
-- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+- /home/autoware/Autoware/install/setup.bash
+- /home/autoware/Autoware/install/local_setup.sh
 launches:
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
 - /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
