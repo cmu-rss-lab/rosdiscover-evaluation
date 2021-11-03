@@ -54,7 +54,7 @@ autorally-static:
 	pipenv run python scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml;\
 
 autoware-static: 
-    docker build . -t rosdiscover-experiments/autoware:static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
+	docker build . -t rosdiscover-experiments/autoware:static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
 
 %: 
 	pipenv run python scripts/build-images.py experiments/detection/subjects/$@/experiment.yml;\
