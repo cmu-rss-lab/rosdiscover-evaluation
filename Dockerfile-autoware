@@ -5,8 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN sudo bash -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
  && sudo apt-get update \
- && export DEBIAN_FRONTEND=noninteractive \
- && apt-get install -y --no-install-recommends\
+ && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends\
       supervisor \
       vnc4server \
       xfce4 \
