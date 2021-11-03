@@ -22,6 +22,7 @@ THINGS_TO_IGNORE = """/clock
 */parameter_description
 */parameter_updates
 */set_parameters
+*manager/list
 """
 
 

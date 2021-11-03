@@ -71,25 +71,39 @@ def compare_sets(
     joiner: str,
     observed: NamePairSet,
     recovered: NamePairSet,
-) -> str:
+) -> t.Tuple[str, str]:
     observed_not_recovered = list(observed.difference(recovered))
     recovered_not_observed = list(recovered.difference(observed))
     observed_not_recovered.sort(key=lambda x: x[0])
     recovered_not_observed.sort(key=lambda x: x[0])
 
-    differences = f"\n{kind} in observed that aren't in recovered: "
-    differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in observed_not_recovered)
-    differences += f"\n{kind} in recovered that aren't in observed: "
-    differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in recovered_not_observed)
+    # Over-approximation - the percentage of elements in the recovered that aren't in the observed
+    # Under-approximation - the percentage of elements in the observed that aren't recovered
     rec_err = len(observed_not_recovered)
     obs_err = len(recovered_not_observed)
-    if len(observed) > 0:
-        differences += f"\nScore: {rec_err + obs_err} differences from "
-        differences += f"{len(observed)} ground truth = "
-        differences += f"{(len(observed) - rec_err - obs_err) / len(observed) * 100}% recovered"
-    elif len(recovered) != 0:
+    differences = f"\n{kind} in observed that aren't in recovered ({rec_err} differences): "
+    differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in observed_not_recovered)
+    differences += f"\n{kind} in recovered that aren't in observed ({obs_err} differences: "
+    differences += ", ".join(f"{o[0]}{joiner}{o[1]}" for o in recovered_not_observed)
+
+    if len(recovered) != 0 and len(observed) == 0:
         differences += f"\nRecovered {len(recovered)} but observed nothing"
-    return differences
+    if len(observed) > 0:
+        differences += f"\nOver approximation = {obs_err / len(observed) * 100}% more than ground truth"
+        differences += f"\nUnder approximation = {rec_err / len(observed) * 100}% less than ground truth"
+    if obs_err == 0 and rec_err == 0:
+        differences += f"\nPerfect match"
+        # differences += f"\nScore: {rec_err + obs_err} differences from "
+        # differences += f"{len(observed)} ground truth = "
+        # differences += f"{(len(observed) - rec_err - obs_err) / len(observed) * 100}% recovered"
+
+    # , kind, #o, #r, #o!r, #r!o, over apprx, under appx
+    csv = f",{kind},{len(observed)},{len(recovered)},{rec_err},{obs_err}"
+    if len(observed) > 0:
+        csv += f",{obs_err / len(observed)},{rec_err / len(observed)}"
+    else:
+        csv += ",NaN,NaN"
+    return differences, csv
 
 
 def safe_dict_add(dict_, key1, key2, val):
@@ -103,7 +117,42 @@ def filter_actions_from_observed(summary: ArchitectureSummary):
     Takes topics from observed publishers that are associated with actions and
     remove them from list and add them as actions
     """
-    pass
+
+    filter_actions_from_recovered(summary)
+
+    if not summary.action_servers and not summary.action_clients:
+        # Maybe this was an observed architecture, so we need to extract these
+        potential_server_feedbacks = [f for f in summary.publishers if f[1].endswith('/feedback')]
+        # potential_server_results = [f for f in summary.publishers if f[1].endswith('/result')]
+        # potential_server_statuses = [f for f in summary.publishers if f[1].endswith('/status')]
+        # potential_server_goals = [f for f in summary.subscribers if f[1].endswith('/goal')]
+        # potential_server_cancels = [f for f in summary.subscribers if f[1].endswith('/cancel')]
+
+        potential_servers = {(n[0], '/'.join(n[1].split('/')[:-1])) for n in potential_server_feedbacks}
+        for i in potential_servers:
+            result = (i[0], f"{i[1]}/result") in summary.publishers
+            status = (i[0], f"{i[1]}/status") in summary.publishers
+            goal = (i[0], f"{i[1]}/goal") in summary.subscribers
+            cancel = (i[0], f"{i[1]}/cancel") in summary.subscribers
+
+            if result and status and goal and cancel:
+                summary.action_servers.add((i[0], i[1]))
+
+        potential_client_feedbacks = [f for f in summary.subscribers if f[1].endswith('/feedback')]
+        # potential_client_results = [f for f in summary.subscribers if f[1].endswith('/result')]
+        # potential_client_statuses = [f for f in summary.subscribers if f[1].endswith('/status')]
+        # potential_client_goals = [f for f in summary.publishers if f[1].endswith('/goal')]
+        # potential_client_cancels = [f for f in summary.publishers if f[1].endswith('/cancel')]
+
+        potential_clients = {(n[0], '/'.join(n[1].split('/')[:-1])) for n in potential_client_feedbacks}
+        for i in potential_clients:
+            result = (i[0], f"{i[1]}/result") in summary.subscribers
+            status = (i[0], f"{i[1]}/status") in summary.subscribers
+            goal = (i[0], f"{i[1]}/goal") in summary.publishers
+            cancel = (i[0], f"{i[1]}/cancel") in summary.publishers
+
+            if result and status and goal and cancel:
+                summary.action_clients.add((i[0], i[1]))
 
 
 def filter_actions_from_recovered(summary: ArchitectureSummary):
@@ -135,6 +184,7 @@ def compare(config: ExperimentConfig) -> None:
     recovered_yml_file = os.path.join(config_directory, "recovered.architecture.yml")
 
     comparison_file = os.path.join(config_directory, "compare.observed-recovered.log")
+    comparison_csv = os.path.join(config_directory, "observed.recoverd.compare.csv")
 
     if not os.path.exists(observed_yml_file):
         error(f"[{observed_yml_file} not found. Perhaps observe-system was not run for "
@@ -147,13 +197,22 @@ def compare(config: ExperimentConfig) -> None:
     with open(recovered_yml_file, 'r') as f:
         recovered_architecture = yaml.load(f, Loader=yaml.SafeLoader)
 
+    observed_summary = extract_architecture_summary(observed_architecture)
+    recovered_summary = extract_architecture_summary(recovered_architecture)
+
+    filter_actions_from_observed(observed_summary)
+    filter_actions_from_recovered(recovered_summary)
+
+    nodecomp, nodecsv = compare_sets("Nodes", "/", observed_summary.nodes, recovered_summary.nodes)
+    pubcomp, pubcsv = compare_sets("Publishers", "->", observed_summary.publishers, recovered_summary.publishers)
+    subcomp, subcsv = compare_sets("Subscribers", "<-", observed_summary.subscribers, recovered_summary.subscribers)
+    provcomp, provcsv = compare_sets("Providers", ":", observed_summary.providers, recovered_summary.providers)
+    accomp, accsv = compare_sets("Action Clients", "^-", observed_summary.action_clients,
+                                 recovered_summary.action_clients)
+    ascomp, ascsv = compare_sets("Action Servers", "-^", observed_summary.action_servers,
+                                 recovered_summary.action_servers)
     with open(comparison_file, 'w') as f:
 
-        observed_summary = extract_architecture_summary(observed_architecture)
-        recovered_summary = extract_architecture_summary(recovered_architecture)
-
-        filter_actions_from_observed(observed_summary)
-        filter_actions_from_recovered(recovered_summary)
 
         f.write("Observed architecture summary:\n")
         f.write("==============================\n")
@@ -186,37 +245,43 @@ def compare(config: ExperimentConfig) -> None:
             f.write(f"  Node: {node[1]} <- "
                     f"{[n['filename'] for n in recovered_architecture if n['fullname'] == node[1]]}"
                     f":\n")
+            node_name = node[1][1:]
             observed_summary.write_publishers_for_node(f, node, "Observed Pubs",
-                                                       [t[1] for t in recovered_summary.publishers])
+                                                       [t[1] for t in recovered_summary.publishers if t[0] == node_name])
             recovered_summary.write_publishers_for_node(f, node, "Recovered Pubs",
-                                                        [t[1] for t in observed_summary.publishers])
+                                                        [t[1] for t in observed_summary.publishers if t[0] == node_name])
             observed_summary.write_subscribers_for_node(f, node, "Observed Subs",
-                                                        [t[1] for t in recovered_summary.subscribers])
+                                                        [t[1] for t in recovered_summary.subscribers if t[0] == node_name])
             recovered_summary.write_subscribers_for_node(f, node, "Recovered Subs",
-                                                         [t[1] for t in observed_summary.subscribers])
+                                                         [t[1] for t in observed_summary.subscribers if t[0] == node_name])
             observed_summary.write_providers_for_node(f, node, "Observed Provs",
-                                                      [t[1] for t in recovered_summary.providers])
+                                                      [t[1] for t in recovered_summary.providers if t[0] == node_name])
             recovered_summary.write_providers_for_node(f, node, "Recovered Provs",
-                                                       [t[1] for t in observed_summary.providers])
+                                                       [t[1] for t in observed_summary.providers if t[0] == node_name])
             observed_summary.write_action_servers_for_node(f, node, "Observed Action Servers",
-                                                           [t[1] for t in recovered_summary.action_servers])
+                                                           [t[1] for t in recovered_summary.action_servers if t[0] == node_name])
             recovered_summary.write_action_servers_for_node(f, node, "Recovered Action Servers",
-                                                            [t[1] for t in observed_summary.action_servers])
+                                                            [t[1] for t in observed_summary.action_servers if t[0] == node_name])
             observed_summary.write_action_clients_for_node(f, node, "Observed Action Clients",
-                                                           [t[1] for t in recovered_summary.action_clients])
+                                                           [t[1] for t in recovered_summary.action_clients if t[0] == node_name])
             recovered_summary.write_action_clients_for_node(f, node, "Recovered Action Clients",
-                                                            [t[1] for t in observed_summary.action_clients])
+                                                            [t[1] for t in observed_summary.action_clients if t[0] == node_name])
 
         f.write("\n")
         f.write("Differences:\n")
         f.write("============\n")
-        f.write(compare_sets("Nodes", "/", observed_summary.nodes, recovered_summary.nodes))
-        f.write(compare_sets("Publishers", "->", observed_summary.publishers, recovered_summary.publishers))
-        f.write(compare_sets("Subscribers", "<-", observed_summary.subscribers, recovered_summary.subscribers))
-        f.write(compare_sets("Providers", ":", observed_summary.providers, recovered_summary.providers))
-        f.write(compare_sets("Action Clients", "^-", observed_summary.action_clients, recovered_summary.action_clients))
-        f.write(compare_sets("Action Servers", "-^", observed_summary.action_servers, recovered_summary.action_servers))
-        f.write("\nCannot observer service clients")
+
+        f.write(nodecomp)
+        f.write(pubcomp)
+        f.write(subcomp)
+        f.write(provcomp)
+        f.write(accomp)
+        f.write(ascomp)
+        f.write("\nCannot observe service clients")
+
+    with open(comparison_csv, 'w') as f:
+        for i in (nodecsv, pubcsv, subcsv, provcsv, accsv, ascsv):
+            f.write(f"{config['subject']}{i}\n")
 
 
 def extract_architecture_summary(
