@@ -31,17 +31,17 @@ ARG ROOTFS
 
 COPY "${ROOTFS}" /
 
-RUN pushd /home/autoware \
+RUN cd /home/autoware \
   && mkdir .autoware \
-  && pushd .autoware \
+  && cd .autoware \
   && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
   && tar zxfv sample_moriyama_data.tar.gz \
   && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh
   #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
   #&& tar zxfv sample_moriyama_150324.tar.gz
 
-#RUN pushd ~ \
-#  && pushd .autoware \
+#RUN cd ~ \
+#  && cd .autoware \
   #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
   #&& tar zxfv sample_moriyama_150324.tar.gz
 
@@ -51,7 +51,7 @@ RUN cd /home/autoware/Autoware/ros \
   && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 RUN sudo chmod o+r+w+x /home/autoware/.autoware \
-  && pushd /home/autoware/.autoware \
+  && cd /home/autoware/.autoware \
   && bash  ./my_launch.sh  \
   && cp -r /home/autoware/.autoware /root/.autoware \
   && sudo chmod o+r+w+x /root/.autoware
