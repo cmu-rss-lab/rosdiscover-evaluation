@@ -1,4 +1,4 @@
-FROM autoware/autoware:1.14.0-melodic-cuda
+FROM autoware/autoware:1.10.0-kinetic-cuda
 
 ENV DEBIAN_FRONTEND noninteractive
 # install vncserver
@@ -45,9 +45,9 @@ RUN pushd /home/autoware \
   #&& tar zxfv sample_moriyama_150324.tar.gz
 
 #ENV AUTOWARE_COMPILE_WITH_CUDA true
-RUN cd /home/autoware/Autoware \
+RUN cd /home/autoware/Autoware/ros \
   && . /opt/ros/${ROS_DISTRO}/setup.sh \
-  && eval 'colcon build --cmake-args "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"'
+  && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 RUN sudo chmod o+r+w+x /home/autoware/.autoware \
   && pushd /home/autoware/.autoware \
