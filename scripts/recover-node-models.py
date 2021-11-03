@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import abc
 import argparse
 import contextlib
@@ -242,9 +243,15 @@ def obtain_node_sources(
     return package_node_to_sources
 
 
+def do_recover(args) -> t.Optional[NodeModelRecoverySummary]:
+    experiment_config, node_sources = args[0], args[1]
+    return recover_node_from_sources(experiment_config, node_sources)
+
+
 def recover_all(
     experiment_config: RecoveryExperimentConfig,
     should_cache_sources: bool,
+    num_cores: int,
 ) -> None:
     logger.info("recovering all node models for system")
     summaries = NodeModelRecoverySummaries()
@@ -252,10 +259,21 @@ def recover_all(
         experiment_config=experiment_config,
         should_cache=should_cache_sources,
     )
-    for node_sources in package_node_to_sources.values():
-        summary = recover_node_from_sources(experiment_config, node_sources)
-        if summary:
-            summaries.add(summary)
+
+    # we need to load the rosdiscover config
+    config_filename = experiment_config["config_with_node_sources_filename"]
+    config = rosdiscover.Config.load(config_filename)
+
+    # ensure that an app description is built before performing recovery
+    config.app.describe()
+
+    jobs = [(experiment_config, ns) for ns in package_node_to_sources.values()]
+
+    with ThreadPoolExecutor(num_cores) as executor:
+        for summary in executor.map(do_recover, jobs):
+            if summary:
+                summaries.add(summary)
+
     logger.info("recovered all node models for system")
 
     summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
@@ -360,8 +378,8 @@ def error(message: str) -> t.NoReturn:
 def main() -> None:
     parser = argparse.ArgumentParser("statically recovers node models")
     parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for the system",
+        "system",
+        help="the name of the system",
     )
     parser.add_argument(
         "--package",
@@ -374,6 +392,12 @@ def main() -> None:
         default=None,
         required=False,
         help="the name of the node whose model should be recovered",
+    )
+    parser.add_argument(
+        "--cores",
+        type=int,
+        default=1,
+        help="the number of cores that the recovery process should be spread across",
     )
     parser.add_argument(
         "--debug",
@@ -403,7 +427,17 @@ def main() -> None:
     if args.package and not args.node:
         error(f"expected node name to be specified along with package [{args.package}]")
 
-    experiment_filename: str = args.configuration
+    parser.add_argument(
+        "configuration",
+        help="the path to the configuration file for the system",
+    )
+
+    experiment_filename: str = os.path.join(
+        os.path.dirname(__file__),
+        "../experiments/recovery/subjects",
+        args.system,
+        "experiment.yml",
+    )
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
@@ -418,6 +452,7 @@ def main() -> None:
         recover_all(
             experiment_config=config,
             should_cache_sources=args.should_cache_sources,
+            num_cores=args.cores,
         )
     else:
         recover_single_node(
