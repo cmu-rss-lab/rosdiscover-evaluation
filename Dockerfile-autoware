@@ -51,7 +51,7 @@ RUN cd /home/autoware/Autoware/ros \
   && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 RUN sudo chmod o+r+w+x /home/autoware/.autoware \
-  && cd /home/autoware/.autoware \
-  #&& sh ./my_launch.sh  \
   && sudo cp -r /home/autoware/.autoware /root/.autoware \
+  && cd /root/.autoware \
+  && sh ./my_launch.sh  \
   && sudo chmod o+r+w+x /root/
