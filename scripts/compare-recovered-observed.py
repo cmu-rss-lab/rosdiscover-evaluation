@@ -3,6 +3,7 @@
 import argparse
 import os
 import sys
+import csv
 
 import typing as t
 
@@ -71,7 +72,7 @@ def compare_sets(
     joiner: str,
     observed: NamePairSet,
     recovered: NamePairSet,
-) -> t.Tuple[str, str]:
+) -> t.Tuple[str, t.Sequence[str]]:
     observed_not_recovered = list(observed.difference(recovered))
     recovered_not_observed = list(recovered.difference(observed))
     observed_not_recovered.sort(key=lambda x: x[0])
@@ -98,12 +99,12 @@ def compare_sets(
         # differences += f"{(len(observed) - rec_err - obs_err) / len(observed) * 100}% recovered"
 
     # , kind, #o, #r, #o!r, #r!o, over apprx, under appx
-    csv = f",{kind},{len(observed)},{len(recovered)},{rec_err},{obs_err}"
+    csv_line = [kind, len(observed), len(recovered), rec_err, obs_err]
     if len(observed) > 0:
-        csv += f",{obs_err / len(observed)},{rec_err / len(observed)}"
+        csv_line.extend([obs_err / len(observed), rec_err / len(observed)])
     else:
-        csv += ",NaN,NaN"
-    return differences, csv
+        csv_line.extend(["NaN", "NaN"])
+    return differences, csv_line
 
 
 def safe_dict_add(dict_, key1, key2, val):
@@ -185,7 +186,7 @@ def compare(config: ExperimentConfig) -> None:
 
     comparison_file = os.path.join(config_directory, "compare.observed-recovered.log")
     comparison_csv = os.path.join(config_directory, "observed.recoverd.compare.csv")
-
+    errors_both_csv = os.path.join(config_directory, "observed.recovered.errors.csv")
     if not os.path.exists(observed_yml_file):
         error(f"[{observed_yml_file} not found. Perhaps observe-system was not run for "
               f"this configuration.")
@@ -212,7 +213,6 @@ def compare(config: ExperimentConfig) -> None:
     ascomp, ascsv = compare_sets("Action Servers", "-^", observed_summary.action_servers,
                                  recovered_summary.action_servers)
     with open(comparison_file, 'w') as f:
-
 
         f.write("Observed architecture summary:\n")
         f.write("==============================\n")
@@ -242,30 +242,42 @@ def compare(config: ExperimentConfig) -> None:
         f.write("=============================\n")
 
         for node in nodes_in_common:
-            f.write(f"  Node: {node[1]} <- "
-                    f"{[n['filename'] for n in recovered_architecture if n['fullname'] == node[1]]}"
+            node_infos = [n for n in recovered_architecture if n['fullname'] == node[1]]
+            filename = node_infos[0]['filename']  # if len(node_infos) > 1 else "unknown"
+            prov = node_infos[0]['provenance'][0]  # if len(node_infos) > 1 else "U"
+
+            f.write(f"  Node: {node[1]}({prov}) <- "
+                    f"{filename}"
                     f":\n")
             node_name = node[1][1:]
             observed_summary.write_publishers_for_node(f, node, "Observed Pubs",
-                                                       [t[1] for t in recovered_summary.publishers if t[0] == node_name])
+                                                       [t[1] for t in recovered_summary.publishers if
+                                                        t[0] == node_name])
             recovered_summary.write_publishers_for_node(f, node, "Recovered Pubs",
-                                                        [t[1] for t in observed_summary.publishers if t[0] == node_name])
+                                                        [t[1] for t in observed_summary.publishers if
+                                                         t[0] == node_name])
             observed_summary.write_subscribers_for_node(f, node, "Observed Subs",
-                                                        [t[1] for t in recovered_summary.subscribers if t[0] == node_name])
+                                                        [t[1] for t in recovered_summary.subscribers if
+                                                         t[0] == node_name])
             recovered_summary.write_subscribers_for_node(f, node, "Recovered Subs",
-                                                         [t[1] for t in observed_summary.subscribers if t[0] == node_name])
+                                                         [t[1] for t in observed_summary.subscribers if
+                                                          t[0] == node_name])
             observed_summary.write_providers_for_node(f, node, "Observed Provs",
                                                       [t[1] for t in recovered_summary.providers if t[0] == node_name])
             recovered_summary.write_providers_for_node(f, node, "Recovered Provs",
                                                        [t[1] for t in observed_summary.providers if t[0] == node_name])
             observed_summary.write_action_servers_for_node(f, node, "Observed Action Servers",
-                                                           [t[1] for t in recovered_summary.action_servers if t[0] == node_name])
+                                                           [t[1] for t in recovered_summary.action_servers if
+                                                            t[0] == node_name])
             recovered_summary.write_action_servers_for_node(f, node, "Recovered Action Servers",
-                                                            [t[1] for t in observed_summary.action_servers if t[0] == node_name])
+                                                            [t[1] for t in observed_summary.action_servers if
+                                                             t[0] == node_name])
             observed_summary.write_action_clients_for_node(f, node, "Observed Action Clients",
-                                                           [t[1] for t in recovered_summary.action_clients if t[0] == node_name])
+                                                           [t[1] for t in recovered_summary.action_clients if
+                                                            t[0] == node_name])
             recovered_summary.write_action_clients_for_node(f, node, "Recovered Action Clients",
-                                                            [t[1] for t in observed_summary.action_clients if t[0] == node_name])
+                                                            [t[1] for t in observed_summary.action_clients if
+                                                             t[0] == node_name])
 
         f.write("\n")
         f.write("Differences:\n")
@@ -279,9 +291,47 @@ def compare(config: ExperimentConfig) -> None:
         f.write(ascomp)
         f.write("\nCannot observe service clients")
 
+    # process the errors
+    observed_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-observed.log"))
+    recovered_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-recovered.log"))
+
     with open(comparison_csv, 'w') as f:
+        writer = csv.writer(f)
+        first = True
+
         for i in (nodecsv, pubcsv, subcsv, provcsv, accsv, ascsv):
-            f.write(f"{config['subject']}{i}\n")
+            line = [config['subject']]
+            if first:
+                if len(observed_errors) > len(recovered_errors):
+                    same = len(observed_errors.intersection(recovered_errors)) == len(observed_errors) - len(
+                        recovered_errors)
+                else:
+                    same = len(recovered_errors.intersection(observed_errors)) == len(recovered_errors) - len(
+                        observed_errors)
+                line += i
+                line += [len(observed_errors), len(recovered_errors), same]
+                first = False
+            else:
+                line += i
+            writer.writerow(line)
+
+    with open(errors_both_csv, 'w') as f:
+        writer = csv.writer(f)
+        for i in observed_errors:
+            writer.writerow([config['subject'], "observed", i])
+        for i in recovered_errors:
+            writer.writerow([config['subject'], "recovered", i])
+
+
+def get_acme_errors(observed_error_log):
+    observed_errors = set()
+    with open(observed_error_log) as f:
+        lines = f.readlines()
+        i = len(lines) - 1
+        while i != 0 and not 'The following problems' in lines[i] and not 'has no errors' in lines[i]:
+            observed_errors.add(lines[i].split(' -     ')[1])
+            i = i - 1
+    return observed_errors
 
 
 def extract_architecture_summary(
