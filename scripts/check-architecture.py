@@ -26,7 +26,19 @@ def check(config: ExperimentConfig, kind: str) -> None:
 
 
 def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str) -> None:
-    error(f"{config['type']} not yet supported for detection experiment")
+    config_directory = config["directory"]
+    log_directory = os.path.join(config_directory, "logs")
+
+    for kind in ("buggy", "fixed"):
+        input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
+        acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
+        acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
+        generate_and_check_acme(
+                image=config[kind]["image"],
+                input_filename=input_filename,
+                output_filename=acme_filename,
+                log_filename=acme_log_filename,
+            )
 
 
 def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) -> None:
@@ -58,7 +70,7 @@ def main():
         level="INFO",
     )
     parser = argparse.ArgumentParser("Checks the architecture by converting to Acme and checking constraints")
-    parser.add_argument('kind', type=str, choices=['observed', 'recovered'])
+    parser.add_argument('kind', type=str, choices=['observed', 'recovered', 'detected'])
     parser.add_argument(
         "configuration",
         help="the path to the configuration file for this experiment",
