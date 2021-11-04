@@ -3,10 +3,12 @@ __all__ = (
     "DetectionExperimentConfig",
     "ExperimentConfig",
     "NodeSources",
+    "ROSDiscoverConfig",
     "RecoveryExperimentConfig",
     "RepoVersion",
-    "ROSDiscoverConfig",
     "SystemVersion",
+    "find_configs",
+    "load_config",
 )
 
 import contextlib
@@ -112,3 +114,14 @@ def load_config(filename: str) -> ExperimentConfig:
         )
 
     return config
+
+
+def find_configs() -> t.Iterator[str]:
+    """Returns an iterator over the absolute paths of all of the experiment config
+    files in this replication package."""
+    dir_scripts = os.path.dirname(os.path.dirname(__file__))
+    dir_replication_package = os.path.dirname(dir_scripts)
+    for root, _dirs, files in os.walk(dir_replication_package):
+        for filename in files:
+            if filename == "experiment.yml":
+                yield os.path.join(root, filename)
