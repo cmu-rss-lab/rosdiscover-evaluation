@@ -12,6 +12,7 @@ from common.config import (
     DetectionExperimentConfig,
     RecoveryExperimentConfig,
     load_config,
+    find_configs,
 )
 
 EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -50,7 +51,11 @@ def build_image(
     command = " ".join(command_args)
 
     logger.info(f"building image: {command}")
-    subprocess.check_call(command, cwd=EVALUATION_DIR, shell=True)
+    outcome = subprocess.run(command, cwd=EVALUATION_DIR, shell=True)
+    if outcome.returncode == 0:
+        logger.info(f"successfully built image: {image}")
+    else:
+        logger.error(f"failed to build image: {image}")
 
 
 def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
@@ -98,11 +103,19 @@ def build_images_for_experiment(filename: str) -> None:
     logger.info(f"built images for experiment: {filename}")
 
 
+def build_all_images() -> None:
+    for experiment_filename in find_configs():
+        build_images_for_experiment(experiment_filename)
+
+
 def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     parser = argparse.ArgumentParser("Builds Docker images for experiments")
     parser.add_argument("filename", help="the file for the experiment")
     parsed_args = parser.parse_args(args)
-    build_images_for_experiment(parsed_args.filename)
+    if parsed_args.filename == "all":
+        build_all_images()
+    else:
+        build_images_for_experiment(parsed_args.filename)
 
 
 if __name__ == "__main__":
