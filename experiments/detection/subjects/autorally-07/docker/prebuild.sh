@@ -14,7 +14,7 @@ pip install \
 
 echo "installing geographiclib"
 cd /tmp
-wget -nv https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.48.tar.gz --no-check-certificate
+wget -nv --no-check-certificate https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.48.tar.gz 
 tar xfpz GeographicLib-1.48.tar.gz
 cd GeographicLib-1.48
 mkdir build
