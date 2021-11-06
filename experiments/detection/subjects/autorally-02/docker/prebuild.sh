@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# ensure that the python environment is correctly configured
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# install necessary python packages
+pip install \
+  empy==3.3.4 \
+  numpy==1.16.6 \
+  defusedxml==0.6.0 \
+  netifaces==0.10.7
+
+
 EIGEN_VERSION="3.3.7"
 
 echo "installing geographiclib"
@@ -17,7 +29,7 @@ echo "installed geographiclib"
 echo "installing gtsam"
 git clone https://github.com/borglab/gtsam /opt/gtsam
 cd /opt/gtsam
-git checkout 2c0c3d195558375632fa86ed42df772fce7af42b
+git checkout b04c0bb15d88e36ca5e1c268bf8930166b473f4a
 mkdir build
 cd build
 cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=OFF -DGTSAM_WITH_EIGEN_MKL=OFF ..
@@ -68,3 +80,15 @@ cd build
 cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
+
+sed -i "11i\ diagnostic_updater" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ imu_3dm_gx4" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ diagnostic_updater" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+
+# remove a bad dependency
+sed -i "s# RingBuffer)#)#" /ros_ws/src/autorally/autorally_control/src/ConstantSpeedController/CMakeLists.txt
+
+# _gencpp has been replaced by _generate_messages_cpp
+find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
