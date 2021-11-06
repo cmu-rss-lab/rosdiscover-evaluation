@@ -90,6 +90,7 @@ class RecoveryExperimentConfig(ExperimentConfig):
 class DetectionExperimentConfig(ExperimentConfig):
     buggy: SystemVersion
     fixed: SystemVersion
+    errors: t.Sequence[str]
 
 
 def load_config(filename: str) -> ExperimentConfig:
@@ -112,6 +113,8 @@ def load_config(filename: str) -> ExperimentConfig:
             config["directory"],
             "rosdiscover-config-with-sources.yml",
         )
+    if config["type"] == "detection":
+        config["errors"] = config.get("errors") or []
 
     return config
 
