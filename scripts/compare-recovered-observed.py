@@ -11,7 +11,7 @@ import attr
 import yaml
 from loguru import logger
 
-from common.acme import THINGS_TO_IGNORE
+from common.acme import THINGS_TO_IGNORE, get_acme_errors
 from common.config import ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -297,11 +297,10 @@ def compare(config: ExperimentConfig) -> None:
 
     with open(comparison_csv, 'w') as f:
         writer = csv.writer(f)
-        first = True
 
         for i in (nodecsv, pubcsv, subcsv, provcsv, accsv, ascsv):
             line = [config['subject']]
-            if first:
+            if i == nodecsv:
                 if len(observed_errors) > len(recovered_errors):
                     same = len(observed_errors.intersection(recovered_errors)) == len(observed_errors) - len(
                         recovered_errors)
@@ -309,8 +308,8 @@ def compare(config: ExperimentConfig) -> None:
                     same = len(recovered_errors.intersection(observed_errors)) == len(recovered_errors) - len(
                         observed_errors)
                 line += i
-                line += [len(observed_errors), len(recovered_errors), same]
-                first = False
+                line += [len(observed_errors), len(recovered_errors), same, len(handwritten),
+                         len(recovered), len(placeholders)]
             else:
                 line += i
             writer.writerow(line)
@@ -321,17 +320,6 @@ def compare(config: ExperimentConfig) -> None:
             writer.writerow([config['subject'], "observed", i])
         for i in recovered_errors:
             writer.writerow([config['subject'], "recovered", i])
-
-
-def get_acme_errors(observed_error_log):
-    observed_errors = set()
-    with open(observed_error_log) as f:
-        lines = f.readlines()
-        i = len(lines) - 1
-        while i != 0 and not 'The following problems' in lines[i] and not 'has no errors' in lines[i]:
-            observed_errors.add(lines[i].split(' -     ')[1])
-            i = i - 1
-    return observed_errors
 
 
 def extract_architecture_summary(

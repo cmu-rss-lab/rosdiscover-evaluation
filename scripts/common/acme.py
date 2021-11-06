@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import tempfile
+import typing
 
 from loguru import logger
 
@@ -56,3 +57,13 @@ def generate_and_check_acme(
                 os.remove(ignore_file)
             logger.remove(file_logger)
 
+
+def get_acme_errors(observed_error_log) -> typing.Set[str]:
+    observed_errors = set()
+    with open(observed_error_log) as f:
+        lines = f.readlines()
+        i = len(lines) - 1
+        while i != 0 and not 'The following problems' in lines[i] and not 'has no errors' in lines[i]:
+            observed_errors.add(lines[i].split(' -     ')[1])
+            i = i - 1
+    return observed_errors

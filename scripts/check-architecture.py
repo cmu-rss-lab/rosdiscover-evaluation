@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+import csv
 import os
 import sys
 import typing as t
 
 from loguru import logger
+
+from common.acme import get_acme_errors
 
 logger.remove()
 
@@ -28,17 +31,53 @@ def check(config: ExperimentConfig, kind: str) -> None:
 def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
     log_directory = os.path.join(config_directory, "logs")
+    detection_report_csv = os.path.join(config_directory, "error-report.csv")
 
     for kind in ("buggy", "fixed"):
         input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
         acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
         acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
         generate_and_check_acme(
-                image=config[kind]["image"],
-                input_filename=input_filename,
-                output_filename=acme_filename,
-                log_filename=acme_log_filename,
-            )
+            image=config[kind]["image"],
+            input_filename=input_filename,
+            output_filename=acme_filename,
+            log_filename=acme_log_filename,
+        )
+
+    errors_required = config["errors"]
+    errors_detected_buggy = get_acme_errors(os.path.join(log_directory, f"acme-and-check-buggy.log"))
+    found_in_buggy = []
+    for err in errors_required:
+        detected = [e for e in errors_detected_buggy if err in e]
+        found_in_buggy.append((err, detected))
+    errors_detected_fixed = get_acme_errors(os.path.join(log_directory, f"acme-and-check-fixed.log"))
+    found_in_fixed = []
+    for err in errors_required:
+        detected = [e for e in errors_detected_fixed if err in e]
+        found_in_fixed.append((err, detected))
+
+    def error_messages(errors):
+        ret = []
+        for v, err in errors:
+            for e in err:
+                ret.append(e)
+        return ret
+
+    with open(detection_report_csv, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow([config["subject"], "", "", "", len(errors_detected_buggy), len(errors_detected_fixed),
+                         len(errors_required), len(error_messages(found_in_buggy)),
+                         len(error_messages(found_in_fixed))])
+        for err in found_in_buggy:
+            for errMsg in err[1]:
+                writer.writerow([config["subject"], "buggy", err[0], errMsg.strip()])
+        if len(error_messages(found_in_buggy)) == 0:
+            writer.writerow([config["subject"], "buggy", "-", "NO RELEVANT ERROR DETECTED"])
+        for err in found_in_fixed:
+            for errMsg in err[1]:
+                writer.writerow([config["subject"], "fixed", err[0], errMsg.strip()])
+        if len(error_messages(found_in_fixed)) == 0:
+            writer.writerow([config["subject"], "fixed", "-", "NO RELEVANT ERROR DETECTED"])
 
 
 def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) -> None:
