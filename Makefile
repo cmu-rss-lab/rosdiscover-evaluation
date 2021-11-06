@@ -33,6 +33,11 @@ launch-autoware:
 		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
 	done
 
+launch-husky:
+	for bug in $(husky-bugs); do \
+		pipenv run python scripts/recover-system.py experiments/detection/subjects/$$bug/experiment.yml;\
+	done
+
 launch-autoware-debug:
 	for bug in $(autoware-bugs); do \
 		bash run_rosdiscover.sh $$bug; \
