@@ -1,0 +1,15 @@
+FROM rosdiscover-experiments/autorally:c2692f2
+COPY reproduction/reproduce.launch /ros_ws
+RUN sed -i "s/pose_estimate_name,/\"pose_estimate\",/" /ros_ws/src/autorally/autorally_control/src/path_integral/autorally_plant.cpp
+# Remove a node we don't recover
+RUN sed -i "68d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch \
+ && sed -i "67d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch \
+ && sed -i "66d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch \
+ && sed -i "65d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch \
+ && sed -i "64d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch \
+ && sed -i "63d" /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch
+ARG BUILD_COMMAND="catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+RUN  eval "$(pyenv init --path)" \
+ && eval "$(pyenv init -)" \
+ && eval "$(pyenv virtualenv-init -)" \. /opt/ros/${ROS_DISTRO}/setup.sh \
+ && eval "${BUILD_COMMAND}"
