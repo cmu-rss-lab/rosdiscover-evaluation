@@ -36,6 +36,10 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
     for version in ("buggy", "fixed"):
         output_filename = os.path.join(config_directory, f"{version}.architecture.yml")
         log_filename = os.path.join(log_directory, f"{version}.system-recovery.log")
+        rosdiscover_filename = os.path.join(
+            config_directory,
+            f"recovery.{version}.rosdiscover.yml",
+        )
         recover_system(
             image=config[version]["image"],
             sources=config["sources"],
@@ -43,6 +47,7 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
             node_sources=config["node_sources"],
             output_filename=output_filename,
             log_filename=log_filename,
+            rosdiscover_filename=rosdiscover_filename,
         )
 
 
@@ -51,6 +56,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     log_directory = os.path.join(config_directory, "logs")
     output_filename = os.path.join(config_directory, "recovered.architecture.yml")
     log_filename = os.path.join(log_directory, "system-recovery.log")
+    rosdiscover_filename = os.path.join(config_directory, "recovery.rosdiscover.yml")
     recover_system(
         image=config["image"],
         sources=config["sources"],
@@ -58,6 +64,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         node_sources=config["node_sources"],
         output_filename=output_filename,
         log_filename=log_filename,
+        rosdiscover_filename=rosdiscover_filename,
     )
 
 
@@ -68,27 +75,29 @@ def recover_system(
     node_sources: NodeSources,
     output_filename: str,
     log_filename: str,
+    rosdiscover_filename: str,
 ) -> None:
     # ensure that the logs directory exists
     os.makedirs(os.path.dirname(log_filename), exist_ok=True)
 
-    with ROSDiscoverConfig.create_temporary({
+    ROSDiscoverConfig.create({
         "image": image,
         "sources": list(sources),
         "launches": list(launches),
         "node_sources": list(node_sources),
-    }) as config_filename:
-        args = ["launch", config_filename]
-        args += ["--output", output_filename]
-        file_logger = logger.add(log_filename, level="DEBUG")
-        logger.debug(f"calling rosdiscover: {args}")
-        try:
-            rosdiscover.cli.main(args)
-        except Exception:
-            logger.exception(f"failed to statically recover system architecture for image [{image}]")
-        finally:
-            logger.remove(file_logger)
-        logger.info(f"statically recovered system architecture for image [{image}]")
+    }, rosdiscover_filename)
+
+    args = ["launch", rosdiscover_filename]
+    args += ["--output", output_filename]
+    file_logger = logger.add(log_filename, level="DEBUG")
+    logger.debug(f"calling rosdiscover: {args}")
+    try:
+        rosdiscover.cli.main(args)
+    except Exception:
+        logger.exception(f"failed to statically recover system architecture for image [{image}]")
+    finally:
+        logger.remove(file_logger)
+    logger.info(f"statically recovered system architecture for image [{image}]")
 
 
 def error(message: str) -> t.NoReturn:
