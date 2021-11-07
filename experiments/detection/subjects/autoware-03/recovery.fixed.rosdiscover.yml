@@ -1,0 +1,51 @@
+image: rosdiscover-experiments/autoware:84169473a3f72aea8a400464f5b673f3c77c6b8c
+launches:
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/velocity_set.launch
+- /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+node_sources:
+- node: waypoint_loader
+  package: waypoint_maker
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/waypoint_loader/waypoint_loader.cpp
+- node: waypoint_marker_publisher
+  package: waypoint_maker
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+- node: lane_navi
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_navi/lane_navi.cpp
+- node: lane_rule
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_rule/lane_rule.cpp
+- node: lane_stop
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_stop/lane_stop.cpp
+- node: tablet_receiver
+  package: tablet_socket
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/tablet_receiver/tablet_receiver.cpp
+- node: tablet_sender
+  package: tablet_socket
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/tablet_sender/tablet_sender.cpp
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
