@@ -1,0 +1,31 @@
+type: detection
+subject: husky
+distro: indigo
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: [] 
+apt_packages:
+  - python3-sip-dev
+buggy:
+  image: rosdiscover-experiments/husky:husky-04-buggy
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: e6470f709aca1641915de669d6c6900f615d6a43
+fixed:
+  image: rosdiscover-experiments/husky:husky-04-fixed
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: cd9c5a12ebb733266fb33a32dabefbebef3ffcef
+
+errors:
+  - /imu/data_compass
+
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel_isolated/setup.bash
+
+launches:
+- /ros_ws/reproduce.launch
+- /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
