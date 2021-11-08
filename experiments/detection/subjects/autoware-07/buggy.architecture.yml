@@ -1,0 +1,278 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/localization/packages/autoware_connector/launch/vel_pose_connect.launch
+  fullname: /can_status_translator
+  kind: can_status_translator
+  name: can_status_translator
+  namespace: /
+  nodelet: false
+  package: autoware_connector
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+  fullname: /waypoint_marker_publisher
+  kind: waypoint_marker_publisher
+  name: waypoint_marker_publisher
+  namespace: /
+  nodelet: false
+  package: waypoint_maker
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: visualization_msgs/MarkerArray
+    implicit: false
+    name: /local_waypoints_mark
+  - format: visualization_msgs/MarkerArray
+    implicit: false
+    name: /global_waypoints_mark
+  reads: []
+  subs:
+  - format: autoware_msgs/Lane
+    implicit: false
+    name: /final_waypoints
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /traffic_waypoints_array
+  - format: autoware_config_msgs/ConfigLaneStop
+    implicit: false
+    name: /config/lane_stop
+  - format: autoware_msgs/TrafficLight
+    implicit: false
+    name: /light_color_managed
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /lane_waypoints_array
+  - format: autoware_msgs/TrafficLight
+    implicit: false
+    name: /light_color
+  - format: std_msgs/Int32
+    implicit: false
+    name: /closest_waypoint
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/localization/packages/autoware_connector/launch/vel_pose_connect.launch
+  fullname: /vel_relay
+  kind: relay
+  name: vel_relay
+  namespace: /
+  nodelet: false
+  package: topic_tools
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: any
+    implicit: false
+    name: /current_velocity
+  reads:
+  - dynamic: false
+    name: /vel_relay/unreliable
+  - dynamic: false
+    name: /vel_relay/monitor_rate
+  - dynamic: false
+    name: /vel_relay/lazy
+  subs:
+  - format: any
+    implicit: false
+    name: /estimate_twist
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/localization/packages/autoware_connector/launch/vel_pose_connect.launch
+  fullname: /pose_relay
+  kind: relay
+  name: pose_relay
+  namespace: /
+  nodelet: false
+  package: topic_tools
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: any
+    implicit: false
+    name: /current_pose
+  reads:
+  - dynamic: false
+    name: /pose_relay/unreliable
+  - dynamic: false
+    name: /pose_relay/lazy
+  - dynamic: false
+    name: /pose_relay/monitor_rate
+  subs:
+  - format: any
+    implicit: false
+    name: /ndt_pose
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+  fullname: /lane_rule
+  kind: lane_rule
+  name: lane_rule
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /traffic_waypoints_array
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /red_waypoints_array
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /green_waypoints_array
+  reads:
+  - dynamic: false
+    name: /lane_rule/search_radius
+  - dynamic: false
+    name: /lane_rule/sub_config_queue_size
+  - dynamic: false
+    name: /lane_rule/pub_waypoint_latch
+  - dynamic: false
+    name: /lane_rule/sub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_rule/curve_weight
+  - dynamic: false
+    name: /lane_rule/sub_vmap_queue_size
+  - dynamic: false
+    name: /lane_rule/pub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_rule/waypoint_max
+  - dynamic: false
+    name: /lane_rule/crossroad_weight
+  - dynamic: false
+    name: /lane_rule/frame_id
+  - dynamic: false
+    name: /lane_rule/clothoid_weight
+  subs:
+  - format: autoware_config_msgs/ConfigLaneRule
+    implicit: false
+    name: /config/lane_rule
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /lane_waypoints_array
+  - format: vector_map_msgs/NodeArray
+    implicit: false
+    name: /vector_map_info/node
+  - format: vector_map_msgs/DTLaneArray
+    implicit: false
+    name: /vector_map_info/dtlane
+  - format: vector_map_msgs/StopLineArray
+    implicit: false
+    name: /vector_map_info/stop_line
+  - format: vector_map_msgs/PointArray
+    implicit: false
+    name: /vector_map_info/point
+  - format: vector_map_msgs/LaneArray
+    implicit: false
+    name: /vector_map_info/lane
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+  fullname: /lane_stop
+  kind: lane_stop
+  name: lane_stop
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /traffic_waypoints_array
+  reads:
+  - dynamic: false
+    name: /lane_rule/sub_config_queue_size
+  - dynamic: false
+    name: /lane_stop/sub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_stop/sub_light_queue_size
+  - dynamic: false
+    name: /lane_stop/pub_waypoint_latch
+  - dynamic: false
+    name: /lane_stop/pub_waypoint_queue_size
+  subs:
+  - format: autoware_config_msgs/ConfigLaneStop
+    implicit: false
+    name: /config/lane_stop
+  - format: autoware_msgs/TrafficLight
+    implicit: false
+    name: /light_color_managed
+  - format: autoware_msgs/TrafficLight
+    implicit: false
+    name: /light_color
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /red_waypoints_array
+  - format: autoware_msgs/LaneArray
+    implicit: false
+    name: /green_waypoints_array
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+  fullname: /waypoint_loader
+  kind: waypoint_loader
+  name: waypoint_loader
+  namespace: /
+  nodelet: false
+  package: waypoint_maker
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+  fullname: /lane_select
+  kind: lane_select
+  name: lane_select
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+  fullname: /config_waypoint_loader_rostopic
+  kind: rostopic
+  name: config_waypoint_loader_rostopic
+  namespace: /
+  nodelet: false
+  package: rostopic
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: autoware_msgs/ConfigWaypointLoader
+    implicit: false
+    name: /config/waypoint_loader
+  reads: []
+  subs: []
+  uses: []
+  writes: []

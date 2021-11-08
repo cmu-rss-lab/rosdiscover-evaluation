@@ -1,0 +1,47 @@
+image: rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
+launches:
+- /ros_ws/src/autoware/docs/quick_start/my_mission_planning.launch
+node_sources:
+- node: lane_rule
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_rule/lane_rule.cpp
+- node: lane_stop
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_stop/lane_stop.cpp
+- node: lane_select
+  package: lane_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lane_select/lane_select_node.cpp
+  - nodes/lane_select/lane_select_core.cpp
+  - nodes/lane_select/hermite_curve.cpp
+- node: waypoint_loader
+  package: waypoint_maker
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/waypoint_loader/waypoint_loader_core.cpp
+  - nodes/waypoint_loader/waypoint_loader_node.cpp
+- node: waypoint_marker_publisher
+  package: waypoint_maker
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
+- node: can_status_translator
+  package: autoware_connector
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/can_status_translator/can_status_translator_node.cpp
+  - nodes/can_status_translator/can_status_translator_core.cpp
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
