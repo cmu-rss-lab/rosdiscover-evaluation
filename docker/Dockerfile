@@ -166,3 +166,5 @@ RUN eval "$(pyenv init --path)" \
  && eval "$(pyenv virtualenv-init -)" \
  && . /opt/ros/${ROS_DISTRO}/setup.sh \
  && eval "${BUILD_COMMAND}"
+
+RUN do_postbuild

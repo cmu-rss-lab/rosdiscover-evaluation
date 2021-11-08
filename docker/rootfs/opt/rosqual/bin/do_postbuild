@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eu
+
+POSTBUILD_FILENAME=/.dockerinstall/postbuild.sh
+
+if [[ -f "${POSTBUILD_FILENAME}" ]]; then
+  echo "running postbuild step..."
+  /bin/bash "${POSTBUILD_FILENAME}"
+else
+  echo "skipping postbuild step [no postbuild.sh]"
+fi
