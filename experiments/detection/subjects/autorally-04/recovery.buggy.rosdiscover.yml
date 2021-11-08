@@ -1,0 +1,30 @@
+image: rosdiscover-experiments/autorally:f60077125d67d6e0a011d10b8fce6ba70aa6295c
+launches:
+- /ros_ws/src/autorally/autorally_core/launch/cameras.launch
+- /ros_ws/src/autorally/autorally_core/launch/camera_auto_balance.launch
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
+- /ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch
+node_sources:
+- entrypoint: autorally_core::ImageRepublisher::onInit
+  node: ImageRepublisher
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - src/ImageRepublisher/ImageRepublisher.cpp
+  type: nodelet
+- entrypoint: autorally_core::CameraAutoBalance::onInit
+  node: CameraAutoBalance
+  package: autorally_core
+  restrict-analysis-to-paths:
+  - /ros_ws/devel/include/autorally_core
+  - /ros_ws/src/autorally/autorally_core
+  sources:
+  - src/CameraAutoBalance/CameraAutoBalance.cpp
+  type: nodelet
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh

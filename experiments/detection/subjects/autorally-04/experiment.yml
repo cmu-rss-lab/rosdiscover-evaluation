@@ -1,20 +1,30 @@
 type: detection
 subject: autorally
 distro: indigo
-build_command: try_again "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1" 6
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
 cuda_version: 6-5
 missing_ros_packages: []
-exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+exclude_ros_packages:
+- orocos_kdl
+- python_orocos_kdl
+- rviz
+- gazebo_ros_pkgs/gazebo_dev
+- gazebo_ros_pkgs/gazebo_msgs
+- gazebo_ros_pkgs/gazebo_plugins
+- gazebo_ros_pkgs/gazebo_ros
+- gazebo_ros_pkgs/gazebo_ros_control
+- gazebo_ros_pkgs/gazebo_ros_pkgs
 apt_packages:
-  - git
-  - doxygen
-  - openssh-server
-  - libusb-dev
-  - lm-sensors
-  - acpi
-  - gpsd-clients
-  - usbutils 
-  - ros-indigo-orocos-kdl
+- git
+- doxygen
+- openssh-server
+- libusb-dev
+- lm-sensors
+- acpi
+- gpsd-clients
+- usbutils
+- ros-indigo-orocos-kdl
+- ros-indigo-gazebo-ros-control
 buggy:
   image: rosdiscover-experiments/autorally:f60077125d67d6e0a011d10b8fce6ba70aa6295c
   repositories:
@@ -32,7 +42,7 @@ fixed:
     version: 63106bcaed7306a51c3bb8b4a165f28e3fbaae26
   - name: imu_3dm_gx4
     url: https://github.com/AutoRally/imu_3dm_gx4.git
-    version: 13578756595a0e339b4024f517828e191628002f    
+    version: 13578756595a0e339b4024f517828e191628002f
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
@@ -44,23 +54,3 @@ launches:
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
 - /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
 - /ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch
-
-node_sources:
-  - package: autorally_core
-    node: ImageRepublisher 
-    type: nodelet
-    entrypoint: autorally_core::ImageRepublisher::onInit
-    sources:
-      - src/ImageRepublisher/ImageRepublisher.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
-  - package: autorally_core
-    node: CameraAutoBalance 
-    type: nodelet
-    entrypoint: autorally_core::CameraAutoBalance::onInit
-    sources:
-      - src/CameraAutoBalance/CameraAutoBalance.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
