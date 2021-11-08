@@ -1,21 +1,30 @@
 type: detection
 subject: autorally
 distro: indigo
-build_command: try_again "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1" 6
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
 cuda_version: 6-5
 missing_ros_packages: []
-exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+exclude_ros_packages:
+- orocos_kdl
+- python_orocos_kdl
+- rviz
+- gazebo_ros_pkgs/gazebo_dev
+- gazebo_ros_pkgs/gazebo_msgs
+- gazebo_ros_pkgs/gazebo_plugins
+- gazebo_ros_pkgs/gazebo_ros
+- gazebo_ros_pkgs/gazebo_ros_control
+- gazebo_ros_pkgs/gazebo_ros_pkgs
 apt_packages:
-  - git
-  - doxygen
-  - openssh-server
-  - libusb-dev
-  - lm-sensors
-  - acpi
-  - gpsd-clients
-  - usbutils 
-  - ros-indigo-orocos-kdl
-  - ros-indigo-gazebo-ros-control
+- git
+- doxygen
+- openssh-server
+- libusb-dev
+- lm-sensors
+- acpi
+- gpsd-clients
+- usbutils
+- ros-indigo-orocos-kdl
+- ros-indigo-gazebo-ros-control
 buggy:
   image: rosdiscover-experiments/autorally:3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
   repositories:
@@ -33,7 +42,7 @@ fixed:
     version: 8ae7307299c48266ddf1bfede1c2256bafc94259
   - name: imu_3dm_gx4
     url: https://github.com/AutoRally/imu_3dm_gx4.git
-    version: e3e288dc8b82be4d498a051253920498e3192083    
+    version: e3e288dc8b82be4d498a051253920498e3192083
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
@@ -41,34 +50,3 @@ sources:
 launches:
 - /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
 - /ros_ws/src/autorally/autorally_core/launch/baseStation.launch
-
-node_sources:
-  - package: autorally_core
-    node: imuGpsEstimator
-    sources:
-      - src/StateEstimator/IMU_GPS.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
-  - package: autorally_core
-    node: gpsHemisphereInterface
-    sources:
-      - src/gps/GPSHemisphere.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
-  - package: autorally_core
-    node: xbeeCoordinator
-    sources:
-      - src/xbee/XbeeCoordinator.cpp
-      - src/xbee/XbeeInterface.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
-  - package: autorally_core
-    node: runStop
-    sources:
-      - src/RunStop/RunStop.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_core
-      - /ros_ws/src/autorally/autorally_core
