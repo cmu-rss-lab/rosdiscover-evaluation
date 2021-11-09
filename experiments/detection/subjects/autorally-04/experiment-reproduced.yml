@@ -1,0 +1,51 @@
+type: detection
+subject: autorally
+distro: indigo
+build_command: try_again "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1" 6
+cuda_version: 6-5
+missing_ros_packages: []
+exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+apt_packages:
+  - git
+  - doxygen
+  - openssh-server
+  - libusb-dev
+  - lm-sensors
+  - acpi
+  - gpsd-clients
+  - usbutils 
+  - ros-indigo-orocos-kdl
+buggy:
+  image: rosdiscover-experiments/autorally:autorally-04-buggy
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: f60077125d67d6e0a011d10b8fce6ba70aa6295c
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f
+fixed:
+  image: rosdiscover-experiments/autorally:autorally-04-fixed
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 63106bcaed7306a51c3bb8b4a165f28e3fbaae26
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f    
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
+
+environment:
+  AR_LEFTCAM_TYPE: ptgrey
+  AR_RIGHTCAM_TYPE: ptgrey
+  AR_LEFTCAM_CONNECTED: 1
+
+errors:
+  - /image
+
+launches:
+- /ros_ws/reproduce.launch
+- /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch

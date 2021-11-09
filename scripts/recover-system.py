@@ -72,7 +72,7 @@ def recover_system(
     image: str,
     sources: t.Sequence[str],
     launches: t.Sequence[str],  # FIXME
-    node_sources: NodeSources,
+    node_sources: t.Collection[NodeSources],
     output_filename: str,
     log_filename: str,
     rosdiscover_filename: str,
@@ -89,13 +89,15 @@ def recover_system(
 
     args = ["launch", rosdiscover_filename]
     args += ["--output", output_filename]
-    file_logger = logger.add(log_filename, level="DEBUG")
+    log_file = open(log_filename, 'w')
+    file_logger = logger.add(log_file, level="DEBUG")
     logger.debug(f"calling rosdiscover: {args}")
     try:
         rosdiscover.cli.main(args)
     except Exception:
         logger.exception(f"failed to statically recover system architecture for image [{image}]")
     finally:
+        log_file.close()
         logger.remove(file_logger)
     logger.info(f"statically recovered system architecture for image [{image}]")
 

@@ -1,0 +1,4 @@
+FROM rosdiscover-experiments/husky:0.4.10
+COPY reproduction/reproduce.launch /ros_ws
+RUN sed -i "s#\$(arg scan_topic)#narrow_scan#" /ros_ws/src/husky/husky_navigation/launch/amcl.launch
+

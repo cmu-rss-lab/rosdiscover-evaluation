@@ -67,11 +67,17 @@ class ArchitectureSummary:
             self.write_action_clients_for_node(f, node)
 
 
+def provenance(p: str, recovered_architecture) -> t.List[str]:
+    return [node['fullname'] for node in recovered_architecture if node['provenance'] == p]
+
+
 def compare_sets(
     kind: str,
+    case: str,
     joiner: str,
     observed: NamePairSet,
     recovered: NamePairSet,
+    nodes: t.List[t.Any]
 ) -> t.Tuple[str, t.Sequence[str]]:
     observed_not_recovered = list(observed.difference(recovered))
     recovered_not_observed = list(recovered.difference(observed))
@@ -204,14 +210,20 @@ def compare(config: ExperimentConfig) -> None:
     filter_actions_from_observed(observed_summary)
     filter_actions_from_recovered(recovered_summary)
 
-    nodecomp, nodecsv = compare_sets("Nodes", "/", observed_summary.nodes, recovered_summary.nodes)
-    pubcomp, pubcsv = compare_sets("Publishers", "->", observed_summary.publishers, recovered_summary.publishers)
-    subcomp, subcsv = compare_sets("Subscribers", "<-", observed_summary.subscribers, recovered_summary.subscribers)
-    provcomp, provcsv = compare_sets("Providers", ":", observed_summary.providers, recovered_summary.providers)
-    accomp, accsv = compare_sets("Action Clients", "^-", observed_summary.action_clients,
-                                 recovered_summary.action_clients)
-    ascomp, ascsv = compare_sets("Action Servers", "-^", observed_summary.action_servers,
-                                 recovered_summary.action_servers)
+    nodecomp_all, nodecsv_all = compare_sets("Nodes", "all", "/", observed_summary.nodes, recovered_summary.nodes,
+                                             recovered_architecture)
+    pubcomp_all, pubcsv_all = compare_sets("Publishers", "all", "->", observed_summary.publishers,
+                                           recovered_summary.publishers,
+                                           recovered_architecture)
+    subcomp_all, subcsv_all = compare_sets("Subscribers", "all", "<-", observed_summary.subscribers,
+                                           recovered_summary.subscribers, recovered_architecture)
+    provcomp_all, provcsv_all = compare_sets("Providers", "all", ":", observed_summary.providers,
+                                             recovered_summary.providers,
+                                             recovered_architecture)
+    accomp_all, accsv_all = compare_sets("Action Clients", "all", "^-", observed_summary.action_clients,
+                                         recovered_summary.action_clients, recovered_architecture)
+    ascomp_all, ascsv_all = compare_sets("Action Servers", "all", "-^", observed_summary.action_servers,
+                                         recovered_summary.action_servers, recovered_architecture)
     with open(comparison_file, 'w') as f:
 
         f.write("Observed architecture summary:\n")
@@ -224,13 +236,10 @@ def compare(config: ExperimentConfig) -> None:
         f.write("Provenance information:\n")
         f.write("-----------------------\n")
 
-        def provenance(p: str) -> t.List[str]:
-            return [node['fullname'] for node in recovered_architecture if node['provenance'] == p]
-
-        handwritten = provenance("handwritten")
-        recovered = provenance("recovered")
-        placeholders = provenance("placeholder")
-        unknown = provenance("unknown")
+        handwritten = provenance("handwritten", recovered_architecture)
+        recovered = provenance("recovered", recovered_architecture)
+        placeholders = provenance("placeholder", recovered_architecture)
+        unknown = provenance("unknown", recovered_architecture)
         f.write(f"HANDWRITTEN ({len(handwritten)}): {', '.join(handwritten)}\n")
         f.write(f"RECOVERED ({len(recovered)}): {', '.join(recovered)}\n")
         f.write(f"PLACEHOLDERS ({len(placeholders)}): {', '.join(placeholders)}\n")
@@ -283,24 +292,75 @@ def compare(config: ExperimentConfig) -> None:
         f.write("Differences:\n")
         f.write("============\n")
 
-        f.write(nodecomp)
-        f.write(pubcomp)
-        f.write(subcomp)
-        f.write(provcomp)
-        f.write(accomp)
-        f.write(ascomp)
+        f.write(nodecomp_all)
+        f.write(pubcomp_all)
+        f.write(subcomp_all)
+        f.write(provcomp_all)
+        f.write(accomp_all)
+        f.write(ascomp_all)
         f.write("\nCannot observe service clients")
 
     # process the errors
     observed_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-observed.log"))
     recovered_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-recovered.log"))
 
+    hw_p = set(f"/{p}" for p in provenance("handwritten", recovered_architecture))
+    re_p = set(f"/{p}" for p in provenance("recovered", recovered_architecture))
+    o_p_h = set(n for n in observed_summary.publishers if n[0] in hw_p)
+    r_p_h = set(n for n in recovered_summary.publishers if n[0] in hw_p)
+    _, pubcsv_hw = compare_sets("Publishers", "handwritten", "->", o_p_h,
+                                 r_p_h,
+                                 recovered_architecture)
+    o_p_h = set(n for n in observed_summary.subscribers if n[0] in hw_p)
+    r_p_h = set(n for n in recovered_summary.subscribers if n[0] in hw_p)
+    _, subcsv_hw = compare_sets("Subscribers", "handwritten", "<-", o_p_h,
+                                 r_p_h, recovered_architecture)
+    o_p_h = set(n for n in observed_summary.providers if n[0] in hw_p)
+    r_p_h = set(n for n in recovered_summary.providers if n[0] in hw_p)
+
+    _, provcsv_hw = compare_sets("Providers", "handwritten", ":", o_p_h,
+                                  r_p_h,
+                                  recovered_architecture)
+    o_p_h = set(n for n in observed_summary.action_clients if n[0] in hw_p)
+    r_p_h = set(n for n in recovered_summary.action_clients if n[0] in hw_p)
+    _, accsv_hw = compare_sets("Action Clients", "handwritten", "^-", o_p_h,
+                                r_p_h, recovered_architecture)
+    o_p_h = set(n for n in observed_summary.action_servers if n[0] in hw_p)
+    r_p_h = set(n for n in recovered_summary.action_servers if n[0] in hw_p)
+    _, ascsv_hw = compare_sets("Action Servers", "handwritten", "-^", o_p_h,
+                                r_p_h, recovered_architecture)
+    o_p_h = set(n for n in observed_summary.publishers if n[0] in re_p)
+    r_p_h = set(n for n in recovered_summary.publishers if n[0] in re_p)
+    _, pubcsv_re = compare_sets("Publishers", "recovered", "->", o_p_h,
+                                r_p_h,
+                                recovered_architecture)
+    o_p_h = set(n for n in observed_summary.subscribers if n[0] in re_p)
+    r_p_h = set(n for n in recovered_summary.subscribers if n[0] in re_p)
+    _, subcsv_re = compare_sets("Subscribers", "recovered", "<-", o_p_h,
+                                r_p_h, recovered_architecture)
+    o_p_h = set(n for n in observed_summary.providers if n[0] in re_p)
+    r_p_h = set(n for n in recovered_summary.providers if n[0] in re_p)
+
+    _, provcsv_re = compare_sets("Providers", "recovered", ":", o_p_h,
+                                 r_p_h,
+                                 recovered_architecture)
+    o_p_h = set(n for n in observed_summary.action_clients if n[0] in re_p)
+    r_p_h = set(n for n in recovered_summary.action_clients if n[0] in re_p)
+    _, accsv_re = compare_sets("Action Clients", "recovered", "^-", o_p_h,
+                               r_p_h, recovered_architecture)
+    o_p_h = set(n for n in observed_summary.action_servers if n[0] in re_p)
+    r_p_h = set(n for n in recovered_summary.action_servers if n[0] in re_p)
+    _, ascsv_re = compare_sets("Action Servers", "recovered", "-^", o_p_h,
+                               r_p_h, recovered_architecture)
+
     with open(comparison_csv, 'w') as f:
         writer = csv.writer(f)
 
-        for i in (nodecsv, pubcsv, subcsv, provcsv, accsv, ascsv):
+        for i in (nodecsv_all, pubcsv_all, subcsv_all, provcsv_all, accsv_all, ascsv_all,
+                  pubcsv_hw, subcsv_hw, provcsv_hw, accsv_hw, ascsv_hw,
+                  pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
             line = [config['subject']]
-            if i == nodecsv:
+            if i == nodecsv_all:
                 if len(observed_errors) > len(recovered_errors):
                     same = len(observed_errors.intersection(recovered_errors)) == len(observed_errors) - len(
                         recovered_errors)
