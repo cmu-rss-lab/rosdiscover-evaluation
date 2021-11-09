@@ -3,9 +3,11 @@ subject: husky
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [] 
-apt_packages:
-  - python3-sip-dev
+exclude_ros_packages:
+- rviz
+- orocos_kdl
+- python_orocos_kdl
+apt_packages: []
 buggy:
   image: rosdiscover-experiments/husky:e6470f709aca1641915de669d6c6900f615d6a43
   repositories:
@@ -18,11 +20,9 @@ fixed:
   - name: husky
     url: https://github.com/husky/husky.git
     version: cd9c5a12ebb733266fb33a32dabefbebef3ffcef
-
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
-
 launches:
 - /ros_ws/src/husky/launch/description.launch
 - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
