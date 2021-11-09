@@ -12,7 +12,6 @@ pip install \
   defusedxml==0.6.0 \
   netifaces==0.10.7
 
-
 EIGEN_VERSION="3.3.7"
 
 echo "installing flycapture"
@@ -66,7 +65,7 @@ cd /opt/cnpy
 git checkout 4e8810b1a8637695171ed346ce68f6984e585ef4
 cd ..
 mkdir build
-cd build 
+cd build
 cmake ../cnpy
 make
 make install
@@ -82,3 +81,15 @@ cmake ..
 make install
 echo "built eigen ${EIGEN_VERSION}"
 
+# add a missing dependency
+sed -i "11i\ diagnostic_updater" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ imu_3dm_gx4" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_core/CMakeLists.txt
+sed -i "6i\ diagnostic_updater" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+sed -i "6i\ visualization_msgs" /ros_ws/src/autorally/autorally_control/CMakeLists.txt
+
+# remove a bad dependency
+sed -i "s# RingBuffer)#)#" /ros_ws/src/autorally/autorally_control/src/ConstantSpeedController/CMakeLists.txt
+
+# _gencpp has been replaced by _generate_messages_cpp
+find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
