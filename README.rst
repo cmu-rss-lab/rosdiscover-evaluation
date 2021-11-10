@@ -101,6 +101,8 @@ Python 3.9.5 via the following:
 
   $ pipenv install 3.9.5
 
+**TODO: Needs to be updated. Also include how to build cxx-extrace**
+
 * clone the repo
 * create a `pipenv` for the directory and execute all following commands in the pipenv shell
 * call `./scripts/setup`
