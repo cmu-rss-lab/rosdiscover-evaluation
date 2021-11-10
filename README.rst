@@ -26,8 +26,10 @@ To replicate the results in this packqage, you must build various docker files (
 Image Creation and Evaluation Infrastructure for ROS Discover
 
 
-Prerequisites
+Prerequisites 
 -------------
+
+**TODO: Add Docker**
 
 The code in this project requires both Python 3.9+ and Poetry to be installed.
 Since Python 3.9 or greater is not provided as the system Python installation on
@@ -87,8 +89,25 @@ Python 3.9.5 via the following:
 Replicating results for the paper
 ================================
 
+To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or 
+each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
+and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally` 
+as an example, with the experiment defined in `experiments/recovery/subjects/autorally/experiment.yml`. 
+
 Build the Docker containers for RQ1 and RQ2
 -------------------------------------------
+
+Our analysis requires robot software to be installed in Docker containers. So, to run the experiments, the containers first need to be built. 
+We provide a script that does this for all our experiments - it generates a Dockerfile and the uses Docker to build the container. To build the container:
+
+.. code::
+
+  $ pipenv run scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml
+  2021-11-10 18:18:03.271 | INFO     | __main__:build_image:38 - apt_packages_arg: cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs
+  2021-11-10 18:18:03.278 | INFO     | __main__:build_image:53 - building image: docker build -f /code/docker/Dockerfile --build-arg COMMON_ROOTFS=docker/rootfs --build-arg CUDA_VERSION='11-4' --build-arg APT_PACKAGES='cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs' --build-arg BUILD_COMMAND='catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1' --build-arg DIRECTORY=experiments/recovery/subjects/autorally --build-arg ROSINSTALL_FILENAME=pkgs.rosinstall --build-arg DISTRO=melodic . -t rosdiscover-experiments/autorally:c2692f2
+  ...
+  
+At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
