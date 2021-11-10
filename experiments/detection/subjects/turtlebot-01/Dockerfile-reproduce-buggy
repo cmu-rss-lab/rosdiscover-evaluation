@@ -1,4 +1,3 @@
 FROM rosdiscover-experiments/turtlebot:2.4.2
-COPY reproduction/reproduce.launch /ros_ws
 RUN sed -i "74d" /ros_ws/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch
 RUN sed -i "74i      <remap from=\"\$(arg camera)/image\" to=\"\$(arg camera)/depth/image_raw\"/>" /ros_ws/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch
