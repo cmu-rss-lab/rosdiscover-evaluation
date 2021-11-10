@@ -219,8 +219,26 @@ If you look at the file `experiments/recovery/subjects/autorally/observed.recove
 Run configuration mismatch bug detection for RQ3
 ------------------------------------------------
 
-Usage
------
+To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other RQs, we use use the same scripts for building these images. We will use the example of the `autorally-01` bug which is an error that was introduced into the `autorally_core/launch/stateEstimator.launch` file that incorrectly remapped a topic. The format of the experiment definition for detection replciation is different to the other experiment defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to be found, and defintion of a reproducer node that guarantees use of the broken connector. To build the images:
 
-* call `make <bug-id>` (e.g., `make autoware-01`) to create an image. `make all` will create all bug images
-* call `run_rosdiscover <bug-id>` to launch rosdiscover on the given bug id (does not call `recover`)
+.. code::
+
+  $ pipenv run scripts/build-images.py experiments/detection/subjects/autorally-01/experiment.yml
+  ...
+  
+To check that the error is detected in the buggy version, and disappears in the fixed version:
+
+.. code::
+
+  $ pipenv scripts/check-architecture.py detected experiments/detection/subjects/autorally-01/experiment.yml
+
+One complication for replicating RQ3 is that it sometimes wasn't possible to restore the version of the robot software at the time that the bug was extant. Instead, we forward ported these bugs into the docker images from RQ1&2. Unfortunately, seeding the bugs is currently not yet as automated as the rest of the replication package - the docker images will need to be built explicitly. For the cases in which we needed to forward port, we included a separate experiment definition (e.g., `experiment-reproduced.yml` and a Dockerfile each to build the buggy version that seeds the error into the correct containers, and the fixed version (in cases it needed to be different from the original version). To build these requires using the Docker command explicitly, e.g., for `husky-04`:
+
+.. code::
+
+  $ docker build -t rosdiscover-evaluation/husky:husky-04-buggy -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-error experiments/detection/subjects/husky-04/
+  $ docker build -t rosdiscover-evaluation/husky:husky-04-fixed -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-fixed experiments/detection/subjects/husky-04/
+  
+Not that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one referred to in `experiment-reproduced.yml`.
+
+The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
