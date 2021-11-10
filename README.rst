@@ -121,11 +121,11 @@ To check the architecure
   
 This will process the launch files supplied in the `experiment.yml` and produce the architecture in `experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
 
-3. Check and compare the architectures of the observed and recovered systems.
+3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
+  a. Produce and check the architecture of the observed system
 
 .. code::
 
-  # (a) Produce and check the architecture of the observed system
   $ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml 
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
@@ -134,9 +134,13 @@ This will process the launch files supplied in the `experiment.yml` and produce 
   ...
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
-  # The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
+ 
+The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
   
-  # (b) Produce and check the architecture of the recovered system
+  b. Produce and check the architecture of the recovered system
+  
+.. code::
+
   $ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml 
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
@@ -146,12 +150,16 @@ This will process the launch files supplied in the `experiment.yml` and produce 
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
   /autoRallyTrackGazeboSim.launch.
-  # The result is placed in experiments/recovery/subjects/autorally/recovered.architecture.acme
+
+The result is placed in experiments/recovery/subjects/autorally/recovered.architecture.acme
   
-  # (c) Compare the architectures
+  c. Compare the architectures
+  
+.. code::
+
   $ pipenv run scripts/compare-recovered-observed.py recovered experiments/recovery/subjects/autorally/experiment.yml 
-  # The comparison output is placed in experiments/recovery/subjects/autorally/compare.observed-recovered.log 
-  # The analyzed results used in the paper are in experiments/recovery/subjects/autorally/observed.recovered.compare.csv
+  
+The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
 If you look at the file `experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
