@@ -1,7 +1,7 @@
 ROS Discover Evaluation
 =======================
 
-This is the replication packagee for the paper: ROSDiscover: Discovering Architectural Misconfigurations through Static Analysis. THis package is currently anonymized to the bset of our ability.
+This is the replication packagee for the paper: **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.** THis package is currently anonymized to the bset of our ability.
 
 To replicate the results in this packqage, you must build various docker files (in the real replication package we will provide docker images but for double blind evaluation you will need to build them). The structure of the rpository is:
 
@@ -17,7 +17,7 @@ To replicate the results in this packqage, you must build various docker files (
   docker/                Files used for building docker images used in the experiments
   experiments/           Data for setting up the experiments, and the results we got
   |- detection/          Experiments that we used in RQ3
-  |- recovery/           Experiments we used in RQ2 
+  |- recovery/           Experiments we used in RQ1 and RQ2 
   rootfs                 Contains files that get put in the docker images
   scripts                Python scripts for running and analyzing the experiments
                          (see more below)
