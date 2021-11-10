@@ -3,7 +3,7 @@ ROS Discover Evaluation
 
 This is the replication packagee for the paper: ROSDiscover: Discovering Architectural Misconfigurations through Static Analysis. THis package is currently anonymized to the bset of our ability.
 
-To replicate the results in this packqage, you must build various docker files (in the real replication package we will provide docker images but for double blind evaluation you will beed to build them). The structure of the rpository is:
+To replicate the results in this packqage, you must build various docker files (in the real replication package we will provide docker images but for double blind evaluation you will need to build them). The structure of the rpository is:
 
 .. code::
 
