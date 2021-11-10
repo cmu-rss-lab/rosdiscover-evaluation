@@ -114,7 +114,10 @@ To check the architecure
 
   $ pipenv run scripts/recover-system.py experiments/recovery/subjects/autorally/experiment.yml
   INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
-
+  ...
+  INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
+  INFO: applying remapping from [/camera/right/camera_info] to [/right_camera/camera_info]
+  INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
   
 This will process the launch files supplied in the `experiment.yml` and produce the architecture in `experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
 
@@ -138,6 +141,14 @@ This will process the launch files supplied in the `experiment.yml` and produce 
   # The comparison output is placed in experiments/recovery/subjects/autorally/compare.observed-recovered.log 
   # The analyzed results used in the paper are in experiments/recovery/subjects/autorally/observed.recovered.compare.csv
 
+
+If you look at the file `experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
+
+1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of `experiments/recovery/subjects/autorally/observed.architecture.acme'
+2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of `experiments/recovery/subjects/autorally/recovered.architecture.acme` 
+3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
+4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
+5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in `observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
 
 Run configuration mismatch bug detection for RQ3
 ------------------------------------------------
