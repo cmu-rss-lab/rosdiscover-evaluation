@@ -2,12 +2,32 @@ type: detection
 subject: husky
 distro: kinetic
 build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-missing_ros_packages: [yaml-cpp]
-exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3] 
+missing_ros_packages:
+- yaml-cpp
+exclude_ros_packages:
+- lms1xx
+- orocos_kdl
+- python_orocos_kdl
+- opencv3
+- diagnostics
+- diagnostic_updater
+- diagnostic_aggregator
+- diagnostic_msgs
+- std_srvs
+- tf
+- tf2_eigen
+- tf2_geometry_msgs
+- tf2_kdl
+- tf2_msgs
+- tf2_py
+- tf2_ros
+- tf2_sensor_msgs
 apt_packages:
-  - python3-sip-dev
-  - ros-kinetic-orocos-kdl
-  - libyaml-cpp-dev
+- ros-kinetic-orocos-kdl
+- libyaml-cpp-dev
+- ros-kinetic-tf
+- ros-kinetic-tf2-sensor-msgs
+- ros-kinetic-control-msgs
 buggy:
   image: rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
   repositories:
@@ -20,7 +40,6 @@ fixed:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
-
 sources:
 - /opt/ros/kinetic/setup.bash
 - /ros_ws/devel/setup.bash
@@ -28,24 +47,3 @@ launches:
 - /ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch
 - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
 - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
-node_sources:
-#/ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch (pointcloud_to_laserscan_node, spawn_model)
-#TODO: Add pointcloud_to_laserscan_node model
-#TODO: Add spawn_model model
-- package: pointcloud_to_laserscan
-  node: pointcloud_to_laserscan_node
-  sources:
-    - nodes/waypoint_loader/waypoint_loader_core.cpp
-    - nodes/waypoint_loader/velocity_replanner.cpp
-    - nodes/waypoint_loader/waypoint_loader_node.cpp
-  restrict-analysis-to-paths:
-    - /ros_ws/src/husky/
-- package: waypoint_maker
-  node: waypoint_marker_publisher
-  sources:
-    - nodes/waypoint_marker_publisher/waypoint_marker_publisher.cpp
-  restrict-analysis-to-paths:
-    - /ros_ws/src/husky/
-
-
-#control.launch ()
