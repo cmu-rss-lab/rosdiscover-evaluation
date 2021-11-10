@@ -113,6 +113,8 @@ To check the architecure
 .. code::
 
   $ pipenv run scripts/recover-system.py experiments/recovery/subjects/autorally/experiment.yml
+  INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
+
   
 This will process the launch files supplied in the `experiment.yml` and produce the architecture in `experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
 
