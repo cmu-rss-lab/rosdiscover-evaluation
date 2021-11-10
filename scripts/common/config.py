@@ -111,6 +111,7 @@ def load_config(filename: str) -> ExperimentConfig:
     config["directory"] = experiment_directory
     config["node_sources"] = config.get("node_sources") or []
     config["environment"] = config.get("environment") or {}
+    config["reproducer"] = config.get("reproducer") or {}
 
     if config["type"] == "recovery":
         config["config_with_node_sources_filename"] = os.path.join(

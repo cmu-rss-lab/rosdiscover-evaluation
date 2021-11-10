@@ -6,6 +6,7 @@ import os
 import sys
 import typing as t
 
+import yaml
 from loguru import logger
 
 logger.remove()
@@ -50,6 +51,9 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
             rosdiscover_filename=rosdiscover_filename,
         )
 
+        if config["reproducer"] != {}:
+            update_system_with_reproducer(config["reproducer"], output_filename)
+
 
 def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
@@ -66,6 +70,8 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
         log_filename=log_filename,
         rosdiscover_filename=rosdiscover_filename,
     )
+    if config["reproducer"] != {}:
+        update_system_with_reproducer(config["reproducer"], output_filename)
 
 
 def recover_system(
@@ -100,6 +106,39 @@ def recover_system(
         log_file.close()
         logger.remove(file_logger)
     logger.info(f"statically recovered system architecture for image [{image}]")
+
+
+def update_system_with_reproducer(reproducer_info, output_filename):
+    nodes = yaml.safe_load(output_filename)
+    reproducer = {
+        "action-clients": [],
+        "action-servers": [],
+        "filename": "/ros_ws/reproduce.launch",
+        "fullname": "/ error_reproducer",
+        "kind": "error_reproducer",
+        "name": "error_reproducer",
+        "namespace": "/",
+        "nodelet": False,
+        "package": "*",
+        "provenance": "handwritten",
+        "provides": [],
+        "pubs": [],
+        "reads": [],
+        "subs": [],
+        "uses": [],
+        "writes": [],
+    }
+    for pub in reproducer.get("pubs", []):
+        reproducer["pubs"].append({"format": pub["format"],
+                                   "name": pub["name"],
+                                   "implicit": False})
+    for sub in reproducer.get("subs", []):
+        reproducer["subs"].append({"format": sub["format"],
+                                   "name": sub["name"],
+                                   "implicit": False})
+
+    nodes.append(reproducer)
+    yaml.safe_dump(open(output_filename, 'w'))
 
 
 def error(message: str) -> t.NoReturn:
