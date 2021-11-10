@@ -127,24 +127,36 @@ This will process the launch files supplied in the `experiment.yml` and produce 
 
   # (a) Produce and check the architecture of the observed system
   $ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml 
-  
+  INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
+  INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
+  INFO: Checking architecture...
+  Checking architecture...
+  ...
+  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
+  with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
   # The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
   
   # (b) Produce and check the architecture of the recovered system
   $ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml 
-  
+  INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
+  INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
+  INFO: Checking architecture...
+  Checking architecture...
+  ...
+  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
+  with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
+  /autoRallyTrackGazeboSim.launch.
   # The result is placed in experiments/recovery/subjects/autorally/recovered.architecture.acme
   
   # (c) Compare the architectures
   $ pipenv run scripts/compare-recovered-observed.py recovered experiments/recovery/subjects/autorally/experiment.yml 
-  
   # The comparison output is placed in experiments/recovery/subjects/autorally/compare.observed-recovered.log 
   # The analyzed results used in the paper are in experiments/recovery/subjects/autorally/observed.recovered.compare.csv
 
 
 If you look at the file `experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
 
-1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of `experiments/recovery/subjects/autorally/observed.architecture.acme'
+1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of `experiments/recovery/subjects/autorally/observed.architecture.acme`
 2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of `experiments/recovery/subjects/autorally/recovered.architecture.acme` 
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
