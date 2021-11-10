@@ -26,14 +26,53 @@ To replicate the results in this packqage, you must build various docker files (
 Image Creation and Evaluation Infrastructure for ROS Discover
 
 
-Dependencies
-------------
+Prerequisites
+-------------
 
-* Python 3.9.5
+The code in this project requires both Python 3.9+ and Poetry to be installed.
+Since Python 3.9 or greater is not provided as the system Python installation on
+many distributions, we optionally recommend using pyenv to automatically install
+a standalone Python 3.9 without interfering with the rest of your system.
 
 
-Installation
-------------
+pyenv 
+................
+
+`pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
+Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
+Once you have installed the dependencies for pyenv, you can quickly install
+pyenv itself by executing the following:
+
+.. code:: command
+
+  $ curl https://pyenv.run | bash
+
+You should then check that your :code:`~/.profile` sources :code:`~/.bashrc`.
+Once you have ensured that is the case, you should add the following lines to
+:code:`~/.profile` immediately prior to the point where :code:`~/.bashrc` is
+sourced.
+
+.. code:: command
+
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+
+
+Additionally, you should add the following lines to your :code:`~/.bashrc`:
+
+.. code:: command
+
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+
+After making the above changes, you should restart your shell so that the changes
+in :code:`~/.profile` and :code:`~/.bashrc` take effect. You can then install
+Python 3.9.5 via the following:
+
+.. code:: command
+
+  $ pipenv install 3.9.5
 
 * clone the repo
 * create a `pipenv` for the directory and execute all following commands in the pipenv shell
