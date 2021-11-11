@@ -1,0 +1,43 @@
+type: recovery
+subject: fetch
+image: rosdiscover-experiments/fetch:v0.8.3
+distro: melodic
+build_command: >
+  catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+exclude_ros_packages:
+- orocos_kdl
+- python_orocos_kdl
+- rviz
+- gazebo_ros_pkgs/gazebo_dev
+- gazebo_ros_pkgs/gazebo_msgs
+- gazebo_ros_pkgs/gazebo_plugins
+- gazebo_ros_pkgs/gazebo_ros
+- gazebo_ros_pkgs/gazebo_ros_control
+- gazebo_ros_pkgs/gazebo_ros_pkgs
+- fetch_ros/fetch_depth_layer
+- fetch_ros/fetch_description
+- fetch_ros/fetch_ikfast_plugin
+- fetch_ros/fetch_maps
+- fetch_ros/fetch_moveit_config
+- fetch_ros/fetch_navigation
+apt_packages:
+- xvfb
+#  - ros-melodic-gazebo-plugins
+#  - ros-melodic-image-proc
+#  - ros-melodic-image-transport-plugins
+repositories:
+- name: fetch_ros
+  url: https://github.com/fetchrobotics/fetch_ros.git
+  version: 0.8.3
+- name: fetch_gazebo
+  url: https://github.com/fetchrobotics/fetch_gazebo.git
+  version: 0.9.2
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel/setup.bash
+
+# fetch_gazebo pickplace_playground.launch
+# fetch_gazebo_demo pick_place_demo.launch
+launches:
+  - /ros_ws/src/fetch_gazebo/fetch_gazebo/launch/playground.launch
+  - /ros_ws/src/fetch_gazebo/fetch_gazebo_demo/launch/demo.launch
