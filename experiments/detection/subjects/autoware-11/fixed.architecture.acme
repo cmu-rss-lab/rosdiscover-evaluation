@@ -1,0 +1,77 @@
+import families/ROSFam.acme;
+system _home_schmerl_rosdiscover-evaluation_experiments_detection_subjects_autoware-11_fixed_architecture : ROSFam = new ROSFam extended with {
+   component waypoint_marker_publisher : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _lane_waypoint_mark_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "visualization_msgs/MarkerArray";
+        property topic = "/lane_waypoint_mark";
+    };
+    
+     port _traffic_waypoint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/lane";
+        property topic = "/traffic_waypoint";
+    };
+    
+     port _traffic_light_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/traffic_light";
+        property topic = "/traffic_light";
+    };
+    
+     port _lane_waypoint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/lane";
+        property topic = "/lane_waypoint";
+    };
+    
+        property name = "waypoint_marker_publisher";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch";
+    };
+    
+   component waypoint_loader : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _lane_waypoint_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower/lane";
+        property topic = "/lane_waypoint";
+    };
+    
+        property name = "waypoint_loader";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch";
+    };
+    
+   component waypoint_clicker : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _initialpose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/initialpose";
+    };
+    
+        property name = "waypoint_clicker";
+        property launchedBy = "/.dockerinstall/waypoint_clicker.launch";
+    };
+    
+   component error_reproducer : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _initialpose_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/initialpose";
+    };
+    
+        property name = "error_reproducer";
+        property launchedBy = "/ros_ws/reproduce.launch";
+    };
+       connector _lane_waypoint_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role waypoint_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role waypoint_marker_publisher_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "waypoint_follower/lane";
+        property topic = "/lane_waypoint";
+    };
+    
+   connector _initialpose_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role error_reproducer_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role waypoint_clicker_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/initialpose";
+    };
+      attachment waypoint_marker_publisher._lane_waypoint_sub to _lane_waypoint_conn.waypoint_marker_publisher_sub;
+  attachment waypoint_loader._lane_waypoint_pub to _lane_waypoint_conn.waypoint_loader_pub;
+  attachment waypoint_clicker._initialpose_sub to _initialpose_conn.waypoint_clicker_sub;
+  attachment error_reproducer._initialpose_pub to _initialpose_conn.error_reproducer_pub;}

@@ -1,0 +1,13 @@
+image: rosdiscover-experiments/autoware:5f30cabe3aea301a211951cd288357bb170199de
+launches:
+- /.dockerinstall/sync_obj_reproj.launch
+node_sources:
+- node: sync_obj_reproj
+  package: synchronization
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - computing/perception/detection/packages/cv_tracker/nodes/obj_reproj/sync_car_obj_reproj.cpp
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash

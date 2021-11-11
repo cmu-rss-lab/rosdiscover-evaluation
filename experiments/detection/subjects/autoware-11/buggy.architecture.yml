@@ -1,0 +1,95 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+  fullname: /waypoint_marker_publisher
+  kind: waypoint_marker_publisher
+  name: waypoint_marker_publisher
+  namespace: /
+  nodelet: false
+  package: waypoint_maker
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: visualization_msgs/MarkerArray
+    implicit: false
+    name: /lane_waypoint_mark
+  reads: []
+  subs:
+  - format: runtime_manager/traffic_light
+    implicit: false
+    name: /traffic_light
+  - format: waypoint_follower/lane
+    implicit: false
+    name: /traffic_waypoint
+  - format: waypoint_follower/lane
+    implicit: false
+    name: /lane_waypoint
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_maker/launch/waypoint_loader.launch
+  fullname: /waypoint_loader
+  kind: waypoint_loader
+  name: waypoint_loader
+  namespace: /
+  nodelet: false
+  package: waypoint_maker
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: waypoint_follower/lane
+    implicit: false
+    name: /lane_waypoint
+  reads:
+  - dynamic: false
+    name: /waypoint_loader/decelerate
+  - dynamic: false
+    name: /waypoint_loader/lane_waypoint_csv
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /.dockerinstall/waypoint_clicker.launch
+  fullname: /waypoint_clicker
+  kind: waypoint_clicker
+  name: waypoint_clicker
+  namespace: /
+  nodelet: false
+  package: waypoint_maker
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /waypoint_clicker/output_file
+  - dynamic: false
+    name: /waypoint_clicker/velocity
+  - dynamic: false
+    name: /waypoint_clicker/sub_point_queue_size
+  subs:
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    implicit: false
+    name: /clicked_point
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/reproduce.launch
+  fullname: / error_reproducer
+  kind: error_reproducer
+  name: error_reproducer
+  namespace: /
+  nodelet: false
+  package: '*'
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    implicit: false
+    name: /initialpose
+  reads: []
+  subs: []
+  uses: []
+  writes: []
