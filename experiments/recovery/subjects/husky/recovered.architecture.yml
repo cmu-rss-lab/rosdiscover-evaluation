@@ -1,0 +1,920 @@
+- action-clients: []
+  action-servers:
+  - format: move_base_msgs/MoveBaseAction
+    name: /move_base
+  filename: /ros_ws/src/husky/husky_navigation/launch/move_base.launch
+  fullname: /move_base
+  kind: move_base
+  name: move_base
+  namespace: /
+  nodelet: false
+  package: move_base
+  provenance: handwritten
+  provides:
+  - format: std_srvs/Empty
+    name: /move_base/clear_costmaps
+  - format: nav_msgs/GetPlan
+    name: /move_base/make_plan
+  - format: nav_msgs/GetPlan
+    name: /move_base/NavfnROS/make_plan
+  pubs:
+  - format: geometry_msgs/Twist
+    implicit: false
+    name: /cmd_vel
+  - format: move_base_msgs/MoveBaseActionFeedback
+    implicit: true
+    name: /move_base/feedback
+  - format: nav_msgs/Path
+    implicit: false
+    name: /move_base/DWAPlannerROS/global_plan
+  - format: actionlib_msgs/GoalStatusArray
+    implicit: true
+    name: /move_base/status
+  - format: nav_msgs/OccupancyGridUpdate
+    implicit: false
+    name: /move_base/global_costmap/costmap_updates
+  - format: nav_msgs/OccupancyGrid
+    implicit: false
+    name: /move_base/local_costmap/costmap
+  - format: nav_msgs/OccupancyGridUpdate
+    implicit: false
+    name: /move_base/local_costmap/costmap_updates
+  - format: nav_msgs/Path
+    implicit: false
+    name: /move_base/NavfnROS/plan
+  - format: geometry_msgs/PoseStamped
+    implicit: false
+    name: /move_base/goal
+  - format: geometry_msgs/PoseStamped
+    implicit: false
+    name: /move_base/current_goal
+  - format: move_base_msgs/MoveBaseActionResult
+    implicit: true
+    name: /move_base/result
+  - format: nav_msgs/OccupancyGrid
+    implicit: false
+    name: /move_base/global_costmap/costmap
+  - format: nav_msgs/Path
+    implicit: false
+    name: /move_base/DWAPlannerROS/local_plan
+  reads:
+  - dynamic: false
+    name: /move_base/local_costmap/circumscribed_radius
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/path_distance_bias
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/forward_point_distance
+  - dynamic: false
+    name: /move_base/global_costmap/global_frame
+  - dynamic: false
+    name: /move_base/NavfnROS/allow_unknown
+  - dynamic: false
+    name: /move_base/NavfnROS/planner_window_x
+  - dynamic: false
+    name: /move_base/global_costmap/width
+  - dynamic: false
+    name: /move_base/base_local_planner
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/scaling_speed
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/max_trans_vel
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/occdist_scale
+  - dynamic: false
+    name: /move_base/global_costmap/origin_y
+  - dynamic: false
+    name: /move_base/clearing_rotation_allowed
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/acc_lim_y
+  - dynamic: false
+    name: /move_base/TrajectoryPlannerROS/acc_lim_th
+  - dynamic: false
+    name: /move_base/global_costmap/always_send_full_costmap
+  - dynamic: false
+    name: /move_base/shutdown_costmaps
+  - dynamic: false
+    name: /move_base/global_costmap/plugins
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/min_rot_vel
+  - dynamic: false
+    name: /move_base/oscillation_distance
+  - dynamic: false
+    name: /move_base/local_costmap/transform_tolerance
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/max_vel_y
+  - dynamic: false
+    name: /move_base/base_global_planner
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/min_vel_y
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/latch_xy_goal_tolerance
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/xy_goal_tolerance
+  - dynamic: false
+    name: /move_base/local_costmap/update_frequency
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/vy_samples
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/stop_time_buffer
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/acc_lim_x
+  - dynamic: false
+    name: /move_base/global_costmap/rolling_window
+  - dynamic: false
+    name: /move_base/controller_patience
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/publish_cost_grid
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/max_vel_x
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/goal_distance_bias
+  - dynamic: false
+    name: /move_base/local_costmap/origin_x
+  - dynamic: false
+    name: /move_base/aggressive/frequency
+  - dynamic: false
+    name: /move_base/local_costmap/publish_frequency
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/publish_cost_grid_pc
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/sim_granularity
+  - dynamic: false
+    name: /move_base/TrajectoryPlannerROS/yaw_goal_tolerance
+  - dynamic: false
+    name: /move_base/planner_frequency
+  - dynamic: false
+    name: /move_base/global_costmap/origin_x
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/sim_time
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/max_scaling_factor
+  - dynamic: false
+    name: /move_base/oscillation_timeout
+  - dynamic: false
+    name: /move_base/max_planning_retries
+  - dynamic: false
+    name: /move_base/planner_patience
+  - dynamic: false
+    name: /move_base/global_costmap/robot_base_frame
+  - dynamic: false
+    name: /move_base/local_costmap/origin_y
+  - dynamic: false
+    name: /move_base/local_costmap/height
+  - dynamic: false
+    name: /move_base/local_costmap/width
+  - dynamic: false
+    name: /move_base/conservative_reset/sim_granularity
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/vx_samples
+  - dynamic: false
+    name: /move_base/NavfnROS/default_tolerance
+  - dynamic: false
+    name: /move_base/local_costmap/global_frame
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/oscillation_reset_dist
+  - dynamic: false
+    name: /move_base/NavfnROS/planner_window_y
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/max_rot_vel
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/acc_lim_th
+  - dynamic: false
+    name: /move_base/local_costmap/resolution
+  - dynamic: false
+    name: /move_base/global_costmap/transform_tolerance
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/vth_samples
+  - dynamic: false
+    name: /move_base/local_costmap/plugins
+  - dynamic: false
+    name: /move_base/TrajectoryPlannerROS/min_in_place_rotational_vel
+  - dynamic: false
+    name: /move_base/local_costmap/rolling_window
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/min_trans_vel
+  - dynamic: false
+    name: /move_base/TrajectoryPlannerROS/max_rotational_vel
+  - dynamic: false
+    name: /move_base/controller_frequency
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/controller_frequency
+  - dynamic: false
+    name: /move_base/global_costmap/resolution
+  - dynamic: false
+    name: /move_base/conservative_reset_dist
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/min_vel_x
+  - dynamic: false
+    name: /move_base/clearing_radius
+  - dynamic: false
+    name: /move_base/recovery_behavior_enabled
+  - dynamic: false
+    name: /move_base/global_costmap/publish_frequency
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/publish_traj_pc
+  - dynamic: false
+    name: /move_base/NavfnROS/visualize_potential
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/prune_plan
+  - dynamic: false
+    name: /move_base/global_costmap/height
+  - dynamic: false
+    name: /move_base/aggressive/sim_granularity
+  - dynamic: false
+    name: /move_base/DWAPlannerROS/yaw_goal_tolerance
+  - dynamic: false
+    name: /move_base/conservative_reset/frequency
+  - dynamic: false
+    name: /move_base/local_costmap/always_send_full_costmap
+  - dynamic: false
+    name: /move_base/local_costmap/inscribed_radius
+  - dynamic: false
+    name: /move_base/global_costmap/update_frequency
+  subs:
+  - format: geometry_msgs/PoseStamped
+    implicit: false
+    name: /move_base_simple/goal
+  - format: actionlib_msgs/GoalID
+    implicit: true
+    name: /move_base/cancel
+  - format: move_base_msgs/MoveBaseActionGoal
+    implicit: true
+    name: /move_base/goal
+  - format: geometry_msgs/Polygon
+    implicit: false
+    name: /move_base/local_costmap/footprint
+  - format: geometry_msgs/Polygon
+    implicit: false
+    name: /move_base/global_costmap/footprint
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /odom
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+  fullname: /map_server
+  kind: map_server
+  name: map_server
+  namespace: /
+  nodelet: false
+  package: map_server
+  provenance: recovered
+  provides:
+  - format: nav_msgs/GetMap
+    name: /static_map
+  pubs:
+  - format: nav_msgs/OccupancyGrid
+    implicit: false
+    name: /map
+  - format: nav_msgs/MapMetaData
+    implicit: false
+    name: /map_metadata
+  reads:
+  - dynamic: false
+    name: /map_server/free_thresh
+  - dynamic: false
+    name: /map_server/negate
+  - dynamic: false
+    name: /map_server/occupied_thresh
+  - dynamic: false
+    name: /map_server/frame_id
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_navigation/launch/amcl.launch
+  fullname: /amcl
+  kind: amcl
+  name: amcl
+  namespace: /
+  nodelet: false
+  package: amcl
+  provenance: recovered
+  provides:
+  - format: std_srvs/Empty
+    name: /request_nomotion_update
+  - format: nav_msgs/SetMap
+    name: /set_map
+  - format: std_srvs/Empty
+    name: /global_localization
+  pubs:
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: sensor_msgs/LaserScan
+    implicit: false
+    name: /base_scan
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    implicit: false
+    name: /amcl_pose
+  - format: geometry_msgs/PoseArray
+    implicit: false
+    name: /particlecloud
+  reads:
+  - dynamic: false
+    name: /amcl/laser_min_range
+  - dynamic: false
+    name: /amcl/odom_frame_id
+  - dynamic: false
+    name: /amcl/std_warn_level_x
+  - dynamic: false
+    name: /amcl/initial_cov_xx
+  - dynamic: false
+    name: /amcl/use_map_topic
+  - dynamic: false
+    name: /amcl/laser_lambda_short
+  - dynamic: false
+    name: /amcl/update_min_a
+  - dynamic: false
+    name: /amcl/odom_alpha2
+  - dynamic: false
+    name: /amcl/tf_broadcast
+  - dynamic: false
+    name: /amcl/odom_alpha3
+  - dynamic: false
+    name: /amcl/gui_publish_rate
+  - dynamic: false
+    name: /amcl/global_frame_id
+  - dynamic: false
+    name: /amcl/std_warn_level_yaw
+  - dynamic: false
+    name: /amcl/laser_max_beams
+  - dynamic: false
+    name: /amcl/laser_model_type
+  - dynamic: false
+    name: /amcl/odom_alpha1
+  - dynamic: false
+    name: /amcl/initial_cov_aa
+  - dynamic: false
+    name: /amcl/odom_alpha5
+  - dynamic: false
+    name: /amcl/initial_pose_x
+  - dynamic: false
+    name: /amcl/laser_z_max
+  - dynamic: false
+    name: /amcl/std_warn_level_y
+  - dynamic: false
+    name: /amcl/laser_z_hit
+  - dynamic: false
+    name: /amcl/laser_z_rand
+  - dynamic: false
+    name: /amcl/first_map_only
+  - dynamic: false
+    name: /amcl/min_particles
+  - dynamic: false
+    name: /amcl/kld_z
+  - dynamic: false
+    name: /amcl/recovery_alpha_fast
+  - dynamic: false
+    name: /amcl/initial_pose_y
+  - dynamic: false
+    name: /amcl/bag_scan_period
+  - dynamic: false
+    name: /amcl/odom_alpha4
+  - dynamic: false
+    name: /amcl/update_min_d
+  - dynamic: false
+    name: /amcl/laser_z_short
+  - dynamic: false
+    name: /amcl/odom_model_type
+  - dynamic: false
+    name: /amcl/initial_cov_yy
+  - dynamic: false
+    name: /amcl/laser_likelihood_max_dist
+  - dynamic: false
+    name: /amcl/laser_sigma_hit
+  - dynamic: false
+    name: /amcl/resample_interval
+  - dynamic: false
+    name: /amcl/laser_max_range
+  - dynamic: false
+    name: /amcl/selective_resampling
+  - dynamic: false
+    name: /amcl/beam_skip_error_threshold_
+  - dynamic: false
+    name: /amcl/beam_skip_threshold
+  - dynamic: false
+    name: /amcl/recovery_alpha_slow
+  - dynamic: false
+    name: /amcl/kld_err
+  - dynamic: false
+    name: /amcl/save_pose_rate
+  - dynamic: false
+    name: /amcl/beam_skip_distance
+  - dynamic: false
+    name: /amcl/initial_pose_a
+  - dynamic: false
+    name: /amcl/base_frame_id
+  - dynamic: false
+    name: /amcl/do_beamskip
+  - dynamic: false
+    name: /amcl/transform_tolerance
+  - dynamic: false
+    name: /amcl/max_particles
+  - dynamic: false
+    name: /amcl/beam_skip_error_threshold
+  subs:
+  - format: nav_msgs/OccupancyGrid
+    implicit: false
+    name: /map
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    implicit: false
+    name: /initialpose
+  - format: sensor_msgs/LaserScan
+    implicit: false
+    name: /scan
+  uses:
+  - format: todo/service
+    name: /static_map
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch
+  fullname: /spawn_husky_model
+  kind: spawn_model
+  name: spawn_husky_model
+  namespace: /
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /robot_description
+  subs:
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  uses:
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/control.launch
+  fullname: /twist_mux
+  kind: twist_mux
+  name: twist_mux
+  namespace: /
+  nodelet: false
+  package: twist_mux
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: diagnostic_msgs/DiagnosticArray
+    implicit: false
+    name: /diagnostics
+  - format: geometry_msgs/Twist
+    implicit: false
+    name: /twist_mux/cmd_vel
+  reads:
+  - dynamic: false
+    name: /twist_mux/locks
+  - dynamic: false
+    name: /twist_mux/topics
+  subs:
+  - format: any
+    implicit: false
+    name: /twist_marker_server/cmd_vel
+  - format: any
+    implicit: false
+    name: /joy_teleop/cmd_vel
+  - format: any
+    implicit: false
+    name: /e_stop
+  - format: any
+    implicit: false
+    name: /cmd_vel
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/control.launch
+  fullname: /ekf_localization
+  kind: ekf_localization_node
+  name: ekf_localization
+  namespace: /
+  nodelet: false
+  package: robot_localization
+  provenance: handwritten
+  provides:
+  - format: robot_localization/ToggleFilterProcessing
+    name: /ekf_localization/toggle
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    name: /ekf_localization/set_pose
+  - format: std_srvs/Empty
+    name: /ekf_localization/enable
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /odometry/filtered
+  - format: geometry_messages/AccelWithCovarianceStamped
+    implicit: false
+    name: /accel/filtered
+  reads:
+  - dynamic: false
+    name: /ekf_localization/imu0
+  - dynamic: false
+    name: /ekf_localization/stamped_control
+  - dynamic: false
+    name: /ekf_localization/odom0
+  subs:
+  - format: geometry_msgs/PoseWithCovarianceStamped
+    implicit: false
+    name: /set_pose
+  - format: sensor_msgs//Imu
+    implicit: false
+    name: /imu/data
+  - format: geometry_msgs::Twist
+    implicit: false
+    name: /cmd_vel
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /husky_velocity_controller/odom
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/control.launch
+  fullname: /robot_state_publisher
+  kind: robot_state_publisher
+  name: robot_state_publisher
+  namespace: /
+  nodelet: false
+  package: robot_state_publisher
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  reads:
+  - dynamic: false
+    name: /robot_state_publisher/ignore_timestamp
+  - dynamic: false
+    name: /robot_state_publisher/publish_frequency
+  - dynamic: false
+    name: /robot_state_publisher/use_tf_static
+  subs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /joint_states
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/teleop.launch
+  fullname: /joy_teleop/teleop_twist_joy
+  kind: teleop_node
+  name: teleop_twist_joy
+  namespace: /joy_teleop/
+  nodelet: false
+  package: teleop_twist_joy
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/control.launch
+  fullname: /twist_marker_server
+  kind: marker_server
+  name: twist_marker_server
+  namespace: /
+  nodelet: false
+  package: interactive_marker_twist_server
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: geometry_msgs/Twist
+    implicit: false
+    name: /twist_marker_server/cmd_vel
+  reads:
+  - dynamic: false
+    name: /twist_marker_server/link_name
+  - dynamic: false
+    name: /twist_marker_server/linear_scale
+  - dynamic: false
+    name: /twist_marker_server/max_angular_velocity
+  - dynamic: false
+    name: /twist_marker_server/robot_name
+  - dynamic: false
+    name: /twist_marker_server/max_negative_linear_velocity
+  - dynamic: false
+    name: /twist_marker_server/marker_size_scale
+  - dynamic: false
+    name: /twist_marker_server/max_positive_linear_velocity
+  - dynamic: false
+    name: /twist_marker_server/angular_scale
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/control.launch
+  fullname: /base_controller_spawner
+  kind: spawner
+  name: base_controller_spawner
+  namespace: /
+  nodelet: false
+  package: controller_manager
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /husky_velocity_controller/type
+  - dynamic: false
+    name: /husky_joint_publisher/type
+  subs: []
+  uses:
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/husky/husky_control/launch/teleop.launch
+  fullname: /joy_teleop/joy_node
+  kind: joy_node
+  name: joy_node
+  namespace: /joy_teleop/
+  nodelet: false
+  package: joy
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: sensor_msgs/Joy
+    implicit: false
+    name: /joy_teleop/joy
+  reads:
+  - dynamic: false
+    name: /joy_teleop/joy_node/autorepeat_rate
+  - dynamic: false
+    name: /joy_teleop/joy_node/dev_name
+  - dynamic: false
+    name: /joy_teleop/joy_node/coalesce_interval
+  - dynamic: false
+    name: /joy_teleop/joy_node/default_trig_val
+  - dynamic: false
+    name: /joy_teleop/joy_node/deadzone
+  - dynamic: false
+    name: /joy_teleop/joy_node/sticky_buttons
+  - dynamic: false
+    name: /joy_teleop/joy_node/dev_ff
+  - dynamic: false
+    name: /joy_teleop/joy_node/dev
+  subs:
+  - format: sensor_msgs/JoyFeedbackArray
+    implicit: false
+    name: /joy_teleop/joy/set_feedback
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/gazebo_ros_pkgs/gazebo_ros/launch/empty_world.launch
+  fullname: /gazebo
+  kind: gzserver
+  name: gazebo
+  namespace: /
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides:
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: gazebo_msgs/GetModelProperties
+    name: /gazebo/get_model_properties
+  - format: gazebo_msgs/ApplyJointEffort
+    name: /gazebo/apply_joint_effort
+  - format: gazebo_msgs/GetLinkState
+    name: /gazebo/set_link_state
+  - format: controller_manager_msgs/ListControllerTypes
+    name: /controller_manager/list_controller_types
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: gazebo_msgs/BodyRequest
+    name: /gazebo/clear_body_wrenches
+  - format: gazebo_msgs/SetJointProperties
+    name: /gazebo/set_joint_properties
+  - format: std_srvs/Empty
+    name: /gazebo/pause_physics
+  - format: gazebo_msgs/DeleteLight
+    name: /gazebo/delete_light
+  - format: gazebo_msgs/GetModelState
+    name: /gazebo/get_model_state
+  - format: hector_gazebo_plugins/SetBias
+    name: /imu/data/set_accel_bias
+  - format: std_srvs/Empty
+    name: /gazebo/reset_world
+  - format: std_srvs/Empty
+    name: /imu/datacalibrate
+  - format: std_srvs/Empty
+    name: /gazebo/reset_simulation
+  - format: gazebo_msgs/GetLinkProperties
+    name: /gazebo/get_link_properties
+  - format: gazebo_msgs/ApplyBodyWrench
+    name: /gazebo/apply_body_wrench
+  - format: controller_manager_msgs/ReloadControllerLibraries
+    name: /controller_manager/reload_controller_libraries
+  - format: hector_gazebo_plugins/SetBias
+    name: /imu/data/set_rate_bias
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  - format: gazebo_msgs/GetJointProperties
+    name: /gazebo/get_joint_properties
+  - format: gazebo_msgs/GetWorldProperties
+    name: /gazebo/get_world_properties
+  - format: gazebo_msgs/GetLightProperties
+    name: /gazebo/get_light_properties
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: gazebo_msgs/GetPhysicsProperties
+    name: /gazebo/get_physics_properties
+  - format: gazebo_msgs/GetLinkState
+    name: /gazebo/get_link_state
+  - format: gazebo_msgs/SetModelState
+    name: /gazebo/set_model_state
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  - format: gazebo_msgs/SetPhysicsProperties
+    name: /gazebo/set_physics_properties
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: gazebo_msgs/SetLightProperties
+    name: /gazebo/set_light_properties
+  - format: gazebo_msgs/JointRequest
+    name: /gazebo/clear_joint_forces
+  - format: gazebo_msgs/SetLinkProperties
+    name: /gazebo/set_link_properties
+  - format: controller_manager_msgs/ListControllers
+    name: /controller_manager/list_controller
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  pubs:
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /imu/data
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  - format: tf/tfMessage
+    implicit: false
+    name: /tf
+  - format: sensor_msgs::JointState
+    implicit: false
+    name: /joint_states
+  - format: sensor_msgs/NavSatFix
+    implicit: false
+    name: /navsat/fix
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /odom
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /imu/data/bias
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: gazebo_msgs/LinkState
+    implicit: false
+    name: /gazebo/link_states
+  - format: geometry_msgs/Vector3Stamped
+    implicit: false
+    name: /navsat/vel
+  reads:
+  - dynamic: false
+    name: /cmd_vel_timeout
+  - dynamic: false
+    name: /angular/z/min_jerk
+  - dynamic: false
+    name: /gazebo/pub_clock_frequency
+  - dynamic: false
+    name: /left_wheel_radius_multiplier
+  - dynamic: false
+    name: /linear/x/max_velocity
+  - dynamic: false
+    name: /angular/z/min_velocity
+  - dynamic: false
+    name: /linear/x/min_acceleration
+  - dynamic: false
+    name: /angular/z/has_acceleration_limits
+  - dynamic: false
+    name: /velocity_rolling_window_size
+  - dynamic: false
+    name: /angular/z/has_jerk_limits
+  - dynamic: false
+    name: /linear/x/has_acceleration_limits
+  - dynamic: false
+    name: /right_wheel_radius_multiplier
+  - dynamic: false
+    name: /linear/x/min_velocity
+  - dynamic: false
+    name: /linear/x/max_jerk
+  - dynamic: false
+    name: /extra_joints
+  - dynamic: false
+    name: /publish_rate
+  - dynamic: false
+    name: /allow_multiple_cmd_vel_publishers
+  - dynamic: false
+    name: /odom_frame_id
+  - dynamic: false
+    name: /angular/z/max_jerk
+  - dynamic: false
+    name: /wheel_separation
+  - dynamic: false
+    name: /publish_wheel_joint_controller_state
+  - dynamic: false
+    name: /joints
+  - dynamic: false
+    name: /base_frame_id
+  - dynamic: false
+    name: /linear/x/has_jerk_limits
+  - dynamic: false
+    name: /angular/z/has_velocity_limits
+  - dynamic: false
+    name: /linear/x/has_velocity_limits
+  - dynamic: false
+    name: /enable_odom_tf
+  - dynamic: false
+    name: /open_loop
+  - dynamic: false
+    name: /angular/z/min_acceleration
+  - dynamic: false
+    name: /angular/z/max_velocity
+  - dynamic: false
+    name: /linear/x/min_jerk
+  - dynamic: false
+    name: /linear/x/max_acceleration
+  - dynamic: false
+    name: /angular/z/max_acceleration
+  - dynamic: false
+    name: /wheel_radius
+  - dynamic: false
+    name: /wheel_separation_multiplier
+  - dynamic: false
+    name: /publish_cmd
+  subs:
+  - format: gazebo_msgs/LinkState
+    implicit: false
+    name: /gazebo/set_link_state
+  - format: geometry_msgs/Twist
+    implicit: false
+    name: /cmd_vel
+  - format: gazebo_msgs/ModelState
+    implicit: false
+    name: /gazebo/set_model_state
+  uses: []
+  writes:
+  - /gazebo/use_sim_time
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/gazebo_ros_pkgs/gazebo_ros/launch/empty_world.launch
+  fullname: /gazebo_gui
+  kind: gzclient
+  name: gazebo_gui
+  namespace: /
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides:
+  - format: unknown type
+    name: /gazebo_gui/set_parameters
+  pubs:
+  - format: dynamic_recongfigure/ConfigDescription
+    implicit: false
+    name: /gazebo_gui/parameter_description
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gazebo_gui/parameter_updates
+  reads: []
+  subs:
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
