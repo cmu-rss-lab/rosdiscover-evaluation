@@ -1,24 +1,27 @@
 type: detection
 subject: autorally
 distro: indigo
-build_command: try_again "catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1" 6
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
 cuda_version: 7-0
-exclude_ros_packages: [orocos_kdl, python_orocos_kdl] 
+exclude_ros_packages:
+- orocos_kdl
+- python_orocos_kdl
+- rviz
 apt_packages:
-  - git
-  - doxygen
-  - openssh-server
-  - libusb-dev
-  - lm-sensors
-  - acpi
-  - gpsd-clients
-  - usbutils 
-  - ros-indigo-orocos-kdl
-  - ros-indigo-gazebo-ros-control
-  - lm-sensors
-  - acpi
-  - gpsd-clients
+- git
+- doxygen
+- openssh-server
+- libusb-dev
+- lm-sensors
+- acpi
+- gpsd-clients
+- usbutils
+- ros-indigo-orocos-kdl
+- ros-indigo-gazebo-ros-control
+- lm-sensors
+- acpi
+- gpsd-clients
 buggy:
   image: rosdiscover-experiments/autorally:279c6642e5547876beeb536cced74661c8e46b50
   repositories:
@@ -36,22 +39,11 @@ fixed:
     version: 7b36814b5b2938345028a26381f96b5b625d0219
   - name: imu_3dm_gx4
     url: https://github.com/AutoRally/imu_3dm_gx4.git
-    version: e3e288dc8b82be4d498a051253920498e3192083    
-
+    version: e3e288dc8b82be4d498a051253920498e3192083
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
-
 launches:
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch
-node_sources:
-  - package: autorally_control
-    node: joystickController
-    sources:
-      - src/joystick/JoystickControl.cpp
-      - src/joystick/joystickControlMain.cpp
-    restrict-analysis-to-paths:
-      - /ros_ws/devel/include/autorally_control
-      - /ros_ws/src/autorally/autorally_control

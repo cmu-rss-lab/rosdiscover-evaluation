@@ -12,24 +12,23 @@ The structure of this package is as follows:
 
 .. code::
 
-  deps/                  Contains the code that the evaluation pacakges uses
-  |- rosdiscover/        The code for the implementation of the rosdiscover system
-  |                      evaluated in the paper
-  |- roswire/            The code for the layer used for interacting with ROS
-  |                      docker images
-  |- rosdiscover-cxx-extract/
-  |                      The code for static analysis
-  docker/                Files used for building docker images used in the experiments
-  experiments/           Data for setting up the experiments, and the results we got
-  |- detection/          Experiments that we used in RQ3
-  |- recovery/           Experiments we used in RQ1 and RQ2
-  rootfs                 Contains files that get put in the docker images
-  scripts                Python scripts for running and analyzing the experiments
-                         (see more below)
+    deps/                  Contains the code that the evaluation pacakges uses
+    |- rosdiscover/        The code for the implementation of the rosdiscover system
+    |                      evaluated in the paper
+    |- roswire/            The code for the layer used for interacting with ROS
+    |                      docker images
+    |- rosdiscover-cxx-extract/
+    |                      The code for static analysis
+    docker/                Files used for building docker images used in the experiments
+    experiments/           Data for setting up the experiments, and the results we got
+    |- detection/          Experiments that we used in RQ3
+    |- recovery/           Experiments we used in RQ1 and RQ2
+    rootfs                 Contains files that get put in the docker images
+    scripts                Python scripts for running and analyzing the experiments
+                           (see more below)
 
 
 Image Creation and Evaluation Infrastructure for ROS Discover
-.............................................................
 
 Prerequisites
 -------------
@@ -67,8 +66,8 @@ many distributions, we optionally recommend using pyenv to automatically install
 a standalone Python 3.9 without interfering with the rest of your system.
 
 
-pyenv 
-................
+pyenv
+.....
 
 `pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
 Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
@@ -104,19 +103,20 @@ Python 3.9.5 via the following:
 
 .. code:: command
 
-  $ pipenv install 3.9.5
+  $ pyenv install 3.9.5
 
-**TODO: Needs to be updated. Also include how to build cxx-extrace**
 
-* clone the repo
-* create a `pipenv` for the directory and execute all following commands in the pipenv shell
-* call `./scripts/setup`
+Installation
+-------------
+
+After obtaining the necessary prerequisites described above, you can install all of the tools needed
+by the experiment, including ROSDiscover, by executing the following from the root of the replication
+package:
 
 .. code::
 
-  $ git submodule update --init --recursive
-  $ pipenv --python 3.9 install
-  $ ./scripts/setup
+  $ ./scripts/install
+
 
 Replicating results for the paper
 ================================
@@ -141,8 +141,22 @@ We provide a script that does this for all our experiments - it generates a Dock
   
 At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
+
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
+
+To run the component model recovery experiments described in RQ1, you should use the `recover-node-models.py` script provided in the experimental scripts directory.
+The script simply takes the name of a subject system for RQ1 and emits a set of component models (in JSON) form, along with a summary of the success of the overall process (recovered-models.csv), describing the number of API calls that were found and successfully resolved for each individual node in that subject system.
+
+.. code::
+
+  $ pipenv run scripts/recover-node-models.py autorally
+  $ pipenv run scripts/recover-node-models.py autoware
+  $ pipenv run scripts/recover-node-models.py fetch
+  $ pipenv run scripts/recover-node-models.py husky
+  $ pipenv run scripts/recover-node-models.py turtlebot
+
+
 
 Derive and check architecture for RQ2
 -------------------------------------

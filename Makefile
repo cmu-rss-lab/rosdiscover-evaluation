@@ -8,7 +8,7 @@ turtlebot-bugs = turtlebot-01 turtlebot-02
 all-bugs = $(autoware-bugs) $(mavros-bugs) $(husky-bugs) $(autorally-bugs) $(igvc-bugs) $(turtlebot-bugs) $(navigation-bugs) industrial_core-01 ros_tms-01
 
 init:
-	bash ./setup.sh
+	./scripts/install
 
 all: $(all-bugs)
 

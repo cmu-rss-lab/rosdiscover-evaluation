@@ -11,7 +11,6 @@ pip install \
   defusedxml==0.6.0 \
   netifaces==0.10.7
 
-
 EIGEN_VERSION="3.3.7"
 
 echo "installing geographiclib"
@@ -44,19 +43,16 @@ cd /opt/cnpy
 git checkout cf4aab6de4338679b589cda00c24566a49213eec
 cd ..
 mkdir build
-cd build 
+cd build
 cmake ../cnpy
 make
 make install
 echo "installed cnpy"
 
 echo "installing flycapture"
-apt-get update
-apt-get install -y libgtkmm-2.4-1v5
-apt --fix-broken install -y
 mkdir /opt/flycapture
 cd /opt/flycapture
-tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu18.04.tgz
+tar -xvf /.dockerinstall/flycapture2-2.13.3.31-amd64-pkg_Ubuntu16.04.tgz
 cd flycapture*
 dpkg -i libflycapture-2*
 dpkg -i libflycapturegui-2*
@@ -92,3 +88,8 @@ sed -i "s# RingBuffer)#)#" /ros_ws/src/autorally/autorally_control/src/ConstantS
 
 # _gencpp has been replaced by _generate_messages_cpp
 find /ros_ws/src -name CMakeLists.txt -print | xargs -n1 sed -i "s#_gencpp#_generate_messages_cpp#g"
+
+# we shouldn't need this, but there does seem to be deep issues with the apt installation
+apt-get update
+apt-get install -y libgtkmm-2.4-1v5
+apt --fix-broken install -y
