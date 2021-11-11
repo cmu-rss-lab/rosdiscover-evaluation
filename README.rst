@@ -103,7 +103,7 @@ Python 3.9.5 via the following:
 
 .. code:: command
 
-  $ pipenv install 3.9.5
+  $ pyenv install 3.9.5
 
 
 Installation
