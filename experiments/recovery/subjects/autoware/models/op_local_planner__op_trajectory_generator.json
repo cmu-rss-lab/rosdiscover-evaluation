@@ -1,0 +1,840 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "op_trajectory_generator",
+  "package": {
+    "name": "op_local_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner/nodes/op_trajectory_generator/op_trajectory_generator.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner/nodes/op_trajectory_generator/op_trajectory_generator_core.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::MainLoop",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "op_trajectory_generator"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::TrajectoryGen",
+                "arguments": {}
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::MainLoop",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::UpdatePlanningParams",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "_nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingTipMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingOutMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingSpeedFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/enableHeadingSmoothing"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableSwerving"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableFollowing"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableTrafficLightBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableStopSignBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxLocalPlanDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/pathDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v12",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/rollOutDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v13",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/rollOutsNumber"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v14",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizonDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v15",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minFollowingDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v16",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v17",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v18",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/speedProfileFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v19",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingDataWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v20",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingSmoothWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v21",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizontalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v22",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/verticalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v23",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableLaneChange"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v24",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/width"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v25",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/length"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v26",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/wheelBaseLength"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v27",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/turningRadius"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v28",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxSteerAngle"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v29",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxAcceleration"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v30",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDeceleration"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::TrajectoryGen",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::UpdatePlanningParams",
+                "arguments": {
+                  "_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories_gen_rviz"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/initialpose"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/velocitySource"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/odom"
+                  }
+                },
+                "format": "nav_msgs/Odometry"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/can_info"
+                  }
+                },
+                "format": "autoware_can_msgs/CANInfo"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

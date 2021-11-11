@@ -15,6 +15,23 @@
       "entrypoint": "main",
       "functions": [
         {
+          "name": "AmclNode::requestMap",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "static_map"
+                },
+                "format": "todo/service"
+              }
+            ]
+          }
+        },
+        {
           "name": "AmclNode::updatePoseFromServer",
           "parameters": [],
           "body": {
@@ -168,226 +185,6 @@
           }
         },
         {
-          "name": "AmclNode::handleMapMessage",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::updatePoseFromServer",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::laserReceived",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::savePoseToServer",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::savePoseToServer",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_x"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_y"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_a"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_xx"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_yy"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_aa"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::reconfigureCB",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initialpose"
-                  }
-                },
-                "format": "geometry_msgs/PoseWithCovarianceStamped"
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::setMapCallback",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::requestMap",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "calls-service",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "static_map"
-                },
-                "format": "todo/service"
-              },
-              {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
           "name": "main",
           "parameters": [
             {
@@ -414,7 +211,11 @@
               {
                 "kind": "call",
                 "callee": "AmclNode::runFromBag",
-                "arguments": {}
+                "arguments": {
+                  "in_bag_fn": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }
@@ -1445,6 +1246,11 @@
                 "format": "std_srvs/Empty"
               },
               {
+                "kind": "call",
+                "callee": "AmclNode::globalLocalizationCallback",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
@@ -1463,6 +1269,11 @@
                 "format": "std_srvs/Empty"
               },
               {
+                "kind": "call",
+                "callee": "AmclNode::nomotionUpdateCallback",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
@@ -1479,6 +1290,29 @@
                   }
                 },
                 "format": "nav_msgs/SetMap"
+              },
+              {
+                "kind": "call",
+                "callee": "AmclNode::setMapCallback",
+                "arguments": {}
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
               },
               {
                 "kind": "subscribes-to",
@@ -1525,42 +1359,38 @@
           }
         },
         {
-          "name": "sigintHandler",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "sig",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::savePoseToServer",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::mapReceived",
+          "name": "AmclNode::nomotionUpdateCallback",
           "parameters": [],
           "body": {
             "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
-              }
-            ]
+            "statements": []
+          }
+        },
+        {
+          "name": "AmclNode::setMapCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "AmclNode::globalLocalizationCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         },
         {
           "name": "AmclNode::runFromBag",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 0,
+              "name": "in_bag_fn",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -1599,6 +1429,162 @@
                   }
                 },
                 "format": "tf2_msgs/TFMessage"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AmclNode::savePoseToServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_x"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_y"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_a"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_xx"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_yy"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_aa"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "AmclNode::reconfigureCB",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initialpose"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped"
               }
             ]
           }

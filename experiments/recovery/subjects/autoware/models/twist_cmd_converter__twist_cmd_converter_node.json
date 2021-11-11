@@ -1,0 +1,90 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "twist_cmd_converter_node",
+  "package": {
+    "name": "twist_cmd_converter",
+    "path": "/home/autoware/Autoware/ros/src/system/gazebo/twist_cmd_converter"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/system/gazebo/twist_cmd_converter/src/converter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_cmd_converter"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TwistCmdConverter::TwistCmdConverter",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "TwistCmdConverter::TwistCmdConverter",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

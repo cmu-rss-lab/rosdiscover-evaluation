@@ -15,33 +15,6 @@
       "entrypoint": "main",
       "functions": [
         {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "microstrain_3dmgx2_node"
-                }
-              },
-              {
-                "kind": "call",
-                "callee": "ImuNode::ImuNode",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
           "name": "ImuNode::addOffset",
           "parameters": [],
           "body": {
@@ -214,6 +187,11 @@
                 "format": "microstrain_3dmgx2_imu/AddOffset"
               },
               {
+                "kind": "call",
+                "callee": "ImuNode::addOffset",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
@@ -229,6 +207,11 @@
                   }
                 },
                 "format": "std_srvs/Empty"
+              },
+              {
+                "kind": "call",
+                "callee": "ImuNode::calibrate",
+                "arguments": {}
               },
               {
                 "kind": "publishes-to",
@@ -368,6 +351,49 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "microstrain_3dmgx2_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "ImuNode::ImuNode",
+                "arguments": {
+                  "h": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ImuNode::calibrate",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         }
       ]

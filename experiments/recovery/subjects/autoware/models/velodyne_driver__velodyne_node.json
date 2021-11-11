@@ -1,0 +1,297 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "velodyne_node",
+  "package": {
+    "name": "velodyne_driver",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_driver"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_driver/./src/driver/driver.cc",
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_driver/./src/driver/velodyne_node.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "velodyne_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_driver::VelodyneDriver::VelodyneDriver",
+                "arguments": {
+                  "node": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_driver::VelodyneDriver::VelodyneDriver",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "node",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "model"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "rpm"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "npackets"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "pcap"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "cut_angle"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "port"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_packets"
+                  }
+                },
+                "format": "velodyne_msgs/VelodyneScan"
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_driver::VelodyneNodeConfig::ParamDescription<double>::toServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_driver::VelodyneNodeConfig::ParamDescription<double>::fromServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

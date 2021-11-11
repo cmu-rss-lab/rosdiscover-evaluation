@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "map_tf_generator",
+  "package": {
+    "name": "map_tf_generator",
+    "path": "/home/autoware/Autoware/ros/src/util/packages/map_tf_generator"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/util/packages/map_tf_generator/nodes/map_tf_generator.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "map_tf_generator"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/points_map"
+                  }
+                },
+                "format": "pcl/PointCloud"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "rslidar_point",
+  "package": {
+    "name": "rslidar_pointcloud",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/robosense/rslidar_pointcloud"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/robosense/rslidar_pointcloud/./src/convert.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "rslidar_pointcloud::CloudNodelet::onInit",
+      "functions": [
+        {
+          "name": "rslidar_pointcloud::CloudNodeConfig::ParamDescription<double>::toServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rslidar_pointcloud::Convert::Convert",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "node",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "model"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "rslidar_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "rslidar_packets"
+                  }
+                },
+                "format": "rslidar_msgs/rslidarScan"
+              }
+            ]
+          }
+        },
+        {
+          "name": "rslidar_pointcloud::CloudNodeConfig::ParamDescription<double>::fromServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rslidar_pointcloud::CloudNodelet::onInit",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

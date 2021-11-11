@@ -16,6 +16,220 @@
       "entrypoint": "main",
       "functions": [
         {
+          "name": "XbeeNode::processXbeeOdom",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "sender",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "string-literal",
+                      "literal": "/pose_estimate_"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "format": "nav_msgs/Odometry"
+              }
+            ]
+          }
+        },
+        {
+          "name": "XbeeInterface::XbeeInterface",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "port",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "node-name"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/frameID"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "node-name"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/diagnosticInfo"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "XbeeNode::XbeeNode",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "port",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "XbeeInterface::XbeeInterface",
+                "arguments": {
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "port": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "node-name"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/transmitPositionRate"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "runstop"
+                  }
+                },
+                "format": "autorally_msgs/runstop"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "gpsBaseRTCM3"
+                  }
+                },
+                "format": "std_msgs/ByteMultiArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "pose_estimate"
+                  }
+                },
+                "format": "nav_msgs/Odometry"
+              }
+            ]
+          }
+        },
+        {
           "name": "main",
           "parameters": [
             {
@@ -58,178 +272,18 @@
               {
                 "kind": "call",
                 "callee": "XbeeNode::XbeeNode",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "XbeeNode::processXbeeMessage",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "XbeeNode::processXbeeOdom",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "XbeeNode::processXbeeOdom",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
+                "arguments": {
+                  "nh": {
                     "kind": "node-handle",
                     "namespace": {
                       "kind": "string-literal",
                       "literal": ""
                     }
                   },
-                  "rhs": {
+                  "port": {
                     "kind": "unknown"
                   }
-                },
-                "format": "nav_msgs::Odometry_"
-              }
-            ]
-          }
-        },
-        {
-          "name": "XbeeInterface::XbeeInterface",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "unknown"
-                    }
-                  }
                 }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "unknown"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "XbeeNode::XbeeNode",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "XbeeInterface::XbeeInterface",
-                "arguments": {}
-              },
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "unknown"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "runstop"
-                  }
-                },
-                "format": "autorally_msgs::runstop_"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "gpsBaseRTCM3"
-                  }
-                },
-                "format": "std_msgs::ByteMultiArray_"
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "pose_estimate"
-                  }
-                },
-                "format": "nav_msgs/Odometry_"
               }
             ]
           }

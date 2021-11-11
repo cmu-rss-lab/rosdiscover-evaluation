@@ -16,7 +16,18 @@
       "functions": [
         {
           "name": "BaseTeleop::BaseTeleop",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -255,10 +266,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -272,10 +281,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -289,10 +296,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -306,7 +311,259 @@
         },
         {
           "name": "Teleop::init",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "is_fetch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_torso"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_gripper"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_head"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_arm"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_base"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "FollowTeleop::FollowTeleop",
+                "arguments": {
+                  "name": {
+                    "kind": "string-literal",
+                    "literal": "torso"
+                  },
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "GripperTeleop::GripperTeleop",
+                "arguments": {
+                  "name": {
+                    "kind": "string-literal",
+                    "literal": "gripper"
+                  },
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "HeadTeleop::HeadTeleop",
+                "arguments": {
+                  "name": {
+                    "kind": "string-literal",
+                    "literal": "head"
+                  },
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "ArmTeleop::ArmTeleop",
+                "arguments": {
+                  "name": {
+                    "kind": "string-literal",
+                    "literal": "arm"
+                  },
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "BaseTeleop::BaseTeleop",
+                "arguments": {
+                  "name": {
+                    "kind": "string-literal",
+                    "literal": "base"
+                  },
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/joy"
+                  }
+                },
+                "format": "sensor_msgs/Joy"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/joint_states"
+                  }
+                },
+                "format": "sensor_msgs/JointState"
+              }
+            ]
+          }
+        },
+        {
+          "name": "HeadTeleop::HeadTeleop",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -325,7 +582,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "is_fetch"
+                      "literal": "button_deadman"
                     }
                   },
                   "default": {
@@ -348,7 +605,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "use_torso"
+                      "literal": "axis_pan"
                     }
                   },
                   "default": {
@@ -371,7 +628,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "use_gripper"
+                      "literal": "axis_tilt"
                     }
                   },
                   "default": {
@@ -394,7 +651,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "use_head"
+                      "literal": "max_vel_pan"
                     }
                   },
                   "default": {
@@ -417,7 +674,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "use_arm"
+                      "literal": "max_vel_tilt"
                     }
                   },
                   "default": {
@@ -440,7 +697,7 @@
                     },
                     "rhs": {
                       "kind": "string-literal",
-                      "literal": "use_base"
+                      "literal": "max_acc_pan"
                     }
                   },
                   "default": {
@@ -449,70 +706,387 @@
                 }
               },
               {
-                "kind": "call",
-                "callee": "FollowTeleop::FollowTeleop",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "GripperTeleop::GripperTeleop",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "HeadTeleop::HeadTeleop",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "ArmTeleop::ArmTeleop",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "BaseTeleop::BaseTeleop",
-                "arguments": {}
-              },
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_acc_tilt"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "/joy"
+                  "default": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "sensor_msgs/Joy"
+                }
               },
               {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_pos_pan"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "/joint_states"
+                  "default": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "sensor_msgs/JointState"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_pos_pan"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_pos_tilt"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_pos_tilt"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "FollowTeleop::FollowTeleop",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "button_deadman"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "button_increase"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "button_decrease"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_position"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_position"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_accel"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "inhibit"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joint_name"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "action_name"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }
         },
         {
           "name": "GripperTeleop::GripperTeleop",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -659,7 +1233,18 @@
         },
         {
           "name": "ArmTeleop::ArmTeleop",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "name",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -1151,10 +1736,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -1188,506 +1771,13 @@
               {
                 "kind": "call",
                 "callee": "Teleop::init",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "FollowTeleop::FollowTeleop",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
                       "kind": "string-literal",
-                      "literal": "button_deadman"
+                      "literal": "~"
                     }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "button_increase"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "button_decrease"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "min_position"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v4",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_position"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v5",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_velocity"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v6",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_accel"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v7",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "inhibit"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v8",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "joint_name"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v9",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "action_name"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "HeadTeleop::HeadTeleop",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "button_deadman"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "axis_pan"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "axis_tilt"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_vel_pan"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v4",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_vel_tilt"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v5",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_acc_pan"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v6",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_acc_tilt"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v7",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "min_pos_pan"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v8",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_pos_pan"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v9",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "min_pos_tilt"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v10",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "max_pos_tilt"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
                   }
                 }
               }

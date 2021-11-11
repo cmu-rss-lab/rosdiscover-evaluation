@@ -278,7 +278,14 @@
               {
                 "kind": "call",
                 "callee": "configureSensor",
-                "arguments": {}
+                "arguments": {
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
               },
               {
                 "kind": "provides-service",
@@ -301,14 +308,27 @@
               {
                 "kind": "call",
                 "callee": "publishMsgs",
-                "arguments": {}
+                "arguments": {
+                  "imu_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
               }
             ]
           }
         },
         {
           "name": "configureSensor",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -320,10 +340,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "private_nh"
                     },
                     "rhs": {
                       "kind": "string-literal",
@@ -343,10 +361,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "private_nh"
                     },
                     "rhs": {
                       "kind": "string-literal",
@@ -366,10 +382,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "private_nh"
                     },
                     "rhs": {
                       "kind": "string-literal",
@@ -389,10 +403,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "private_nh"
                     },
                     "rhs": {
                       "kind": "string-literal",
@@ -409,7 +421,13 @@
         },
         {
           "name": "publishMsgs",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "imu_nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -418,10 +436,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "imu_nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -435,10 +451,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "imu_nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -452,10 +466,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "imu_nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -469,10 +481,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "imu_nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -486,10 +496,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "imu_nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -534,7 +542,14 @@
                 "value": {
                   "kind": "reads-param",
                   "name": {
-                    "kind": "unknown"
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/x"
+                    }
                   }
                 }
               },
@@ -544,7 +559,14 @@
                 "value": {
                   "kind": "reads-param",
                   "name": {
-                    "kind": "unknown"
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/y"
+                    }
                   }
                 }
               },
@@ -554,7 +576,14 @@
                 "value": {
                   "kind": "reads-param",
                   "name": {
-                    "kind": "unknown"
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/z"
+                    }
                   }
                 }
               }

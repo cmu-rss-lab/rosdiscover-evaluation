@@ -15,35 +15,46 @@
       "entrypoint": "main",
       "functions": [
         {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
+          "name": "ZeroconfNode::list_discovered_services",
+          "parameters": [],
           "body": {
             "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "zeroconf"
-                }
-              },
-              {
-                "kind": "call",
-                "callee": "ZeroconfNode::init",
-                "arguments": {}
-              }
-            ]
+            "statements": []
+          }
+        },
+        {
+          "name": "ZeroconfNode::list_published_services",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "ZeroconfNode::add_service",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "ZeroconfNode::remove_listener",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         },
         {
           "name": "ZeroconfNode::init",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -52,10 +63,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -65,14 +74,17 @@
                 "format": "zeroconf_msgs/AddListener"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::add_listener",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -82,14 +94,17 @@
                 "format": "zeroconf_msgs/RemoveListener"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::remove_listener",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -99,14 +114,17 @@
                 "format": "zeroconf_msgs/AddService"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::add_service",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -116,14 +134,17 @@
                 "format": "zeroconf_msgs/AddService"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::remove_service",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -133,14 +154,17 @@
                 "format": "zeroconf_msgs/ListDiscoveredServices"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::list_discovered_services",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -150,14 +174,17 @@
                 "format": "zeroconf_msgs/ListPublishedServices"
               },
               {
+                "kind": "call",
+                "callee": "ZeroconfNode::list_published_services",
+                "arguments": {}
+              },
+              {
                 "kind": "publishes-to",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -171,10 +198,8 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
@@ -226,6 +251,57 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "name": "ZeroconfNode::add_listener",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "zeroconf"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "ZeroconfNode::init",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ZeroconfNode::remove_service",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         }
       ]

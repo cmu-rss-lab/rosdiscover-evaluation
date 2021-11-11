@@ -274,6 +274,29 @@
                 "format": "nav_msgs/GetMap"
               },
               {
+                "kind": "call",
+                "callee": "SlamKarto::mapCallback",
+                "arguments": {}
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
+              },
+              {
                 "kind": "publishes-to",
                 "name": {
                   "kind": "concatenate",
@@ -880,6 +903,14 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "name": "SlamKarto::mapCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         }
       ]

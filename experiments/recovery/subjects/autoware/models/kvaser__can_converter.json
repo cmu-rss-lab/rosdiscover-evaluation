@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "can_converter",
+  "package": {
+    "name": "kvaser",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "can_converter"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "can_raw"
+                  }
+                },
+                "format": "autoware_can_msgs/CANPacket"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -17,20 +17,28 @@
       "entrypoint": "main",
       "functions": [
         {
-          "name": "twist_mux::TwistMux::getTopicHandles",
+          "name": "__gnu_cxx::new_allocator<std::_List_node<twist_mux::LockTopicHandle>>::construct",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
                 "kind": "call",
-                "callee": "xh::fetchParam",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "std::__cxx11::list<twist_mux::LockTopicHandle, std::allocator<twist_mux::LockTopicHandle>>::emplace_back",
-                "arguments": {}
+                "callee": "twist_mux::LockTopicHandle::LockTopicHandle",
+                "arguments": {
+                  "name": {
+                    "kind": "unknown"
+                  },
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "topic": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }
@@ -44,63 +52,33 @@
               {
                 "kind": "call",
                 "callee": "twist_mux::VelocityTopicHandle::VelocityTopicHandle",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "twist_mux::TwistMux::TwistMux",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "window_size",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "twist_mux::TwistMux::getTopicHandles",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "twist_mux::TwistMux::getTopicHandles",
-                "arguments": {}
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
+                "arguments": {
+                  "name": {
+                    "kind": "unknown"
+                  },
+                  "nh": {
                     "kind": "node-handle",
                     "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
+                      "kind": "unknown"
                     }
                   },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "cmd_vel_out"
+                  "topic": {
+                    "kind": "unknown"
                   }
-                },
-                "format": "geometry_msgs/Twist"
+                }
               }
             ]
           }
         },
         {
-          "name": "std::__cxx11::list<twist_mux::VelocityTopicHandle, std::allocator<twist_mux::VelocityTopicHandle>>::emplace_back",
+          "name": "std::allocator_traits<std::allocator<std::_List_node<twist_mux::VelocityTopicHandle>>>::construct",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
                 "kind": "call",
-                "callee": "std::__cxx11::list<twist_mux::VelocityTopicHandle, std::allocator<twist_mux::VelocityTopicHandle>>::_M_insert",
+                "callee": "__gnu_cxx::new_allocator<std::_List_node<twist_mux::VelocityTopicHandle>>::construct",
                 "arguments": {}
               }
             ]
@@ -121,15 +99,93 @@
           }
         },
         {
-          "name": "std::allocator_traits<std::allocator<std::_List_node<twist_mux::VelocityTopicHandle>>>::construct",
+          "name": "std::__cxx11::list<twist_mux::VelocityTopicHandle, std::allocator<twist_mux::VelocityTopicHandle>>::emplace_back",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
                 "kind": "call",
-                "callee": "__gnu_cxx::new_allocator<std::_List_node<twist_mux::VelocityTopicHandle>>::construct",
+                "callee": "std::__cxx11::list<twist_mux::VelocityTopicHandle, std::allocator<twist_mux::VelocityTopicHandle>>::_M_insert",
                 "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_mux"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "twist_mux::TwistMux::TwistMux",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "std::__cxx11::list<twist_mux::LockTopicHandle, std::allocator<twist_mux::LockTopicHandle>>::_M_create_node",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "std::allocator_traits<std::allocator<std::_List_node<twist_mux::LockTopicHandle>>>::construct",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "xh::fetchParam",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "param_name",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
               }
             ]
           }
@@ -149,40 +205,82 @@
           }
         },
         {
-          "name": "__gnu_cxx::new_allocator<std::_List_node<twist_mux::LockTopicHandle>>::construct",
-          "parameters": [],
+          "name": "twist_mux::TwistMux::TwistMux",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "window_size",
+              "type": "integer"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
               {
                 "kind": "call",
-                "callee": "twist_mux::LockTopicHandle::LockTopicHandle",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "twist_mux::LockTopicHandle::LockTopicHandle",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
+                "callee": "twist_mux::TwistMux::getTopicHandles",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "nh_priv": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "param_name": {
+                    "kind": "string-literal",
+                    "literal": "topics"
+                  }
+                }
+              },
               {
-                "kind": "subscribes-to",
+                "kind": "call",
+                "callee": "twist_mux::TwistMux::getTopicHandles",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "nh_priv": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "param_name": {
+                    "kind": "string-literal",
+                    "literal": "locks"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
                     "kind": "node-handle",
                     "namespace": {
-                      "kind": "unknown"
+                      "kind": "string-literal",
+                      "literal": ""
                     }
                   },
                   "rhs": {
-                    "kind": "unknown"
+                    "kind": "string-literal",
+                    "literal": "cmd_vel_out"
                   }
                 },
-                "format": "std_msgs/Bool"
+                "format": "geometry_msgs/Twist"
               }
             ]
           }
@@ -216,22 +314,18 @@
           }
         },
         {
-          "name": "std::__cxx11::list<twist_mux::LockTopicHandle, std::allocator<twist_mux::LockTopicHandle>>::_M_create_node",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "std::allocator_traits<std::allocator<std::_List_node<twist_mux::LockTopicHandle>>>::construct",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "xh::fetchParam",
+          "name": "twist_mux::LockTopicHandle::LockTopicHandle",
           "parameters": [
+            {
+              "index": 2,
+              "name": "topic",
+              "type": "string"
+            },
+            {
+              "index": 1,
+              "name": "name",
+              "type": "string"
+            },
             {
               "index": 0,
               "name": "nh",
@@ -242,73 +336,61 @@
             "kind": "compound",
             "statements": [
               {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "arg",
-                      "name": "nh"
-                    },
-                    "rhs": {
-                      "kind": "unknown"
-                    }
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
                   }
-                }
+                },
+                "format": "std_msgs/Bool"
               }
             ]
           }
         },
         {
-          "name": "main",
+          "name": "twist_mux::TwistMux::getTopicHandles",
           "parameters": [
             {
+              "index": 2,
+              "name": "param_name",
+              "type": "string"
+            },
+            {
+              "index": 1,
+              "name": "nh_priv",
+              "type": "node-handle"
+            },
+            {
               "index": 0,
-              "name": "argc",
-              "type": "integer"
+              "name": "nh",
+              "type": "node-handle"
             }
           ],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "twist_mux"
+                "kind": "call",
+                "callee": "xh::fetchParam",
+                "arguments": {
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh_priv"
+                  },
+                  "param_name": {
+                    "kind": "unknown"
+                  }
                 }
               },
               {
                 "kind": "call",
-                "callee": "twist_mux::TwistMux::TwistMux",
+                "callee": "std::__cxx11::list<twist_mux::VelocityTopicHandle, std::allocator<twist_mux::VelocityTopicHandle>>::emplace_back",
                 "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "twist_mux::VelocityTopicHandle::VelocityTopicHandle",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "subscribes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "unknown"
-                  }
-                },
-                "format": "geometry_msgs/Twist"
               }
             ]
           }
@@ -323,6 +405,45 @@
                 "kind": "call",
                 "callee": "std::__cxx11::list<twist_mux::LockTopicHandle, std::allocator<twist_mux::LockTopicHandle>>::_M_create_node",
                 "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "twist_mux::VelocityTopicHandle::VelocityTopicHandle",
+          "parameters": [
+            {
+              "index": 2,
+              "name": "topic",
+              "type": "string"
+            },
+            {
+              "index": 1,
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
               }
             ]
           }

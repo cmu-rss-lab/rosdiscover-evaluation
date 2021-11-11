@@ -16,7 +16,18 @@
       "functions": [
         {
           "name": "RunStop::RunStop",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "port",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -28,10 +39,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "nh"
                     },
                     "rhs": {
                       "kind": "string-literal",
@@ -45,17 +54,15 @@
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
                     "literal": "runstop"
                   }
                 },
-                "format": "autorally_msgs::runstop_"
+                "format": "autorally_msgs/runstop"
               }
             ]
           }
@@ -103,7 +110,18 @@
               {
                 "kind": "call",
                 "callee": "RunStop::RunStop",
-                "arguments": {}
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "port": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }

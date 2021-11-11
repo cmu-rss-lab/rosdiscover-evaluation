@@ -1,0 +1,60 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "sample_vector_map",
+  "package": {
+    "name": "sample_data",
+    "path": "/home/autoware/Autoware/ros/src/util/packages/sample_data"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/util/packages/sample_data/nodes/sample_vector_map/sample_vector_map.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "sample_vector_map"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
