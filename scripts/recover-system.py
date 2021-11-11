@@ -129,11 +129,11 @@ def update_system_with_reproducer(reproducer_info, output_filename):
         "uses": [],
         "writes": [],
     }
-    for pub in reproducer.get("pubs", []):
+    for pub in reproducer_info.get("pubs", []):
         reproducer["pubs"].append({"format": pub["format"],
                                    "name": pub["name"],
                                    "implicit": False})
-    for sub in reproducer.get("subs", []):
+    for sub in reproducer_info.get("subs", []):
         reproducer["subs"].append({"format": sub["format"],
                                    "name": sub["name"],
                                    "implicit": False})
