@@ -1,0 +1,96 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "obj_uploader",
+  "package": {
+    "name": "obj_db",
+    "path": "/home/autoware/Autoware/ros/src/data/packages/obj_db"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/data/packages/obj_db/nodes/obj_uploader/obj_uploader.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "obj_uploader"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/car_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/pedestrian_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,481 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/detection/packages/road_wizard/launch/feat_proj.launch
+  fullname: /feature_projection
+  kind: feat_proj
+  name: feature_projection
+  namespace: /
+  nodelet: false
+  package: road_wizard
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: road_wizard::Signals_
+    implicit: false
+    name: /roi_signal
+  reads:
+  - dynamic: false
+    name: /feature_projection/camera_info_topic
+  subs:
+  - format: map_file/PointClassArray_
+    implicit: false
+    name: /vector_map_info/point_class
+  - format: map_file/DTLaneArray_
+    implicit: false
+    name: /vector_map_info/dtlane
+  - format: runtime_manager/adjust_xy_
+    implicit: false
+    name: /config/adjust_xy
+  - format: map_file/SignalArray_
+    implicit: false
+    name: /vector_map_info/signal
+  - format: map_file/WhiteLineArray_
+    implicit: false
+    name: /vector_map_info/white_line
+  - format: map_file/LaneArray_
+    implicit: false
+    name: /vector_map_info/lane
+  - format: map_file/LineClassArray_
+    implicit: false
+    name: /vector_map_info/line_class
+  - format: boost/shared_ptr
+    implicit: false
+    name: \unknown
+  - format: map_file/VectorClassArray_
+    implicit: false
+    name: /vector_map_info/vector_class
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/velocity_set.launch
+  fullname: /velocity_set
+  kind: velocity_set
+  name: velocity_set
+  namespace: /
+  nodelet: false
+  package: driving_planner
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/tablet_socket.launch
+  fullname: /tablet_receiver
+  kind: tablet_receiver
+  name: tablet_receiver
+  namespace: /
+  nodelet: false
+  package: tablet_socket
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: tablet_socket::mode_cmd_
+    implicit: false
+    name: /mode_cmd
+  - format: std_msgs::Bool_
+    implicit: false
+    name: /gnss_stat
+  - format: tablet_socket::route_cmd_
+    implicit: false
+    name: /route_cmd
+  - format: geometry_msgs::PoseStamped_
+    implicit: false
+    name: /gnss_pose
+  - format: tablet_socket::gear_cmd_
+    implicit: false
+    name: /gear_cmd
+  reads:
+  - dynamic: false
+    name: /tablet_receiver/port
+  - dynamic: false
+    name: /tablet_receiver/plane
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
+  fullname: /lane_stop
+  kind: lane_stop
+  name: lane_stop
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: waypoint_follower::LaneArray_
+    implicit: false
+    name: /traffic_waypoints_array
+  reads:
+  - dynamic: false
+    name: /lane_stop/pub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_stop/sub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_stop/pub_waypoint_latch
+  - dynamic: false
+    name: /lane_stop/sub_light_queue_size
+  - dynamic: false
+    name: /lane_rule/sub_config_queue_size
+  subs:
+  - format: waypoint_follower/LaneArray_
+    implicit: false
+    name: /red_waypoints_array
+  - format: runtime_manager/traffic_light_
+    implicit: false
+    name: /light_color_managed
+  - format: waypoint_follower/LaneArray_
+    implicit: false
+    name: /green_waypoints_array
+  - format: runtime_manager/ConfigLaneStop_
+    implicit: false
+    name: /config/lane_stop
+  - format: runtime_manager/traffic_light_
+    implicit: false
+    name: /light_color
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
+  fullname: /lane_navi
+  kind: lane_navi
+  name: lane_navi
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: waypoint_follower::LaneArray_
+    implicit: false
+    name: /lane_waypoints_array
+  reads:
+  - dynamic: false
+    name: /lane_navi/pub_waypoint_latch
+  - dynamic: false
+    name: /lane_navi/search_radius
+  - dynamic: false
+    name: /lane_navi/frame_id
+  - dynamic: false
+    name: /lane_navi/sub_route_queue_size
+  - dynamic: false
+    name: /lane_navi/velocity
+  - dynamic: false
+    name: /lane_navi/pub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_navi/sub_vmap_queue_size
+  - dynamic: false
+    name: /lane_navi/waypoint_max
+  - dynamic: false
+    name: /lane_navi/output_file
+  subs:
+  - format: map_file/LaneArray_
+    implicit: false
+    name: /vector_map_info/lane
+  - format: map_file/PointClassArray_
+    implicit: false
+    name: /vector_map_info/point_class
+  - format: tablet_socket/route_cmd_
+    implicit: false
+    name: /route_cmd
+  - format: map_file/NodeArray_
+    implicit: false
+    name: /vector_map_info/node
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
+  fullname: /lane_rule
+  kind: lane_rule
+  name: lane_rule
+  namespace: /
+  nodelet: false
+  package: lane_planner
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: waypoint_follower::LaneArray_
+    implicit: false
+    name: /red_waypoints_array
+  - format: waypoint_follower::LaneArray_
+    implicit: false
+    name: /traffic_waypoints_array
+  - format: waypoint_follower::LaneArray_
+    implicit: false
+    name: /green_waypoints_array
+  reads:
+  - dynamic: false
+    name: /lane_rule/sub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_rule/curve_weight
+  - dynamic: false
+    name: /lane_rule/waypoint_max
+  - dynamic: false
+    name: /lane_rule/search_radius
+  - dynamic: false
+    name: /lane_rule/sub_config_queue_size
+  - dynamic: false
+    name: /lane_rule/pub_waypoint_latch
+  - dynamic: false
+    name: /lane_rule/frame_id
+  - dynamic: false
+    name: /lane_rule/sub_vmap_queue_size
+  - dynamic: false
+    name: /lane_rule/crossroad_weight
+  - dynamic: false
+    name: /lane_rule/pub_waypoint_queue_size
+  - dynamic: false
+    name: /lane_rule/clothoid_weight
+  subs:
+  - format: map_file/StopLineArray_
+    implicit: false
+    name: /vector_map_info/stop_line
+  - format: map_file/PointClassArray_
+    implicit: false
+    name: /vector_map_info/point_class
+  - format: map_file/DTLaneArray_
+    implicit: false
+    name: /vector_map_info/dtlane
+  - format: runtime_manager/ConfigLaneRule_
+    implicit: false
+    name: /config/lane_rule
+  - format: map_file/LaneArray_
+    implicit: false
+    name: /vector_map_info/lane
+  - format: map_file/NodeArray_
+    implicit: false
+    name: /vector_map_info/node
+  - format: waypoint_follower/LaneArray_
+    implicit: false
+    name: /lane_waypoints_array
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/tablet_socket.launch
+  fullname: /tablet_sender
+  kind: tablet_sender
+  name: tablet_sender
+  namespace: /
+  nodelet: false
+  package: tablet_socket
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /tablet_sender/port
+  subs:
+  - format: ndt_localizer/ndt_stat_
+    implicit: false
+    name: /ndt_stat
+  - format: std_msgs/Bool_
+    implicit: false
+    name: /wf_stat
+  - format: tablet_socket/error_info_
+    implicit: false
+    name: /error_info
+  - format: vehicle_socket/CanInfo_
+    implicit: false
+    name: /can_info
+  - format: tablet_socket/mode_info_
+    implicit: false
+    name: /mode_info
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /.autoware/data/tf/tf.launch
+  fullname: /world_to_map
+  kind: static_transform_publisher
+  name: world_to_map
+  namespace: /
+  nodelet: false
+  package: tf
+  provenance: placeholder
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /.autoware/data/tf/tf.launch
+  fullname: /map_to_mobility
+  kind: static_transform_publisher
+  name: map_to_mobility
+  namespace: /
+  nodelet: false
+  package: tf
+  provenance: placeholder
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch
+  fullname: /vector_map_loader
+  kind: vector_map_loader
+  name: vector_map_loader
+  namespace: /
+  nodelet: false
+  package: map_file
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: vector_map_msgs::WhiteLineArray_
+    implicit: false
+    name: /vector_map_info/white_line
+  - format: vector_map_msgs::RoadSignArray_
+    implicit: false
+    name: /vector_map_info/road_sign
+  - format: vector_map_msgs::StreetLightArray_
+    implicit: false
+    name: /vector_map_info/street_light
+  - format: vector_map_msgs::CrossWalkArray_
+    implicit: false
+    name: /vector_map_info/cross_walk
+  - format: vector_map_msgs::LineArray_
+    implicit: false
+    name: /vector_map_info/line
+  - format: vector_map_msgs::ZebraZoneArray_
+    implicit: false
+    name: /vector_map_info/zebra_zone
+  - format: vector_map_msgs::StopLineArray_
+    implicit: false
+    name: /vector_map_info/stop_line
+  - format: vector_map_msgs::RoadPoleArray_
+    implicit: false
+    name: /vector_map_info/road_pole
+  - format: vector_map_msgs::FenceArray_
+    implicit: false
+    name: /vector_map_info/fence
+  - format: vector_map_msgs::SideStripArray_
+    implicit: false
+    name: /vector_map_info/side_strip
+  - format: vector_map_msgs::AreaArray_
+    implicit: false
+    name: /vector_map_info/area
+  - format: vector_map_msgs::LaneArray_
+    implicit: false
+    name: /vector_map_info/lane
+  - format: vector_map_msgs::CrossRoadArray_
+    implicit: false
+    name: /vector_map_info/cross_road
+  - format: vector_map_msgs::WallArray_
+    implicit: false
+    name: /vector_map_info/wall
+  - format: vector_map_msgs::UtilityPoleArray_
+    implicit: false
+    name: /vector_map_info/utility_pole
+  - format: vector_map_msgs::DriveOnPortionArray_
+    implicit: false
+    name: /vector_map_info/drive_on_portion
+  - format: vector_map_msgs::SideWalkArray_
+    implicit: false
+    name: /vector_map_info/side_walk
+  - format: vector_map_msgs::GuardRailArray_
+    implicit: false
+    name: /vector_map_info/guard_rail
+  - format: vector_map_msgs::WayAreaArray_
+    implicit: false
+    name: /vector_map_info/way_area
+  - format: vector_map_msgs::RailCrossingArray_
+    implicit: false
+    name: /vector_map_info/rail_crossing
+  - format: vector_map_msgs::GutterArray_
+    implicit: false
+    name: /vector_map_info/gutter
+  - format: vector_map_msgs::PoleArray_
+    implicit: false
+    name: /vector_map_info/pole
+  - format: vector_map_msgs::SignalArray_
+    implicit: false
+    name: /vector_map_info/signal
+  - format: vector_map_msgs::DTLaneArray_
+    implicit: false
+    name: /vector_map_info/dtlane
+  - format: vector_map_msgs::CurbArray_
+    implicit: false
+    name: /vector_map_info/curb
+  - format: vector_map_msgs::RoadEdgeArray_
+    implicit: false
+    name: /vector_map_info/road_edge
+  - format: vector_map_msgs::VectorArray_
+    implicit: false
+    name: /vector_map_info/vector
+  - format: vector_map_msgs::BoxArray_
+    implicit: false
+    name: /vector_map_info/box
+  - format: vector_map_msgs::PointArray_
+    implicit: false
+    name: /vector_map_info/point
+  - format: vector_map_msgs::RoadMarkArray_
+    implicit: false
+    name: /vector_map_info/road_mark
+  - format: vector_map_msgs::NodeArray_
+    implicit: false
+    name: /vector_map_info/node
+  - format: vector_map_msgs::CurveMirrorArray_
+    implicit: false
+    name: /vector_map_info/curve_mirror
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch
+  fullname: /points_map_loader
+  kind: points_map_loader
+  name: points_map_loader
+  namespace: /
+  nodelet: false
+  package: map_file
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: sensor_msgs::PointCloud2_
+    implicit: false
+    name: /points_map
+  - format: std_msgs::Bool_
+    implicit: false
+    name: /pmap_stat
+  reads:
+  - dynamic: false
+    name: /points_map_loader/update_rate
+  - dynamic: false
+    name: /points_map_loader/port
+  - dynamic: false
+    name: /points_map_loader/password
+  - dynamic: false
+    name: /points_map_loader/user
+  - dynamic: false
+    name: /points_map_loader/host_name
+  subs:
+  - format: waypoint_follower/LaneArray_
+    implicit: false
+    name: /traffic_waypoints_array
+  - format: geometry_msgs/PoseWithCovarianceStamped_
+    implicit: false
+    name: /initialpose
+  - format: geometry_msgs/PoseStamped_
+    implicit: false
+    name: /current_pose
+  - format: geometry_msgs/PoseStamped_
+    implicit: false
+    name: /gnss_pose
+  uses: []
+  writes: []

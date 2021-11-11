@@ -1,0 +1,719 @@
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /autoRally_state_publisher
+  kind: ''
+  name: autoRally_state_publisher
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  reads: []
+  subs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /joint_states
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /autorally_core_manager
+  kind: ''
+  name: autorally_core_manager
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides:
+  - format: nodelet/NodeletLoad
+    name: /autorally_core_manager/load_nodelet
+  - format: nodelet/NodeletList
+    name: /autorally_core_manager/list
+  - format: nodelet/NodeletUnload
+    name: /autorally_core_manager/unload_nodelet
+  pubs:
+  - format: bond/Status
+    implicit: false
+    name: /autorally_core_manager/bond
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /constantSpeedController/chassisCommand
+  reads: []
+  subs:
+  - format: bond/Status
+    implicit: false
+    name: /autorally_core_manager/bond
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: std_msgs/Float64
+    implicit: false
+    name: /constantSpeedController/speedCommand
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /wheelSpeeds
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /gazebo_gui
+  kind: ''
+  name: gazebo_gui
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs: []
+  reads: []
+  subs:
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /waypointFollower
+  kind: ''
+  name: waypointFollower
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides:
+  - format: dynamic_reconfigure/Reconfigure
+    name: /waypointFollower/set_parameters
+  pubs:
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /waypointFollower/chassisCommand
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /waypointFollower/parameter_descriptions
+  - format: autorally_msgs/imageMask
+    implicit: false
+    name: /imageMask
+  - format: visualization_msgs/Marker
+    implicit: false
+    name: /waypointFollower/markers
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /waypointFollower/parameter_updates
+  reads: []
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /pose_estimate
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /wheelSpeeds
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /autorally_controller
+  kind: ''
+  name: autorally_controller
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_shock_ctrlr/command
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /wheelSpeeds
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_shock_ctrlr/command
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /chassisState
+  reads: []
+  subs:
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /waypointFollower/chassisCommand
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /joint_states
+  - format: autorally_msgs/runstop
+    implicit: false
+    name: /runstop
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /mppi_controller/chassisCommand
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /joystick/chassisCommand
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /constantSpeedController/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /OCS/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /RC/chassisCommand
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /gazebo
+  kind: ''
+  name: gazebo
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides:
+  - format: dynamic_reconfigure/Reconfigure
+    name: /imu/imu/accel/set_parameters
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  - format: gazebo_msgs/BodyRequest
+    name: /gazebo/clear_body_wrenches
+  - format: gazebo_msgs/JointRequest
+    name: /gazebo/clear_joint_forces
+  - format: controller_manager_msgs/ReloadControllerLibraries
+    name: /controller_manager/reload_controller_libraries
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_camera/image_raw/theora/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /gpsRoverStatus/position/set_parameters
+  - format: controller_manager_msgs/ListControllerTypes
+    name: /controller_manager/list_controller_types
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_camera/image_raw/theora/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_camera/image_raw/compressed/set_parameters
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  - format: controller_manager_msgs/ListControllers
+    name: /controller_manager/list_controllers
+  - format: gazebo_msgs/SetPhysicsProperties
+    name: /gazebo/set_physics_properties
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_steering_ctrlr/pid/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_steering_ctrlr/pid/set_parameters
+  - format: gazebo_msgs/GetWorldProperties
+    name: /gazebo/get_world_properties
+  - format: std_srvs/Empty
+    name: /gazebo/reset_simulation
+  - format: gazebo_msgs/GetLinkProperties
+    name: /gazebo/get_link_properties
+  - format: gazebo_msgs/SetLinkState
+    name: /gazebo/set_link_state
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_front_shock_ctrlr/pid/set_parameters
+  - format: gazebo_msgs/SetLinkProperties
+    name: /gazebo/set_link_properties
+  - format: hector_gazebo_plugins/SetBias
+    name: /imu/imu/set_rate_bias
+  - format: dynamic_reconfigure/Reconfigure
+    name: /gazebo/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_front_shock_ctrlr/pid/set_parameters
+  - format: gazebo_msgs/GetLinkState
+    name: /gazebo/get_link_state
+  - format: dynamic_reconfigure/Reconfigure
+    name: /gpsRoverStatus/velocity/set_parameters
+  - format: std_srvs/Empty
+    name: /imu/calibrate
+  - format: dynamic_reconfigure/Reconfigure
+    name: /gpsRoverStatus/status/set_parameters
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: std_srvs/Empty
+    name: /gazebo/pause_physics
+  - format: gazebo_msgs/GetModelProperties
+    name: /gazebo/get_model_properties
+  - format: gazebo_msgs/ApplyJointEffort
+    name: /gazebo/apply_joint_effort
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_camera/image_raw/compressed/set_parameters
+  - format: gazebo_msgs/GetPhysicsProperties
+    name: /gazebo/get_physics_properties
+  - format: hector_gazebo_plugins/SetBias
+    name: /imu/imu/set_accel_bias
+  - format: gazebo_msgs/SetLightProperties
+    name: /gazebo/set_light_properties
+  - format: gazebo_msgs/GetJointProperties
+    name: /gazebo/get_joint_properties
+  - format: gazebo_msgs/GetModelState
+    name: /gazebo/get_model_state
+  - format: sensor_msgs/SetCameraInfo
+    name: /right_camera/set_camera_info
+  - format: dynamic_reconfigure/Reconfigure
+    name: /imu/imu/yaw/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_camera/image_raw/compressedDepth/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /imu/imu/rate/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_camera/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_camera/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /right_rear_shock_ctrlr/pid/set_parameters
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_rear_shock_ctrlr/pid/set_parameters
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: gazebo_msgs/GetLightProperties
+    name: /gazebo/get_light_properties
+  - format: gazebo_msgs/SetJointProperties
+    name: /gazebo/set_joint_properties
+  - format: std_srvs/Empty
+    name: /gazebo/reset_world
+  - format: gazebo_msgs/DeleteLight
+    name: /gazebo/delete_light
+  - format: sensor_msgs/SetCameraInfo
+    name: /left_camera/set_camera_info
+  - format: gazebo_msgs/SetModelState
+    name: /gazebo/set_model_state
+  - format: gazebo_msgs/ApplyBodyWrench
+    name: /gazebo/apply_body_wrench
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: dynamic_reconfigure/Reconfigure
+    name: /left_camera/image_raw/compressedDepth/set_parameters
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_raw
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_camera/image_raw/compressed/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /gpsRoverStatus/velocity/parameter_descriptions
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /right_camera/image_raw/compressedDepth
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gpsRoverStatus/velocity/parameter_updates
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_camera/parameter_descriptions
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /right_camera/image_raw
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /imu/imu/yaw/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_front_shock_ctrlr/pid/parameter_updates
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_camera/image_raw/theora/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_front_shock_ctrlr/pid/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_camera/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gpsRoverStatus/status/parameter_updates
+  - format: sensor_msgs/NavSatFix
+    implicit: false
+    name: /gpsRoverStatus
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_camera/image_raw/compressedDepth/parameter_descriptions
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state_raw
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_rear_shock_ctrlr/pid/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_camera/image_raw/compressed/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_steering_ctrlr/pid/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /imu/imu/accel/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_camera/image_raw/theora/parameter_updates
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera/image_raw/compressed
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /left_camera/camera_info
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_camera/image_raw/compressedDepth/parameter_updates
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /gazebo/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_steering_ctrlr/pid/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_camera/image_raw/compressedDepth/parameter_updates
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /right_camera/image_raw/compressed
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_camera/parameter_updates
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /gpsRoverStatus/status/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_camera/image_raw/compressed/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gazebo/parameter_updates
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera/image_raw/compressedDepth
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_steering_ctrlr/pid/parameter_updates
+  - format: theora_image_transport/Packet
+    implicit: false
+    name: /right_camera/image_raw/theora
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gpsRoverStatus/position/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_steering_ctrlr/pid/parameter_updates
+  - format: gazebo_msgs/LinkStates
+    implicit: false
+    name: /gazebo/link_states
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /imu/imu/rate/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /imu/imu/accel/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /imu/imu/rate/parameter_updates
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /left_rear_shock_ctrlr/state
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_camera/image_raw/theora/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /gpsRoverStatus/position/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_rear_shock_ctrlr/pid/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_rear_shock_ctrlr/pid/parameter_updates
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /right_camera/image_raw/compressed/parameter_updates
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /imu/imu
+  - format: theora_image_transport/Packet
+    implicit: false
+    name: /left_camera/image_raw/theora
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /joint_states
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_rear_shock_ctrlr/pid/parameter_updates
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /right_steering_ctrlr/state
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /imu/imu/bias
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /left_camera/image_raw/theora/parameter_updates
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_camera/image_raw/compressedDepth/parameter_descriptions
+  - format: geometry_msgs/Vector3Stamped
+    implicit: false
+    name: /fix_velocity
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /left_front_shock_ctrlr/state
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /left_front_shock_ctrlr/pid/parameter_descriptions
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /right_camera/camera_info
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /right_front_shock_ctrlr/state
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /right_rear_shock_ctrlr/state
+  - format: control_msgs/JointControllerState
+    implicit: false
+    name: /left_steering_ctrlr/state
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_front_shock_ctrlr/pid/parameter_descriptions
+  - format: dynamic_reconfigure/ConfigDescription
+    implicit: false
+    name: /right_camera/parameter_descriptions
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /imu/imu/yaw/parameter_updates
+  reads: []
+  subs:
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_shock_ctrlr/command
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_axle_ctrlr/command
+  - format: gazebo_msgs/ModelState
+    implicit: false
+    name: /gazebo/set_model_state
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_axle_ctrlr/command
+  - format: gazebo_msgs/LinkState
+    implicit: false
+    name: /gazebo/set_link_state
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_shock_ctrlr/command
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /joystickController
+  kind: ''
+  name: joystickController
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: autorally_msgs/runstop
+    implicit: false
+    name: /runstop
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /joystick/chassisCommand
+  reads: []
+  subs:
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: sensor_msgs/Joy
+    implicit: false
+    name: /joy
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /ground_truth_republisher
+  kind: ''
+  name: ground_truth_republisher
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state
+  reads: []
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state_raw
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /ConstantSpeedController
+  kind: ''
+  name: ConstantSpeedController
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: bond/Status
+    implicit: false
+    name: /autorally_core_manager/bond
+  reads: []
+  subs:
+  - format: bond/Status
+    implicit: false
+    name: /autorally_core_manager/bond
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /controller_spawner
+  kind: ''
+  name: controller_spawner
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs: []
+  reads: []
+  subs:
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: unknown
+  fullname: /joy_node
+  kind: ''
+  name: joy_node
+  namespace: /
+  nodelet: false
+  package: unknown
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: diagnostic_msgs/DiagnosticArray
+    implicit: false
+    name: /diagnostics
+  - format: sensor_msgs/Joy
+    implicit: false
+    name: /joy
+  reads: []
+  subs:
+  - format: sensor_msgs/JoyFeedbackArray
+    implicit: false
+    name: /joy/set_feedback
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []

@@ -1,31 +1,35 @@
 type: detection
-subject: industrial_core
+subject: turtlebot
 distro: indigo
-build_command: cd /ros_ws/; catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-missing_ros_packages: []
-exclude_ros_packages: [python_orocos_kdl, robot_pose_ekf, bfl] 
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages:
+- depthimage_to_laserscan
+exclude_ros_packages:
+- python_orocos_kdl
+- robot_pose_ekf
+- bfl
+- rviz
 apt_packages:
-  - ros-indigo-gazebo-plugins 
-  - ros-indigo-gazebo-ros
-  - ros-indigo-openni-launch
-  - ros-indigo-joy
-  - ros-indigo-orocos-kdl
-  - ros-indigo-robot-pose-ekf
-  - ros-indigo-bfl
-
+- ros-indigo-gazebo-plugins
+- ros-indigo-gazebo-ros
+- ros-indigo-openni-launch
+- ros-indigo-joy
+- ros-indigo-orocos-kdl
+- ros-indigo-robot-pose-ekf
+- ros-indigo-bfl
 buggy:
   image: rosdiscover-experiments/turtlebot:e799e45abdfe3106ac105ce21dd43283381ba180
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
-    version: e799e45abdfe3106ac105ce21dd43283381ba180  
+    version: e799e45abdfe3106ac105ce21dd43283381ba180
 fixed:
   image: rosdiscover-experiments/turtlebot:fc0e1b8d6e8b0f22a69d4958a5e073a48d87e291
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
     version: fc0e1b8d6e8b0f22a69d4958a5e073a48d87e291
-    
+
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash

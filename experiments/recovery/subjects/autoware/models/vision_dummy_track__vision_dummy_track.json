@@ -1,0 +1,92 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "vision_dummy_track",
+  "package": {
+    "name": "vision_dummy_track",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_dummy_track"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_dummy_track/nodes/vision_dummy_track/vision_dummy_track.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "dummy_track"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "DummyTrack::DummyTrack",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "DummyTrack::DummyTrack",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_ranged"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_tracked"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjTracked"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

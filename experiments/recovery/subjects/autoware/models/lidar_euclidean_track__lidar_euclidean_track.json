@@ -1,0 +1,135 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "lidar_euclidean_track",
+  "package": {
+    "name": "lidar_euclidean_track",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "euclidean_lidar_track"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "threshold_dist"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "format": "boost/shared_ptr"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/detected_objects"
+                  }
+                },
+                "format": "autoware_msgs/DetectedObjectArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_bounding_box"
+                  }
+                },
+                "format": "jsk_recognition_msgs/BoundingBoxArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_text"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

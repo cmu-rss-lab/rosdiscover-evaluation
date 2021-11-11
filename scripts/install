@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+pushd "${HERE_DIR}/.."
+
+# build the time machine
+pushd deps/rosinstall_generator_time_machine/docker
+./build.sh
+popd
+
+# install python code via pipenv
+pipenv --python 3.9.5 install
+
+# build the special standalone autoware image
+docker build . -t rosdiscover-experiments/autoware:static --build-arg ROOTFS='./rootfs/' -f Dockerfile-autoware
+
+# install cxx recovery volumes
+make -C deps/rosdiscover-cxx-recover/docker install

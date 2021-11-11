@@ -1,0 +1,644 @@
+{
+  "image": {
+    "sha256": "5062b460455b9854f9164aa5bfee5af729901003c54fca85b77213c4500dc875"
+  },
+  "node-name": "stdr_gui_node",
+  "package": {
+    "name": "stdr_gui",
+    "path": "/ros_ws/src/stdr_simulator/stdr_gui"
+  },
+  "sources": [
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_kinematic_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_tools.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_robot_footprint_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_connector.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_visualization/stdr_laser_visualization.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_co2.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_robot_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_node.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_visualization/stdr_sonar_visualization.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_application.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_controller.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_rfid.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_rfid_antenna_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_connector.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_info_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_robot_creator_connector.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_laser.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_metainformation/stdr_gui_co2_source.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_metainformation/stdr_gui_thermal_source.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_sonar.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_visualization/stdr_robot_visualization.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_metainformation/stdr_gui_source.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_metainformation/stdr_gui_sound_source.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_sound_sensor_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_thermal_sensor_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_laser_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_map_metainformation/stdr_gui_rfid_tag.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_robot_creator_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_co2_sensor_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_sound.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_info_connector.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_thermal.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_robot_creator/stdr_sonar_properties_loader.cpp",
+    "/ros_ws/src/stdr_simulator/stdr_gui/src/stdr_gui/stdr_gui_sensors/stdr_gui_robot.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "stdr_gui::CGuiController::initializeCommunications",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "map"
+                  }
+                },
+                "format": "nav_msgs/OccupancyGrid"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/rfid_list"
+                  }
+                },
+                "format": "stdr_msgs/RfidTagVector"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/add_rfid_tag"
+                  }
+                },
+                "format": "stdr_msgs/AddRfidTag"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/delete_rfid_tag"
+                  }
+                },
+                "format": "stdr_msgs/DeleteRfidTag"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/co2_sources_list"
+                  }
+                },
+                "format": "stdr_msgs/CO2SourceVector"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/add_co2_source"
+                  }
+                },
+                "format": "stdr_msgs/AddCO2Source"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/delete_co2_source"
+                  }
+                },
+                "format": "stdr_msgs/DeleteCO2Source"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/thermal_sources_list"
+                  }
+                },
+                "format": "stdr_msgs/ThermalSourceVector"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/add_thermal_source"
+                  }
+                },
+                "format": "stdr_msgs/AddThermalSource"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/delete_thermal_source"
+                  }
+                },
+                "format": "stdr_msgs/DeleteThermalSource"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/sound_sources_list"
+                  }
+                },
+                "format": "stdr_msgs/SoundSourceVector"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/add_sound_source"
+                  }
+                },
+                "format": "stdr_msgs/AddSoundSource"
+              },
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/delete_sound_source"
+                  }
+                },
+                "format": "stdr_msgs/DeleteSoundSource"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CLaserVisualisation::CLaserVisualisation",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiSound::CGuiSound",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "stdr_msgs/SoundSensorMeasurementMsg"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiThermal::CGuiThermal",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "stdr_msgs/ThermalSensorMeasurementMsg"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiRfid::CGuiRfid",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "stdr_msgs/RfidSensorMeasurementMsg"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiLaser::CGuiLaser",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CSonarVisualisation::CSonarVisualisation",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Range"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiConnector::actionLoadMapTriggered",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "calls-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/stdr_server/load_static_map_external"
+                  }
+                },
+                "format": "stdr_msgs/LoadExternalMap"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiRobot::draw",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiSonar::CGuiSonar",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Range"
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "stdr_gui_node"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiController::receiveMap",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "stdr_server/active_robots"
+                  }
+                },
+                "format": "stdr_msgs/RobotIndexedVectorMsg"
+              }
+            ]
+          }
+        },
+        {
+          "name": "stdr_gui::CGuiCO2::CGuiCO2",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "baseTopic",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "stdr_msgs/CO2SensorMeasurementMsg"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

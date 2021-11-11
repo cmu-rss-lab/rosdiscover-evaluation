@@ -1,32 +1,44 @@
 ROS Discover Evaluation
 =======================
 
-This is the replication packagee for the paper: **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.** THis package is currently anonymized to the bset of our ability.
+This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+This package is has been anonymized to the best of our ability for the purpose of technical track submission.
 
-To replicate the results in this packqage, you must build various docker files (in the real replication package we will provide docker images but for double blind evaluation you will need to build them). The structure of the rpository is:
+To replicate the results in this package, you must build several Docker images.
+In the real replication package, we will bundle those Docker images in a tar archive, but due to practical limitations (and > 100GB file size),
+you will need to build them in this anonymized replication package.
+
+The structure of this package is as follows:
 
 .. code::
+  
+  - architecture-style/    The definition of the ROS architeture style used for analysis.
+  - deps/                  Contains the code that the evaluation pacakges uses.
+    |- rosdiscover/        The code for the implementation of the rosdiscover system
+    |                      evaluated in the paper
+    |- roswire/            The code for the layer used for interacting with ROS
+    |                      docker images
+    |- rosdiscover-cxx-extract/
+    |                      The code for static analysis
+  - docker/                Files used for building docker images used in the experiments
+  - experiments/           Data for setting up the experiments, and the results we got
+    |- detection/          Experiments that we used in RQ3
+    |- recovery/           Experiments we used in RQ1 and RQ2
+  - results/               Contains raw and processed results from running the scripts
+    |- DataAnalysis.ipynb  A Jupyter notebook used for processing the results
+    |- data/               Various CSV files used for summarizing data for the paper
+    |  |- RosTopicBugs - Bug Data Set.csv
+    |                      The misconfiguration bug dataset contributed in the paper
+    |- detection/          Results for the detection experiments
+    |- recovery/           Results for the recovery experiments
+  - rootfs/                Contains files that get put in the docker images
+  - scripts/               Python scripts for running and analyzing the experiments
+                           (see more below)
 
-  deps/                  Contains the code that the evaluation pacakges uses
-  |- rosdiscover/        The code for the implementation of the rosdiscover system
-  |                      evaluated in the paper
-  |- roswire/            The code for the layer used for interacting with ROS
-  |                      docker images
-  |- rosdiscover-cxx-extract/
-  |                      The code for static analysis
-  docker/                Files used for building docker images used in the experiments
-  experiments/           Data for setting up the experiments, and the results we got
-  |- detection/          Experiments that we used in RQ3
-  |- recovery/           Experiments we used in RQ1 and RQ2 
-  rootfs                 Contains files that get put in the docker images
-  scripts                Python scripts for running and analyzing the experiments
-                         (see more below)
-                         
 
 Image Creation and Evaluation Infrastructure for ROS Discover
 
-
-Prerequisites 
+Prerequisites
 -------------
 
 Docker
@@ -62,8 +74,8 @@ many distributions, we optionally recommend using pyenv to automatically install
 a standalone Python 3.9 without interfering with the rest of your system.
 
 
-pyenv 
-................
+pyenv
+.....
 
 `pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
 Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
@@ -99,19 +111,26 @@ Python 3.9.5 via the following:
 
 .. code:: command
 
-  $ pipenv install 3.9.5
+  $ pyenv install 3.9.5
 
-**TODO: Needs to be updated. Also include how to build cxx-extrace**
+Pipenv
+~~~~~~
 
-* clone the repo
-* create a `pipenv` for the directory and execute all following commands in the pipenv shell
-* call `./scripts/setup`
+`Pipenv <https://pypi.org/project/pipenv/>`_ is a package manager for Python that allows you to install dependencies into a
+pyenv environment. To install pipenv, you can execute the following:
 
-.. code::
+.. code:: command
 
-  $ git submodule update --init --recursive
-  $ pipenv --python 3.9 install
-  $ ./scripts/setup
+  $ python -m pip install --user pipenv
+  
+Once installed, ensure that `~/.local/bin` is added to your path (by editing you ~/.bashrc). To run the scripts in this package, you need to install some dependencies. This can be done by first entering a pipenv shell, and then installing the dependencies:
+
+.. code:: command
+
+  $ pipenv shell
+  (rosdiscover-evaluation)$ pipenv install
+  Installing dependencies from Pipfile.lock (6070d0)...
+  
 
 Replicating results for the paper
 ================================
@@ -136,8 +155,22 @@ We provide a script that does this for all our experiments - it generates a Dock
   
 At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
+
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
+
+To run the component model recovery experiments described in RQ1, you should use the `recover-node-models.py` script provided in the experimental scripts directory.
+The script simply takes the name of a subject system for RQ1 and emits a set of component models (in JSON) form, along with a summary of the success of the overall process (recovered-models.csv), describing the number of API calls that were found and successfully resolved for each individual node in that subject system.
+
+.. code::
+
+  $ pipenv run scripts/recover-node-models.py autorally
+  $ pipenv run scripts/recover-node-models.py autoware
+  $ pipenv run scripts/recover-node-models.py fetch
+  $ pipenv run scripts/recover-node-models.py husky
+  $ pipenv run scripts/recover-node-models.py turtlebot
+
+
 
 Derive and check architecture for RQ2
 -------------------------------------
@@ -242,3 +275,65 @@ One complication for replicating RQ3 is that it sometimes wasn't possible to res
 Not that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one referred to in `experiment-reproduced.yml`.
 
 The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
+
+Results Data
+============
+
+Raw results
+-----------
+
+The replication package also provides results that we used in the paper. Data for each detection case is in
+
+.. code::
+
+  results/detection/subjects/[autorally-N, autoware-N, ...]
+
+For each case where we could duplicate the misconfiguration, there is a `buggy.architecture.[yml,acme]`,
+`fixed.architecture/[yml,acme]` that define the architecture recovered and an `error-report.csv` that reports whether
+we captured the misconfiguration error or not.
+
+The results for the recovery case is in:
+
+.. code::
+
+  results/recovery/subjects/[autorally, husky, ...]
+
+Each case has the following files:
+
+.. code::
+
+  [recovered,obeserved].architecture.[yml,acme]   - recovered and observed architetures
+  compare.observed-recovered.log                  - a human readable summary of the comparison
+  observed.recovered.[compare,errors].csv         - a CSV version of the comparison results,
+                                                    with errors detected
+  recovery.rosdiscover.yml                        - a script generated config file passed to rosdiscover
+  recovered-models.csv                            - a list of models recovered for RQ1 and the accuracy
+                                                    metrics
+
+Processed Results and Data Analysis
+-----------------------------------
+
+The data collected for the experiments of RQ1 are in these files:
+
+- results/data/RQ1 node model recovery results - autorally.csv
+- results/data/RQ1 node model recovery results - autoware.csv
+- results/data/RQ1 node model recovery results - fetch.csv
+- results/data/RQ1 node model recovery results - husky.csv
+- results/data/RQ1 node model recovery results - turtlebot.csv
+
+The data collected for the experiments of RQ2 are in these files:
+
+- results/data/RQ2 Observed Architecture - Comparison.csv
+- results/data/RQ2 Observed Architecture - Models.csv
+- results/data/RQ2 Observed Architecture - Node-Level Comparision.csv
+- results/data/RQ2 Observed Architecture - Summary.csv
+
+The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
+
+The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregate them to produce the numbers in the paper. To run this analysis, the local system needs Python 3 with these packages:
+
+- pandas (version 1.3.3)
+- matplotlib (version 3.4.3)
+- numpy (version 1.21.2)
+
+The resulting files are directly read by our paper LaTeX sources.

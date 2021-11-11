@@ -15,32 +15,6 @@
       "entrypoint": "main",
       "functions": [
         {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "call",
-                "callee": "OMPLPlannerService::OMPLPlannerService",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
           "name": "OMPLPlannerService::OMPLPlannerService",
           "parameters": [],
           "body": {
@@ -58,10 +32,16 @@
                     }
                   },
                   "rhs": {
-                    "kind": "unknown"
+                    "kind": "string-literal",
+                    "literal": "plan_kinematic_path"
                   }
                 },
                 "format": "moveit_msgs/GetMotionPlan"
+              },
+              {
+                "kind": "call",
+                "callee": "OMPLPlannerService::computePlan",
+                "arguments": {}
               },
               {
                 "kind": "publishes-to",
@@ -100,6 +80,41 @@
                 "format": "moveit_msgs/MotionPlanRequest"
               }
             ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "ompl_planning"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "OMPLPlannerService::OMPLPlannerService",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "OMPLPlannerService::computePlan",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         }
       ]

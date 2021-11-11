@@ -42,212 +42,193 @@
           }
         },
         {
-          "name": "AmclNode::requestMap",
+          "name": "AmclNode::savePoseToServer",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "calls-service",
+                "kind": "writes-to-param",
                 "name": {
-                  "kind": "string-literal",
-                  "literal": "static_map"
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_x"
+                  }
                 },
-                "format": "todo/service"
+                "value": {
+                  "kind": "unknown"
+                }
               },
               {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_y"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_pose_a"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_xx"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_yy"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "writes-to-param",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "initial_cov_aa"
+                  }
+                },
+                "value": {
+                  "kind": "unknown"
+                }
               }
             ]
           }
         },
         {
-          "name": "AmclNode::updatePoseFromServer",
+          "name": "AmclNode::globalLocalizationCallback",
           "parameters": [],
           "body": {
             "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_pose_x"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_pose_y"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v2",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_pose_a"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v3",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_cov_xx"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v4",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_cov_yy"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v5",
-                "value": {
-                  "kind": "reads-param-with-default",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "initial_cov_aa"
-                    }
-                  },
-                  "default": {
-                    "kind": "unknown"
-                  }
-                }
-              }
-            ]
+            "statements": []
           }
         },
         {
-          "name": "main",
+          "name": "AmclNode::runFromBag",
           "parameters": [
             {
               "index": 0,
-              "name": "argc",
-              "type": "integer"
+              "name": "in_bag_fn",
+              "type": "string"
             }
           ],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "ros-init",
+                "kind": "publishes-to",
                 "name": {
-                  "kind": "string-literal",
-                  "literal": "amcl"
-                }
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "base_scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/tf"
+                  }
+                },
+                "format": "tf2_msgs/TFMessage"
               },
               {
                 "kind": "call",
-                "callee": "AmclNode::AmclNode",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "AmclNode::runFromBag",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "AmclNode::runFromBag",
+                "callee": "AmclNode::globalLocalizationCallback",
                 "arguments": {}
               }
             ]
@@ -1420,6 +1401,11 @@
                 "format": "std_srvs/Empty"
               },
               {
+                "kind": "call",
+                "callee": "AmclNode::globalLocalizationCallback",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
@@ -1438,6 +1424,11 @@
                 "format": "std_srvs/Empty"
               },
               {
+                "kind": "call",
+                "callee": "AmclNode::nomotionUpdateCallback",
+                "arguments": {}
+              },
+              {
                 "kind": "provides-service",
                 "name": {
                   "kind": "concatenate",
@@ -1454,6 +1445,29 @@
                   }
                 },
                 "format": "nav_msgs/SetMap"
+              },
+              {
+                "kind": "call",
+                "callee": "AmclNode::setMapCallback",
+                "arguments": {}
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
               },
               {
                 "kind": "subscribes-to",
@@ -1500,39 +1514,19 @@
           }
         },
         {
-          "name": "AmclNode::setMapCallback",
+          "name": "AmclNode::nomotionUpdateCallback",
           "parameters": [],
           "body": {
             "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
-              }
-            ]
+            "statements": []
           }
         },
         {
-          "name": "AmclNode::mapReceived",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "AmclNode::handleMapMessage",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "sigintHandler",
+          "name": "main",
           "parameters": [
             {
               "index": 0,
-              "name": "sig",
+              "name": "argc",
               "type": "integer"
             }
           ],
@@ -1540,211 +1534,212 @@
             "kind": "compound",
             "statements": [
               {
-                "kind": "call",
-                "callee": "AmclNode::savePoseToServer",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::savePoseToServer",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "writes-to-param",
+                "kind": "ros-init",
                 "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_x"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
+                  "kind": "string-literal",
+                  "literal": "amcl"
                 }
               },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_y"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_pose_a"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_xx"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_yy"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "writes-to-param",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": "~"
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "initial_cov_aa"
-                  }
-                },
-                "value": {
-                  "kind": "unknown"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::runFromBag",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "base_scan"
-                  }
-                },
-                "format": "sensor_msgs/LaserScan"
-              },
-              {
-                "kind": "publishes-to",
-                "name": {
-                  "kind": "concatenate",
-                  "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "string-literal",
-                      "literal": ""
-                    }
-                  },
-                  "rhs": {
-                    "kind": "string-literal",
-                    "literal": "/tf"
-                  }
-                },
-                "format": "tf2_msgs/TFMessage"
-              }
-            ]
-          }
-        },
-        {
-          "name": "AmclNode::laserReceived",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
               {
                 "kind": "call",
-                "callee": "AmclNode::savePoseToServer",
+                "callee": "AmclNode::AmclNode",
                 "arguments": {}
+              },
+              {
+                "kind": "call",
+                "callee": "AmclNode::runFromBag",
+                "arguments": {
+                  "in_bag_fn": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "AmclNode::runFromBag",
+                "arguments": {
+                  "in_bag_fn": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }
         },
         {
-          "name": "AmclNode::handleMapMessage",
+          "name": "AmclNode::setMapCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "AmclNode::requestMap",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "call",
-                "callee": "AmclNode::updatePoseFromServer",
-                "arguments": {}
+                "kind": "calls-service",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "static_map"
+                },
+                "format": "todo/service"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AmclNode::updatePoseFromServer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_pose_x"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_pose_y"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_pose_a"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_cov_xx"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_cov_yy"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "initial_cov_aa"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }

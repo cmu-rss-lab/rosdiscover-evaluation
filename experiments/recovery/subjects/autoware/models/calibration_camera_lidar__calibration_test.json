@@ -1,0 +1,163 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "calibration_test",
+  "package": {
+    "name": "calibration_camera_lidar",
+    "path": "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/common_2d_calib.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/scan_window.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/camera_lidar2d_offline_calib.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/image_window.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/chessboard.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/trans.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "camera_lidar2d_offline_calib"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/camera_lidar2d/param_yaml"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image"
+              }
+            ]
+          }
+        },
+        {
+          "name": "imageCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/camera_lidar2d/camera_yaml"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -38,7 +38,18 @@
         },
         {
           "name": "attemptGetParam",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -50,10 +61,8 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "nh"
                     },
                     "rhs": {
                       "kind": "unknown"

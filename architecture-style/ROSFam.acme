@@ -1,0 +1,323 @@
+import $AS_GLOBAL_PATH/families/LocalCallReturnFam.acme;
+ 
+import $AS_GLOBAL_PATH/families/EventBasedFam.acme;
+ 
+Family ROSFam extends LocalCallReturnFam, EventBasedFam with {
+
+    external analysis distance(s1 : string,s2 : string) : int = edu.cmu.rosdiscover.LevenshteinDistance;
+    // external analysis distanceSplit(s1 : string,s2 : string,split : string) : int = edu.cmu.rosdiscover.LevenshteinDistanceSplit;
+    external analysis segmentedDistance(s1: string, s2: string) : float = edu.cmu.rosdiscover.SegmentedLevensteinDistance;
+    external analysis portsOfSameComponent(p1 : Port,p2 : Port) : boolean = edu.cmu.rosdiscover.PortsOfSameComponent;
+    
+    analysis topicsClose(t1name: string, t1type: string, t2name: string, t2type: string) : boolean =
+    	compatibleTopics(t1type, t2type) or
+    	(segmentedDistance(t1name, t2name) < 0.5 and segmentedDistance(t1type, t2type) < 0.5);
+    	
+    analysis topicNamesClose(t1name: string, t2name: string): boolean =
+    	segmentedDistance(t1name, t2name) < 0.5;
+    
+    
+    analysis compatibleTopics(s1 : string,s2 : string) : boolean = 
+        s2 == "any" OR s1 == s2;
+    Property Type ServicePersistencyT = Enum {persistent,non-persistent};
+    Property Type ParameterT = Record [name : string; type_ : string; ];
+    Port Type ServiceClientPortT extends RequestPortT with {
+
+        Property svc_type : string;
+
+        Property persistency : ServicePersistencyT <<  default = non-persistent; >> ;
+
+    }
+    Port Type ServiceProviderPortT extends ResponsePortT with {
+
+        Property svc_type : string;
+
+    }
+    Port Type ActionClientPortT extends RequestPortT with {
+
+        Property action_type : string;
+
+    }
+    Port Type ActionServerPortT extends ResponsePortT with {
+
+        Property action_type : string;
+        
+    }
+    Port Type TopicSubscribePortT extends ReceivePortT with {
+
+        Property topic : string;
+
+        Property msg_type : string;
+
+        Property queueSize : int <<  default : int = 10; >> ;
+
+    }
+    Port Type TopicAdvertisePortT extends AnnouncePortT with {
+
+        Property topic : string;
+
+        Property msg_type : string;
+
+        Property queueSize : int <<  default : int = 10; >> ;
+
+    }
+    Port Type TFLookupTransformPortT extends AnnouncePortT with {
+
+    }
+    Port Type TFListenerPortT extends ReceivePortT with {
+
+    }
+    Port Type ParameterServiceProviderPortT extends ResponsePortT with {
+
+        Property parameter : ParameterT;
+
+    }
+    Port Type ParameterWriteServiceProviderPortT extends ParameterServiceProviderPortT with {
+
+    }
+    Port Type ParameterReadServiceProviderPortT extends ParameterServiceProviderPortT with {
+
+    }
+    Port Type ParameterServiceCallerPortT extends CallerPortT with {
+
+        Property parameter : ParameterT;
+
+    }
+    Port Type ParameterReadServiceCallerPortT extends ParameterServiceCallerPortT with {
+
+    }
+    Port Type ParameterWriteServiceCallerPortT extends ParameterServiceCallerPortT with {
+
+    }
+    Component Type PlaceholderT = {
+
+        Property placeholder : boolean <<  default = false; >> ;
+
+    }
+    Component Type ROSNodeCompT = {
+
+        Property name : string;
+
+        Property launchedBy : string <<  default = "unknown"; >> ;
+        rule noServiceCallToSelf = invariant forall req :! ServiceClientPortT in self.PORTS | 
+             ! exists resp :! ServiceProviderPortT in self.PORTS | 
+                connected(req, resp);
+        rule noActionCalLToSelf = invariant forall req :! ActionClientPortT in self.PORTS | 
+             ! exists resp :! ActionServerPortT in self.PORTS | 
+                connected(req, resp);
+
+    }
+    Component Type ROSNodeletCompT extends ROSNodeCompT with {
+
+    }
+    Component Type ROSNodeManagerCompT extends ROSNodeCompT with {
+        Port list : ServiceProviderPortT = new ServiceProviderPortT extended with {
+
+            Property svc_type = "list";
+            rule atLeast1Attachment <<  ignore = true; >> ;
+
+        }
+        Port load : ServiceProviderPortT = new ServiceProviderPortT extended with {
+
+            Property svc_type = "load";
+            rule atLeast1Attachment <<  ignore = true; >> ;
+
+        }
+        Port unload : ServiceProviderPortT = new ServiceProviderPortT extended with {
+
+            Property svc_type = "unload";
+            rule atLeast1Attachment <<  ignore = true; >> ;
+
+        }
+
+    }
+    Component Type ParameterServerT = {
+
+        Property parameters : Set {ParameterT};
+        rule onlyProviderPorts = heuristic forall p in self.PORTS | 
+            declaresType(p, ParameterServiceProviderPortT) <<  causes = "select p in self.ports | !declaresType(p, ParameterServiceProviderPortT)"; msgformat = "These ports are not providing a parameter service: ${_}"; >> ;
+        rule aWriterForEveryParameter = invariant forall param : ParameterT in self.parameters | 
+            exists p :! ParameterWriteServiceProviderPortT in self.PORTS | 
+                p.parameter.name == param.name <<  causes = "select param : ParameterT in self.parameters |       ! exists p :! ParameterWriteServiceProviderPortT in self.PORTS |          p.parameter.name == param.name;"; msgformat = [msg = "Parameter {$_.name} is not written by any node.";]; >> ;
+        rule aParameterForEveryWriter = invariant forall p :! ParameterWriteServiceProviderPortT in self.PORTS | 
+            exists param : ParameterT in self.parameters | 
+                p.parameter.name == param.name <<  causes = "select p : ParameterWriteServiceProviderPortT in self.PORTS |       ! exists param : ParameterT in self.parameters |          param.name == p.parameter.name;"; msgformat = [msg = "Written parameter ${_.parameter.name} is undefined in ${_^}.";]; >> ;
+        rule aParameterForEveryReader = invariant forall p :! ParameterReadServiceProviderPortT in self.PORTS | 
+            exists param : ParameterT in self.parameters | 
+                p.parameter.name == param.name <<  causes = "select p : ParameterReadServiceProviderPortT in self.PORTS |       ! exists param : ParameterT in self.parameters |          param.name == p.parameter.name;"; msgformat = [msg = "Read parameter ${_.parameter.name} not defined in ${_^}.";]; >> ;
+
+    }
+    Role Type ROSServiceCallerRoleT extends CallerRoleT with {
+
+    }
+    Role Type ROSServiceResponderRoleT extends ResponderRoleT with {
+
+    }
+    Role Type ROSActionCallerRoleT extends CallerRoleT with {
+
+    }
+    Role Type ROSActionResponderRoleT extends ResponderRoleT with {
+
+    }
+    Role Type ROSTopicAdvertiserRoleT extends AnnouncerRoleT with {
+
+    }
+    Role Type ROSTopicSubscriberRoleT extends ReceiverRoleT with {
+
+    }
+    Role Type ROSTFAdvertiserRoleT extends AnnouncerRoleT with {
+
+    }
+    Role Type ROSTFSubscriberRoleT extends ReceiverRoleT with {
+
+    }
+    Role Type ParameterServiceResponderRoleT extends ResponderRoleT with {
+
+        Property parameter : ROSFam.ParameterT;
+
+    }
+    Role Type ParameterWriteResponderRoleT extends ParameterServiceResponderRoleT with {
+
+    }
+    Role Type ParameterReadResponderRoleT extends ParameterServiceResponderRoleT with {
+
+    }
+    Role Type ParameterServiceCallerRoleT extends CallerRoleT with {
+
+        Property parameter : ROSFam.ParameterT;
+
+    }
+    Role Type ParameterWriteCallerRoleT extends ParameterServiceCallerRoleT with {
+
+    }
+    Role Type ParameterReadCallerRoleT extends ParameterServiceCallerRoleT with {
+
+    }
+    Connector Type TopicConnectorT extends EventConnT with {
+
+        Property topic : string;
+
+        Property msg_type : string;
+        rule topicsMatchAdvertiser = invariant forall r :! ROSTopicAdvertiserRoleT in self.ROLES | 
+            forall p :! TopicAdvertisePortT in r.ATTACHEDPORTS | 
+                (p.topic == topic AND compatibleTopics(p.msg_type, msg_type)) <<  causes = "select p:! TopicAdvertisePortT in /self/roles:!ROSTopicAdvertiserRoleT/attachedPorts | (p.msg_type != msg_type or p.topic != topic)"; msgformat = "${_} causes failure because ${_.msg_type} != ${self.msg_type} or ${_.topic} != ${self.topic}"; >> ;
+        rule topicsMatchSubscriber = invariant forall r :! ROSTopicSubscriberRoleT in self.ROLES | 
+            forall p :! TopicSubscribePortT in r.ATTACHEDPORTS | 
+                (p.topic == topic AND compatibleTopics(p.msg_type, msg_type)) <<  causes = "select p:! TopicSubscribePortT in /self/roles:!ROSTopicSubscriberRoleT/attachedPorts | (p.msg_type != msg_type or p.topic != topic)"; msgformat = "${_} causes failure because ${_.msg_type} != ${self.msg_type} or ${_.topic} != ${self.topic}"; >> ;
+
+    }
+    Connector Type TFConnectorT extends EventConnT with {
+
+    }
+    Connector Type ServiceConnT extends CallReturnConnT with {
+        rule exactly1RoleOfTypeCallerRoleT <<  ignore = true; >> ;
+        rule exactly2Roles <<  ignore = true; >> ;
+        rule exactly1RoleOfTypeResponderRoleT <<  ignore = true; >> ;
+
+    }
+    Connector Type ActionServerConnT = {
+        rule atLeastTheseTypes = invariant exists t in {ROSActionCallerRoleT, ROSActionResponderRoleT} | 
+            exists e in self.ROLES | 
+                declaresType(e, t);
+        rule onlyTheseTypes = invariant forall e in self.ROLES | 
+            exists t in {ROSActionCallerRoleT, ROSActionResponderRoleT, ROSTopicSubscriberRoleT} | 
+                declaresType(e, t);
+
+    }
+    Connector Type ParameterServiceConnT extends CallReturnConnT with {
+        Role caller : ParameterServiceCallerRoleT = new ParameterServiceCallerRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+        Role responder : ParameterServiceResponderRoleT = new ParameterServiceResponderRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+        rule parametersMatch = invariant caller.parameter.name == responder.parameter.name;
+
+    }
+    Connector Type ParameterReadConnT = {
+        Role caller : ParameterReadCallerRoleT = new ParameterReadCallerRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+        Role responder : ParameterReadResponderRoleT = new ParameterReadResponderRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+
+    }
+    Connector Type ParameterWriteConnT = {
+        Role caller : ParameterWriteCallerRoleT = new ParameterWriteCallerRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+        Role responder : ParameterWriteResponderRoleT = new ParameterWriteResponderRoleT extended with {
+
+            Property parameter : ROSFam.ParameterT;
+
+        }
+
+    }
+    Group type ROSLauncherGroupT = {
+        rule onlyROSNodes = invariant forall m in self.MEMBERS | 
+            (declaresType(m, ROSNodeCompT) AND  ! declaresType(m, ROSNodeletCompT));
+
+    }
+    Group type ROSNodeManagerGroupT = {
+
+        Property name : string;
+        rule onlyNodelets = invariant forall m in self.MEMBERS | 
+            (declaresType(m, ROSNodeletCompT) OR declaresType(m, ROSNodeManagerCompT)) <<  causes = "select m in self.members | !(declaresType (m, ROSNodeletCompT) or declaresType(m,ROSNodeManagerCompT))"; >> ;
+        rule oneNodeManager = invariant exists unique m in self.MEMBERS | 
+            declaresType(m, ROSNodeManagerCompT);
+
+    }
+    rule allNodeletsInGroup = invariant forall n :! ROSNodeletCompT in self.COMPONENTS | 
+        exists unique m :! ROSNodeManagerGroupT in self.GROUPS | 
+            contains(n, m.MEMBERS);
+    rule onlyOneBusForTopicAndMsg = invariant forall t1,t2 :! TopicConnectorT in self.CONNECTORS | 
+        ((t1.msg_type == t2.msg_type AND t1.topic == t2.topic) <-> t1 == t2) <<  causes = "select t :! TopicConnectorT in self.connectors | exists t2 :! TopicConnectorT in self.connectors | (t1 != t2 and t1.msg_type == t2.msg_type and t1.topic == t2.topic)"; msgformat = "There is more than one connector with topic=${_.topic} and msg_type=${_.msg_type}"; >> ;
+    rule onlyOneBusForTopic = heuristic forall t1,t2 :! TopicConnectorT in self.CONNECTORS | 
+        (t1.topic == t2.topic) <-> t1 == t2 <<  causes = "select t1 :! TopicConnectorT in self.connectors | exists t2 :! TopicConnectorT in self.connectors | (t1 != t2 and t1.topic == t2.topic)"; msgformat = "Topic ${_} has the same topic name (${_.topic}) as another topic, but a different msg_type (${_.msg_type})"; >> ;
+    rule noDuplicateNodes = invariant forall n1,n2 :! ROSNodeCompT in self.COMPONENTS | 
+        (n1.name == n2.name) <-> n1 == n2 <<  causes = "select n1 :! ROSNodeCompT in self.components | exists n2:! ROSNodeCompT in self.components | (n1.name == n2.name and n1 != n2)"; >> ;
+    
+    
+    
+//    rule possibleDanglingSubscribers = heuristic  ! exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+//        (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+//            (compatibleTopics(sub.msg_type, pub.msg_type) AND distanceSplit(sub.topic, pub.topic, "/") < 2)) <<  causes = "select sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | (compatibleTopics(sub.msg_type, pub.msg_type) AND distanceSplit(sub.topic, pub.topic, \"/\") < 2));"; msgformat = [pub = "select p:!TopicAdvertisePortT in /self/components/ports | (compatibleTopics(p.msg_type,${_.msg_type}) and distanceSplit(${_.topic}, p.topic, \"/\") < 2)";msg = "${_^} subscribes to an unpublished topic: ''${_.topic}''. But ${pub^} publish to a topic of the same message type: ''${pub.topic}''. ${_^} was launched by ${_^.launchedBy}.";]; >> ;
+//    rule possibleDanglingPublishers = heuristic  ! exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+//        (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+//            (compatibleTopics(sub.msg_type, pub.msg_type) AND distanceSplit(sub.topic, pub.topic, "/") < 2)) <<  causes = "select pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |      (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |          (compatibleTopics(sub.msg_type, pub.msg_type) AND distanceSplit(sub.topic, pub.topic, \"/\") < 2));"; msgformat = [sub = "select p:!TopicSubscribePortT in /self/components/ports | (compatibleTopics(p.msg_type,${_.msg_type}) and distanceSplit(${_.topic}, p.topic, \"/\") < 2)";msg = "${_^} publishes to an unsubscribed topic: ''${_.topic}''. But ${sub^} subscribe to a topic with the same message type: ''${sub.topic}''. ${_^} was launched from ${_^.launchedBy}.";]; >> ;
+  
+    
+//    rule possibleDanglingSubscribers2 = heuristic  ! exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+//        (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+//            ( ! portsOfSameComponent(sub, pub) AND sub.msg_type == pub.msg_type)) <<  causes = "select sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |      (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |          ( ! portsOfSameComponent(pub, sub) AND sub.msg_type == pub.msg_type));"; msgformat = [pub = "select pub:!TopicAdvertisePortT in /self/components/ports | (! portsOfSameComponent(${_}, pub) and pub.msg_type==${_.msg_type})";msg = "${_^} subscribes to an unpublished topic: ''${_.topic}''. But there is a publisher(s) ${pub^} that publishes the same message type: ${_.msg_type} as ${pub.topic}. ${_^} was launched by ${_^.launchedBy}";]; >> ;
+//    rule possibleDanglingPublishers2 = heuristic  ! exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+//        (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+//            ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(sub, pub) AND sub.msg_type == pub.msg_type)) <<  causes = "select pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |      (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |          ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(pub, sub) AND sub.msg_type == pub.msg_type));"; msgformat = [sub = "select sub:!TopicSubscribePortT in /self/components/ports | (size(sub.attachedRoles) == 0 and ! portsOfSameComponent(${_}, sub) and sub.msg_type==${_.msg_type})";msg = "${_^}  publishes to an unsubscribed topic: ''${_.topic}''. But there is a subscriber(s) ${sub^} that subscribes to the same message type: ${_.msg_type} as ${sub.topic}. ${_^} was launched from ${_^.launchedBy}.";]; >> ;
+  
+    rule possibleDanglingSubscribers2 = heuristic  ! exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+        (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+            ( ! portsOfSameComponent(sub, pub) AND topicsClose(pub.topic, pub.msg_type, sub.topic, sub.msg_type))) <<  causes = "select sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |      (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |          ( ! portsOfSameComponent(pub, sub) AND topicsClose(pub.topic, pub.msg_type, sub.topic, sub.msg_type)));"; msgformat = [pub = "select pub:!TopicAdvertisePortT in /self/components/ports | (! portsOfSameComponent(${_}, pub) and topicsClose(pub.topic, pub.msg_type, ${_.topic},${_.msg_type}))";msg = "${_^} subscribes to an unpublished topic: ''${_.topic}''. But there is a publisher(s) ${pub^} that publishes a similar message type: ${_.msg_type} as ${pub.topic}. ${_^} was launched by ${_^.launchedBy}";]; >> ;
+    rule possibleDanglingPublishers2 = heuristic  ! exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+        (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+            ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(sub, pub) AND topicsClose(sub.topic, sub.msg_type,pub.topic, pub.msg_type))) <<  causes = "select pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |      (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |          ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(pub, sub) AND topicsClose(sub.topic, sub.msg_type, pub.topic, pub.msg_type)));"; msgformat = [sub = "select sub:!TopicSubscribePortT in /self/components/ports | (size(sub.attachedRoles) == 0 and ! portsOfSameComponent(${_}, sub) and topicsClose(sub.topic, sub.msg_type, ${_.topic}, ${_.msg_type}))";msg = "${_^}  publishes to an unsubscribed topic: ''${_.topic}''. But there is a subscriber(s) ${sub} with a similar name that subscribes to a similar message type. ${_^} was launched from ${_^.launchedBy}.";]; >> ;
+            
+    rule possibleDanglingSubscribersSimilarNames = heuristic  ! exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+        (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+            ( ! portsOfSameComponent(sub, pub) AND topicNamesClose(pub.topic, sub.topic))) <<  causes = "select sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |      (size(sub.ATTACHEDROLES) == 0 AND exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |          ( ! portsOfSameComponent(pub, sub) AND topicNamesClose(pub.topic, sub.topic)));"; msgformat = [pub = "select pub:!TopicAdvertisePortT in /self/components/ports | (! portsOfSameComponent(${_}, pub) and topicNamesClose(pub.topic, ${_.topic}))";msg = "${_^} subscribes to an unpublished topic: ''${_.topic}''. But there is a publisher(s) ${pub^} that publishes to a similar topic name: ${pub.topic}. ${_^} was launched by ${_^.launchedBy}";]; >> ;
+    rule possibleDanglingPublishersSimilarNames = heuristic  ! exists pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS | 
+        (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS | 
+            ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(sub, pub) AND topicNamesClose(sub.topic, pub.topic))) <<  causes = "select pub :! TopicAdvertisePortT in /self/COMPONENTS/PORTS |      (size(pub.ATTACHEDROLES) == 0 AND exists sub :! TopicSubscribePortT in /self/COMPONENTS/PORTS |          ( size(sub.attachedRoles) == 0 and ! portsOfSameComponent(pub, sub) AND topicNamesClose(sub.topic, pub.topic)));"; msgformat = [sub = "select sub:!TopicSubscribePortT in /self/components/ports | (size(sub.attachedRoles) == 0 and ! portsOfSameComponent(${_}, sub) and topicNamesClose(sub.topic, ${_.topic}))";msg = "${_^}  publishes to an unsubscribed topic: ''${_.topic}''. But there is a subscriber(s) ${sub^} with a similar name that subscribes to a similar topic name ${sub.topic}. ${_^} was launched from ${_^.launchedBy}.";]; >> ;
+            
+}
+

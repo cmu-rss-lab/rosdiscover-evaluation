@@ -1,0 +1,140 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "garmin_gps_18x_lvc",
+  "package": {
+    "name": "garmin",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "garmin_gps_18x_lvc"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "GpsImuDriver::GpsImuDriver",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "GpsImuDriver::GpsImuDriver",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/nmea_sentence"
+                  }
+                },
+                "format": "nmea_msgs/Sentence"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/gpstime"
+                  }
+                },
+                "format": "sensor_msgs/TimeReference"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device_ip"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "udpport"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

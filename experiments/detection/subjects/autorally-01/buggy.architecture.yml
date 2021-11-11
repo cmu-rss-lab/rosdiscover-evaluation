@@ -1,0 +1,1019 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /beta/grount_truth_republisher
+  kind: ground_truth_republisher.py
+  name: grount_truth_republisher
+  namespace: /beta/
+  nodelet: false
+  package: autorally_gazebo
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state
+  reads: []
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state_raw
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /beta/autorally_controller
+  kind: autorally_controller.py
+  name: autorally_controller
+  namespace: /beta/
+  nodelet: false
+  package: autorally_gazebo
+  provenance: handwritten
+  provides:
+  - format: controller_manager_msgs/ListControllers
+    name: /beta/autorally_controller//list_controllers
+  pubs:
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/left_rear_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/left_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/left_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/right_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/right_rear_axle_ctrlr/command
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /beta/chassisState
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/left_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/left_rear_axle_ctrlr/command
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /beta/wheelSpeeds
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/right_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/right_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /beta/right_rear_shock_ctrlr/command
+  reads:
+  - dynamic: false
+    name: /beta/autorally_controller/right_front_wheel/diameter
+  - dynamic: false
+    name: /beta/autorally_controller/right_front_wheel/steering_link_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_front_wheel/axle_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_rear_wheel/axle_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_front_wheel/steering_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_rear_wheel/diameter
+  - dynamic: false
+    name: /beta/autorally_controller/right_front_wheel/axle_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/right_rear_wheel/link_name
+  - dynamic: false
+    name: /beta/autorally_controller/publishing_frequency
+  - dynamic: false
+    name: /beta/autorally_controller/shock_absorbers
+  - dynamic: false
+    name: /beta/autorally_controller/right_rear_wheel/diameter
+  - dynamic: false
+    name: /beta/autorally_controller/cmd_timeout
+  - dynamic: false
+    name: /beta/autorally_controller/right_rear_wheel/axle_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/right_front_wheel/steering_controller_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_front_wheel/steering_link_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_rear_wheel/link_name
+  - dynamic: false
+    name: /beta/autorally_controller/left_front_wheel/diameter
+  subs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /beta/joint_states
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/mppi_controller/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/RC/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/OCS/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/constantSpeedController/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/joystick/chassisCommand
+  - format: autorally_msgs/runstop
+    implicit: false
+    name: /beta/runstop
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /beta/waypointFollower/chassisCommand
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch
+  fullname: /gazebo_gui
+  kind: gzclient
+  name: gazebo_gui
+  namespace: /
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides:
+  - format: unknown type
+    name: /gazebo_gui/set_parameters
+  pubs:
+  - format: dynamic_reconfigure/Config
+    implicit: false
+    name: /gazebo_gui/parameter_updates
+  - format: dynamic_recongfigure/ConfigDescription
+    implicit: false
+    name: /gazebo_gui/parameter_description
+  reads: []
+  subs:
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/wheel_odometry.launch
+  fullname: /alpha/WheelOdometry
+  kind: WheelOdometry
+  name: WheelOdometry
+  namespace: /alpha/
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /alpha/wheel_odom
+  reads:
+  - dynamic: false
+    name: /alpha/debug
+  - dynamic: false
+    name: /alpha/vehicle_wheelbase
+  - dynamic: false
+    name: /alpha/vehicle_width
+  - dynamic: false
+    name: /alpha/using_sim
+  - dynamic: false
+    name: /alpha/time_delay
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /alpha/pose_estimate
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /alpha/wheelSpeeds
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /alpha/chassisState
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/autorally_core_manager.launch
+  fullname: /alpha/autorally_core_manager
+  kind: nodelet
+  name: autorally_core_manager
+  namespace: /alpha/
+  nodelet: false
+  package: nodelet
+  provenance: unknown
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /alpha/spawn_platform
+  kind: spawn_model
+  name: spawn_platform
+  namespace: /alpha/
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /alpha/robot_description
+  subs:
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  uses:
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /alpha/autorally_controller
+  kind: autorally_controller.py
+  name: autorally_controller
+  namespace: /alpha/
+  nodelet: false
+  package: autorally_gazebo
+  provenance: handwritten
+  provides:
+  - format: controller_manager_msgs/ListControllers
+    name: /alpha/autorally_controller//list_controllers
+  pubs:
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/right_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/right_rear_axle_ctrlr/command
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /alpha/chassisState
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/right_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/right_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/left_rear_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/left_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/left_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/right_rear_shock_ctrlr/command
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /alpha/wheelSpeeds
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/left_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /alpha/left_steering_ctrlr/command
+  reads:
+  - dynamic: false
+    name: /alpha/autorally_controller/right_front_wheel/diameter
+  - dynamic: false
+    name: /alpha/autorally_controller/left_rear_wheel/diameter
+  - dynamic: false
+    name: /alpha/autorally_controller/left_front_wheel/diameter
+  - dynamic: false
+    name: /alpha/autorally_controller/shock_absorbers
+  - dynamic: false
+    name: /alpha/autorally_controller/right_front_wheel/axle_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/right_front_wheel/steering_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/right_front_wheel/steering_link_name
+  - dynamic: false
+    name: /alpha/autorally_controller/left_rear_wheel/axle_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/right_rear_wheel/axle_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/right_rear_wheel/link_name
+  - dynamic: false
+    name: /alpha/autorally_controller/left_front_wheel/steering_link_name
+  - dynamic: false
+    name: /alpha/autorally_controller/right_rear_wheel/diameter
+  - dynamic: false
+    name: /alpha/autorally_controller/left_front_wheel/steering_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/cmd_timeout
+  - dynamic: false
+    name: /alpha/autorally_controller/left_front_wheel/axle_controller_name
+  - dynamic: false
+    name: /alpha/autorally_controller/publishing_frequency
+  - dynamic: false
+    name: /alpha/autorally_controller/left_rear_wheel/link_name
+  subs:
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/constantSpeedController/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/RC/chassisCommand
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /alpha/joint_states
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/joystick/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/OCS/chassisCommand
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/mppi_controller/chassisCommand
+  - format: autorally_msgs/runstop
+    implicit: false
+    name: /alpha/runstop
+  - format: autorally_msgs/chassisCommand
+    implicit: false
+    name: /alpha/waypointFollower/chassisCommand
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/autorally_core_manager.launch
+  fullname: /beta/autorally_core_manager
+  kind: nodelet
+  name: autorally_core_manager
+  namespace: /beta/
+  nodelet: false
+  package: nodelet
+  provenance: unknown
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /beta/autoRally_state_publisher
+  kind: robot_state_publisher
+  name: autoRally_state_publisher
+  namespace: /beta/
+  nodelet: false
+  package: robot_state_publisher
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  reads:
+  - dynamic: false
+    name: /beta/autoRally_state_publisher/publish_frequency
+  - dynamic: false
+    name: /beta/autoRally_state_publisher/ignore_timestamp
+  - dynamic: false
+    name: /beta/autoRally_state_publisher/use_tf_static
+  subs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /beta/joint_states
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/wheel_odometry.launch
+  fullname: /beta/WheelOdometry
+  kind: WheelOdometry
+  name: WheelOdometry
+  namespace: /beta/
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /beta/wheel_odom
+  reads:
+  - dynamic: false
+    name: /beta/debug
+  - dynamic: false
+    name: /beta/time_delay
+  - dynamic: false
+    name: /beta/vehicle_wheelbase
+  - dynamic: false
+    name: /beta/vehicle_width
+  - dynamic: false
+    name: /beta/using_sim
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /beta/pose_estimate
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /beta/wheelSpeeds
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /beta/chassisState
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /alpha/controller_spawner
+  kind: spawner
+  name: controller_spawner
+  namespace: /alpha/
+  nodelet: false
+  package: controller_manager
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses:
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
+  fullname: /alpha/state_estimator
+  kind: StateEstimator
+  name: state_estimator
+  namespace: /alpha/
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: autorally_msgs/stateEstimatorStatus
+    implicit: false
+    name: /alpha/pose_estimate/status
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /alpha/bias_acc
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /alpha/pose_estimate_new
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /alpha/state_estimator/time_delays
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /alpha/bias_gyro
+  reads:
+  - dynamic: false
+    name: /alpha/state_estimator/InitialBiasNoiseAcc
+  - dynamic: false
+    name: /alpha/state_estimator/InvertZ
+  - dynamic: false
+    name: /alpha/state_estimator/AccelBiasSigma
+  - dynamic: false
+    name: /alpha/state_estimator/CarYAngle
+  - dynamic: false
+    name: /alpha/state_estimator/GyroSigma
+  - dynamic: false
+    name: /alpha/state_estimator/GPSY
+  - dynamic: false
+    name: /alpha/state_estimator/CarXAngle
+  - dynamic: false
+    name: /alpha/state_estimator/intialPitch
+  - dynamic: false
+    name: /alpha/state_estimator/latOrigin
+  - dynamic: false
+    name: /alpha/state_estimator/GPSZ
+  - dynamic: false
+    name: /alpha/state_estimator/SensorYAngle
+  - dynamic: false
+    name: /alpha/state_estimator/GPSSigma
+  - dynamic: false
+    name: /alpha/state_estimator/GPSX
+  - dynamic: false
+    name: /alpha/state_estimator/altOrigin
+  - dynamic: false
+    name: /alpha/state_estimator/SensorXAngle
+  - dynamic: false
+    name: /alpha/state_estimator/SensorZAngle
+  - dynamic: false
+    name: /alpha/state_estimator/Imudt
+  - dynamic: false
+    name: /alpha/state_estimator/UseOdom
+  - dynamic: false
+    name: /alpha/state_estimator/InvertX
+  - dynamic: false
+    name: /alpha/state_estimator/GyroBiasSigma
+  - dynamic: false
+    name: /alpha/state_estimator/initialRoll
+  - dynamic: false
+    name: /alpha/state_estimator/InitialBiasNoiseGyro
+  - dynamic: false
+    name: /alpha/state_estimator/InitialVelocityNoise
+  - dynamic: false
+    name: /alpha/state_estimator/SensorTransformY
+  - dynamic: false
+    name: /alpha/state_estimator/SensorTransformX
+  - dynamic: false
+    name: /alpha/state_estimator/FixedInitialPose
+  - dynamic: false
+    name: /alpha/state_estimator/InitialRotationNoise
+  - dynamic: false
+    name: /alpha/state_estimator/SensorTransformZ
+  - dynamic: false
+    name: /alpha/state_estimator/MaxGPSError
+  - dynamic: false
+    name: /alpha/state_estimator/Gravity
+  - dynamic: false
+    name: /alpha/state_estimator/InvertY
+  - dynamic: false
+    name: /alpha/state_estimator/FixedOrigin
+  - dynamic: false
+    name: /alpha/state_estimator/initialYaw
+  - dynamic: false
+    name: /alpha/state_estimator/lonOrigin
+  - dynamic: false
+    name: /alpha/state_estimator/CarZAngle
+  - dynamic: false
+    name: /alpha/state_estimator/AccelerometerSigma
+  subs:
+  - format: boost/shared_ptr
+    implicit: false
+    name: /alpha/imu/imu
+  - format: boost/shared_ptr
+    implicit: false
+    name: /alpha/gpsRoverStatus
+  - format: boost/shared_ptr
+    implicit: false
+    name: /alpha/wheel_odom
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /beta/spawn_platform
+  kind: spawn_model
+  name: spawn_platform
+  namespace: /beta/
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads:
+  - dynamic: false
+    name: /beta/robot_description
+  subs:
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  uses:
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /beta/controller_spawner
+  kind: spawner
+  name: controller_spawner
+  namespace: /beta/
+  nodelet: false
+  package: controller_manager
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses:
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch
+  fullname: /gazebo
+  kind: gzserver
+  name: gazebo
+  namespace: /
+  nodelet: false
+  package: gazebo_ros
+  provenance: handwritten
+  provides:
+  - format: gazebo_msgs/SetJointProperties
+    name: /gazebo/set_joint_properties
+  - format: std_srvs/Empty
+    name: /gazebo/unpause_physics
+  - format: gazebo_msgs/SetModelState
+    name: /gazebo/set_model_state
+  - format: gazebo_msgs/SetModelConfiguration
+    name: /gazebo/set_model_configuration
+  - format: controller_manager_msgs/UnloadController
+    name: /controller_manager/unload_controller
+  - format: std_srvs/Empty
+    name: /gazebo/pause_physics
+  - format: gazebo_msgs/SetPhysicsProperties
+    name: /gazebo/set_physics_properties
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_urdf_model
+  - format: controller_manager_msgs/LoadController
+    name: /controller_manager/load_controller
+  - format: gazebo_msgs/JointRequest
+    name: /gazebo/clear_joint_forces
+  - format: std_srvs/Empty
+    name: /alpha/alpha/imu/calibrate
+  - format: hector_gazebo_plugins/SetBias
+    name: /alpha/imu/imu/set_accel_bias
+  - format: gazebo_msgs/GetPhysicsProperties
+    name: /gazebo/get_physics_properties
+  - format: sensor_msgs/CameraInfo
+    name: /right_camera/set_camera_info
+  - format: hector_gazebo_plugins/SetBias
+    name: /beta/imu/imu/set_accel_bias
+  - format: gazebo_msgs/GetLinkState
+    name: /gazebo/get_link_state
+  - format: hector_gazebo_plugins/SetBias
+    name: /beta/imu/imu/set_rate_bias
+  - format: gazebo_msgs/GetModelProperties
+    name: /gazebo/get_model_properties
+  - format: controller_manager_msgs/ListControllers
+    name: /controller_manager/list_controller
+  - format: gazebo_msgs/GetWorldProperties
+    name: /gazebo/get_world_properties
+  - format: gazebo_msgs/BodyRequest
+    name: /gazebo/clear_body_wrenches
+  - format: controller_manager_msgs/SwitchController
+    name: /controller_manager/switch_controller
+  - format: gazebo_msgs/GetModelState
+    name: /gazebo/get_model_state
+  - format: gazebo_msgs/SetLinkProperties
+    name: /gazebo/set_link_properties
+  - format: gazebo_msgs/SpawnModel
+    name: /gazebo/spawn_sdf_model
+  - format: std_srvs/Empty
+    name: /gazebo/reset_world
+  - format: gazebo_msgs/DeleteLight
+    name: /gazebo/delete_light
+  - format: gazebo_msgs/DeleteModel
+    name: /gazebo/delete_model
+  - format: gazebo_msgs/ApplyJointEffort
+    name: /gazebo/apply_joint_effort
+  - format: hector_gazebo_plugins/SetBias
+    name: /alpha/imu/imu/set_rate_bias
+  - format: gazebo_msgs/SetLightProperties
+    name: /gazebo/set_light_properties
+  - format: gazebo_msgs/GetLinkProperties
+    name: /gazebo/get_link_properties
+  - format: gazebo_msgs/GetLightProperties
+    name: /gazebo/get_light_properties
+  - format: std_srvs/Empty
+    name: /gazebo/reset_simulation
+  - format: gazebo_msgs/GetLinkState
+    name: /gazebo/set_link_state
+  - format: gazebo_msgs/ApplyBodyWrench
+    name: /gazebo/apply_body_wrench
+  - format: controller_manager_msgs/ListControllerTypes
+    name: /controller_manager/list_controller_types
+  - format: sensor_msgs/CameraInfo
+    name: /left_camera/set_camera_info
+  - format: controller_manager_msgs/ReloadControllerLibraries
+    name: /controller_manager/reload_controller_libraries
+  - format: std_srvs/Empty
+    name: /beta/beta/imu/calibrate
+  - format: gazebo_msgs/GetJointProperties
+    name: /gazebo/get_joint_properties
+  pubs:
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /left_camera/camera_info
+  - format: gazebo_msgs/LinkState
+    implicit: false
+    name: /gazebo/link_states
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /right_camera/image_raw/compressedDepth
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /right_rear_shock_ctrlr/state
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state_raw
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera/image_raw/compressedDepth
+  - format: theora_image_transport/Packet
+    implicit: false
+    name: /left_camera/image_raw/theora
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /right_steering_ctrlr/state
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /left_camera/image_raw/compressed
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /right_camera/camera_info
+  - format: rosgraph_msgs/Clock
+    implicit: false
+    name: /clock
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /left_camera/image_raw
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /beta/imu/imu/bias
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /alpha/imu/imu/bias
+  - format: theora_image_transport/Packet
+    implicit: false
+    name: /right_camera/image_raw/theora
+  - format: sensor_msgs/NavSatFix
+    implicit: false
+    name: /gpsRoverStatus
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /left_front_shock_ctrlr/state
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /right_camera/image_raw
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /alpha/imu/imu
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /left_rear_shock_ctrlr/state
+  - format: sensor_msgs::JointState
+    implicit: false
+    name: /joint_states
+  - format: geometry_msgs/Vector3Stamped
+    implicit: false
+    name: /fix_velocity
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /left_steering_ctrlr/state
+  - format: control_msgs/JointControllerStates
+    implicit: false
+    name: /right_front_shock_ctrlr/state
+  - format: gazebo_msgs/ModelStates
+    implicit: false
+    name: /gazebo/model_states
+  - format: sensor_msgs/CompressedImage
+    implicit: false
+    name: /right_camera/image_raw/compressed
+  - format: sensor_msgs/Imu
+    implicit: false
+    name: /beta/imu/imu
+  reads:
+  - dynamic: false
+    name: /extra_joints
+  - dynamic: false
+    name: /publish_rate
+  - dynamic: false
+    name: /joints
+  - dynamic: false
+    name: /gazebo/pub_clock_frequency
+  subs:
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_shock_ctrlr/command
+  - format: gazebo_msgs/ModelState
+    implicit: false
+    name: /gazebo/set_model_state
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_rear_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_front_shock_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_axle_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_rear_axle_ctrlr/command
+  - format: gazebo_msgs/LinkState
+    implicit: false
+    name: /gazebo/set_link_state
+  - format: std_msgs/Float64
+    implicit: false
+    name: /left_steering_ctrlr/command
+  - format: std_msgs/Float64
+    implicit: false
+    name: /right_front_shock_ctrlr/command
+  uses: []
+  writes:
+  - /gazebo/use_sim_time
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /alpha/grount_truth_republisher
+  kind: ground_truth_republisher.py
+  name: grount_truth_republisher
+  namespace: /alpha/
+  nodelet: false
+  package: autorally_gazebo
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state
+  reads: []
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /ground_truth/state_raw
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_gazebo/launch/singlePlatform.launch
+  fullname: /alpha/autoRally_state_publisher
+  kind: robot_state_publisher
+  name: autoRally_state_publisher
+  namespace: /alpha/
+  nodelet: false
+  package: robot_state_publisher
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf
+  - format: tf2_msgs/TFMessage
+    implicit: false
+    name: /tf_static
+  reads:
+  - dynamic: false
+    name: /alpha/autoRally_state_publisher/ignore_timestamp
+  - dynamic: false
+    name: /alpha/autoRally_state_publisher/publish_frequency
+  - dynamic: false
+    name: /alpha/autoRally_state_publisher/use_tf_static
+  subs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /alpha/joint_states
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
+  fullname: /beta/state_estimator
+  kind: StateEstimator
+  name: state_estimator
+  namespace: /beta/
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: autorally_msgs/stateEstimatorStatus
+    implicit: false
+    name: /beta/pose_estimate/status
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /beta/state_estimator/time_delays
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /beta/pose_estimate_new
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /beta/bias_acc
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /beta/bias_gyro
+  reads:
+  - dynamic: false
+    name: /beta/state_estimator/InitialRotationNoise
+  - dynamic: false
+    name: /beta/state_estimator/Gravity
+  - dynamic: false
+    name: /beta/state_estimator/UseOdom
+  - dynamic: false
+    name: /beta/state_estimator/FixedInitialPose
+  - dynamic: false
+    name: /beta/state_estimator/SensorTransformY
+  - dynamic: false
+    name: /beta/state_estimator/SensorZAngle
+  - dynamic: false
+    name: /beta/state_estimator/GPSX
+  - dynamic: false
+    name: /beta/state_estimator/SensorTransformX
+  - dynamic: false
+    name: /beta/state_estimator/GPSY
+  - dynamic: false
+    name: /beta/state_estimator/GyroSigma
+  - dynamic: false
+    name: /beta/state_estimator/SensorTransformZ
+  - dynamic: false
+    name: /beta/state_estimator/CarZAngle
+  - dynamic: false
+    name: /beta/state_estimator/altOrigin
+  - dynamic: false
+    name: /beta/state_estimator/CarYAngle
+  - dynamic: false
+    name: /beta/state_estimator/latOrigin
+  - dynamic: false
+    name: /beta/state_estimator/GPSSigma
+  - dynamic: false
+    name: /beta/state_estimator/AccelerometerSigma
+  - dynamic: false
+    name: /beta/state_estimator/initialRoll
+  - dynamic: false
+    name: /beta/state_estimator/AccelBiasSigma
+  - dynamic: false
+    name: /beta/state_estimator/InvertX
+  - dynamic: false
+    name: /beta/state_estimator/intialPitch
+  - dynamic: false
+    name: /beta/state_estimator/SensorYAngle
+  - dynamic: false
+    name: /beta/state_estimator/CarXAngle
+  - dynamic: false
+    name: /beta/state_estimator/GPSZ
+  - dynamic: false
+    name: /beta/state_estimator/InvertZ
+  - dynamic: false
+    name: /beta/state_estimator/FixedOrigin
+  - dynamic: false
+    name: /beta/state_estimator/MaxGPSError
+  - dynamic: false
+    name: /beta/state_estimator/lonOrigin
+  - dynamic: false
+    name: /beta/state_estimator/InitialVelocityNoise
+  - dynamic: false
+    name: /beta/state_estimator/Imudt
+  - dynamic: false
+    name: /beta/state_estimator/InitialBiasNoiseGyro
+  - dynamic: false
+    name: /beta/state_estimator/SensorXAngle
+  - dynamic: false
+    name: /beta/state_estimator/GyroBiasSigma
+  - dynamic: false
+    name: /beta/state_estimator/initialYaw
+  - dynamic: false
+    name: /beta/state_estimator/InitialBiasNoiseAcc
+  - dynamic: false
+    name: /beta/state_estimator/InvertY
+  subs:
+  - format: boost/shared_ptr
+    implicit: false
+    name: /beta/gpsRoverStatus
+  - format: boost/shared_ptr
+    implicit: false
+    name: /beta/imu/imu
+  - format: boost/shared_ptr
+    implicit: false
+    name: /beta/wheel_odom
+  uses: []
+  writes: []

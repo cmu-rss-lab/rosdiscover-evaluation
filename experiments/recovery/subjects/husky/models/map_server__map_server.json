@@ -36,14 +36,24 @@
               {
                 "kind": "call",
                 "callee": "MapServer::MapServer",
-                "arguments": {}
+                "arguments": {
+                  "fname": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }
         },
         {
           "name": "MapServer::MapServer",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 0,
+              "name": "fname",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -162,6 +172,11 @@
                 "format": "nav_msgs/GetMap"
               },
               {
+                "kind": "call",
+                "callee": "MapServer::mapCallback",
+                "arguments": {}
+              },
+              {
                 "kind": "publishes-to",
                 "name": {
                   "kind": "concatenate",
@@ -198,6 +213,14 @@
                 "format": "nav_msgs/OccupancyGrid"
               }
             ]
+          }
+        },
+        {
+          "name": "MapServer::mapCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
           }
         }
       ]

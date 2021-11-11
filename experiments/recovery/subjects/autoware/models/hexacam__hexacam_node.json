@@ -1,0 +1,150 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "hexacam_node",
+  "package": {
+    "name": "hexacam",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/hexacam"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/hexacam/nodes/hexacam/hexacam.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "hexacam"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "fps"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "configfile"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "HexaCam::HexaCam",
+                "arguments": {
+                  "n": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/camera/camera_info"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo"
+              }
+            ]
+          }
+        },
+        {
+          "name": "HexaCam::HexaCam",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "cam",
+              "type": "integer"
+            },
+            {
+              "index": 0,
+              "name": "n",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "n"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_raw"
+                  }
+                },
+                "format": "sensor_msgs/Image"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

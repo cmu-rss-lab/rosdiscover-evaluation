@@ -1,0 +1,998 @@
+import families/ROSFam.acme;
+system _code_experiments_recovery_subjects_autorally_recovered_architecture : ROSFam = new ROSFam extended with {
+   component gazebo : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _left_camera_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/left_camera/image_raw";
+    };
+    
+     port _right_steering_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/right_steering_ctrlr/state";
+    };
+    
+     port _joint_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs::JointState";
+        property topic = "/joint_states";
+    };
+    
+     port _left_front_shock_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/left_front_shock_ctrlr/state";
+    };
+    
+     port _right_camera_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/right_camera/image_raw";
+    };
+    
+     port _right_front_shock_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/right_front_shock_ctrlr/state";
+    };
+    
+     port _left_camera_image_raw_compressed_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/left_camera/image_raw/compressed";
+    };
+    
+     port _right_camera_camera_info_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/right_camera/camera_info";
+    };
+    
+     port _gazebo_model_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+     port _left_rear_shock_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/left_rear_shock_ctrlr/state";
+    };
+    
+     port _right_camera_image_raw_theora_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "theora_image_transport/Packet";
+        property topic = "/right_camera/image_raw/theora";
+    };
+    
+     port _left_camera_camera_info_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/left_camera/camera_info";
+    };
+    
+     port _right_camera_image_raw_compressed_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/right_camera/image_raw/compressed";
+    };
+    
+     port _gpsRoverStatus_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/NavSatFix";
+        property topic = "/gpsRoverStatus";
+    };
+    
+     port _imu_imu_bias_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Imu";
+        property topic = "/imu/imu/bias";
+    };
+    
+     port _fix_velocity_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/Vector3Stamped";
+        property topic = "/fix_velocity";
+    };
+    
+     port _left_steering_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/left_steering_ctrlr/state";
+    };
+    
+     port _left_camera_image_raw_compressedDepth_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/left_camera/image_raw/compressedDepth";
+    };
+    
+     port _ground_truth_state_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/ground_truth/state_raw";
+    };
+    
+     port _imu_imu_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Imu";
+        property topic = "/imu/imu";
+    };
+    
+     port _left_camera_image_raw_theora_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "theora_image_transport/Packet";
+        property topic = "/left_camera/image_raw/theora";
+    };
+    
+     port _gazebo_link_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "gazebo_msgs/LinkState";
+        property topic = "/gazebo/link_states";
+    };
+    
+     port _right_camera_image_raw_compressedDepth_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/right_camera/image_raw/compressedDepth";
+    };
+    
+     port _right_rear_shock_ctrlr_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "control_msgs/JointControllerStates";
+        property topic = "/right_rear_shock_ctrlr/state";
+    };
+    
+     port _gazebo_set_model_state_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/ModelState";
+        property topic = "/gazebo/set_model_state";
+    };
+    
+     port _right_front_axle_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_axle_ctrlr/command";
+    };
+    
+     port _right_rear_axle_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_axle_ctrlr/command";
+    };
+    
+     port _left_steering_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_steering_ctrlr/command";
+    };
+    
+     port _right_steering_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_steering_ctrlr/command";
+    };
+    
+     port _gazebo_set_link_state_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/LinkState";
+        property topic = "/gazebo/set_link_state";
+    };
+    
+     port _left_front_shock_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_shock_ctrlr/command";
+    };
+    
+     port _right_rear_shock_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_shock_ctrlr/command";
+    };
+    
+     port _left_rear_shock_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_shock_ctrlr/command";
+    };
+    
+     port _left_front_axle_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_axle_ctrlr/command";
+    };
+    
+     port _right_front_shock_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_shock_ctrlr/command";
+    };
+    
+     port _left_rear_axle_ctrlr_command_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_axle_ctrlr/command";
+    };
+    
+     port _gazebo_pause_physics_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/pause_physics";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_joint_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetJointProperties";
+        property name : string = "/gazebo/set_joint_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_link_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkProperties";
+        property name : string = "/gazebo/get_link_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_reset_world_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/reset_world";
+        property args : string = "";
+    };
+    
+     port _controller_manager_switch_controller_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/SwitchController";
+        property name : string = "/controller_manager/switch_controller";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_joint_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetJointProperties";
+        property name : string = "/gazebo/get_joint_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_delete_light_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/DeleteLight";
+        property name : string = "/gazebo/delete_light";
+        property args : string = "";
+    };
+    
+     port _gazebo_spawn_sdf_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property name : string = "/gazebo/spawn_sdf_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_spawn_urdf_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property name : string = "/gazebo/spawn_urdf_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_model_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetModelState";
+        property name : string = "/gazebo/get_model_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_physics_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetPhysicsProperties";
+        property name : string = "/gazebo/set_physics_properties";
+        property args : string = "";
+    };
+    
+     port _imu_imu_set_accel_bias_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "hector_gazebo_plugins/SetBias";
+        property name : string = "/imu/imu/set_accel_bias";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_light_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLightProperties";
+        property name : string = "/gazebo/get_light_properties";
+        property args : string = "";
+    };
+    
+     port _controller_manager_list_controller_types_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/ListControllerTypes";
+        property name : string = "/controller_manager/list_controller_types";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_physics_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetPhysicsProperties";
+        property name : string = "/gazebo/get_physics_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_delete_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/DeleteModel";
+        property name : string = "/gazebo/delete_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_clear_body_wrenches_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/BodyRequest";
+        property name : string = "/gazebo/clear_body_wrenches";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_link_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetLinkProperties";
+        property name : string = "/gazebo/set_link_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_clear_joint_forces_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/JointRequest";
+        property name : string = "/gazebo/clear_joint_forces";
+        property args : string = "";
+    };
+    
+     port _controller_manager_list_controller_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/ListControllers";
+        property name : string = "/controller_manager/list_controller";
+        property args : string = "";
+    };
+    
+     port _controller_manager_unload_controller_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/UnloadController";
+        property name : string = "/controller_manager/unload_controller";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_world_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetWorldProperties";
+        property name : string = "/gazebo/get_world_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_apply_joint_effort_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/ApplyJointEffort";
+        property name : string = "/gazebo/apply_joint_effort";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_link_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkState";
+        property name : string = "/gazebo/set_link_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_model_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetModelProperties";
+        property name : string = "/gazebo/get_model_properties";
+        property args : string = "";
+    };
+    
+     port _left_camera_set_camera_info_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "sensor_msgs/CameraInfo";
+        property name : string = "/left_camera/set_camera_info";
+        property args : string = "";
+    };
+    
+     port _gazebo_unpause_physics_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/unpause_physics";
+        property args : string = "";
+    };
+    
+     port _gazebo_apply_body_wrench_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/ApplyBodyWrench";
+        property name : string = "/gazebo/apply_body_wrench";
+        property args : string = "";
+    };
+    
+     port _imu_imu_set_rate_bias_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "hector_gazebo_plugins/SetBias";
+        property name : string = "/imu/imu/set_rate_bias";
+        property args : string = "";
+    };
+    
+     port _controller_manager_reload_controller_libraries_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/ReloadControllerLibraries";
+        property name : string = "/controller_manager/reload_controller_libraries";
+        property args : string = "";
+    };
+    
+     port _controller_manager_load_controller_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "controller_manager_msgs/LoadController";
+        property name : string = "/controller_manager/load_controller";
+        property args : string = "";
+    };
+    
+     port _right_camera_set_camera_info_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "sensor_msgs/CameraInfo";
+        property name : string = "/right_camera/set_camera_info";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_model_configuration_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetModelConfiguration";
+        property name : string = "/gazebo/set_model_configuration";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_light_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetLightProperties";
+        property name : string = "/gazebo/set_light_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_reset_simulation_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/reset_simulation";
+        property args : string = "";
+    };
+    
+     port _imu_calibrate_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/imu/calibrate";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_link_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkState";
+        property name : string = "/gazebo/get_link_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_model_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetModelState";
+        property name : string = "/gazebo/set_model_state";
+        property args : string = "";
+    };
+    
+        property name = "gazebo";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch";
+    };
+    
+   component joy_node : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _joy_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Joy";
+        property topic = "/joy";
+    };
+    
+     port _joy_set_feedback_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/JoyFeedbackArray";
+        property topic = "/joy/set_feedback";
+    };
+    
+        property name = "joy_node";
+        property launchedBy = "/ros_ws/src/autorally/autorally_control/launch/joystickController.launch";
+    };
+    
+   component ground_truth_republisher : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _ground_truth_state_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/ground_truth/state";
+    };
+    
+     port _ground_truth_state_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/ground_truth/state_raw";
+    };
+    
+        property name = "ground_truth_republisher";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch";
+    };
+    
+   component spawn_platform : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _gazebo_model_states_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+     port _gazebo_set_model_configuration_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/set_model_configuration";
+        property svc_type : string = "gazebo_msgs/SetModelConfiguration";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_delete_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/delete_model";
+        property svc_type : string = "gazebo_msgs/DeleteModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_spawn_sdf_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/spawn_sdf_model";
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_spawn_urdf_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/spawn_urdf_model";
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_unpause_physics_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/unpause_physics";
+        property svc_type : string = "std_srvs/Empty";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+        property name = "spawn_platform";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch";
+    };
+    
+   component gazebo_gui : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "gazebo_gui";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch";
+    };
+    
+   component autoRally_state_publisher : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _joint_states_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/JointState";
+        property topic = "/joint_states";
+    };
+    
+        property name = "autoRally_state_publisher";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch";
+    };
+    
+   component autorally_controller : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _right_front_axle_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_axle_ctrlr/command";
+    };
+    
+     port _right_rear_axle_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_axle_ctrlr/command";
+    };
+    
+     port _left_steering_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_steering_ctrlr/command";
+    };
+    
+     port _right_steering_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_steering_ctrlr/command";
+    };
+    
+     port _left_front_shock_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_shock_ctrlr/command";
+    };
+    
+     port _wheelSpeeds_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/wheelSpeeds";
+        property topic = "/wheelSpeeds";
+    };
+    
+     port _right_rear_shock_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_shock_ctrlr/command";
+    };
+    
+     port _left_rear_shock_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_shock_ctrlr/command";
+    };
+    
+     port _left_front_axle_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_axle_ctrlr/command";
+    };
+    
+     port _chassisState_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/chassisState";
+        property topic = "/chassisState";
+    };
+    
+     port _right_front_shock_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_shock_ctrlr/command";
+    };
+    
+     port _left_rear_axle_ctrlr_command_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_axle_ctrlr/command";
+    };
+    
+     port _mppi_controller_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/mppi_controller/chassisCommand";
+    };
+    
+     port _runstop_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/runstop";
+        property topic = "/runstop";
+    };
+    
+     port _joint_states_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/JointState";
+        property topic = "/joint_states";
+    };
+    
+     port _RC_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/RC/chassisCommand";
+    };
+    
+     port _OCS_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/OCS/chassisCommand";
+    };
+    
+     port _waypointFollower_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/waypointFollower/chassisCommand";
+    };
+    
+     port _joystick_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/joystick/chassisCommand";
+    };
+    
+     port _constantSpeedController_chassisCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/constantSpeedController/chassisCommand";
+    };
+    
+        property name = "autorally_controller";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch";
+    };
+    
+   component controller_spawner : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _controller_manager_unload_controller_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/controller_manager/unload_controller";
+        property svc_type : string = "controller_manager_msgs/UnloadController";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _controller_manager_load_controller_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/controller_manager/load_controller";
+        property svc_type : string = "controller_manager_msgs/LoadController";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _controller_manager_switch_controller_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/controller_manager/switch_controller";
+        property svc_type : string = "controller_manager_msgs/SwitchController";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+        property name = "controller_spawner";
+        property launchedBy = "/ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch";
+    };
+    
+   component joystickController : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _runstop_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/runstop";
+        property topic = "/runstop";
+    };
+    
+     port _joystick_chassisCommand_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/joystick/chassisCommand";
+    };
+    
+     port _joy_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Joy";
+        property topic = "/joy";
+    };
+    
+        property name = "joystickController";
+        property launchedBy = "/ros_ws/src/autorally/autorally_control/launch/joystickController.launch";
+    };
+    
+   component autorally_core_manager : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _constantSpeedController_chassisCommand_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/constantSpeedController/chassisCommand";
+    };
+    
+     port _constantSpeedController_speedCommand_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Float64";
+        property topic = "/constantSpeedController/speedCommand";
+    };
+    
+     port _wheelSpeeds_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/wheelSpeeds";
+        property topic = "/wheelSpeeds";
+    };
+    
+        property name = "autorally_core_manager";
+        property launchedBy = "/ros_ws/src/autorally/autorally_core/launch/autorally_core_manager.launch";
+    };
+    
+   component waypointFollower : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _waypointFollower_markers_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "visualization_msgs/Marker";
+        property topic = "/waypointFollower/markers";
+    };
+    
+     port _imageMask_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/imageMask";
+        property topic = "/imageMask";
+    };
+    
+     port _waypointFollower_chassisCommand_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/waypointFollower/chassisCommand";
+    };
+    
+     port _pose_estimate_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/pose_estimate";
+    };
+    
+     port _wheelSpeeds_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "autorally_msgs/wheelSpeeds";
+        property topic = "/wheelSpeeds";
+    };
+    
+        property name = "waypointFollower";
+        property launchedBy = "/ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch";
+    };
+    
+   component ConstantSpeedController : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "ConstantSpeedController";
+        property launchedBy = "/ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch";
+    };
+       connector _joint_states_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autoRally_state_publisher_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role autorally_controller_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "sensor_msgs::JointState";
+        property topic = "/joint_states";
+    };
+    
+   connector _gazebo_model_states_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role spawn_platform_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+   connector _ground_truth_state_raw_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role ground_truth_republisher_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/ground_truth/state_raw";
+    };
+    
+   connector _right_front_axle_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_axle_ctrlr/command";
+    };
+    
+   connector _right_rear_axle_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_axle_ctrlr/command";
+    };
+    
+   connector _left_steering_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_steering_ctrlr/command";
+    };
+    
+   connector _right_steering_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_steering_ctrlr/command";
+    };
+    
+   connector _left_front_shock_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_shock_ctrlr/command";
+    };
+    
+   connector _right_rear_shock_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_rear_shock_ctrlr/command";
+    };
+    
+   connector _left_rear_shock_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_shock_ctrlr/command";
+    };
+    
+   connector _left_front_axle_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_front_axle_ctrlr/command";
+    };
+    
+   connector _right_front_shock_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/right_front_shock_ctrlr/command";
+    };
+    
+   connector _left_rear_axle_ctrlr_command_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role gazebo_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "std_msgs/Float64";
+        property topic = "/left_rear_axle_ctrlr/command";
+    };
+    
+   connector _joy_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role joy_node_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role joystickController_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "sensor_msgs/Joy";
+        property topic = "/joy";
+    };
+    
+   connector _wheelSpeeds_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_controller_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autorally_core_manager_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role waypointFollower_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "autorally_msgs/wheelSpeeds";
+        property topic = "/wheelSpeeds";
+    };
+    
+   connector _runstop_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role joystickController_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autorally_controller_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "autorally_msgs/runstop";
+        property topic = "/runstop";
+    };
+    
+   connector _waypointFollower_chassisCommand_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role waypointFollower_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autorally_controller_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/waypointFollower/chassisCommand";
+    };
+    
+   connector _joystick_chassisCommand_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role joystickController_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autorally_controller_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/joystick/chassisCommand";
+    };
+    
+   connector _constantSpeedController_chassisCommand_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role autorally_core_manager_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role autorally_controller_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "autorally_msgs/chassisCommand";
+        property topic = "/constantSpeedController/chassisCommand";
+    };
+    
+  connector _controller_manager_switch_controller_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__controller_manager_switch_controller_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role controller_spawner__controller_manager_switch_controller_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_spawn_sdf_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_spawn_sdf_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_platform__gazebo_spawn_sdf_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_spawn_urdf_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_spawn_urdf_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_platform__gazebo_spawn_urdf_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_delete_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_delete_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_platform__gazebo_delete_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _controller_manager_unload_controller_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__controller_manager_unload_controller_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role controller_spawner__controller_manager_unload_controller_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_unpause_physics_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_unpause_physics_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_platform__gazebo_unpause_physics_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _controller_manager_load_controller_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__controller_manager_load_controller_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role controller_spawner__controller_manager_load_controller_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_set_model_configuration_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_set_model_configuration_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_platform__gazebo_set_model_configuration_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+     attachment gazebo._joint_states_pub to _joint_states_conn.gazebo_pub;
+  attachment autoRally_state_publisher._joint_states_sub to _joint_states_conn.autoRally_state_publisher_sub;
+  attachment autorally_controller._joint_states_sub to _joint_states_conn.autorally_controller_sub;
+  attachment gazebo._gazebo_model_states_pub to _gazebo_model_states_conn.gazebo_pub;
+  attachment spawn_platform._gazebo_model_states_sub to _gazebo_model_states_conn.spawn_platform_sub;
+  attachment gazebo._ground_truth_state_raw_pub to _ground_truth_state_raw_conn.gazebo_pub;
+  attachment ground_truth_republisher._ground_truth_state_raw_sub to _ground_truth_state_raw_conn.ground_truth_republisher_sub;
+  attachment gazebo._right_front_axle_ctrlr_command_sub to _right_front_axle_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._right_front_axle_ctrlr_command_pub to _right_front_axle_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._right_rear_axle_ctrlr_command_sub to _right_rear_axle_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._right_rear_axle_ctrlr_command_pub to _right_rear_axle_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._left_steering_ctrlr_command_sub to _left_steering_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._left_steering_ctrlr_command_pub to _left_steering_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._right_steering_ctrlr_command_sub to _right_steering_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._right_steering_ctrlr_command_pub to _right_steering_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._left_front_shock_ctrlr_command_sub to _left_front_shock_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._left_front_shock_ctrlr_command_pub to _left_front_shock_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._right_rear_shock_ctrlr_command_sub to _right_rear_shock_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._right_rear_shock_ctrlr_command_pub to _right_rear_shock_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._left_rear_shock_ctrlr_command_sub to _left_rear_shock_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._left_rear_shock_ctrlr_command_pub to _left_rear_shock_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._left_front_axle_ctrlr_command_sub to _left_front_axle_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._left_front_axle_ctrlr_command_pub to _left_front_axle_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._right_front_shock_ctrlr_command_sub to _right_front_shock_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._right_front_shock_ctrlr_command_pub to _right_front_shock_ctrlr_command_conn.autorally_controller_pub;
+  attachment gazebo._left_rear_axle_ctrlr_command_sub to _left_rear_axle_ctrlr_command_conn.gazebo_sub;
+  attachment autorally_controller._left_rear_axle_ctrlr_command_pub to _left_rear_axle_ctrlr_command_conn.autorally_controller_pub;
+  attachment joy_node._joy_pub to _joy_conn.joy_node_pub;
+  attachment joystickController._joy_sub to _joy_conn.joystickController_sub;
+  attachment autorally_controller._wheelSpeeds_pub to _wheelSpeeds_conn.autorally_controller_pub;
+  attachment autorally_core_manager._wheelSpeeds_sub to _wheelSpeeds_conn.autorally_core_manager_sub;
+  attachment waypointFollower._wheelSpeeds_sub to _wheelSpeeds_conn.waypointFollower_sub;
+  attachment autorally_controller._runstop_sub to _runstop_conn.autorally_controller_sub;
+  attachment joystickController._runstop_pub to _runstop_conn.joystickController_pub;
+  attachment autorally_controller._waypointFollower_chassisCommand_sub to _waypointFollower_chassisCommand_conn.autorally_controller_sub;
+  attachment waypointFollower._waypointFollower_chassisCommand_pub to _waypointFollower_chassisCommand_conn.waypointFollower_pub;
+  attachment autorally_controller._joystick_chassisCommand_sub to _joystick_chassisCommand_conn.autorally_controller_sub;
+  attachment joystickController._joystick_chassisCommand_pub to _joystick_chassisCommand_conn.joystickController_pub;
+  attachment autorally_controller._constantSpeedController_chassisCommand_sub to _constantSpeedController_chassisCommand_conn.autorally_controller_sub;
+  attachment autorally_core_manager._constantSpeedController_chassisCommand_pub to _constantSpeedController_chassisCommand_conn.autorally_core_manager_pub;
+  attachment gazebo._controller_manager_switch_controller_svc to _controller_manager_switch_controller_conn.gazebo__controller_manager_switch_controller_svc;
+  attachment controller_spawner._controller_manager_switch_controller_call to _controller_manager_switch_controller_conn.controller_spawner__controller_manager_switch_controller_call;
+  attachment gazebo._gazebo_spawn_sdf_model_svc to _gazebo_spawn_sdf_model_conn.gazebo__gazebo_spawn_sdf_model_svc;
+  attachment spawn_platform._gazebo_spawn_sdf_model_call to _gazebo_spawn_sdf_model_conn.spawn_platform__gazebo_spawn_sdf_model_call;
+  attachment gazebo._gazebo_spawn_urdf_model_svc to _gazebo_spawn_urdf_model_conn.gazebo__gazebo_spawn_urdf_model_svc;
+  attachment spawn_platform._gazebo_spawn_urdf_model_call to _gazebo_spawn_urdf_model_conn.spawn_platform__gazebo_spawn_urdf_model_call;
+  attachment gazebo._gazebo_delete_model_svc to _gazebo_delete_model_conn.gazebo__gazebo_delete_model_svc;
+  attachment spawn_platform._gazebo_delete_model_call to _gazebo_delete_model_conn.spawn_platform__gazebo_delete_model_call;
+  attachment gazebo._controller_manager_unload_controller_svc to _controller_manager_unload_controller_conn.gazebo__controller_manager_unload_controller_svc;
+  attachment controller_spawner._controller_manager_unload_controller_call to _controller_manager_unload_controller_conn.controller_spawner__controller_manager_unload_controller_call;
+  attachment gazebo._gazebo_unpause_physics_svc to _gazebo_unpause_physics_conn.gazebo__gazebo_unpause_physics_svc;
+  attachment spawn_platform._gazebo_unpause_physics_call to _gazebo_unpause_physics_conn.spawn_platform__gazebo_unpause_physics_call;
+  attachment gazebo._controller_manager_load_controller_svc to _controller_manager_load_controller_conn.gazebo__controller_manager_load_controller_svc;
+  attachment controller_spawner._controller_manager_load_controller_call to _controller_manager_load_controller_conn.controller_spawner__controller_manager_load_controller_call;
+  attachment gazebo._gazebo_set_model_configuration_svc to _gazebo_set_model_configuration_conn.gazebo__gazebo_set_model_configuration_svc;
+  attachment spawn_platform._gazebo_set_model_configuration_call to _gazebo_set_model_configuration_conn.spawn_platform__gazebo_set_model_configuration_call;}

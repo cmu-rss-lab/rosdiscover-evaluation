@@ -16,73 +16,19 @@
       "entrypoint": "main",
       "functions": [
         {
-          "name": "SlamGMapping::laserCallback",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "call",
-                "callee": "SlamGMapping::initMapper",
-                "arguments": {}
-              }
-            ]
-          }
-        },
-        {
-          "name": "SlamGMapping::initMapper",
-          "parameters": [],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "assignment",
-                "variable": "v0",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "maxRange"
-                    }
-                  }
-                }
-              },
-              {
-                "kind": "assignment",
-                "variable": "v1",
-                "value": {
-                  "kind": "reads-param",
-                  "name": {
-                    "kind": "concatenate",
-                    "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "string-literal",
-                        "literal": "~"
-                      }
-                    },
-                    "rhs": {
-                      "kind": "string-literal",
-                      "literal": "maxUrange"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "name": "SlamGMapping::startLiveSlam",
-          "parameters": [],
+          "name": "SlamGMapping::startReplay",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "scan_topic",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "bag_fname",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -157,40 +103,21 @@
                   }
                 },
                 "format": "nav_msgs/GetMap"
+              },
+              {
+                "kind": "call",
+                "callee": "SlamGMapping::mapCallback",
+                "arguments": {}
               }
             ]
           }
         },
         {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
+          "name": "SlamGMapping::mapCallback",
+          "parameters": [],
           "body": {
             "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "string-literal",
-                  "literal": "slam_gmapping"
-                }
-              },
-              {
-                "kind": "call",
-                "callee": "SlamGMapping::SlamGMapping",
-                "arguments": {}
-              },
-              {
-                "kind": "call",
-                "callee": "SlamGMapping::startReplay",
-                "arguments": {}
-              }
-            ]
+            "statements": []
           }
         },
         {
@@ -941,28 +868,93 @@
           }
         },
         {
-          "name": "SlamGMapping::SlamGMapping",
+          "name": "SlamGMapping::initMapper",
           "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
               {
-                "kind": "call",
-                "callee": "SlamGMapping::init",
-                "arguments": {}
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "maxRange"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "maxUrange"
+                    }
+                  }
+                }
               }
             ]
           }
         },
         {
-          "name": "SlamGMapping::startReplay",
+          "name": "main",
           "parameters": [
             {
-              "index": 1,
-              "name": "scan_topic",
-              "type": "string"
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
             }
           ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "slam_gmapping"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "SlamGMapping::startReplay",
+                "arguments": {
+                  "bag_fname": {
+                    "kind": "unknown"
+                  },
+                  "scan_topic": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "SlamGMapping::startLiveSlam",
+          "parameters": [],
           "body": {
             "kind": "compound",
             "statements": [
@@ -1040,8 +1032,26 @@
               },
               {
                 "kind": "call",
-                "callee": "SlamGMapping::laserCallback",
+                "callee": "SlamGMapping::mapCallback",
                 "arguments": {}
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan"
               }
             ]
           }

@@ -15,6 +15,33 @@
       "entrypoint": "main",
       "functions": [
         {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "move_group"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "move_group::MoveGroupExe::MoveGroupExe",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
           "name": "move_group::MoveGroupExe::configureCapabilities",
           "parameters": [],
           "body": {
@@ -61,32 +88,6 @@
                     }
                   }
                 }
-              }
-            ]
-          }
-        },
-        {
-          "name": "main",
-          "parameters": [
-            {
-              "index": 0,
-              "name": "argc",
-              "type": "integer"
-            }
-          ],
-          "body": {
-            "kind": "compound",
-            "statements": [
-              {
-                "kind": "ros-init",
-                "name": {
-                  "kind": "unknown"
-                }
-              },
-              {
-                "kind": "call",
-                "callee": "move_group::MoveGroupExe::MoveGroupExe",
-                "arguments": {}
               }
             ]
           }

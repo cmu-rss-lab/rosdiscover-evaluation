@@ -1,0 +1,128 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "adxl345_node",
+  "package": {
+    "name": "analog_devices",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/imu/packages/analog_devices"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/imu/packages/analog_devices/src/adxl345.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/drivers/imu/packages/analog_devices/src/adxl345_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "adxl345_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "Adxl345Node::Adxl345Node",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Adxl345Node::Adxl345Node",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "data_raw"
+                  }
+                },
+                "format": "sensor_msgs/Imu"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

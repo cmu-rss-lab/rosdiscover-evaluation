@@ -1,0 +1,113 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "ringcolors_node",
+  "package": {
+    "name": "velodyne_pointcloud",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud/./src/conversions/ringcolors_node.cc",
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud/./src/conversions/colors.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "colors_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::RingColors::RingColors",
+                "arguments": {
+                  "node": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_pointcloud::RingColors::RingColors",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "node",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_rings"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points"
+                  }
+                },
+                "format": "pcl/PointCloud"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

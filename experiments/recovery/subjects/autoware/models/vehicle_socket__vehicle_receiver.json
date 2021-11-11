@@ -1,0 +1,78 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "vehicle_receiver",
+  "package": {
+    "name": "vehicle_socket",
+    "path": "/home/autoware/Autoware/ros/src/socket/packages/vehicle_socket"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/socket/packages/vehicle_socket/nodes/vehicle_receiver/vehicle_receiver.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "vehicle_receiver"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "can_info"
+                  }
+                },
+                "format": "autoware_can_msgs/CANInfo"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "mode_info"
+                  }
+                },
+                "format": "tablet_socket_msgs/mode_info"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

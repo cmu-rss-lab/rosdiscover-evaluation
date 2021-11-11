@@ -17,7 +17,18 @@
       "functions": [
         {
           "name": "XbeeInterface::XbeeInterface",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "port",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -29,13 +40,18 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "nh"
                     },
                     "rhs": {
-                      "kind": "unknown"
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "node-name"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/frameID"
+                      }
                     }
                   }
                 }
@@ -48,13 +64,18 @@
                   "name": {
                     "kind": "concatenate",
                     "lhs": {
-                      "kind": "node-handle",
-                      "namespace": {
-                        "kind": "unknown"
-                      }
+                      "kind": "arg",
+                      "name": "nh"
                     },
                     "rhs": {
-                      "kind": "unknown"
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "node-name"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/diagnosticInfo"
+                      }
                     }
                   }
                 }
@@ -64,55 +85,81 @@
         },
         {
           "name": "XbeeCoordinator::XbeeCoordinator",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "port",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
               {
                 "kind": "call",
                 "callee": "XbeeInterface::XbeeInterface",
-                "arguments": {}
+                "arguments": {
+                  "nh": {
+                    "kind": "arg",
+                    "name": "nh"
+                  },
+                  "port": {
+                    "kind": "unknown"
+                  }
+                }
               },
               {
                 "kind": "subscribes-to",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
                     "literal": "runstop"
                   }
                 },
-                "format": "autorally_msgs/runstop_"
+                "format": "autorally_msgs/runstop"
               },
               {
                 "kind": "subscribes-to",
                 "name": {
                   "kind": "concatenate",
                   "lhs": {
-                    "kind": "node-handle",
-                    "namespace": {
-                      "kind": "unknown"
-                    }
+                    "kind": "arg",
+                    "name": "nh"
                   },
                   "rhs": {
                     "kind": "string-literal",
                     "literal": "gpsBaseRTCM3"
                   }
                 },
-                "format": "std_msgs/ByteMultiArray_"
+                "format": "std_msgs/ByteMultiArray"
               }
             ]
           }
         },
         {
           "name": "XbeeCoordinator::processXbeeOdom",
-          "parameters": [],
+          "parameters": [
+            {
+              "index": 1,
+              "name": "sender",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "message",
+              "type": "string"
+            }
+          ],
           "body": {
             "kind": "compound",
             "statements": [
@@ -128,10 +175,17 @@
                     }
                   },
                   "rhs": {
-                    "kind": "unknown"
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "string-literal",
+                      "literal": "/pose_estimate_"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
                   }
                 },
-                "format": "nav_msgs::Odometry_"
+                "format": "nav_msgs/Odometry"
               }
             ]
           }
@@ -179,7 +233,18 @@
               {
                 "kind": "call",
                 "callee": "XbeeCoordinator::XbeeCoordinator",
-                "arguments": {}
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "port": {
+                    "kind": "unknown"
+                  }
+                }
               }
             ]
           }

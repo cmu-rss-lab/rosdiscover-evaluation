@@ -1,0 +1,99 @@
+{
+  "image": {
+    "sha256": "d83c3ddd4d4c58ff8f16d9a9e57b33604218b4637fa55b70e25a594c1acdf466"
+  },
+  "node-name": "fake_subscriber_node",
+  "package": {
+    "name": "fake_autoware_nodes",
+    "path": "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes/src/fake_subscriber.cpp",
+    "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes/src/fake_subscriber_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_subscriber_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "fake_subscriber::fake_subscriber",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "fake_subscriber::fake_subscriber",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "watchdog_node/diag/all"
+                  }
+                },
+                "format": "boost/shared_ptr"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-name"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/data"
+                    }
+                  }
+                },
+                "format": "boost/shared_ptr"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
