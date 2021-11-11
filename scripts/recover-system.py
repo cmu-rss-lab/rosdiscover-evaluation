@@ -109,7 +109,8 @@ def recover_system(
 
 
 def update_system_with_reproducer(reproducer_info, output_filename):
-    nodes = yaml.safe_load(output_filename)
+    with open(output_filename, 'r') as f:
+        nodes = yaml.safe_load(output_filename)
     reproducer = {
         "action-clients": [],
         "action-servers": [],
@@ -138,7 +139,8 @@ def update_system_with_reproducer(reproducer_info, output_filename):
                                    "implicit": False})
 
     nodes.append(reproducer)
-    yaml.safe_dump(open(output_filename, 'w'))
+    with open(output_filename, 'w') as f:
+        yaml.safe_dump(f)
 
 
 def error(message: str) -> t.NoReturn:
