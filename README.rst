@@ -24,8 +24,15 @@ The structure of this package is as follows:
   - experiments/           Data for setting up the experiments, and the results we got
     |- detection/          Experiments that we used in RQ3
     |- recovery/           Experiments we used in RQ1 and RQ2
-  - rootfs                 Contains files that get put in the docker images
-  - scripts                Python scripts for running and analyzing the experiments
+  - results/               Contains raw and processed results from running the scripts
+    |- DataAnalysis.ipynb  A Jupyter notebook used for processing the results
+    |- data/               Various CSV files used for summarizing data for the paper
+    |  |- RosTopicBugs - Bug Data Set.csv
+    |                      The misconfiguration bug dataset contributed in the paper
+    |- detection/          Results for the detection experiments
+    |- recovery/           Results for the recovery experiments
+  - rootfs/                Contains files that get put in the docker images
+  - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
 
 
@@ -268,3 +275,65 @@ One complication for replicating RQ3 is that it sometimes wasn't possible to res
 Not that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one referred to in `experiment-reproduced.yml`.
 
 The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
+
+Results Data
+============
+
+Raw results
+-----------
+
+The replication package also provides results that we used in the paper. Data for each detection case is in
+
+.. code::
+
+  results/detection/subjects/[autorally-N, autoware-N, ...]
+
+For each case where we could duplicate the misconfiguration, there is a `buggy.architecture.[yml,acme]`,
+`fixed.architecture/[yml,acme]` that define the architecture recovered and an `error-report.csv` that reports whether
+we captured the misconfiguration error or not.
+
+The results for the recovery case is in:
+
+.. code::
+
+  results/recovery/subjects/[autorally, husky, ...]
+
+Each case has the following files:
+
+.. code::
+
+  [recovered,obeserved].architecture.[yml,acme]   - recovered and observed architetures
+  compare.observed-recovered.log                  - a human readable summary of the comparison
+  observed.recovered.[compare,errors].csv         - a CSV version of the comparison results,
+                                                    with errors detected
+  recovery.rosdiscover.yml                        - a script generated config file passed to rosdiscover
+  recovered-models.csv                            - a list of models recovered for RQ1 and the accuracy
+                                                    metrics
+
+Processed Results and Data Analysis
+-----------------------------------
+
+The data collected for the experiments of RQ1 are in these files:
+
+- results/data/RQ1 node model recovery results - autorally.csv
+- results/data/RQ1 node model recovery results - autoware.csv
+- results/data/RQ1 node model recovery results - fetch.csv
+- results/data/RQ1 node model recovery results - husky.csv
+- results/data/RQ1 node model recovery results - turtlebot.csv
+
+The data collected for the experiments of RQ2 are in these files:
+
+- results/data/RQ2 Observed Architecture - Comparison.csv
+- results/data/RQ2 Observed Architecture - Models.csv
+- results/data/RQ2 Observed Architecture - Node-Level Comparision.csv
+- results/data/RQ2 Observed Architecture - Summary.csv
+
+The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
+
+The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregate them to produce the numbers in the paper. To run this analysis, the local system needs Python 3 with these packages:
+
+- pandas (version 1.3.3)
+- matplotlib (version 3.4.3)
+- numpy (version 1.21.2)
+
+The resulting files are directly read by our paper LaTeX sources.
