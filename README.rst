@@ -141,8 +141,22 @@ We provide a script that does this for all our experiments - it generates a Dock
   
 At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
+
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
+
+To run the component model recovery experiments described in RQ1, you should use the `recover-node-models.py` script provided in the experimental scripts directory.
+The script simply takes the name of a subject system for RQ1 and emits a set of component models (in JSON) form, along with a summary of the success of the overall process (recovered-models.csv), describing the number of API calls that were found and successfully resolved for each individual node in that subject system.
+
+.. code::
+
+  $ pipenv run scripts/recover-node-models.py autorally
+  $ pipenv run scripts/recover-node-models.py autoware
+  $ pipenv run scripts/recover-node-models.py fetch
+  $ pipenv run scripts/recover-node-models.py husky
+  $ pipenv run scripts/recover-node-models.py turtlebot
+
+
 
 Derive and check architecture for RQ2
 -------------------------------------
