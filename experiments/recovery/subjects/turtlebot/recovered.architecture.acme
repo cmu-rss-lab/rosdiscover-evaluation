@@ -1,0 +1,675 @@
+import families/ROSFam.acme;
+system _code_experiments_recovery_subjects_turtlebot_recovered_architecture : ROSFam = new ROSFam extended with {
+   component gazebo : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _mobile_base_sensors_core_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "kobuki_msgs/SensorState";
+        property topic = "/mobile_base/sensors/core";
+    };
+    
+     port _camera_rgb_image_raw_compressed_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/camera/rgb/image_raw/compressed";
+    };
+    
+     port _gazebo_model_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+     port _camera_depth_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth/image_raw";
+    };
+    
+     port _gazebo_link_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "gazebo_msgs/LinkState";
+        property topic = "/gazebo/link_states";
+    };
+    
+     port _mobile_base_events_cliff_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "kobuki_msgs/CliffEvent";
+        property topic = "/mobile_base/events/cliff";
+    };
+    
+     port _odom_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/odom";
+    };
+    
+     port _joint_states_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/JointState";
+        property topic = "/joint_states";
+    };
+    
+     port _mobile_base_events_bumper_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "kobuki_msgs/BumperEvent";
+        property topic = "/mobile_base/events/bumper";
+    };
+    
+     port _camera_rgb_image_raw_theora_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "theora_image_transport/Packet";
+        property topic = "/camera/rgb/image_raw/theora";
+    };
+    
+     port _camera_depth_points_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud2";
+        property topic = "/camera/depth/points";
+    };
+    
+     port _camera_rgb_image_raw_compressedDepth_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/camera/rgb/image_raw/compressedDepth";
+    };
+    
+     port _mobile_base_sensors_imu_data_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Imu";
+        property topic = "/mobile_base/sensors/imu_data";
+    };
+    
+     port _camera_depth_camera_info_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/depth/camera_info";
+    };
+    
+     port _camera_rgb_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/rgb/image_raw";
+    };
+    
+     port _camera_rgb_camera_info_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/rgb/camera_info";
+    };
+    
+     port _mobile_base_commands_reset_odometry_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Empty";
+        property topic = "/mobile_base/commands/reset_odometry";
+    };
+    
+     port _gazebo_set_model_state_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/ModelState";
+        property topic = "/gazebo/set_model_state";
+    };
+    
+     port _gazebo_set_link_state_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/LinkState";
+        property topic = "/gazebo/set_link_state";
+    };
+    
+     port _mobile_base_commands_motor_power_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "kobuki_msgs/MotorPower";
+        property topic = "/mobile_base/commands/motor_power";
+    };
+    
+     port _mobile_base_commands_velocity_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/Twist";
+        property topic = "/mobile_base/commands/velocity";
+    };
+    
+     port _gazebo_set_link_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetLinkProperties";
+        property name : string = "/gazebo/set_link_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_apply_body_wrench_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/ApplyBodyWrench";
+        property name : string = "/gazebo/apply_body_wrench";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_model_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetModelState";
+        property name : string = "/gazebo/get_model_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_clear_joint_forces_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/JointRequest";
+        property name : string = "/gazebo/clear_joint_forces";
+        property args : string = "";
+    };
+    
+     port _gazebo_spawn_sdf_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property name : string = "/gazebo/spawn_sdf_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_clear_body_wrenches_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/BodyRequest";
+        property name : string = "/gazebo/clear_body_wrenches";
+        property args : string = "";
+    };
+    
+     port _gazebo_unpause_physics_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/unpause_physics";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_world_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetWorldProperties";
+        property name : string = "/gazebo/get_world_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_apply_joint_effort_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/ApplyJointEffort";
+        property name : string = "/gazebo/apply_joint_effort";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_model_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetModelProperties";
+        property name : string = "/gazebo/get_model_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_link_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkState";
+        property name : string = "/gazebo/get_link_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_joint_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetJointProperties";
+        property name : string = "/gazebo/set_joint_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_light_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLightProperties";
+        property name : string = "/gazebo/get_light_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_delete_light_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/DeleteLight";
+        property name : string = "/gazebo/delete_light";
+        property args : string = "";
+    };
+    
+     port _gazebo_reset_world_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/reset_world";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_model_configuration_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetModelConfiguration";
+        property name : string = "/gazebo/set_model_configuration";
+        property args : string = "";
+    };
+    
+     port _gazebo_delete_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/DeleteModel";
+        property name : string = "/gazebo/delete_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_pause_physics_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/pause_physics";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_joint_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetJointProperties";
+        property name : string = "/gazebo/get_joint_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_physics_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetPhysicsProperties";
+        property name : string = "/gazebo/set_physics_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_reset_simulation_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/gazebo/reset_simulation";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_link_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkProperties";
+        property name : string = "/gazebo/get_link_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_spawn_urdf_model_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property name : string = "/gazebo/spawn_urdf_model";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_model_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetModelState";
+        property name : string = "/gazebo/set_model_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_link_state_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetLinkState";
+        property name : string = "/gazebo/set_link_state";
+        property args : string = "";
+    };
+    
+     port _gazebo_get_physics_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/GetPhysicsProperties";
+        property name : string = "/gazebo/get_physics_properties";
+        property args : string = "";
+    };
+    
+     port _gazebo_set_light_properties_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "gazebo_msgs/SetLightProperties";
+        property name : string = "/gazebo/set_light_properties";
+        property args : string = "";
+    };
+    
+        property name = "gazebo";
+        property launchedBy = "/ros_ws/src/gazebo_ros_pkgs/gazebo_ros/launch/empty_world.launch";
+    };
+    
+   component spawn_turtlebot_model : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _gazebo_model_states_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+     port _gazebo_set_model_configuration_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/set_model_configuration";
+        property svc_type : string = "gazebo_msgs/SetModelConfiguration";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_spawn_urdf_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/spawn_urdf_model";
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_delete_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/delete_model";
+        property svc_type : string = "gazebo_msgs/DeleteModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_spawn_sdf_model_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/spawn_sdf_model";
+        property svc_type : string = "gazebo_msgs/SpawnModel";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+     port _gazebo_unpause_physics_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/gazebo/unpause_physics";
+        property svc_type : string = "std_srvs/Empty";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+        property name = "spawn_turtlebot_model";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/includes/kobuki.launch.xml";
+    };
+    
+   component robot_state_publisher : ROSNodeCompT, PlaceholderT = new ROSNodeCompT, PlaceholderT extended with {
+        
+        property name = "robot_state_publisher";
+        property placeholder = true;
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch";
+    };
+
+   component gazebo_gui : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "gazebo_gui";
+        property launchedBy = "/ros_ws/src/gazebo_ros_pkgs/gazebo_ros/launch/empty_world.launch";
+    };
+    
+   component mobile_base_nodelet_manager : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _mobile_base_sensors_bumper_pointcloud_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud2";
+        property topic = "/mobile_base/sensors/bumper_pointcloud";
+    };
+    
+     port _mobile_base_sensors_core_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "kobuki_msgs/SensorState";
+        property topic = "/mobile_base/sensors/core";
+    };
+    
+        property name = "mobile_base_nodelet_manager";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/includes/kobuki.launch.xml";
+    };
+    
+   component laserscan_nodelet_manager : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "laserscan_nodelet_manager";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch";
+    };
+    
+   component bumper2pointcloud : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "bumper2pointcloud";
+        property launchedBy = "/ros_ws/src/turtlebot/turtlebot_bringup/launch/includes/kobuki/bumper2pc.launch.xml";
+    };
+    
+   component cmd_vel_mux : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "cmd_vel_mux";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/includes/kobuki.launch.xml";
+    };
+    
+   component depthimage_to_laserscan : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depthimage_to_laserscan";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch";
+    };
+    
+   component move_base : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _move_base_local_costmap_costmap_updates_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGridUpdate";
+        property topic = "/move_base/local_costmap/costmap_updates";
+    };
+    
+     port _move_base_DWAPlannerROS_global_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/DWAPlannerROS/global_plan";
+    };
+    
+     port _move_base_DWAPlannerROS_local_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/DWAPlannerROS/local_plan";
+    };
+    
+     port _move_base_DWAPlannerROS_trajectory_cloud_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "base_local_planner/MapGridCostPoint";
+        property topic = "/move_base/DWAPlannerROS/trajectory_cloud";
+    };
+    
+     port _move_base_DWAPlannerROS_cost_cloud_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud2";
+        property topic = "/move_base/DWAPlannerROS/cost_cloud";
+    };
+    
+     port _move_base_local_costmap_costmap_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/move_base/local_costmap/costmap";
+    };
+    
+     port _move_base_local_costmap_obstacle_layer_clearing_endpoints_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud";
+        property topic = "/move_base/local_costmap/obstacle_layer/clearing_endpoints";
+    };
+    
+     port _move_base_global_costmap_costmap_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/move_base/global_costmap/costmap";
+    };
+    
+     port _navigation_velocity_smoother_raw_cmd_vel_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/Twist";
+        property topic = "/navigation_velocity_smoother/raw_cmd_vel";
+    };
+    
+     port _move_base_global_costmap_costmap_updates_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGridUpdate";
+        property topic = "/move_base/global_costmap/costmap_updates";
+    };
+    
+     port _move_base_global_costmap_obstacle_layer_clearing_endpoints_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud";
+        property topic = "/move_base/global_costmap/obstacle_layer/clearing_endpoints";
+    };
+    
+     port _move_base_current_goal_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped";
+        property topic = "/move_base/current_goal";
+    };
+    
+     port _move_base_NavfnROS_plan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/Path";
+        property topic = "/move_base/NavfnROS/plan";
+    };
+    
+     port _move_base_local_costmap_footprint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/Polygon";
+        property topic = "/move_base/local_costmap/footprint";
+    };
+    
+     port _odom_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/odom";
+    };
+    
+     port _map_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+     port _move_base_simple_goal_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped";
+        property topic = "/move_base_simple/goal";
+    };
+    
+     port _move_base_global_costmap_footprint_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/Polygon";
+        property topic = "/move_base/global_costmap/footprint";
+    };
+    
+     port _move_base_clear_costmaps_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/move_base/clear_costmaps";
+        property args : string = "";
+    };
+    
+     port _move_base_NavfnROS_make_plan_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/GetPlan";
+        property name : string = "/move_base/NavfnROS/make_plan";
+        property args : string = "";
+    };
+    
+     port _move_base_make_plan_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/GetPlan";
+        property name : string = "/move_base/make_plan";
+        property args : string = "";
+    };
+    
+    port _move_base_srvr: ActionServerPortT = new ActionServerPortT extended with {
+        property action_type : string = "move_base_msgs/MoveBaseAction";
+    };
+    
+        property name = "move_base";
+        property launchedBy = "/ros_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/move_base.launch.xml";
+    };
+    
+   component amcl : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _particlecloud_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseArray";
+        property topic = "/particlecloud";
+    };
+    
+     port _amcl_pose_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/amcl_pose";
+    };
+    
+     port _base_scan_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/LaserScan";
+        property topic = "/base_scan";
+    };
+    
+     port _map_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+     port _initialpose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped";
+        property topic = "/initialpose";
+    };
+    
+     port _global_localization_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/global_localization";
+        property args : string = "";
+    };
+    
+     port _set_map_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/SetMap";
+        property name : string = "/set_map";
+        property args : string = "";
+    };
+    
+     port _request_nomotion_update_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "std_srvs/Empty";
+        property name : string = "/request_nomotion_update";
+        property args : string = "";
+    };
+    
+     port _static_map_call : ServiceClientPortT = new ServiceClientPortT extended with {
+        property name : string = "/static_map";
+        property svc_type : string = "todo/service";
+        property persistency : ServicePersistencyT = non-persistent;
+    };
+    
+        property name = "amcl";
+        property launchedBy = "/ros_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/amcl/asus_xtion_pro_amcl.launch.xml";
+    };
+    
+   component map_server : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _map_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+     port _map_metadata_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "nav_msgs/MapMetaData";
+        property topic = "/map_metadata";
+    };
+    
+     port _static_map_svc : ServiceProviderPortT = new ServiceProviderPortT extended with {
+        property svc_type : string = "nav_msgs/GetMap";
+        property name : string = "/static_map";
+        property args : string = "";
+    };
+    
+        property name = "map_server";
+        property launchedBy = "/ros_ws/src/turtlebot_simulator/turtlebot_gazebo/launch/amcl_demo.launch";
+    };
+    
+   component kobuki_safety_controller : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "kobuki_safety_controller";
+        property launchedBy = "/ros_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/safety_controller.launch.xml";
+    };
+    
+   component navigation_velocity_smoother : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "navigation_velocity_smoother";
+        property launchedBy = "/ros_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/velocity_smoother.launch.xml";
+    };
+       connector _mobile_base_sensors_core_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role mobile_base_nodelet_manager_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "kobuki_msgs/SensorState";
+        property topic = "/mobile_base/sensors/core";
+    };
+    
+   connector _gazebo_model_states_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role spawn_turtlebot_model_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "gazebo_msgs/ModelStates";
+        property topic = "/gazebo/model_states";
+    };
+    
+   connector _odom_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role gazebo_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role move_base_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "nav_msgs/Odometry";
+        property topic = "/odom";
+    };
+    
+   connector _map_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role map_server_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role move_base_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role amcl_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "nav_msgs/OccupancyGrid";
+        property topic = "/map";
+    };
+    
+  connector _gazebo_spawn_sdf_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_spawn_sdf_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_turtlebot_model__gazebo_spawn_sdf_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_unpause_physics_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_unpause_physics_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_turtlebot_model__gazebo_unpause_physics_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_set_model_configuration_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_set_model_configuration_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_turtlebot_model__gazebo_set_model_configuration_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_delete_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_delete_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_turtlebot_model__gazebo_delete_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _gazebo_spawn_urdf_model_conn : ServiceConnT = new ServiceConnT extended with {
+         role gazebo__gazebo_spawn_urdf_model_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role spawn_turtlebot_model__gazebo_spawn_urdf_model_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+   
+  connector _static_map_conn : ServiceConnT = new ServiceConnT extended with {
+         role map_server__static_map_svc : ROSServiceResponderRoleT = new ROSServiceResponderRoleT;
+    
+       role amcl__static_map_call : ROSServiceCallerRoleT = new ROSServiceCallerRoleT;
+    
+
+    };
+     attachment gazebo._mobile_base_sensors_core_pub to _mobile_base_sensors_core_conn.gazebo_pub;
+  attachment mobile_base_nodelet_manager._mobile_base_sensors_core_sub to _mobile_base_sensors_core_conn.mobile_base_nodelet_manager_sub;
+  attachment gazebo._gazebo_model_states_pub to _gazebo_model_states_conn.gazebo_pub;
+  attachment spawn_turtlebot_model._gazebo_model_states_sub to _gazebo_model_states_conn.spawn_turtlebot_model_sub;
+  attachment gazebo._odom_pub to _odom_conn.gazebo_pub;
+  attachment move_base._odom_sub to _odom_conn.move_base_sub;
+  attachment move_base._map_sub to _map_conn.move_base_sub;
+  attachment amcl._map_sub to _map_conn.amcl_sub;
+  attachment map_server._map_pub to _map_conn.map_server_pub;
+  attachment gazebo._gazebo_spawn_sdf_model_svc to _gazebo_spawn_sdf_model_conn.gazebo__gazebo_spawn_sdf_model_svc;
+  attachment spawn_turtlebot_model._gazebo_spawn_sdf_model_call to _gazebo_spawn_sdf_model_conn.spawn_turtlebot_model__gazebo_spawn_sdf_model_call;
+  attachment gazebo._gazebo_unpause_physics_svc to _gazebo_unpause_physics_conn.gazebo__gazebo_unpause_physics_svc;
+  attachment spawn_turtlebot_model._gazebo_unpause_physics_call to _gazebo_unpause_physics_conn.spawn_turtlebot_model__gazebo_unpause_physics_call;
+  attachment gazebo._gazebo_set_model_configuration_svc to _gazebo_set_model_configuration_conn.gazebo__gazebo_set_model_configuration_svc;
+  attachment spawn_turtlebot_model._gazebo_set_model_configuration_call to _gazebo_set_model_configuration_conn.spawn_turtlebot_model__gazebo_set_model_configuration_call;
+  attachment gazebo._gazebo_delete_model_svc to _gazebo_delete_model_conn.gazebo__gazebo_delete_model_svc;
+  attachment spawn_turtlebot_model._gazebo_delete_model_call to _gazebo_delete_model_conn.spawn_turtlebot_model__gazebo_delete_model_call;
+  attachment gazebo._gazebo_spawn_urdf_model_svc to _gazebo_spawn_urdf_model_conn.gazebo__gazebo_spawn_urdf_model_svc;
+  attachment spawn_turtlebot_model._gazebo_spawn_urdf_model_call to _gazebo_spawn_urdf_model_conn.spawn_turtlebot_model__gazebo_spawn_urdf_model_call;
+  attachment map_server._static_map_svc to _static_map_conn.map_server__static_map_svc;
+  attachment amcl._static_map_call to _static_map_conn.amcl__static_map_call;}

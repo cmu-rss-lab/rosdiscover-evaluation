@@ -1,0 +1,32 @@
+image: rosdiscover-experiments/husky:compile_commands
+launches:
+- /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+- /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
+node_sources:
+- node: joy_node
+  package: joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/joystick_drivers/joy/
+  sources:
+  - src/joy_node.cpp
+- node: teleop_node
+  package: teleop_twist_joy
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware
+  sources:
+  - src/teleop_node.cpp
+  - src/teleop_twist_joy.cpp
+- entrypoint: main
+  kind: node
+  node: interactive_marker_twist_server
+  origin: /ros_ws/src/interactive_marker_twist_server/CMakeLists.txt:15
+  package: interactive_marker_twist_server
+  restrict-analysis-to-paths:
+  - /ros_ws/src/interactive_marker_twist_server
+  - /ros_ws/src/interactive_markers
+  sources:
+  - src/marker_server.cpp
+  - ../interactive_markers/src/interactive_marker_server.cpp
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel_isolated/setup.bash

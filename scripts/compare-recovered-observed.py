@@ -105,7 +105,7 @@ def compare_sets(
         # differences += f"{(len(observed) - rec_err - obs_err) / len(observed) * 100}% recovered"
 
     # , kind, #o, #r, #o!r, #r!o, over apprx, under appx
-    csv_line = [kind, len(observed), len(recovered), rec_err, obs_err]
+    csv_line = [case, kind, len(observed), len(recovered), rec_err, obs_err]
     if len(observed) > 0:
         csv_line.extend([obs_err / len(observed), rec_err / len(observed)])
     else:
@@ -304,31 +304,31 @@ def compare(config: ExperimentConfig) -> None:
     observed_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-observed.log"))
     recovered_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-recovered.log"))
 
-    hw_p = set(f"/{p}" for p in provenance("handwritten", recovered_architecture))
-    re_p = set(f"/{p}" for p in provenance("recovered", recovered_architecture))
+    hw_p = set(p[1:] for p in provenance("handwritten", recovered_architecture))
+    re_p = set(p[1:] for p in provenance("recovered", recovered_architecture))
     o_p_h = set(n for n in observed_summary.publishers if n[0] in hw_p)
     r_p_h = set(n for n in recovered_summary.publishers if n[0] in hw_p)
     _, pubcsv_hw = compare_sets("Publishers", "handwritten", "->", o_p_h,
-                                 r_p_h,
-                                 recovered_architecture)
+                                r_p_h,
+                                recovered_architecture)
     o_p_h = set(n for n in observed_summary.subscribers if n[0] in hw_p)
     r_p_h = set(n for n in recovered_summary.subscribers if n[0] in hw_p)
     _, subcsv_hw = compare_sets("Subscribers", "handwritten", "<-", o_p_h,
-                                 r_p_h, recovered_architecture)
+                                r_p_h, recovered_architecture)
     o_p_h = set(n for n in observed_summary.providers if n[0] in hw_p)
     r_p_h = set(n for n in recovered_summary.providers if n[0] in hw_p)
 
     _, provcsv_hw = compare_sets("Providers", "handwritten", ":", o_p_h,
-                                  r_p_h,
-                                  recovered_architecture)
+                                 r_p_h,
+                                 recovered_architecture)
     o_p_h = set(n for n in observed_summary.action_clients if n[0] in hw_p)
     r_p_h = set(n for n in recovered_summary.action_clients if n[0] in hw_p)
     _, accsv_hw = compare_sets("Action Clients", "handwritten", "^-", o_p_h,
-                                r_p_h, recovered_architecture)
+                               r_p_h, recovered_architecture)
     o_p_h = set(n for n in observed_summary.action_servers if n[0] in hw_p)
     r_p_h = set(n for n in recovered_summary.action_servers if n[0] in hw_p)
     _, ascsv_hw = compare_sets("Action Servers", "handwritten", "-^", o_p_h,
-                                r_p_h, recovered_architecture)
+                               r_p_h, recovered_architecture)
     o_p_h = set(n for n in observed_summary.publishers if n[0] in re_p)
     r_p_h = set(n for n in recovered_summary.publishers if n[0] in re_p)
     _, pubcsv_re = compare_sets("Publishers", "recovered", "->", o_p_h,
@@ -373,6 +373,35 @@ def compare(config: ExperimentConfig) -> None:
             else:
                 line += i
             writer.writerow(line)
+        for node in [node for node in recovered_architecture if node["provenance"] == "recovered"]:
+            if ('ph', node["fullname"]) in observed_summary.nodes:
+                o_p_h = set(n for n in observed_summary.publishers if n[0] == node["fullname"][1:])
+                r_p_h = set(n for n in recovered_summary.publishers if n[0] == node["fullname"][1:])
+                _, pubcsv_re = compare_sets("Publishers", "recovered", "->", o_p_h,
+                                            r_p_h,
+                                            recovered_architecture)
+                o_p_h = set(n for n in observed_summary.subscribers if n[0] == node["fullname"][1:])
+                r_p_h = set(n for n in recovered_summary.subscribers if n[0] == node["fullname"][1:])
+                _, subcsv_re = compare_sets("Subscribers", "recovered", "<-", o_p_h,
+                                            r_p_h, recovered_architecture)
+                o_p_h = set(n for n in observed_summary.providers if n[0] == node["fullname"][1:])
+                r_p_h = set(n for n in recovered_summary.providers if n[0] == node["fullname"][1:])
+
+                _, provcsv_re = compare_sets("Providers", "recovered", ":", o_p_h,
+                                             r_p_h,
+                                             recovered_architecture)
+                o_p_h = set(n for n in observed_summary.action_clients if n[0] == node["fullname"][1:])
+                r_p_h = set(n for n in recovered_summary.action_clients if n[0] == node["fullname"][1:])
+                _, accsv_re = compare_sets("Action Clients", "recovered", "^-", o_p_h,
+                                           r_p_h, recovered_architecture)
+                o_p_h = set(n for n in observed_summary.action_servers if n[0] == node["fullname"][1:])
+                r_p_h = set(n for n in recovered_summary.action_servers if n[0] == node["fullname"][1:])
+                _, ascsv_re = compare_sets("Action Servers", "recovered", "-^", o_p_h,
+                                           r_p_h, recovered_architecture)
+                for i in (pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
+                    line = [config['subject'], node['fullname']] + i
+                    writer.writerow(line)
+
 
     with open(errors_both_csv, 'w') as f:
         writer = csv.writer(f)
