@@ -14,6 +14,7 @@ zip -r "${OUTPUT_FILENAME}" \
   docker \
   experiments \
   rootfs \
+  results \
   scripts \
   .dockerignore \
   Pipfile \
