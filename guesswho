@@ -1,0 +1,23 @@
+#!/bin/bash
+REPLICATION_PACKAGE=$1
+
+if [ $# -ne 1 ]; then
+  echo "USAGE: ./guesswho {path-to-replication-package}"
+  exit 1
+fi
+
+echo "sniffing replication package for author names and affiliations: ${REPLICATION_PACKAGE}"
+
+# extract to a temporary directory
+TEMP_DIR=$(mktemp -d)
+
+echo "* created temporary directory: ${TEMP_DIR}"
+
+unzip "${REPLICATION_PACKAGE}" -d "${TEMP_DIR}"
+grep -ir "chris" "${TEMP_DIR}"
+grep -ir "bradley" "${TEMP_DIR}"
+grep -ir "tobi" "${TEMP_DIR}"
+grep -ir "clg" "${TEMP_DIR}"
+grep -ir "claire" "${TEMP_DIR}"
+grep -ir "github.com/ChrisTimperley" "${TEMP_DIR}"
+grep -ir "github.com/rosqual" "${TEMP_DIR}"
