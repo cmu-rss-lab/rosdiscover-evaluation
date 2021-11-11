@@ -9,6 +9,7 @@ REPO_ROOT="${HERE_DIR}/.."
 OUTPUT_FILENAME="${REPO_ROOT}/replication-package.zip"
 
 zip -r "${OUTPUT_FILENAME}" \
+  architecture-style \
   deps \
   docker \
   experiments \
