@@ -11,6 +11,7 @@ you will need to build them in this anonymized replication package.
 The structure of this package is as follows:
 
 .. code::
+  
   - architecture-style/    The definition of the ROS architeture style used for analysis.
   - deps/                  Contains the code that the evaluation pacakges uses.
     |- rosdiscover/        The code for the implementation of the rosdiscover system
