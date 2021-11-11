@@ -1,0 +1,143 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/lattice_trajectory_gen.launch
+  fullname: /lattice_trajectory_gen
+  kind: lattice_trajectory_gen
+  name: lattice_trajectory_gen
+  namespace: /
+  nodelet: false
+  package: driving_planner
+  placeholder: false
+  provides: []
+  pubs:
+  - format: visualization_msgs::Marker_
+    implicit: false
+    name: /next_waypoint_mark
+  - format: std_msgs::Float64MultiArray_
+    implicit: false
+    name: /state
+  - format: std_msgs::Float64MultiArray_
+    implicit: false
+    name: /spline
+  - format: visualization_msgs::Marker_
+    implicit: false
+    name: /cubic_splines_viz
+  - format: std_msgs::Bool_
+    implicit: false
+    name: /wf_stat
+  reads:
+  - dynamic: false
+    name: /lattice_trajectory_gen/sim_mode
+  - dynamic: false
+    name: /lattice_trajectory_gen/prius_mode
+  - dynamic: false
+    name: /lattice_trajectory_gen/mkz_mode
+  subs:
+  - format: geometry_msgs/PoseStamped_
+    implicit: false
+    name: /current_pose
+  - format: geometry_msgs/Vector3Stamped_
+    implicit: false
+    name: /current_velocity
+  - format: vehicle_socket/CanInfo_
+    implicit: false
+    name: /can_info
+  - format: runtime_manager/ConfigWaypointFollower_
+    implicit: false
+    name: /config/waypoint_follower
+  - format: waypoint_follower/lane_
+    implicit: false
+    name: /final_waypoints
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/model_publisher/launch/vehicle_model.launch
+  fullname: /joint_state_publisher
+  kind: joint_state_publisher
+  name: joint_state_publisher
+  namespace: /
+  nodelet: false
+  package: joint_state_publisher
+  placeholder: false
+  provides: []
+  pubs:
+  - format: sensor_msgs/JointState
+    implicit: false
+    name: /joint_states
+  reads:
+  - dynamic: false
+    name: /use_gui
+  - dynamic: false
+    name: /publish_default_positions
+  - dynamic: false
+    name: /use_smallest_joint_limits
+  - dynamic: false
+    name: /joint_state_publisher/publish_default_velocities
+  - dynamic: false
+    name: /use_mimic_tags
+  - dynamic: false
+    name: /zeros
+  - dynamic: false
+    name: /publish_default_velocities
+  - dynamic: false
+    name: /joint_state_publisher/publish_default_positions
+  - dynamic: false
+    name: /joint_state_publisher/use_mimic_tags
+  - dynamic: false
+    name: /robot_description
+  - dynamic: false
+    name: /dependent_joints
+  - dynamic: false
+    name: /joint_state_publisher/publish_default_efforts
+  - dynamic: false
+    name: /joint_state_publisher/dependent_joints
+  - dynamic: false
+    name: /joint_state_publisher/zeros
+  - dynamic: false
+    name: /joint_state_publisher/robot_description
+  - dynamic: false
+    name: /joint_state_publisher/source_list
+  - dynamic: false
+    name: /joint_state_publisher/use_gui
+  - dynamic: false
+    name: /source_list
+  - dynamic: false
+    name: /joint_state_publisher/use_smallest_joint_limits
+  - dynamic: false
+    name: /publish_default_efforts
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_follower/launch/wf_simulator.launch
+  fullname: /wf_simulator
+  kind: wf_simulator
+  name: wf_simulator
+  namespace: /
+  nodelet: false
+  package: waypoint_follower
+  placeholder: false
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/util/packages/model_publisher/launch/vehicle_model.launch
+  fullname: /robot_state_publisher
+  kind: state_publisher
+  name: robot_state_publisher
+  namespace: /
+  nodelet: false
+  package: robot_state_publisher
+  placeholder: false
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []

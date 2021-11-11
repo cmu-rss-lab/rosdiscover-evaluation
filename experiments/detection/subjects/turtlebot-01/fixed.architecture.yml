@@ -1,0 +1,369 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/reproduce.launch
+  fullname: /error_reproducer
+  kind: error_reproducer
+  name: error_reproducer
+  namespace: /
+  nodelet: false
+  package: '*'
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered/image_raw
+  reads:
+  - dynamic: false
+    name: /error_reproducer/topic
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/manager.launch.xml
+  fullname: /camera/camera_nodelet_manager
+  kind: nodelet
+  name: camera_nodelet_manager
+  namespace: /camera/
+  nodelet: false
+  package: nodelet
+  provenance: unknown
+  provides: []
+  pubs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/rgb/image_rect_color
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered/hw_registered/image_rect_raw
+  - format: sensor_msgs/PointCloud2
+    implicit: false
+    name: /camera/depth_points/points
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth/image_rect_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/ir/image_rect_ir
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_metric/image
+  - format: sensor_msgs/PointCloud2
+    implicit: false
+    name: /camera/points_xyzrgb_hw_registered/depth_registered/points
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered_hw_metric_rect/image
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_metric_rect/image
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered_metric/image
+  reads:
+  - dynamic: false
+    name: /camera/depth_registered_rectify_depth/queue_size
+  - dynamic: false
+    name: /camera/ir_rectify_ir/interpolation
+  - dynamic: false
+    name: /camera/rgb_rectify_color/interpolation
+  - dynamic: false
+    name: /camera/queue_size
+  - dynamic: false
+    name: /camera/depth_rectify_depth/interpolation
+  - dynamic: false
+    name: /camera/delta_d
+  - dynamic: false
+    name: /camera/rgb_rectify_color/queue_size
+  - dynamic: false
+    name: /camera/ir_rectify_ir/queue_size
+  - dynamic: false
+    name: /camera/depth_registered_rectify_depth/interpolation
+  - dynamic: false
+    name: /camera/min_range
+  - dynamic: false
+    name: /camera/depth_rectify_depth/queue_size
+  - dynamic: false
+    name: /camera/max_range
+  subs:
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/points_xyzrgb_hw_registered/depth_registered/image_rect
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/disparity_depth/left/image_rect
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera/disparity_registered_hw/right/camera_info
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/ir/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_metric/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/rgb/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/points_xyzrgb_hw_registered/rgb/image_rect_color
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_metric_rect/image_raw
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera/camera_info
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered_metric/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/disparity_registered_hw/left/image_rect
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera/disparity_depth/right/camera_info
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered/image_raw
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_points/image_rect
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera/depth_points/camera_info
+  - format: sensor_msgs/Image
+    implicit: false
+    name: /camera/depth_registered_hw_metric_rect/image_raw
+  - format: sensor_msgs/CameraInfo
+    implicit: false
+    name: /camera/points_xyzrgb_hw_registered/rgb/camera_info
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml
+  fullname: /camera/depth_metric_rect
+  kind: convert_metric
+  name: depth_metric_rect
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/disparity_registered.launch.xml
+  fullname: /camera/disparity_registered_hw
+  kind: disparity
+  name: disparity_registered_hw
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml
+  fullname: /camera/depth_rectify_depth
+  kind: rectify
+  name: depth_rectify_depth
+  namespace: /camera/
+  nodelet: true
+  package: image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/rgb.launch.xml
+  fullname: /camera/rgb_rectify_color
+  kind: rectify
+  name: rgb_rectify_color
+  namespace: /camera/
+  nodelet: true
+  package: image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml
+  fullname: /camera/depth_registered_hw_metric_rect
+  kind: convert_metric
+  name: depth_registered_hw_metric_rect
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/disparity.launch.xml
+  fullname: /camera/disparity_depth
+  kind: disparity
+  name: disparity_depth
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml
+  fullname: /camera/depth_registered_metric
+  kind: convert_metric
+  name: depth_registered_metric
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml
+  fullname: /camera/depth_metric
+  kind: convert_metric
+  name: depth_metric
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/ir.launch.xml
+  fullname: /camera/ir_rectify_ir
+  kind: rectify
+  name: ir_rectify_ir
+  namespace: /camera/
+  nodelet: true
+  package: image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch
+  fullname: /depthimage_to_laserscan
+  kind: DepthImageToLaserScanNodelet
+  name: depthimage_to_laserscan
+  namespace: /
+  nodelet: false
+  package: depthimage_to_laserscan
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml
+  fullname: /camera/depth_points
+  kind: point_cloud_xyz
+  name: depth_points
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml
+  fullname: /camera/depth_registered_rectify_depth
+  kind: rectify
+  name: depth_registered_rectify_depth
+  namespace: /camera/
+  nodelet: true
+  package: image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml
+  fullname: /camera/points_xyzrgb_hw_registered
+  kind: point_cloud_xyzrgb
+  name: points_xyzrgb_hw_registered
+  namespace: /camera/
+  nodelet: true
+  package: depth_image_proc
+  provenance: handwritten
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/openni2_launch/launch/includes/device.launch.xml
+  fullname: /camera/driver
+  kind: OpenNI2DriverNodelet
+  name: driver
+  namespace: /camera/
+  nodelet: false
+  package: openni2_camera
+  provenance: recovered
+  provides: []
+  pubs: []
+  reads: []
+  subs: []
+  uses: []
+  writes: []

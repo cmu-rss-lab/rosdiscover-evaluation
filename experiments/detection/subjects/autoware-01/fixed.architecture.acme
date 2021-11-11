@@ -1,0 +1,646 @@
+import families/ROSFam.acme;
+system _code_experiments_detection_subjects_autoware-01_fixed_architecture : ROSFam = new ROSFam extended with {
+   component feature_projection : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _roi_signal_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "road_wizard::Signals_";
+        property topic = "/roi_signal";
+    };
+    
+     port _vector_map_info_line_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/LineArray_";
+        property topic = "/vector_map_info/line";
+    };
+    
+     port _config_adjust_xy_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/adjust_xy_";
+        property topic = "/config/adjust_xy";
+    };
+    
+     port _vector_map_info_dtlane_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/DTLaneArray_";
+        property topic = "/vector_map_info/dtlane";
+    };
+    
+     port _vector_map_info_lane_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/LaneArray_";
+        property topic = "/vector_map_info/lane";
+    };
+    
+     port _vector_map_info_signal_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/SignalArray_";
+        property topic = "/vector_map_info/signal";
+    };
+    
+     port _vector_map_info_point_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/PointArray_";
+        property topic = "/vector_map_info/point";
+    };
+    
+     port _vector_map_info_white_line_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/WhiteLineArray_";
+        property topic = "/vector_map_info/white_line";
+    };
+    
+     port _vector_map_info_vector_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/VectorArray_";
+        property topic = "/vector_map_info/vector";
+    };
+    
+        property name = "feature_projection";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/computing/perception/detection/packages/road_wizard/launch/feat_proj.launch";
+    };
+    
+   component velocity_set : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "velocity_set";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/velocity_set.launch";
+    };
+    
+   component tablet_receiver : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _gnss_stat_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs::Bool_";
+        property topic = "/gnss_stat";
+    };
+    
+     port _route_cmd_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "tablet_socket::route_cmd_";
+        property topic = "/route_cmd";
+    };
+    
+     port _gnss_pose_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "geometry_msgs::PoseStamped_";
+        property topic = "/gnss_pose";
+    };
+    
+     port _gear_cmd_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "tablet_socket::gear_cmd_";
+        property topic = "/gear_cmd";
+    };
+    
+     port _mode_cmd_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "tablet_socket::mode_cmd_";
+        property topic = "/mode_cmd";
+    };
+    
+        property name = "tablet_receiver";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/tablet_socket.launch";
+    };
+    
+   component lane_stop : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _traffic_waypoints_array_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/traffic_waypoints_array";
+    };
+    
+     port _light_color_managed_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/traffic_light_";
+        property topic = "/light_color_managed";
+    };
+    
+     port _light_color_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/traffic_light_";
+        property topic = "/light_color";
+    };
+    
+     port _red_waypoints_array_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/red_waypoints_array";
+    };
+    
+     port _green_waypoints_array_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/green_waypoints_array";
+    };
+    
+     port _config_lane_stop_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/ConfigLaneStop_";
+        property topic = "/config/lane_stop";
+    };
+    
+        property name = "lane_stop";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch";
+    };
+    
+   component lane_navi : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _lane_waypoints_array_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/lane_waypoints_array";
+    };
+    
+     port _vector_map_info_lane_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/LaneArray_";
+        property topic = "/vector_map_info/lane";
+    };
+    
+     port _vector_map_info_point_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/PointArray_";
+        property topic = "/vector_map_info/point";
+    };
+    
+     port _vector_map_info_node_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/NodeArray_";
+        property topic = "/vector_map_info/node";
+    };
+    
+     port _route_cmd_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "tablet_socket/route_cmd_";
+        property topic = "/route_cmd";
+    };
+    
+        property name = "lane_navi";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch";
+    };
+    
+   component lane_rule : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _traffic_waypoints_array_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/traffic_waypoints_array";
+    };
+    
+     port _red_waypoints_array_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/red_waypoints_array";
+    };
+    
+     port _green_waypoints_array_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/green_waypoints_array";
+    };
+    
+     port _lane_waypoints_array_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/lane_waypoints_array";
+    };
+    
+     port _vector_map_info_dtlane_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/DTLaneArray_";
+        property topic = "/vector_map_info/dtlane";
+    };
+    
+     port _vector_map_info_stop_line_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/StopLineArray_";
+        property topic = "/vector_map_info/stop_line";
+    };
+    
+     port _vector_map_info_lane_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/LaneArray_";
+        property topic = "/vector_map_info/lane";
+    };
+    
+     port _vector_map_info_node_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/NodeArray_";
+        property topic = "/vector_map_info/node";
+    };
+    
+     port _config_lane_rule_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "runtime_manager/ConfigLaneRule_";
+        property topic = "/config/lane_rule";
+    };
+    
+     port _vector_map_info_point_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vector_map_msgs/PointArray_";
+        property topic = "/vector_map_info/point";
+    };
+    
+        property name = "lane_rule";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch";
+    };
+    
+   component tablet_sender : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _error_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "tablet_socket/error_info_";
+        property topic = "/error_info";
+    };
+    
+     port _ndt_stat_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "ndt_localizer/ndt_stat_";
+        property topic = "/ndt_stat";
+    };
+    
+     port _mode_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "tablet_socket/mode_info_";
+        property topic = "/mode_info";
+    };
+    
+     port _wf_stat_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "std_msgs/Bool_";
+        property topic = "/wf_stat";
+    };
+    
+     port _can_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "vehicle_socket/CanInfo_";
+        property topic = "/can_info";
+    };
+    
+        property name = "tablet_sender";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/tablet_socket.launch";
+    };
+    
+   component world_to_map : ROSNodeCompT, PlaceholderT = new ROSNodeCompT, PlaceholderT extended with {
+        
+        property name = "world_to_map";
+        property placeholder = true;
+        property launchedBy = "/.autoware/data/tf/tf.launch";
+    };
+
+   component map_to_mobility : ROSNodeCompT, PlaceholderT = new ROSNodeCompT, PlaceholderT extended with {
+        
+        property name = "map_to_mobility";
+        property placeholder = true;
+        property launchedBy = "/.autoware/data/tf/tf.launch";
+    };
+
+   component vector_map_loader : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _vector_map_info_vector_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::VectorArray_";
+        property topic = "/vector_map_info/vector";
+    };
+    
+     port _vector_map_info_node_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::NodeArray_";
+        property topic = "/vector_map_info/node";
+    };
+    
+     port _vector_map_info_curb_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::CurbArray_";
+        property topic = "/vector_map_info/curb";
+    };
+    
+     port _vector_map_info_pole_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::PoleArray_";
+        property topic = "/vector_map_info/pole";
+    };
+    
+     port _vector_map_info_road_edge_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::RoadEdgeArray_";
+        property topic = "/vector_map_info/road_edge";
+    };
+    
+     port _vmap_stat_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs::Bool_";
+        property topic = "/vmap_stat";
+    };
+    
+     port _vector_map_info_street_light_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::StreetLightArray_";
+        property topic = "/vector_map_info/street_light";
+    };
+    
+     port _vector_map_info_point_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::PointArray_";
+        property topic = "/vector_map_info/point";
+    };
+    
+     port _vector_map_info_road_pole_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::RoadPoleArray_";
+        property topic = "/vector_map_info/road_pole";
+    };
+    
+     port _vector_map_info_side_strip_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::SideStripArray_";
+        property topic = "/vector_map_info/side_strip";
+    };
+    
+     port _vector_map_info_stop_line_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::StopLineArray_";
+        property topic = "/vector_map_info/stop_line";
+    };
+    
+     port _vector_map_info_signal_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::SignalArray_";
+        property topic = "/vector_map_info/signal";
+    };
+    
+     port _vector_map_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "visualization_msgs::MarkerArray_";
+        property topic = "/vector_map";
+    };
+    
+     port _vector_map_info_wall_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::WallArray_";
+        property topic = "/vector_map_info/wall";
+    };
+    
+     port _vector_map_info_dtlane_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::DTLaneArray_";
+        property topic = "/vector_map_info/dtlane";
+    };
+    
+     port _vector_map_info_utility_pole_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::UtilityPoleArray_";
+        property topic = "/vector_map_info/utility_pole";
+    };
+    
+     port _vector_map_info_side_walk_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::SideWalkArray_";
+        property topic = "/vector_map_info/side_walk";
+    };
+    
+     port _vector_map_info_box_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::BoxArray_";
+        property topic = "/vector_map_info/box";
+    };
+    
+     port _vector_map_info_area_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::AreaArray_";
+        property topic = "/vector_map_info/area";
+    };
+    
+     port _vector_map_info_way_area_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::WayAreaArray_";
+        property topic = "/vector_map_info/way_area";
+    };
+    
+     port _vector_map_info_fence_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::FenceArray_";
+        property topic = "/vector_map_info/fence";
+    };
+    
+     port _vector_map_info_cross_road_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::CrossRoadArray_";
+        property topic = "/vector_map_info/cross_road";
+    };
+    
+     port _vector_map_info_cross_walk_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::CrossWalkArray_";
+        property topic = "/vector_map_info/cross_walk";
+    };
+    
+     port _vector_map_info_road_mark_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::RoadMarkArray_";
+        property topic = "/vector_map_info/road_mark";
+    };
+    
+     port _vector_map_info_guard_rail_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::GuardRailArray_";
+        property topic = "/vector_map_info/guard_rail";
+    };
+    
+     port _vector_map_info_curve_mirror_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::CurveMirrorArray_";
+        property topic = "/vector_map_info/curve_mirror";
+    };
+    
+     port _vector_map_info_road_sign_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::RoadSignArray_";
+        property topic = "/vector_map_info/road_sign";
+    };
+    
+     port _vector_map_info_lane_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::LaneArray_";
+        property topic = "/vector_map_info/lane";
+    };
+    
+     port _vector_map_info_rail_crossing_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::RailCrossingArray_";
+        property topic = "/vector_map_info/rail_crossing";
+    };
+    
+     port _vector_map_info_gutter_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::GutterArray_";
+        property topic = "/vector_map_info/gutter";
+    };
+    
+     port _vector_map_info_drive_on_portion_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::DriveOnPortionArray_";
+        property topic = "/vector_map_info/drive_on_portion";
+    };
+    
+     port _vector_map_info_white_line_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::WhiteLineArray_";
+        property topic = "/vector_map_info/white_line";
+    };
+    
+     port _vector_map_info_zebra_zone_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::ZebraZoneArray_";
+        property topic = "/vector_map_info/zebra_zone";
+    };
+    
+     port _vector_map_info_line_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "vector_map_msgs::LineArray_";
+        property topic = "/vector_map_info/line";
+    };
+    
+        property name = "vector_map_loader";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch";
+    };
+    
+   component points_map_loader : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _points_map_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs::PointCloud2_";
+        property topic = "/points_map";
+    };
+    
+     port _pmap_stat_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "std_msgs::Bool_";
+        property topic = "/pmap_stat";
+    };
+    
+     port _initialpose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseWithCovarianceStamped_";
+        property topic = "/initialpose";
+    };
+    
+     port _gnss_pose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped_";
+        property topic = "/gnss_pose";
+    };
+    
+     port _traffic_waypoints_array_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/traffic_waypoints_array";
+    };
+    
+     port _current_pose_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "geometry_msgs/PoseStamped_";
+        property topic = "/current_pose";
+    };
+    
+        property name = "points_map_loader";
+        property launchedBy = "/ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch";
+    };
+       connector _vector_map_info_line_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/LineArray_";
+        property topic = "/vector_map_info/line";
+    };
+    
+   connector _vector_map_info_dtlane_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/DTLaneArray_";
+        property topic = "/vector_map_info/dtlane";
+    };
+    
+   connector _vector_map_info_lane_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_navi_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/LaneArray_";
+        property topic = "/vector_map_info/lane";
+    };
+    
+   connector _vector_map_info_signal_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/SignalArray_";
+        property topic = "/vector_map_info/signal";
+    };
+    
+   connector _vector_map_info_point_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_navi_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/PointArray_";
+        property topic = "/vector_map_info/point";
+    };
+    
+   connector _vector_map_info_white_line_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/WhiteLineArray_";
+        property topic = "/vector_map_info/white_line";
+    };
+    
+   connector _vector_map_info_vector_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role feature_projection_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/VectorArray_";
+        property topic = "/vector_map_info/vector";
+    };
+    
+   connector _route_cmd_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role tablet_receiver_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_navi_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "tablet_socket::route_cmd_";
+        property topic = "/route_cmd";
+    };
+    
+   connector _gnss_pose_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role tablet_receiver_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role points_map_loader_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "geometry_msgs::PoseStamped_";
+        property topic = "/gnss_pose";
+    };
+    
+   connector _traffic_waypoints_array_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role lane_stop_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+     role lane_rule_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role points_map_loader_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/traffic_waypoints_array";
+    };
+    
+   connector _red_waypoints_array_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role lane_rule_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_stop_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/red_waypoints_array";
+    };
+    
+   connector _green_waypoints_array_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role lane_rule_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_stop_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "waypoint_follower/LaneArray_";
+        property topic = "/green_waypoints_array";
+    };
+    
+   connector _lane_waypoints_array_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role lane_navi_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "waypoint_follower::LaneArray_";
+        property topic = "/lane_waypoints_array";
+    };
+    
+   connector _vector_map_info_node_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_navi_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/NodeArray_";
+        property topic = "/vector_map_info/node";
+    };
+    
+   connector _vector_map_info_stop_line_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role vector_map_loader_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role lane_rule_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "vector_map_msgs/StopLineArray_";
+        property topic = "/vector_map_info/stop_line";
+    };
+      attachment feature_projection._vector_map_info_line_sub to _vector_map_info_line_conn.feature_projection_sub;
+  attachment vector_map_loader._vector_map_info_line_pub to _vector_map_info_line_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_dtlane_sub to _vector_map_info_dtlane_conn.feature_projection_sub;
+  attachment lane_rule._vector_map_info_dtlane_sub to _vector_map_info_dtlane_conn.lane_rule_sub;
+  attachment vector_map_loader._vector_map_info_dtlane_pub to _vector_map_info_dtlane_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_lane_sub to _vector_map_info_lane_conn.feature_projection_sub;
+  attachment lane_navi._vector_map_info_lane_sub to _vector_map_info_lane_conn.lane_navi_sub;
+  attachment lane_rule._vector_map_info_lane_sub to _vector_map_info_lane_conn.lane_rule_sub;
+  attachment vector_map_loader._vector_map_info_lane_pub to _vector_map_info_lane_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_signal_sub to _vector_map_info_signal_conn.feature_projection_sub;
+  attachment vector_map_loader._vector_map_info_signal_pub to _vector_map_info_signal_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_point_sub to _vector_map_info_point_conn.feature_projection_sub;
+  attachment lane_navi._vector_map_info_point_sub to _vector_map_info_point_conn.lane_navi_sub;
+  attachment lane_rule._vector_map_info_point_sub to _vector_map_info_point_conn.lane_rule_sub;
+  attachment vector_map_loader._vector_map_info_point_pub to _vector_map_info_point_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_white_line_sub to _vector_map_info_white_line_conn.feature_projection_sub;
+  attachment vector_map_loader._vector_map_info_white_line_pub to _vector_map_info_white_line_conn.vector_map_loader_pub;
+  attachment feature_projection._vector_map_info_vector_sub to _vector_map_info_vector_conn.feature_projection_sub;
+  attachment vector_map_loader._vector_map_info_vector_pub to _vector_map_info_vector_conn.vector_map_loader_pub;
+  attachment tablet_receiver._route_cmd_pub to _route_cmd_conn.tablet_receiver_pub;
+  attachment lane_navi._route_cmd_sub to _route_cmd_conn.lane_navi_sub;
+  attachment tablet_receiver._gnss_pose_pub to _gnss_pose_conn.tablet_receiver_pub;
+  attachment points_map_loader._gnss_pose_sub to _gnss_pose_conn.points_map_loader_sub;
+  attachment lane_stop._traffic_waypoints_array_pub to _traffic_waypoints_array_conn.lane_stop_pub;
+  attachment lane_rule._traffic_waypoints_array_pub to _traffic_waypoints_array_conn.lane_rule_pub;
+  attachment points_map_loader._traffic_waypoints_array_sub to _traffic_waypoints_array_conn.points_map_loader_sub;
+  attachment lane_stop._red_waypoints_array_sub to _red_waypoints_array_conn.lane_stop_sub;
+  attachment lane_rule._red_waypoints_array_pub to _red_waypoints_array_conn.lane_rule_pub;
+  attachment lane_stop._green_waypoints_array_sub to _green_waypoints_array_conn.lane_stop_sub;
+  attachment lane_rule._green_waypoints_array_pub to _green_waypoints_array_conn.lane_rule_pub;
+  attachment lane_navi._lane_waypoints_array_pub to _lane_waypoints_array_conn.lane_navi_pub;
+  attachment lane_rule._lane_waypoints_array_sub to _lane_waypoints_array_conn.lane_rule_sub;
+  attachment lane_navi._vector_map_info_node_sub to _vector_map_info_node_conn.lane_navi_sub;
+  attachment lane_rule._vector_map_info_node_sub to _vector_map_info_node_conn.lane_rule_sub;
+  attachment vector_map_loader._vector_map_info_node_pub to _vector_map_info_node_conn.vector_map_loader_pub;
+  attachment lane_rule._vector_map_info_stop_line_sub to _vector_map_info_stop_line_conn.lane_rule_sub;
+  attachment vector_map_loader._vector_map_info_stop_line_pub to _vector_map_info_stop_line_conn.vector_map_loader_pub;}

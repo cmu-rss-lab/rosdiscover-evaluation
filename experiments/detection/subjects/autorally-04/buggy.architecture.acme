@@ -1,0 +1,69 @@
+import families/ROSFam.acme;
+system _code_experiments_detection_subjects_autorally-04_buggy_architecture : ROSFam = new ROSFam extended with {
+   component error_reproducer : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _left_camera_image_diagnostic_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/left_camera/image_diagnostic";
+    };
+    
+        property name = "error_reproducer";
+        property launchedBy = "/ros_ws/reproduce.launch";
+    };
+    
+   component camera_nodelet_manager : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _camera_camera_nodelet_image_raw_compressed_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/camera/camera_nodelet/image_raw/compressed";
+    };
+    
+     port _camera_image_color_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/image_color";
+    };
+    
+     port _camera_camera_nodelet_image_raw_compressedDepth_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CompressedImage";
+        property topic = "/camera/camera_nodelet/image_raw/compressedDepth";
+    };
+    
+     port _camera_camera_nodelet_camera_info_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/camera_nodelet/camera_info";
+    };
+    
+     port _camera_image_mono_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/image_mono";
+    };
+    
+     port _camera_camera_nodelet_image_raw_theora_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "theora_image_transport/Packet";
+        property topic = "/camera/camera_nodelet/image_raw/theora";
+    };
+    
+     port _camera_camera_nodelet_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/camera_nodelet/image_raw";
+    };
+    
+     port _camera_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/image_raw";
+    };
+    
+        property name = "camera_nodelet_manager";
+        property launchedBy = "/ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch";
+    };
+    
+   component camera_nodelet : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "camera_nodelet";
+        property launchedBy = "/ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch";
+    };
+    
+   component image_proc_debayer : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "image_proc_debayer";
+        property launchedBy = "/ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch";
+    };
+    }

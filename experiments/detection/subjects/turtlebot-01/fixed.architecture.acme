@@ -1,0 +1,250 @@
+import families/ROSFam.acme;
+system _code_experiments_detection_subjects_turtlebot-01_fixed_architecture : ROSFam = new ROSFam extended with {
+   component error_reproducer : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _camera_depth_registered_image_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered/image_raw";
+    };
+    
+        property name = "error_reproducer";
+        property launchedBy = "/ros_ws/reproduce.launch";
+    };
+    
+   component camera_nodelet_manager : ROSNodeCompT = new ROSNodeCompT extended with {
+             port _camera_depth_image_rect_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth/image_rect_raw";
+    };
+    
+     port _camera_rgb_image_rect_color_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/rgb/image_rect_color";
+    };
+    
+     port _camera_depth_registered_hw_registered_image_rect_raw_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered/hw_registered/image_rect_raw";
+    };
+    
+     port _camera_points_xyzrgb_hw_registered_depth_registered_points_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud2";
+        property topic = "/camera/points_xyzrgb_hw_registered/depth_registered/points";
+    };
+    
+     port _camera_depth_registered_hw_metric_rect_image_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered_hw_metric_rect/image";
+    };
+    
+     port _camera_depth_points_points_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/PointCloud2";
+        property topic = "/camera/depth_points/points";
+    };
+    
+     port _camera_depth_metric_image_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_metric/image";
+    };
+    
+     port _camera_depth_registered_metric_image_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered_metric/image";
+    };
+    
+     port _camera_ir_image_rect_ir_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/ir/image_rect_ir";
+    };
+    
+     port _camera_depth_metric_rect_image_pub : TopicAdvertisePortT = new TopicAdvertisePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_metric_rect/image";
+    };
+    
+     port _camera_depth_metric_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_metric/image_raw";
+    };
+    
+     port _camera_depth_registered_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered/image_raw";
+    };
+    
+     port _camera_camera_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/camera_info";
+    };
+    
+     port _camera_disparity_depth_left_image_rect_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/disparity_depth/left/image_rect";
+    };
+    
+     port _camera_depth_metric_rect_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_metric_rect/image_raw";
+    };
+    
+     port _camera_depth_points_camera_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/depth_points/camera_info";
+    };
+    
+     port _camera_points_xyzrgb_hw_registered_rgb_image_rect_color_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/points_xyzrgb_hw_registered/rgb/image_rect_color";
+    };
+    
+     port _camera_points_xyzrgb_hw_registered_rgb_camera_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/points_xyzrgb_hw_registered/rgb/camera_info";
+    };
+    
+     port _camera_depth_registered_hw_metric_rect_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered_hw_metric_rect/image_raw";
+    };
+    
+     port _camera_disparity_registered_hw_right_camera_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/disparity_registered_hw/right/camera_info";
+    };
+    
+     port _camera_depth_registered_metric_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered_metric/image_raw";
+    };
+    
+     port _camera_depth_points_image_rect_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_points/image_rect";
+    };
+    
+     port _camera_disparity_registered_hw_left_image_rect_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/disparity_registered_hw/left/image_rect";
+    };
+    
+     port _camera_points_xyzrgb_hw_registered_depth_registered_image_rect_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/points_xyzrgb_hw_registered/depth_registered/image_rect";
+    };
+    
+     port _camera_ir_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/ir/image_raw";
+    };
+    
+     port _camera_disparity_depth_right_camera_info_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/CameraInfo";
+        property topic = "/camera/disparity_depth/right/camera_info";
+    };
+    
+     port _camera_depth_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth/image_raw";
+    };
+    
+     port _camera_rgb_image_raw_sub : TopicSubscribePortT = new TopicSubscribePortT extended with {
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/rgb/image_raw";
+    };
+    
+        property name = "camera_nodelet_manager";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/manager.launch.xml";
+    };
+    
+   component depth_registered_rectify_depth : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_registered_rectify_depth";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml";
+    };
+    
+   component depth_points : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_points";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml";
+    };
+    
+   component depthimage_to_laserscan : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depthimage_to_laserscan";
+        property launchedBy = "/ros_ws/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch";
+    };
+    
+   component depth_rectify_depth : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_rectify_depth";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml";
+    };
+    
+   component driver : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "driver";
+        property launchedBy = "/ros_ws/src/openni2_launch/launch/includes/device.launch.xml";
+    };
+    
+   component depth_registered_metric : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_registered_metric";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml";
+    };
+    
+   component depth_metric : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_metric";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml";
+    };
+    
+   component disparity_depth : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "disparity_depth";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/disparity.launch.xml";
+    };
+    
+   component ir_rectify_ir : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "ir_rectify_ir";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/ir.launch.xml";
+    };
+    
+   component depth_registered_hw_metric_rect : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_registered_hw_metric_rect";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml";
+    };
+    
+   component disparity_registered_hw : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "disparity_registered_hw";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/disparity_registered.launch.xml";
+    };
+    
+   component depth_metric_rect : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "depth_metric_rect";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth.launch.xml";
+    };
+    
+   component rgb_rectify_color : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "rgb_rectify_color";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/rgb.launch.xml";
+    };
+    
+   component points_xyzrgb_hw_registered : ROSNodeCompT = new ROSNodeCompT extended with {
+        
+        property name = "points_xyzrgb_hw_registered";
+        property launchedBy = "/ros_ws/src/rgbd_launch/launch/includes/depth_registered.launch.xml";
+    };
+       connector _camera_depth_registered_image_raw_conn : TopicConnectorT = new TopicConnectorT extended with {
+         role error_reproducer_pub : ROSTopicAdvertiserRoleT = new ROSTopicAdvertiserRoleT;
+    
+    role camera_nodelet_manager_sub : ROSTopicSubscriberRoleT = new ROSTopicSubscriberRoleT;
+    
+        property msg_type = "sensor_msgs/Image";
+        property topic = "/camera/depth_registered/image_raw";
+    };
+      attachment error_reproducer._camera_depth_registered_image_raw_pub to _camera_depth_registered_image_raw_conn.error_reproducer_pub;
+  attachment camera_nodelet_manager._camera_depth_registered_image_raw_sub to _camera_depth_registered_image_raw_conn.camera_nodelet_manager_sub;}
