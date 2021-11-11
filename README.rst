@@ -11,20 +11,20 @@ you will need to build them in this anonymized replication package.
 The structure of this package is as follows:
 
 .. code::
-
-    deps/                  Contains the code that the evaluation pacakges uses
+  - architecture-style/    The definition of the ROS architeture style used for analysis.
+  - deps/                  Contains the code that the evaluation pacakges uses.
     |- rosdiscover/        The code for the implementation of the rosdiscover system
     |                      evaluated in the paper
     |- roswire/            The code for the layer used for interacting with ROS
     |                      docker images
     |- rosdiscover-cxx-extract/
     |                      The code for static analysis
-    docker/                Files used for building docker images used in the experiments
-    experiments/           Data for setting up the experiments, and the results we got
+  - docker/                Files used for building docker images used in the experiments
+  - experiments/           Data for setting up the experiments, and the results we got
     |- detection/          Experiments that we used in RQ3
     |- recovery/           Experiments we used in RQ1 and RQ2
-    rootfs                 Contains files that get put in the docker images
-    scripts                Python scripts for running and analyzing the experiments
+  - rootfs                 Contains files that get put in the docker images
+  - scripts                Python scripts for running and analyzing the experiments
                            (see more below)
 
 
@@ -105,18 +105,24 @@ Python 3.9.5 via the following:
 
   $ pyenv install 3.9.5
 
+Pipenv
+~~~~~~
 
-Installation
--------------
+`Pipenv <https://pypi.org/project/pipenv/>`_ is a package manager for Python that allows you to install dependencies into a
+pyenv environment. To install pipenv, you can execute the following:
 
-After obtaining the necessary prerequisites described above, you can install all of the tools needed
-by the experiment, including ROSDiscover, by executing the following from the root of the replication
-package:
+.. code:: command
 
-.. code::
+  $ python -m pip install --user pipenv
+  
+Once installed, ensure that `~/.local/bin` is added to your path (by editing you ~/.bashrc). To run the scripts in this package, you need to install some dependencies. This can be done by first entering a pipenv shell, and then installing the dependencies:
 
-  $ ./scripts/install
+.. code:: command
 
+  $ pipenv shell
+  (rosdiscover-evaluation)$ pipenv install
+  Installing dependencies from Pipfile.lock (6070d0)...
+  
 
 Replicating results for the paper
 ================================
