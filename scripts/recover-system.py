@@ -140,7 +140,7 @@ def update_system_with_reproducer(reproducer_info, output_filename):
 
     nodes.append(reproducer)
     with open(output_filename, 'w') as f:
-        yaml.safe_dump(f)
+        yaml.safe_dump(nodes, f)
 
 
 def error(message: str) -> t.NoReturn:
