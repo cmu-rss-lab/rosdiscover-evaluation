@@ -12,24 +12,23 @@ The structure of this package is as follows:
 
 .. code::
 
-  deps/                  Contains the code that the evaluation pacakges uses
-  |- rosdiscover/        The code for the implementation of the rosdiscover system
-  |                      evaluated in the paper
-  |- roswire/            The code for the layer used for interacting with ROS
-  |                      docker images
-  |- rosdiscover-cxx-extract/
-  |                      The code for static analysis
-  docker/                Files used for building docker images used in the experiments
-  experiments/           Data for setting up the experiments, and the results we got
-  |- detection/          Experiments that we used in RQ3
-  |- recovery/           Experiments we used in RQ1 and RQ2
-  rootfs                 Contains files that get put in the docker images
-  scripts                Python scripts for running and analyzing the experiments
-                         (see more below)
+    deps/                  Contains the code that the evaluation pacakges uses
+    |- rosdiscover/        The code for the implementation of the rosdiscover system
+    |                      evaluated in the paper
+    |- roswire/            The code for the layer used for interacting with ROS
+    |                      docker images
+    |- rosdiscover-cxx-extract/
+    |                      The code for static analysis
+    docker/                Files used for building docker images used in the experiments
+    experiments/           Data for setting up the experiments, and the results we got
+    |- detection/          Experiments that we used in RQ3
+    |- recovery/           Experiments we used in RQ1 and RQ2
+    rootfs                 Contains files that get put in the docker images
+    scripts                Python scripts for running and analyzing the experiments
+                           (see more below)
 
 
 Image Creation and Evaluation Infrastructure for ROS Discover
-.............................................................
 
 Prerequisites
 -------------
@@ -67,8 +66,8 @@ many distributions, we optionally recommend using pyenv to automatically install
 a standalone Python 3.9 without interfering with the rest of your system.
 
 
-pyenv 
-................
+pyenv
+.....
 
 `pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
 Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
@@ -106,17 +105,18 @@ Python 3.9.5 via the following:
 
   $ pipenv install 3.9.5
 
-**TODO: Needs to be updated. Also include how to build cxx-extrace**
 
-* clone the repo
-* create a `pipenv` for the directory and execute all following commands in the pipenv shell
-* call `./scripts/setup`
+Installation
+-------------
+
+After obtaining the necessary prerequisites described above, you can install all of the tools needed
+by the experiment, including ROSDiscover, by executing the following from the root of the replication
+package:
 
 .. code::
 
-  $ git submodule update --init --recursive
-  $ pipenv --python 3.9 install
-  $ ./scripts/setup
+  $ ./scripts/install
+
 
 Replicating results for the paper
 ================================
