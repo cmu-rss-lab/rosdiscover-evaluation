@@ -110,7 +110,7 @@ def recover_system(
 
 def update_system_with_reproducer(reproducer_info, output_filename):
     with open(output_filename, 'r') as f:
-        nodes = yaml.safe_load(output_filename)
+        nodes = yaml.safe_load(f)
     reproducer = {
         "action-clients": [],
         "action-servers": [],
