@@ -131,6 +131,13 @@ Once installed, ensure that `~/.local/bin` is added to your path (by editing you
   (rosdiscover-evaluation)$ pipenv install
   Installing dependencies from Pipfile.lock (6070d0)...
   
+Exit the pipenv shell with:
+
+.. code:: command
+
+  $ (rosdiscover-evaluation)$ exit
+  
+You do not need to enter the pipenv shell again for future commands, since those will be using pipenv run
 
 Replicating results for the paper
 ================================
