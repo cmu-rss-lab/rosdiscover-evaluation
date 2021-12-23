@@ -25,7 +25,7 @@ import rosdiscover.cli
 import yaml
 
 from common.config import (
-    NodeSources,
+    configuration_to_experiment_file, NodeSources,
     RecoveryExperimentConfig,
     load_config
 )
@@ -432,12 +432,7 @@ def main() -> None:
         help="the path to the configuration file for the system",
     )
 
-    experiment_filename: str = os.path.join(
-        os.path.dirname(__file__),
-        "../experiments/recovery/subjects",
-        args.system,
-        "experiment.yml",
-    )
+    experiment_filename: str = configuration_to_experiment_file("recovery", args.system)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 

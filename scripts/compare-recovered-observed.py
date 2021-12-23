@@ -12,7 +12,7 @@ import yaml
 from loguru import logger
 
 from common.acme import THINGS_TO_IGNORE, get_acme_errors
-from common.config import ExperimentConfig, load_config
+from common.config import configuration_to_experiment_file, ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
 NamePairSet = t.Set[NamePair]
@@ -469,12 +469,12 @@ def main() -> None:
     )
     parser = argparse.ArgumentParser("compare observed and recovered architecture")
     parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for comparing architectures. "
+        "system",
+        help="the system to use for comparing architectures. "
              "(Note, assumed that observe and recover have been run)",
     )
     args = parser.parse_args()
-    experiment_filename: str = args.configuration
+    experiment_filename: str = configuration_to_experiment_file("recovery", args.system)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
     config = load_config(experiment_filename)

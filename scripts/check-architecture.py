@@ -14,7 +14,7 @@ logger.remove()
 
 from common import generate_and_check_acme
 from common.config import (
-    DetectionExperimentConfig,
+    configuration_to_experiment_file, DetectionExperimentConfig,
     ExperimentConfig,
     RecoveryExperimentConfig,
     load_config,
@@ -115,8 +115,9 @@ def main():
         help="the path to the configuration file for this experiment",
     )
     args = parser.parse_args()
+    experiment_dir = "detection" if args.kind == 'detected' else 'recovery'
 
-    experiment_filename: str = args.configuration
+    experiment_filename: str = configuration_to_experiment_file(experiment_dir, args.configuration)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
     config = load_config(experiment_filename)
