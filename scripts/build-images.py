@@ -10,7 +10,7 @@ from loguru import logger
 
 from common.config import (
     configuration_to_experiment_file, DetectionExperimentConfig,
-    RecoveryExperimentConfig,
+    ExperimentConfig, RecoveryExperimentConfig,
     load_config,
     find_configs,
 )
