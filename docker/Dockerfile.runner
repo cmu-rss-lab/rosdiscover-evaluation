@@ -2,7 +2,14 @@
 # This can help to avoid the need to install specific versions of Python (i.e., >= 3.9)
 # on older machines.
 #
-# The Docker image provided by this file is the preferred way to replicate the
-# experiments presented in the paper. If you wish to extend or repurpose the work,
-# you should perform the pipenv virtual environment installation instead.
-FROM ubuntu:20.04
+# The Docker image provided by this file is the preferred way to replicate MOST
+# of the experiments presented in the paper.
+# If you wish to extend or repurpose the work, or if you wish to obtain the baseline
+# architectures of our subject systems via run-time observation, you should perform
+# the pipenv virtual environment installation instead.
+FROM python:3.9.5-slim-buster
+RUN pip install pipenv==2021.11.23
+WORKDIR /opt/rosdiscover/evaluation
+COPY Pipfile .
+COPY Pipfile.lock .
+COPY scripts .
