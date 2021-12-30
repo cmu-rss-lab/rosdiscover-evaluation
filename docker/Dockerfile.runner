@@ -8,10 +8,17 @@
 # architectures of our subject systems via run-time observation, you should perform
 # the pipenv virtual environment installation instead.
 FROM python:3.9.5-slim-buster
-RUN pip install pipenv==2021.11.23
+RUN pip install pipenv==2021.11.23 \
+ && apt-get update \
+ && apt-get install -y \
+      ethtool \
+      gcc \
+      libgcc-8-dev \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/rosdiscover/evaluation
 COPY Pipfile .
 COPY Pipfile.lock .
 COPY scripts/ scripts/
 COPY deps/ deps/
-# RUN pipenv install
+RUN pipenv install
