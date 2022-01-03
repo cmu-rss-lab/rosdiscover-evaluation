@@ -136,7 +136,7 @@ def find_configs() -> t.Iterator[str]:
 
 
 def configuration_to_experiment_file(experiment: str, system: str) -> str:
-    subject_dir = os.path.join(os.path.dirname(__file__), '../experiments', experiment, 'subjects')
+    subject_dir = os.path.join(os.path.dirname(__file__), '../../experiments', experiment, 'subjects')
     experiment_dir = os.path.join(subject_dir, system, 'experiment.yml')
     if not os.path.isfile(experiment_dir):
         valid_experiments = "\n  ".join(os.listdir(subject_dir))
@@ -144,9 +144,4 @@ def configuration_to_experiment_file(experiment: str, system: str) -> str:
                          f"Valid systems are:\n  "
                          f"{valid_experiments}")
 
-    return os.path.join(
-        os.path.dirname(__file__),
-        f"../experiments/{experiment}/subjects",
-        system,
-        "experiment.yml",
-    )
+    return os.path.normpath(experiment_dir)
