@@ -169,7 +169,7 @@ Or build it from scratch:
 
   $ docker/setup.sh
 
-In both cases, you should now have an immage `rosqual/icsa22-evaluation:runner`. You can get a list of the commands that can
+In both cases, you should now have an image `rosqual/icsa22-evaluation:runner`. You can get a list of the commands that can
 be run in the docker version, and the available experiments, by running:
 
 .. code::
@@ -183,12 +183,12 @@ Build the Docker containers for RQ1 and RQ2
 Our analysis requires robot software to be installed in Docker containers.
 So,to run the experiments, the containers first need to be built.
 
-NOTE: Building the containers takes some time. For convenience, we have provided saved images in the `containers/`
+NOTE: Building the images takes some time. For convenience, we have provided saved images in the `images/`
 directly. You can load all of these by doing:
 
 .. code::
 
-  $ gunzip containers/rosdiscover-experiments.tgz | docker load
+  $ gunzip images/rosdiscover-experiments.tgz | docker load
 
 Alternatively, you can build the experiment images from scratch. In the examples
 
