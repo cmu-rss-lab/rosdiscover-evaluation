@@ -167,9 +167,9 @@ Or build it from scratch:
 
 .. code::
 
-  $ docker build -t rosdiscover/evaluation -f docker/Dockerfile.runner .
+  $ docker/setup.sh
 
-In both cases, you should now have an immage `rosdiscover/evaluation`. You can get a list of the commands that can
+In both cases, you should now have an immage `rosqual/icsa22-evaluation:runner`. You can get a list of the commands that can
 be run in the docker version, and the available experiments, by running:
 
 .. code::
