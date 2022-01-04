@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
+CACHE_DIR="${HERE_DIR}/.roswire_cache"
 
-if [ ! -d "HERE_DIR/.roswire_cache" ]; then
-  mkdir $HERE_DIR/.roswire_cache
-  chmod 777 $HERE_DIR/.roswire_cache
+if [ ! -d "${CACHE_DIR}" ]; then
+  mkdir "${CACHE_DIR}"
+  chmod 777 "${CACHE_DIR}"
 fi
 
 if [ -z "$DOCKER_HOST" ]; then
