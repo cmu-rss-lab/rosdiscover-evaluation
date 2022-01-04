@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
+
 if [ ! -d "HERE_DIR/.roswire_cache" ]; then
   mkdir $HERE_DIR/.roswire_cache
   chmod 777 $HERE_DIR/.roswire_cache
@@ -19,5 +21,6 @@ docker run \
   --user $(id -u) \
   -v "$docker_host":/var/run/docker.sock \
   -v "$HERE_DIR/experiments":/opt/rosdiscover/evaluation/experiments \
-  -v "$HERE_DIR/cache/":/root/.roswire rosdiscover/evaluation \
+  -v "$HERE_DIR/cache/":/root/.roswire \
+  $DOCKER_IMAGE \
   "$@"
