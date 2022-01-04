@@ -14,7 +14,10 @@ if [[ $DOCKER_HOST == unix:* ]]; then
 else
   docker_host="${DOCKER_HOST}"
 fi
-docker run --user $(id -u) \
+
+docker run \
+  --user $(id -u) \
   -v "$docker_host":/var/run/docker.sock \
-	-v "$HERE_DIR/experiments":/opt/rosdiscover/evaluation/experiments \
- 	-v "$HERE_DIR/cache/":/root/.roswire rosdiscover/evaluation "$@"
+  -v "$HERE_DIR/experiments":/opt/rosdiscover/evaluation/experiments \
+  -v "$HERE_DIR/cache/":/root/.roswire rosdiscover/evaluation \
+  "$@"
