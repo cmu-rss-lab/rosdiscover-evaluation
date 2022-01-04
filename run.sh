@@ -21,7 +21,7 @@ fi
 docker run \
   --user $(id -u) \
   -v "$docker_host":/var/run/docker.sock \
-  -v "$HERE_DIR/experiments":/opt/rosdiscover/evaluation/experiments \
-  -v "$HERE_DIR/cache/":/root/.roswire \
+  -v "${HERE_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
+  -v "${CACHE_DIR}":/home/rosqual/.roswire \
   $DOCKER_IMAGE \
   "$@"
