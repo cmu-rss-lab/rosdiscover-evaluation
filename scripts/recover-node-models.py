@@ -410,6 +410,13 @@ def main() -> None:
         dest="should_cache_sources",
         help="disables caching of node sources",
     )
+    parser.add_argument(
+        "configuration",
+        help="the path to the configuration file for the system",
+    )
+    parser.add_argument(
+        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
+    )
     args = parser.parse_args()
 
     # enable logging
@@ -427,12 +434,7 @@ def main() -> None:
     if args.package and not args.node:
         error(f"expected node name to be specified along with package [{args.package}]")
 
-    parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for the system",
-    )
-
-    experiment_filename: str = configuration_to_experiment_file("recovery", args.system)
+    experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 

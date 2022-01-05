@@ -473,8 +473,11 @@ def main() -> None:
         help="the system to use for comparing architectures. "
              "(Note, assumed that observe and recover have been run)",
     )
+    parser.add_argument(
+        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
+    )
     args = parser.parse_args()
-    experiment_filename: str = configuration_to_experiment_file("recovery", args.system)
+    experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
     config = load_config(experiment_filename)
