@@ -1,7 +1,6 @@
 FROM autoware/autoware:1.10.0-kinetic-cuda
 
 ENV DEBIAN_FRONTEND noninteractive
-# install vncserver
 RUN sudo bash -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros-latest.list' \
  && wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
  && sudo apt-get update \
@@ -26,33 +25,21 @@ ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN sudo chmod +x /bin/tini
 
-
-ARG ROOTFS
-
-COPY "${ROOTFS}" /
+COPY rootfs /
 
 RUN cd /home/autoware \
-  && mkdir .autoware \
-  && cd .autoware \
-  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
-  && tar zxfv sample_moriyama_data.tar.gz \
-  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh
-  #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
-  #&& tar zxfv sample_moriyama_150324.tar.gz
+ && mkdir .autoware \
+ && cd .autoware \
+ && wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_data.tar.gz \
+ && tar zxfv sample_moriyama_data.tar.gz \
+ && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh
 
-#RUN cd ~ \
-#  && cd .autoware \
-  #&& wget https://autoware-ai.s3.us-east-2.amazonaws.com/sample_moriyama_150324.tar.gz \
-  #&& tar zxfv sample_moriyama_150324.tar.gz
-
-#ENV AUTOWARE_COMPILE_WITH_CUDA true
 RUN cd /home/autoware/Autoware/ros \
-  && . /opt/ros/kinetic/setup.sh \
-  && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+ && . /opt/ros/kinetic/setup.sh \
+ && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 RUN sudo chmod o+r+w+x /home/autoware/.autoware \
-  && cd /home/autoware/.autoware \
-  && bash ./my_launch.sh  \
-  && sudo cp -r /home/autoware/.autoware /root/.autoware \
-  #&& sh ./my_launch.sh  \
-  && sudo chmod o+r+w+x /root/
+ && cd /home/autoware/.autoware \
+ && bash ./my_launch.sh  \
+ && sudo cp -r /home/autoware/.autoware /root/.autoware \
+ && sudo chmod o+r+w+x /root/
