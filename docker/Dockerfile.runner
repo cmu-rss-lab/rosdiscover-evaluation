@@ -35,5 +35,7 @@ COPY deps/ deps/
 RUN chown -R rosqual deps/ docker/ scripts/
 USER rosqual
 ENV HOME /home/rosqual
+RUN mkdir -p /home/rosqual/.roswire \
+ && chmod -R 777 /home/rosqual
 RUN pipenv install
 ENTRYPOINT ["pipenv", "run"]
