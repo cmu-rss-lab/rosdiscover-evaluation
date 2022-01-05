@@ -140,22 +140,64 @@ Exit the pipenv shell with:
 You do not need to enter the pipenv shell again for future commands, since those will be using pipenv run
 
 Replicating results for the paper
-================================
-
-To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or 
+=================================
+To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or
 each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
-and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally` 
-as an example, with the experiment defined in `experiments/recovery/subjects/autorally/experiment.yml`. 
+and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally`
+as an example, with the experiment defined in `experiments/recovery/subjects/autorally/experiment.yml`.
+
+You may run the experiments from the host, using the python directly with Python set up as above, or by optionally
+using the `rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container. NOTE: In
+order for this to work, the container will need to connect to the Docker that is running on the host. In the
+instructions below, we give two versions of each command. One, prefixed by `(directly)$` is how to run the command
+from the host; thoe other `(container)$` is how to run the command using the provided helper script that connects to
+the evaluation Docker container. Building this container is shown in the optional step below.
+
+Optional: Use provided docker evaluation image
+----------------------------------------------
+
+For faster startup, we have provided a docker image for running the evaluation scripts, and a shell script for
+connecting to it. To build the docker image, you can either use the saved image data in this package:
+
+.. code::
+
+  $ gunzip containers/evaluation.tgz | docker load
+
+Or build it from scratch:
+
+.. code::
+
+  $ docker/setup.sh
+
+In both cases, you should now have an image `rosqual/icsa22-evaluation:runner`. You can get a list of the commands that can
+be run in the docker version, and the available experiments, by running:
+
+.. code::
+
+  (container)$ ./run.sh help
+  (container)$ ./run.sh list
 
 Build the Docker containers for RQ1 and RQ2
 -------------------------------------------
 
-Our analysis requires robot software to be installed in Docker containers. So, to run the experiments, the containers first need to be built. 
+Our analysis requires robot software to be installed in Docker containers.
+So,to run the experiments, the containers first need to be built.
+
+NOTE: Building the images takes some time. For convenience, we have provided saved images in the `images/`
+directly. You can load all of these by doing:
+
+.. code::
+
+  $ gunzip images/rosdiscover-experiments.tgz | docker load
+
+Alternatively, you can build the experiment images from scratch. In the examples
+
 We provide a script that does this for all our experiments - it generates a Dockerfile and the uses Docker to build the container. To build the container:
 
 .. code::
 
-  $ pipenv run scripts/build-images.py experiments/recovery/subjects/autorally/experiment.yml
+  (directly)$ pipenv run scripts/build-images.py recovery autorally
+  (container)$ ./run.sh build recovery autorally
   2021-11-10 18:18:03.271 | INFO     | __main__:build_image:38 - apt_packages_arg: cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs
   2021-11-10 18:18:03.278 | INFO     | __main__:build_image:53 - building image: docker build -f /code/docker/Dockerfile --build-arg COMMON_ROOTFS=docker/rootfs --build-arg CUDA_VERSION='11-4' --build-arg APT_PACKAGES='cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs' --build-arg BUILD_COMMAND='catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1' --build-arg DIRECTORY=experiments/recovery/subjects/autorally --build-arg ROSINSTALL_FILENAME=pkgs.rosinstall --build-arg DISTRO=melodic . -t rosdiscover-experiments/autorally:c2692f2
   ...
@@ -171,12 +213,17 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
 
 .. code::
 
-  $ pipenv run scripts/recover-node-models.py autorally
-  $ pipenv run scripts/recover-node-models.py autoware
-  $ pipenv run scripts/recover-node-models.py fetch
-  $ pipenv run scripts/recover-node-models.py husky
-  $ pipenv run scripts/recover-node-models.py turtlebot
+  (directly)$ pipenv run scripts/recover-node-models.py autorally
+  (directly)$ pipenv run scripts/recover-node-models.py autoware
+  (directly)$ pipenv run scripts/recover-node-models.py fetch
+  (directly)$ pipenv run scripts/recover-node-models.py husky
+  (directly)$ pipenv run scripts/recover-node-models.py turtlebot
 
+  (container)$ ./run.sh recover-node-models autorally
+  (container)$ ./run.sh recover-node-models autoware
+  (container)$ ./run.sh recover-node-models fetch
+  (container)$ ./run.sh recover-node-models husky
+  (container)$ ./run.sh recover-node-models turtlebot
 
 
 Derive and check architecture for RQ2
@@ -188,7 +235,8 @@ The experimental setups for RQ2 are in the `experiments/recovery/subjects` direc
 
 .. code::
 
-   $ pipenv run scripts/observe-system.py experiments/recovery/subjects/autorally/experiment.yml
+   (directly)$ pipenv run scripts/observe-system.py recovery autorally
+   (contaienr)$ ./run.sh observe recovery autorally
    
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`. 
 
@@ -198,7 +246,8 @@ To check the architecure
 
 .. code::
 
-  $ pipenv run scripts/recover-system.py experiments/recovery/subjects/autorally/experiment.yml
+  (directly)$ pipenv run scripts/recover-system.py recovery autorally
+  (container)$ ./run.sh recovery autorally
   INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
   ...
   INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
@@ -212,7 +261,8 @@ This will process the launch files supplied in the `experiment.yml` and produce 
 
 .. code::
 
-  $ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml 
+  (directly)$ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml
+  (container)$ ./run.sh check observed recovery autorally
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -227,7 +277,8 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
   
 .. code::
 
-  $ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml 
+  (directly)$ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml
+  (container)$ ./run.sh check recovered recovery autorally
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -243,8 +294,9 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
   
 .. code::
 
-  $ pipenv run scripts/compare-recovered-observed.py recovered experiments/recovery/subjects/autorally/experiment.yml 
-  
+  (directly)$ pipenv run scripts/compare-recovered-observed.py  recovery autorally
+  (container)$ ./run.sh compare recovery autorally
+
 The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
@@ -263,14 +315,16 @@ To run configuration mismatch bugs for RQ3 involves building another set of Dock
 
 .. code::
 
-  $ pipenv run scripts/build-images.py experiments/detection/subjects/autorally-01/experiment.yml
+  (directly)$ pipenv run scripts/build-images.py detection autorally-01
+  (container)$ ./run.sh build detection autorally-01
   ...
   
 To check that the error is detected in the buggy version, and disappears in the fixed version:
 
 .. code::
 
-  $ pipenv scripts/check-architecture.py detected experiments/detection/subjects/autorally-01/experiment.yml
+  (directly)$ pipenv scripts/check-architecture.py detected detection autorally-01
+  (container)$ ./run.sh check detected detection autorally-01
 
 One complication for replicating RQ3 is that it sometimes wasn't possible to restore the version of the robot software at the time that the bug was extant. Instead, we forward ported these bugs into the docker images from RQ1&2. Unfortunately, seeding the bugs is currently not yet as automated as the rest of the replication package - the docker images will need to be built explicitly. For the cases in which we needed to forward port, we included a separate experiment definition (e.g., `experiment-reproduced.yml` and a Dockerfile each to build the buggy version that seeds the error into the correct containers, and the fixed version (in cases it needed to be different from the original version). To build these requires using the Docker command explicitly, e.g., for `husky-04`:
 

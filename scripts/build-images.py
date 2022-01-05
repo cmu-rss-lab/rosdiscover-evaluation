@@ -9,8 +9,8 @@ import typing as t
 from loguru import logger
 
 from common.config import (
-    DetectionExperimentConfig,
-    RecoveryExperimentConfig,
+    configuration_to_experiment_file, DetectionExperimentConfig,
+    ExperimentConfig, RecoveryExperimentConfig,
     load_config,
     find_configs,
 )
@@ -110,12 +110,15 @@ def build_all_images() -> None:
 
 def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     parser = argparse.ArgumentParser("Builds Docker images for experiments")
-    parser.add_argument("filename", help="the file for the experiment")
+    parser.add_argument('kind', type=str, choices=['recovery', 'detection', 'all'],
+                        help='The kind of experiment (recovery or detection')
+    parser.add_argument('system', type=str, default="all", help='The system to use')
     parsed_args = parser.parse_args(args)
-    if parsed_args.filename == "all":
-        build_all_images()
+    if parsed_args.kind == "all":
+        if parsed_args.experiment == "all":
+            build_all_images()
     else:
-        build_images_for_experiment(parsed_args.filename)
+        build_images_for_experiment(configuration_to_experiment_file(parsed_args.kind, parsed_args.system))
 
 
 if __name__ == "__main__":

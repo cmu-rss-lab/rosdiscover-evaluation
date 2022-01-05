@@ -13,7 +13,7 @@ import rosdiscover
 import rosdiscover.cli
 
 from common.config import (
-    ExperimentConfig,
+    configuration_to_experiment_file, ExperimentConfig,
     RecoveryExperimentConfig,
     ROSDiscoverConfig,
     load_config
@@ -114,12 +114,12 @@ def main() -> None:
 
     parser = argparse.ArgumentParser("dynamically recovers ROS system architectures")
     parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for this experiment",
+        "system",
+        help="the system to observe",
     )
     args = parser.parse_args()
 
-    experiment_filename: str = args.configuration
+    experiment_filename: str = configuration_to_experiment_file("recovery", args.system)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
