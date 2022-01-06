@@ -21,6 +21,8 @@ import typing as t
 from loguru import logger
 import yaml
 
+EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
+
 
 class NodeSources(t.TypedDict):
     package: str
@@ -146,11 +148,11 @@ def find_configs() -> t.Iterator[str]:
 def configuration_to_results_directory(experiment_kind: str, subject: str, results_dir: str) -> str:
     if pathlib.Path(results_dir).is_absolute():
         return results_dir
-    return str(pathlib.Path(__file__).parent.parent.parent / results_dir / experiment_kind / 'subjects' / subject)
+    return str(pathlib.Path(EVALUATION_DIR) / results_dir / experiment_kind / 'subjects' / subject)
 
 
 def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
-    subject_dir = pathlib.Path(__file__).parent.parent.parent / "experiment" / experiment / "subjects"
+    subject_dir = pathlib.Path(EVALUATION_DIR) / "experiment" / experiment / "subjects"
     experiment_path = subject_dir / system / experiment_file
 
     if not experiment_path.is_file():
