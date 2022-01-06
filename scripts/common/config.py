@@ -133,13 +133,15 @@ def determine_results_directory(file_path: pathlib.Path, results_dir: str) -> st
     if pathlib.Path(results_dir).is_absolute():
         results_directory = results_dir
     else:
+        if file_path.is_absolute():
+            file_path = file_path.relative_to(pathlib.Path('.').absolute())
         # Make it the root of filename. i.e., if the
         # if the filename is experiments/a/b/c/experiment.yml
         # results should be results/a/b/c
         if len(file_path.parent.parts) > 1:
-            results = pathlib.Path(*file_path.parent.parts[1:])
+            results = pathlib.Path(results_dir) / pathlib.Path(*file_path.parent.parts[1:])
         else:
-            results = file_path.parent
+            results = pathlib.Path(results_dir) / file_path.parent
         # Ensure that the results directory exists
         os.makedirs(results, exist_ok=True)
         results_directory = str(results.absolute())
