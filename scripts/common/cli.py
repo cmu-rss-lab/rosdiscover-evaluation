@@ -7,5 +7,5 @@ def add_common_options(parser: argparse.ArgumentParser) -> None:
         '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
     )
     parser.add_argument(
-        '-r', '--results_dir', type=str, default='results', help='Where to put the results (logs, etc.)'
+        '-r', '--results_dir', type=str, default='results', help='The root directory in which to place results'
     )
