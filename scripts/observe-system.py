@@ -7,6 +7,8 @@ import typing as t
 
 from loguru import logger
 
+from common.cli import add_common_options
+
 logger.remove()
 
 import rosdiscover
@@ -117,9 +119,7 @@ def main() -> None:
         "system",
         help="the system to observe",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+    add_common_options(parser)
     args = parser.parse_args()
 
     experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)

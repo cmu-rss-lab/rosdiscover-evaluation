@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-from concurrent.futures import ThreadPoolExecutor
 import abc
 import argparse
 import contextlib
@@ -12,8 +11,12 @@ import os
 import sys
 import tempfile
 import typing as t
+from concurrent.futures import ThreadPoolExecutor
 
 from loguru import logger
+
+from common.cli import add_common_options
+
 logger.remove()
 
 from rosdiscover.recover.call import SymbolicRosApiCall
@@ -414,9 +417,7 @@ def main() -> None:
         "configuration",
         help="the path to the configuration file for the system",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+    add_common_options(parser)
     args = parser.parse_args()
 
     # enable logging

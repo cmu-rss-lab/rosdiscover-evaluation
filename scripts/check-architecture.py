@@ -9,6 +9,7 @@ import typing as t
 from loguru import logger
 
 from common.acme import get_acme_errors
+from common.cli import add_common_options
 
 logger.remove()
 
@@ -114,16 +115,15 @@ def main():
         "configuration",
         help="the path to the configuration file for this experiment",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+
+    add_common_options(parser)
     args = parser.parse_args()
     experiment_dir = "detection" if args.kind == 'detected' else 'recovery'
 
     experiment_filename: str = configuration_to_experiment_file(experiment_dir, args.configuration, args.experiment)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename)
+    config = load_config(experiment_filename, args.results_dir)
 
     check(config, args.kind)
 

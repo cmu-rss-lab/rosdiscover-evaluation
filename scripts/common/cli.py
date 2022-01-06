@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+import argparse
+
+
+def add_common_options(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
+    )
+

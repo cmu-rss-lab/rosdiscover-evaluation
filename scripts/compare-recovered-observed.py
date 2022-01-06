@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+import csv
 import os
 import sys
-import csv
-
 import typing as t
 
 import attr
 import yaml
 from loguru import logger
 
-from common.acme import THINGS_TO_IGNORE, get_acme_errors
+from common.acme import get_acme_errors, THINGS_TO_IGNORE
+from common.cli import add_common_options
 from common.config import configuration_to_experiment_file, ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -473,9 +473,7 @@ def main() -> None:
         help="the system to use for comparing architectures. "
              "(Note, assumed that observe and recover have been run)",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+    add_common_options(parser)
     args = parser.parse_args()
     experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
     if not os.path.exists(experiment_filename):
