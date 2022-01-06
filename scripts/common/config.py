@@ -111,9 +111,9 @@ def load_config(experiment_kind: str, subject: str, experiment_filename: str, re
 
 
 def load_config_from_yml(config_file):
-    if not pathlib.Path(config_file).exists():
-        raise ValueError(f"Could not find experiment configuration file '{config_file}")
     file_path = pathlib.Path(config_file)
+    if not file_path.exists():
+        raise ValueError(f"Could not find experiment configuration file '{config_file}")
     abs_filepath = file_path.absolute()
     experiment_directory = abs_filepath.parent
     if not os.path.exists(config_file):
@@ -152,13 +152,13 @@ def configuration_to_results_directory(experiment_kind: str, subject: str, resul
     return str(pathlib.Path(EVALUATION_DIR) / results_dir / experiment_kind / 'subjects' / subject)
 
 
-def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
-    subject_dir = pathlib.Path(EVALUATION_DIR) / "experiments" / experiment / "subjects"
+def configuration_to_experiment_file(experiment_kind: str, system: str, experiment_file: str) -> str:
+    subject_dir = pathlib.Path(EVALUATION_DIR) / "experiments" / experiment_kind / "subjects"
     experiment_path = subject_dir / system / experiment_file
 
     if not experiment_path.is_file():
         valid_experiments = "\n  ".join(os.listdir(subject_dir))
-        raise ValueError(f"'{experiment}':'{system}' combination not found. Couldn't find file {experiment_path}. "
+        raise ValueError(f"'{experiment_kind}':'{system}' combination not found. Couldn't find file {experiment_path}. "
                          f"Valid systems are:\n  "
                          f"{valid_experiments}")
 
