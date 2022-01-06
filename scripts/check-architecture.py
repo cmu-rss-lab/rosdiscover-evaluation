@@ -84,11 +84,12 @@ def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str
 
 def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    input_filename = os.path.join(results_directory, f"{kind}.architecture.yml")
 
-    acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
-    acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
+    acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
+    acme_log_filename = os.path.join(results_directory, f"acme-and-check-{kind}.txt")
     generate_and_check_acme(
         image=config["image"],
         input_filename=input_filename,
