@@ -437,12 +437,8 @@ def main() -> None:
     if args.package and not args.node:
         error(f"expected node name to be specified along with package [{args.package}]")
 
-    experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-
     # load experiment config
-    config = load_config(experiment_filename, args.results_dir)
+    config = load_config("recovery", args.system, args.experiment, args.results_dir)
     if config["type"] != "recovery":
         error(f"this script can only be run on recovery experiments")
 

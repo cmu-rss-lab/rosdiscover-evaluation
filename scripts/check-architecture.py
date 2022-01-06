@@ -122,10 +122,7 @@ def main():
     args = parser.parse_args()
     experiment_dir = "detection" if args.kind == 'detected' else 'recovery'
 
-    experiment_filename: str = configuration_to_experiment_file(experiment_dir, args.configuration, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename, args.results_dir)
+    config = load_config(experiment_dir, args.configuration, args.experiment, args.results_dir)
 
     check(config, args.kind)
 

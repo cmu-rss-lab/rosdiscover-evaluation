@@ -476,10 +476,8 @@ def main() -> None:
     )
     add_common_options(parser)
     args = parser.parse_args()
-    experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename, args.results_dir)
+
+    config = load_config("recovery", args.system, args.experiment, args.results_dir)
     compare(config)
 
 

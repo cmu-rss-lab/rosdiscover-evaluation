@@ -99,19 +99,22 @@ class DetectionExperimentConfig(ExperimentConfig):
     errors: t.Sequence[str]
 
 
-def load_config(filename: str, results_dir: str) -> ExperimentConfig:
-    file_path = pathlib.Path(filename)
-    abs_filename = file_path.absolute()
-    experiment_directory = abs_filename.parent
-    results_directory = determine_results_directory(file_path, results_dir)
+def load_config(experiment_kind: str, subject: str, experiment_filename: str, results_dir: str) -> ExperimentConfig:
+    config_file = configuration_to_experiment_file(experiment_kind, subject, experiment_filename)
+    if not pathlib.Path(config_file).exists():
+        raise ValueError(f"Could not find experiment configuration file '{config_file}")
+    file_path = pathlib.Path(config_file)
+    abs_filepath = file_path.absolute()
+    experiment_directory = abs_filepath.parent
+    results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
 
-    if not os.path.exists(filename):
-        raise ValueError(f"experiment file not found: {filename}")
+    if not os.path.exists(config_file):
+        raise ValueError(f"experiment file not found: {config_file}")
 
-    with open(filename) as fh:
+    with open(config_file) as fh:
         config = yaml.safe_load(fh)
 
-    config["filename"] = str(abs_filename)
+    config["filename"] = str(abs_filepath)
     config["directory"] = experiment_directory
     config["results_directory"] = results_directory
     config["node_sources"] = config.get("node_sources") or []
@@ -129,25 +132,6 @@ def load_config(filename: str, results_dir: str) -> ExperimentConfig:
     return config
 
 
-def determine_results_directory(file_path: pathlib.Path, results_dir: str) -> str:
-    if pathlib.Path(results_dir).is_absolute():
-        results_directory = results_dir
-    else:
-        if file_path.is_absolute():
-            file_path = file_path.relative_to(pathlib.Path('.').absolute())
-        # Make it the root of filename. i.e., if the
-        # if the filename is experiments/a/b/c/experiment.yml
-        # results should be results/a/b/c
-        if len(file_path.parent.parts) > 1:
-            results = pathlib.Path(results_dir) / pathlib.Path(*file_path.parent.parts[1:])
-        else:
-            results = pathlib.Path(results_dir) / file_path.parent
-        # Ensure that the results directory exists
-        os.makedirs(results, exist_ok=True)
-        results_directory = str(results.absolute())
-    return results_directory
-
-
 def find_configs() -> t.Iterator[str]:
     """Returns an iterator over the absolute paths of all of the experiment config
     files in this replication package."""
@@ -157,6 +141,10 @@ def find_configs() -> t.Iterator[str]:
         for filename in files:
             if re.match(r"experiment.*\.yml", filename):
                 yield os.path.join(root, filename)
+
+
+def configuration_to_results_directory(experiment_kind: str, subject: str, results_dir: str) -> str:
+    return str(pathlib.Path(__file__).parent.parent.parent / results_dir / experiment_kind / 'subjects' / subject)
 
 
 def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
