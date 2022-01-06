@@ -150,12 +150,13 @@ def configuration_to_results_directory(experiment_kind: str, subject: str, resul
 
 
 def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
-    subject_dir = os.path.join(os.path.dirname(__file__), '../../experiments', experiment, 'subjects')
-    experiment_dir = os.path.join(subject_dir, system, experiment_file)
-    if not os.path.isfile(experiment_dir):
+    subject_dir = pathlib.Path(__file__).parent.parent.parent / "experiment" / experiment / "subjects"
+    experiment_path = subject_dir / system / experiment_file
+
+    if not experiment_path.is_file():
         valid_experiments = "\n  ".join(os.listdir(subject_dir))
-        raise ValueError(f"'{experiment}':'{system}' combination not found. Couldn't find file {experiment_dir}. "
+        raise ValueError(f"'{experiment}':'{system}' combination not found. Couldn't find file {experiment_path}. "
                          f"Valid systems are:\n  "
                          f"{valid_experiments}")
 
-    return os.path.normpath(experiment_dir)
+    return str(experiment_path)
