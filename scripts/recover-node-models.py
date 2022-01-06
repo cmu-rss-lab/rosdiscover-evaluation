@@ -317,7 +317,7 @@ def recover_node_from_sources(
     experiment_directory = experiment_config["directory"]
     results_directory = experiment_config["results_directory"]
     # TODO: Should generated models go in results or with the experiment?
-    models_directory = os.path.join(experiment_directory, "models")
+    models_directory = os.path.join(results_directory, "models")
     logs_directory = os.path.join(results_directory, "logs")
     os.makedirs(models_directory, exist_ok=True)
     os.makedirs(logs_directory, exist_ok=True)
