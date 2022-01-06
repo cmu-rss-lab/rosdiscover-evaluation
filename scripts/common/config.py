@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 __all__ = (
+    "CustomDockerInstructions",
     "DetectionExperimentConfig",
+    "DockerInstructions",
     "ExperimentConfig",
     "NodeSources",
     "ROSDiscoverConfig",
     "RecoveryExperimentConfig",
     "RepoVersion",
     "SystemVersion",
+    "TemplatedDockerInstructions",
     "find_configs",
     "load_config",
 )
@@ -24,6 +27,20 @@ import yaml
 EVALUATION_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
+class DockerInstructions(t.TypedDict):
+    type: t.Union[t.Literal["templated"], t.Literal["custom"]]
+    image: str
+
+
+class TemplatedDockerInstructions(DockerInstructions):
+    pass
+
+
+class CustomDockerInstructions(DockerInstructions):
+    context: str
+    file: str
+
+
 class NodeSources(t.TypedDict):
     package: str
     node: str
@@ -35,6 +52,7 @@ class NodeSources(t.TypedDict):
 
 class ROSDiscoverConfig(t.TypedDict):
     image: str
+    docker: DockerInstructions
     subject: str
     sources: t.Sequence[str]
     launches: t.Sequence[str]
@@ -47,7 +65,6 @@ class ROSDiscoverConfig(t.TypedDict):
             yaml.dump(config, fh, default_flow_style=False)
         with open(filename, "r") as fh:
             logger.debug(f"generated ROSDiscover config file [{filename}]:\n{fh.read()}")
-
 
     @classmethod
     @contextlib.contextmanager
