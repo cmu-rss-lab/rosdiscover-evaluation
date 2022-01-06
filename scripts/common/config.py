@@ -13,6 +13,7 @@ __all__ = (
 
 import contextlib
 import os
+import pathlib
 import re
 import tempfile
 import typing as t
@@ -98,9 +99,23 @@ class DetectionExperimentConfig(ExperimentConfig):
     errors: t.Sequence[str]
 
 
-def load_config(filename: str) -> ExperimentConfig:
-    abs_filename = os.path.abspath(filename)
-    experiment_directory = os.path.dirname(abs_filename)
+def load_config(filename: str, results_dir: str) -> ExperimentConfig:
+    file_path = pathlib.Path(filename)
+    abs_filename = file_path.absolute()
+    experiment_directory = abs_filename.parent
+    if pathlib.Path(results_dir).is_absolute():
+        results_directory = results_dir
+    else:
+        # Make it the root of filename. i.e., if the
+        # if the filename is experiments/a/b/c/experiment.yml
+        # results should be results/a/b/c
+        if len(file_path.parent.parts) > 1:
+            results = pathlib.Path(*file_path.parent.parts[1:])
+        else:
+            results = file_path.parent
+        # Ensure that the results directory exists
+        os.makedirs(results, exist_ok=True)
+        results_directory = str(results.absolute())
 
     if not os.path.exists(filename):
         raise ValueError(f"experiment file not found: {filename}")
@@ -110,6 +125,7 @@ def load_config(filename: str) -> ExperimentConfig:
 
     config["filename"] = abs_filename
     config["directory"] = experiment_directory
+    config["results_directory"] = results_directory
     config["node_sources"] = config.get("node_sources") or []
     config["environment"] = config.get("environment") or {}
     config["reproducer"] = config.get("reproducer") or {}
