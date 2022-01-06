@@ -103,19 +103,7 @@ def load_config(filename: str, results_dir: str) -> ExperimentConfig:
     file_path = pathlib.Path(filename)
     abs_filename = file_path.absolute()
     experiment_directory = abs_filename.parent
-    if pathlib.Path(results_dir).is_absolute():
-        results_directory = results_dir
-    else:
-        # Make it the root of filename. i.e., if the
-        # if the filename is experiments/a/b/c/experiment.yml
-        # results should be results/a/b/c
-        if len(file_path.parent.parts) > 1:
-            results = pathlib.Path(*file_path.parent.parts[1:])
-        else:
-            results = file_path.parent
-        # Ensure that the results directory exists
-        os.makedirs(results, exist_ok=True)
-        results_directory = str(results.absolute())
+    results_directory = determine_results_directory(file_path, results_dir)
 
     if not os.path.exists(filename):
         raise ValueError(f"experiment file not found: {filename}")
@@ -123,7 +111,7 @@ def load_config(filename: str, results_dir: str) -> ExperimentConfig:
     with open(filename) as fh:
         config = yaml.safe_load(fh)
 
-    config["filename"] = abs_filename
+    config["filename"] = str(abs_filename)
     config["directory"] = experiment_directory
     config["results_directory"] = results_directory
     config["node_sources"] = config.get("node_sources") or []
@@ -139,6 +127,23 @@ def load_config(filename: str, results_dir: str) -> ExperimentConfig:
         config["errors"] = config.get("errors") or []
 
     return config
+
+
+def determine_results_directory(file_path: pathlib.Path, results_dir: str) -> str:
+    if pathlib.Path(results_dir).is_absolute():
+        results_directory = results_dir
+    else:
+        # Make it the root of filename. i.e., if the
+        # if the filename is experiments/a/b/c/experiment.yml
+        # results should be results/a/b/c
+        if len(file_path.parent.parts) > 1:
+            results = pathlib.Path(*file_path.parent.parts[1:])
+        else:
+            results = file_path.parent
+        # Ensure that the results directory exists
+        os.makedirs(results, exist_ok=True)
+        results_directory = str(results.absolute())
+    return results_directory
 
 
 def find_configs() -> t.Iterator[str]:
