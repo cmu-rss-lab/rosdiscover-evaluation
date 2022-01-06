@@ -9,7 +9,7 @@ while true; do
   read -p "Would you like to build the image for the Autoware recovery experiment? " yn
   case $yn in
     [Yy]* ) docker build -f "${DOCKERFILE_AUTOWARE}" -t rosdiscover-experiments/autoware:static "${HERE_DIR}"; break;;
-    [Nn]* ) exit;;
+    [Nn]* ) echo "Skipping build of Autoware recovery experiment"; break;;
     * ) echo "> Please answer yes or no: ";;
   esac
 done
