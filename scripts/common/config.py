@@ -149,7 +149,7 @@ def find_configs() -> t.Iterator[str]:
 def configuration_to_results_directory(experiment_kind: str, subject: str, results_dir: str) -> str:
     if pathlib.Path(results_dir).is_absolute():
         return results_dir
-    return str(pathlib.Path(EVALUATION_DIR) / results_dir / experiment_kind / 'subjects' / subject)
+    return str(pathlib.Path(results_dir) / experiment_kind / 'subjects' / subject)
 
 
 def configuration_to_experiment_file(experiment_kind: str, system: str, experiment_file: str) -> str:
