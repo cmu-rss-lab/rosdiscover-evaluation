@@ -105,12 +105,12 @@ def load_config(experiment_kind: str, subject: str, experiment_filename: str, re
     results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
     os.makedirs(results_directory, exist_ok=True)
     config_file = configuration_to_experiment_file(experiment_kind, subject, experiment_filename)
-    config = load_config_from_yml(config_file)
+    config = load_config_from_file(config_file)
     config["results_directory"] = results_directory
     return config
 
 
-def load_config_from_yml(config_file):
+def load_config_from_file(config_file):
     file_path = pathlib.Path(config_file)
     if not file_path.exists():
         raise ValueError(f"Could not find experiment configuration file '{config_file}")

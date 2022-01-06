@@ -14,7 +14,7 @@ from common.config import (
     ExperimentConfig,
     find_configs,
     load_config,
-    load_config_from_yml,
+    load_config_from_file,
     RecoveryExperimentConfig,
 )
 
@@ -111,7 +111,7 @@ def build_images_for_experiment_config(config):
 
 def build_all_images() -> None:
     for experiment_filename in find_configs():
-        config: ExperimentConfig = load_config_from_yml(experiment_filename)
+        config: ExperimentConfig = load_config_from_file(experiment_filename)
         build_images_for_experiment_config(config)
 
 
