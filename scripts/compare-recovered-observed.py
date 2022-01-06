@@ -191,7 +191,7 @@ def compare(config: ExperimentConfig) -> None:
     observed_yml_file = os.path.join(results_directory, "observed.architecture.yml")
     recovered_yml_file = os.path.join(results_directory, "recovered.architecture.yml")
 
-    comparison_file = os.path.join(results_directory, "compare.observed-recovered.log")
+    comparison_file = os.path.join(results_directory, "compare.observed-recovered.txt")
     comparison_csv = os.path.join(results_directory, "observed.recoverd.compare.csv")
     errors_both_csv = os.path.join(results_directory, "observed.recovered.errors.csv")
     if not os.path.exists(observed_yml_file):
@@ -302,8 +302,8 @@ def compare(config: ExperimentConfig) -> None:
         f.write("\nCannot observe service clients")
 
     # process the errors
-    observed_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-observed.log"))
-    recovered_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-recovered.log"))
+    observed_errors = get_acme_errors(os.path.join(results_directory, "acme-and-check-observed.txt"))
+    recovered_errors = get_acme_errors(os.path.join(results_directory, "acme-and-check-recovered.txt"))
 
     hw_p = set(p[1:] for p in provenance("handwritten", recovered_architecture))
     re_p = set(p[1:] for p in provenance("recovered", recovered_architecture))
