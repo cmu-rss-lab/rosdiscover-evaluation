@@ -22,6 +22,46 @@ DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 DOCKERFILE_PATH = os.path.join(DOCKER_DIR, "Dockerfile")
 
 
+def build_templated_image(
+    image: str,
+    directory: str,
+    distro: str,
+    rosinstall_filename: str,
+    build_command: str,
+    apt_packages: t.Optional[t.Sequence[str]],
+    cuda_version,
+) -> None:
+    assert os.path.exists(directory)
+
+    if not apt_packages:
+        apt_packages = []
+
+    apt_packages_arg = " ".join(apt_packages)
+    logger.info(f"apt_packages_arg: {apt_packages_arg}")
+
+    rel_experiment_dir = os.path.relpath(directory, EVALUATION_DIR)
+    os.makedirs(os.path.join(experiment_dir, "docker"), exist_ok=True)
+
+    command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
+    command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
+    command_args += ["--build-arg", f"CUDA_VERSION='{cuda_version}'"]
+    command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
+    command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
+    command_args += ["--build-arg", f"DIRECTORY={rel_experiment_dir}"]
+    command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
+    command_args += ["--build-arg", f"DISTRO={distro}"]
+    command_args += ["."]
+    command_args += ["-t", image]
+    command = " ".join(command_args)
+
+    logger.info(f"building image: {command}")
+    outcome = subprocess.run(command, cwd=EVALUATION_DIR, shell=True)
+    if outcome.returncode == 0:
+        logger.info(f"successfully built image: {image}")
+    else:
+        logger.error(f"failed to build image: {image}")
+
+
 def build_image(
     image: str,
     directory: str,
@@ -38,14 +78,16 @@ def build_image(
 
     apt_packages_arg = " ".join(apt_packages)
     logger.info(f"apt_packages_arg: {apt_packages_arg}")
-    experimentDir = os.path.relpath(directory, EVALUATION_DIR)
-    os.makedirs(os.path.join(experimentDir,"docker"), exist_ok=True)
+
+    rel_experiment_dir = os.path.relpath(directory, EVALUATION_DIR)
+    os.makedirs(os.path.join(experiment_dir, "docker"), exist_ok=True)
+
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
     command_args += ["--build-arg", f"CUDA_VERSION='{cuda_version}'"]
     command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
     command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
-    command_args += ["--build-arg", f"DIRECTORY={experimentDir}"]
+    command_args += ["--build-arg", f"DIRECTORY={rel_experiment_dir}"]
     command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
     command_args += ["--build-arg", f"DISTRO={distro}"]
     command_args += ["."]
