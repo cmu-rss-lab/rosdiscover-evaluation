@@ -222,8 +222,8 @@ def obtain_node_sources(
     should_cache: bool = True,
 ) -> t.Mapping[t.Tuple[str, str], NodeSources]:
     config_with_node_sources_filename = experiment_config["config_with_node_sources_filename"]
-    experiment_directory = experiment_config["directory"]
-    logs_directory = os.path.join(experiment_directory, "logs")
+    results_directory = experiment_config["results_directory"]
+    logs_directory = os.path.join(results_directory, "logs")
     os.makedirs(logs_directory, exist_ok=True)
     log_filename = os.path.join(logs_directory, f"obtain_node_sources.log")
     file_logger = logger.add(log_filename, level="DEBUG")
@@ -279,7 +279,7 @@ def recover_all(
 
     logger.info("recovered all node models for system")
 
-    summary_filename = os.path.join(experiment_config["directory"], "recovered-models.csv")
+    summary_filename = os.path.join(experiment_config["results_directory"], "recovered-models.csv")
     logger.info(f"writing summary to disk: {summary_filename}")
     summaries.save(summary_filename)
     logger.info("wrote summary to disk")
@@ -315,8 +315,10 @@ def recover_node_from_sources(
 
     # ensure that a models output directory exists for this system
     experiment_directory = experiment_config["directory"]
+    results_directory = experiment_config["results_directory"]
+    # TODO: Should generated models go in results or with the experiment?
     models_directory = os.path.join(experiment_directory, "models")
-    logs_directory = os.path.join(experiment_directory, "logs")
+    logs_directory = os.path.join(results_directory, "logs")
     os.makedirs(models_directory, exist_ok=True)
     os.makedirs(logs_directory, exist_ok=True)
     model_filename = os.path.join(models_directory, f"{package}__{node}.json")
@@ -440,7 +442,7 @@ def main() -> None:
         error(f"configuration file not found: {experiment_filename}")
 
     # load experiment config
-    config = load_config(experiment_filename)
+    config = load_config(experiment_filename, args.results_dir)
     if config["type"] != "recovery":
         error(f"this script can only be run on recovery experiments")
 

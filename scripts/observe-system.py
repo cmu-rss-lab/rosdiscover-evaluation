@@ -35,12 +35,13 @@ def _error_not_supported(config: RecoveryExperimentConfig) -> None:
 
 def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    output_filename = os.path.join(config_directory, "observed.architecture.yml")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    output_filename = os.path.join(results_directory, "observed.architecture.yml")
     log_filename = os.path.join(log_directory, "system-observed.log")
     run_script_filename = None
     if "run_script" in config and config["run_script"] is not None:
-        run_script_filename = os.path.join(config_directory, "run.while.observing.sh")
+        run_script_filename = os.path.join(results_directory, "run.while.observing.sh")
         with open(run_script_filename, 'w') as f:
             f.write("#!/bin/bash\n")
             for source in config["sources"]:
@@ -126,7 +127,7 @@ def main() -> None:
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
-    config = load_config(experiment_filename)
+    config = load_config(experiment_filename, args.results_dir)
     observe(config)
 
 

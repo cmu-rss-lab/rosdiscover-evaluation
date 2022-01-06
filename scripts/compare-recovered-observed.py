@@ -187,12 +187,13 @@ def compare(config: ExperimentConfig) -> None:
         error('This command only works for "recovery" experiments')
 
     config_directory = config["directory"]
-    observed_yml_file = os.path.join(config_directory, "observed.architecture.yml")
-    recovered_yml_file = os.path.join(config_directory, "recovered.architecture.yml")
+    results_directory = config["results_directory"]
+    observed_yml_file = os.path.join(results_directory, "observed.architecture.yml")
+    recovered_yml_file = os.path.join(results_directory, "recovered.architecture.yml")
 
-    comparison_file = os.path.join(config_directory, "compare.observed-recovered.log")
-    comparison_csv = os.path.join(config_directory, "observed.recoverd.compare.csv")
-    errors_both_csv = os.path.join(config_directory, "observed.recovered.errors.csv")
+    comparison_file = os.path.join(results_directory, "compare.observed-recovered.log")
+    comparison_csv = os.path.join(results_directory, "observed.recoverd.compare.csv")
+    errors_both_csv = os.path.join(results_directory, "observed.recovered.errors.csv")
     if not os.path.exists(observed_yml_file):
         error(f"[{observed_yml_file} not found. Perhaps observe-system was not run for "
               f"this configuration.")
@@ -478,7 +479,7 @@ def main() -> None:
     experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename)
+    config = load_config(experiment_filename, args.results_dir)
     compare(config)
 
 

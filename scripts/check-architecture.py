@@ -31,12 +31,13 @@ def check(config: ExperimentConfig, kind: str) -> None:
 
 def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    detection_report_csv = os.path.join(config_directory, "error-report.csv")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    detection_report_csv = os.path.join(results_directory, "error-report.csv")
 
     for kind in ("buggy", "fixed"):
-        input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
-        acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
+        input_filename = os.path.join(results_directory, f"{kind}.architecture.yml")
+        acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
         acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
         generate_and_check_acme(
             image=config[kind]["image"],
