@@ -16,7 +16,7 @@ import rosdiscover
 
 from common.config import (
     RecoveryExperimentConfig,
-    load_config,
+    load_config_from_file,
 )
 
 
@@ -38,7 +38,7 @@ def find_unreachables(
         experiment_directory,
         "experiment.yml",
     )
-    config = load_config(config_filename)
+    config = load_config_from_file(config_filename)
 
     # locate the saved model file
     model_filename = os.path.join(
