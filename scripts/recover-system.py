@@ -172,7 +172,7 @@ def main() -> None:
     if not os.path.exists(experiment_filename):
         error(f"configuration file not found: {experiment_filename}")
 
-    config = load_config(experiment_filename, args.result_dir)
+    config = load_config(experiment_filename, args.results_dir)
     recover(config)
 
 
