@@ -236,7 +236,7 @@ The experimental setups for RQ2 are in the `experiments/recovery/subjects` direc
 .. code::
 
    (directly)$ pipenv run scripts/observe-system.py autorally
-   (contaienr)$ ./run.sh observe autorally
+   (container)$ ./run.sh observe autorally
    
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`. 
 
