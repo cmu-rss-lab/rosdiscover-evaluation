@@ -13,6 +13,7 @@ __all__ = (
 
 import contextlib
 import os
+import re
 import tempfile
 import typing as t
 
@@ -131,13 +132,13 @@ def find_configs() -> t.Iterator[str]:
     dir_replication_package = os.path.dirname(dir_scripts)
     for root, _dirs, files in os.walk(dir_replication_package):
         for filename in files:
-            if filename == "experiment.yml":
+            if re.match(r"experiment.*\.yml", filename):
                 yield os.path.join(root, filename)
 
 
-def configuration_to_experiment_file(experiment: str, system: str) -> str:
+def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
     subject_dir = os.path.join(os.path.dirname(__file__), '../../experiments', experiment, 'subjects')
-    experiment_dir = os.path.join(subject_dir, system, 'experiment.yml')
+    experiment_dir = os.path.join(subject_dir, system, experiment_file)
     if not os.path.isfile(experiment_dir):
         valid_experiments = "\n  ".join(os.listdir(subject_dir))
         raise ValueError(f"'{experiment}':'{system}' combination not found. Couldn't find file {experiment_dir}. "
