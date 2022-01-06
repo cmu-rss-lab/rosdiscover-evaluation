@@ -102,27 +102,29 @@ class DetectionExperimentConfig(ExperimentConfig):
 
 
 def load_config(experiment_kind: str, subject: str, experiment_filename: str, results_dir: str) -> ExperimentConfig:
+    results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
+    os.makedirs(results_directory, exist_ok=True)
     config_file = configuration_to_experiment_file(experiment_kind, subject, experiment_filename)
+    config = load_config_from_yml(config_file)
+    config["results_directory"] = results_directory
+    return config
+
+
+def load_config_from_yml(config_file):
     if not pathlib.Path(config_file).exists():
         raise ValueError(f"Could not find experiment configuration file '{config_file}")
     file_path = pathlib.Path(config_file)
     abs_filepath = file_path.absolute()
     experiment_directory = abs_filepath.parent
-    results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
-
     if not os.path.exists(config_file):
         raise ValueError(f"experiment file not found: {config_file}")
-
     with open(config_file) as fh:
         config = yaml.safe_load(fh)
-
     config["filename"] = str(abs_filepath)
     config["directory"] = experiment_directory
-    config["results_directory"] = results_directory
     config["node_sources"] = config.get("node_sources") or []
     config["environment"] = config.get("environment") or {}
     config["reproducer"] = config.get("reproducer") or {}
-
     if config["type"] == "recovery":
         config["config_with_node_sources_filename"] = os.path.join(
             config["directory"],
@@ -130,7 +132,6 @@ def load_config(experiment_kind: str, subject: str, experiment_filename: str, re
         )
     if config["type"] == "detection":
         config["errors"] = config.get("errors") or []
-
     return config
 
 

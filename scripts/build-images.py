@@ -10,11 +10,13 @@ from loguru import logger
 
 from common.config import (
     DetectionExperimentConfig,
-    ExperimentConfig, RecoveryExperimentConfig,
-    load_config,
+    EVALUATION_DIR,
+    ExperimentConfig,
     find_configs,
+    load_config,
+    load_config_from_yml,
+    RecoveryExperimentConfig,
 )
-from common.config import EVALUATION_DIR
 
 DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 DOCKERFILE_PATH = os.path.join(DOCKER_DIR, "Dockerfile")
@@ -94,6 +96,10 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
 def build_images_for_experiment(kind: str, system: str, experiment_file: str) -> None:
     logger.info(f"building images for experiment: {kind} / {system}")
     config: ExperimentConfig = load_config(kind, system, experiment_file)
+    build_images_for_experiment_config(config)
+
+
+def build_images_for_experiment_config(config):
     if config["type"] == "detection":
         build_images_for_detection_experiment(config)
     elif config["type"] == "recovery":
@@ -105,7 +111,8 @@ def build_images_for_experiment(kind: str, system: str, experiment_file: str) ->
 
 def build_all_images() -> None:
     for experiment_filename in find_configs():
-        build_images_for_experiment(experiment_filename)
+        config: ExperimentConfig = load_config_from_yml(experiment_filename)
+        build_images_for_experiment_config(config)
 
 
 def main(args: t.Optional[t.Sequence[str]] = None) -> None:
