@@ -9,13 +9,15 @@ import typing as t
 from loguru import logger
 
 from common.config import (
-    configuration_to_experiment_file, DetectionExperimentConfig,
-    ExperimentConfig, RecoveryExperimentConfig,
-    load_config,
+    DetectionExperimentConfig,
+    EVALUATION_DIR,
+    ExperimentConfig,
     find_configs,
+    load_config,
+    load_config_from_file,
+    RecoveryExperimentConfig,
 )
 
-EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
 DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 DOCKERFILE_PATH = os.path.join(DOCKER_DIR, "Dockerfile")
 
@@ -91,21 +93,26 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
     )
 
 
-def build_images_for_experiment(filename: str) -> None:
-    logger.info(f"building images for experiment: {filename}")
-    config: ExperimentConfig = load_config(filename)
+def build_images_for_experiment(kind: str, system: str, experiment_file: str) -> None:
+    logger.info(f"building images for experiment: {kind} / {system}")
+    config: ExperimentConfig = load_config(kind, system, experiment_file)
+    build_images_for_experiment_config(config)
+
+
+def build_images_for_experiment_config(config):
     if config["type"] == "detection":
         build_images_for_detection_experiment(config)
     elif config["type"] == "recovery":
         build_images_for_recovery_experiment(config)
     else:
         raise ValueError(f"unknown experiment type: {config['type']}")
-    logger.info(f"built images for experiment: {filename}")
+    logger.info(f"built images for experiment: {config['filename']}")
 
 
 def build_all_images() -> None:
     for experiment_filename in find_configs():
-        build_images_for_experiment(experiment_filename)
+        config: ExperimentConfig = load_config_from_file(experiment_filename)
+        build_images_for_experiment_config(config)
 
 
 def main(args: t.Optional[t.Sequence[str]] = None) -> None:
@@ -118,7 +125,7 @@ def main(args: t.Optional[t.Sequence[str]] = None) -> None:
         if parsed_args.experiment == "all":
             build_all_images()
     else:
-        build_images_for_experiment(configuration_to_experiment_file(parsed_args.kind, parsed_args.system))
+        build_images_for_experiment(parsed_args.kind, parsed_args.system, "experiment.yml")
 
 
 if __name__ == "__main__":

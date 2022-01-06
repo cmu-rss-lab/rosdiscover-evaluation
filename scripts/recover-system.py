@@ -9,6 +9,8 @@ import typing as t
 import yaml
 from loguru import logger
 
+from common.cli import add_common_options
+
 logger.remove()
 
 import rosdiscover
@@ -32,13 +34,14 @@ def recover(config: ExperimentConfig) -> None:
 
 def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
 
     for version in ("buggy", "fixed"):
-        output_filename = os.path.join(config_directory, f"{version}.architecture.yml")
+        output_filename = os.path.join(results_directory, f"{version}.architecture.yml")
         log_filename = os.path.join(log_directory, f"{version}.system-recovery.log")
         rosdiscover_filename = os.path.join(
-            config_directory,
+            results_directory,
             f"recovery.{version}.rosdiscover.yml",
         )
         recover_system(
@@ -57,10 +60,11 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
 
 def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    output_filename = os.path.join(config_directory, "recovered.architecture.yml")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    output_filename = os.path.join(results_directory, "recovered.architecture.yml")
     log_filename = os.path.join(log_directory, "system-recovery.log")
-    rosdiscover_filename = os.path.join(config_directory, "recovery.rosdiscover.yml")
+    rosdiscover_filename = os.path.join(results_directory, "recovery.rosdiscover.yml")
     recover_system(
         image=config["image"],
         sources=config["sources"],
@@ -161,16 +165,10 @@ def main() -> None:
     parser.add_argument('kind', type=str, choices=['recovery', 'detection'],
                         help='The kind of experiment (recovery or detection')
     parser.add_argument('system', type=str, default="all", help='The system to use')
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+    add_common_options(parser)
     args = parser.parse_args()
 
-    experiment_filename: str = configuration_to_experiment_file(args.kind, args.system, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-
-    config = load_config(experiment_filename)
+    config = load_config(args.kind, args.system, args.experiment, args.results_dir)
     recover(config)
 
 

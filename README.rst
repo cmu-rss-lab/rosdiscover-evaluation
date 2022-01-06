@@ -235,8 +235,8 @@ The experimental setups for RQ2 are in the `experiments/recovery/subjects` direc
 
 .. code::
 
-   (directly)$ pipenv run scripts/observe-system.py recovery autorally
-   (contaienr)$ ./run.sh observe recovery autorally
+   (directly)$ pipenv run scripts/observe-system.py autorally
+   (container)$ ./run.sh observe autorally
    
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`. 
 
@@ -294,8 +294,8 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
   
 .. code::
 
-  (directly)$ pipenv run scripts/compare-recovered-observed.py  recovery autorally
-  (container)$ ./run.sh compare recovery autorally
+  (directly)$ pipenv run scripts/compare-recovered-observed.py autorally
+  (container)$ ./run.sh compare autorally
 
 The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 

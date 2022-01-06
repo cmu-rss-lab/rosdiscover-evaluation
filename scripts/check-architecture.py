@@ -9,6 +9,7 @@ import typing as t
 from loguru import logger
 
 from common.acme import get_acme_errors
+from common.cli import add_common_options
 
 logger.remove()
 
@@ -30,12 +31,13 @@ def check(config: ExperimentConfig, kind: str) -> None:
 
 def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    detection_report_csv = os.path.join(config_directory, "error-report.csv")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    detection_report_csv = os.path.join(results_directory, "error-report.csv")
 
     for kind in ("buggy", "fixed"):
-        input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
-        acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
+        input_filename = os.path.join(results_directory, f"{kind}.architecture.yml")
+        acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
         acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
         generate_and_check_acme(
             image=config[kind]["image"],
@@ -82,11 +84,12 @@ def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str
 
 def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) -> None:
     config_directory = config["directory"]
-    log_directory = os.path.join(config_directory, "logs")
-    input_filename = os.path.join(config_directory, f"{kind}.architecture.yml")
+    results_directory = config["results_directory"]
+    log_directory = os.path.join(results_directory, "logs")
+    input_filename = os.path.join(results_directory, f"{kind}.architecture.yml")
 
-    acme_filename = os.path.join(config_directory, f"{kind}.architecture.acme")
-    acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
+    acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
+    acme_log_filename = os.path.join(results_directory, f"acme-and-check-{kind}.txt")
     generate_and_check_acme(
         image=config["image"],
         input_filename=input_filename,
@@ -114,16 +117,12 @@ def main():
         "configuration",
         help="the path to the configuration file for this experiment",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+
+    add_common_options(parser)
     args = parser.parse_args()
     experiment_dir = "detection" if args.kind == 'detected' else 'recovery'
 
-    experiment_filename: str = configuration_to_experiment_file(experiment_dir, args.configuration, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename)
+    config = load_config(experiment_dir, args.configuration, args.experiment, args.results_dir)
 
     check(config, args.kind)
 

@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
+import csv
 import os
 import sys
-import csv
-
 import typing as t
 
 import attr
 import yaml
 from loguru import logger
 
-from common.acme import THINGS_TO_IGNORE, get_acme_errors
+from common.acme import get_acme_errors, THINGS_TO_IGNORE
+from common.cli import add_common_options
 from common.config import configuration_to_experiment_file, ExperimentConfig, load_config
 
 NamePair = t.Tuple[str, str]
@@ -187,12 +187,13 @@ def compare(config: ExperimentConfig) -> None:
         error('This command only works for "recovery" experiments')
 
     config_directory = config["directory"]
-    observed_yml_file = os.path.join(config_directory, "observed.architecture.yml")
-    recovered_yml_file = os.path.join(config_directory, "recovered.architecture.yml")
+    results_directory = config["results_directory"]
+    observed_yml_file = os.path.join(results_directory, "observed.architecture.yml")
+    recovered_yml_file = os.path.join(results_directory, "recovered.architecture.yml")
 
-    comparison_file = os.path.join(config_directory, "compare.observed-recovered.log")
-    comparison_csv = os.path.join(config_directory, "observed.recoverd.compare.csv")
-    errors_both_csv = os.path.join(config_directory, "observed.recovered.errors.csv")
+    comparison_file = os.path.join(results_directory, "compare.observed-recovered.txt")
+    comparison_csv = os.path.join(results_directory, "observed.recoverd.compare.csv")
+    errors_both_csv = os.path.join(results_directory, "observed.recovered.errors.csv")
     if not os.path.exists(observed_yml_file):
         error(f"[{observed_yml_file} not found. Perhaps observe-system was not run for "
               f"this configuration.")
@@ -301,8 +302,8 @@ def compare(config: ExperimentConfig) -> None:
         f.write("\nCannot observe service clients")
 
     # process the errors
-    observed_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-observed.log"))
-    recovered_errors = get_acme_errors(os.path.join(config_directory, "logs", "acme-and-check-recovered.log"))
+    observed_errors = get_acme_errors(os.path.join(results_directory, "acme-and-check-observed.txt"))
+    recovered_errors = get_acme_errors(os.path.join(results_directory, "acme-and-check-recovered.txt"))
 
     hw_p = set(p[1:] for p in provenance("handwritten", recovered_architecture))
     re_p = set(p[1:] for p in provenance("recovered", recovered_architecture))
@@ -473,14 +474,10 @@ def main() -> None:
         help="the system to use for comparing architectures. "
              "(Note, assumed that observe and recover have been run)",
     )
-    parser.add_argument(
-        '-e', '--experiment', type=str, help='The experiment.yml to use', default='experiment.yml'
-    )
+    add_common_options(parser)
     args = parser.parse_args()
-    experiment_filename: str = configuration_to_experiment_file("recovery", args.system, args.experiment)
-    if not os.path.exists(experiment_filename):
-        error(f"configuration file not found: {experiment_filename}")
-    config = load_config(experiment_filename)
+
+    config = load_config("recovery", args.system, args.experiment, args.results_dir)
     compare(config)
 
 

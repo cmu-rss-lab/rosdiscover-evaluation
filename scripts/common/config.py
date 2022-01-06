@@ -13,12 +13,15 @@ __all__ = (
 
 import contextlib
 import os
+import pathlib
 import re
 import tempfile
 import typing as t
 
 from loguru import logger
 import yaml
+
+EVALUATION_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 class NodeSources(t.TypedDict):
@@ -98,22 +101,30 @@ class DetectionExperimentConfig(ExperimentConfig):
     errors: t.Sequence[str]
 
 
-def load_config(filename: str) -> ExperimentConfig:
-    abs_filename = os.path.abspath(filename)
-    experiment_directory = os.path.dirname(abs_filename)
+def load_config(experiment_kind: str, subject: str, experiment_filename: str, results_dir: str) -> ExperimentConfig:
+    results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
+    os.makedirs(results_directory, exist_ok=True)
+    config_file = configuration_to_experiment_file(experiment_kind, subject, experiment_filename)
+    config = load_config_from_file(config_file)
+    config["results_directory"] = results_directory
+    return config
 
-    if not os.path.exists(filename):
-        raise ValueError(f"experiment file not found: {filename}")
 
-    with open(filename) as fh:
+def load_config_from_file(config_file):
+    file_path = pathlib.Path(config_file)
+    if not file_path.exists():
+        raise ValueError(f"Could not find experiment configuration file '{config_file}")
+    abs_filepath = file_path.absolute()
+    experiment_directory = abs_filepath.parent
+    if not os.path.exists(config_file):
+        raise ValueError(f"experiment file not found: {config_file}")
+    with open(config_file) as fh:
         config = yaml.safe_load(fh)
-
-    config["filename"] = abs_filename
+    config["filename"] = str(abs_filepath)
     config["directory"] = experiment_directory
     config["node_sources"] = config.get("node_sources") or []
     config["environment"] = config.get("environment") or {}
     config["reproducer"] = config.get("reproducer") or {}
-
     if config["type"] == "recovery":
         config["config_with_node_sources_filename"] = os.path.join(
             config["directory"],
@@ -121,7 +132,6 @@ def load_config(filename: str) -> ExperimentConfig:
         )
     if config["type"] == "detection":
         config["errors"] = config.get("errors") or []
-
     return config
 
 
@@ -136,13 +146,21 @@ def find_configs() -> t.Iterator[str]:
                 yield os.path.join(root, filename)
 
 
-def configuration_to_experiment_file(experiment: str, system: str, experiment_file: str) -> str:
-    subject_dir = os.path.join(os.path.dirname(__file__), '../../experiments', experiment, 'subjects')
-    experiment_dir = os.path.join(subject_dir, system, experiment_file)
-    if not os.path.isfile(experiment_dir):
+def configuration_to_results_directory(experiment_kind: str, subject: str, results_dir: str) -> str:
+    results_path = pathlib.Path(EVALUATION_DIR) / results_dir
+    if pathlib.Path(results_dir).is_absolute():
+        results_path = pathlib.Path(results_dir)
+    return str(results_path / experiment_kind / 'subjects' / subject)
+
+
+def configuration_to_experiment_file(experiment_kind: str, system: str, experiment_file: str) -> str:
+    subject_dir = pathlib.Path(EVALUATION_DIR) / "experiments" / experiment_kind / "subjects"
+    experiment_path = subject_dir / system / experiment_file
+
+    if not experiment_path.is_file():
         valid_experiments = "\n  ".join(os.listdir(subject_dir))
-        raise ValueError(f"'{experiment}':'{system}' combination not found. Couldn't find file {experiment_dir}. "
+        raise ValueError(f"'{experiment_kind}':'{system}' combination not found. Couldn't find file {experiment_path}. "
                          f"Valid systems are:\n  "
                          f"{valid_experiments}")
 
-    return os.path.normpath(experiment_dir)
+    return str(experiment_path)

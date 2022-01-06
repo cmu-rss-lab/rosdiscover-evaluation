@@ -18,17 +18,16 @@ logger.remove()
 
 from common.config import (
     DetectionExperimentConfig,
-    RecoveryExperimentConfig,
-    load_config,
+    EVALUATION_DIR,
+    load_config_from_file, RecoveryExperimentConfig,
     find_configs,
 )
 
-EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
 DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 
 
 def find_docker_images_for_experiment(filename: str) -> t.Set[str]:
-    config = load_config(filename)
+    config = load_config_from_file(filename)
     if config["type"] == "detection":
         return set([config["buggy"]["image"], config["fixed"]["image"]])
     elif config["type"] == "recovery":

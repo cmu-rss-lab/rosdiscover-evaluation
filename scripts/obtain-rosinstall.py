@@ -13,14 +13,14 @@ import yaml
 
 from common.config import (
     DetectionExperimentConfig,
+    EVALUATION_DIR,
     ExperimentConfig,
     RecoveryExperimentConfig,
     RepoVersion,
-    load_config,
+    load_config_from_file,
 )
 from common.find_package_dependencies import find_all_package_dependencies
 
-EVALUATION_DIR = os.path.dirname(os.path.dirname(__file__))
 RGTM_DIR = os.path.join(EVALUATION_DIR, "deps/rosinstall_generator_time_machine")
 RGTM_PATH = os.path.join(RGTM_DIR, "rosinstall_generator_tm.sh")
 WORK_DIR = os.path.join(EVALUATION_DIR, ".workdir")
@@ -189,7 +189,7 @@ def obtain_rosinstall_for_detection_experiment(config: DetectionExperimentConfig
 
 
 def obtain_rosinstall_for_experiment(filename: str) -> None:
-    config: ExperimentConfig = load_config(filename)
+    config: ExperimentConfig = load_config_from_file(filename)
     if config["type"] == "detection":
         obtain_rosinstall_for_detection_experiment(config)
     elif config["type"] == "recovery":
