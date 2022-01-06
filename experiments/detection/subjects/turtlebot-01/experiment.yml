@@ -3,9 +3,9 @@ subject: turtlebot
 distro: indigo
 build_command: cd /ros_ws/; catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [python_orocos_kdl, robot_pose_ekf, bfl,tf,tf2] 
+exclude_ros_packages: [python_orocos_kdl, robot_pose_ekf, bfl,tf,tf2]
 apt_packages:
-  - ros-indigo-gazebo-plugins 
+  - ros-indigo-gazebo-plugins
   - ros-indigo-gazebo-ros
   - ros-indigo-openni-launch
   - ros-indigo-orocos-kdl
@@ -13,18 +13,22 @@ apt_packages:
   - ros-indigo-bfl
 
 buggy:
-  image: rosdiscover-experiments/turtlebot:b26d199a18d350e72495c4d8935e5b1ccc64d75a
+  docker:
+    type: templated
+    image: rosdiscover-experiments/turtlebot:b26d199a18d350e72495c4d8935e5b1ccc64d75a
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
-    version: b26d199a18d350e72495c4d8935e5b1ccc64d75a  
+    version: b26d199a18d350e72495c4d8935e5b1ccc64d75a
 fixed:
-  image: rosdiscover-experiments/turtlebot:3e32933c829e308600707a9f971334d13d1cbe19
+  docker:
+    type: templated
+    image: rosdiscover-experiments/turtlebot:3e32933c829e308600707a9f971334d13d1cbe19
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
     version: 3e32933c829e308600707a9f971334d13d1cbe19
-    
+
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash

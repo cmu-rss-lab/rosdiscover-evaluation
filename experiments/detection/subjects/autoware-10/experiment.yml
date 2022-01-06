@@ -4,7 +4,7 @@ distro: indigo
 build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 6-5
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - ros-indigo-rviz
   - ros-indigo-joint-state-publisher
@@ -37,11 +37,13 @@ apt_packages:
   - qtbase5-dev
 
 buggy:
-  image: rosdiscover-experiments/autoware:0583e6d128450b2c567732cb9a00b828af7cd93e
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:0583e6d128450b2c567732cb9a00b828af7cd93e
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
-    version: 0583e6d128450b2c567732cb9a00b828af7cd93e  
+    version: 0583e6d128450b2c567732cb9a00b828af7cd93e
 fixed:
   image: rosdiscover-experiments/autoware:939ef1836bcdf0ff2a6c98d1c1ced940b0e242dd
   repositories:

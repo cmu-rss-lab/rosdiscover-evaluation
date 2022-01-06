@@ -4,7 +4,7 @@ distro: indigo
 build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 6-5
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - ros-indigo-joint-state-publisher
   - ros-indigo-robot-state-publisher
@@ -36,13 +36,17 @@ apt_packages:
   - qtbase5-dev
 
 buggy:
-  image: rosdiscover-experiments/autoware:e9d6d6f8762457249ccb497680cf838b5a33d3e4
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:e9d6d6f8762457249ccb497680cf838b5a33d3e4
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
-    version: e9d6d6f8762457249ccb497680cf838b5a33d3e4  
+    version: e9d6d6f8762457249ccb497680cf838b5a33d3e4
 fixed:
-  image: rosdiscover-experiments/autoware:3db7e153dc111682857ffd089018b92b2eed1786
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:3db7e153dc111682857ffd089018b92b2eed1786
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
@@ -55,7 +59,7 @@ launches:
 - /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
 
 node_sources:
-# ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch (lane_navi, lane_rule, lane_stop):    
+# ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch (lane_navi, lane_rule, lane_stop):
 - package: lane_planner
   node: lane_navi
   sources:
@@ -88,4 +92,4 @@ node_sources:
   sources:
     - nodes/tablet_sender/tablet_sender.cpp
   restrict-analysis-to-paths:
-    - /ros_ws/src/autoware/  
+    - /ros_ws/src/autoware/
