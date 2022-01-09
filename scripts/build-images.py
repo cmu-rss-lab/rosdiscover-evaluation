@@ -22,6 +22,38 @@ DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 DOCKERFILE_PATH = os.path.join(DOCKER_DIR, "Dockerfile")
 
 
+def _build_image_via_command(image: str, command: str) -> bool:
+    logger.info(f"building image [{image}]: {command}")
+    outcome = subprocess.run(command, cwd=EVALUATION_DIR, shell=True)
+    if outcome.returncode == 0:
+        logger.info(f"successfully built image: {image}")
+    else:
+        logger.error(f"failed to build image: {image}")
+
+
+def build_custom_image(
+    image: str,
+    directory: str,
+    docker_filename: str,
+    docker_context: str,
+) -> None:
+    assert not os.path.isabs(docker_filename)
+    assert not os.path.isabs(docker_context)
+    docker_filename = os.path.join(directory, docker_filename)
+    docker_context = os.path.join(directory, docker_context)
+
+    command = " ".join(
+        "docker",
+        "build",
+        "-f",
+        docker_filename,
+        "-t",
+        image,
+        docker_context,
+    )
+    _build_image_via_command(image, command)
+
+
 def build_templated_image(
     image: str,
     directory: str,
@@ -29,14 +61,14 @@ def build_templated_image(
     rosinstall_filename: str,
     build_command: str,
     apt_packages: t.Optional[t.Sequence[str]],
-    cuda_version,
+    cuda_version: str,
 ) -> None:
     assert os.path.exists(directory)
 
     if not apt_packages:
         apt_packages = []
-
     apt_packages_arg = " ".join(apt_packages)
+
     logger.info(f"apt_packages_arg: {apt_packages_arg}")
 
     rel_experiment_dir = os.path.relpath(directory, EVALUATION_DIR)
@@ -53,86 +85,59 @@ def build_templated_image(
     command_args += ["."]
     command_args += ["-t", image]
     command = " ".join(command_args)
-
-    logger.info(f"building image: {command}")
-    outcome = subprocess.run(command, cwd=EVALUATION_DIR, shell=True)
-    if outcome.returncode == 0:
-        logger.info(f"successfully built image: {image}")
-    else:
-        logger.error(f"failed to build image: {image}")
-
-
-def build_image(
-    image: str,
-    directory: str,
-    distro: str,
-    rosinstall_filename: str,
-    build_command: str,
-    apt_packages: t.Optional[t.Sequence[str]],
-    cuda_version,
-) -> None:
-    assert os.path.exists(directory)
-
-    if not apt_packages:
-        apt_packages = []
-
-    apt_packages_arg = " ".join(apt_packages)
-    logger.info(f"apt_packages_arg: {apt_packages_arg}")
-
-    rel_experiment_dir = os.path.relpath(directory, EVALUATION_DIR)
-    os.makedirs(os.path.join(experiment_dir, "docker"), exist_ok=True)
-
-    command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
-    command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
-    command_args += ["--build-arg", f"CUDA_VERSION='{cuda_version}'"]
-    command_args += ["--build-arg", f"APT_PACKAGES='{apt_packages_arg}'"]
-    command_args += ["--build-arg", f"BUILD_COMMAND='{build_command}'"]
-    command_args += ["--build-arg", f"DIRECTORY={rel_experiment_dir}"]
-    command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
-    command_args += ["--build-arg", f"DISTRO={distro}"]
-    command_args += ["."]
-    command_args += ["-t", image]
-    command = " ".join(command_args)
-
-    logger.info(f"building image: {command}")
-    outcome = subprocess.run(command, cwd=EVALUATION_DIR, shell=True)
-    if outcome.returncode == 0:
-        logger.info(f"successfully built image: {image}")
-    else:
-        logger.error(f"failed to build image: {image}")
+    _build_image_via_command(image, command)
 
 
 def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
-    build_image(
-        image=config["image"],
-        directory=config["directory"],
-        distro=config["distro"],
-        rosinstall_filename="pkgs.rosinstall",
-        build_command=config["build_command"],
-        apt_packages=config.get("apt_packages", []),
-        cuda_version=config.get("cuda_version", 0),
-    )
+    image_name = config["docker"]["image"]
+    image_type = config["docker"]["type"]
+
+    if image_type == "custom":
+        build_custom_image(
+            image=image_name,
+            directory=config["directory"],
+            docker_filename=config["docker"]["filename"],
+            docker_context=config["docker"]["context"],
+        )
+    elif image_type == "templated":
+        build_image(
+            image=image_name,
+            directory=config["directory"],
+            distro=config["distro"],
+            rosinstall_filename="pkgs.rosinstall",
+            build_command=config["build_command"],
+            apt_packages=config.get("apt_packages", []),
+            cuda_version=config.get("cuda_version", "0"),
+        )
+    else:
+        raise ValueError(f"unknown docker type: {image_type}")
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
-    build_image(
-        image=config["buggy"]["image"],
-        directory=config["directory"],
-        distro=config["distro"],
-        rosinstall_filename="bug.rosinstall",
-        build_command=config["build_command"],
-        apt_packages=config.get("apt_packages", []),
-        cuda_version=config.get("cuda_version", 0),
-    )
-    build_image(
-        image=config["fixed"]["image"],
-        directory=config["directory"],
-        distro=config["distro"],
-        rosinstall_filename="fix.rosinstall",
-        build_command=config["build_command"],
-        apt_packages=config.get("apt_packages", []),
-        cuda_version=config.get("cuda_version", 0),
-    )
+    for version in ("buggy", "fixed"):
+        image_type = config[version]["docker"]["type"]
+        image_name = config[version]["docker"]["image"]
+
+        if image_type == "custom":
+            build_image(
+                image=image_name,
+                directory=config["directory"],
+                distro=config["distro"],
+                rosinstall_filename="bug.rosinstall",
+                build_command=config["build_command"],
+                apt_packages=config.get("apt_packages", []),
+                cuda_version=config.get("cuda_version", "0"),
+            )
+        elif image_type == "templated":
+            build_custom_image(
+                image=image_name,
+                directory=config["directory"],
+                docker_filename=config["docker"]["filename"],
+                docker_context=config["docker"]["context"],
+            )
+        else:
+            raise ValueError(f"unknown docker type: {image_type}")
+
 
 
 def build_images_for_experiment(kind: str, system: str, experiment_file: str) -> None:
