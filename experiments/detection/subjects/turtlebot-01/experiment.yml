@@ -1,6 +1,7 @@
 type: detection
 subject: turtlebot
-distro: indigo
+original-distro: indigo
+distro: kinetic
 build_command: cd /ros_ws/; catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
 exclude_ros_packages: [python_orocos_kdl, robot_pose_ekf, bfl,tf,tf2]
@@ -14,23 +15,34 @@ apt_packages:
 
 buggy:
   docker:
-    type: templated
-    image: rosdiscover-experiments/turtlebot:b26d199a18d350e72495c4d8935e5b1ccc64d75a
+    type: custom
+    image: rosdiscover-experiments/turtlebot:turtlebot-01-buggy
+    filename: Dockerfile-reproduce-buggy
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
     version: b26d199a18d350e72495c4d8935e5b1ccc64d75a
 fixed:
   docker:
-    type: templated
-    image: rosdiscover-experiments/turtlebot:3e32933c829e308600707a9f971334d13d1cbe19
+    type: custom
+    image: rosdiscover-experiments/turtlebot:turtlebot-01-buggy
+    filename: Dockerfile-reproduce-buggy
   repositories:
   - name: turtlebot
     url: https://github.com/turtlebot/turtlebot.git
     version: 3e32933c829e308600707a9f971334d13d1cbe19
 
+reproducer:
+  pubs:
+    - name: /camera/depth_registered/image_raw
+      format: sensor_msgs/Image
+errors:
+  - camera/depth/image_raw
 sources:
-- /opt/ros/indigo/setup.bash
-- /ros_ws/devel/setup.bash
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/devel_isolated/setup.bash
+environment:
+  - TURTLEBOT_3D_SENSOR: kinect
 launches:
+- /ros_ws/reproduce.launch
 - /ros_ws/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch
