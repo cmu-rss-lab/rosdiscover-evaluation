@@ -1,23 +1,25 @@
 type: detection
+in-vitro: true
 subject: husky
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
 exclude_ros_packages: []
-apt_packages:
-  - python3-sip-dev
+apt_packages: []
 buggy:
   docker:
-    type: templated
-    image: rosdiscover-experiments/husky:df6de8da8f92a5a9beb354ff778a9c613d2dfa28
+    type: custom
+    image: rosdiscover-experiments/husky:husky-06-buggy
+    filename: Dockerfile-reproduce-buggy
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: df6de8da8f92a5a9beb354ff778a9c613d2dfa28
 fixed:
   docker:
-    type: templated
-    image: rosdiscover-experiments/husky:a35c2530a1d17b5c5376f4b0eb9dd022c884da1c
+    type: custom
+    image: rosdiscover-experiments/husky:husky-06-fixed
+    filename: Dockerfile-reproduce-fixed
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
@@ -25,6 +27,13 @@ fixed:
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
+reproducer:
+  subs:
+  - name: /base_scan
+    format: sensor_msgs/LaserScan
+errors:
+- /narrow_scan
 launches:
-- /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+- /ros_ws/reproduce.launch
 - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
+- /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
