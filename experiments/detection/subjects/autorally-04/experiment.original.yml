@@ -1,6 +1,6 @@
 type: detection
 subject: autorally
-distro: melodic
+distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
 cuda_version: 6-5
 missing_ros_packages: []
@@ -28,8 +28,7 @@ apt_packages:
 buggy:
   docker:
     type: templated
-    image: rosdiscover-experiments/autorally:autorally-04-buggy
-    filename: Dockerfile-reproduce-buggy
+    image: rosdiscover-experiments/autorally:f60077125d67d6e0a011d10b8fce6ba70aa6295c
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -40,8 +39,7 @@ buggy:
 fixed:
   docker:
     type: templated
-    image: rosdiscover-experiments/autorally:autorally-04-fixed
-    filename: Dockerfile-reproduce-fixed
+    image: rosdiscover-experiments/autorally:63106bcaed7306a51c3bb8b4a165f28e3fbaae26
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -50,19 +48,13 @@ fixed:
     url: https://github.com/AutoRally/imu_3dm_gx4.git
     version: 13578756595a0e339b4024f517828e191628002f
 sources:
-- /opt/ros/melodic/setup.bash
+- /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
-environment:
-  AR_LEFTCAM_TYPE: ptgrey
-  AR_RIGHTCAM_TYPE: ptgrey
-  AR_LEFTCAM_CONNECTED: 1
-reproducer:
-  subs:
-  - name: /left_camera/image_diagnostic
-    format: sensor_msgs/Image
-errors:
-- /image
+
 launches:
-- /ros_ws/reproduce.launch
-- /ros_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch/camera.launch
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
+- /ros_ws/src/autorally/autorally_core/launch/cameras.launch
+- /ros_ws/src/autorally/autorally_core/launch/camera_auto_balance.launch
+- /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
+- /ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch
