@@ -42,7 +42,7 @@ def build_custom_image(
     docker_filename = os.path.join(directory, docker_filename)
     docker_context = os.path.join(directory, docker_context)
 
-    command = " ".join(
+    command = " ".join([
         "docker",
         "build",
         "-f",
@@ -50,7 +50,7 @@ def build_custom_image(
         "-t",
         image,
         docker_context,
-    )
+    ])
     _build_image_via_command(image, command)
 
 
@@ -96,8 +96,8 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
         build_custom_image(
             image=image_name,
             directory=config["directory"],
-            docker_filename=config["docker"]["filename"],
-            docker_context=config["docker"]["context"],
+            docker_filename=config["docker"].get("filename", "Dockerfile"),
+            docker_context=config["docker"].get("context", "."),
         )
     elif image_type == "templated":
         build_templated_image(
@@ -132,8 +132,8 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
             build_custom_image(
                 image=image_name,
                 directory=config["directory"],
-                docker_filename=config[version]["docker"]["filename"],
-                docker_context=config[version]["docker"]["context"],
+                docker_filename=config[version]["docker"].get("filename", "Dockerfile"),
+                docker_context=config[version]["docker"].get("context", "."),
             )
         else:
             raise ValueError(f"unknown docker type: {image_type}")
