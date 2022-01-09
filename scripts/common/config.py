@@ -52,7 +52,6 @@ class NodeSources(t.TypedDict):
 
 class ROSDiscoverConfig(t.TypedDict):
     image: str
-    docker: DockerInstructions
     subject: str
     sources: t.Sequence[str]
     launches: t.Sequence[str]
@@ -87,6 +86,7 @@ class RepoVersion(t.TypedDict):
 
 class SystemVersion(t.TypedDict):
     image: str
+    docker: DockerInstructions
     build_command: str
     repositories: t.Collection[RepoVersion]
 
