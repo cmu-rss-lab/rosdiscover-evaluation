@@ -72,7 +72,7 @@ def build_templated_image(
     logger.info(f"apt_packages_arg: {apt_packages_arg}")
 
     rel_experiment_dir = os.path.relpath(directory, EVALUATION_DIR)
-    os.makedirs(os.path.join(experiment_dir, "docker"), exist_ok=True)
+    os.makedirs(os.path.join(directory, "docker"), exist_ok=True)
 
     command_args = ["docker", "build", "-f", DOCKERFILE_PATH]
     command_args += ["--build-arg", "COMMON_ROOTFS=docker/rootfs"]
@@ -100,7 +100,7 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
             docker_context=config["docker"]["context"],
         )
     elif image_type == "templated":
-        build_image(
+        build_templated_image(
             image=image_name,
             directory=config["directory"],
             distro=config["distro"],
@@ -119,7 +119,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
         image_name = config[version]["docker"]["image"]
 
         if image_type == "custom":
-            build_image(
+            build_templated_image(
                 image=image_name,
                 directory=config["directory"],
                 distro=config["distro"],
