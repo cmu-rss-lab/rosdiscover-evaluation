@@ -132,8 +132,8 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
             build_custom_image(
                 image=image_name,
                 directory=config["directory"],
-                docker_filename=config["docker"]["filename"],
-                docker_context=config["docker"]["context"],
+                docker_filename=config[version]["docker"]["filename"],
+                docker_context=config[version]["docker"]["context"],
             )
         else:
             raise ValueError(f"unknown docker type: {image_type}")
