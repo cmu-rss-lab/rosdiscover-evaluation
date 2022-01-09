@@ -1,8 +1,6 @@
 type: detection
-in-vitro: true
 subject: autorally
-original-distro: indigo
-distro: melodic
+distro: kinetic
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
 cuda_version: 8-0
 missing_ros_packages:
@@ -38,10 +36,7 @@ apt_packages:
 - texinfo
 - uuid-dev
 buggy:
-  docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-02-buggy
-    filename: Dockerfile-reproduce-buggy
+  image: rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -50,10 +45,7 @@ buggy:
     url: https://github.com/AutoRally/imu_3dm_gx4.git
     version: 7345cbe09f926d1680df5782feeb2899b5b8b274
 fixed:
-  docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-02-fixed
-    filename: Dockerfile-reproduce-fixed
+  image: rosdiscover-experiments/autorally:257aaa51f6a2d8dbd1aed6d59c7346325f3e5bdd
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -62,15 +54,9 @@ fixed:
     url: https://github.com/AutoRally/imu_3dm_gx4.git
     version: 7345cbe09f926d1680df5782feeb2899b5b8b274
 sources:
-- /opt/ros/melodic/setup.bash
+- /opt/ros/kinetic/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
-reproducer:
-  pubs:
-  - name: /ground_truth/state
-    format: nav_msgs/Odometry
-errors:
-- /ground_truth/state
 launches:
-- /ros_ws/reproduce.launch
+- /ros_ws/src/autorally/autorally_control/launch/path_integral_bf.launch
 - /ros_ws/src/autorally/autorally_control/launch/path_integral_nn.launch
