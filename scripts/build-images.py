@@ -118,7 +118,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
         image_type = config[version]["docker"]["type"]
         image_name = config[version]["docker"]["image"]
 
-        if image_type == "custom":
+        if image_type == "templated":
             build_templated_image(
                 image=image_name,
                 directory=config["directory"],
@@ -128,7 +128,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
                 apt_packages=config.get("apt_packages", []),
                 cuda_version=config.get("cuda_version", "0"),
             )
-        elif image_type == "templated":
+        elif image_type == "custom":
             build_custom_image(
                 image=image_name,
                 directory=config["directory"],
