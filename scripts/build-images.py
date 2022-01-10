@@ -95,7 +95,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
 
 def build_images_for_experiment(kind: str, system: str, experiment_file: str) -> None:
     logger.info(f"building images for experiment: {kind} / {system}")
-    config: ExperimentConfig = load_config(kind, system, experiment_file)
+    config: ExperimentConfig = load_config(kind, system, experiment_file, '')
     build_images_for_experiment_config(config)
 
 

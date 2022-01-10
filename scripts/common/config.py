@@ -102,11 +102,12 @@ class DetectionExperimentConfig(ExperimentConfig):
 
 
 def load_config(experiment_kind: str, subject: str, experiment_filename: str, results_dir: str) -> ExperimentConfig:
-    results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
-    os.makedirs(results_directory, exist_ok=True)
     config_file = configuration_to_experiment_file(experiment_kind, subject, experiment_filename)
     config = load_config_from_file(config_file)
-    config["results_directory"] = results_directory
+    if results_dir:
+        results_directory = configuration_to_results_directory(experiment_kind, subject, results_dir)
+        os.makedirs(results_directory, exist_ok=True)
+        config["results_directory"] = results_directory
     return config
 
 
