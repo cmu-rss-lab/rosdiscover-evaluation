@@ -2,6 +2,7 @@
 set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+ROOT_DIR="${HERE_DIR}/.."
 DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
 CACHE_DIR="${HERE_DIR}/.roswire_cache"
 
@@ -23,7 +24,7 @@ fi
 docker run \
   --user $(id -u) \
   -v "$docker_host":/var/run/docker.sock \
-  -v "${HERE_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
+  -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
   -v "${CACHE_DIR}":/home/rosqual/.roswire/descriptions \
   $DOCKER_IMAGE \
   "$@"
