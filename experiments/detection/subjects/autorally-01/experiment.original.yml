@@ -1,5 +1,4 @@
 type: detection
-in-vitro: true
 subject: autorally
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
@@ -27,10 +26,7 @@ apt_packages:
 - ros-indigo-orocos-kdl
 - ros-indigo-gazebo-ros-control
 buggy:
-  docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-01-buggy
-    filename: Dockerfile-reproduce-buggy
+  image: rosdiscover-experiments/autorally:3b916fdac0a5b99c8725c9c7ca179fdfb0670af2
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -39,10 +35,7 @@ buggy:
     url: https://github.com/AutoRally/imu_3dm_gx4.git
     version: e3e288dc8b82be4d498a051253920498e3192083
 fixed:
-  docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-01-fixed
-    filename: Dockerfile-reproduce-fixed
+  image: rosdiscover-experiments/autorally:8ae7307299c48266ddf1bfede1c2256bafc94259
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -54,7 +47,6 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
-errors:
-- /pose_estimate_new
 launches:
-- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackMultipleCarsGazeboSim.launch
+- /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
+- /ros_ws/src/autorally/autorally_core/launch/baseStation.launch

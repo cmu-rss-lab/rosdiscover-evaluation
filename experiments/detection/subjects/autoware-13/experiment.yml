@@ -4,7 +4,7 @@ distro: kinetic
 build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 8-0
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - ros-kinetic-gazebo-ros-control
   - ros-kinetic-automotive-platform-msgs
@@ -80,13 +80,17 @@ apt_packages:
   - ros-kinetic-autoware-msgs
 
 buggy:
-  image: rosdiscover-experiments/autoware:216269d752f232634acca6c3307c9af5c97cb17e
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:216269d752f232634acca6c3307c9af5c97cb17e
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
     version: 216269d752f232634acca6c3307c9af5c97cb17e
 fixed:
-  image: rosdiscover-experiments/autoware:6428d5fb34b961fd37da212bdb068f77ae99f25f
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:6428d5fb34b961fd37da212bdb068f77ae99f25f
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai

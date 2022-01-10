@@ -1,4 +1,5 @@
 type: detection
+in-vitro: true
 subject: husky
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -9,13 +10,19 @@ exclude_ros_packages:
 - python_orocos_kdl
 apt_packages: []
 buggy:
-  image: rosdiscover-experiments/husky:e6470f709aca1641915de669d6c6900f615d6a43
+  docker:
+    type: custom
+    image: rosdiscover-experiments/husky:husky-02-buggy
+    filename: Dockerfile-reproduce-buggy
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: e6470f709aca1641915de669d6c6900f615d6a43
 fixed:
-  image: rosdiscover-experiments/husky:cd9c5a12ebb733266fb33a32dabefbebef3ffcef
+  docker:
+    type: custom
+    image: rosdiscover-experiments/husky:husky-02-fixed
+    filename: Dockerfile-reproduce-fixed
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
@@ -24,6 +31,11 @@ sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
 launches:
-- /ros_ws/src/husky/launch/description.launch
-- /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+- /ros_ws/reproduce.launch
 - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
+reproducer:
+  subs:
+    - name: /imu/data_compass
+      format: sensor_msgs/Imu
+errors:
+  - /imu/data_compass

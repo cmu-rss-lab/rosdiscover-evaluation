@@ -4,7 +4,7 @@ distro: kinetic
 build_command: cd /ros_ws/src/autoware/ros; catkin_make clean -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1; source devel/setup.bash; export LIBRARY_PATH=/usr/lib/OpenNI2/Drivers:$LIBRARY_PATH; catkin_make -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 0
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - ros-kinetic-autoware-msgs
   - ros-kinetic-gazebo-ros-control
@@ -71,13 +71,17 @@ apt_packages:
   - ros-kinetic-automotive-navigation-msgs
 
 buggy:
-  image: rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
-    version: 8bf1c47fbc18a0303fda23c601dfe959a3afbc41  
+    version: 8bf1c47fbc18a0303fda23c601dfe959a3afbc41
 fixed:
-  image: rosdiscover-experiments/autoware:6a7d1b9f66fd353eb5c6ad8df942c433fff8e2a1
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:6a7d1b9f66fd353eb5c6ad8df942c433fff8e2a1
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
@@ -94,7 +98,6 @@ node_sources:
 #
 #TODO: deal with  <node pkg="rostopic" type="rostopic" name="config_waypoint_loader_rostopic"  args="pub -l /config/waypoint_loader autoware_config_msgs/ConfigWaypointLoader {multi_lane_csv: '$(env HOME)/.autoware/data/path/moriyama_path.txt', replanning_mode: false, velocity_max: 20.0, velocity_min: 4.0, accel_limit: 0.98, decel_limit: 0.98, radius_thresh: 20.0, radius_min: 6.0, resample_mode: true, resample_interval: 1.0, velocity_offset: 4, end_point_offset: 5}' "/>
 #
-
 
   # lane_rule, lane_stop, lane_select
 - package: lane_planner
@@ -119,6 +122,7 @@ node_sources:
     - nodes/lane_select/hermite_curve.cpp
   restrict-analysis-to-paths:
     - /ros_ws/src/autoware/
+
 # waypoint_loader.launch: waypoint_loader, waypoint_marker_publisher
 - package: waypoint_maker
   node: waypoint_loader

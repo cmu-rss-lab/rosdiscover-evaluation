@@ -1,6 +1,6 @@
 type: detection
 subject: autorally
-distro: melodic
+distro: kinetic
 build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=on
 missing_ros_packages: []
 cuda_version: 8-0
@@ -37,9 +37,8 @@ apt_packages:
 - ros-kinetic-gazebo-ros-control
 buggy:
   docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-03-buggy
-    filename: Dockerfile-reproduce-buggy
+    type: templated
+    image: rosdiscover-experiments/autorally:5032de9b8e008a8d3871f906897de2bd2c6ae893
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -49,9 +48,8 @@ buggy:
     version: 95b67d9278e90748ec478ce8c3b0a9e577cdf914
 fixed:
   docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-03-fixed
-    filename: Dockerfile-reproduce-fixed
+    type: templated
+    image: rosdiscover-experiments/autorally:60a9514dc328744da3e1842639d210b195e6d331
   repositories:
   - name: autorally
     url: https://github.com/AutoRally/autorally.git
@@ -60,20 +58,9 @@ fixed:
     url: https://github.com/AutoRally/imu_3dm_gx4.git
     version: 95b67d9278e90748ec478ce8c3b0a9e577cdf914
 sources:
-- /opt/ros/melodic/setup.bash
+- /opt/ros/kinetic/setup.bash
 - /ros_ws/devel/setup.bash
 - /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
 launches:
-- /ros_ws/reproduce.launch
 - /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackGazeboSim.launch
-- /ros_ws/src/autorally/autorally_control/launch/waypointFollower.launch
-- /ros_ws/src/autorally/autorally_control/launch/constantSpeedController.launch
-reproducer:
-  subs:
-  - name: /left_camera
-    format: sensor_msgs/Image
-  - name: /right_camera
-    format: sensor_msgs/Image
-errors:
-- camera/left
-- camera/right
+- /ros_ws/src/autorally/autorally_gazebo/launch/autoRallyTrackWorld.launch

@@ -3,27 +3,29 @@ subject: husky
 distro: kinetic
 build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3] 
+exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3]
 apt_packages:
   - python3-sip-dev
   - ros-kinetic-orocos-kdl
 buggy:
-  image: rosdiscover-experiments/husky:34666c4edfe374184bea381f1712d9347546554a
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:34666c4edfe374184bea381f1712d9347546554a
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 34666c4edfe374184bea381f1712d9347546554a
 fixed:
-  image: rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
-
 sources:
 - /opt/ros/kinetic/setup.bash
 - /ros_ws/devel/setup.bash
-
 launches:
 - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
 - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
