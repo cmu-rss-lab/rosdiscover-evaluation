@@ -11,10 +11,14 @@ if [ ! -d "${CACHE_DIR}" ]; then
   chmod 777 "${CACHE_DIR}"
 fi
 
-if [ -z "$DOCKER_HOST" ]; then
+if [[ ! -v DOCKER_HOST ]]; then
+  echo "Setting DOCKER_HOST to //var/run/docker.sock - assuming you are using a global docker install"
+  DOCKER_HOST="//var/run/docker.sock"
+elif [[ -z "$DOCKER_HOST" ]]; then
   echo "Setting DOCKER_HOST to //var/run/docker.sock - assuming you are using a global docker install"
   DOCKER_HOST="//var/run/docker.sock"
 fi
+
 if [[ $DOCKER_HOST == unix:* ]]; then
   docker_host="${DOCKER_HOST:7}"
 else
