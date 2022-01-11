@@ -161,14 +161,23 @@ def load_config_from_file(config_filename: str) -> ExperimentConfig:
     return config
 
 
-def find_configs() -> t.Iterator[str]:
+def find_configs(directory: t.Optional[str] = None) -> t.Iterator[str]:
     """Returns an iterator over the absolute paths of all of the experiment config
-    files in this replication package."""
+    files in this replication package. Optionally, only the set of experiment config
+    files under a given directory (relative to the root of the replication package)
+    will be yielded.
+    """
     dir_scripts = os.path.dirname(os.path.dirname(__file__))
     dir_replication_package = os.path.dirname(dir_scripts)
-    for root, _dirs, files in os.walk(dir_replication_package):
+
+    if directory:
+        directory = os.path.join(dir_replication_package, directory)
+    else:
+        directory = dir_replication_package
+
+    for root, _dirs, files in os.walk(directory):
         for filename in files:
-            if re.match(r"experiment.*\.yml", filename):
+            if re.match(r"experiment.yml", filename):
                 yield os.path.join(root, filename)
 
 

@@ -142,7 +142,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
 
 def build_images_for_experiment(kind: str, system: str, experiment_file: str) -> None:
     logger.info(f"building images for experiment: {kind} / {system}")
-    config: ExperimentConfig = load_config(kind, system, experiment_file, '')
+    config: ExperimentConfig = load_config(kind, system, experiment_file)
     build_images_for_experiment_config(config)
 
 
@@ -156,21 +156,48 @@ def build_images_for_experiment_config(config):
     logger.info(f"built images for experiment: {config['filename']}")
 
 
-def build_all_images() -> None:
-    for experiment_filename in find_configs():
+def build_all_images(directory: t.Optional[str] = None) -> None:
+    """Builds all images; optionally builds only those under a given directory.
+
+    Arguments
+    ---------
+    directory: str, optional
+        optionally gives the path of a directory, relative to the root of the
+        evaluation repository that should be used to restrict which images are
+        built.
+    """
+    for experiment_filename in find_configs(directory):
         config: ExperimentConfig = load_config_from_file(experiment_filename)
         build_images_for_experiment_config(config)
 
 
+def build_all_recovery_images() -> None:
+    build_all_images(directory="experiments/recovery")
+
+
+def build_all_detection_images() -> None:
+    build_all_images(directory="experiments/detection")
+
+
 def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     parser = argparse.ArgumentParser("Builds Docker images for experiments")
-    parser.add_argument('kind', type=str, choices=['recovery', 'detection', 'all'],
-                        help='The kind of experiment (recovery or detection')
-    parser.add_argument('system', type=str, default="all", help='The system to use')
+    parser.add_argument(
+        'kind',
+        choices=['recovery', 'detection'],
+        help='The kind of experiment (i.e., recovery or detection)',
+    )
+    parser.add_argument(
+        'system',
+        default="all",
+        help='The name of system to use (e.g., autorally, turtlebot, husky)',
+    )
     parsed_args = parser.parse_args(args)
-    if parsed_args.kind == "all":
-        if parsed_args.experiment == "all":
-            build_all_images()
+
+    if parsed_args.system == "all":
+        {
+            "recovery": build_all_recovery_images,
+            "detection": build_all_detection_images,
+        }[parsed_args.kind]()
     else:
         build_images_for_experiment(parsed_args.kind, parsed_args.system, "experiment.yml")
 
