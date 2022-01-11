@@ -1,0 +1,28 @@
+type: detection
+subject: mavros
+distro: indigo
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: [uuid_msgs, geographic_msgs, tf, tf2_ros, diagnostic_updater, eigen_conversions, tf2_eigen, urdf]
+exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3]
+apt_packages:
+- ros-indigo-orocos-kdl
+- libyaml-cpp-dev
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/mavros:mavros-02-buggy
+  repositories:
+  - name: mavros
+    url: https://github.com/mavlink/mavros.git
+    version: eca8d09abd1cfdbbf1354e5b2f1657014143fcc4
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/mavros:mavros-02-fixed
+  repositories:
+  - name: mavros
+    url: https://github.com/mavlink/mavros.git
+    version: fac76f9783f7aa7711bcab6a001af7d6b2288b44
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
