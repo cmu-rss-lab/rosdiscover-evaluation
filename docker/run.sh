@@ -26,6 +26,7 @@ else
 fi
 
 docker run \
+  --rm \
   --user $(id -u) \
   -v "$docker_host":/var/run/docker.sock \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
