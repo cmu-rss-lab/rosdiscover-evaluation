@@ -29,6 +29,15 @@ class ArchitectureSummary:
 
     def _write_node_element_info(self, f, node, elements, prefix, highlights=None):
         sorted_elements = [t[1] for t in elements if t[0] == node]
+        if not sorted_elements and '/' in node:
+            # Hack, this is a compound name. Need to fix it in the elements too
+            sorted_elements = [t[1] for t in elements if node.split('/')[-1]==t[0]]
+            if sorted_elements:
+                for t in elements:
+                    if node.split('/')[-1]==t[0]:
+                       elements.add((node, t[1])) 
+                       elements.remove((t[0], t[1]))
+            sorted_elements = [t[1] for t in elements if t[0] == node]
         if highlights:
             for h in highlights:
                 if h in sorted_elements:
