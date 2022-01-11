@@ -4,7 +4,7 @@ distro: indigo
 build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cuda_version: 6-5
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - ros-indigo-rviz
   - ros-indigo-joint-state-publisher
@@ -37,19 +37,23 @@ apt_packages:
   - qtbase5-dev
 
 buggy:
-  image: rosdiscover-experiments/autoware:4b2f608a2189f2284c6f9923ee88b983f28adb6f
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:4b2f608a2189f2284c6f9923ee88b983f28adb6f
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
-    version: 4b2f608a2189f2284c6f9923ee88b983f28adb6f  
+    version: 4b2f608a2189f2284c6f9923ee88b983f28adb6f
 fixed:
-  image: rosdiscover-experiments/autoware:2a3f292eb451ac946959a3a20490427f0d2f764d
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:2a3f292eb451ac946959a3a20490427f0d2f764d
   repositories:
   - name: autoware
     url: https://github.com/Autoware-AI/autoware.ai
     version: 2a3f292eb451ac946959a3a20490427f0d2f764d
 reproducer:
-  pubs: 
+  pubs:
   - name: /initialpose
     format: geometry_msgs/PoseWithCovarianceStamped
 errors:

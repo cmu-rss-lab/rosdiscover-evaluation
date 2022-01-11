@@ -1,28 +1,39 @@
 type: detection
+in-vivo: true
 subject: husky
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - python3-sip-dev
 buggy:
-  image: rosdiscover-experiments/husky:b4d49fb1615ed91c26c93279050ebaeb4c23cf1a
+  docker:
+    type: custom
+    image: rosdiscover-experiments/husky:husky-04-buggy
+    filename: Dockerfile-reproduce-buggy
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: b4d49fb1615ed91c26c93279050ebaeb4c23cf1a
 fixed:
-  image: rosdiscover-experiments/husky:8e1fd887fa89dc5f8c0d1056b1e6fd6e4c5507d0
+  docker:
+    type: custom
+    image: rosdiscover-experiments/husky:husky-04-fixed
+    filename: Dockerfile-reproduce-fixed
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 8e1fd887fa89dc5f8c0d1056b1e6fd6e4c5507d0
-
+reproducer:
+  subs:
+    - name: imu/data
+      format: sensor_msgs/Imu
+errors:
+  - /imu/data_compass
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
-
 launches:
-- /ros_ws/src/husky/launch/control.launch
-- /ros_ws/src/husky/launch/teleop.launch
+- /ros_ws/reproduce.launch
+- /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch

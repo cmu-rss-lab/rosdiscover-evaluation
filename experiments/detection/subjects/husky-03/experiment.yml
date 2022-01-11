@@ -3,26 +3,28 @@ subject: husky
 distro: indigo
 build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 missing_ros_packages: []
-exclude_ros_packages: [] 
+exclude_ros_packages: []
 apt_packages:
   - python3-sip-dev
 buggy:
-  image: rosdiscover-experiments/husky:3796317c73f184d767b1a74f7d58d0cc5b3f84fe
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:3796317c73f184d767b1a74f7d58d0cc5b3f84fe
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 3796317c73f184d767b1a74f7d58d0cc5b3f84fe
 fixed:
-  image: rosdiscover-experiments/husky:23c259f3340fbab901d3fe5d8fd6577e99d6e430
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:23c259f3340fbab901d3fe5d8fd6577e99d6e430
   repositories:
   - name: husky
     url: https://github.com/husky/husky.git
     version: 23c259f3340fbab901d3fe5d8fd6577e99d6e430
-
 sources:
 - /opt/ros/indigo/setup.bash
 - /ros_ws/devel/setup.bash
-
 launches:
 - /ros_ws/src/husky/launch/control.launch
 - /ros_ws/src/husky/launch/teleop.launch

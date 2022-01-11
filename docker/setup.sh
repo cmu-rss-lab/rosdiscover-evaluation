@@ -8,4 +8,4 @@ ROOT_DIR="${HERE_DIR}/.."
 
 # TODO ensure that the version of Docker is recent enough; if not, produce a warning
 
-docker build -f Dockerfile.runner -t rosqual/icsa22-evaluation:runner "${ROOT_DIR}"
+docker build -f "${HERE_DIR}/Dockerfile.runner" -t rosqual/icsa22-evaluation:runner "${ROOT_DIR}"
