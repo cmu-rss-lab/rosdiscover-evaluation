@@ -28,7 +28,7 @@ fi
 docker run \
   --rm \
   --user root \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v "${docker_host}":/var/run/docker.sock:ro \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
   -v "${CACHE_DIR}":/home/rosqual/.roswire/descriptions \
   $DOCKER_IMAGE \
