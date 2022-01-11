@@ -45,7 +45,7 @@ def _recover_for_detection_experiment(config: RecoveryExperimentConfig) -> None:
             f"recovery.{version}.rosdiscover.yml",
         )
         recover_system(
-            image=config[version]["image"],
+            image=config[version]["docker"]["image"],
             sources=config["sources"],
             launches=config["launches"],
             node_sources=config["node_sources"],

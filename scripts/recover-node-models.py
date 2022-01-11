@@ -415,10 +415,6 @@ def main() -> None:
         dest="should_cache_sources",
         help="disables caching of node sources",
     )
-    parser.add_argument(
-        "configuration",
-        help="the path to the configuration file for the system",
-    )
     add_common_options(parser)
     args = parser.parse_args()
 
