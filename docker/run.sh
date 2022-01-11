@@ -4,7 +4,7 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR="${HERE_DIR}/.."
 DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
-CACHE_DIR="${HERE_DIR}/.roswire_cache"
+CACHE_DIR="${ROOT_DIR}/cache/roswire"
 
 if [ ! -d "${CACHE_DIR}" ]; then
   mkdir "${CACHE_DIR}"
