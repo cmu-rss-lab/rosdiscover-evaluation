@@ -13,7 +13,7 @@ sources:
 - /opt/ros/melodic/setup.bash
 - /ros_ws/devel_isolated/setup.bash
 environment:
-  HUSKY_REALSENSE_ENABLED: 1
+  HUSKY_REALSENSE_ENABLED: 0
 launches:
 - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
 - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
@@ -32,7 +32,7 @@ node_sources:
       - src/teleop_node.cpp
       - src/teleop_twist_joy.cpp
     restrict-analysis-to-paths:
-      - /ros_ws/src/autoware
+      - /ros_ws/src/teleop_twist_joy/
 #  Add to amcl_demo_launch
 #    <arg name="initial_pose_x" value="0.0"/>
 #    <arg name="initial_pose_y" value="0.0"/>
