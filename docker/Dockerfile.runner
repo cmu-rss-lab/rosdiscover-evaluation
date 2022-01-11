@@ -8,6 +8,7 @@
 # architectures of our subject systems via run-time observation, you should perform
 # the pipenv virtual environment installation instead.
 FROM python:3.9.5-slim-buster
+ARG DEBIAN_FRONTEND=noninteractive
 RUN pip install pipenv==2021.11.23 \
  && apt-get update \
  && apt-get install -y \
@@ -19,11 +20,21 @@ RUN pip install pipenv==2021.11.23 \
       gnupg \
       libgcc-8-dev \
       lsb-release \
+      wget \
+      software-properties-common \
+      dialog \ 
  && curl -fsSL https://get.docker.com -o get-docker.sh \
  && sh ./get-docker.sh \
  && rm ./get-docker.sh \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - \
+  && apt-add-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ \
+  && apt-get update \
+  && mkdir -p /usr/share/man/man1/ \
+  && apt-get install -y adoptopenjdk-8-hotspot \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 RUN useradd -ms /bin/bash rosqual
 WORKDIR /opt/rosdiscover/evaluation
 COPY Pipfile .
