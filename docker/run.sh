@@ -7,7 +7,7 @@ DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
 CACHE_DIR="${ROOT_DIR}/cache/roswire"
 
 if [ ! -d "${CACHE_DIR}" ]; then
-  mkdir "${CACHE_DIR}"
+  mkdir -p "${CACHE_DIR}"
   chmod 777 "${CACHE_DIR}"
 fi
 
