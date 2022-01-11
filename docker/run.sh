@@ -5,10 +5,16 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR="${HERE_DIR}/.."
 DOCKER_IMAGE="rosqual/icsa22-evaluation:runner"
 CACHE_DIR="${ROOT_DIR}/cache/roswire"
+RESULTS_DIR="${ROOT_DIR}/results"
 
 if [ ! -d "${CACHE_DIR}" ]; then
   mkdir -p "${CACHE_DIR}"
   chmod 777 "${CACHE_DIR}"
+fi
+
+if [ ! -d "${RESULTS_DIR}" ]; then
+  mkdir -p "${RESULTS_DIR}"
+  chmod 777 "${RESULTS_DIR}"
 fi
 
 if [[ ! -v DOCKER_HOST ]]; then
@@ -30,6 +36,7 @@ docker run \
   --user root \
   -v "${docker_host}":/var/run/docker.sock:ro \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
+  -v "${RESULTS_DIR}":/opt/rosdiscover/evaluation/results \
   -v "${CACHE_DIR}":/home/rosqual/.roswire/descriptions \
   $DOCKER_IMAGE \
   "$@"
