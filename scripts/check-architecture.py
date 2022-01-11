@@ -91,7 +91,7 @@ def _check_for_recovery_experiment(config: RecoveryExperimentConfig, kind: str) 
     acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
     acme_log_filename = os.path.join(results_directory, f"acme-and-check-{kind}.txt")
     generate_and_check_acme(
-        image=config["image"],
+        image=config["docker"]["image"],
         input_filename=input_filename,
         output_filename=acme_filename,
         log_filename=acme_log_filename,

@@ -181,7 +181,7 @@ def generate_temporary_recovery_config(
 ) -> t.Iterator[str]:
     """Creates a temporary ROSDiscover config file for a given recovery experiment."""
     recovery_config: t.Dict[str, t.Any] = {
-        "image": experiment_config["image"],
+        "image": experiment_config["docker"]["image"],
         "sources": list(experiment_config["sources"]),
         "launches": list(experiment_config["launches"]),
     }

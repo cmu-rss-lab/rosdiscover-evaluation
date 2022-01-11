@@ -66,7 +66,7 @@ def _recover_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
     log_filename = os.path.join(log_directory, "system-recovery.log")
     rosdiscover_filename = os.path.join(results_directory, "recovery.rosdiscover.yml")
     recover_system(
-        image=config["image"],
+        image=config["docker"]["image"],
         sources=config["sources"],
         launches=config["launches"],
         node_sources=config["node_sources"],

@@ -51,7 +51,7 @@ def _observe_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
             f.write(config["run_script"] + "\n")
 
     observe_system(
-        image=config["image"],
+        image=config["docker"]["image"],
         sources=config["sources"],
         environment=config["environment"],
         launches=config["launches"],
