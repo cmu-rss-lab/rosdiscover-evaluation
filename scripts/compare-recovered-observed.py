@@ -35,7 +35,7 @@ class ArchitectureSummary:
             if sorted_elements:
                 for t in elements:
                     if node.split('/')[-1]==t[0]:
-                       elements.add((node, t[1])) 
+                       elements.add((node, t[1]))
                        elements.remove((t[0], t[1]))
             sorted_elements = [t[1] for t in elements if t[0] == node]
         if highlights:
@@ -201,7 +201,7 @@ def compare(config: ExperimentConfig) -> None:
     recovered_yml_file = os.path.join(results_directory, "recovered.architecture.yml")
 
     comparison_file = os.path.join(results_directory, "compare.observed-recovered.txt")
-    comparison_csv = os.path.join(results_directory, "observed.recoverd.compare.csv")
+    comparison_csv = os.path.join(results_directory, "observed.recovered.compare.csv")
     errors_both_csv = os.path.join(results_directory, "observed.recovered.errors.csv")
     if not os.path.exists(observed_yml_file):
         error(f"[{observed_yml_file} not found. Perhaps observe-system was not run for "
