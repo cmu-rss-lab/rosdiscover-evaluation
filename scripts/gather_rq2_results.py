@@ -28,7 +28,7 @@ def main():
         writer = csv.DictWriter(f, fieldnames=header)
         writer.writeheader()
         for system, dicts in rq2_compares.items():
-            for dict_ in [d for d in dicts.values() if d["Case"] in {"all", "handwritten", "recovered"}]:
+            for dict_ in [d for d in dicts if d["Case"] in {"all", "handwritten", "recovered"}]:
                 writer.writerow(dict_)
 
     # RQ2 Observed Architecture -Node-Level Comparison
