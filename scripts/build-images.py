@@ -89,6 +89,7 @@ def build_templated_image(
 
 
 def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> None:
+    logger.info(f"building images for recovery experiment: {config['filename']}")
     image_name = config["docker"]["image"]
     image_type = config["docker"]["type"]
 
@@ -114,6 +115,7 @@ def build_images_for_recovery_experiment(config: RecoveryExperimentConfig) -> No
 
 
 def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> None:
+    logger.info(f"building images for detection experiment: {config['filename']}")
     for version in ("buggy", "fixed"):
         image_type = config[version]["docker"]["type"]
         image_name = config[version]["docker"]["image"]
