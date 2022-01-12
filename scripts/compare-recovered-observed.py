@@ -31,12 +31,12 @@ class ArchitectureSummary:
         sorted_elements = [t[1] for t in elements if t[0] == node]
         if not sorted_elements and '/' in node:
             # Hack, this is a compound name. Need to fix it in the elements too
-            sorted_elements = [t[1] for t in elements if node.split('/')[-1]==t[0]]
+            sorted_elements = [t[1] for t in elements if node.split('/')[-1] == t[0]]
             if sorted_elements:
                 for t in elements:
-                    if node.split('/')[-1]==t[0]:
-                       elements.add((node, t[1]))
-                       elements.remove((t[0], t[1]))
+                    if node.split('/')[-1] == t[0]:
+                        elements.add((node, t[1]))
+                        elements.remove((t[0], t[1]))
             sorted_elements = [t[1] for t in elements if t[0] == node]
         if highlights:
             for h in highlights:
@@ -365,7 +365,9 @@ def compare(config: ExperimentConfig) -> None:
 
     with open(comparison_csv, 'w') as f:
         writer = csv.writer(f)
-
+        writer.writerow(["Subject", "Case", "Kind", "# observed", "# recovered", "# obs ! rec", "rec ! obs",
+                         "over_approx", "under_approx", "# errors observed", "# errors recovered", "overlap matches",
+                         "#handwritten", "#recovered", "# placeholders"])
         for i in (nodecsv_all, pubcsv_all, subcsv_all, provcsv_all, accsv_all, ascsv_all,
                   pubcsv_hw, subcsv_hw, provcsv_hw, accsv_hw, ascsv_hw,
                   pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
@@ -411,7 +413,6 @@ def compare(config: ExperimentConfig) -> None:
                 for i in (pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
                     line = [config['subject'], node['fullname']] + i
                     writer.writerow(line)
-
 
     with open(errors_both_csv, 'w') as f:
         writer = csv.writer(f)
