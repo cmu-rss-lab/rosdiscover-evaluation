@@ -24,7 +24,7 @@ def main():
                 header = row.keys()
 
     # RQ2 Observed Architecture - Comparison
-    with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Comparison Generated.csv", 'w') as f:
+    with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Comparison.csv", 'w') as f:
         writer = csv.DictWriter(f, fieldnames=header)
         writer.writeheader()
         for system, dicts in rq2_compares.items():
@@ -32,7 +32,7 @@ def main():
                 writer.writerow(dict_)
 
     # RQ2 Observed Architecture -Node-Level Comparison
-    with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Node-Level Comparison Generated.csv", 'w') as f:
+    with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Node-Level Comparison.csv", 'w') as f:
         writer = csv.DictWriter(f, fieldnames=header)
         writer.writeheader()
         for system, dicts in rq2_compares.items():
