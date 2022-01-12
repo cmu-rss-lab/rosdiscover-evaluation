@@ -391,10 +391,8 @@ The data collected for the experiments of RQ2 are in these files:
 
 The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
 
-The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregate them to produce the numbers in the paper. To run this analysis, the local system needs Python 3 with these packages:
+The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregate them to produce the numbers in the paper. To run this analysis, you can run the following command locally via pipenv: (TODO: add Docker-based instructions.)
 
-- pandas (version 1.3.3)
-- matplotlib (version 3.4.3)
-- numpy (version 1.21.2)
+.. code::
 
-The resulting files are directly read by our paper LaTeX sources.
+   $ pipenv run jupyter notebook results/DataAnalysis.ipynb
