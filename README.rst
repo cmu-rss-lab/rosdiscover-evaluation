@@ -364,7 +364,7 @@ Each case has the following files:
 .. code::
 
   [recovered,obeserved].architecture.[yml,acme]   - recovered and observed architetures
-  compare.observed-recovered.log                  - a human readable summary of the comparison
+  compare.observed-recovered.txt                  - a human readable summary of the comparison
   observed.recovered.[compare,errors].csv         - a CSV version of the comparison results,
                                                     with errors detected
   recovery.rosdiscover.yml                        - a script generated config file passed to rosdiscover
@@ -373,6 +373,9 @@ Each case has the following files:
 
 Processed Results and Data Analysis
 -----------------------------------
+
+In order to produce the results presented in the paper, we combined the results into various files that cam
+be analyzed by a Jupyter notebook. These can be reproduced.
 
 The data collected for the experiments of RQ1 are in these files:
 
@@ -388,6 +391,16 @@ The data collected for the experiments of RQ2 are in these files:
 - results/data/RQ2 Observed Architecture - Models.csv
 - results/data/RQ2 Observed Architecture - Node-Level Comparision.csv
 - results/data/RQ2 Observed Architecture - Summary.csv
+
+To reproduce the comparison files, you can run:
+
+.. code::
+
+  (directly)$ pipenv scripts/gather-rq2-results.py
+  (container)$ ./run.sh gather-rq2
+
+This pulls information out of the `compare.observed.recovered.csv` files into the Comparison csvs mentioned above.
+They can the be analyzed like mentioned below.
 
 The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
 
