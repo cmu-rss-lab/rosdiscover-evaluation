@@ -29,9 +29,9 @@ DOCKER_DIR = os.path.join(EVALUATION_DIR, "docker")
 def find_docker_images_for_experiment(filename: str) -> t.Set[str]:
     config = load_config_from_file(filename)
     if config["type"] == "detection":
-        return set([config["buggy"]["image"], config["fixed"]["image"]])
+        return set([config["buggy"]["docker"]["image"], config["fixed"]["docker"]["image"]])
     elif config["type"] == "recovery":
-        return set([config["image"]])
+        return set([config["docker"]["image"]])
     else:
         raise ValueError("unexpected experiment type")
 
