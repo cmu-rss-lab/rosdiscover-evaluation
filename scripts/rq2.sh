@@ -17,7 +17,7 @@ echo "Reproducing results for RQ2 on these targets: $targets"
 
 echo "Using existing images (i.e., not building them from scratch)"
 
-for system in targets; do
+for system in $targets; do
 
   echo "Doing dynamic observation of $system. This may take a while..."
   ./docker/run.sh observe $system
