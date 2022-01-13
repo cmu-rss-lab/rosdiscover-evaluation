@@ -41,7 +41,7 @@ The images provided by this repository are known to work with macOS and several 
 1.2. Command-Line Utilities
 ...........................
 
-* `jq_ <https://stedolan.github.io/jq>`_ (can be installed via, e.g., :code:`apt install jq` on Ubuntu, or :code:`brew install jq` on macOS).
+* `jq <https://stedolan.github.io/jq>`_ (can be installed via, e.g., :code:`apt install jq` on Ubuntu, or :code:`brew install jq` on macOS).
 
 
 1.3. Disk Space
@@ -162,6 +162,13 @@ After this step, you may wish to delete the :code:`images.tar.gz` to save disk s
 3.2. Approach B: Building images from scratch
 .............................................
 
+To build all of the Docker images for the replication package from scratch, you can execute the appropriate commands shown below.
+If you installed the experiment harness via Docker, you should follow the commands prefixed with :code:`(docker)`.
+Alternatively, if you installed the experiment harness natively via pipenv, you should follow the commands prefixed
+with :code:`(native)`.
+
+Be aware that building all images from scratch will take several hours depending on your compute hardware and network connection.
+
 .. code:: command
 
    (docker) $ docker/run.sh build recovery all
@@ -170,6 +177,9 @@ After this step, you may wish to delete the :code:`images.tar.gz` to save disk s
    (native) $ pipenv run build recovery all
    (native) $ pipenv run build detection all
 
+Instead, you may also build the image for an individual experiment as shown below.
+:code:`build recovery husky` will build the Docker image used in RQ1 and RQ2 for Husky.
+:code:`build detection autoware-01` will build the Docker image used in RQ3 for Autoware-01.
 
 .. code:: command
 
@@ -179,8 +189,20 @@ After this step, you may wish to delete the :code:`images.tar.gz` to save disk s
    (native) $ pipenv run build recovery husky
    (native) $ pipenv run build detection autoware-01
 
+A list of all of the available systems can be obtained using the :code:`list` command as follows:
+
+.. code:: command
+
+  (docker) $ docker/run.sh list
+  (native) $ pipenv run list
+
 
 4. Confirming your installation
 -------------------------------
 
 TODO: add some simple steps to check that things were installed successfully
+
+.. code:: command
+
+   (docker) $ docker/run.sh check-install
+   (native) $ pipenv run check-install
