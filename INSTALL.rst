@@ -138,13 +138,46 @@ Below we present two methods for installing the evaluation dataset:
 and (3.2) building images from scratch.
 
 
-3.1. Installing prebuilt images
-...............................
+3.1. Approach A (Preferred Method): Installing prebuilt images
+..............................................................
+
+The preferred approach to installing the evaluation dataset is to install the Docker images using the :code:`images.tar.gz` file included in this replication package.
+Using this approach will ensure that you run the experiments using exactly the same images that were used in the original paper submission.
+In comparison, building the images from scratch may lead to slightly different images for reasons that are difficult to control (e.g., changes to :code:`apt/rosdep` packages, etc.).
+
+The prebuilt Docker images can be installed on Linux and macOS using the command below.
+
+.. code:: command
+
+   $ gunzip -c images.tar.gz | docker load
 
 
-3.2. Building images from scratch
-.................................
+After this step, you may wish to delete the :code:`images.tar.gz` to save disk space (after validating your installation following the instructions at the end of this document).
 
+.. code::
+
+   $ rm images.tar.gz
+
+
+3.2. Approach B: Building images from scratch
+.............................................
+
+.. code:: command
+
+   (docker) $ docker/run.sh build recovery all
+   (docker) $ docker/run.sh build detection all
+
+   (native) $ pipenv run build recovery all
+   (native) $ pipenv run build detection all
+
+
+.. code:: command
+
+   (docker) $ docker/run.sh build recovery husky
+   (docker) $ docker/run.sh build detection autoware-01
+
+   (native) $ pipenv run build recovery husky
+   (native) $ pipenv run build detection autoware-01
 
 
 4. Confirming your installation
