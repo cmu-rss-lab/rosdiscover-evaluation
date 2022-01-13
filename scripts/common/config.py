@@ -12,6 +12,7 @@ __all__ = (
     "TemplatedDockerInstructions",
     "find_configs",
     "load_config",
+    "EVALUATION_DIR",
 )
 
 import contextlib

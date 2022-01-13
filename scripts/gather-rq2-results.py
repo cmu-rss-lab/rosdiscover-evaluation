@@ -3,12 +3,14 @@ import typing as t
 import csv
 import os
 
+from common.config import EVALUATION_DIR
+
 RECOVERY_DIR = 'results/recovery/subjects/'
 JUPYTER_RESULTS = 'results/data'
 
 
 def get_comparison_file(system: str) -> str:
-    return f'{RECOVERY_DIR}{system}/observed.recovered.compare.csv'
+    return os.path.join(EVALUATION_DIR, RECOVERY_DIR, system, 'observed.recovered.compare.csv')
 
 
 def main():
@@ -38,9 +40,6 @@ def main():
         for system, dicts in rq2_compares.items():
             for dict_ in [d for d in dicts if d["Case"] not in {"all", "handwritten", "recovered"}]:
                 writer.writerow(dict_)
-
-
-
 
 
 if __name__ == "__main__":
