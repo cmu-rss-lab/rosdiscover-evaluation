@@ -100,6 +100,28 @@ You can then install Python 3.9.5 via the following:
 
   $ pyenv install 3.9.5
 
+Once Python 3.9.5 has been installed, you should install pipenv.
+`Pipenv <https://pypi.org/project/pipenv/>`_ is a package manager for Python that allows you to install dependencies into a virtual environment without interfering with your system's Python installation.
+To install pipenv, you can execute the following:
+
+.. code:: command
+
+  $ python -m pip install --user pipenv
+
+Once installed, ensure that :code:`~/.local/bin` is added to your path (e.g., by editing your :code:`~/.bashrc` or :code:`~/.profile`).
+
+Next, you can install ROSDiscover, its dependencies, and the experiment runner via pipenv by executing the following at the root of the replication package:
+
+.. code:: command
+
+  $ pipenv install
+
+Finally, you will need to install the ROSDiscover C++ static analysis tool by executing the following at the root of the replication package:
+
+.. code:: command
+
+   $ deps/rosdiscover-cxx-recover/docker/install
+
 
 3. Evaluation Dataset
 ---------------------

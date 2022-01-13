@@ -11,7 +11,7 @@ you will need to build them in this anonymized replication package.
 The structure of this package is as follows:
 
 .. code::
-  
+
   - architecture-style/    The definition of the ROS architeture style used for analysis.
   - deps/                  Contains the code that the evaluation pacakges uses.
     |- rosdiscover/        The code for the implementation of the rosdiscover system
@@ -36,40 +36,9 @@ The structure of this package is as follows:
                            (see more below)
 
 
-Image Creation and Evaluation Infrastructure for ROS Discover
-
-Prerequisites
--------------
-
-Pipenv
-~~~~~~
-
-`Pipenv <https://pypi.org/project/pipenv/>`_ is a package manager for Python that allows you to install dependencies into a
-pyenv environment. To install pipenv, you can execute the following:
-
-.. code:: command
-
-  $ python -m pip install --user pipenv
-
-Once installed, ensure that `~/.local/bin` is added to your path (by editing you ~/.bashrc). To run the scripts in this package, you need to install some dependencies. This can be done by first entering a pipenv shell, and then installing the dependencies:
-
-.. code:: command
-
-  $ pipenv shell
-  (rosdiscover-evaluation)$ pipenv install
-  Installing dependencies from Pipfile.lock (6070d0)...
-
-Exit the pipenv shell with:
-
-.. code:: command
-
-  $ (rosdiscover-evaluation)$ exit
-
-You do not need to enter the pipenv shell again for future commands, since those will be using pipenv run
-
-
 Replicating results for the paper
 =================================
+
 To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or
 each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
 and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally`
