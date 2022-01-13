@@ -78,16 +78,6 @@ be run in the docker version, and the available experiments, by running:
 Build the Docker containers for RQ1 and RQ2
 -------------------------------------------
 
-Our analysis requires robot software to be installed in Docker containers.
-So,to run the experiments, the containers first need to be built.
-
-NOTE: Building the images takes some time. For convenience, we have provided saved images in the `images/`
-directly. You can load all of these by doing:
-
-.. code::
-
-  $ gunzip images/rosdiscover-experiments.tgz | docker load
-
 Alternatively, you can build the experiment images from scratch. In the examples
 
 We provide a script that does this for all our experiments - it generates a Dockerfile and the uses Docker to build the container. To build the container:
@@ -99,7 +89,7 @@ We provide a script that does this for all our experiments - it generates a Dock
   2021-11-10 18:18:03.271 | INFO     | __main__:build_image:38 - apt_packages_arg: cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs
   2021-11-10 18:18:03.278 | INFO     | __main__:build_image:53 - building image: docker build -f /code/docker/Dockerfile --build-arg COMMON_ROOTFS=docker/rootfs --build-arg CUDA_VERSION='11-4' --build-arg APT_PACKAGES='cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs' --build-arg BUILD_COMMAND='catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1' --build-arg DIRECTORY=experiments/recovery/subjects/autorally --build-arg ROSINSTALL_FILENAME=pkgs.rosinstall --build-arg DISTRO=melodic . -t rosdiscover-experiments/autorally:c2692f2
   ...
-  
+
 At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
 
