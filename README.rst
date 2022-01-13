@@ -231,7 +231,8 @@ Derive and check architecture for RQ2
 
 The experimental setups for RQ2 are in the `experiments/recovery/subjects` directories. We currently report results for recovery in `turtlebot`, `autorally`, and  `husky`. RQ2 consists of two phases followed by checking and comparison of results. All the examples will be given or `autorally` but should be the same for the other subjects. All commands are executed in the root directory of this package.
 
-Note the for convenience, we provide a shell script that automates all the steps below on prebuilt images. To run this:
+Note the for convenience, we provide a shell script that automates all the steps below. It assumes that all the
+images have been prebuilt as described above. To run this:
 
 .. code::
 
