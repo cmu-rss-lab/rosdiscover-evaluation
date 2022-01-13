@@ -49,13 +49,56 @@ The images provided by this repository are known to work with macOS and several 
 2. Software & Experiment Harness
 --------------------------------
 
-2.1. Approach A (Preferred): Docker
-...................................
+ROSDiscover, its dependencies, and the scripts used to conduct the experiments can be installed either via Docker (2.1), the preferred method for replication of results, or natively (2.2) via pipenv.
+We provide instructions for both of these approaches below.
 
 
-2.2. Approach B (Preferred): Native (pyenv + pipenv)
-....................................................
+2.1. Approach A (Preferred Method): Docker
+..........................................
 
+To install the Docker-based experiment harness, which includes ROSDiscover and all other necessary software, you should run:
+
+.. code::
+
+   $ docker/setup.sh
+
+
+2.2. Approach B: Native (pipenv)
+................................
+
+Alternatively, to install the necessary software and experiment harness natively, you will first need to install both (a) Python 3.9 or greater and (b) pipenv.
+Since Python 3.9 or greater is not provided as the system Python installation on many distributions, we optionally recommend using pyenv to automatically install a standalone Python 3.9 without interfering with the rest of your system.
+
+`pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
+Be careful to ensure that you have installed all of pyenv's prequisites by following these instructions: https://github.com/pyenv/pyenv/wiki/Common-build-problems.
+Once you have installed the dependencies for pyenv, you can install pyenv itself by executing the following:
+
+.. code:: command
+
+  $ curl https://pyenv.run | bash
+
+You should then check that your :code:`~/.profile` sources :code:`~/.bashrc`.
+Once you have ensured that is the case, you should add the following lines to :code:`~/.profile` immediately prior to the point where :code:`~/.bashrc` is sourced.
+
+.. code:: command
+
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+
+Additionally, you should add the following lines to your :code:`~/.bashrc`:
+
+.. code:: command
+
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+
+After making the above changes, you should restart your shell so that the changes in :code:`~/.profile` and :code:`~/.bashrc` take effect.
+You can then install Python 3.9.5 via the following:
+
+.. code:: command
+
+  $ pyenv install 3.9.5
 
 
 3. Evaluation Dataset

@@ -41,78 +41,6 @@ Image Creation and Evaluation Infrastructure for ROS Discover
 Prerequisites
 -------------
 
-Docker
-~~~~~~
-
-Before you can use the images provided by the repo, make sure that `Docker
-<https://www.docker.com/>`_ 17.05 or higher is installed on your machine.
-Older versions of Docker do not support `multi-stage builds
-<https://docs.docker.com/develop/develop-images/multistage-build/>`_ and will
-be unable to build the images provided by this repository.
-See the following for platform-specific instructions for installing Docker:
-
-* `Installing Docker Engine on Ubuntu <https://docs.docker.com/engine/install/ubuntu>`_
-* `Installing Docker Engine on Fedora <https://docs.docker.com/engine/install/fedora>`_
-* `Install Docker Desktop on Mac <https://docs.docker.com/docker-for-mac/install>`_
-* `Install Docker Desktop on Windows <https://docs.docker.com/docker-for-windows/install>`_
-
-If using Linux, make sure to follow the
-`post-installation instructions <https://docs.docker.com/engine/install/linux-postinstall>`_
-(e.g., adding your user account to the `docker` group) to avoid common
-issues (e.g., requiring `sudo` to run `docker` commands).
-
-The images provided by this repository are known to work with
-Mac OSX and several Linux distributions (Ubuntu, Arch), but are untested
-on Windows.
-
-Python
-~~~~~~
-
-The code in this project requires both Python 3.9+ and Poetry to be installed.
-Since Python 3.9 or greater is not provided as the system Python installation on
-many distributions, we optionally recommend using pyenv to automatically install
-a standalone Python 3.9 without interfering with the rest of your system.
-
-
-pyenv
-.....
-
-`pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
-Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
-Once you have installed the dependencies for pyenv, you can quickly install
-pyenv itself by executing the following:
-
-.. code:: command
-
-  $ curl https://pyenv.run | bash
-
-You should then check that your :code:`~/.profile` sources :code:`~/.bashrc`.
-Once you have ensured that is the case, you should add the following lines to
-:code:`~/.profile` immediately prior to the point where :code:`~/.bashrc` is
-sourced.
-
-.. code:: command
-
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-
-
-Additionally, you should add the following lines to your :code:`~/.bashrc`:
-
-.. code:: command
-
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-
-After making the above changes, you should restart your shell so that the changes
-in :code:`~/.profile` and :code:`~/.bashrc` take effect. You can then install
-Python 3.9.5 via the following:
-
-.. code:: command
-
-  $ pyenv install 3.9.5
-
 Pipenv
 ~~~~~~
 
@@ -122,7 +50,7 @@ pyenv environment. To install pipenv, you can execute the following:
 .. code:: command
 
   $ python -m pip install --user pipenv
-  
+
 Once installed, ensure that `~/.local/bin` is added to your path (by editing you ~/.bashrc). To run the scripts in this package, you need to install some dependencies. This can be done by first entering a pipenv shell, and then installing the dependencies:
 
 .. code:: command
@@ -130,14 +58,15 @@ Once installed, ensure that `~/.local/bin` is added to your path (by editing you
   $ pipenv shell
   (rosdiscover-evaluation)$ pipenv install
   Installing dependencies from Pipfile.lock (6070d0)...
-  
+
 Exit the pipenv shell with:
 
 .. code:: command
 
   $ (rosdiscover-evaluation)$ exit
-  
+
 You do not need to enter the pipenv shell again for future commands, since those will be using pipenv run
+
 
 Replicating results for the paper
 =================================
