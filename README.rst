@@ -231,12 +231,23 @@ Derive and check architecture for RQ2
 
 The experimental setups for RQ2 are in the `experiments/recovery/subjects` directories. We currently report results for recovery in `turtlebot`, `autorally`, and  `husky`. RQ2 consists of two phases followed by checking and comparison of results. All the examples will be given or `autorally` but should be the same for the other subjects. All commands are executed in the root directory of this package.
 
+Note the for convenience, we provide a shell script that automates all the steps below. It assumes that all the
+images have been prebuilt as described above. To run this:
+
+.. code::
+
+  (container)$ docker/run.sh rq2 [autorally | husky | turtlebot]
+  (directly)$ scripts/rq2.sh [autorally | husky | turtlebot]
+
+If no arguments are given, the script will run through all three cases.
+
+
 1. Derived the ground truth by observing the running system.
 
 .. code::
 
    (native)$ pipenv run scripts/observe-system.py autorally
-   (container)$ ./run.sh observe autorally
+   (container)$ docker/run.sh observe autorally
    
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`. 
 
@@ -247,7 +258,7 @@ To check the architecure
 .. code::
 
   (native)$ pipenv run scripts/recover-system.py recovery autorally
-  (container)$ ./run.sh recovery autorally
+  (container)$ docker/run.sh recover recovery autorally
   INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
   ...
   INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
@@ -262,7 +273,7 @@ This will process the launch files supplied in the `experiment.yml` and produce 
 .. code::
 
   (native)$ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml
-  (container)$ ./run.sh check observed recovery autorally
+  (container)$ docker/run.sh check observed recovery autorally
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -278,7 +289,7 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
 .. code::
 
   (native)$ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml
-  (container)$ ./run.sh check recovered recovery autorally
+  (container)$ docker/run.sh check recovered recovery autorally
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -295,7 +306,7 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
 .. code::
 
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
-  (container)$ ./run.sh compare autorally
+  (container)$ docker/run.sh compare autorally
 
 The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
@@ -316,7 +327,7 @@ To run configuration mismatch bugs for RQ3 involves building another set of Dock
 .. code::
 
   (native)$ pipenv run scripts/build-images.py detection autorally-01
-  (container)$ ./run.sh build detection autorally-01
+  (container)$ docker/run.sh build detection autorally-01
   ...
   
 To check that the error is detected in the buggy version, and disappears in the fixed version:
@@ -324,7 +335,7 @@ To check that the error is detected in the buggy version, and disappears in the 
 .. code::
 
   (native)$ pipenv scripts/check-architecture.py detected detection autorally-01
-  (container)$ ./run.sh check detected detection autorally-01
+  (container)$ docker/run.sh check detected detection autorally-01
 
 One complication for replicating RQ3 is that it sometimes wasn't possible to restore the version of the robot software at the time that the bug was extant. Instead, we forward ported these bugs into the docker images from RQ1&2. Unfortunately, seeding the bugs is currently not yet as automated as the rest of the replication package - the docker images will need to be built explicitly. For the cases in which we needed to forward port, we included a separate experiment definition (e.g., `experiment-reproduced.yml` and a Dockerfile each to build the buggy version that seeds the error into the correct containers, and the fixed version (in cases it needed to be different from the original version). To build these requires using the Docker command explicitly, e.g., for `husky-04`:
 
@@ -333,7 +344,8 @@ One complication for replicating RQ3 is that it sometimes wasn't possible to res
   $ docker build -t rosdiscover-evaluation/husky:husky-04-buggy -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-error experiments/detection/subjects/husky-04/
   $ docker build -t rosdiscover-evaluation/husky:husky-04-fixed -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-fixed experiments/detection/subjects/husky-04/
   
-Not that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one referred to in `experiment-reproduced.yml`.
+Note that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one
+referred to in `experiment-reproduced.yml`.
 
 The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
 
@@ -397,7 +409,7 @@ To reproduce the comparison files, you can run:
 .. code::
 
   (native)$ pipenv scripts/gather-rq2-results.py
-  (container)$ ./run.sh gather-rq2
+  (container)$ docker/run.sh gather-rq2
 
 This pulls information out of the `compare.observed.recovered.csv` files into the Comparison csvs mentioned above.
 They can the be analyzed like mentioned below.
@@ -408,4 +420,7 @@ The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregat
 
 .. code::
 
-   $ pipenv run jupyter notebook results/DataAnalysis.ipynb
+   (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+
+This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080"
