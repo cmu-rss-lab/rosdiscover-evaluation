@@ -7,10 +7,14 @@ and (b) the installation of the Docker images used in the evaluation dataset.
 Users should follow the instructions for installing (a) before proceeding to install (b).
 
 
+
 1. Prerequisites
 ----------------
 
-Before continuing, `Docker <https://www.docker.com/>`_ 17.05 or higher must be installed on your machine.
+1.1. Docker
+...........
+
+Before continuing, `Docker <https://www.docker.com>`_ 17.05 or higher must be installed on your machine.
 The following command can be used to check the version of Docker that you have installed:
 
 .. code::
@@ -32,7 +36,14 @@ If using Linux, make sure to follow the
 (e.g., adding your user account to the `docker` group) to avoid common
 issues (e.g., requiring `sudo` to run `docker` commands).
 
-The images provided by this repository are known to work with Mac OSX and several Linux distributions (Ubuntu, Arch), but are untested on Windows.
+The images provided by this repository are known to work with macOS and several Linux distributions (Ubuntu, Arch), but are untested on Windows.
+
+
+1.2. Command-Line Utilities
+...........................
+
+* `jq_ <https://stedolan.github.io/jq>`_ (can be installed via, e.g., :code:`apt install jq` on Ubuntu, or :code:`brew install jq` on macOS).
+
 
 
 2. Software & Experiment Harness
@@ -49,6 +60,7 @@ The images provided by this repository are known to work with Mac OSX and severa
 
 3. Evaluation Dataset
 ---------------------
+
 
 
 4. Confirming your installation
