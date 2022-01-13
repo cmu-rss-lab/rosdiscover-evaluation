@@ -247,7 +247,7 @@ To check the architecure
 .. code::
 
   (native)$ pipenv run scripts/recover-system.py recovery autorally
-  (container)$ ./run.sh recovery autorally
+  (container)$ ./run.sh recover recovery autorally
   INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
   ...
   INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
@@ -333,7 +333,8 @@ One complication for replicating RQ3 is that it sometimes wasn't possible to res
   $ docker build -t rosdiscover-evaluation/husky:husky-04-buggy -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-error experiments/detection/subjects/husky-04/
   $ docker build -t rosdiscover-evaluation/husky:husky-04-fixed -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-fixed experiments/detection/subjects/husky-04/
   
-Not that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one referred to in `experiment-reproduced.yml`.
+Note that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one
+referred to in `experiment-reproduced.yml`.
 
 The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
 
