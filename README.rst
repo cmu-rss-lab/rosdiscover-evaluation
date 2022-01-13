@@ -424,3 +424,17 @@ The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregat
    (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
 
 This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080"
+
+
+Results Format
+--------------
+The Jupter notebook writes the results into these files:
+- results/RQ1.csv (which includes the nodel-level accuracy results shown in Table III in the paper)
+- results/RQ1_unreachable.csv (which includes the nodel-level static analysis results of unreachable statements and functions)
+- results/RQ2.csv (which includes the system-level static analysis accurary results shown in Table IV in the paper)
+- results/RQ2_architectural_element.csv (which includes the system-level static analysis accurary results per architectural element shown in Table V in the paper)
+- results/RQ2_handwritten.csv (which includes the system-level accurary of handwritten models discusssed in Section IV.B. RQ2 – System Architecture Recovery - Results of the paper)
+- results/RQ2_handwritten_architectural_element.csv (which includes the system-level accurary of handwritten models discusssed in Section IV.B. RQ2 – System Architecture Recovery - Results of the paper per architectural element)
+- results/RQ3.csv (which includes the data shown in Table VI of the paper)
+
+Furthermore, results/modelSizes.csv lists the lines of code for each handwritten model of the corresponding file in deps/rosdiscover/src/rosdiscover/models.
