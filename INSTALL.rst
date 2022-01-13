@@ -7,8 +7,8 @@ and (b) the installation of the Docker images used in the evaluation dataset.
 Users should follow the instructions for installing (a) before proceeding to install (b).
 
 
-Prerequisites
--------------
+1. Prerequisites
+----------------
 
 Before continuing, `Docker <https://www.docker.com/>`_ 17.05 or higher must be installed on your machine.
 The following command can be used to check the version of Docker that you have installed:
@@ -32,28 +32,26 @@ If using Linux, make sure to follow the
 (e.g., adding your user account to the `docker` group) to avoid common
 issues (e.g., requiring `sudo` to run `docker` commands).
 
-The images provided by this repository are known to work with
-Mac OSX and several Linux distributions (Ubuntu, Arch), but are untested
-on Windows.
+The images provided by this repository are known to work with Mac OSX and several Linux distributions (Ubuntu, Arch), but are untested on Windows.
 
 
-Software & Experiment Harness
------------------------------
+2. Software & Experiment Harness
+--------------------------------
 
-Approach A (Preferred): Docker
-..............................
+2.1. Approach A (Preferred): Docker
+...................................
 
 
-Approach B (Preferred): Native (pyenv + pipenv)
-...............................................
+2.2. Approach B (Preferred): Native (pyenv + pipenv)
+....................................................
 
 
 
-Evaluation Dataset
-------------------
+3. Evaluation Dataset
+---------------------
 
 
-Confirming your installation
-----------------------------
+4. Confirming your installation
+-------------------------------
 
 TODO: add some simple steps to check that things were installed successfully
