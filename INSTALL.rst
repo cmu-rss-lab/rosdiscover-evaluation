@@ -7,7 +7,6 @@ and (b) the installation of the Docker images used in the evaluation dataset.
 Users should follow the instructions for installing (a) before proceeding to install (b).
 
 
-
 1. Prerequisites
 ----------------
 
@@ -43,6 +42,12 @@ The images provided by this repository are known to work with macOS and several 
 ...........................
 
 * `jq_ <https://stedolan.github.io/jq>`_ (can be installed via, e.g., :code:`apt install jq` on Ubuntu, or :code:`brew install jq` on macOS).
+
+
+1.3. Disk Space
+...............
+
+Note that to install the replication package in its entirety, you will require just under 100 GB of disk space.
 
 
 
@@ -125,6 +130,20 @@ Finally, you will need to install the ROSDiscover C++ static analysis tool by ex
 
 3. Evaluation Dataset
 ---------------------
+
+Once you have installed the experiment harness according to the instructions above, you will need to install the Docker images for each of the subject systems.
+Note that this step will install require slightly under 100 GB of disk space.
+Below we present two methods for installing the evaluation dataset:
+(3.1) installing prebaked images, the preferred method for replication;
+and (3.2) building images from scratch.
+
+
+3.1. Installing prebuilt images
+...............................
+
+
+3.2. Building images from scratch
+.................................
 
 
 
