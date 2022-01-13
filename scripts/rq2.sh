@@ -85,5 +85,7 @@ done
 
 echo "Collating the results and starting the Jupyter notebook server..."
 ./docker/run.sh gather-rq2
-pipenv run jupyter notebook results/DataAnalysis.ipynb
+echo "Starting notebook -- open a browser to the address indicated"
+echo "WARNING: EXITING THE PROGRAM WILL KILL THE SERVER"
+./docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
 
