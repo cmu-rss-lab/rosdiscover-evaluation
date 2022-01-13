@@ -161,7 +161,7 @@ connecting to it. To build the docker image, you can either use the saved image 
 
 .. code::
 
-  $ gunzip containers/evaluation.tgz | docker load
+  $ docker load < containers/evaluation.tgz 
 
 Or build it from scratch:
 
