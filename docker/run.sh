@@ -33,6 +33,7 @@ fi
 
 docker run \
   --rm \
+  -it \
   --user root \
   -v "${docker_host}":/var/run/docker.sock:ro \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
