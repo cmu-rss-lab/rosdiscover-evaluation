@@ -235,7 +235,8 @@ Note the for convenience, we provide a shell script that automates all the steps
 
 .. code::
 
-  (container)$ ./scripts/rq2.sh [autorally | husky | turtlebot]
+  (container)$ docker/run.sh rq2 [autorally | husky | turtlebot]
+  (directly)$ scripts/rq2.sh [autorally | husky | turtlebot]
 
 If no arguments are given, the script will run through all three cases.
 
@@ -418,4 +419,7 @@ The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregat
 
 .. code::
 
-   $ pipenv run jupyter notebook results/DataAnalysis.ipynb
+   (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+   (container)$ ./run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+
+This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080"

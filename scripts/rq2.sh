@@ -20,7 +20,7 @@ echo "Using existing images (i.e., not building them from scratch)"
 for system in $targets; do
 
   echo "Doing dynamic observation of $system. This may take a while..."
-  ./docker/run.sh observe $system
+  pipenv run observe $system
   if [ ! -e "results/recovery/subjects/$system/observed.architecture.yml" ]; then
     echo "Observation of $system's architecture failed to complete successfully."
     echo "Please check the logs and try again."
@@ -32,7 +32,7 @@ for system in $targets; do
   fi
 
   echo "Doing static recovery of $system. This may take a while if it is the first time..."
-  ./docker/run.sh recover recovery $system
+  pipenv run recover recovery $system
   if [ ! -e "results/recovery/subjects/$system/recovered.architecture.yml" ]; then
     echo "Static recovery of $system's architecture fauled to complete successfully."
     echo "Please check the logs and try again."
@@ -44,7 +44,7 @@ for system in $targets; do
   fi
 
   echo "Checking the observed architecture for $system"
-  ./docker/run.sh check observed recovery $system
+  pipenv run check observed recovery $system
   if [ ! -e "results/recovery/subjects/$system/observed.architecture.acme" ]; then
     echo "Failed to check the observed architecture of $system"
     echo "Please check the logs and try again."
@@ -58,7 +58,7 @@ for system in $targets; do
   fi
 
   echo "Checking the recovered architecture for $system"
-  ./docker/run.sh check recovered recovery $system
+  pipenv run check recovered recovery $system
   if [ ! -e "results/recovery/subjects/$system/recovered.architecture.acme" ]; then
     echo "Failed to check the recovered architecture of $system"
     echo "Please check the logs and try again."
@@ -72,7 +72,7 @@ for system in $targets; do
   fi
 
   echo "Comparing the observed and recovered architectures of $system"
-  ./docker/run.sh compare $system
+  pipenv run compare $system
     if [ ! -e "results/recovery/subjects/$system/compare.observed-recovered.txt" ]; then
     echo "Failed to compare the recovered architecture of $system"
     echo "Please check the logs and try again."
@@ -83,9 +83,12 @@ for system in $targets; do
 
 done
 
-echo "Collating the results and starting the Jupyter notebook server..."
-./docker/run.sh gather-rq2
-echo "Starting notebook -- open a browser to the address indicated"
-echo "WARNING: EXITING THE PROGRAM WILL KILL THE SERVER"
-./docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+echo "Collating the results"
+pipenv run gather-rq2
+
+echo "To analyze the results in Jupyter notebook, please do: "
+echo "$ <RUN> run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb"
+echo "Where <RUN> is either scripts/run.sh or pipenv run, depending on your setup."
+echo "Then, open a browser to 92.168.0.1:8080"
+
 
