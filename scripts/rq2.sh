@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -eu
 PROG=$0
 
 if  [[ $# -eq 0 ]]; then
@@ -44,7 +44,7 @@ for system in $targets; do
   fi
 
   echo "Checking the observed architecture for $system"
-  pipenv run check observed recovery $system
+  pipenv run check observed $system
   if [ ! -e "results/recovery/subjects/$system/observed.architecture.acme" ]; then
     echo "Failed to check the observed architecture of $system"
     echo "Please check the logs and try again."
@@ -58,7 +58,7 @@ for system in $targets; do
   fi
 
   echo "Checking the recovered architecture for $system"
-  pipenv run check recovered recovery $system
+  pipenv run check recovered $system
   if [ ! -e "results/recovery/subjects/$system/recovered.architecture.acme" ]; then
     echo "Failed to check the recovered architecture of $system"
     echo "Please check the logs and try again."
