@@ -12,7 +12,10 @@ import docker
 from common.images import (
     find_installed_images,
     find_missing_images,
+    find_named_volumes,
 )
+
+VOLUME_CXX_EXTRACT = "rosdiscover-cxx-extract-opt"
 
 
 def check() -> None:
@@ -27,6 +30,11 @@ def check() -> None:
     else:
         jq_status = "No"
     print(f"Is jq installed? {jq_status}\n")
+
+
+    named_volumes = find_named_volumes()
+    cxx_recover_status = "yes" if VOLUME_CXX_EXTRACT in named_volumes else "no"
+    print(f"Is rosdiscover-cxx-recover installed? {cxx_recover_status}\n")
 
     print("The following evaluation dataset images have been successfully installed:")
     for image in find_installed_images():

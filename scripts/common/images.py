@@ -5,6 +5,7 @@ __all__ = (
     "find_docker_images_for_experiment",
     "find_installed_images",
     "find_missing_images",
+    "find_named_volumes",
 )
 
 import typing as t
@@ -51,3 +52,11 @@ def find_installed_images() -> t.Set[str]:
     docker_image_names = find_all_docker_image_names()
     missing_images = find_missing_images()
     return docker_image_names.difference(missing_images)
+
+
+def find_named_volumes() -> t.Set[str]:
+    client = docker.from_env()
+    named_volumes = set()
+    for named_volume in client.volumes.list():
+        named_volumes.add(named_volume.name)
+    return named_volumes
