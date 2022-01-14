@@ -75,23 +75,6 @@ be run in the docker version, and the available experiments, by running:
   (container)$ ./run.sh help
   (container)$ ./run.sh list
 
-Build the Docker containers for RQ1 and RQ2
--------------------------------------------
-
-Alternatively, you can build the experiment images from scratch. In the examples
-
-We provide a script that does this for all our experiments - it generates a Dockerfile and the uses Docker to build the container. To build the container:
-
-.. code::
-
-  (native)$ pipenv run scripts/build-images.py recovery autorally
-  (container)$ ./run.sh build recovery autorally
-  2021-11-10 18:18:03.271 | INFO     | __main__:build_image:38 - apt_packages_arg: cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs
-  2021-11-10 18:18:03.278 | INFO     | __main__:build_image:53 - building image: docker build -f /code/docker/Dockerfile --build-arg COMMON_ROOTFS=docker/rootfs --build-arg CUDA_VERSION='11-4' --build-arg APT_PACKAGES='cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs' --build-arg BUILD_COMMAND='catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1' --build-arg DIRECTORY=experiments/recovery/subjects/autorally --build-arg ROSINSTALL_FILENAME=pkgs.rosinstall --build-arg DISTRO=melodic . -t rosdiscover-experiments/autorally:c2692f2
-  ...
-
-At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
-
 
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
@@ -136,8 +119,8 @@ If no arguments are given, the script will run through all three cases.
 
    (native)$ pipenv run scripts/observe-system.py autorally
    (container)$ docker/run.sh observe autorally
-   
-This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`. 
+
+This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`.
 
 To check the architecure
 
@@ -152,7 +135,7 @@ To check the architecure
   INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
   INFO: applying remapping from [/camera/right/camera_info] to [/right_camera/camera_info]
   INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
-  
+
 This will process the launch files supplied in the `experiment.yml` and produce the architecture in `experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
 
 3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
@@ -169,11 +152,11 @@ This will process the launch files supplied in the `experiment.yml` and produce 
   ...
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
- 
+
 The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
-  
+
   b. Produce and check the architecture of the recovered system
-  
+
 .. code::
 
   (native)$ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml
@@ -188,9 +171,9 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
   /autoRallyTrackGazeboSim.launch.
 
 The result is placed in experiments/recovery/subjects/autorally/recovered.architecture.acme
-  
+
   c. Compare the architectures
-  
+
 .. code::
 
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
@@ -217,7 +200,7 @@ To run configuration mismatch bugs for RQ3 involves building another set of Dock
   (native)$ pipenv run scripts/build-images.py detection autorally-01
   (container)$ docker/run.sh build detection autorally-01
   ...
-  
+
 To check that the error is detected in the buggy version, and disappears in the fixed version:
 
 .. code::
@@ -231,7 +214,7 @@ One complication for replicating RQ3 is that it sometimes wasn't possible to res
 
   $ docker build -t rosdiscover-evaluation/husky:husky-04-buggy -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-error experiments/detection/subjects/husky-04/
   $ docker build -t rosdiscover-evaluation/husky:husky-04-fixed -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-fixed experiments/detection/subjects/husky-04/
-  
+
 Note that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one
 referred to in `experiment-reproduced.yml`.
 
