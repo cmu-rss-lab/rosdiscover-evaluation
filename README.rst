@@ -2,13 +2,12 @@ ROS Discover Evaluation
 =======================
 
 This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
-This package is has been anonymized to the best of our ability for the purpose of technical track submission.
 
-To replicate the results in this package, you must build several Docker images.
-In the real replication package, we will bundle those Docker images in a tar archive, but due to practical limitations (and > 100GB file size),
-you will need to build them in this anonymized replication package.
 
-The structure of this package is as follows:
+Contents
+========
+
+This replication package is structured as follows:
 
 .. code::
 
