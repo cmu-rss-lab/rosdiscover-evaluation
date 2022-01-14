@@ -125,7 +125,7 @@ Finally, you will need to install the ROSDiscover C++ static analysis tool by ex
 
 .. code:: command
 
-   $ deps/rosdiscover-cxx-recover/docker/install
+   $ make -C deps/rosdiscover-cxx-recover/docker
 
 
 3. Evaluation Dataset
