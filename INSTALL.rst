@@ -200,9 +200,80 @@ A list of all of the available systems can be obtained using the :code:`list` co
 4. Confirming your installation
 -------------------------------
 
-TODO: add some simple steps to check that things were installed successfully
+The :code:`check-install` command, shown below, can be used to perform some basic checks of your installation, as shown below.
 
 .. code:: command
 
-   (docker) $ docker/run.sh check-install
-   (native) $ pipenv run check-install
+    (docker) $ docker/run.sh check-install
+    (native) $ pipenv run check-install
+
+    Is jq installed? Yes (/usr/bin/jq)
+
+    Is rosdiscover-cxx-recover installed? Yes
+
+    The following evaluation dataset images have been successfully installed:
+    * rosdiscover-experiments/autoware:84169473a3f72aea8a400464f5b673f3c77c6b8c
+    * rosdiscover-experiments/autoware:fc8f691c70bf62a3de0f7448d9490b2e9385e6c4
+    * rosdiscover-experiments/autoware:842990d9aca4f09004f3e88402d94ec2bbd339ee
+    * rosdiscover-experiments/autoware:939ef1836bcdf0ff2a6c98d1c1ced940b0e242dd
+    * rosdiscover-experiments/fetch:v0.8.3
+    * rosdiscover-experiments/autorally:7b36814b5b2938345028a26381f96b5b625d0219
+    * rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+    * rosdiscover-experiments/autoware:5f30cabe3aea301a211951cd288357bb170199de
+    * rosdiscover-experiments/autoware:216269d752f232634acca6c3307c9af5c97cb17e
+    * rosdiscover-experiments/autorally:5366f48da3ff6b19bf493d3aed39f37a02c950e6
+    * rosdiscover-experiments/autorally:autorally-02-buggy
+    * rosdiscover-experiments/husky:dc6750e916cfecc0fbb943183a5a671950f593a3
+    * rosdiscover-experiments/autorally:7a49fbf584d5d14700d10a7a5d6226fa76ab30ee
+    * rosdiscover-experiments/autoware:86f74272b0d933abb4b5d4e0a28802592843f4f1
+    * rosdiscover-experiments/autoware:47d36ea2c3eff9fb0161b3a14097b70450b2c1b6
+    * rosdiscover-experiments/autoware:4b2f608a2189f2284c6f9923ee88b983f28adb6f
+    * rosdiscover-experiments/autorally:6ddb07745dc93e62a6386c83f5304147a98a9696
+    * rosdiscover-experiments/husky:husky-02-fixed
+    * rosdiscover-experiments/husky:husky-02-buggy
+    * rosdiscover-experiments/autorally:autorally-02-fixed
+    * rosdiscover-experiments/autoware:2a3f292eb451ac946959a3a20490427f0d2f764d
+    * rosdiscover-experiments/husky:0.4.10
+    * rosdiscover-experiments/autorally:a47a173290a175fa9ed1eb2b635afda25574bc63
+    * rosdiscover-experiments/turtlebot:fc0e1b8d6e8b0f22a69d4958a5e073a48d87e291
+    * rosdiscover-experiments/autorally:autorally-01-fixed
+    * rosdiscover-experiments/autorally:3ae64dad2107baccac836b70f80c2bb4bc8669cd
+    * rosdiscover-experiments/autoware:30eed1453e97eb4beb7b696ff22f5312ad80f5f6
+    * rosdiscover-experiments/autoware:c2a090dec2101be2788ecb607102fa9210e24737
+    * rosdiscover-experiments/husky:23c259f3340fbab901d3fe5d8fd6577e99d6e430
+    * rosdiscover-experiments/autoware:f1fb9e205ca3d449a2e96f0f3409f9fd2d84ad8d
+    * rosdiscover-experiments/autorally:autorally-03-buggy
+    * rosdiscover-experiments/husky:husky-04-buggy
+    * rosdiscover-experiments/husky:husky-06-fixed
+    * rosdiscover-experiments/autoware:e9d6d6f8762457249ccb497680cf838b5a33d3e4
+    * rosdiscover-experiments/autoware:0583e6d128450b2c567732cb9a00b828af7cd93e
+    * rosdiscover-experiments/autorally:d1c56c0b11a35d573ef00c4276d5ba3e668728ac
+    * rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
+    * rosdiscover-experiments/autorally:279c6642e5547876beeb536cced74661c8e46b50
+    * rosdiscover-experiments/autoware:2fbad6d64f9d71e4b1b5e1de9008ca63f3b44fa1
+    * rosdiscover-experiments/husky:3796317c73f184d767b1a74f7d58d0cc5b3f84fe
+    * rosdiscover-experiments/autorally:c2692f2
+    * rosdiscover-experiments/autoware:6a7d1b9f66fd353eb5c6ad8df942c433fff8e2a1
+    * rosdiscover-experiments/turtlebot:3e32933c829e308600707a9f971334d13d1cbe19
+    * rosdiscover-experiments/husky:husky-04-fixed
+    * rosdiscover-experiments/mavros:mavros-02-buggy
+    * rosdiscover-experiments/autoware:a2ab41dafe76579a76ad23f92f8f4992b701433b
+    * rosdiscover-experiments/turtlebot:e799e45abdfe3106ac105ce21dd43283381ba180
+    * rosdiscover-experiments/autorally:autorally-04-buggy
+    * rosdiscover-experiments/autorally:autorally-04-fixed
+    * rosdiscover-experiments/autoware:8bf1c47fbc18a0303fda23c601dfe959a3afbc41
+    * rosdiscover-experiments/autorally:autorally-03-fixed
+    * rosdiscover-experiments/autoware:static
+    * rosdiscover-experiments/autoware:37b9feba82e6a6fabfa689fcf9d210c3c8f287f6
+    * rosdiscover-experiments/autoware:6428d5fb34b961fd37da212bdb068f77ae99f25f
+    * rosdiscover-experiments/husky:husky-06-buggy
+    * rosdiscover-experiments/turtlebot:2.4.2
+    * rosdiscover-experiments/autoware:92d9732112467fb2e7d7f66da56be51ba746915b
+    * rosdiscover-experiments/autorally:autorally-01-buggy
+    * rosdiscover-experiments/mavros:mavros-02-fixed
+    * rosdiscover-experiments/turtlebot:b26d199a18d350e72495c4d8935e5b1ccc64d75a
+    * rosdiscover-experiments/autoware:3db7e153dc111682857ffd089018b92b2eed1786
+    * rosdiscover-experiments/husky:8afd94b417f33e6be6c8b7196ad9ca66260250c7
+
+    The following evaluation dataset images are missing:
+

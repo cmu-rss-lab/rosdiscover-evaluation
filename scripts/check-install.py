@@ -8,6 +8,8 @@ import typing as t
 import subprocess
 
 import docker
+from loguru import logger
+logger.remove()
 
 from common.images import (
     find_installed_images,
@@ -33,7 +35,7 @@ def check() -> None:
 
 
     named_volumes = find_named_volumes()
-    cxx_recover_status = "yes" if VOLUME_CXX_EXTRACT in named_volumes else "no"
+    cxx_recover_status = "Yes" if VOLUME_CXX_EXTRACT in named_volumes else "No"
     print(f"Is rosdiscover-cxx-recover installed? {cxx_recover_status}\n")
 
     print("The following evaluation dataset images have been successfully installed:")
