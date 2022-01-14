@@ -74,3 +74,13 @@ The ICSA artifact evaluation track gives the following criteria for this badge:
 
   Functional + very carefully documented and well-structured to the extent that reuse and repurposing is facilitated.
   In particular, norms and standards of the research community for artifacts of this type are strictly adhered to.
+
+
+This replication package contains components that are designed for reuse and repurposing:
+
+* **`ROSDiscover <https://github.com/rosqual/rosdiscover>`_** provides an implementation of the technique described in the paper.
+  It is designed to, among other purposes, recover run-time architectures from ROS applications, provided in the form of a Docker image and an accompanying configuration file.
+  Further instructions on the general use of ROSDiscover can be found in its README file, available either in its archival form in the :code:`deps/rosdiscover` directory of this artifact, or, preferably, in its up-to-date form on GitHub at:https://github.com/rosqual/rosdiscover.
+* **`ROSWire <https://github.com/rosqual/roswire>`_**
+* **Our experiment infrastructure**
+* **Our evaluation dataset**
