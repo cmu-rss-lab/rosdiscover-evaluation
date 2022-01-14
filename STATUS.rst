@@ -37,10 +37,10 @@ Where the definitions of documented, consistent, complete, and exercisable come 
 Below, we argue how this artifact satifies each of the above criteria:
 
 * **Documented:** An outline of the replication package and a detailed description of its contents are provided in README.rst.
-  Instructions for installing the artifact are given in INSTALL.rst and steps for reproducing the results of the paper are given in README.rst.
-* **Consistent:**
-* **Complete:**
-* **Exercisable:**
+  Installation instructions for the artifact are given in INSTALL.rst, and steps for reproducing the results of the paper are given in README.rst.
+* **Consistent:** The artifacts provided in this replication package include the source code and executables for ROSDiscover toolchain (i.e., an implementation of the technique presented in the paper), prebuilt images for the evaluation dataset (as well as their sources), the infrastructure used to run all of the experiments in the paper, and the raw and processed results themselves.
+* **Complete:** See above. All of the necessary software, data, and instructions for reproducing the results of the paper are included in this replication package.
+* **Exercisable:** We provide a Docker-based setup for reliably reproducing the results of the experiments reported in the paper, complete with instructions for installing and running that setup.
 
 
 Open Research Object (ORO)
