@@ -67,3 +67,10 @@ This replication package is hosted on `Zenodo <https://zenodo.org>`_, a long-ter
 
 Research Object Reviewed (ROR) -- Reusable
 ------------------------------------------
+
+The ICSA artifact evaluation track gives the following criteria for this badge:
+
+::
+
+  Functional + very carefully documented and well-structured to the extent that reuse and repurposing is facilitated.
+  In particular, norms and standards of the research community for artifacts of this type are strictly adhered to.
