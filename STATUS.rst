@@ -84,3 +84,6 @@ This replication package contains components that are designed for reuse and rep
 * **ROSWire (https://github.com/rosqual/roswire):**
 * **Our experiment infrastructure:**
 * **Our evaluation dataset:**
+
+TODO: Make argument that we go far above and beyond the expectations of typical research artifacts.
+We follow appropriate software engineering norms and best practices (e.g., those related to Docker and Python).
