@@ -15,7 +15,7 @@ The `ICSA artifact evaluation track website <https://www.acm.org/publications/po
   In order to obtain any badge every artifact will be required to be Functional, that is, it must be properly documented,
   consistent, complete, exercisable, and include appropriate evidence of verification and validation.
 
-Where the definitions of documented, consistent, complete, and exercisable come from the `ACM policy on Artifact Review and Badging Version 1.1 <https://www.acm.org/publications/policies/artifact-review-and-badging-current>`_:
+Where the definitions of documented, consistent, complete, and exercisable come from the **Artifacts Evaluated -- Functional v1.1** criteria laid out in the `ACM policy on Artifact Review and Badging Version 1.1 <https://www.acm.org/publications/policies/artifact-review-and-badging-current>`_:
 
 ::
 
@@ -36,7 +36,8 @@ Where the definitions of documented, consistent, complete, and exercisable come 
 
 Below, we argue how this artifact satifies each of the above criteria:
 
-* **Documented:**
+* **Documented:** An outline of the replication package and a detailed description of its contents are provided in README.rst.
+  Instructions for installing the artifact are given in INSTALL.rst and steps for reproducing the results of the paper are given in README.rst.
 * **Consistent:**
 * **Complete:**
 * **Exercisable:**
