@@ -11,7 +11,7 @@ you will need to build them in this anonymized replication package.
 The structure of this package is as follows:
 
 .. code::
-  
+
   - architecture-style/    The definition of the ROS architeture style used for analysis.
   - deps/                  Contains the code that the evaluation pacakges uses.
     |- rosdiscover/        The code for the implementation of the rosdiscover system
@@ -36,111 +36,9 @@ The structure of this package is as follows:
                            (see more below)
 
 
-Image Creation and Evaluation Infrastructure for ROS Discover
-
-Prerequisites
--------------
-
-Docker
-~~~~~~
-
-Before you can use the images provided by the repo, make sure that `Docker
-<https://www.docker.com/>`_ 17.05 or higher is installed on your machine.
-Older versions of Docker do not support `multi-stage builds
-<https://docs.docker.com/develop/develop-images/multistage-build/>`_ and will
-be unable to build the images provided by this repository.
-See the following for platform-specific instructions for installing Docker:
-
-* `Installing Docker Engine on Ubuntu <https://docs.docker.com/engine/install/ubuntu>`_
-* `Installing Docker Engine on Fedora <https://docs.docker.com/engine/install/fedora>`_
-* `Install Docker Desktop on Mac <https://docs.docker.com/docker-for-mac/install>`_
-* `Install Docker Desktop on Windows <https://docs.docker.com/docker-for-windows/install>`_
-
-If using Linux, make sure to follow the
-`post-installation instructions <https://docs.docker.com/engine/install/linux-postinstall>`_
-(e.g., adding your user account to the `docker` group) to avoid common
-issues (e.g., requiring `sudo` to run `docker` commands).
-
-The images provided by this repository are known to work with
-Mac OSX and several Linux distributions (Ubuntu, Arch), but are untested
-on Windows.
-
-Python
-~~~~~~
-
-The code in this project requires both Python 3.9+ and Poetry to be installed.
-Since Python 3.9 or greater is not provided as the system Python installation on
-many distributions, we optionally recommend using pyenv to automatically install
-a standalone Python 3.9 without interfering with the rest of your system.
-
-
-pyenv
-.....
-
-`pyenv <https://github.com/pyenv/pyenv>`_ is a tool for managing multiple Python installations.
-Installation instructions for pyenv can be found at https://github.com/pyenv/pyenv-installer.
-Once you have installed the dependencies for pyenv, you can quickly install
-pyenv itself by executing the following:
-
-.. code:: command
-
-  $ curl https://pyenv.run | bash
-
-You should then check that your :code:`~/.profile` sources :code:`~/.bashrc`.
-Once you have ensured that is the case, you should add the following lines to
-:code:`~/.profile` immediately prior to the point where :code:`~/.bashrc` is
-sourced.
-
-.. code:: command
-
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-
-
-Additionally, you should add the following lines to your :code:`~/.bashrc`:
-
-.. code:: command
-
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-
-After making the above changes, you should restart your shell so that the changes
-in :code:`~/.profile` and :code:`~/.bashrc` take effect. You can then install
-Python 3.9.5 via the following:
-
-.. code:: command
-
-  $ pyenv install 3.9.5
-
-Pipenv
-~~~~~~
-
-`Pipenv <https://pypi.org/project/pipenv/>`_ is a package manager for Python that allows you to install dependencies into a
-pyenv environment. To install pipenv, you can execute the following:
-
-.. code:: command
-
-  $ python -m pip install --user pipenv
-  
-Once installed, ensure that `~/.local/bin` is added to your path (by editing you ~/.bashrc). To run the scripts in this package, you need to install some dependencies. This can be done by first entering a pipenv shell, and then installing the dependencies:
-
-.. code:: command
-
-  $ pipenv shell
-  (rosdiscover-evaluation)$ pipenv install
-  Installing dependencies from Pipfile.lock (6070d0)...
-  
-Exit the pipenv shell with:
-
-.. code:: command
-
-  $ (rosdiscover-evaluation)$ exit
-  
-You do not need to enter the pipenv shell again for future commands, since those will be using pipenv run
-
 Replicating results for the paper
 =================================
+
 To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or
 each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
 and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally`
@@ -180,16 +78,6 @@ be run in the docker version, and the available experiments, by running:
 Build the Docker containers for RQ1 and RQ2
 -------------------------------------------
 
-Our analysis requires robot software to be installed in Docker containers.
-So,to run the experiments, the containers first need to be built.
-
-NOTE: Building the images takes some time. For convenience, we have provided saved images in the `images/`
-directly. You can load all of these by doing:
-
-.. code::
-
-  $ gunzip images/rosdiscover-experiments.tgz | docker load
-
 Alternatively, you can build the experiment images from scratch. In the examples
 
 We provide a script that does this for all our experiments - it generates a Dockerfile and the uses Docker to build the container. To build the container:
@@ -201,7 +89,7 @@ We provide a script that does this for all our experiments - it generates a Dock
   2021-11-10 18:18:03.271 | INFO     | __main__:build_image:38 - apt_packages_arg: cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs
   2021-11-10 18:18:03.278 | INFO     | __main__:build_image:53 - building image: docker build -f /code/docker/Dockerfile --build-arg COMMON_ROOTFS=docker/rootfs --build-arg CUDA_VERSION='11-4' --build-arg APT_PACKAGES='cmake-curses-gui cutecom doxygen libglademm-2.4-1v5 libglademm-2.4-dev libgtkglextmm-x11-1.2 libgtkglextmm-x11-1.2-dev libgtkmm-2.4-1v5 libraw1394-11 libusb-1.0-0 libusb-dev openssh-server synaptic texinfo ros-melodic-rqt-publisher ros-melodic-gazebo-ros-pkgs' --build-arg BUILD_COMMAND='catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1' --build-arg DIRECTORY=experiments/recovery/subjects/autorally --build-arg ROSINSTALL_FILENAME=pkgs.rosinstall --build-arg DISTRO=melodic . -t rosdiscover-experiments/autorally:c2692f2
   ...
-  
+
 At the conclusion of this, you should have a docker image `rosdiscover-evaluation/autorally:c2692f2` built.
 
 
