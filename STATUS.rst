@@ -12,19 +12,26 @@ The `ICSA artifact evaluation track website <https://www.acm.org/publications/po
 
 ::
 
-  In order to obtain any badge every artifact will be required to be Functional, that is, it must be properly documented, consistent, complete, exercisable, and include appropriate evidence of verification and validation.
+  In order to obtain any badge every artifact will be required to be Functional, that is, it must be properly documented,
+  consistent, complete, exercisable, and include appropriate evidence of verification and validation.
 
 Where the definitions of documented, consistent, complete, and exercisable come from the `ACM policy on Artifact Review and Badging Version 1.1 <https://www.acm.org/publications/policies/artifact-review-and-badging-current>`_:
 
 ::
 
-  Documented: At minimum, an inventory of artifacts is included, and sufficient description provided to enable the artifacts to be exercised.
+  * Documented: At minimum, an inventory of artifacts is included, and sufficient description provided to enable the
+    artifacts to be exercised.
 
-  Consistent: The artifacts are relevant to the associated paper, and contribute in some inherent way to the generation of its main results.
+  * Consistent: The artifacts are relevant to the associated paper, and contribute in some inherent way to the
+    generation of its main results.
 
-  Complete: To the extent possible, all components relevant to the paper in question are included. (Proprietary artifacts need not be included. If they are required to exercise the package then this should be documented, along with instructions on how to obtain them. Proxies for proprietary data should be included so as to demonstrate the analysis.)
+  * Complete: To the extent possible, all components relevant to the paper in question are included.
+    (Proprietary artifacts need not be included. If they are required to exercise the package then this should be
+    documented, along with instructions on how to obtain them. Proxies for proprietary data should be included so as to
+    demonstrate the analysis.)
 
-  Exercisable: Included scripts and/or software used to generate the results in the associated paper can be successfully executed, and included data can be accessed and appropriately manipulated.
+  * Exercisable: Included scripts and/or software used to generate the results in the associated paper can be
+    successfully executed, and included data can be accessed and appropriately manipulated.
 
 
 Below, we argue how this artifact satifies each of the above criteria:
