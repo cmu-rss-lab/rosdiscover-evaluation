@@ -86,9 +86,9 @@ This replication package contains components that are designed for reuse and rep
 * **Our evaluation dataset:** provides executable, historically accurate Docker images for several popular open-source ROS systems and architectural misconfigurations in those systems.
   Producing these images is non-trivial and requires many careful steps to end up with Docker images that are exercisable, complete, and historically accurate.
   This dataset and its associated images may be used by other researchers who wish to look into misconfigurations in ROS, or static analysis of ROS systems more generally.
-* **Our experiment infrastructure:**
+* **Our experiment infrastructure:** can be both (a) reused in other studies of ROS architectural misconfiguration bugs, and (b) repurposed for the purpose of evaluating other static and dynamic analysis techniques for ROS systems (e.g., program repair, testing, fuzzing, static analysis).
+  In particular, we provide infrastructure for building historically accurate Docker images of ROS systems that can be reused to build versions of other ROS systems.
 
-TODO: Make argument that we go far above and beyond the expectations of typical research artifacts.
-We follow appropriate software engineering norms and best practices (e.g., those related to Docker and Python).
+Throughout all of these artifacts, we follow software engineering best practices and the norms and practices of relevant ecosystems (e.g., Docker, Python).
 
 TODO: We will need to describe more of our technical approach and implementation in a separate document (e.g., TECHNICAL-DETAILS.rst).
