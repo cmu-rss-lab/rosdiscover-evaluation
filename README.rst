@@ -49,31 +49,21 @@ using the `rosdiscover/evaluation` Docker container that encapsulates this insid
 order for this to work, the container will need to connect to the Docker that is running on the host. In the
 instructions below, we give two versions of each command. One, prefixed by `(native)$` is how to run the command
 from the host; thoe other `(container)$` is how to run the command using the provided helper script that connects to
-the evaluation Docker container. Building this container is shown in the optional step below.
+the evaluation Docker container.
 
-Optional: Use provided docker evaluation image
-----------------------------------------------
-
-For faster startup, we have provided a docker image for running the evaluation scripts, and a shell script for
-connecting to it. To build the docker image, you can either use the saved image data in this package:
+Aobtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
 
 .. code::
 
-  $ docker load < containers/evaluation.tgz 
+  (docker) $ docker/run.sh help
+  (native) $ pipenv run help
 
-Or build it from scratch:
-
-.. code::
-
-  $ docker/setup.sh
-
-In both cases, you should now have an image `rosqual/icsa22-evaluation:runner`. You can get a list of the commands that can
-be run in the docker version, and the available experiments, by running:
+You can also obtain a list of all of the experiments using the :code:`list` command:
 
 .. code::
 
-  (container)$ ./run.sh help
-  (container)$ ./run.sh list
+  (native) $ docker/run.sh list
+  (native) $ pipenv run list
 
 
 Run recovery of all nodes in images for RQ1
