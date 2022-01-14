@@ -81,9 +81,12 @@ This replication package contains components that are designed for reuse and rep
 * **ROSDiscover (https://github.com/rosqual/rosdiscover):** provides an implementation of the technique described in the paper.
   It is designed to, among other purposes, recover run-time architectures from ROS applications, provided in the form of a Docker image and an accompanying configuration file.
   Further instructions on the general use of ROSDiscover can be found in its README file, available either in its archival form in the :code:`deps/rosdiscover` directory of this artifact, or, preferably, in its up-to-date form on GitHub at:https://github.com/rosqual/rosdiscover.
-* **ROSWire (https://github.com/rosqual/roswire):**
+* **ROSWire (https://github.com/rosqual/roswire):** is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive functionality for building static and dynamic tools for ROS that accept Docker images as their input (rather than assuming that those tools are located on the same machine as the subject of the analysis).
+  ROSWire has been used for a variety of purposes in several publications and PhD theses.
 * **Our experiment infrastructure:**
 * **Our evaluation dataset:**
 
 TODO: Make argument that we go far above and beyond the expectations of typical research artifacts.
 We follow appropriate software engineering norms and best practices (e.g., those related to Docker and Python).
+
+TODO: We will need to describe more of our technical approach and implementation in a separate document (e.g., TECHNICAL-DETAILS.rst).
