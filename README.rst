@@ -73,17 +73,17 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
 
 .. code::
 
+  (docker)$ docker/run.sh recover-node-models autorally
+  (docker)$ docker/run.sh recover-node-models autoware
+  (docker)$ docker/run.sh recover-node-models fetch
+  (docker)$ docker/run.sh recover-node-models husky
+  (docker)$ docker/run.sh recover-node-models turtlebot
+
   (native)$ pipenv run scripts/recover-node-models.py autorally
   (native)$ pipenv run scripts/recover-node-models.py autoware
   (native)$ pipenv run scripts/recover-node-models.py fetch
   (native)$ pipenv run scripts/recover-node-models.py husky
   (native)$ pipenv run scripts/recover-node-models.py turtlebot
-
-  (container)$ ./run.sh recover-node-models autorally
-  (container)$ ./run.sh recover-node-models autoware
-  (container)$ ./run.sh recover-node-models fetch
-  (container)$ ./run.sh recover-node-models husky
-  (container)$ ./run.sh recover-node-models turtlebot
 
 
 Derive and check architecture for RQ2
@@ -96,8 +96,8 @@ images have been prebuilt as described above. To run this:
 
 .. code::
 
-  (container)$ docker/run.sh rq2 [autorally | husky | turtlebot]
-  (directly)$ scripts/rq2.sh [autorally | husky | turtlebot]
+  (docker)$ docker/run.sh rq2 [autorally | husky | turtlebot]
+  (native)$ scripts/rq2.sh [autorally | husky | turtlebot]
 
 If no arguments are given, the script will run through all three cases.
 
@@ -106,8 +106,8 @@ If no arguments are given, the script will run through all three cases.
 
 .. code::
 
-   (native)$ pipenv run scripts/observe-system.py autorally
-   (container)$ docker/run.sh observe autorally
+      (docker)$ docker/run.sh observe autorally
+      (native)$ pipenv run scripts/observe-system.py autorally
 
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`.
 
@@ -117,8 +117,9 @@ To check the architecure
 
 .. code::
 
+  (docker)$ docker/run.sh recover recovery autorally
   (native)$ pipenv run scripts/recover-system.py recovery autorally
-  (container)$ docker/run.sh recover recovery autorally
+
   INFO: reconstructing architecture for image [rosdiscover-experiments/autorally:c2692f2]
   ...
   INFO: applying remapping from [/camera/left/camera_info] to [/left_camera/camera_info]
@@ -132,8 +133,9 @@ This will process the launch files supplied in the `experiment.yml` and produce 
 
 .. code::
 
+  (docker)$ docker/run.sh check observed recovery autorally
   (native)$ pipenv run scripts/check-architecture.py observed experiments/recovery/subjects/autorally/experiment.yml
-  (container)$ docker/run.sh check observed recovery autorally
+
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -148,8 +150,9 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
 
 .. code::
 
+  (docker)$ docker/run.sh check recovered recovery autorally
   (native)$ pipenv run scripts/check-architecture.py recovered experiments/recovery/subjects/autorally/experiment.yml
-  (container)$ docker/run.sh check recovered recovery autorally
+
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Writing Acme to /code/experiments/recovery/subjects/autorally/recovered.architecture.acme
   INFO: Checking architecture...
@@ -165,8 +168,8 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
 
 .. code::
 
+  (docker)$ docker/run.sh compare autorally
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
-  (container)$ docker/run.sh compare autorally
 
 The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
