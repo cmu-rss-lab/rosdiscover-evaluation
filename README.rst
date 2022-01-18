@@ -197,8 +197,8 @@ To check that the error is detected in the buggy version, and disappears in the 
 
 .. code::
 
-  (native)$ pipenv scripts/check-architecture.py detected detection autorally-01
-  (container)$ docker/run.sh check detected detection autorally-01
+  (native)$ pipenv scripts/check-architecture.py detected autorally-01
+  (container)$ docker/run.sh check detected autorally-01
 
 One complication for replicating RQ3 is that it sometimes wasn't possible to restore the version of the robot software at the time that the bug was extant. Instead, we forward ported these bugs into the docker images from RQ1&2. Unfortunately, seeding the bugs is currently not yet as automated as the rest of the replication package - the docker images will need to be built explicitly. For the cases in which we needed to forward port, we included a separate experiment definition (e.g., `experiment-reproduced.yml` and a Dockerfile each to build the buggy version that seeds the error into the correct containers, and the fixed version (in cases it needed to be different from the original version). To build these requires using the Docker command explicitly, e.g., for `husky-04`:
 
