@@ -40,7 +40,7 @@ def _check_for_detection_experiment(config: DetectionExperimentConfig, kind: str
         acme_filename = os.path.join(results_directory, f"{kind}.architecture.acme")
         acme_log_filename = os.path.join(log_directory, f"acme-and-check-{kind}.log")
         generate_and_check_acme(
-            image=config[kind]["image"],
+            image=config[kind]["docker"]["image"],
             input_filename=input_filename,
             output_filename=acme_filename,
             log_filename=acme_log_filename,
