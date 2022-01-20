@@ -47,3 +47,33 @@ for system in $targets; do
     echo "Results produced in 'results/detection/subjects/$system/error-report.csv'"
   fi
 done
+
+for system in $targets; do
+  echo "Resuit summary:"
+  buggy_errors = ()
+  fixed_errors = ()
+  while IFS="," read -r rec_system rec_kind rec_topic rec_error; do
+    if [[ "$rec_kind" == "buggy" && "$rec_error" != "NO RELEVANT ERROR DETECTED" ]]; then
+      buggy_errors+=("$rec_error")
+    elif [[ "$rec_kind" == "fixed" && "$rec_error" != "NO RELEVANT ERROR DETECTED" ]]; then
+      fixe_errors+=("$rec_error")
+    fi
+  done < <(tail -n +2 results/detection/subjects/$system/error-report.csv)
+  if [ ${#buggy_errors} -neq 0 ]; then
+    echo "  The buggy version had these errors detected in the part of the system containing the bug:"
+    for error in "${buggy_errors[@]}"; do
+      echo "    $error"
+    done
+  else:
+    echo "  No errors were found in the buggy system in the part of the system containing the bug."
+  fi
+  if [ ${#fixed_errors} -neq 0 ]; then
+    echo "  The fixed version STILL had these errors detected in the part of the system containing the bug:"
+    for error in "${fixed_errors[@]}"; do
+      echo "    $error"
+    done
+  else:
+    echo "  No errors were found in the fixed system."
+  fi
+
+done
