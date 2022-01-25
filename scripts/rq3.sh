@@ -18,7 +18,7 @@ echo "Using existing images (i.e., not building them from scratch)."
 
 for system in $targets; do
   echo "Doing recovery of $system ..."
-  pipenv run recovery detection $system
+  pipenv run recover detection $system
   if [ ! -e "results/detection/subjects/$system/fixed.architecture.yml"  && \
        ! -e "results/detection/subjects/$system/buggy.architecture.yml" ]; then
     echo "Recovery $system's architecture failed to complete successfully"
