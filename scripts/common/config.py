@@ -104,6 +104,7 @@ class ExperimentConfig(t.TypedDict):
     environment: t.Mapping[str, str]
     launches: t.Sequence[str]
     node_sources: t.Collection[NodeSources]
+    exclude_from_replication_package: bool
 
 
 class RecoveryExperimentConfig(ExperimentConfig):
@@ -150,6 +151,7 @@ def load_config_from_file(config_filename: str) -> ExperimentConfig:
     config["node_sources"] = config.get("node_sources") or []
     config["environment"] = config.get("environment") or {}
     config["reproducer"] = config.get("reproducer") or {}
+    config["exclude_from_replication_package"] = config.get("exclude_from_replication_package", False)
 
     if config["type"] == "recovery":
         config["config_with_node_sources_filename"] = os.path.join(

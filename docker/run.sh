@@ -39,5 +39,6 @@ docker run \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
   -v "${RESULTS_DIR}":/opt/rosdiscover/evaluation/results \
   -v "${CACHE_DIR}":/home/rosqual/.roswire/descriptions \
+  -v "${ROOT_DIR}/docker":/opt/rosdiscover/evaluation/docker \
   $DOCKER_IMAGE \
   "$@"
