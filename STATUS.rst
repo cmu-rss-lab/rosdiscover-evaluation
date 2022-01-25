@@ -95,5 +95,3 @@ This replication package contains components that are designed for reuse and rep
   In particular, we provide infrastructure for building historically accurate Docker images of ROS systems that can be reused to build versions of other ROS systems.
 
 Throughout all of these artifacts, we follow software engineering best practices and the norms and practices of relevant ecosystems (e.g., Docker, Python).
-
-TODO: We will need to describe more of our technical approach and implementation in a separate document (e.g., TECHNICAL-DETAILS.rst).
