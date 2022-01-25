@@ -82,7 +82,12 @@ This replication package contains components that are designed for reuse and rep
   It is designed to, among other purposes, recover run-time architectures from ROS applications, provided in the form of a Docker image and an accompanying configuration file.
   Further instructions on the general use of ROSDiscover can be found in its README file, available either in its archival form in the :code:`deps/rosdiscover` directory of this artifact, or, preferably, in its up-to-date form on GitHub at:https://github.com/rosqual/rosdiscover.
 * **ROSWire (https://github.com/rosqual/roswire):** is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive functionality for building static and dynamic tools for ROS that accept Docker images as their input (rather than assuming that those tools are located on the same machine as the subject of the analysis).
-  ROSWire has been used for a variety of purposes in several publications and PhD theses.
+  ROSWire has been used for a variety of purposes including, but not limited to, the following:
+
+  * `Afzoon Afzal. 2021. Automated Testing of Robotic and Cyberphysical Systems. PhD Thesis. Carnegie Mellon University, USA. <http://reports-archive.adm.cs.cmu.edu/anon/isr2021/CMU-ISR-21-105.pdf>`_
+  * `Deborah S. Katz. 2020. Identification of Software Failures in Complex Systems Using Low-Level Execution Data. PhD Thesis. Carnegie Mellon University, USA. <http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-129.pdf>`_
+  * `A. Afzal, C. Le Goues and C. S. Timperley, Mithra: Anomaly Detection as an Oracle for Cyberphysical Systems," in IEEE Transactions on Software Engineering, doi: 10.1109/TSE.2021.3120680. <https://ieeexplore.ieee.org/abstract/document/9576615>`_
+
 * **Our evaluation dataset:** provides executable, historically accurate Docker images for several popular open-source ROS systems and architectural misconfigurations in those systems.
   Producing these images is non-trivial and requires many careful steps to end up with Docker images that are exercisable, complete, and historically accurate.
   This dataset and its associated images may be used by other researchers who wish to look into misconfigurations in ROS, or static analysis of ROS systems more generally.
