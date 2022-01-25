@@ -50,7 +50,7 @@ instructions below, we give two versions of each command. One, prefixed by `(nat
 from the host; thoe other `(container)$` is how to run the command using the provided helper script that connects to
 the evaluation Docker container.
 
-Obtain a of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
+Obtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
 
 .. code::
 
