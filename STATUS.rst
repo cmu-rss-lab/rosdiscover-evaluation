@@ -86,7 +86,7 @@ This replication package contains components that are designed for reuse and rep
 
   * `Afzoon Afzal. 2021. Automated Testing of Robotic and Cyberphysical Systems. PhD Thesis. Carnegie Mellon University, USA. <http://reports-archive.adm.cs.cmu.edu/anon/isr2021/CMU-ISR-21-105.pdf>`_
   * `Deborah S. Katz. 2020. Identification of Software Failures in Complex Systems Using Low-Level Execution Data. PhD Thesis. Carnegie Mellon University, USA. <http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-129.pdf>`_
-  * `A. Afzal, C. Le Goues and C. S. Timperley, Mithra: Anomaly Detection as an Oracle for Cyberphysical Systems," in IEEE Transactions on Software Engineering, doi: 10.1109/TSE.2021.3120680. <https://ieeexplore.ieee.org/abstract/document/9576615>`_
+  * `A. Afzal, C. Le Goues and C. S. Timperley, "Mithra: Anomaly Detection as an Oracle for Cyberphysical Systems," in IEEE Transactions on Software Engineering, doi: 10.1109/TSE.2021.3120680. <https://ieeexplore.ieee.org/abstract/document/9576615>`_
 
 * **Our evaluation dataset:** provides executable, historically accurate Docker images for several popular open-source ROS systems and architectural misconfigurations in those systems.
   Producing these images is non-trivial and requires many careful steps to end up with Docker images that are exercisable, complete, and historically accurate.
