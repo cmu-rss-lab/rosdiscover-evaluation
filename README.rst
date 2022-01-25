@@ -50,7 +50,8 @@ instructions below, we give two versions of each command. One, prefixed by `(nat
 from the host; thoe other `(container)$` is how to run the command using the provided helper script that connects to
 the evaluation Docker container.
 
-Aobtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
+Aobtain a 
+of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
 
 .. code::
 
@@ -302,3 +303,134 @@ The Jupter notebook writes the results into these files:
 - results/RQ3.csv (which includes the data shown in Table VI of the paper)
 
 Furthermore, results/modelSizes.csv lists the lines of code for each handwritten model of the corresponding file in deps/rosdiscover/src/rosdiscover/models.
+
+Running different experiments
+=================================
+
+The experiment pipeline is designed for flexible modification to run different experiments (e.g., other bugs, or bugs in other systems) 
+
+Experiment Configuration File Format
+--------------
+
+Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml
+
+.. code::
+
+  type: detection
+  subject: husky
+  distro: kinetic
+  build_command: catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+  missing_ros_packages:
+  - yaml-cpp
+  exclude_ros_packages:
+  - lms1xx
+  - orocos_kdl
+  - python_orocos_kdl
+  - opencv3
+  - diagnostics
+  - diagnostic_updater
+  - diagnostic_aggregator
+  - diagnostic_msgs
+  - std_srvs
+  - tf
+  - tf2_eigen
+  - tf2_geometry_msgs
+  - tf2_kdl
+  - tf2_msgs
+  - tf2_py
+  - tf2_ros
+  - tf2_sensor_msgs
+  - message_relay
+  apt_packages:
+  - ros-kinetic-orocos-kdl
+  - libyaml-cpp-dev
+  - ros-kinetic-tf
+  - ros-kinetic-tf2-sensor-msgs
+  - ros-kinetic-control-msgs
+  - ros-kinetic-message-relay
+  buggy:
+    docker:
+      type: templated
+      image: rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+    repositories:
+    - name: husky
+      url: https://github.com/husky/husky.git
+      version: dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+  fixed:
+    docker:
+      type: templated
+      image: rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
+    repositories:
+    - name: husky
+      url: https://github.com/husky/husky.git
+      version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
+  sources:
+  - /opt/ros/kinetic/setup.bash
+  - /ros_ws/devel/setup.bash
+  launches:
+  - /ros_ws/src/husky/husky_gazebo/launch/spawn_husky.launch
+  - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
+  - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
+
+The :code:`subject` tag describes the name of the system (e.g. husky, autoware, or turtlebot). 
+The :code:`type` tag can either be :code:`detection` (with a buggy and fixed version for RQ3) or :code:`recovery` for a single-version experiment for RQ2. This tag defines what format the experiment is described. 
+For detection experiments, the project sources will be specified for buggy and fixed versions sperarately: 
+
+.. code::
+
+  buggy:
+    docker:
+      type: templated
+      image: rosdiscover-experiments/husky:dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+    repositories:
+    - name: husky
+      url: https://github.com/husky/husky.git
+      version: dc8169b6b7b9cfe37497f222adbe5f20bb83495a
+  fixed:
+    docker:
+      type: templated
+      image: rosdiscover-experiments/husky:97c5280b151665704f8f8e3beecb3e6e89ea14ae
+    repositories:
+    - name: husky
+      url: https://github.com/husky/husky.git
+      version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
+
+The :code:`repositories` tag describes a list of resposities to be includes according to the following specificiation.     
+The :code:`url` specifies the URL to the git resposity that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis. 
+The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well. 
+The :code:`type` tag specifies the docker image type and can be :code:`templated` for automatic generation of the image, or :code:`custom` for seperately provided docker images (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file) to be used to build the image, such as in autorally-01:
+
+.. code::
+
+  docker:
+    type: custom
+    image: rosdiscover-experiments/autorally:autorally-01-buggy
+    filename: Dockerfile-reproduce-buggy
+
+Further, the The :code:`errors` tag lists the topic names for which an error is expected
+
+The for recovery experiments the buggy content of the buggy / fixed tag is included in the root, since there is only one version. 
+For each version of the system, the ROS package dependencies are determined by analyzing all package.xml files that can be found recursively in the listed repositories. All dependencies includes as "depend", "build_depend", "build_export_depend", or "run_depend" will be added to the image. The corresponding versions are determined using https://github.com/rosin-project/rosinstall_generator_time_machine based on the most recent date of versions specifies for the repositories.
+
+The rest of the format is identical for both experiment types.
+
+The :code:`distro` is the name of ROS distribution in which the bug is supposed to be replicated. Examples incldue indigo, kinetic, lunar, or medoldic. The experiment infrastructure will use the corresponding ROS distribution as a basis and install the system and its corresponding dependencies in the stated ROS distribution. 
+The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories. 
+The :code:`exclude_ros_packages` specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed. 
+The :code:`apt_packages` specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraruies, or build tools used by the project.
+The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
+The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files. 
+The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value directionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
+
+.. code::
+
+  launches:
+    - filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
+    - filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/map.launch
+      arguments:
+        tf_launch: /.autoware/data/tf/tf.launch
+        pmap_param: noupdate
+        pcd_files: /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00868.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00169_-00868.pcd
+        csv_files: /.autoware/data/map/vector_map/road_surface_mark.csv /.autoware/data/map/vector_map/pole.csv /.autoware/data/map/vector_map/lane.csv /.autoware/data/map/vector_map/stopline.csv /.autoware/data/map/vector_map/area.csv /.autoware/data/map/vector_map/vector.csv /.autoware/data/map/vector_map/streetlight.csv /.autoware/data/map/vector_map/line.csv /.autoware/data/map/vector_map/gutter.csv /.autoware/data/map/vector_map/signaldata.csv /.autoware/data/map/vector_map/curb.csv /.autoware/data/map/vector_map/idx.csv /.autoware/data/map/vector_map/roadedge.csv /.autoware/data/map/vector_map/point.csv /.autoware/data/map/vector_map/poledata.csv /.autoware/data/map/vector_map/crosswalk.csv /.autoware/data/map/vector_map/node.csv /.autoware/data/map/vector_map/utilitypole.csv /.autoware/data/map/vector_map/whiteline.csv /.autoware/data/map/vector_map/dtlane.csv /.autoware/data/map/vector_map/zebrazone.csv /.autoware/data/map/vector_map/roadsign.csv
+       
+
