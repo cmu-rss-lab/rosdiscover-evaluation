@@ -119,13 +119,16 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
     for version in ("buggy", "fixed"):
         image_type = config[version]["docker"]["type"]
         image_name = config[version]["docker"]["image"]
-
+        if version == "buggy":
+            rosinstall_filename = "bug.rosinstall"
+        else:
+            rosinstall_filename = "fix.rosinstall"
         if image_type == "templated":
             build_templated_image(
                 image=image_name,
                 directory=config["directory"],
                 distro=config["distro"],
-                rosinstall_filename="bug.rosinstall",
+                rosinstall_filename=rosinstall_filename,
                 build_command=config["build_command"],
                 apt_packages=config.get("apt_packages", []),
                 cuda_version=config.get("cuda_version", "0"),
