@@ -62,7 +62,7 @@ Similarly, the `ICSA artifact evaluation track website <https://icsa-conferences
   Functional + placed on a publicly accessible archival repository.
   A DOI or link to this repository along with a unique identifier for the object is provided (this matches the ACM “Available” badge).
 
-This replication package is hosted on `Zenodo <https://zenodo.org>`_, a long-term archival service that `will exist as long as its host, the CERN laboratory, which will has an experiment programme defined for at least the next 20 years <https://about.zenodo.org/policies>`_. The replication package can be accessed via the following DOI: https://doi.org/10.5281/zenodo.5834633.
+This replication package is hosted on `Zenodo <https://zenodo.org>`_, a long-term archival service that `will exist as long as its host, the CERN laboratory, which has an experiment programme defined for at least the next 20 years <https://about.zenodo.org/policies>`_. The replication package can be accessed via the following DOI: https://doi.org/10.5281/zenodo.5834633.
 
 
 Research Object Reviewed (ROR) -- Reusable
