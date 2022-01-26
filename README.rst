@@ -189,29 +189,23 @@ To run configuration mismatch bugs for RQ3 involves building another set of Dock
 representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other
 RQs, we use use the same scripts for building these images. We will use the example of the `autorally-01` bug which
 is an error that was introduced into the `autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
-a topic. The format of the experiment definition for detection replciation is different to the other experiment
+a topic. The format of the experiment definition for detection replication is different to the other experiment
 defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
-be found, and defintion of a reproducer node that guarantees use of the broken connector. **Note that you can use the
-prebuilt images provided in this package, and so can skip this step**.
-
-To build the images:
-
-.. code::
-
-  (docker)$ docker/run.sh build detection autorally-01
-  (native)$ pipenv run scripts/build-images.py detection autorally-01
-  ...
+be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
+images. See `INSTALL <INSTALL.rst>`_.
 
 To reproduce the results for RQ3, we have provided a script that automates the process above for the detection
 experiment. The script:
 
 1. Recovers the architectures of both the buggy and fixed versions, as described in the corresponding `experiment.yml`.
 2. Applies the architectural rule checking to both architectures and outputs any found errors
-3. Summarizes the results. The results first print any errors found in the buggy version of the system, followed by
-any errors in the fixed version. If the buggy version contains errors, but the fixed versin prints out **NO RELEVANT
+3. Summarizes the results. The results first print any architecture errors found in the buggy version of the system,
+followed by
+any architecture errors in the fixed version. If the buggy version contains errors, but the fixed version prints out
+**NO RELEVANT
 RESULTS** this means we have succcessfully detected the bug.
 
-To run RQ3 reproduction on all the systems we detectd:
+To run RQ3 reproduction on all the systems we detected:
 
 .. code::
 
