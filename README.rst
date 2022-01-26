@@ -401,11 +401,11 @@ The :code:`type` tag specifies the docker image type and can be :code:`templated
 
 .. code:: yml
 
-docker:
-  type: custom
-  image: rosdiscover-experiments/autoware:static
-  filename: ../../../../docker/Dockerfile.autoware
-  context: ../../../../docker
+  docker:
+    type: custom
+    image: rosdiscover-experiments/autoware:static
+    filename: ../../../../docker/Dockerfile.autoware
+    context: ../../../../docker
 
 Further, the :code:`errors` tag lists the topic names for which an error is expected
 
