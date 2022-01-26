@@ -397,14 +397,15 @@ For detection experiments, the project sources will be specified for buggy and f
 The :code:`repositories` tag describes a list of resposities to be includes according to the following specificiation.     
 The :code:`url` specifies the URL to the git resposity that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis. 
 The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well. 
-The :code:`type` tag specifies the docker image type and can be :code:`templated` for automatic generation of the image, or :code:`custom` for seperately provided docker images (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file) to be used to build the image, such as in autorally-01:
+The :code:`type` tag specifies the docker image type and can be :code:`templated` for automatic generation of the image, or :code:`custom` for seperately provided docker images (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
 
 .. code:: yml
 
-  docker:
-    type: custom
-    image: rosdiscover-experiments/autorally:autorally-01-buggy
-    filename: Dockerfile-reproduce-buggy
+docker:
+  type: custom
+  image: rosdiscover-experiments/autoware:static
+  filename: ../../../../docker/Dockerfile.autoware
+  context: ../../../../docker
 
 Further, the :code:`errors` tag lists the topic names for which an error is expected
 
