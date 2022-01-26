@@ -420,6 +420,7 @@ The :code:`exclude_ros_packages` specifies a list of ROS packages that are inclu
 The :code:`apt_packages` specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraruies, or build tools used by the project.
 The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
 The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files. 
+The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5)
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value directionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
 
 .. code:: yml
