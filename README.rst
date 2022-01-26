@@ -185,32 +185,46 @@ If you look at the file `experiments/recovery/subjects/autorally/observed.recove
 Run configuration mismatch bug detection for RQ3
 ------------------------------------------------
 
-To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other RQs, we use use the same scripts for building these images. We will use the example of the `autorally-01` bug which is an error that was introduced into the `autorally_core/launch/stateEstimator.launch` file that incorrectly remapped a topic. The format of the experiment definition for detection replciation is different to the other experiment defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to be found, and defintion of a reproducer node that guarantees use of the broken connector. To build the images:
+To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system
+representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other
+RQs, we use use the same scripts for building these images. We will use the example of the `autorally-01` bug which
+is an error that was introduced into the `autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
+a topic. The format of the experiment definition for detection replciation is different to the other experiment
+defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
+be found, and defintion of a reproducer node that guarantees use of the broken connector. **Note that you can use the
+prebuilt images provided in this package, and so can skip this step**.
+
+To build the images:
 
 .. code::
 
+  (docker)$ docker/run.sh build detection autorally-01
   (native)$ pipenv run scripts/build-images.py detection autorally-01
-  (container)$ docker/run.sh build detection autorally-01
   ...
 
-To check that the error is detected in the buggy version, and disappears in the fixed version:
+To reproduce the results for RQ3, we have provided a script that automates the process above for the detection
+experiment. The script:
+
+1. Recovers the architectures of both the buggy and fixed versions, as described in the corresponding `experiment.yml`.
+2. Applies the architectural rule checking to both architectures and outputs any found errors
+3. Summarizes the results. The results first print any errors found in the buggy version of the system, followed by
+any errors in the fixed version. If the buggy version contains errors, but the fixed versin prints out **NO RELEVANT
+RESULTS** this means we have succcessfully detected the bug.
+
+To run RQ3 reproduction on all the systems we detectd:
 
 .. code::
 
-  (native)$ pipenv scripts/check-architecture.py detected autorally-01
-  (container)$ docker/run.sh check detected autorally-01
+  (docker)$ docker/run.sh rq3
+  (native)$ pipenv run rq3
 
-One complication for replicating RQ3 is that it sometimes wasn't possible to restore the version of the robot software at the time that the bug was extant. Instead, we forward ported these bugs into the docker images from RQ1&2. Unfortunately, seeding the bugs is currently not yet as automated as the rest of the replication package - the docker images will need to be built explicitly. For the cases in which we needed to forward port, we included a separate experiment definition (e.g., `experiment-reproduced.yml` and a Dockerfile each to build the buggy version that seeds the error into the correct containers, and the fixed version (in cases it needed to be different from the original version). To build these requires using the Docker command explicitly, e.g., for `husky-04`:
+This will run RQ3 on all the images that we were successful in detecting: autorally-01, autorally-03, autorally-04,
+autoware-01, autoware-11 husky-02 husky-04 husky-06. To run on an individual example:
 
 .. code::
 
-  $ docker build -t rosdiscover-evaluation/husky:husky-04-buggy -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-error experiments/detection/subjects/husky-04/
-  $ docker build -t rosdiscover-evaluation/husky:husky-04-fixed -f experiments/detection/subjects/husky-04/Dockerfile-reproduce-fixed experiments/detection/subjects/husky-04/
-
-Note that the name of the image (e.g., `rosdiscover-evaluation/husky:husky-04-fixed`) has to be the same as the one
-referred to in `experiment-reproduced.yml`.
-
-The misconfiguration detection can be done in the same was as above (i.e., `check-architecture.yml detected .../experiment-reproduced.yml`).
+  (docker)$ docker/run.sh rq3 autorally-01
+  (native)$ pipen run rq3 autorally-01
 
 Results Data
 ============
