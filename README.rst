@@ -311,9 +311,9 @@ The experiment pipeline is designed for flexible modification to run different e
 Experiment Configuration File Format
 --------------
 
-Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml
+Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
 
-.. code::
+.. code:: yml
 
   type: detection
   subject: husky
@@ -375,7 +375,7 @@ The :code:`subject` tag describes the name of the system (e.g. husky, autoware, 
 The :code:`type` tag can either be :code:`detection` (with a buggy and fixed version for RQ3) or :code:`recovery` for a single-version experiment for RQ2. This tag defines what format the experiment is described. 
 For detection experiments, the project sources will be specified for buggy and fixed versions sperarately: 
 
-.. code::
+.. code:: yml
 
   buggy:
     docker:
@@ -399,14 +399,14 @@ The :code:`url` specifies the URL to the git resposity that should be cloned for
 The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well. 
 The :code:`type` tag specifies the docker image type and can be :code:`templated` for automatic generation of the image, or :code:`custom` for seperately provided docker images (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file) to be used to build the image, such as in autorally-01:
 
-.. code::
+.. code:: yml
 
   docker:
     type: custom
     image: rosdiscover-experiments/autorally:autorally-01-buggy
     filename: Dockerfile-reproduce-buggy
 
-Further, the The :code:`errors` tag lists the topic names for which an error is expected
+Further, the :code:`errors` tag lists the topic names for which an error is expected
 
 The for recovery experiments the buggy content of the buggy / fixed tag is included in the root, since there is only one version. 
 For each version of the system, the ROS package dependencies are determined by analyzing all package.xml files that can be found recursively in the listed repositories. All dependencies includes as "depend", "build_depend", "build_export_depend", or "run_depend" will be added to the image. The corresponding versions are determined using https://github.com/rosin-project/rosinstall_generator_time_machine based on the most recent date of versions specifies for the repositories.
@@ -421,7 +421,7 @@ The :code:`build_command` tag specifies the Linux command used to build the proj
 The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files. 
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value directionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
 
-.. code::
+.. code:: yml
 
   launches:
     - filename: /ros_ws/src/autoware/ros/src/util/packages/runtime_manager/scripts/launch_files/planning.launch
