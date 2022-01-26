@@ -304,7 +304,7 @@ The Jupter notebook writes the results into these files:
 Furthermore, results/modelSizes.csv lists the lines of code for each handwritten model of the corresponding file in deps/rosdiscover/src/rosdiscover/models.
 
 Running different experiments
-=================================
+=============================
 
 The experiment pipeline is designed for flexible modification to run different experiments (e.g., other bugs, or bugs in other systems) 
 
