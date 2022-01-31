@@ -21,9 +21,9 @@ zip -r "${OUTPUT_FILENAME}" \
   Pipfile.lock \
   LICENSE \
   README.rst \
-  README.pdf \
+  README.html \
   INSTALL.rst \
-  INSTALL.pdf \
+  INSTALL.html \
   STATUS.rst \
-  STATUS.pdf \
+  STATUS.html \
   paper.pdf
