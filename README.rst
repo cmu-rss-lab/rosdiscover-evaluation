@@ -263,10 +263,9 @@ experiment. The script:
 
 1. Recovers the architectures of both the buggy and fixed versions, as described in the corresponding `experiment.yml`.
 2. Applies architectural rule checking to both architectures and outputs any found errors
-3. Summarizes the results. The results first print any architecture errors found in the buggy version of the system,
-followed by
-any architecture errors in the fixed version. If the buggy version contains errors, but the fixed version prints out
-**NO RELEVANT RESULTS** this means we have succcessfully detected the bug.
+3. Summarizes the results.
+   The results first print any architecture errors found in the buggy version of the system, followed by any architecture errors in the fixed version.
+   If the buggy version contains errors, but the fixed version prints out **NO RELEVANT RESULTS** this means we have succcessfully detected the bug.
 
 To run RQ3 reproduction on all the systems where we successfully detected the misconfiguration:
 
