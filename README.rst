@@ -40,14 +40,14 @@ Replicating results for the paper
 
 To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or
 each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
-and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use `autorally`
-as an example, with the experiment defined in `experiments/recovery/subjects/autorally/experiment.yml`.
+and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use :code:`autorally`
+as an example, with the experiment defined in :code:`experiments/recovery/subjects/autorally/experiment.yml`.
 
 You may run the experiments from the host, using the python directly with Python set up as above, or by optionally
-using the `rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container. NOTE: In
+using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container. NOTE: In
 order for this to work, the container will need to connect to the Docker that is running on the host. In the
-instructions below, we give two versions of each command. One, prefixed by `(native)$` is how to run the command
-from the host; thoe other `(container)$` is how to run the command using the provided helper script that connects to
+instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the command
+from the host; thoe other :code:`(container)$` is how to run the command using the provided helper script that connects to
 the evaluation Docker container.
 
 Aobtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
@@ -68,7 +68,7 @@ You can also obtain a list of all of the experiments using the :code:`list` comm
 Run recovery of all nodes in images for RQ1
 -------------------------------------------
 
-To run the component model recovery experiments described in RQ1, you should use the `recover-node-models.py` script provided in the experimental scripts directory.
+To run the component model recovery experiments described in RQ1, you should use the :code:`recover-node-models.py` script provided in the experimental scripts directory.
 The script simply takes the name of a subject system for RQ1 and emits a set of component models (in JSON) form, along with a summary of the success of the overall process (recovered-models.csv), describing the number of API calls that were found and successfully resolved for each individual node in that subject system.
 
 .. code::
@@ -89,7 +89,7 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
 Derive and check architecture for RQ2
 -------------------------------------
 
-The experimental setups for RQ2 are in the `experiments/recovery/subjects` directories. We currently report results for recovery in `turtlebot`, `autorally`, and  `husky`. RQ2 consists of two phases followed by checking and comparison of results. All the examples will be given or `autorally` but should be the same for the other subjects. All commands are executed in the root directory of this package.
+The experimental setups for RQ2 are in the :code:`experiments/recovery/subjects` directories. We currently report results for recovery in :code:`turtlebot`, :code:`autorally`, and  :code:`husky`. RQ2 consists of two phases followed by checking and comparison of results. All the examples will be given or :code:`autorally` but should be the same for the other subjects. All commands are executed in the root directory of this package.
 
 Note the for convenience, we provide a shell script that automates all the steps below. It assumes that all the
 images have been prebuilt as described above. To run this:
@@ -126,7 +126,7 @@ To check the architecure
   INFO: applying remapping from [/camera/right/camera_info] to [/right_camera/camera_info]
   INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
 
-This will process the launch files supplied in the `experiment.yml` and produce the architecture in `experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
+This will process the launch files supplied in the :code:`experiment.yml` and produce the architecture in :code:`experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
 
 3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
   a. Produce and check the architecture of the observed system
@@ -171,28 +171,28 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
   (docker)$ docker/run.sh compare autorally
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
 
-The comparison output is placed in `experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in `experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
+The comparison output is placed in :code:`experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
-If you look at the file `experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
+If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
 
-1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of `experiments/recovery/subjects/autorally/observed.architecture.acme`
-2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of `experiments/recovery/subjects/autorally/recovered.architecture.acme` 
+1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
+2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme` 
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
-5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in `observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
+5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in :code:`observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
 
 Run configuration mismatch bug detection for RQ3
 ------------------------------------------------
 
 To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system
 representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other
-RQs, we use use the same scripts for building these images. We will use the example of the `autorally-01` bug which
-is an error that was introduced into the `autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
+RQs, we use use the same scripts for building these images. We will use the example of the :code:`autorally-01` bug which
+is an error that was introduced into the :code:`autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
 a topic. The format of the experiment definition for detection replication is different to the other experiment
 defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
-images. See `INSTALL <INSTALL.rst>`_.
+images. See :code:`INSTALL <INSTALL.rst>`_.
 
 To reproduce the results for RQ3, we have provided a script that automates the process above for the detection
 experiment. The script:
@@ -232,8 +232,8 @@ The replication package also provides results that we used in the paper. Data fo
 
   results/detection/subjects/[autorally-N, autoware-N, ...]
 
-For each case where we could duplicate the misconfiguration, there is a `buggy.architecture.[yml,acme]`,
-`fixed.architecture/[yml,acme]` that define the architecture recovered and an `error-report.csv` that reports whether
+For each case where we could duplicate the misconfiguration, there is a :code:`buggy.architecture.[yml,acme]`,
+:code:`fixed.architecture/[yml,acme]` that define the architecture recovered and an :code:`error-report.csv` that reports whether
 we captured the misconfiguration error or not.
 
 The results for the recovery case is in:
@@ -282,7 +282,7 @@ To reproduce the comparison files, you can run:
   (native)$ pipenv scripts/gather-rq2-results.py
   (container)$ docker/run.sh gather-rq2
 
-This pulls information out of the `compare.observed.recovered.csv` files into the Comparison csvs mentioned above.
+This pulls information out of the :code:`compare.observed.recovered.csv` files into the Comparison csvs mentioned above.
 They can the be analyzed like mentioned below.
 
 The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
