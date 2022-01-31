@@ -39,17 +39,19 @@ This replication package is structured as follows:
 Replicating results for the paper
 =================================
 
-To aid in replicating the results of the research, we have provided a set of scripts that ease each set, along with an experiment definition or
-each experiment cast. The defitition is defined using YAML, and provides all the information for building containers, recovering nodes, extracting
+To aid in replicating the results of the research, we have provided a set of scripts that ease the reproduction of
+each step in a resrarch question, along with an experiment definition for each experiment cast. The defitition is
+defined using YAML, and provides all the information for building containers, recovering nodes, extracting
 and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use :code:`autorally`
 as an example, with the experiment defined in :code:`experiments/recovery/subjects/autorally/experiment.yml`.
 
-You may run the experiments from the host, using the python directly with Python set up as above, or by optionally
-using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container. NOTE: In
-order for this to work, the container will need to connect to the Docker that is running on the host. In the
-instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the command
-from the host; thoe other :code:`(container)$` is how to run the command using the provided helper script that connects to
-the evaluation Docker container.
+You may run the experiments from the host, using the python directly with Python set up as described in `INSTALL
+<INSTALL.rst>`_, or by optionally
+using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container.
+**NOTE: In order for this to work, the container will need to connect to the Docker that is running on the host.** In
+the instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the
+command from the host; thoe other :code:`(container)$` is how to run the command using the provided helper script
+that connects to the evaluation Docker container.
 
 Obtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
 
@@ -86,6 +88,7 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
   (native)$ pipenv run scripts/recover-node-models.py husky
   (native)$ pipenv run scripts/recover-node-models.py turtlebot
 
+**TODO: description of where the results are and what they mean?**
 
 Derive and check architecture for RQ2
 -------------------------------------
@@ -100,8 +103,12 @@ images have been prebuilt as described above. To run this:
   (docker)$ docker/run.sh rq2 [autorally | husky | turtlebot]
   (native)$ scripts/rq2.sh [autorally | husky | turtlebot]
 
-If no arguments are given, the script will run through all three cases.
+If no arguments are given, the script will run through all three cases. After running the steps for reproducing RQ2,
+a human readable form of the comparison is will be in :code:`results/recovery/subject/<system>/compare.observed-recovered.txt`,
+where :code:`<system>` is one of :code:`autorally | husky | turtlebot`. A side-by-side comaprison of the architectures,
+and the metrics calculated, are in the last to sections of this file.
 
+The rest of this section describes how to reproduced RQ2 step-by-step.
 
 1. Derived the ground truth by observing the running system.
 
@@ -111,8 +118,6 @@ If no arguments are given, the script will run through all three cases.
       (native)$ pipenv run scripts/observe-system.py autorally
 
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`.
-
-To check the architecure
 
 2. Run ROSDiscover to statically recover the system.
 
@@ -172,10 +177,11 @@ The result is placed in experiments/recovery/subjects/autorally/recovered.archit
   (docker)$ docker/run.sh compare autorally
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
 
-The comparison output is placed in :code:`experiments/recovery/subjects/autorally/compare.observed-recovered.log`. The analyzed results used in the paper are in :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
+The comparison output is placed in :code:`experiments/recovery/subjects/autorally/compare.observed-recovered.txt`. The
+analyzed results used in the paper are in :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
-If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv` (**TODO: Add link to result in repo**), it is divided into five sections. 
+If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
 
 1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
 2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme` 
@@ -203,8 +209,7 @@ experiment. The script:
 3. Summarizes the results. The results first print any architecture errors found in the buggy version of the system,
 followed by
 any architecture errors in the fixed version. If the buggy version contains errors, but the fixed version prints out
-**NO RELEVANT
-RESULTS** this means we have succcessfully detected the bug.
+**NO RELEVANT RESULTS** this means we have succcessfully detected the bug.
 
 To run RQ3 reproduction on all the systems we detected:
 
