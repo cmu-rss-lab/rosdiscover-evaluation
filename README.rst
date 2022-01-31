@@ -73,6 +73,7 @@ the source, identify ROS API calls, and produce a component model. ROSDiscover t
 according to the launch files being processed and resolves any parameters, arguments, unbound topics, etc. that may
 be in the component models to produce an architecture model.
 
+
 Replicating results for the paper
 ---------------------------------
 
@@ -83,18 +84,13 @@ and checking architectures, and detecting misconfigurations. In these instructio
 detection) we will use :code:`autorally`
 as an example, with the experiment defined in :code:`experiments/recovery/subjects/autorally/experiment.yml`.
 
-You may run the experiments from the host, using the python directly with Python set up as described in Section
-2.2 of `INSTALL.rst
-<INSTALL.rst#22-approach-b-native-pipenv>`_, or by optionally
-using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container, as
-described in Section 2.1 of `INSTALL.rst
-<INSTALL.rst#21-approach-a-preferred-method-docker>`_.
-**NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.** In
-the instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the
-command from the host; the other :code:`(container)$` is how to run the command using the provided helper script
+You may run the experiments either natively on the host machine via Python, as described in Section 2.2 of `INSTALL.rst <./INSTALL.rst#22-approach-b-native-pipenv>`_, or, preferably, via the Docker-based evaluation toolchain, described in Section 2.1 of `INSTALL.rst <./INSTALL.rst#21-approach-a-preferred-method-docker>`_.
+**NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.**
+In the instructions below, we give two versions of each command.
+One, prefixed by :code:`(native)$` is how to run the command from the host; the other :code:`(container)$` is how to run the command using the provided helper script
 that connects to the evaluation Docker container.
 
-Obtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
+To obtain a list of commands that can be executed inside the replication package, execute the :code:`help` command as shown below from the root of the replication package.
 
 .. code::
 
@@ -147,7 +143,7 @@ results  for recovery in :code:`turtlebot`, :code:`autorally`, and  :code:`husky
 followed by checking and comparison of results. All the examples will be given or :code:`autorally` but should be the
 same for the other subjects. All commands are executed in the root directory of this package.
 
-Note the for convenience, we provide a shell script that automates all the steps below. It assumes that all the
+Note that, for convenience, we provide a shell script that automates all the steps below. It assumes that all the
 images have been prebuilt as described above. To run this:
 
 .. code::
@@ -160,9 +156,9 @@ a human readable form of the comparison will be in :code:`results/recovery/subje
 where :code:`<system>` is one of :code:`autorally | husky | turtlebot`. A side-by-side comparison of the architectures,
 and the metrics calculated, are in the last to sections of this file.
 
-The rest of this section describes how to reproduced RQ2 step-by-step.
+The rest of this section describes how to reproduce RQ2 step by step.
 
-**Step 1: Derived the ground truth by observing the running system.**
+**Step 1: Derive the ground truth by observing the running system.**
 
 .. code::
 
