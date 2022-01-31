@@ -192,7 +192,7 @@ is an error that was introduced into the :code:`autorally_core/launch/stateEstim
 a topic. The format of the experiment definition for detection replication is different to the other experiment
 defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
-images. See :code:`INSTALL <INSTALL.rst>`_.
+images. See :code:`INSTALL <INSTALL.rst>`.
 
 To reproduce the results for RQ3, we have provided a script that automates the process above for the detection
 experiment. The script:
