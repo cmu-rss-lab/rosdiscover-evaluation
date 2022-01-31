@@ -29,10 +29,10 @@ This replication package is structured as follows:
     |- rosdiscover/        The code for the implementation of the rosdiscover system
     |                      evaluated in the paper
     |- roswire/            The code for the layer used for interacting with ROS
-    |                      docker images
+    |                      Docker images
     |- rosdiscover-cxx-extract/
     |                      The code for static analysis
-  - docker/                Files used for building docker images used in the experiments
+  - docker/                Files used for building Docker images used in the experiments
   - experiments/           Data for setting up the experiments, and the results we got
     |- detection/          Experiments that we used in RQ3
     |- recovery/           Experiments we used in RQ1 and RQ2
@@ -43,7 +43,7 @@ This replication package is structured as follows:
     |                      The misconfiguration bug dataset contributed in the paper
     |- detection/          Results for the detection experiments
     |- recovery/           Results for the recovery experiments
-  - rootfs/                Contains files that get put in the docker images
+  - rootfs/                Contains files that get put in the Docker images
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
@@ -223,7 +223,7 @@ at the time the misconfiguration was extant and the time at which it was fixd. L
 RQs, we use the same scripts for building these images. We will use the example of the :code:`autorally-01` bug which
 is an error that was introduced into the :code:`autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
 a topic. The format of the experiment definition for detection replication is different to the other experiment
-definitions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
+definitions, containing information on how to build the buggy and fixed Docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
 images. See :code:`INSTALL <INSTALL.rst>`.
 
@@ -354,7 +354,7 @@ The experiment pipeline is designed for flexible modification to run different e
 Experiment Configuration File Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
+Each experiment is set up in a configuration YAML file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
 
 .. code:: yml
 
@@ -439,8 +439,8 @@ For detection experiments, the project sources are be specified for buggy and fi
 
 The :code:`repositories` tag describes a list of repositories to be included according to the following specification.
 The :code:`url` specifies the URL to the git repository that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis.
-The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well.
-The :code:`type` tag specifies the docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile, or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifying the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
+The :code:`image` tag specifies the name that the Docker image should have, which will be used when running the experiment as well.
+The :code:`type` tag specifies the Docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile (see section "Parameterized Dockerfile" below), or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the Docker tag needs an :code:`filename` child-tag specifying the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
 
 .. code:: yml
 
@@ -476,3 +476,33 @@ The :code:`launches` tag includes the file names of the launch files to be launc
         pmap_param: noupdate
         pcd_files: /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00868.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00169_-00868.pcd
         csv_files: /.autoware/data/map/vector_map/road_surface_mark.csv /.autoware/data/map/vector_map/pole.csv /.autoware/data/map/vector_map/lane.csv /.autoware/data/map/vector_map/stopline.csv /.autoware/data/map/vector_map/area.csv /.autoware/data/map/vector_map/vector.csv /.autoware/data/map/vector_map/streetlight.csv /.autoware/data/map/vector_map/line.csv /.autoware/data/map/vector_map/gutter.csv /.autoware/data/map/vector_map/signaldata.csv /.autoware/data/map/vector_map/curb.csv /.autoware/data/map/vector_map/idx.csv /.autoware/data/map/vector_map/roadedge.csv /.autoware/data/map/vector_map/point.csv /.autoware/data/map/vector_map/poledata.csv /.autoware/data/map/vector_map/crosswalk.csv /.autoware/data/map/vector_map/node.csv /.autoware/data/map/vector_map/utilitypole.csv /.autoware/data/map/vector_map/whiteline.csv /.autoware/data/map/vector_map/dtlane.csv /.autoware/data/map/vector_map/zebrazone.csv /.autoware/data/map/vector_map/roadsign.csv
+
+
+Parameterized Dockerfile
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Most images that are needed to analyze and/or reproduce bugs have require the same steps to install all required content. 
+Therefore, we use a generic Dockerfile (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems. 
+This has the advantage that it the specification of what is installed for each project version is very small and structured systematically. 
+Furthermore, since many versions will share identical installation steps, Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images. 
+
+The Dockerfile uses the Docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
+Then it installs the specific versions of the dependencies listed in the experiment config. 
+Finally, it compiles the source code of the project. 
+
+To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the Docker folder of the corresponding experiment:
+
+* The preinstall script (preinstall.sh) runs before the ROS dependencies are installed and can be used to, for example, configure the Python installation in cases in which the ROS dependencies do not install correctly.
+* The prebuild script (prebuild.sh) runs directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing dependencies).
+* The postbuild script (postbuild.sh) runs as the final step during image creation can be used to, for example,  make changes to the launch files of a system. 
+
+The generic Dockerfile has the following arguments that are initialized based on the information provided in the experiment configuration file or will be automatically determined by the infrastructure in :code:`scripts/build-image.py`:
+
+* :code:`DISTRO`: The ROS distribution (e.g., indigo, kinetic, melodic). This parameter is taken from the experiment configuration YAML file.
+* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the root directory of the Docker image. This parameter is automatically set. 
+* :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration YAML file.
+* :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration YAML file.
+* :code:`DIRECTORY`: The "docker" subdirectory of the experiment directory that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
+* :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built. The rosinstall file has been created using the https://github.com/rosin-project/rosinstall_generator_time_machine as described above.
+* :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration YAML file.
+
