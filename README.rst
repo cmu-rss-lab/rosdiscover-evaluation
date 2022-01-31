@@ -134,7 +134,7 @@ that are produced are:
 
 - a :code:`models` directory that contains JSON formatted information for the component models of each node that was
 analyzed by the system. The filename is of the form :code:`{package}__{node}.json`.
-- a :code:`recovered-models.csv` that records  for each node and package, its entrypoint, the time it took to do the
+- a :code:`recovered-models.csv` that records, for each node and package, its entrypoint, the time it took to do the
 static analysis, whether it crashed or produced an error message, the number of statements, functions, and relevant
 API calls encountered, and then information about unresolved (unkown) and unreachable code.
 
