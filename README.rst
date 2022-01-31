@@ -45,6 +45,11 @@ This replication package is structured as follows:
     |- recovery/           Results for the recovery experiments
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
+  - INSTALL.rst            Installation instructions for this replication package
+  - STATUS.rst             A document stating the claims made about this replication package
+  - LICENSE                The license under which this replication package is made available
+  - Pipfile                Used to describe the dependencies of the Python virtual environment
+  - Pipfile.lock           Used to provide the exact versions of all packages (i.e., transitive dependencies) in the Python virtual environment
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
 
 
