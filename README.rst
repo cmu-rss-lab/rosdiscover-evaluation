@@ -1,7 +1,20 @@
 ROS Discover Evaluation
 =======================
 
-This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems,** which has been accepted at the International Conference on Software Architecture (ICSA), 2021.
+A preprint of the paper is included in this replication package (:code:`paper.pdf`).
+
+This artifact is archived on Zenodo with the following DOI: https://doi.org/10.5281/zenodo.5834633
+
+The study associated with this artifact was carried out by the following investigators:
+
+* `Christopher S. Timperley <http://christimperley.co.uk>`_ (Carnegie Mellon University)
+* `Tobias Dürschmid <https://tobiasduerschmid.github.io>`_ (Carnegie Mellon University)
+* `Bradley Schmerl <https://www.cs.cmu.edu/~schmerl>`_ (Carnegie Mellon University)
+* `David Garlan <http://www.cs.cmu.edu/~garlan>`_ (Carnegie Mellon University)
+* `Claire Le Goues <https://clairelegoues.com>`_ (Carnegie Mellon University)
+
+If you have any questions regarding the research or the replication package, you should contact Christopher, Tobias, or Bradley.
 
 
 Contents
