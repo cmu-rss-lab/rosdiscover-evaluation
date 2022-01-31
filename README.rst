@@ -33,7 +33,8 @@ This replication package is structured as follows:
   - rootfs/                Contains files that get put in the docker images
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
-
+  - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+  
 
 Replicating results for the paper
 =================================
