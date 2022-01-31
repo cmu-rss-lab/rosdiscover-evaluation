@@ -1,11 +1,24 @@
 ROS Discover Evaluation
 =======================
 
-This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+This is the replication package for the paper, **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems,** which has been accepted at the International Conference on Software Architecture (ICSA), 2021.
+A preprint of the paper is included in this replication package (:code:`paper.pdf`).
+
+This artifact is archived on Zenodo with the following DOI: https://doi.org/10.5281/zenodo.5834633
+
+The study associated with this artifact was carried out by the following investigators:
+
+* `Christopher S. Timperley <http://christimperley.co.uk>`_ (Carnegie Mellon University)
+* `Tobias Dürschmid <https://tobiasduerschmid.github.io>`_ (Carnegie Mellon University)
+* `Bradley Schmerl <https://www.cs.cmu.edu/~schmerl>`_ (Carnegie Mellon University)
+* `David Garlan <http://www.cs.cmu.edu/~garlan>`_ (Carnegie Mellon University)
+* `Claire Le Goues <https://clairelegoues.com>`_ (Carnegie Mellon University)
+
+If you have any questions regarding the research or the replication package, you should contact Christopher, Tobias, or Bradley.
 
 
 Contents
-========
+--------
 
 This replication package is structured as follows:
 
@@ -34,10 +47,11 @@ This replication package is structured as follows:
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
-  
+
+
 
 Replicating results for the paper
-=================================
+---------------------------------
 
 To aid in replicating the results of the research, we have provided a set of scripts that ease the reproduction of
 each step in a resrarch question, along with an experiment definition for each experiment cast. The defitition is
@@ -69,7 +83,7 @@ You can also obtain a list of all of the experiments using the :code:`list` comm
 
 
 Run recovery of all nodes in images for RQ1
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To run the component model recovery experiments described in RQ1, you should use the :code:`recover-node-models.py` script provided in the experimental scripts directory.
 The script simply takes the name of a subject system for RQ1 and emits a set of component models (in JSON) form, along with a summary of the success of the overall process (recovered-models.csv), describing the number of API calls that were found and successfully resolved for each individual node in that subject system.
@@ -91,7 +105,7 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
 **TODO: description of where the results are and what they mean?**
 
 Derive and check architecture for RQ2
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The experimental setups for RQ2 are in the :code:`experiments/recovery/subjects` directories. We currently report results for recovery in :code:`turtlebot`, :code:`autorally`, and  :code:`husky`. RQ2 consists of two phases followed by checking and comparison of results. All the examples will be given or :code:`autorally` but should be the same for the other subjects. All commands are executed in the root directory of this package.
 
@@ -147,7 +161,7 @@ This will process the launch files supplied in the :code:`experiment.yml` and pr
   INFO: Checking architecture...
   Checking architecture...
   ...
-  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
+  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
 
 The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
@@ -164,7 +178,7 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
   INFO: Checking architecture...
   Checking architecture...
   ...
-  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub 
+  ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
   /autoRallyTrackGazeboSim.launch.
 
@@ -184,13 +198,13 @@ analyzed results used in the paper are in :code:`experiments/recovery/subjects/a
 If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
 
 1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
-2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme` 
+2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
 5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in :code:`observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
 
 Run configuration mismatch bug detection for RQ3
-------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system
 representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other
@@ -226,11 +240,12 @@ autoware-01, autoware-11 husky-02 husky-04 husky-06. To run on an individual exa
   (docker)$ docker/run.sh rq3 autorally-01
   (native)$ pipen run rq3 autorally-01
 
+
 Results Data
-============
+------------
 
 Raw results
------------
+^^^^^^^^^^^
 
 The replication package also provides results that we used in the paper. Data for each detection case is in
 
@@ -261,7 +276,7 @@ Each case has the following files:
                                                     metrics
 
 Processed Results and Data Analysis
------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to produce the results presented in the paper, we combined the results into various files that can
 be analyzed by a Jupyter notebook. These can be reproduced.
@@ -304,7 +319,8 @@ This will start the Jupyter notebook, which can be accessed by opening a browser
 
 
 Results Format
---------------
+^^^^^^^^^^^^^^
+
 The Jupter notebook writes the results into these files:
 
 - results/RQ1.csv (which includes the nodel-level accuracy results shown in Table III in the paper)
@@ -317,13 +333,14 @@ The Jupter notebook writes the results into these files:
 
 Furthermore, results/modelSizes.csv lists the lines of code for each handwritten model of the corresponding file in deps/rosdiscover/src/rosdiscover/models.
 
-Running different experiments
-=============================
 
-The experiment pipeline is designed for flexible modification to run different experiments (e.g., other bugs, or bugs in other systems) 
+Running different experiments
+-----------------------------
+
+The experiment pipeline is designed for flexible modification to run different experiments (e.g., other bugs, or bugs in other systems).
 
 Experiment Configuration File Format
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
 
@@ -385,9 +402,9 @@ Each experiment is set up in a configuration file (such as in /experiments/detec
   - /ros_ws/src/husky/husky_navigation/launch/amcl_demo.launch
   - /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
 
-The :code:`subject` tag describes the name of the system (e.g. husky, autoware, or turtlebot). 
-The :code:`type` tag can either be :code:`detection` (with a buggy and fixed version for RQ3) or :code:`recovery` for a single-version experiment for RQ2. This tag defines what format the experiment is described. 
-For detection experiments, the project sources are be specified for buggy and fixed versions separately: 
+The :code:`subject` tag describes the name of the system (e.g. husky, autoware, or turtlebot).
+The :code:`type` tag can either be :code:`detection` (with a buggy and fixed version for RQ3) or :code:`recovery` for a single-version experiment for RQ2. This tag defines what format the experiment is described.
+For detection experiments, the project sources are be specified for buggy and fixed versions separately:
 
 .. code:: yml
 
@@ -408,9 +425,9 @@ For detection experiments, the project sources are be specified for buggy and fi
       url: https://github.com/husky/husky.git
       version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
 
-The :code:`repositories` tag describes a list of repositories to be included according to the following specification.     
-The :code:`url` specifies the URL to the git repository that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis. 
-The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well. 
+The :code:`repositories` tag describes a list of repositories to be included according to the following specification.
+The :code:`url` specifies the URL to the git repository that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis.
+The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well.
 The :code:`type` tag specifies the docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile, or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifying the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
 
 .. code:: yml
@@ -423,17 +440,17 @@ The :code:`type` tag specifies the docker image type and can be :code:`templated
 
 The :code:`errors` tag lists the topic names for which an error is expected.
 
-For recovery experiments the buggy content of the buggy / fixed tag is included in the root XML tag, since there is only one version. 
+For recovery experiments the buggy content of the buggy / fixed tag is included in the root XML tag, since there is only one version.
 For each version of the system, the ROS package dependencies are determined by analyzing all package.xml files that can be found recursively in the listed repositories. All dependencies includes as "depend", "build_depend", "build_export_depend", or "run_depend" will be added to the image. The corresponding historically accurate versions are determined using https://github.com/rosin-project/rosinstall_generator_time_machine based on date of the specified commit in the version tag of the repository. If multiple repositories are included and therefore multiple versions are provided the image construction process uses the most recent one among  them.
 
 The rest of the format is identical for both experiment types.
 
-The :code:`distro` is the name of ROS distribution in which the bug is supposed to be replicated. Examples include indigo, kinetic, lunar, and melodic. The experiment infrastructure will use the corresponding ROS distribution as a basis and install the system and its corresponding dependencies in the stated ROS distribution. 
-The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories. 
-The :code:`exclude_ros_packages` tag specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed. 
+The :code:`distro` is the name of ROS distribution in which the bug is supposed to be replicated. Examples include indigo, kinetic, lunar, and melodic. The experiment infrastructure will use the corresponding ROS distribution as a basis and install the system and its corresponding dependencies in the stated ROS distribution.
+The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories.
+The :code:`exclude_ros_packages` tag specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed.
 The :code:`apt_packages` tag specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraries, or build tools used by the project.
 The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
-The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files. 
+The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files.
 The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5).
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value dictionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
 
@@ -447,5 +464,3 @@ The :code:`launches` tag includes the file names of the launch files to be launc
         pmap_param: noupdate
         pcd_files: /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00868.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00169_-00868.pcd
         csv_files: /.autoware/data/map/vector_map/road_surface_mark.csv /.autoware/data/map/vector_map/pole.csv /.autoware/data/map/vector_map/lane.csv /.autoware/data/map/vector_map/stopline.csv /.autoware/data/map/vector_map/area.csv /.autoware/data/map/vector_map/vector.csv /.autoware/data/map/vector_map/streetlight.csv /.autoware/data/map/vector_map/line.csv /.autoware/data/map/vector_map/gutter.csv /.autoware/data/map/vector_map/signaldata.csv /.autoware/data/map/vector_map/curb.csv /.autoware/data/map/vector_map/idx.csv /.autoware/data/map/vector_map/roadedge.csv /.autoware/data/map/vector_map/point.csv /.autoware/data/map/vector_map/poledata.csv /.autoware/data/map/vector_map/crosswalk.csv /.autoware/data/map/vector_map/node.csv /.autoware/data/map/vector_map/utilitypole.csv /.autoware/data/map/vector_map/whiteline.csv /.autoware/data/map/vector_map/dtlane.csv /.autoware/data/map/vector_map/zebrazone.csv /.autoware/data/map/vector_map/roadsign.csv
-       
-
