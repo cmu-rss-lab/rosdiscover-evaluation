@@ -337,7 +337,7 @@ The experiment pipeline is designed for flexible modification to run different e
 Experiment Configuration File Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
+Each experiment is set up in a configuration YAML file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
 
 .. code:: yml
 
@@ -470,22 +470,22 @@ This has the advantage that it the specification of what is installed for each p
 Furthermore, since many versions will share identical installation steps, Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images. 
 
 The Dockerfile uses the Docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
-Then it installs the dependencies specified in the experiment config. 
+Then it installs the specific versions of the dependencies listed in the experiment config. 
 Finally, it compiles the source code of the project. 
 
 To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the Docker folder of the corresponding experiment:
 
-* The preinstall script (preinstall.sh) is run before the ROS dependencies are installed and can be used to configure the python installation in cases in which the ROS dependencies do not install correctly.
-* The prebuild script (prebuild.sh) is directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing a dependencies).
-* The postbuild script (postbuild.sh) is run as the final step during image creation can be used to make changes to the launch files of a system. 
+* The preinstall script (preinstall.sh) runs before the ROS dependencies are installed and can be used to, for example, configure the Python installation in cases in which the ROS dependencies do not install correctly.
+* The prebuild script (prebuild.sh) runs directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing dependencies).
+* The postbuild script (postbuild.sh) runs as the final step during image creation can be used to, for example,  make changes to the launch files of a system. 
 
 The generic Dockerfile has the following arguments that are initialized based on the information provided in the experiment configuration file or will be automatically determined by the infrastructure in :code:`scripts/build-image.py`:
 
-* :code:`DISTRO`: The ROS distribution (e.g., indigo, kinetic, melodic). This parameter is taken from the experiment configuration yaml file.
-* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the roof directory of the Docker image. This parameter is automatically set. 
-* :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration yaml file.
-* :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration yaml file.
-* :code:`DIRECTORY`: The directory of the experiment that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
+* :code:`DISTRO`: The ROS distribution (e.g., indigo, kinetic, melodic). This parameter is taken from the experiment configuration YAML file.
+* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the root directory of the Docker image. This parameter is automatically set. 
+* :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration YAML file.
+* :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration YAML file.
+* :code:`DIRECTORY`: The "docker" subdirectory of the experiment directory that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
 * :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built. The rosinstall file has been created using the https://github.com/rosin-project/rosinstall_generator_time_machine as described above.
-* :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration yaml file.
+* :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration YAML file.
 
