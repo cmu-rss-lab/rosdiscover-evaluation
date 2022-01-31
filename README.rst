@@ -60,7 +60,7 @@ and checking architectures, and detecting misconfigurations. In these instructio
 as an example, with the experiment defined in :code:`experiments/recovery/subjects/autorally/experiment.yml`.
 
 You may run the experiments from the host, using the python directly with Python set up as described in `INSTALL
-<INSTALL.rst>`_, or by optionally
+<INSTALL.rst#22-approach-b-native-pipenv>`_, or by optionally
 using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container.
 **NOTE: In order for this to work, the container will need to connect to the Docker that is running on the host.** In
 the instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the
