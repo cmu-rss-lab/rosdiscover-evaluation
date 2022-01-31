@@ -19,5 +19,10 @@ zip -r "${OUTPUT_FILENAME}" \
   .dockerignore \
   Pipfile \
   Pipfile.lock \
+  LICENSE \
   README.rst \
-  Dockerfile-autoware
+  README.pdf \
+  INSTALL.rst \
+  INSTALL.pdf \
+  STATUS.rst \
+  STATUS.pdf
