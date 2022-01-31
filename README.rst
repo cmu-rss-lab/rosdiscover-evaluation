@@ -43,7 +43,6 @@ This replication package is structured as follows:
     |                      The misconfiguration bug dataset contributed in the paper
     |- detection/          Results for the detection experiments
     |- recovery/           Results for the recovery experiments
-  - rootfs/                Contains files that get put in the Docker images
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
