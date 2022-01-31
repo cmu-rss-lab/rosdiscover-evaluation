@@ -309,7 +309,7 @@ Running different experiments
 The experiment pipeline is designed for flexible modification to run different experiments (e.g., other bugs, or bugs in other systems) 
 
 Experiment Configuration File Format
---------------
+------------------------------------
 
 Each experiment is set up in a configuration file (such as in /experiments/detection/subjects/husky-01/experiment.yml).
 
@@ -373,7 +373,7 @@ Each experiment is set up in a configuration file (such as in /experiments/detec
 
 The :code:`subject` tag describes the name of the system (e.g. husky, autoware, or turtlebot). 
 The :code:`type` tag can either be :code:`detection` (with a buggy and fixed version for RQ3) or :code:`recovery` for a single-version experiment for RQ2. This tag defines what format the experiment is described. 
-For detection experiments, the project sources will be specified for buggy and fixed versions sperarately: 
+For detection experiments, the project sources are be specified for buggy and fixed versions separatelty: 
 
 .. code:: yml
 
@@ -394,10 +394,10 @@ For detection experiments, the project sources will be specified for buggy and f
       url: https://github.com/husky/husky.git
       version: 97c5280b151665704f8f8e3beecb3e6e89ea14ae
 
-The :code:`repositories` tag describes a list of resposities to be includes according to the following specificiation.     
-The :code:`url` specifies the URL to the git resposity that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis. 
+The :code:`repositories` tag describes a list of repositories to be included according to the following specificiation.     
+The :code:`url` specifies the URL to the git repository that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis. 
 The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well. 
-The :code:`type` tag specifies the docker image type and can be :code:`templated` for automatic generation of the image, or :code:`custom` for seperately provided docker images (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
+The :code:`type` tag specifies the docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile, or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifing the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
 
 .. code:: yml
 
@@ -407,20 +407,20 @@ The :code:`type` tag specifies the docker image type and can be :code:`templated
     filename: ../../../../docker/Dockerfile.autoware
     context: ../../../../docker
 
-Further, the :code:`errors` tag lists the topic names for which an error is expected
+The :code:`errors` tag lists the topic names for which an error is expected.
 
-The for recovery experiments the buggy content of the buggy / fixed tag is included in the root, since there is only one version. 
-For each version of the system, the ROS package dependencies are determined by analyzing all package.xml files that can be found recursively in the listed repositories. All dependencies includes as "depend", "build_depend", "build_export_depend", or "run_depend" will be added to the image. The corresponding versions are determined using https://github.com/rosin-project/rosinstall_generator_time_machine based on the most recent date of versions specifies for the repositories.
+For recovery experiments the buggy content of the buggy / fixed tag is included in the root XML tag, since there is only one version. 
+For each version of the system, the ROS package dependencies are determined by analyzing all package.xml files that can be found recursively in the listed repositories. All dependencies includes as "depend", "build_depend", "build_export_depend", or "run_depend" will be added to the image. The corresponding historically accurate versions are determined using https://github.com/rosin-project/rosinstall_generator_time_machine based on date of the specified commit in the version tag of the respository. If multiple repositories are included and therefore multiple versions are provided the image image construction process uses the most recent one amoung them.
 
 The rest of the format is identical for both experiment types.
 
-The :code:`distro` is the name of ROS distribution in which the bug is supposed to be replicated. Examples incldue indigo, kinetic, lunar, or medoldic. The experiment infrastructure will use the corresponding ROS distribution as a basis and install the system and its corresponding dependencies in the stated ROS distribution. 
+The :code:`distro` is the name of ROS distribution in which the bug is supposed to be replicated. Examples include indigo, kinetic, lunar, and medoldic. The experiment infrastructure will use the corresponding ROS distribution as a basis and install the system and its corresponding dependencies in the stated ROS distribution. 
 The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories. 
 The :code:`exclude_ros_packages` specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed. 
-The :code:`apt_packages` specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraruies, or build tools used by the project.
+The :code:`apt_packages` specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraries, or build tools used by the project.
 The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
 The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files. 
-The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5)
+The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5).
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value directionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
 
 .. code:: yml
