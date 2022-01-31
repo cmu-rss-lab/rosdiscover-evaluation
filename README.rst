@@ -64,7 +64,7 @@ to form recovered architectures.
 - **ROSWire**: This is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive
 functionality for building static and dynamic tools for ROS that accept Docker images as their input (rather than
 assuming that those tools are located on the same machine as the subject of the analysis).
-- **CXX-Extract**: Provides the implementation of the static component model recovery of ROS nodes from soruce code
+- **CXX-Extract**: Provides the implementation of the static component model recovery of ROS nodes from source code
 written in C++.
 
 When ROSDiscover is invoked to recover an architecture, it uses ROSWire to access information in the ROS Docker
@@ -355,7 +355,7 @@ They can the be analyzed like mentioned below.
 The data collected for the experiments of RQ3 is in: :code:`results/data/RosTopicBugs - RQ3 - Results Table.csv`
 
 The Jupyter Notebook in :code:`results/DataAnalysis.ipynb` uses these results to produce the
-numbers in the paper. To run this analysis, you can run the following command locally via pipenv:
+numbers in the paper. To run this analysis, you can run the following command:
 
 .. code::
 
