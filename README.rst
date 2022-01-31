@@ -349,12 +349,12 @@ To reproduce the comparison files, you can run:
   (native)$ pipenv scripts/gather-rq2-results.py
   (container)$ docker/run.sh gather-rq2
 
-This pulls information out of the :code:`compare.observed.recovered.csv` files into the Comparison csvs mentioned above.
+This pulls information out of the :code:`compare.observed.recovered.csv` files into the Comparison CSVs mentioned above.
 They can the be analyzed like mentioned below.
 
-The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
+The data collected for the experiments of RQ3 is in: :code:`results/data/RosTopicBugs - RQ3 - Results Table.csv`
 
-The Jupyter Notebook in :code:`results/DataAnalysis.ipynb` uses these results to aggregate them to produce the
+The Jupyter Notebook in :code:`results/DataAnalysis.ipynb` uses these results to produce the
 numbers in the paper. To run this analysis, you can run the following command locally via pipenv:
 
 .. code::
