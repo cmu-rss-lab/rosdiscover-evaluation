@@ -106,7 +106,6 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
   (native)$ pipenv run scripts/recover-node-models.py husky
   (native)$ pipenv run scripts/recover-node-models.py turtlebot
 
-**TODO: description of where the results are and what they mean?**
 
 Derive and check architecture for RQ2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
