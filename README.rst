@@ -464,7 +464,10 @@ The :code:`launches` tag includes the file names of the launch files to be launc
 Parameterized Dockerfile
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build docker images we use a generic D (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems. 
+Most images that are needed to analyze and/or reproduce bugs have require the same steps to install all required content. 
+Therefore, we use a generic Dockerfile (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems. 
+This has the advantage that it the specification of what is installed for each project version is very small and structured systematically. 
+Furthermore, since many versions will share previous installation steps, the Docker automatically reuses existing layers, which reduces the image build time and also the required storage for the resulting images. 
 The Dockerfile uses the docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
 Then it installs the dependencies specified in the experiment config. 
 Finally it compiles the source code of the project. 
@@ -481,5 +484,6 @@ The generic dockerfile has the following arguments that are initialized based on
 * :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration yaml file.
 * :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration yaml file.
 * :code:`DIRECTORY`: The directory of the experiment that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
-* :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built.
+* :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built. The rosinstall file has been created using the https://github.com/rosin-project/rosinstall_generator_time_machine as described above.
 * :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration yaml file.
+
