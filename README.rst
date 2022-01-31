@@ -60,6 +60,7 @@ ROSDiscover toolchain.
   Further instructions on the general use of ROSDiscover can be found in its README file, available either in its archival form in the deps/rosdiscover directory of this artifact, or, preferably, in its up-to-date form on GitHub at: https://github.com/rosqual/rosdiscover.
   ROSDiscover has commands for recovering component models, observing running systems to produce observed architectures, and statically assembling architetures to form recovered architectures.
 * **ROSWire**: This is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive functionality for building static and dynamic tools for ROS that accept Docker images as their input (rather than assuming that those tools are located on the same machine as the subject of the analysis).
+  More details about ROSWire can be found in its README file, available either in its archival form in the deps/roswire directory of this artifact, or, preferably, in its up-to-date form on GitHub at: https://github.com/rosqual/roswire.
 * **CXX-Extract**: Provides the implementation of the static component model recovery of ROS nodes from source code written in C++.
 
 When ROSDiscover is invoked to recover an architecture, it uses ROSWire to locate packages, launch files, etc.
