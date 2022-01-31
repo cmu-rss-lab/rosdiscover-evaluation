@@ -54,17 +54,21 @@ Replicating results for the paper
 ---------------------------------
 
 To aid in replicating the results of the research, we have provided a set of scripts that ease the reproduction of
-each step in a resrarch question, along with an experiment definition for each experiment cast. The defitition is
-defined using YAML, and provides all the information for building containers, recovering nodes, extracting
-and checking architectures, and detecting misconfigurations. In these instructions (except for misconfigurtion bug detection) we will use :code:`autorally`
+each step in a research question, along with an experiment definition for each experiment. The definition uses YAML, and
+provides all the information for building containers, recovering nodes, extracting
+and checking architectures, and detecting misconfigurations. In these instructions (except for misconfiguration bug
+detection) we will use :code:`autorally`
 as an example, with the experiment defined in :code:`experiments/recovery/subjects/autorally/experiment.yml`.
 
-You may run the experiments from the host, using the python directly with Python set up as described in `INSTALL
+You may run the experiments from the host, using the python directly with Python set up as described in Section
+2.2 of `INSTALL.rst
 <INSTALL.rst#22-approach-b-native-pipenv>`_, or by optionally
-using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container.
-**NOTE: In order for this to work, the container will need to connect to the Docker that is running on the host.** In
+using the :code:`rosdiscover/evaluation` Docker container that encapsulates this inside its own Docker container, as
+described in Section 2.1 of `INSTALL.rst
+<INSTALL.rst#21-approach-a-preferred-method-docker>`_.
+**NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.** In
 the instructions below, we give two versions of each command. One, prefixed by :code:`(native)$` is how to run the
-command from the host; thoe other :code:`(container)$` is how to run the command using the provided helper script
+command from the host; the other :code:`(container)$` is how to run the command using the provided helper script
 that connects to the evaluation Docker container.
 
 Obtain a list of commands that can be executed inside the replication package by executing the :code:`help` command as shown below from the root of the replication package.
@@ -118,8 +122,8 @@ images have been prebuilt as described above. To run this:
   (native)$ scripts/rq2.sh [autorally | husky | turtlebot]
 
 If no arguments are given, the script will run through all three cases. After running the steps for reproducing RQ2,
-a human readable form of the comparison is will be in :code:`results/recovery/subject/<system>/compare.observed-recovered.txt`,
-where :code:`<system>` is one of :code:`autorally | husky | turtlebot`. A side-by-side comaprison of the architectures,
+a human readable form of the comparison will be in :code:`results/recovery/subject/<system>/compare.observed-recovered.txt`,
+where :code:`<system>` is one of :code:`autorally | husky | turtlebot`. A side-by-side comparison of the architectures,
 and the metrics calculated, are in the last to sections of this file.
 
 The rest of this section describes how to reproduced RQ2 step-by-step.
@@ -131,7 +135,9 @@ The rest of this section describes how to reproduced RQ2 step-by-step.
       (docker)$ docker/run.sh observe autorally
       (native)$ pipenv run scripts/observe-system.py autorally
 
-This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture multiple times. In the end, a YML representation of the architecture will be placed in `experiments/recovery/subjects/autorally/observed.architecture.yml`.
+This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture
+multiple times. In the end, a YML representation of the architecture will be placed in
+:code:`experiments/recovery/subjects/autorally/observed.architecture.yml`.
 
 2. Run ROSDiscover to statically recover the system.
 
@@ -146,7 +152,10 @@ This will take a while to run because it needs to start the robot, start a missi
   INFO: applying remapping from [/camera/right/camera_info] to [/right_camera/camera_info]
   INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
 
-This will process the launch files supplied in the :code:`experiment.yml` and produce the architecture in :code:`experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some time because it needs to statically analyze the source for the nodes mentioned in the launch files, but thereafter those results are cached and the analysis will run more quickly.
+This will process the launch files supplied in the :code:`experiment.yml` and produce the architecture in
+:code:`experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some
+time because ROSDiscover needs to statically analyze the source for the nodes mentioned in the launch files, but
+thereafter those results are cached and the analysis will run more quickly.
 
 3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
   a. Produce and check the architecture of the observed system
@@ -164,7 +173,7 @@ This will process the launch files supplied in the :code:`experiment.yml` and pr
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
 
-The result is placed in experiments/recovery/subjects/autorally/observed.architecture.acme
+The result is placed in :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
 
   b. Produce and check the architecture of the recovered system
 
@@ -182,7 +191,7 @@ The result is placed in experiments/recovery/subjects/autorally/observed.archite
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
   /autoRallyTrackGazeboSim.launch.
 
-The result is placed in experiments/recovery/subjects/autorally/recovered.architecture.acme
+The result is placed in :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
 
   c. Compare the architectures
 
@@ -206,12 +215,12 @@ If you look at the file :code:`experiments/recovery/subjects/autorally/observed.
 Run configuration mismatch bug detection for RQ3
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To run configuration mismatch bugs for RQ3 involves building another set of Docker images that build the system
-representing the system at the time the misconfiguration was extant and the time at which it was fixd. Like the other
-RQs, we use use the same scripts for building these images. We will use the example of the :code:`autorally-01` bug which
+To run configuration mismatch bugs for RQ3 involves building another set of Docker images for each robot system
+at the time the misconfiguration was extant and the time at which it was fixd. Like the other
+RQs, we use the same scripts for building these images. We will use the example of the :code:`autorally-01` bug which
 is an error that was introduced into the :code:`autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
 a topic. The format of the experiment definition for detection replication is different to the other experiment
-defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
+definitions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
 images. See :code:`INSTALL <INSTALL.rst>`.
 
@@ -219,13 +228,13 @@ To reproduce the results for RQ3, we have provided a script that automates the p
 experiment. The script:
 
 1. Recovers the architectures of both the buggy and fixed versions, as described in the corresponding `experiment.yml`.
-2. Applies the architectural rule checking to both architectures and outputs any found errors
+2. Applies architectural rule checking to both architectures and outputs any found errors
 3. Summarizes the results. The results first print any architecture errors found in the buggy version of the system,
 followed by
 any architecture errors in the fixed version. If the buggy version contains errors, but the fixed version prints out
 **NO RELEVANT RESULTS** this means we have succcessfully detected the bug.
 
-To run RQ3 reproduction on all the systems we detected:
+To run RQ3 reproduction on all the systems where we successfully detected the misconfiguration:
 
 .. code::
 
