@@ -25,4 +25,5 @@ zip -r "${OUTPUT_FILENAME}" \
   INSTALL.rst \
   INSTALL.pdf \
   STATUS.rst \
-  STATUS.pdf
+  STATUS.pdf \
+  paper.pdf
