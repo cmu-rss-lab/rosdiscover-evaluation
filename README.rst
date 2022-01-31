@@ -159,7 +159,7 @@ and the metrics calculated, are in the last to sections of this file.
 
 The rest of this section describes how to reproduced RQ2 step-by-step.
 
-1. Derived the ground truth by observing the running system.
+**Step 1: Derived the ground truth by observing the running system.**
 
 .. code::
 
@@ -170,7 +170,7 @@ This will take a while to run because it needs to start the robot, start a missi
 multiple times. In the end, a YML representation of the architecture will be placed in
 :code:`experiments/recovery/subjects/autorally/observed.architecture.yml`.
 
-2. Run ROSDiscover to statically recover the system.
+**Step 2: Run ROSDiscover to statically recover the system.**
 
 .. code::
 
@@ -188,8 +188,10 @@ This will process the launch files supplied in the :code:`experiment.yml` and pr
 time because ROSDiscover needs to statically analyze the source for the nodes mentioned in the launch files, but
 thereafter those results are cached and the analysis will run more quickly.
 
-3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
-  a. Produce and check the architecture of the observed system
+**Step 3: Check and compare the architectures of the observed and recovered systems.**
+This involves three steps.
+
+**Step 3a: Produce and check the architecture of the observed system.**
 
 .. code::
 
@@ -206,7 +208,7 @@ thereafter those results are cached and the analysis will run more quickly.
 
 The result is placed in :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
 
-  b. Produce and check the architecture of the recovered system
+**Step 3b: Produce and check the architecture of the recovered system.**
 
 .. code::
 
@@ -224,7 +226,7 @@ The result is placed in :code:`experiments/recovery/subjects/autorally/observed.
 
 The result is placed in :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
 
-  c. Compare the architectures
+**Step 3c: Compare the architectures.**
 
 .. code::
 
@@ -242,6 +244,7 @@ If you look at the file :code:`experiments/recovery/subjects/autorally/observed.
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
 5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in :code:`observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
+
 
 Run configuration mismatch bug detection for RQ3
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +359,7 @@ numbers in the paper. To run this analysis, you can run the following command:
    (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
    (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
 
-This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080"
+This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080
 
 
 Results Format
@@ -534,4 +537,3 @@ The generic Dockerfile has the following arguments that are initialized based on
 * :code:`DIRECTORY`: The "docker" subdirectory of the experiment directory that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
 * :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built. The rosinstall file has been created using the https://github.com/rosin-project/rosinstall_generator_time_machine as described above.
 * :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration YAML file.
-
