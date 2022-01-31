@@ -127,11 +127,9 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
 The results for each system are written to its corresponding :code:`results/recovery/subjects/autorally`. The files
 that are produced are:
 
-- a :code:`models` directory that contains JSON formatted information for the component models of each node that was
-analyzed by the system. The filename is of the form :code:`{package}__{node}.json`.
-- a :code:`recovered-models.csv` that records, for each node and package, its entrypoint, the time it took to do the
-static analysis, whether it crashed or produced an error message, the number of statements, functions, and relevant
-API calls encountered, and then information about unresolved (unknown) and unreachable code.
+- a :code:`models` directory that contains JSON formatted information for the component models of each node that was analyzed by the system.
+  The filename is of the form :code:`{package}__{node}.json`.
+- a :code:`recovered-models.csv` that records, for each node and package, its entrypoint, the time it took to do the static analysis, whether it crashed or produced an error message, the number of statements, functions, and relevant API calls encountered, and then information about unresolved (unknown) and unreachable code.
 
 To reproduce the analysis used in the paper, the CSV file for each system should copied into
 :code:`results/data/` directory and given the name :code:`RQ1 node model recovery results - <system>.csv`.
