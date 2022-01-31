@@ -259,7 +259,7 @@ is an error that was introduced into the :code:`autorally_core/launch/stateEstim
 a topic. The format of the experiment definition for detection replication is different to the other experiment
 definitions, containing information on how to build the buggy and fixed Docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
-images. See :code:`INSTALL <INSTALL.rst>`.
+images. See `INSTALL.rst <./INSTALL.rst>`_.
 
 To reproduce the results for RQ3, we have provided a script that automates the process above for the detection
 experiment. The script:
