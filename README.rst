@@ -48,7 +48,31 @@ This replication package is structured as follows:
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
 
+Overview of the ROSDiscover Toolchain
+-------------------------------------
 
+This replication package contains, in addition to scripts for replicating the result, the source code for the complete
+ROSDiscover toolchain.
+
+- **ROSDiscover**: This is the tool that is described in the paper.  It is designed to, among other purposes, recover
+run-time architectures from ROS applications provided in the form of a Docker image and an accompanying
+configuration  file. Further instructions on the general use of ROSDiscover can be found in its README file,
+available  either in its archival form in the deps/rosdiscover directory of this artifact, or, preferably, in its
+up-to-date form on GitHub at:https://github.com/rosqual/rosdiscover. ROSDiscover has commands for recovering
+component models, observing running systems to produce observed architectures, and statically assembling architetures
+to form recovered architectures.
+- **ROSWire**: This is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive
+functionality for building static and dynamic tools for ROS that accept Docker images as their input (rather than
+assuming that those tools are located on the same machine as the subject of the analysis).
+- **CXX-Extract**: Provides the implementation of the static component model recovery of ROS nodes from soruce code
+written in C++.
+
+When ROSDiscover is invoked to recover an architecture, it uses ROSWire to access information in the ROS Docker
+container for the system, which provides means to locate packages, launch files, etc. It invokes CXX-Extract when it
+encounters a node in a launch file it is processing, to parse the source, identify ROS API calls, and produce a
+component model. ROSDiscover then combines the component models according to the launch files being processed and
+resolves any parameters, arguments, unbound topics, etc. that may be in the component models to produce an
+architecture model.
 
 Replicating results for the paper
 ---------------------------------
@@ -106,6 +130,17 @@ The script simply takes the name of a subject system for RQ1 and emits a set of 
   (native)$ pipenv run scripts/recover-node-models.py husky
   (native)$ pipenv run scripts/recover-node-models.py turtlebot
 
+The results for each system are written to its corresponding :code:`results/recovery/subjects/autorally`. The files
+that are produced are:
+
+- a :code:`models` directory that contains JSON formatted information for the component models of each node that was
+analyzed by the system. The filename is of the form :code:`{package}__{node}.json`.
+- a :code:`recovered-models.csv` that records  for each node and package, its entrypoint, the time it took to do the
+static analysis, whether it crashed or produced an error message, the number of statements, functions, and relevant
+API calls encountered, and then information about unresolved (unkown) and unreachable code.
+
+To reproduce the analysis used in the paper, the CSV file for each system should copied into
+:code:`results/data/` directory and given the name :code:`RQ1 node model recovery results - <system>.csv`.
 
 Derive and check architecture for RQ2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -319,7 +354,8 @@ They can the be analyzed like mentioned below.
 
 The data collected for the experiments of RQ3 is in: results/data/RosTopicBugs - RQ3 - Results Table.csv
 
-The Jupyer Notebook in results/DataAnalysis.ipynb uses these results to aggregate them to produce the numbers in the paper. To run this analysis, you can run the following command locally via pipenv: (TODO: add Docker-based instructions.)
+The Jupyter Notebook in :code:`results/DataAnalysis.ipynb` uses these results to aggregate them to produce the
+numbers in the paper. To run this analysis, you can run the following command locally via pipenv:
 
 .. code::
 
