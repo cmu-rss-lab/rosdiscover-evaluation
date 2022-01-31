@@ -476,8 +476,7 @@ Finally, it compiles the source code of the project.
 To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the docker folder of the corresponding experiment:
 
 * The preinstall script (preinstall.sh) is run before the ROS dependencies are installed and can be used to configure the python installation in cases in which the ROS dependencies do not install correctly.
-* The prebuild script (prebuild.sh) is directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location). 
-* The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing a dependencies).
+* The prebuild script (prebuild.sh) is directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing a dependencies).
 * The postbuild script (postbuild.sh) is run as the final step during image creation can be used to make changes to the launch files of a system. 
 
 The generic Dockerfile has the following arguments that are initialized based on the information provided in the experiment configuration file or will be automatically determined by the infrastructure in :code:`scripts/build-image.py`:
