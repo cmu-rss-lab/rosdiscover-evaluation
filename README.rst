@@ -58,7 +58,7 @@ ROSDiscover toolchain.
 run-time architectures from ROS applications provided in the form of a Docker image and an accompanying
 configuration  file. Further instructions on the general use of ROSDiscover can be found in its README file,
 available  either in its archival form in the deps/rosdiscover directory of this artifact, or, preferably, in its
-up-to-date form on GitHub at:https://github.com/rosqual/rosdiscover. ROSDiscover has commands for recovering
+up-to-date form on GitHub at: https://github.com/rosqual/rosdiscover. ROSDiscover has commands for recovering
 component models, observing running systems to produce observed architectures, and statically assembling architetures
 to form recovered architectures.
 - **ROSWire**: This is a standalone Python library, used as part of the ROSDiscover toolchain, that provides extensive
