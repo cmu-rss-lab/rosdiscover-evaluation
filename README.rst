@@ -29,10 +29,10 @@ This replication package is structured as follows:
     |- rosdiscover/        The code for the implementation of the rosdiscover system
     |                      evaluated in the paper
     |- roswire/            The code for the layer used for interacting with ROS
-    |                      docker images
+    |                      Docker images
     |- rosdiscover-cxx-extract/
     |                      The code for static analysis
-  - docker/                Files used for building docker images used in the experiments
+  - docker/                Files used for building Docker images used in the experiments
   - experiments/           Data for setting up the experiments, and the results we got
     |- detection/          Experiments that we used in RQ3
     |- recovery/           Experiments we used in RQ1 and RQ2
@@ -43,7 +43,7 @@ This replication package is structured as follows:
     |                      The misconfiguration bug dataset contributed in the paper
     |- detection/          Results for the detection experiments
     |- recovery/           Results for the recovery experiments
-  - rootfs/                Contains files that get put in the docker images
+  - rootfs/                Contains files that get put in the Docker images
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
@@ -205,7 +205,7 @@ representing the system at the time the misconfiguration was extant and the time
 RQs, we use use the same scripts for building these images. We will use the example of the :code:`autorally-01` bug which
 is an error that was introduced into the :code:`autorally_core/launch/stateEstimator.launch` file that incorrectly remapped
 a topic. The format of the experiment definition for detection replication is different to the other experiment
-defintions, containing information on how to build the buggy and fixed docker images, the errors that are expected to
+defintions, containing information on how to build the buggy and fixed Docker images, the errors that are expected to
 be found, and definition of a reproducer node that guarantees use of the broken connector. We provide the pre-built
 images. See :code:`INSTALL <INSTALL.rst>`.
 
@@ -422,8 +422,8 @@ For detection experiments, the project sources are be specified for buggy and fi
 
 The :code:`repositories` tag describes a list of repositories to be included according to the following specification.
 The :code:`url` specifies the URL to the git repository that should be cloned for analysis. The :code:`version` specifies the commit ID or tag that should be checked out for analysis.
-The :code:`image` tag specifies the name that the docker image should have, which will be used when running the experiment as well.
-The :code:`type` tag specifies the docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile (see section "Parameterized Dockerfile" below), or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the docker tag needs an :code:`filename` child-tag specifying the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
+The :code:`image` tag specifies the name that the Docker image should have, which will be used when running the experiment as well.
+The :code:`type` tag specifies the Docker image type and can be :code:`templated` for generated an image based on a generic approach that uses a parameterized Dockerfile (see section "Parameterized Dockerfile" below), or :code:`custom` for separately provided Dockerfiles (e.g., for forwardporting). If custom is used, the Docker tag needs an :code:`filename` child-tag specifying the file name of the custom Dockerfile (with a path relative to the experiment.yml file and the path to the context used by Docker to create the image) to be used to build the image, such as for the Autoware recovery image:
 
 .. code:: yml
 
@@ -467,13 +467,13 @@ Parameterized Dockerfile
 Most images that are needed to analyze and/or reproduce bugs have require the same steps to install all required content. 
 Therefore, we use a generic Dockerfile (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems. 
 This has the advantage that it the specification of what is installed for each project version is very small and structured systematically. 
-Furthermore, since many versions will share previous installation steps, the Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images. 
+Furthermore, since many versions will share identical installation steps, Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images. 
 
-The Dockerfile uses the docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
+The Dockerfile uses the Docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
 Then it installs the dependencies specified in the experiment config. 
 Finally, it compiles the source code of the project. 
 
-To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the docker folder of the corresponding experiment:
+To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the Docker folder of the corresponding experiment:
 
 * The preinstall script (preinstall.sh) is run before the ROS dependencies are installed and can be used to configure the python installation in cases in which the ROS dependencies do not install correctly.
 * The prebuild script (prebuild.sh) is directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing a dependencies).
@@ -482,10 +482,10 @@ To customize the build process, the Dockerfile is configured to execute optional
 The generic Dockerfile has the following arguments that are initialized based on the information provided in the experiment configuration file or will be automatically determined by the infrastructure in :code:`scripts/build-image.py`:
 
 * :code:`DISTRO`: The ROS distribution (e.g., indigo, kinetic, melodic). This parameter is taken from the experiment configuration yaml file.
-* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the roof directory of the docker image. This parameter is automatically set. 
+* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the roof directory of the Docker image. This parameter is automatically set. 
 * :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration yaml file.
 * :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration yaml file.
-* :code:`DIRECTORY`: The directory of the experiment that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
+* :code:`DIRECTORY`: The directory of the experiment that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
 * :code:`ROSINSTALL_FILENAME`: The file name of the .rosinstall file that should be used to install ROS packages. This parameter is automatically determined based whether the buggy, fixed, or single version of the project should be built. The rosinstall file has been created using the https://github.com/rosin-project/rosinstall_generator_time_machine as described above.
 * :code:`BUILD_COMMAND`: The build command to be executed to compile the system. This parameter is taken from the experiment configuration yaml file.
 
