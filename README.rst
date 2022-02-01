@@ -55,8 +55,6 @@ This replication package is structured as follows:
 Note that the prebuilt images are in a file called :code:`images.tar.gz` that is to be downloaded separately from
 Zenodo. It contains saved Docker images for all the ROS systems used in the paper.
 
-Overview of the ROSDiscover Toolchain
--------------------------------------
 
 Overview of the ROSDiscover Toolchain
 -------------------------------------
