@@ -26,7 +26,7 @@ This replication package is structured as follows:
 
   - architecture-style/    The definition of the ROS architeture style used for analysis.
   - deps/                  Contains the code that the evaluation pacakges uses.
-    |- rosdiscover/        The code for the implementation of the rosdiscover system
+    |- rosdiscover/        The code for the implementation of the ROSDiscover system
     |                      evaluated in the paper
     |- roswire/            The code for the layer used for interacting with ROS
     |                      docker images
@@ -47,6 +47,9 @@ This replication package is structured as follows:
   - scripts/               Python scripts for running and analyzing the experiments
                            (see more below)
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+
+Note that the prebuilt images are in a file called :code:`images.tar.gz` that is to be downloaded separately from
+Zenodo. It contains saved Docker images for all the ROS systems used in the paper.
 
 Overview of the ROSDiscover Toolchain
 -------------------------------------
@@ -173,7 +176,7 @@ The rest of this section describes how to reproduced RQ2 step-by-step.
 
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture
 multiple times. In the end, a YML representation of the architecture will be placed in
-:code:`experiments/recovery/subjects/autorally/observed.architecture.yml`.
+:code:`results/recovery/subjects/autorally/observed.architecture.yml`.
 
 2. Run ROSDiscover to statically recover the system.
 
@@ -189,9 +192,10 @@ multiple times. In the end, a YML representation of the architecture will be pla
   INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
 
 This will process the launch files supplied in the :code:`experiment.yml` and produce the architecture in
-:code:`experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some
-time because ROSDiscover needs to statically analyze the source for the nodes mentioned in the launch files, but
-thereafter those results are cached and the analysis will run more quickly.
+:code:`results/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some
+time because ROSDiscover needs to build information about the ROS installation on the image - what packages
+are installed, their location, contents, etc. Thereafter those results are cached and the analysis will run more
+quickly.
 
 3. Check and compare the architectures of the observed and recovered systems. This involves three steps.
   a. Produce and check the architecture of the observed system
@@ -209,7 +213,7 @@ thereafter those results are cached and the analysis will run more quickly.
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
 
-The result is placed in :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
+The result is placed in :code:`results/recovery/subjects/autorally/observed.architecture.acme`
 
   b. Produce and check the architecture of the recovered system
 
@@ -227,7 +231,7 @@ The result is placed in :code:`experiments/recovery/subjects/autorally/observed.
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
   /autoRallyTrackGazeboSim.launch.
 
-The result is placed in :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
+The result is placed in :code:`results/recovery/subjects/autorally/recovered.architecture.acme`
 
   c. Compare the architectures
 
@@ -236,14 +240,14 @@ The result is placed in :code:`experiments/recovery/subjects/autorally/recovered
   (docker)$ docker/run.sh compare autorally
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
 
-The comparison output is placed in :code:`experiments/recovery/subjects/autorally/compare.observed-recovered.txt`. The
-analyzed results used in the paper are in :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
+The comparison output is placed in :code:`results/recovery/subjects/autorally/compare.observed-recovered.txt`. The
+analyzed results used in the paper are in :code:`results/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
-If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
+If you look at the file :code:`results/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
 
-1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
-2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
+1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`results/recovery/subjects/autorally/observed.architecture.acme`
+2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`results/recovery/subjects/autorally/recovered.architecture.acme`
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
 5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in :code:`observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
@@ -316,7 +320,7 @@ Each case has the following files:
   compare.observed-recovered.txt                  - a human readable summary of the comparison
   observed.recovered.[compare,errors].csv         - a CSV version of the comparison results,
                                                     with errors detected
-  recovery.rosdiscover.yml                        - a script generated config file passed to rosdiscover
+  recovery.rosdiscover.yml                        - a script generated config file passed to ROSDiscover
   recovered-models.csv                            - a list of models recovered for RQ1 and the accuracy
                                                     metrics
 
@@ -495,7 +499,7 @@ The :code:`distro` is the name of ROS distribution in which the bug is supposed 
 The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories.
 The :code:`exclude_ros_packages` tag specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed.
 The :code:`apt_packages` tag specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraries, or build tools used by the project.
-The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
+The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since ROSDiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
 The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files.
 The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5).
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value dictionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
