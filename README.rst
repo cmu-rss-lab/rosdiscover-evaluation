@@ -26,7 +26,7 @@ This replication package is structured as follows:
 
   - architecture-style/    The definition of the ROS architeture style used for analysis.
   - deps/                  Contains the code that the evaluation pacakges uses.
-    |- rosdiscover/        The code for the implementation of the rosdiscover system
+    |- rosdiscover/        The code for the implementation of the ROSDiscover system
     |                      evaluated in the paper
     |- roswire/            The code for the layer used for interacting with ROS
     |                      Docker images
@@ -51,6 +51,9 @@ This replication package is structured as follows:
   - Pipfile                Used to describe the dependencies of the Python virtual environment
   - Pipfile.lock           Used to provide the exact versions of all packages (i.e., transitive dependencies) in the Python virtual environment
   - paper.pdf              The final version of the paper **ROSDiscover: Statically Detecting Run-Time Architecture Misconfigurations in Robotics Systems.**
+
+Note that the prebuilt images are in a file called :code:`images.tar.gz` that is to be downloaded separately from
+Zenodo. It contains saved Docker images for all the ROS systems used in the paper.
 
 
 Overview of the ROSDiscover Toolchain
@@ -167,7 +170,7 @@ The rest of this section describes how to reproduce RQ2 step by step.
 
 This will take a while to run because it needs to start the robot, start a mission, and then observe the architecture
 multiple times. In the end, a YML representation of the architecture will be placed in
-:code:`experiments/recovery/subjects/autorally/observed.architecture.yml`.
+:code:`results/recovery/subjects/autorally/observed.architecture.yml`.
 
 **Step 2: Run ROSDiscover to statically recover the system.**
 
@@ -183,9 +186,10 @@ multiple times. In the end, a YML representation of the architecture will be pla
   INFO: statically recovered system architecture for image [rosdiscover-experiments/autorally:c2692f2]
 
 This will process the launch files supplied in the :code:`experiment.yml` and produce the architecture in
-:code:`experiments/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some
-time because ROSDiscover needs to statically analyze the source for the nodes mentioned in the launch files, but
-thereafter those results are cached and the analysis will run more quickly.
+:code:`results/recovery/subjects/autorally/recovered.architecture.yml`. The first time this is run it may take some
+time because ROSDiscover needs to build information about the ROS installation on the image - what packages
+are installed, their location, contents, etc. Thereafter those results are cached and the analysis will run more
+quickly.
 
 **Step 3: Check and compare the architectures of the observed and recovered systems.**
 This involves three steps.
@@ -205,7 +209,7 @@ This involves three steps.
   ground_truth_republisher  publishes to an unsubscribed topic: '/ground_truth/state'. But there is a subscriber(s) waypointFollower._pose_estimate_sub
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from unknown.
 
-The result is placed in :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
+The result is placed in :code:`results/recovery/subjects/autorally/observed.architecture.acme`
 
 **Step 3b: Produce and check the architecture of the recovered system.**
 
@@ -223,7 +227,7 @@ The result is placed in :code:`experiments/recovery/subjects/autorally/observed.
   with a similar name that subscribes to a similar message type. ground_truth_republisher was launched from /ros_ws/src/autorally/autorally_gazebo/launch
   /autoRallyTrackGazeboSim.launch.
 
-The result is placed in :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
+The result is placed in :code:`results/recovery/subjects/autorally/recovered.architecture.acme`
 
 **Step 3c: Compare the architectures.**
 
@@ -232,14 +236,14 @@ The result is placed in :code:`experiments/recovery/subjects/autorally/recovered
   (docker)$ docker/run.sh compare autorally
   (native)$ pipenv run scripts/compare-recovered-observed.py autorally
 
-The comparison output is placed in :code:`experiments/recovery/subjects/autorally/compare.observed-recovered.txt`. The
-analyzed results used in the paper are in :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`.
+The comparison output is placed in :code:`results/recovery/subjects/autorally/compare.observed-recovered.txt`. The
+analyzed results used in the paper are in :code:`results/recovery/subjects/autorally/observed.recovered.compare.csv`.
 
 
-If you look at the file :code:`experiments/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
+If you look at the file :code:`results/recovery/subjects/autorally/observed.recovered.compare.csv`, it is divided into five sections.
 
-1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`experiments/recovery/subjects/autorally/observed.architecture.acme`
-2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`experiments/recovery/subjects/autorally/recovered.architecture.acme`
+1. Observed architecture summary. This summarizes the observed architceture. It is a summarization of :code:`results/recovery/subjects/autorally/observed.architecture.acme`
+2. Recovered architecture summary. This summarizes the recovered architecture. It is a summarization of :code:`results/recovery/subjects/autorally/recovered.architecture.acme`
 3. Provenance information. This summarizes the component models used in recovery that were handwritten and recovered.
 4. Side-by-side comparison: This gives a side by side comparison of the details of the architecture, giving topics etc that were observed for a node, those that were recovered. Upper case elements are those that appear in both the observed and recovered architectures, those in lower case only appear in one.
 5. Differences: A summary of the statistics for over-approximation/under-approximation for the whole system (not that in :code:`observed.recovered.compare.csv` we divide these numbers into handwritten and recovered, and only use the recovered metrics in the paper.
@@ -312,7 +316,7 @@ Each case has the following files:
   compare.observed-recovered.txt                  - a human readable summary of the comparison
   observed.recovered.[compare,errors].csv         - a CSV version of the comparison results,
                                                     with errors detected
-  recovery.rosdiscover.yml                        - a script generated config file passed to rosdiscover
+  recovery.rosdiscover.yml                        - a script generated config file passed to ROSDiscover
   recovered-models.csv                            - a list of models recovered for RQ1 and the accuracy
                                                     metrics
 
@@ -491,7 +495,7 @@ The :code:`distro` is the name of ROS distribution in which the bug is supposed 
 The :code:`missing_ros_packages` tag specifies as list of additional ROS packages that should be installed in the image, additionally to those listed in the package.xml files that can be found recursively in the project directories.
 The :code:`exclude_ros_packages` tag specifies a list of ROS packages that are includes int the project's package.xml files but should not be installed in the image. Packages can be excluded here either if they result in build errors, if they are installed manually, or if the package.xml is incorrect and those packages should not be installed.
 The :code:`apt_packages` tag specifies a list of Linux packages that should be installed using :code:`apt-get install <packages>` before the system is built. Those can include dependencies, libraries, or build tools used by the project.
-The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since rosdiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
+The :code:`build_command` tag specifies the Linux command used to build the project from source (e.g., :code:`catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1` or :code:`catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on`). Since ROSDiscover analyzes the compiler commands used to build the project, the build command must include the corresponding CMake flags to export compiler commands.
 The :code:`sources` tag specifies the bash scripts that should be sourced before building the project. This includes the ROS distribution and the catkin workspace but may also include custom other source files.
 The :code:`cuda_version` tag specifies the CUDA version that should be installed, if any (e.g., 6-5).
 The :code:`launches` tag includes the file names of the launch files to be launched by the experiments and optionally launch file arguments specified as key-value dictionary with keys being argument names and values being the values to which the arguments should be set, such as in autoware-01:
@@ -504,32 +508,32 @@ The :code:`launches` tag includes the file names of the launch files to be launc
       arguments:
         tf_launch: /.autoware/data/tf/tf.launch
         pmap_param: noupdate
-        pcd_files: /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00157_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00158_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00857.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00148_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00159_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00858.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00859.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00149_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00846.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00160_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00847.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00860.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00150_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00161_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00848.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00162_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00151_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00861.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00849.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00163_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00862.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00152_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00164_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00850.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00863.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00165_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00153_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00851.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00166_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00864.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00154_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00852.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00853.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00167_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00865.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00155_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00866.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00854.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00867.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00855.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00168_-00868.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00156_-00856.pcd /.autoware/data/map/pointcloud_map/bin_Laser-00169_-00868.pcd
-        csv_files: /.autoware/data/map/vector_map/road_surface_mark.csv /.autoware/data/map/vector_map/pole.csv /.autoware/data/map/vector_map/lane.csv /.autoware/data/map/vector_map/stopline.csv /.autoware/data/map/vector_map/area.csv /.autoware/data/map/vector_map/vector.csv /.autoware/data/map/vector_map/streetlight.csv /.autoware/data/map/vector_map/line.csv /.autoware/data/map/vector_map/gutter.csv /.autoware/data/map/vector_map/signaldata.csv /.autoware/data/map/vector_map/curb.csv /.autoware/data/map/vector_map/idx.csv /.autoware/data/map/vector_map/roadedge.csv /.autoware/data/map/vector_map/point.csv /.autoware/data/map/vector_map/poledata.csv /.autoware/data/map/vector_map/crosswalk.csv /.autoware/data/map/vector_map/node.csv /.autoware/data/map/vector_map/utilitypole.csv /.autoware/data/map/vector_map/whiteline.csv /.autoware/data/map/vector_map/dtlane.csv /.autoware/data/map/vector_map/zebrazone.csv /.autoware/data/map/vector_map/roadsign.csv
+        pcd_files: /.autoware/data/map/pointcloud_map/bin_Laser-00147_-00846.pcd /.autoware/data/map/pointcloud_map/...
+        csv_files: /.autoware/data/map/vector_map/road_surface_mark.csv /.autoware/data/map/vector_map/pole.csv /.au...
 
 
 Parameterized Dockerfile
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Most images that are needed to analyze and/or reproduce bugs have require the same steps to install all required content. 
-Therefore, we use a generic Dockerfile (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems. 
-This has the advantage that it the specification of what is installed for each project version is very small and structured systematically. 
-Furthermore, since many versions will share identical installation steps, Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images. 
+Most images that are needed to analyze and/or reproduce bugs have require the same steps to install all required content.
+Therefore, we use a generic Dockerfile (located in :code:`docker/Dockerfile`) that can be parameterized to construct a replication environment for historic versions of ROS systems.
+This has the advantage that it the specification of what is installed for each project version is very small and structured systematically.
+Furthermore, since many versions will share identical installation steps, Docker automatically reuses existing layers, which reduces the image build time and the required storage for the resulting images.
 
-The Dockerfile uses the Docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries. 
-Then it installs the specific versions of the dependencies listed in the experiment config. 
-Finally, it compiles the source code of the project. 
+The Dockerfile uses the Docker image of the corresponding ROS version (e.g., indigo, kinetic, melodic) as a parent, installs common tools to interact with Docker containers, such as VNC, build tools for Python and ROS, and common libraries.
+Then it installs the specific versions of the dependencies listed in the experiment config.
+Finally, it compiles the source code of the project.
 
 To customize the build process, the Dockerfile is configured to execute optional preinstall, prebuild, and/or postbuild scripts located in the Docker folder of the corresponding experiment:
 
 * The preinstall script (preinstall.sh) runs before the ROS dependencies are installed and can be used to, for example, configure the Python installation in cases in which the ROS dependencies do not install correctly.
 * The prebuild script (prebuild.sh) runs directly before the project is compiled and can be user to install additional dependencies that cannot simply be installed as an apt-get package or ROS package (for example because it needs to be built from source or because it needs to be downloaded from a custom location).  The prebuild script can also be used to perform small changes to the source code (for example if the current version has a compiler error that can be fixed very easily, or if the CMake.list is missing dependencies).
-* The postbuild script (postbuild.sh) runs as the final step during image creation can be used to, for example,  make changes to the launch files of a system. 
+* The postbuild script (postbuild.sh) runs as the final step during image creation can be used to, for example,  make changes to the launch files of a system.
 
 The generic Dockerfile has the following arguments that are initialized based on the information provided in the experiment configuration file or will be automatically determined by the infrastructure in :code:`scripts/build-image.py`:
 
 * :code:`DISTRO`: The ROS distribution (e.g., indigo, kinetic, melodic). This parameter is taken from the experiment configuration YAML file.
-* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the root directory of the Docker image. This parameter is automatically set. 
+* :code:`COMMON_ROOTFS`: The directory on the host machine that is copied into the root directory of the Docker image. This parameter is automatically set.
 * :code:`CUDA_VERSION`: The CUDA version number to be installed, 0 if none is needed. This parameter is taken from the experiment configuration YAML file.
 * :code:`APT_PACKAGES`: The list of packages to be installed using apt-get install represented as string with spaces as separators. This parameter is taken from the experiment configuration YAML file.
 * :code:`DIRECTORY`: The "docker" subdirectory of the experiment directory that includes the preinstall, prebuild, and postbuild scripts as well as their dependent files to be copied to the Docker container for custom image building configuration steps. This parameter is automatically determined based on the location of the experiment folder.
