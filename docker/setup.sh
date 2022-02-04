@@ -4,6 +4,7 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR="${HERE_DIR}/.."
 ROSDISCOVER_CXX_DIR="${ROOT_DIR}/deps/rosdiscover-cxx-recover"
+RGTM_DOCKER_DIR="${ROOT_DIR}/deps/rosinstall_generator_time_machine/docker"
 
 function report_error {
   echo $1
@@ -19,3 +20,6 @@ docker build -f "${HERE_DIR}/Dockerfile.runner" -t rosqual/icsa22-evaluation:run
 
 echo "installing rosdiscover C++ recovery volume..."
 make -C "${ROSDISCOVER_CXX_DIR}/docker"
+
+echo "installing rosinstall_generator_time_machine image..."
+"${RGTM_DOCKER_DIR}/build.sh"
