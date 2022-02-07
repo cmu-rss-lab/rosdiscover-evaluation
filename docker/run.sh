@@ -35,6 +35,7 @@ docker run \
   --rm \
   -it \
   --user root \
+  -p 8080:8080 \
   -v "${docker_host}":/var/run/docker.sock:ro \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
   -v "${RESULTS_DIR}":/opt/rosdiscover/evaluation/results \
