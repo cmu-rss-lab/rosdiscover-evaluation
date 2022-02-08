@@ -359,7 +359,7 @@ numbers in the paper. To run this analysis, you can run the following command:
 .. code::
 
    (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
-   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser results/DataAnalysis.ipynb
 
 This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080
 
