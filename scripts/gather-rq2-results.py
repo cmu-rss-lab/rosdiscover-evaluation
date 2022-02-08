@@ -15,7 +15,7 @@ def get_comparison_file(system: str) -> str:
 
 def main():
     rq2_systems = [system for system in os.listdir(RECOVERY_DIR) if os.path.isfile(get_comparison_file(system))]
-    header = {}
+    header = [] 
     rq2_compares: t.Dict[str, t.List[t.Dict[str, str]]] = {}
     for system in rq2_systems:
         rq2_compares[system] = []
@@ -27,18 +27,18 @@ def main():
 
     # RQ2 Observed Architecture - Comparison
     with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Comparison.csv", 'w') as f:
-        writer = csv.DictWriter(f, fieldnames=header)
+        writer = csv.DictWriter(f, fieldnames=[h for h in header if h != "Node"])
         writer.writeheader()
         for system, dicts in rq2_compares.items():
-            for dict_ in [d for d in dicts if d["Case"] in {"all", "handwritten", "recovered"}]:
-                writer.writerow(dict_)
+            for dict_ in [d for d in dicts if not d["Node"]]:
+                writer.writerow({k: dict_[k] for k in dict_ if k != "Node"})
 
     # RQ2 Observed Architecture -Node-Level Comparison
     with open(f"{JUPYTER_RESULTS}/RQ2 Observed Architecture - Node-Level Comparison.csv", 'w') as f:
         writer = csv.DictWriter(f, fieldnames=header)
         writer.writeheader()
         for system, dicts in rq2_compares.items():
-            for dict_ in [d for d in dicts if d["Case"] not in {"all", "handwritten", "recovered"}]:
+            for dict_ in [d for d in dicts if d["Node"]]:
                 writer.writerow(dict_)
 
 
