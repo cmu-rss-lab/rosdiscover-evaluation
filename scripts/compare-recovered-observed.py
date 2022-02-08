@@ -365,9 +365,9 @@ def compare(config: ExperimentConfig) -> None:
 
     with open(comparison_csv, 'w') as f:
         writer = csv.writer(f)
-        writer.writerow(["Subject", "Case", "Kind", "# observed", "# recovered", "# obs ! rec", "rec ! obs",
-                         "over_approx", "under_approx", "# errors observed", "# errors recovered", "overlap matches",
-                         "#handwritten", "#recovered", "# placeholders"])
+        writer.writerow(["Subject", "Node", "Case", "Kind", "# observed", "# recovered", "# obs ! rec", "# rec ! obs",
+                         "over_approx", "under_approx", "# errors observed", "# errors recovered",
+                         "overlap matches", "#handwritten", "#recovered", "# placeholders"])
         for i in (nodecsv_all, pubcsv_all, subcsv_all, provcsv_all, accsv_all, ascsv_all,
                   pubcsv_hw, subcsv_hw, provcsv_hw, accsv_hw, ascsv_hw,
                   pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
