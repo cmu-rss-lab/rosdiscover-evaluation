@@ -283,7 +283,7 @@ autoware-01, autoware-11 husky-02 husky-04 husky-06. To run on an individual exa
 .. code::
 
   (docker)$ docker/run.sh rq3 autorally-01
-  (native)$ pipen run rq3 autorally-01
+  (native)$ pipenv run rq3 autorally-01
 
 
 Results Data
