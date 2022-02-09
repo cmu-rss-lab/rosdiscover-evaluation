@@ -371,7 +371,7 @@ def compare(config: ExperimentConfig) -> None:
         for i in (nodecsv_all, pubcsv_all, subcsv_all, provcsv_all, accsv_all, ascsv_all,
                   pubcsv_hw, subcsv_hw, provcsv_hw, accsv_hw, ascsv_hw,
                   pubcsv_re, subcsv_re, provcsv_re, accsv_re, ascsv_re):
-            line = [config['subject']]
+            line = [config['subject'], ""]
             if i == nodecsv_all:
                 if len(observed_errors) > len(recovered_errors):
                     same = len(observed_errors.intersection(recovered_errors)) == len(observed_errors) - len(
