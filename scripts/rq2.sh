@@ -87,6 +87,6 @@ echo "Collating the results"
 pipenv run gather-rq2
 
 echo "To analyze the results in Jupyter notebook, please do: "
-echo "$ <RUN> run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb"
-echo "Where <RUN> is either scripts/run.sh or pipenv run, depending on your setup."
-echo "Then, open a browser to 192.168.0.1:8080"
+echo "$ <RUN> jupyter notebook --ip=0.0.0.0 --port=8080 --allow-host --no-browser results/DataAnalysis.ipynb"
+echo "Where <RUN> is either docker/run.sh or pipenv run, depending on your setup."
+echo "Then, open a browser to 127.0.0.1:8080"

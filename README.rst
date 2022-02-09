@@ -283,7 +283,7 @@ autoware-01, autoware-11 husky-02 husky-04 husky-06. To run on an individual exa
 .. code::
 
   (docker)$ docker/run.sh rq3 autorally-01
-  (native)$ pipen run rq3 autorally-01
+  (native)$ pipenv run rq3 autorally-01
 
 
 Results Data
@@ -359,7 +359,7 @@ numbers in the paper. To run this analysis, you can run the following command:
 .. code::
 
    (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
-   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
+   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser results/DataAnalysis.ipynb
 
 This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080
 

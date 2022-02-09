@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu
+set -e
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR="${HERE_DIR}/.."
@@ -17,10 +17,7 @@ if [ ! -d "${RESULTS_DIR}" ]; then
   chmod 777 "${RESULTS_DIR}"
 fi
 
-if [[ ! -v DOCKER_HOST ]]; then
-  echo "Setting DOCKER_HOST to //var/run/docker.sock - assuming you are using a global docker install"
-  DOCKER_HOST="//var/run/docker.sock"
-elif [[ -z "$DOCKER_HOST" ]]; then
+if [[ -z "$DOCKER_HOST" ]]; then
   echo "Setting DOCKER_HOST to //var/run/docker.sock - assuming you are using a global docker install"
   DOCKER_HOST="//var/run/docker.sock"
 fi
@@ -35,6 +32,7 @@ docker run \
   --rm \
   -it \
   --user root \
+  -p 8080:8080 \
   -v "${docker_host}":/var/run/docker.sock:ro \
   -v "${ROOT_DIR}/experiments":/opt/rosdiscover/evaluation/experiments \
   -v "${RESULTS_DIR}":/opt/rosdiscover/evaluation/results \
