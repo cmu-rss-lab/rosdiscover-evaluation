@@ -47,7 +47,7 @@ issues (e.g., requiring `sudo` to run `docker` commands).
 1.3. Disk Space
 ...............
 
-Note that to install the replication package in its entirety, you will require just under 100 GB of disk space.
+Note that to install the replication package in its entirety, you will require approximately 240 GB of disk space.
 
 
 
@@ -133,7 +133,8 @@ Finally, you will need to install the ROSDiscover C++ static analysis tool by ex
 ---------------------
 
 Once you have installed the experiment harness according to the instructions above, you will need to install the Docker images for each of the subject systems.
-Note that this step will install require slightly under 100 GB of disk space.
+Note that this step will require a peak of approximately 240 GB of disk space during installation.
+After completing the installation, 100 GB of disk space will be used permanently after the original image archive has been deleted.
 Below we present two methods for installing the evaluation dataset:
 (3.1) installing prebaked images, the preferred method for replication;
 and (3.2) building images from scratch.

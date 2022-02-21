@@ -17,7 +17,7 @@ Docker version 20.10.11, build dea9396</code></pre>
 <li><a href="https://stedolan.github.io/jq">jq</a> (can be installed via, e.g., <code>apt install jq</code> on Ubuntu).</li>
 </ul>
 <h3 id="disk-space">1.3. Disk Space</h3>
-<p>Note that to install the replication package in its entirety, you will require just under 100 GB of disk space.</p>
+<p>Note that to install the replication package in its entirety, you will require approximately 240 GB of disk space.</p>
 <h2 id="software-experiment-harness">2. Software &amp; Experiment Harness</h2>
 <p>ROSDiscover, its dependencies, and the scripts used to conduct the experiments can be installed either via Docker (2.1), the preferred method for replication of results, or natively (2.2) via pipenv. We provide instructions for both of these approaches below.</p>
 <h3 id="approach-a-preferred-method-docker">2.1. Approach A (Preferred Method): Docker</h3>
@@ -45,7 +45,10 @@ $ pipenv install --python 3.9.5</code></pre>
 <p>Finally, you will need to install the ROSDiscover C++ static analysis tool by executing the following at the root of the replication package:</p>
 <pre class="command"><code>$ make -C deps/rosdiscover-cxx-recover/docker</code></pre>
 <h2 id="evaluation-dataset">3. Evaluation Dataset</h2>
-<p>Once you have installed the experiment harness according to the instructions above, you will need to install the Docker images for each of the subject systems. Note that this step will install require slightly under 100 GB of disk space. Below we present two methods for installing the evaluation dataset: (3.1) installing prebaked images, the preferred method for replication; and (3.2) building images from scratch.</p>
+<p>Once you have installed the experiment harness according to the instructions above, you will need to install the Docker images for each of the subject systems.
+Note that this step will require a peak of approximately 240 GB of disk space during installation.
+After completing the installation, 100 GB of disk space will be used permanently after the original image archive has been deleted.
+Below we present two methods for installing the evaluation dataset: (3.1) installing prebaked images, the preferred method for replication; and (3.2) building images from scratch.</p>
 <h3 id="approach-a-preferred-method-installing-prebuilt-images">3.1. Approach A (Preferred Method): Installing prebuilt images</h3>
 <p>The preferred approach to installing the evaluation dataset is to install the Docker images using the <code>images.tar.gz</code> file included in this replication package. Using this approach will ensure that you run the experiments using exactly the same images that were used in the original paper submission. In comparison, building the images from scratch may lead to slightly different images for reasons that are difficult to control (e.g., changes to <code>apt/rosdep</code> packages, etc.).</p>
 <p>The prebuilt Docker images can be installed on Linux using the command below.</p>
