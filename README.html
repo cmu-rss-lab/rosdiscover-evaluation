@@ -50,7 +50,7 @@
 <p>When ROSDiscover is invoked to recover an architecture, it uses ROSWire to locate packages, launch files, etc. ROSDiscover subsequently invokes CXX-Extract when it encounters a node in a launch file it is processing, to parse the source, identify ROS API calls, and produce a component model. ROSDiscover then combines the component models according to the launch files being processed and resolves any parameters, arguments, unbound topics, etc. that may be in the component models to produce an architecture model.</p>
 <h2 id="replicating-results-for-the-paper">Replicating results for the paper</h2>
 <p>To aid in replicating the results of the research, we have provided a set of scripts that ease the reproduction of each step in a research question, along with an experiment definition for each experiment. The definition uses YAML, and provides all the information for building containers, recovering nodes, extracting and checking architectures, and detecting misconfigurations. In these instructions (except for misconfiguration bug detection) we will use <code>autorally</code> as an example, with the experiment defined in <code>experiments/recovery/subjects/autorally/experiment.yml</code>.</p>
-<p>You may run the experiments either natively on the host machine via Python, as described in Section 2.2 of <a href="./INSTALL.html#22-approach-b-native-pipenv">INSTALL.html</a>, or, preferably, via the Docker-based evaluation toolchain, described in Section 2.1 of <a href="./INSTALL.html#21-approach-a-preferred-method-docker">INSTALL.html</a>. <strong>NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.</strong> In the instructions below, we give two versions of each command. One, prefixed by <code>(native)$</code> is how to run the command from the host; the other <code>(container)$</code> is how to run the command using the provided helper script that connects to the evaluation Docker container.</p>
+<p>You may run the experiments either natively on the host machine via Python, as described in Section 2.2 of <a href="./INSTALL.html#22-approach-b-native-pipenv">INSTALL.html</a>, or, preferably, via the Docker-based evaluation toolchain, described in Section 2.1 of <a href="./INSTALL.html#21-approach-a-preferred-method-docker">INSTALL.html</a>. <strong>NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.</strong> In the instructions below, we give two versions of each command. One, prefixed by <code>(native)$</code> is how to run the command from the host; the other <code>(docker)$</code> is how to run the command using the provided helper script that connects to the evaluation Docker container.</p>
 <p>To obtain a list of commands that can be executed inside the replication package, execute the <code>help</code> command as shown below from the root of the replication package.</p>
 <pre class=""><code>(docker) $ docker/run.sh help
 (native) $ pipenv run help</code></pre>
@@ -183,12 +183,12 @@ recovered-models.csv                            - a list of models recovered for
 </ul>
 <p>To reproduce the comparison files, you can run:</p>
 <pre class=""><code>(native)$ pipenv scripts/gather-rq2-results.py
-(container)$ docker/run.sh gather-rq2</code></pre>
+(docker)$ docker/run.sh gather-rq2</code></pre>
 <p>This pulls information out of the <code>compare.observed.recovered.csv</code> files into the Comparison CSVs mentioned above. They can the be analyzed like mentioned below.</p>
 <p>The data collected for the experiments of RQ3 is in: <code>results/data/RosTopicBugs - RQ3 - Results Table.csv</code></p>
 <p>The Jupyter Notebook in <code>results/DataAnalysis.ipynb</code> uses these results to produce the numbers in the paper. To run this analysis, you can run the following command:</p>
 <pre class=""><code>(native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
-(container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-host --no-browser results/DataAnalysis.ipynb</code></pre>
+(docker)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-host --no-browser results/DataAnalysis.ipynb</code></pre>
 <p>This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080</p>
 <h3 id="results-format">Results Format</h3>
 <p>The Jupter notebook writes the results into these files:</p>

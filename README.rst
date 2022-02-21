@@ -90,7 +90,7 @@ as an example, with the experiment defined in :code:`experiments/recovery/subjec
 You may run the experiments either natively on the host machine via Python, as described in Section 2.2 of `INSTALL.rst <./INSTALL.rst#22-approach-b-native-pipenv>`_, or, preferably, via the Docker-based evaluation toolchain, described in Section 2.1 of `INSTALL.rst <./INSTALL.rst#21-approach-a-preferred-method-docker>`_.
 **NOTE: In order for this to work, the container will need to connect to the Docker socket that is running on the host.**
 In the instructions below, we give two versions of each command.
-One, prefixed by :code:`(native)$` is how to run the command from the host; the other :code:`(container)$` is how to run the command using the provided helper script
+One, prefixed by :code:`(native)$` is how to run the command from the host; the other :code:`(docker)$` is how to run the command using the provided helper script
 that connects to the evaluation Docker container.
 
 To obtain a list of commands that can be executed inside the replication package, execute the :code:`help` command as shown below from the root of the replication package.
@@ -346,7 +346,7 @@ To reproduce the comparison files, you can run:
 .. code::
 
   (native)$ pipenv scripts/gather-rq2-results.py
-  (container)$ docker/run.sh gather-rq2
+  (docker)$ docker/run.sh gather-rq2
 
 This pulls information out of the :code:`compare.observed.recovered.csv` files into the Comparison CSVs mentioned above.
 They can the be analyzed like mentioned below.
@@ -359,7 +359,7 @@ numbers in the paper. To run this analysis, you can run the following command:
 .. code::
 
    (native)$ pipenv run jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser results/DataAnalysis.ipynb
-   (container)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser results/DataAnalysis.ipynb
+   (docker)$ docker/run.sh jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser results/DataAnalysis.ipynb
 
 This will start the Jupyter notebook, which can be accessed by opening a browser to the address: 192.168.0.1:8080
 
