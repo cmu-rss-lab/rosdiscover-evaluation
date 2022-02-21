@@ -104,7 +104,7 @@ You can also obtain a list of all of the experiments using the :code:`list` comm
 
 .. code::
 
-  (native) $ docker/run.sh list
+  (docker) $ docker/run.sh list
   (native) $ pipenv run list
 
 
