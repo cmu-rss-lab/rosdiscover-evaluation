@@ -345,7 +345,7 @@ To reproduce the comparison files, you can run:
 
 .. code::
 
-  (native)$ pipenv scripts/gather-rq2-results.py
+  (native)$ pipenv run scripts/gather-rq2-results.py
   (docker)$ docker/run.sh gather-rq2
 
 This pulls information out of the :code:`compare.observed.recovered.csv` files into the Comparison CSVs mentioned above.
