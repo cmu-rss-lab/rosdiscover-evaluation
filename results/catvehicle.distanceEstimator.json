@@ -1,0 +1,26 @@
+{"periodic_behavior": [{"publisher": {"variable": "dist_pub"}, "rate": {"kind": "float-literal", "literal": 1000.0}}, {"publisher": {"variable": "angle_pub"}, "rate": {"kind": "float-literal", "literal": 1000.0}}], 
+"reactive_behavior": [], 
+"potential_state_vars": [{"kind": "variable-reference", "variable": "newMessage", "type": "bool", "initialValue": {"kind": "unknown"}}, {"kind": "variable-reference", "variable": "newMessage", "type": "bool", "initialValue": {"kind": "unknown"}}],
+"transitions": [ 
+    {
+        "type": "message",
+        "callback": "scanCallback",
+        "state-changes": [
+            {"variable": "newMessage",
+                "new_value": "true"}]},
+    {
+        "type": "interval",
+        "interval": "1000Hz",
+        "callback": "obj_pos_xyzCallback",
+        "variable": "obj_pos_xyz",
+        "condition": "ready_",
+        "state_condition": "newMessage",
+        "state-changes": [ 
+            {"variable" : "newMessage", "new_vale" : "false"} ],
+        "outputs": [
+            {"publisher": {"variable": "dist_pub"}},
+            {"publisher": {"variable": "angle_pub"}}
+        ]
+    }]
+
+}

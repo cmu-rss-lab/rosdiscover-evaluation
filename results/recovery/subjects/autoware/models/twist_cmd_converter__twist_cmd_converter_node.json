@@ -1,0 +1,209 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "twist_cmd_converter_node",
+  "package": {
+    "name": "twist_cmd_converter",
+    "path": "/home/autoware/Autoware/ros/src/system/gazebo/twist_cmd_converter"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/system/gazebo/twist_cmd_converter/src/converter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "TwistCmdConverter::cloud_cb_twist",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "pub_twist_",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<=",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_twist_",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<=",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_cmd_converter"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TwistCmdConverter::TwistCmdConverter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_cmd_converter"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TwistCmdConverter::TwistCmdConverter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TwistCmdConverter::TwistCmdConverter",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "TwistCmdConverter::cloud_cb_twist"
+              },
+              {
+                "kind": "call",
+                "callee": "TwistCmdConverter::cloud_cb_twist",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "TwistCmdConverter::cloud_cb_twist"
+              },
+              {
+                "kind": "call",
+                "callee": "TwistCmdConverter::cloud_cb_twist",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/Twist"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

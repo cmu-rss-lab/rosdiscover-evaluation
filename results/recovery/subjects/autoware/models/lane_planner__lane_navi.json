@@ -1,0 +1,1295 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "lane_navi",
+  "package": {
+    "name": "lane_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_navi/lane_navi.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "(anonymous namespace)::cache_node",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_lane",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_navi"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/sub_vmap_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/sub_route_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/waypoint_max"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/search_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/output_file"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/route_cmd"
+                  }
+                },
+                "format": "tablet_socket_msgs/route_cmd",
+                "callback-name": "(anonymous namespace)::create_waypoint"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/point"
+                  }
+                },
+                "format": "vector_map_msgs/PointArray",
+                "callback-name": "(anonymous namespace)::cache_point"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_point",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/lane"
+                  }
+                },
+                "format": "vector_map_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_lane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/node"
+                  }
+                },
+                "format": "vector_map_msgs/NodeArray",
+                "callback-name": "(anonymous namespace)::cache_node"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_node",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_navi"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/sub_vmap_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/sub_route_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v12",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v13",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/waypoint_max"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v14",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/search_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v15",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/velocity"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v16",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v17",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_navi/output_file"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/route_cmd"
+                  }
+                },
+                "format": "tablet_socket_msgs/route_cmd",
+                "callback-name": "(anonymous namespace)::create_waypoint"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/point"
+                  }
+                },
+                "format": "vector_map_msgs/PointArray",
+                "callback-name": "(anonymous namespace)::cache_point"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_point",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/lane"
+                  }
+                },
+                "format": "vector_map_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_lane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/node"
+                  }
+                },
+                "format": "vector_map_msgs/NodeArray",
+                "callback-name": "(anonymous namespace)::cache_node"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_node",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::update_values",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::create_waypoint",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::create_waypoint",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::increment",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "yaw",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "yaw",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "yaw",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 3.141592653589793
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "yaw",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "(anonymous namespace)::velocity",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 3.6
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "waypoint_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 2
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 2
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::increment",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "yaw",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "yaw",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "-",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "variable": "yaw",
+                          "type": "float",
+                          "initialValue": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 3.141592653589793
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "yaw",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "(anonymous namespace)::velocity",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 3.6
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "waypoint_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 2
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 2
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_point",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

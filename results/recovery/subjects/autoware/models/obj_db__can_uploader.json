@@ -1,0 +1,176 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "can_uploader",
+  "package": {
+    "name": "obj_db",
+    "path": "/home/autoware/Autoware/ros/src/data/packages/obj_db"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/data/packages/obj_db/nodes/can_uploader/can_uploader.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "can_uploader"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/can_info"
+                  }
+                },
+                "format": "autoware_can_msgs/CANInfo",
+                "callback-name": "can_infoCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "can_infoCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "port",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "canGetFlag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "can_uploader"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/can_info"
+                  }
+                },
+                "format": "autoware_can_msgs/CANInfo",
+                "callback-name": "can_infoCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "can_infoCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "port",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "canGetFlag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "can_infoCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "canGetFlag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "canGetFlag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

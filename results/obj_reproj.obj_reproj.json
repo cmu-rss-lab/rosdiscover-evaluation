@@ -1,0 +1,30 @@
+{"periodic_behavior": [], 
+"reactive_behavior": [{"publisher": {"variable": "pub"}, "subscriber": {"callback": "obj_pos_xyzCallback"}}, {"publisher": {"variable": "marker_pub"}, "subscriber": {"callback": "obj_pos_xyzCallback"}}, {"publisher": {"variable": "jsk_bounding_box_pub"}, "subscriber": {"callback": "obj_pos_xyzCallback"}}], 
+"potential_state_vars": [{"kind": "variable-reference", "variable": "ready_", "type": "bool", "initialValue": {"kind": "unknown"}}, {"kind": "variable-reference", "variable": "ready_", "type": "bool", "initialValue": {"kind": "unknown"}}],
+"transitions": [ 
+    {
+        "type": "message",
+        "callback": "projection_callback",
+        "state-changes": [
+            {"variable": "ready_",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "anonymous namespace)::callbackFromPoseStamped",
+        "state-changes": [
+            {"variable": "(anonymous namespace)::initial_set_",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "obj_pos_xyzCallback",
+        "variable": "obj_pos_xyz",
+        "condition": "ready_",
+        "state_condition": "ready_",
+        "state-changes": [],
+        "outputs": [
+            {"publisher": {"variable": "jsk_bounding_box_pub"}},
+            {"publisher": {"variable": "marker_pub"}},
+            {"publisher": {"variable": "pub"}}
+        ]
+    }]
+}

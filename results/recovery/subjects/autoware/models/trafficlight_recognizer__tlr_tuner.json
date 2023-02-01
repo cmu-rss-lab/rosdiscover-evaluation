@@ -1,0 +1,1726 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "tlr_tuner",
+  "package": {
+    "name": "trafficlight_recognizer",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/tlr_tuner/mainwindow.h",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/tlr_tuner/tlr_tuner.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/tlr_tuner/tunerBody.h",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/tlr_tuner/mainwindow.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/tlr_tuner/tunerBody.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "TunerBody::launch",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "TunerBody::image_raw_callBack"
+              },
+              {
+                "kind": "call",
+                "callee": "TunerBody::image_raw_callBack",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "tuned_result"
+                  }
+                },
+                "format": "autoware_msgs/TunedResult"
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::center",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "hue",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::center",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "sat",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::center",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "val",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::isUpdated",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::range",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "hw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::range",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "sw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::range",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "vw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous struct)::isUpdated",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "prev_hw",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "hw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "prev_sw",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "sw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "prev_vw",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "vw",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Red_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Yellow_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::hue",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::sat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::center",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "(anonymous struct)::range",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "(anonymous struct)::val",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "TunerBody::Green_set",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "tunedResult_pub",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "TunerBody::image_raw_callBack"
+              },
+              {
+                "kind": "call",
+                "callee": "TunerBody::image_raw_callBack",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "tuned_result"
+                  }
+                },
+                "format": "autoware_msgs/TunedResult"
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "hue",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "sat",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "val",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::isUpdated",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "hue",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "sat",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "val",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::isUpdated",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "hue",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "sat",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "val",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::isUpdated",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "hue",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "sat",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::center",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "val",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::isUpdated",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "(anonymous struct)::range",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "hw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "(anonymous struct)::range",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "sw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "(anonymous struct)::range",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "vw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "(anonymous struct)::isUpdated",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "prev_hw",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "hw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "prev_sw",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "sw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "prev_vw",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "vw",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Red_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Yellow_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::hue",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::sat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::center",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::center",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::ValueSet_<std::allocator<void>>::range",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "variable": "(anonymous struct)::range",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "(anonymous struct)::val",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "TunerBody::Green_set",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "tunedResult_pub",
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "tlr_tuner"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TunerBody::launch",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "tlr_tuner"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TunerBody::launch",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TunerBody::image_raw_callBack",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

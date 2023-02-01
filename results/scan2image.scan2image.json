@@ -1,0 +1,26 @@
+{"periodic_behavior": [], 
+"reactive_behavior": [{"publisher": {"variable": "transformed_point_data"}, "subscriber": {"callback": "scanCallback"}}, {"publisher": {"variable": "transformed_point_data"}, "subscriber": {"callback": "scanCallback"}}], 
+"potential_state_vars": [{"kind": "variable-reference", "variable": "isProjection", "type": "bool", "initialValue": {"kind": "unknown"}}, {"kind": "variable-reference", "variable": "isIntrinsic", "type": "bool", "initialValue": {"kind": "unknown"}}, {"kind": "variable-reference", "variable": "isIntrinsic", "type": "bool", "initialValue": {"kind": "unknown"}}, {"kind": "variable-reference", "variable": "isProjection", "type": "bool", "initialValue": {"kind": "unknown"}}],
+"transitions": [ 
+    {
+        "type": "message",
+        "callback": "projection_callback",
+        "state-changes": [
+            {"variable": "isProjection",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "intrinsic_callback",
+        "state-changes": [
+            {"variable": "isIntrinsic",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "scanCallback",
+        "condition": "!(isIntrinsic && isProjection)",
+        "state-changes": [],
+        "outputs": [
+            {"publisher": {"variable": "transformed_point_data"}}
+        ]
+    }]
+}

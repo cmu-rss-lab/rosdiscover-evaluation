@@ -1,0 +1,493 @@
+{
+  "image": {
+    "sha256": "1897476a1005c775b0796151c5c0350c70d1e9ac925caa4d691e1f37f29aadb4"
+  },
+  "node-name": "husky_node",
+  "package": {
+    "name": "husky_base",
+    "path": "/ros_ws/src/husky/husky_base"
+  },
+  "sources": [
+    "/ros_ws/src/husky/husky_base/src/husky_hardware.cpp",
+    "/ros_ws/src/husky/husky_base/src/husky_diagnostics.cpp",
+    "/ros_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp",
+    "/ros_ws/src/husky/husky_base/src/husky_base.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "husky_base"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "control_frequency"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "diagnostic_frequency"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "husky_base::HuskyHardware::HuskyHardware",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "husky_base"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "control_frequency"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "diagnostic_frequency"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "husky_base::HuskyHardware::HuskyHardware",
+                "arguments": {
+                  "nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "husky_base::HuskyHardware::updateDiagnostics",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "diagnostic_publisher_"
+              },
+              {
+                "kind": "publish",
+                "publisher": "diagnostic_publisher_"
+              }
+            ]
+          }
+        },
+        {
+          "name": "husky_base::HuskyHardware::initializeDiagnostics",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "status"
+                  }
+                },
+                "format": "husky_msgs/HuskyStatus"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "status"
+                  }
+                },
+                "format": "husky_msgs/HuskyStatus"
+              }
+            ]
+          }
+        },
+        {
+          "name": "husky_base::HuskyHardware::HuskyHardware",
+          "parameters": [
+            {
+              "index": 2,
+              "name": "target_control_freq",
+              "type": "float"
+            },
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "wheel_diameter"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_accel"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_speed"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "polling_timeout_"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "port"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "husky_base::HuskyHardware::initializeDiagnostics",
+                "arguments": {}
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "wheel_diameter"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_accel"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_speed"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "polling_timeout_"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "private_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "port"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "husky_base::HuskyHardware::initializeDiagnostics",
+                "arguments": {}
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

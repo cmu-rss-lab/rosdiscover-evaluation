@@ -1,0 +1,2469 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "g30esli_interface",
+  "package": {
+    "name": "ymc",
+    "path": "/home/autoware/Autoware/ros/src/actuation/vehicles/packages/ymc"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/actuation/vehicles/packages/ymc/node/g30esli_interface/g30esli_interface.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "g30esli_interface"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "wheel_base"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "mode"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "loop_rate"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "stop_time_sec"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "steering_offset_deg"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "vehicle_cmd"
+                  }
+                },
+                "format": "autoware_msgs/VehicleCmd",
+                "callback-name": "(anonymous namespace)::vehicle_cmd_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::vehicle_cmd_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "(anonymous namespace)::current_vel_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::current_vel_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "ymc_current_twist"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "assignment",
+                "variable": "stopping_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_velocity_ui16",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "brake",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "stop_count",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "brake",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "stop_count",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "stopping_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "heart_beat",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "heart_beat",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 1
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_terminate_thread",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "g30esli_interface"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "wheel_base"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "mode"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "loop_rate"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "stop_time_sec"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "steering_offset_deg"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "vehicle_cmd"
+                  }
+                },
+                "format": "autoware_msgs/VehicleCmd",
+                "callback-name": "(anonymous namespace)::vehicle_cmd_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::vehicle_cmd_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "(anonymous namespace)::current_vel_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::current_vel_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "ymc_current_twist"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "stopping_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "target_velocity_ui16",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "brake",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "stop_count",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "brake",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stop_count",
+                                  "value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                {
+                                  "kind": "assignment",
+                                  "variable": "stopping_flag",
+                                  "value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "heart_beat",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "variable": "heart_beat",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 1
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_terminate_thread",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::current_vel_callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_current_vel_kmph",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 3.6
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_current_vel_kmph",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 3.6
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::readCanData",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "_current_vel_mps",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "g_current_twist_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "null-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "null-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "variable-reference",
+                            "variable": "(anonymous namespace)::g_terminate_thread",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "variable": "_current_vel_mps",
+                      "type": "float",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": -1.0
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "_current_vel_mps",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "publish",
+                                  "publisher": "g_current_twist_pub",
+                                  "path_condition": {
+                                    "kind": "binary-expr",
+                                    "operator": "&&",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "&&",
+                                      "lhs": {
+                                        "kind": "binary-expr",
+                                        "operator": "&&",
+                                        "lhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "!=",
+                                          "lhs": {
+                                            "kind": "unknown"
+                                          },
+                                          "rhs": {
+                                            "kind": "null-expr"
+                                          }
+                                        },
+                                        "rhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "&&",
+                                          "lhs": {
+                                            "kind": "binary-expr",
+                                            "operator": "!=",
+                                            "lhs": {
+                                              "kind": "unknown"
+                                            },
+                                            "rhs": {
+                                              "kind": "null-expr"
+                                            }
+                                          },
+                                          "rhs": {
+                                            "kind": "negate-expr",
+                                            "subExpr": {
+                                              "kind": "variable-reference",
+                                              "variable": "(anonymous namespace)::g_terminate_thread",
+                                              "type": "bool",
+                                              "initialValue": {
+                                                "kind": "bool-literal",
+                                                "literal": false
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "binary-expr",
+                                        "operator": ">",
+                                        "lhs": {
+                                          "kind": "unknown"
+                                        },
+                                        "rhs": {
+                                          "kind": "int-literal",
+                                          "literal": 0
+                                        }
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "!=",
+                                      "lhs": {
+                                        "kind": "variable-reference",
+                                        "variable": "_current_vel_mps",
+                                        "type": "float",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": -1.0
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "_current_vel_mps",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "publish",
+                                  "publisher": "g_current_twist_pub",
+                                  "path_condition": {
+                                    "kind": "binary-expr",
+                                    "operator": "&&",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "&&",
+                                      "lhs": {
+                                        "kind": "binary-expr",
+                                        "operator": "&&",
+                                        "lhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "!=",
+                                          "lhs": {
+                                            "kind": "unknown"
+                                          },
+                                          "rhs": {
+                                            "kind": "null-expr"
+                                          }
+                                        },
+                                        "rhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "&&",
+                                          "lhs": {
+                                            "kind": "binary-expr",
+                                            "operator": "!=",
+                                            "lhs": {
+                                              "kind": "unknown"
+                                            },
+                                            "rhs": {
+                                              "kind": "null-expr"
+                                            }
+                                          },
+                                          "rhs": {
+                                            "kind": "negate-expr",
+                                            "subExpr": {
+                                              "kind": "variable-reference",
+                                              "variable": "(anonymous namespace)::g_terminate_thread",
+                                              "type": "bool",
+                                              "initialValue": {
+                                                "kind": "bool-literal",
+                                                "literal": false
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "binary-expr",
+                                        "operator": ">",
+                                        "lhs": {
+                                          "kind": "unknown"
+                                        },
+                                        "rhs": {
+                                          "kind": "int-literal",
+                                          "literal": 0
+                                        }
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "!=",
+                                      "lhs": {
+                                        "kind": "variable-reference",
+                                        "variable": "_current_vel_mps",
+                                        "type": "float",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": -1.0
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "_current_vel_mps",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "publish",
+                                  "publisher": "g_current_twist_pub",
+                                  "path_condition": {
+                                    "kind": "binary-expr",
+                                    "operator": "&&",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "&&",
+                                      "lhs": {
+                                        "kind": "binary-expr",
+                                        "operator": "&&",
+                                        "lhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "!=",
+                                          "lhs": {
+                                            "kind": "unknown"
+                                          },
+                                          "rhs": {
+                                            "kind": "null-expr"
+                                          }
+                                        },
+                                        "rhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "&&",
+                                          "lhs": {
+                                            "kind": "binary-expr",
+                                            "operator": "!=",
+                                            "lhs": {
+                                              "kind": "unknown"
+                                            },
+                                            "rhs": {
+                                              "kind": "null-expr"
+                                            }
+                                          },
+                                          "rhs": {
+                                            "kind": "negate-expr",
+                                            "subExpr": {
+                                              "kind": "variable-reference",
+                                              "variable": "(anonymous namespace)::g_terminate_thread",
+                                              "type": "bool",
+                                              "initialValue": {
+                                                "kind": "bool-literal",
+                                                "literal": false
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "binary-expr",
+                                        "operator": ">",
+                                        "lhs": {
+                                          "kind": "unknown"
+                                        },
+                                        "rhs": {
+                                          "kind": "int-literal",
+                                          "literal": 0
+                                        }
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "!=",
+                                      "lhs": {
+                                        "kind": "variable-reference",
+                                        "variable": "_current_vel_mps",
+                                        "type": "float",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": -1.0
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "_current_vel_mps",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "publish",
+                                  "publisher": "g_current_twist_pub",
+                                  "path_condition": {
+                                    "kind": "binary-expr",
+                                    "operator": "&&",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "&&",
+                                      "lhs": {
+                                        "kind": "binary-expr",
+                                        "operator": "&&",
+                                        "lhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "!=",
+                                          "lhs": {
+                                            "kind": "unknown"
+                                          },
+                                          "rhs": {
+                                            "kind": "null-expr"
+                                          }
+                                        },
+                                        "rhs": {
+                                          "kind": "binary-expr",
+                                          "operator": "&&",
+                                          "lhs": {
+                                            "kind": "binary-expr",
+                                            "operator": "!=",
+                                            "lhs": {
+                                              "kind": "unknown"
+                                            },
+                                            "rhs": {
+                                              "kind": "null-expr"
+                                            }
+                                          },
+                                          "rhs": {
+                                            "kind": "negate-expr",
+                                            "subExpr": {
+                                              "kind": "variable-reference",
+                                              "variable": "(anonymous namespace)::g_terminate_thread",
+                                              "type": "bool",
+                                              "initialValue": {
+                                                "kind": "bool-literal",
+                                                "literal": false
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "binary-expr",
+                                        "operator": ">",
+                                        "lhs": {
+                                          "kind": "unknown"
+                                        },
+                                        "rhs": {
+                                          "kind": "int-literal",
+                                          "literal": 0
+                                        }
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "!=",
+                                      "lhs": {
+                                        "kind": "variable-reference",
+                                        "variable": "_current_vel_mps",
+                                        "type": "float",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": -1.0
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::vehicle_cmd_callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "target_steering_angle_deg",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "(anonymous namespace)::g_steering_offset_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_velocity",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_velocity",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 10.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_steering_angle_deg",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 10.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_target_velocity_ui16",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "target_velocity",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_steering_angle_deg_i16",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": -1.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_steering_angle_deg",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "(anonymous namespace)::g_steering_offset_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_velocity",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_velocity",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 10.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "target_steering_angle_deg",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 10.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_target_velocity_ui16",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "target_velocity",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::g_steering_angle_deg_i16",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "target_steering_angle_deg",
+                    "type": "float",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": -1.0
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

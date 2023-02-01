@@ -1,0 +1,412 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "sick_ldmrs_remove_background",
+  "package": {
+    "name": "sick_ldmrs_tools",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "sick_ldmrs_remove_background"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "min_dist_ratio_",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_dist_ratio"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "foreground"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "background"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "sick_ldmrs_remove_background"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "min_dist_ratio_",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_dist_ratio"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "foreground"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "background"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              }
+            ]
+          }
+        },
+        {
+          "name": "callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "last_hit",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "cloud_bg_",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_bg",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "cloud_bg_",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "last_hit",
+                            "value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "cloud_bg_",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_bg",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "cloud_bg_",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

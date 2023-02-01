@@ -1,0 +1,783 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "scan2image",
+  "package": {
+    "name": "scan2image",
+    "path": "/home/autoware/Autoware/ros/src/sensing/fusion/packages/scan2image"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/scan2image/nodes/scan2image/scan2image.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "scanCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::max_y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::min_y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ScanImage_<std::allocator<void>>::max_y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "Scan_image::max_y",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "scan_image",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ScanImage_<std::allocator<void>>::min_y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "Scan_image::min_y",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "scan_image",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "transformed_point_data",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "isIntrinsic",
+                    "type": "bool",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "isProjection",
+                    "type": "bool",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::max_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::min_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "Scan_image::max_y",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "Scan_image::min_y",
+                            "value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ScanImage_<std::allocator<void>>::max_y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "Scan_image::max_y",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "scan_image",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ScanImage_<std::allocator<void>>::min_y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "Scan_image::min_y",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "scan_image",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "transformed_point_data",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "variable": "isIntrinsic",
+                    "type": "bool",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "variable": "isProjection",
+                    "type": "bool",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::max_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::min_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "isProjection",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "isIntrinsic",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "scan2image"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "scanCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "scanCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "projection_matrix"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "camera/camera_info"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "intrinsic_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "intrinsic_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan_image"
+                  }
+                },
+                "format": "autoware_msgs/ScanImage"
+              },
+              {
+                "kind": "assignment",
+                "variable": "isProjection",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "isIntrinsic",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "scan2image"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "scanCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "scanCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "projection_matrix"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "camera/camera_info"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "intrinsic_callback"
+              },
+              {
+                "kind": "call",
+                "callee": "intrinsic_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan_image"
+                  }
+                },
+                "format": "autoware_msgs/ScanImage"
+              }
+            ]
+          }
+        },
+        {
+          "name": "intrinsic_callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::distance",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::intensity",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::max_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "Scan_image::min_y",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "isIntrinsic",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "Scan_image::distance",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "Scan_image::intensity",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "Scan_image::max_y",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "Scan_image::min_y",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "isIntrinsic",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "projection_callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "isProjection",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "isProjection",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

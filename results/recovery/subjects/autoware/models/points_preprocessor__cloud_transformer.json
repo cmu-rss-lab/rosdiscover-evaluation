@@ -1,0 +1,472 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "cloud_transformer",
+  "package": {
+    "name": "points_preprocessor",
+    "path": "/home/autoware/Autoware/ros/src/sensing/filters/packages/points_preprocessor"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/filters/packages/points_preprocessor/nodes/cloud_transformer/cloud_transformer_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "CloudTransformerNode::Run",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "input_point_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "target_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "output_point_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "callback-name": "CloudTransformerNode::CloudCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::CloudCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "input_point_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "target_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "output_point_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "callback-name": "CloudTransformerNode::CloudCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::CloudCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "cloud_transformer"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "cloud_transformer"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "CloudTransformerNode::publish_cloud",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "CloudTransformerNode::CloudCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "do_transform",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "do_transform",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CloudTransformerNode::transform_ok_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CloudTransformerNode::transform_ok_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::publish_cloud",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "do_transform",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "do_transform",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "CloudTransformerNode::transform_ok_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "CloudTransformerNode::transform_ok_",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "CloudTransformerNode::publish_cloud",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

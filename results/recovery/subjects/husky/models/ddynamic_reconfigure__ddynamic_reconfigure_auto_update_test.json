@@ -1,0 +1,101 @@
+{
+  "image": {
+    "sha256": "1897476a1005c775b0796151c5c0350c70d1e9ac925caa4d691e1f37f29aadb4"
+  },
+  "node-name": "ddynamic_reconfigure_auto_update_test",
+  "package": {
+    "name": "ddynamic_reconfigure",
+    "path": "/ros_ws/src/ddynamic_reconfigure"
+  },
+  "sources": [
+    "/ros_ws/src/ddynamic_reconfigure/test/ddynamic_reconfigure_auto_update_test.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_dynamic_reconfigure"
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_dynamic_reconfigure"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "attemptGetParam",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "checks-for-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

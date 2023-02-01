@@ -1,0 +1,1024 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "lane_select",
+  "package": {
+    "name": "lane_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/hermite_curve.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishChangeFlag",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub3_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub3_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishVisualizer",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "vis_pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "vis_pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishLane",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_select"
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_select"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromConfig",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromState",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromStates",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishClosestWaypoint",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "clst_wp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "clst_wp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::initForROS",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromLaneArray"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromPoseStamped"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromTwistStamped"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "state"
+                  }
+                },
+                "format": "std_msgs/String",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromState"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromState",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_select"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneSelect",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromConfig"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/decisionmaker/states"
+                  }
+                },
+                "format": "autoware_msgs/State",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromStates"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromStates",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "enablePlannerDynamicSwitch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "base_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/astar/closest_waypoint"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "closest_waypoint"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "change_flag"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_lane_id"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_select_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "lane_change_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "distance_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromLaneArray"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromPoseStamped"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromTwistStamped"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "state"
+                  }
+                },
+                "format": "std_msgs/String",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromState"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromState",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_select"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneSelect",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromConfig"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/decisionmaker/states"
+                  }
+                },
+                "format": "autoware_msgs/State",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromStates"
+              },
+              {
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromStates",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "enablePlannerDynamicSwitch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "base_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane"
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/astar/closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32"
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32"
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "change_flag"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_lane_id"
+                  }
+                },
+                "format": "std_msgs/Int32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_select_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "lane_change_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "distance_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishLaneID",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::Lane_<std::allocator<void>>::lane_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lane",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub4_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::Lane_<std::allocator<void>>::lane_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lane",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub4_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
