@@ -1,0 +1,4101 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "pure_pursuit",
+  "package": {
+    "name": "waypoint_follower",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_follower"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_follower/nodes/pure_pursuit/pure_pursuit_node.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_follower/nodes/pure_pursuit/pure_pursuit.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_follower/nodes/pure_pursuit/pure_pursuit_core.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_follower/nodes/pure_pursuit/pure_pursuit_viz.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "waypoint_follower::PurePursuitNode::publishTwistStamped",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::callbackFromConfig",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::run",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::publishTwistStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::publishControlCommandStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub11_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub13_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub12_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub15_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub16_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::publishDeviationCurrentPosition",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                        "type": "bool",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                            "type": "bool",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                          "type": "bool",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "ratesleep",
+                            "rate": {
+                              "kind": "unknown"
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "call",
+                      "callee": "waypoint_follower::PurePursuitNode::publishTwistStamped",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "call",
+                      "callee": "waypoint_follower::PurePursuitNode::publishControlCommandStamped",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub11_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub13_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub12_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub15_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "std_msgs::Float32_<std::allocator<void>>::data",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub16_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "call",
+                      "callee": "waypoint_follower::PurePursuitNode::publishDeviationCurrentPosition",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                              "type": "bool",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "member-var-ref",
+                                    "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                                    "type": "bool",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "member-var-ref",
+                                  "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "variable": "waypoint_follower::PurePursuitNode::is_config_set_",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "waypoint_follower::PurePursuitNode::is_pose_set_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "waypoint_follower::PurePursuitNode::is_velocity_set_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "waypoint_follower::PurePursuitNode::is_waypoint_set_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::callbackFromCurrentVelocity",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::publishDeviationCurrentPosition",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub17_",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 3
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float32_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub17_",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 3
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::callbackFromCurrentPose",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::initForROS",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "is_linear_interpolation"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "publishes_for_steering_robot"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "vehicle_info/wheel_base"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "final_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromWayPoints"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromWayPoints",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromCurrentPose"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromCurrentPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "config/waypoint_follower"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigWaypointFollower",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromConfig"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromCurrentVelocity"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromCurrentVelocity",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist_raw"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "ctrl_cmd"
+                  }
+                },
+                "format": "autoware_msgs/ControlCommandStamped"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "next_waypoint_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "next_target_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "search_circle_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "line_point_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "trajectory_circle_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "angular_gravity"
+                  }
+                },
+                "format": "std_msgs/Float32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "deviation_of_current_position"
+                  }
+                },
+                "format": "std_msgs/Float32"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "is_linear_interpolation"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "publishes_for_steering_robot"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "vehicle_info/wheel_base"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "final_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromWayPoints"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromWayPoints",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromCurrentPose"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromCurrentPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "config/waypoint_follower"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigWaypointFollower",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromConfig"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "waypoint_follower::PurePursuitNode::callbackFromCurrentVelocity"
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::callbackFromCurrentVelocity",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist_raw"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "ctrl_cmd"
+                  }
+                },
+                "format": "autoware_msgs/ControlCommandStamped"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "next_waypoint_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "next_target_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "search_circle_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "line_point_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "trajectory_circle_mark"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "angular_gravity"
+                  }
+                },
+                "format": "std_msgs/Float32"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "deviation_of_current_position"
+                  }
+                },
+                "format": "std_msgs/Float32"
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::publishControlCommandStamped",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_velocity",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_acceleration",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::steering_angle",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "variable": "waypoint_follower::PurePursuitNode::publishes_for_steering_robot_",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_velocity",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_acceleration",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::steering_angle",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "variable": "waypoint_follower::PurePursuitNode::publishes_for_steering_robot_",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_follower::PurePursuitNode::callbackFromWayPoints",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "pure_pursuit"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "pure_pursuit"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "waypoint_follower::PurePursuitNode::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

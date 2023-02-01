@@ -1,0 +1,912 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "calibration_test",
+  "package": {
+    "name": "calibration_camera_lidar",
+    "path": "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/common_2d_calib.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/scan_window.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/camera_lidar2d_offline_calib.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/image_window.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/chessboard.cpp",
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/calibration_camera_lidar/nodes/calibration_test/trans.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "camera_lidar2d_offline_calib"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/camera_lidar2d/param_yaml"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_row",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_col",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "chess_size",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "paper_width_margin",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_size",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "pat_col",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 11
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "pat_row",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 7
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "window_scan_width",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "window_scan_height",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "line_division_num",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "judge_margin",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "scanCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "scanCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "imageCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "imageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "camera_lidar2d_offline_calib"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/camera_lidar2d/param_yaml"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_row",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_col",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "chess_size",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "paper_width_margin",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "pat_size",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "pat_col",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 11
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "pat_row",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 7
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "window_scan_width",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "window_scan_height",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "line_division_num",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "judge_margin",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "scanCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "scanCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "imageCallback"
+              },
+              {
+                "kind": "call",
+                "callee": "imageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "imageCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "image_camera",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_chess_camera_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_chess_camera_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_fusion_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_calib_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/camera_lidar2d/camera_yaml"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_fusion_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_save_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "image_camera",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "g_chess_camera_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "g_chess_camera_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "g_chess_camera_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "g_chess_camera_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "g_fusion_flag",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "g_calib_flag",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "v1",
+                      "value": {
+                        "kind": "reads-param-with-default",
+                        "name": {
+                          "kind": "concatenate",
+                          "lhs": {
+                            "kind": "node-handle",
+                            "namespace": {
+                              "kind": "string-literal",
+                              "literal": ""
+                            }
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/camera_lidar2d/camera_yaml"
+                          }
+                        },
+                        "default": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "g_fusion_flag",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "g_save_flag",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "scanCallback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "image_lrf",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_chess_scan_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_scan_z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CvPoint::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "scale",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 300
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "window_scan_width",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 1240
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 2
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "scale",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 300
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_chess_scan_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "image_lrf",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_chess_scan_flag",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "g_scan_z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CvPoint::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "scale",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 300
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "window_scan_width",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 1240
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 2
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "scale",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 300
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "g_chess_scan_flag",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

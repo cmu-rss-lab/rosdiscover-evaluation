@@ -1,0 +1,3764 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "op_trajectory_generator",
+  "package": {
+    "name": "op_local_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner/nodes/op_trajectory_generator/op_trajectory_generator.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_local_planner/nodes/op_trajectory_generator/op_trajectory_generator_core.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::TrajectoryGen",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bNewCurrentPos",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bVehicleStatus",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bWayGlobalPath",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::UpdatePlanningParams",
+                "arguments": {
+                  "_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories_gen_rviz"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/initialpose"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetInitPose"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetInitPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCurrentPose"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCurrentPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/velocitySource"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/odom"
+                  }
+                },
+                "format": "nav_msgs/Odometry",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetRobotOdom"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetRobotOdom",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/can_info"
+                  }
+                },
+                "format": "autoware_can_msgs/CANInfo",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bNewCurrentPos",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bVehicleStatus",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bWayGlobalPath",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::UpdatePlanningParams",
+                "arguments": {
+                  "_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "local_trajectories_gen_rviz"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/initialpose"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetInitPose"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetInitPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCurrentPose"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCurrentPose",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/velocitySource"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "subscribes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/odom"
+                        }
+                      },
+                      "format": "nav_msgs/Odometry",
+                      "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetRobotOdom"
+                    },
+                    {
+                      "kind": "call",
+                      "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetRobotOdom",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/current_velocity"
+                              }
+                            },
+                            "format": "geometry_msgs/TwistStamped",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/current_velocity"
+                              }
+                            },
+                            "format": "geometry_msgs/TwistStamped",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/current_velocity"
+                              }
+                            },
+                            "format": "geometry_msgs/TwistStamped",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/current_velocity"
+                              }
+                            },
+                            "format": "geometry_msgs/TwistStamped",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "subscribes-to",
+                                  "name": {
+                                    "kind": "concatenate",
+                                    "lhs": {
+                                      "kind": "node-handle",
+                                      "namespace": {
+                                        "kind": "string-literal",
+                                        "literal": ""
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "string-literal",
+                                      "literal": "/can_info"
+                                    }
+                                  },
+                                  "format": "autoware_can_msgs/CANInfo",
+                                  "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo"
+                                },
+                                {
+                                  "kind": "call",
+                                  "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+                                  "arguments": {},
+                                  "path_condition": {
+                                    "kind": "bool-literal",
+                                    "literal": true
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetVehicleStatus",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::UpdatePlanningParams",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "_nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingTipMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingOutMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingSpeedFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/enableHeadingSmoothing"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableSwerving"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::PlanningParams::enableFollowing",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableFollowing"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableTrafficLightBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableStopSignBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxLocalPlanDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/pathDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v12",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/rollOutDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v13",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/rollOutsNumber"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::PlanningParams::rollOutNumber",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v14",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizonDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v15",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minFollowingDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v16",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v17",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v18",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/speedProfileFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v19",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingDataWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v20",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingSmoothWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v21",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizontalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v22",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/verticalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v23",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableLaneChange"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v24",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/width"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v25",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/length"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v26",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/wheelBaseLength"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v27",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/turningRadius"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v28",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxSteerAngle"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v29",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxAcceleration"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v30",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDeceleration"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::CAR_BASIC_INFO::max_speed_forward",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "PlannerHNS::PlanningParams::maxSpeed",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "TrajectoryGeneratorNS::TrajectoryGen::m_PlanningParams",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::CAR_BASIC_INFO::min_speed_forward",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "PlannerHNS::PlanningParams::minSpeed",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "TrajectoryGeneratorNS::TrajectoryGen::m_PlanningParams",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v31",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingTipMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v32",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingOutMargin"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v33",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/samplingSpeedFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v34",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_trajectory_generator/enableHeadingSmoothing"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v35",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableSwerving"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "PlannerHNS::PlanningParams::enableFollowing",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "v36",
+                      "value": {
+                        "kind": "reads-param",
+                        "name": {
+                          "kind": "concatenate",
+                          "lhs": {
+                            "kind": "arg",
+                            "name": "_nh"
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/op_common_params/enableFollowing"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v37",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableTrafficLightBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v38",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableStopSignBehavior"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v39",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v40",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minVelocity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v41",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxLocalPlanDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v42",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/pathDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v43",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/rollOutDensity"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "v44",
+                      "value": {
+                        "kind": "reads-param",
+                        "name": {
+                          "kind": "concatenate",
+                          "lhs": {
+                            "kind": "arg",
+                            "name": "_nh"
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/op_common_params/rollOutsNumber"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "PlannerHNS::PlanningParams::rollOutNumber",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v45",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizonDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v46",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minFollowingDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v47",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/minDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v48",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDistanceToAvoid"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v49",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/speedProfileFactor"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v50",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingDataWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v51",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/smoothingSmoothWeight"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v52",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/horizontalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v53",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/verticalSafetyDistance"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v54",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/enableLaneChange"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v55",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/width"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v56",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/length"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v57",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/wheelBaseLength"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v58",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/turningRadius"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v59",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxSteerAngle"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v60",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxAcceleration"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v61",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "_nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_common_params/maxDeceleration"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::CAR_BASIC_INFO::max_speed_forward",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "PlannerHNS::PlanningParams::maxSpeed",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "TrajectoryGeneratorNS::TrajectoryGen::m_PlanningParams",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "PlannerHNS::CAR_BASIC_INFO::min_speed_forward",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "PlannerHNS::PlanningParams::minSpeed",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "variable": "TrajectoryGeneratorNS::TrajectoryGen::m_PlanningParams",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::MainLoop",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "i",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_LocalTrajectories",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                    "type": "bool",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                      "type": "bool",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_LocalTrajectoriesRviz",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 100.0
+                }
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_distance",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::closest_object_velocity",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::cost",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::is_blocked",
+                            "value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          },
+                          {
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::Lane_<std::allocator<void>>::lane_index",
+                            "value": {
+                              "kind": "variable-reference",
+                              "variable": "i",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          {
+                            "kind": "publish",
+                            "publisher": "pub_LocalTrajectories",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                "type": "bool",
+                                "initialValue": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "TrajectoryGeneratorNS::TrajectoryGen::bInitPos",
+                                  "type": "bool",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": ">",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "subscribes-to",
+                            "name": {
+                              "kind": "concatenate",
+                              "lhs": {
+                                "kind": "node-handle",
+                                "namespace": {
+                                  "kind": "string-literal",
+                                  "literal": ""
+                                }
+                              },
+                              "rhs": {
+                                "kind": "string-literal",
+                                "literal": "/lane_waypoints_array"
+                              }
+                            },
+                            "format": "autoware_msgs/LaneArray",
+                            "callback-name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath"
+                          },
+                          {
+                            "kind": "call",
+                            "callee": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub_LocalTrajectoriesRviz",
+                      "path_condition": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 100.0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "op_trajectory_generator"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::TrajectoryGen",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::MainLoop",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "op_trajectory_generator"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::TrajectoryGen",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TrajectoryGeneratorNS::TrajectoryGen::MainLoop",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCANInfo",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetCurrentPose",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetRobotOdom",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetInitPose",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "TrajectoryGeneratorNS::TrajectoryGen::callbackGetGlobalPlannerPath",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

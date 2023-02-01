@@ -1,0 +1,27 @@
+{"periodic_behavior": [{"publisher": {"variable": "odometry_publisher_"}, "rate": {"kind": "float-literal", "literal": 50.0}}, {"publisher": {"variable": "velocity_publisher_"}, "rate": {"kind": "float-literal", "literal": 50.0}}], 
+"reactive_behavior": [], 
+"potential_state_vars": [{"kind": "variable-reference", "variable": "(anonymous namespace)::initial_set_", "type": "bool", "initialValue": {"kind": "bool-literal", "literal": false}}],
+"transitions": [ 
+    {
+        "type": "message",
+        "callback": "anonymous namespace)::initialposeCallback",
+        "state-changes": [
+            {"variable": "(anonymous namespace)::initial_set_",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "anonymous namespace)::callbackFromPoseStamped",
+        "state-changes": [
+            {"variable": "(anonymous namespace)::initial_set_",
+                "new_value": "true"}]},
+    {
+        "type": "interval",
+        "condition": "(anonymous namespace)::initial_set_",
+        "interval": "50Hz",
+        "state-changes": [],
+        "outputs": [
+            {"publisher": {"variable": "odometry_publisher_"}},
+            {"publisher": {"variable": "velocity_publisher_"}}
+        ]
+    }
+]}

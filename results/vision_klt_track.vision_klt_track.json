@@ -1,0 +1,24 @@
+{
+    "periodic_behavior": [], 
+    "reactive_behavior": [{"publisher": {"variable": "publisher_tracked_objects_"}, "subscriber": {"callback": "ROSTrackerApp::image_callback"}}, {"publisher": {"variable": "publisher_tracked_objects_"}, "subscriber": {"callback": "ROSTrackerApp::detections_callback"}}, {"publisher": {"variable": "publisher_tracked_objects_"}, "subscriber": {"callback": "ROSTrackerApp::image_callback"}}, {"publisher": {"variableƒ": "publisher_tracked_objects_"}, "subscriber": {"callback": "ROSTrackerApp::detections_callback"}}], 
+    "potential_state_vars": [
+        {"kind": "member-var-ref", "variable": "ROSTrackerApp::detect_ready_", "type": "bool", "initialValue": {"kind": "unknown"}, "base": {"kind": "this-expr"}}, 
+        {"kind": "member-var-ref", "variable": "ROSTrackerApp::track_ready_", "type": "bool", "initialValue": {"kind": "unknown"}, "base": {"kind": "this-expr"}}],
+    "transitions" : [ 
+        {"type": "message", 
+        "callback": "ROSTrackerApp::detections_callback",
+        "condition": "ROSTrackerApp::track_ready_",
+        "state-changes": [
+            {"variable": "ROSTrackerApp::detect_ready_",
+             "new_value  ": "true"},
+            {"variable": "ROSTrackerApp::track_ready_",
+             "new_value": "false"}]},
+        {"type": "message", 
+        "callback": "ROSTrackerApp::image_callback",
+        "condition": "ROSTrackerApp::detect_ready_",
+        "state-changes": [
+            {"variable": "ROSTrackerApp::detect_ready_",
+            "new_value  ": "false"},
+            {"variable": "ROSTrackerApp::track_ready_",
+            "new_value": "true"}]}      
+    ]}

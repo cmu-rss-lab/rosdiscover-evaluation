@@ -1,0 +1,298 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "fake_publisher_node",
+  "package": {
+    "name": "fake_autoware_nodes",
+    "path": "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes/src/fake_publisher.cpp",
+    "/home/autoware/Autoware/ros/src/common/libs/diagnostics_lib/fake_autoware_nodes/src/fake_publisher_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_publisher_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "fake_publisher::fake_publisher",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "fake_publisher::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_publisher_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "fake_publisher::fake_publisher",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "fake_publisher::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "fake_publisher::run",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -50
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "fake_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "variable": "msg",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 1.0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -50
+                }
+              },
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 10.0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -50
+                }
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "publish",
+                      "publisher": "fake_pub_",
+                      "path_condition": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "variable": "msg",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 1.0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "std_msgs::Float64_<std::allocator<void>>::data",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": -50
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "fake_publisher::fake_publisher",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-name"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/data"
+                    }
+                  }
+                },
+                "format": "std_msgs/Float64"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-name"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/data"
+                    }
+                  }
+                },
+                "format": "std_msgs/Float64"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

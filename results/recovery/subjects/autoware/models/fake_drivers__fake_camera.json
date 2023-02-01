@@ -1,0 +1,437 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "fake_camera",
+  "package": {
+    "name": "fake_drivers",
+    "path": "/home/autoware/Autoware/ros/src/util/packages/fake_drivers"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/util/packages/fake_drivers/nodes/fake_camera/fake_camera.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_camera"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_raw"
+                  }
+                },
+                "format": "sensor_msgs/Image"
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::width",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::height",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::is_bigendian",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::step",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::widthStep",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/fake_camera/fps"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::seq",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "count",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "ros::TimeBase<ros::Time, ros::Duration>::sec",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "ros::TimeBase<ros::Time, ros::Duration>::nsec",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "variable": "argc",
+                        "type": "integer",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 2
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "variable": "img",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fake_camera"
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_raw"
+                  }
+                },
+                "format": "sensor_msgs/Image"
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::width",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::height",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::is_bigendian",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "sensor_msgs::Image_<std::allocator<void>>::step",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "_IplImage::widthStep",
+                  "type": "integer",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "img",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/fake_camera/fps"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "while",
+                "body": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "std_msgs::Header_<std::allocator<void>>::seq",
+                      "value": {
+                        "kind": "variable-reference",
+                        "variable": "count",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "ros::TimeBase<ros::Time, ros::Duration>::sec",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "assignment",
+                      "variable": "ros::TimeBase<ros::Time, ros::Duration>::nsec",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "kind": "publish",
+                      "publisher": "pub",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "variable": "argc",
+                              "type": "integer",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 2
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "variable": "img",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

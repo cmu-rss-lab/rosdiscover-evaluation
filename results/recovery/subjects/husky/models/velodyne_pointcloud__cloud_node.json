@@ -1,0 +1,191 @@
+{
+  "image": {
+    "sha256": "1897476a1005c775b0796151c5c0350c70d1e9ac925caa4d691e1f37f29aadb4"
+  },
+  "node-name": "cloud_node",
+  "package": {
+    "name": "velodyne_pointcloud",
+    "path": "/ros_ws/src/velodyne/velodyne_pointcloud"
+  },
+  "sources": [
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/convert.cc",
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/pointcloudXYZIR.cc",
+    "/ros_ws/src/velodyne/velodyne_pointcloud/./src/conversions/cloud_node.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "cloud_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::Convert::Convert",
+                "arguments": {
+                  "node": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "cloud_node"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::Convert::Convert",
+                "arguments": {
+                  "node": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "private_nh": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "velodyne_pointcloud::Convert::processScan",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "velodyne_pointcloud::Convert::Convert",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "private_nh",
+              "type": "node-handle"
+            },
+            {
+              "index": 0,
+              "name": "node",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_packets"
+                  }
+                },
+                "format": "velodyne_msgs/VelodyneScan",
+                "callback-name": "velodyne_pointcloud::Convert::processScan"
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::Convert::processScan",
+                "arguments": {}
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "arg",
+                    "name": "node"
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_packets"
+                  }
+                },
+                "format": "velodyne_msgs/VelodyneScan",
+                "callback-name": "velodyne_pointcloud::Convert::processScan"
+              },
+              {
+                "kind": "call",
+                "callee": "velodyne_pointcloud::Convert::processScan",
+                "arguments": {}
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

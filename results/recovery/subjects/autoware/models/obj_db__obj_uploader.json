@@ -1,0 +1,304 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "obj_uploader",
+  "package": {
+    "name": "obj_db",
+    "path": "/home/autoware/Autoware/ros/src/data/packages/obj_db"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/data/packages/obj_db/nodes/obj_uploader/obj_uploader.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "obj_uploader"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/car_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "car_locate_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "car_locate_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/pedestrian_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "pedestrian_locate_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "pedestrian_locate_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "ndt_pose_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "ndt_pose_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "port",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "is_subscribed_ndt_pose",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "obj_uploader"
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/car_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "car_locate_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "car_locate_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/pedestrian_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "pedestrian_locate_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "pedestrian_locate_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "ndt_pose_cb"
+              },
+              {
+                "kind": "call",
+                "callee": "ndt_pose_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "assignment",
+                      "variable": "port",
+                      "value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "is_subscribed_ndt_pose",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ndt_pose_cb",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "is_subscribed_ndt_pose",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "is_subscribed_ndt_pose",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pedestrian_locate_cb",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "car_locate_cb",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

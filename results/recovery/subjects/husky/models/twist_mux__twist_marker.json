@@ -1,0 +1,180 @@
+{
+  "image": {
+    "sha256": "1897476a1005c775b0796151c5c0350c70d1e9ac925caa4d691e1f37f29aadb4"
+  },
+  "node-name": "twist_marker",
+  "package": {
+    "name": "twist_mux",
+    "path": "/ros_ws/src/twist_mux"
+  },
+  "sources": [
+    "/ros_ws/src/twist_mux/src/twist_marker.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "TwistMarkerPublisher::callback",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "pub_"
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub_"
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_marker"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TwistMarkerPublisher::TwistMarkerPublisher",
+                "arguments": {}
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "twist_marker"
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "TwistMarkerPublisher::TwistMarkerPublisher",
+                "arguments": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "TwistMarkerPublisher::TwistMarkerPublisher",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "z",
+              "type": "float"
+            },
+            {
+              "index": 0,
+              "name": "scale",
+              "type": "float"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "marker"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist"
+                  }
+                },
+                "format": "geometry_msgs/Twist",
+                "callback-name": "TwistMarkerPublisher::callback"
+              },
+              {
+                "kind": "call",
+                "callee": "TwistMarkerPublisher::callback",
+                "arguments": {}
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "marker"
+                  }
+                },
+                "format": "visualization_msgs/Marker"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist"
+                  }
+                },
+                "format": "geometry_msgs/Twist",
+                "callback-name": "TwistMarkerPublisher::callback"
+              },
+              {
+                "kind": "call",
+                "callee": "TwistMarkerPublisher::callback",
+                "arguments": {}
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

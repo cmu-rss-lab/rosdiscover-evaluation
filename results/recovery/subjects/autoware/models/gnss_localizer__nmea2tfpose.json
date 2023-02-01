@@ -1,0 +1,497 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "nmea2tfpose",
+  "package": {
+    "name": "gnss_localizer",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/nmea2tfpose/nmea2tfpose_node.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/nmea2tfpose/nmea2tfpose_core.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "nmea2tfpose"
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "nmea2tfpose"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "gnss_localizer::Nmea2TFPoseNode::callbackFromNmeaSentence",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "gnss_localizer::Nmea2TFPoseNode::publishPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": ">",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "variable": "timeout",
+                      "type": "float",
+                      "initialValue": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": ">",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "variable": "dt",
+                      "type": "float",
+                      "initialValue": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "variable": "threshold",
+                      "type": "float",
+                      "initialValue": {
+                        "kind": "float-literal",
+                        "literal": 0.2
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "gnss_localizer::Nmea2TFPoseNode::publishPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "variable": "timeout",
+                        "type": "float",
+                        "initialValue": {
+                          "kind": "float-literal",
+                          "literal": 10.0
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "variable": "e",
+                      "type": "float",
+                      "initialValue": {
+                        "kind": "float-literal",
+                        "literal": 0.01
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "call",
+                            "callee": "gnss_localizer::Nmea2TFPoseNode::publishPoseStamped",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "variable-reference",
+                                  "variable": "timeout",
+                                  "type": "float",
+                                  "initialValue": {
+                                    "kind": "float-literal",
+                                    "literal": 10.0
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "variable": "dt",
+                                  "type": "float",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "variable-reference",
+                                  "variable": "threshold",
+                                  "type": "float",
+                                  "initialValue": {
+                                    "kind": "float-literal",
+                                    "literal": 0.2
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "call",
+                      "callee": "gnss_localizer::Nmea2TFPoseNode::publishPoseStamped",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "variable": "timeout",
+                              "type": "float",
+                              "initialValue": {
+                                "kind": "float-literal",
+                                "literal": 10.0
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "variable": "e",
+                            "type": "float",
+                            "initialValue": {
+                              "kind": "float-literal",
+                              "literal": 0.01
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "gnss_localizer::Nmea2TFPoseNode::publishPoseStamped",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "value": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "gnss_localizer::Nmea2TFPoseNode::initForROS",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "plane"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "nmea_sentence"
+                  }
+                },
+                "format": "nmea_msgs/Sentence",
+                "callback-name": "gnss_localizer::Nmea2TFPoseNode::callbackFromNmeaSentence"
+              },
+              {
+                "kind": "call",
+                "callee": "gnss_localizer::Nmea2TFPoseNode::callbackFromNmeaSentence",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "gnss_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped"
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "plane"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "nmea_sentence"
+                  }
+                },
+                "format": "nmea_msgs/Sentence",
+                "callback-name": "gnss_localizer::Nmea2TFPoseNode::callbackFromNmeaSentence"
+              },
+              {
+                "kind": "call",
+                "callee": "gnss_localizer::Nmea2TFPoseNode::callbackFromNmeaSentence",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "gnss_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

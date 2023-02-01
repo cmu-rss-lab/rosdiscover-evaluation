@@ -1,0 +1,3736 @@
+{
+  "image": {
+    "sha256": "66d3186041a66d858724cf5f48d49ffb170dbb061b60afbad2f689521c32be3e"
+  },
+  "node-name": "lane_rule",
+  "package": {
+    "name": "lane_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_rule/lane_rule.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "(anonymous namespace)::cache_dtlane",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_rule"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v0",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_vmap_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v1",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v2",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_config_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v3",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v4",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v5",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/waypoint_max"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v6",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/search_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v7",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/curve_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v8",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/crossroad_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v9",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/clothoid_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v10",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/red_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/green_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::create_waypoint"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/point"
+                  }
+                },
+                "format": "vector_map_msgs/PointArray",
+                "callback-name": "(anonymous namespace)::cache_point"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_point",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/lane"
+                  }
+                },
+                "format": "vector_map_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_lane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/node"
+                  }
+                },
+                "format": "vector_map_msgs/NodeArray",
+                "callback-name": "(anonymous namespace)::cache_node"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_node",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/stop_line"
+                  }
+                },
+                "format": "vector_map_msgs/StopLineArray",
+                "callback-name": "(anonymous namespace)::cache_stopline"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_stopline",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/dtlane"
+                  }
+                },
+                "format": "vector_map_msgs/DTLaneArray",
+                "callback-name": "(anonymous namespace)::cache_dtlane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_dtlane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_rule"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneRule",
+                "callback-name": "(anonymous namespace)::config_parameter"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::config_parameter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_rule"
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v11",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_vmap_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v12",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v13",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_config_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v14",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v15",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v16",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/waypoint_max"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v17",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/search_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v18",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/curve_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v19",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/crossroad_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v20",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/clothoid_weight"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "v21",
+                "value": {
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/frame_id"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/red_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/green_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray"
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::create_waypoint"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/point"
+                  }
+                },
+                "format": "vector_map_msgs/PointArray",
+                "callback-name": "(anonymous namespace)::cache_point"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_point",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/lane"
+                  }
+                },
+                "format": "vector_map_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_lane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/node"
+                  }
+                },
+                "format": "vector_map_msgs/NodeArray",
+                "callback-name": "(anonymous namespace)::cache_node"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_node",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/stop_line"
+                  }
+                },
+                "format": "vector_map_msgs/StopLineArray",
+                "callback-name": "(anonymous namespace)::cache_stopline"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_stopline",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vector_map_info/dtlane"
+                  }
+                },
+                "format": "vector_map_msgs/DTLaneArray",
+                "callback-name": "(anonymous namespace)::cache_dtlane"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_dtlane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_rule"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneRule",
+                "callback-name": "(anonymous namespace)::config_parameter"
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::config_parameter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::create_waypoint",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "publish",
+                "publisher": "traffic_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "||",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "+",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                              "type": "unsupported",
+                              "initialValue": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                            "type": "unsupported",
+                            "initialValue": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "traffic_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "red_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "green_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "publish",
+                      "publisher": "traffic_pub",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                      "type": "unsupported",
+                      "initialValue": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                        "type": "unsupported",
+                        "initialValue": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                          "type": "unsupported",
+                          "initialValue": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "assignment",
+                            "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "/",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "+",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "+",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                    "type": "unsupported",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                                      "type": "unsupported",
+                                      "initialValue": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                                        "type": "unsupported",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "member-var-ref",
+                                          "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                                          "type": "unsupported",
+                                          "initialValue": {
+                                            "kind": "unknown"
+                                          },
+                                          "base": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "member-var-ref",
+                                    "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                    "type": "unsupported",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                                      "type": "unsupported",
+                                      "initialValue": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                                        "type": "unsupported",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "member-var-ref",
+                                          "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                                          "type": "unsupported",
+                                          "initialValue": {
+                                            "kind": "unknown"
+                                          },
+                                          "base": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "member-var-ref",
+                                  "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initialValue": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "variable": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                                    "type": "unsupported",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                                      "type": "unsupported",
+                                      "initialValue": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "variable": "autoware_msgs::Waypoint_<std::allocator<void>>::twist",
+                                        "type": "unsupported",
+                                        "initialValue": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "traffic_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "red_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "publish",
+                "publisher": "green_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_point",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::update_values",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::curve_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::crossroad_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::clothoid_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::crossroad_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "radius_min",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::curve_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "radius_min",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::clothoid_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "radius_min",
+                  "type": "float",
+                  "initialValue": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::curve_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::crossroad_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::clothoid_radius_min",
+                "value": {
+                  "kind": "variable-reference",
+                  "variable": "lane_planner::vmap::RADIUS_MAX",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "int-literal",
+                    "literal": -194313216
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "(anonymous namespace)::crossroad_radius_min",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "radius_min",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "(anonymous namespace)::curve_radius_min",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "radius_min",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "(anonymous namespace)::crossroad_radius_min",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "radius_min",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "(anonymous namespace)::curve_radius_min",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "radius_min",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "kind": "if",
+                            "trueBranchBody": {
+                              "kind": "compound",
+                              "statements": [
+                                {
+                                  "kind": "assignment",
+                                  "variable": "(anonymous namespace)::clothoid_radius_min",
+                                  "value": {
+                                    "kind": "variable-reference",
+                                    "variable": "radius_min",
+                                    "type": "float",
+                                    "initialValue": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBranchBody": {
+                              "kind": "compound",
+                              "statements": []
+                            },
+                            "condition": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::create_waypoint",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "||",
+                                  "lhs": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "unknown"
+                                    },
+                                    "rhs": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_stopline",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_node",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_lane",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::update_values",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::config_parameter",
+          "parameters": [],
+          "body": {
+            "kind": "compound",
+            "statements": [
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_acceleration",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::acceleration",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_stopline_search_radius",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::stopline_search_radius",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_zeros_ahead",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_zeros_ahead",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_zeros_behind",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_zeros_behind",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_smoothing_count",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_smoothing_count",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "call",
+                "callee": "(anonymous namespace)::create_waypoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_acceleration",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::acceleration",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_stopline_search_radius",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::stopline_search_radius",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_zeros_ahead",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_zeros_ahead",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_zeros_behind",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_zeros_behind",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_number_of_smoothing_count",
+                "value": {
+                  "kind": "member-var-ref",
+                  "variable": "autoware_config_msgs::ConfigLaneRule_<std::allocator<void>>::number_of_smoothing_count",
+                  "type": "unsupported",
+                  "initialValue": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "variable": "msg",
+                    "type": "unsupported",
+                    "initialValue": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "kind": "if",
+                "trueBranchBody": {
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::create_waypoint",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
