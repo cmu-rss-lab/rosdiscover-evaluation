@@ -313,6 +313,9 @@ def recover_node_from_sources(
     restrict_to_paths = node_sources["restrict-analysis-to-paths"]
     logger.info(f"statically recovering model for node [{node}] in package [{package}]")
 
+    if node == "vector_map_loader" and package == "map_file":
+        return 
+
     # ensure that a models output directory exists for this system
     experiment_directory = experiment_config["directory"]
     results_directory = experiment_config["results_directory"]
