@@ -1,1 +1,22 @@
-{"periodic_behavior": [], "reactive_behavior": [{"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "DetectedObjectsCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "PointsImageCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "PointsImageCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "DetectedObjectsCallback"}}], "potential_state_vars": [{"kind": "variable-reference", "variable": "ready_", "type": "bool", "initialValue": {"kind": "bool-literal", "literal": false}}]}
+{"periodic_behavior": [], 
+"reactive_behavior": [{"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "DetectedObjectsCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "PointsImageCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "PointsImageCallback"}}, {"publisher": {"variable": "fused_objects"}, "subscriber": {"callback": "DetectedObjectsCallback"}}], 
+"potential_state_vars": [{"kind": "variable-reference", "variable": "ready_", "type": "bool", "initialValue": {"kind": "bool-literal", "literal": false}}],
+"transitions": [ 
+    {
+        "type": "message",
+        "callback": "DetectedObjectsCallback",
+        "condition": "!ready",
+        "state-changes": [
+            {"variable": "ready_",
+                "new_value": "true"}]},
+    {
+        "type": "message",
+        "callback": "scanCallback",
+        "condition": "ready",
+        "state-changes": [
+            {"variable": "ready_",
+                "new_value": "false"}],
+        "outputs": [
+            {"publisher": {"variable": "transformed_point_data"}}
+        ]
+    }]}
