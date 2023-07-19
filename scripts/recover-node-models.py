@@ -313,7 +313,8 @@ def recover_node_from_sources(
     restrict_to_paths = node_sources["restrict-analysis-to-paths"]
     logger.info(f"statically recovering model for node [{node}] in package [{package}]")
 
-    if node == "vector_map_loader" and package == "map_file":
+    if (node == "vector_map_loader" and package == "map_file") or (node == "LDMRS_Example" and (package == "sick_ldmrs_driver" or package == "driver")) or (node =="kitti_player" and package == "kitti_player") or (node == "gpsHemisphereInterface" and  package == "autorally_core") or (node == "joy_node" and package == "joy") or (node == "ff_waypoint_follower" and package == "ff_waypoint_follower") or (node == "op_car_simulator" and package == "op_simulation_package"):  
+        logger.info(f"Skipping Node")
         return 
 
     # ensure that a models output directory exists for this system
