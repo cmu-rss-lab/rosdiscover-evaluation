@@ -1,0 +1,20 @@
+image: rosdiscover-experiments/autoware:30eed1453e97eb4beb7b696ff22f5312ad80f5f6
+launches:
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/driving_planner/launch/lattice_trajectory_gen.launch
+- /ros_ws/src/autoware/ros/src/computing/planning/motion/packages/waypoint_follower/launch/wf_simulator.launch
+node_sources:
+- node: odom_gen
+  package: waypoint_follower
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/odom_gen/odom_gen.cpp
+- node: lattice_trajectory_gen
+  package: driving_planner
+  restrict-analysis-to-paths:
+  - /ros_ws/src/autoware/
+  sources:
+  - nodes/lattice_trajectory_gen/lattice_trajectory_gen.cpp
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
