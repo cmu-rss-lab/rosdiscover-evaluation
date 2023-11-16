@@ -153,7 +153,7 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && rosdep update \
  && rosdep install -i -y -r --from-paths src \
       --ignore-src \
-      --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
+      --skip-keys="python-rosdep python-catkin-pkg python-rospkg libvtk7-qt-dev libvtk7-java" \
       --rosdistro="${ROS_DISTRO}" \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* ; exit 0 
