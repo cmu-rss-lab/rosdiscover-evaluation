@@ -1,0 +1,3239 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "garmin_gps_18x_lvc",
+  "package": {
+    "name": "garmin",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:288:5, col:81>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "garmin_gps_18x_lvc"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:289:29, col:42>",
+                "kind": "call",
+                "callee": "GpsImuDriver::GpsImuDriver",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:288:5, col:81>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "garmin_gps_18x_lvc"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:289:29, col:42>",
+                "kind": "call",
+                "callee": "GpsImuDriver::GpsImuDriver",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "GpsImuDriver::handlePacket",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:165:7, col:105>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "float-literal",
+                        "literal": 0.09766
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 3.141592653589793
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 180.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:166:7, col:95>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 0.1453
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 25
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:167:7, col:94>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.001221
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:168:7, col:94>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.001221
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:173:3, col:44>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                "unqualified_variable": "gps_timestamp",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "vppr",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "microseconds_to_seconds",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 1e-06
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:174:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:175:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:176:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:177:3, col:73>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:179:3, col:61>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:180:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:181:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:182:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:184:3, col:61>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:185:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:186:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:187:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:205:7, col:20>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::hour_time_",
+                "unqualified_variable": "hour_time_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "nmeaHourUnixTime",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "GpsImuDriver::hour_time_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "GpsImuDriver::hour_time_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "vpp",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 2.0
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "GpsImuDriver::hour_time_",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:209:7, col:21>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::hour_time_",
+                "unqualified_variable": "hour_time_",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "GpsImuDriver::hour_time_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3600
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "GpsImuDriver::hour_time_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "GpsImuDriver::hour_time_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                            "type": "float",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "vpp",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 2.0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "vppr",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "GpsImuDriver::last_gps_timestamp_",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:211:3, col:30>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::last_gps_timestamp_",
+                "unqualified_variable": "last_gps_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "vppr",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:219:3, col:30>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:220:3, col:52>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::TimeReference_<std::allocator<void>>::time_ref",
+                "unqualified_variable": "time_ref",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:221:3, col:59>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::TimeReference_<std::allocator<void>>::source",
+                "unqualified_variable": "source",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "Sensor On-Board Clock"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:222:3, col:34>",
+                "kind": "publish",
+                "publisher": "gpstime_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:225:3, col:66>",
+                "kind": "assignment",
+                "variable": "nmea_sentence",
+                "unqualified_variable": "nmea_sentence",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:226:3, col:32>",
+                "kind": "assignment",
+                "variable": "nmea_msgs::Sentence_<std::allocator<void>>::sentence",
+                "unqualified_variable": "sentence",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "nmea_sentence",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:227:3, col:36>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:228:3, col:39>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gps"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:229:3, col:37>",
+                "kind": "publish",
+                "publisher": "nmea_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:233:3, col:39>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:234:3, col:25>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:236:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:237:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:238:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:239:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:240:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:241:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:243:3, col:25>",
+                "kind": "publish",
+                "publisher": "imu_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:249:5, col:27>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:252:5, col:37>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:253:5, col:42>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:254:5, col:53>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::Temperature_<std::allocator<void>>::temperature",
+                "unqualified_variable": "temperature",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:255:5, col:35>",
+                "kind": "publish",
+                "publisher": "temperature_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:165:7, col:105>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "float-literal",
+                        "literal": 0.09766
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 3.141592653589793
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 180.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:166:7, col:95>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 0.1453
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 25
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:167:7, col:94>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.001221
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:168:7, col:94>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.001221
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:173:3, col:44>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                "unqualified_variable": "gps_timestamp",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "vppr",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "microseconds_to_seconds",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 1e-06
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:174:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:175:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:176:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:177:3, col:73>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:179:3, col:61>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:180:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:181:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:182:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:184:3, col:61>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:185:3, col:60>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:186:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                "unqualified_variable": "accel_x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:187:3, col:74>",
+                "kind": "assignment",
+                "variable": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                "unqualified_variable": "accel_y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "earth_gravity",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 9.80665
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:204:3, line:210:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:205:7, col:20>",
+                      "kind": "assignment",
+                      "variable": "GpsImuDriver::hour_time_",
+                      "unqualified_variable": "hour_time_",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "nmeaHourUnixTime",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": ">",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "vpp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 2.0
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "GpsImuDriver::hour_time_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:205:7, col:20>",
+                      "kind": "assignment",
+                      "variable": "GpsImuDriver::hour_time_",
+                      "unqualified_variable": "hour_time_",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "nmeaHourUnixTime",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": ">",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "vpp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 2.0
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "GpsImuDriver::hour_time_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:208:8, line:210:3>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:209:7, col:21>",
+                            "kind": "assignment",
+                            "variable": "GpsImuDriver::hour_time_",
+                            "unqualified_variable": "hour_time_",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "+",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3600
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "==",
+                                    "lhs": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "GpsImuDriver::hour_time_",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "this-expr"
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "==",
+                                      "lhs": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "GpsImuDriver::hour_time_",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "this-expr"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "int-literal",
+                                        "literal": 0
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": ">",
+                                      "lhs": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                                        "type": "float",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "vpp",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": 2.0
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "vppr",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "GpsImuDriver::last_gps_timestamp_",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:209:7, col:21>",
+                            "kind": "assignment",
+                            "variable": "GpsImuDriver::hour_time_",
+                            "unqualified_variable": "hour_time_",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "+",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "GpsImuDriver::hour_time_",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3600
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "==",
+                                    "lhs": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "GpsImuDriver::hour_time_",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "this-expr"
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "binary-expr",
+                                    "operator": "||",
+                                    "lhs": {
+                                      "kind": "binary-expr",
+                                      "operator": "==",
+                                      "lhs": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "GpsImuDriver::hour_time_",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "this-expr"
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "int-literal",
+                                        "literal": 0
+                                      }
+                                    },
+                                    "rhs": {
+                                      "kind": "binary-expr",
+                                      "operator": ">",
+                                      "lhs": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "velodyne_packet_structs::VelodynePositioningPacket::gps_timestamp",
+                                        "type": "float",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "vpp",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      },
+                                      "rhs": {
+                                        "kind": "float-literal",
+                                        "literal": 2.0
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "vppr",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "GpsImuDriver::last_gps_timestamp_",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:211:3, col:30>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::last_gps_timestamp_",
+                "unqualified_variable": "last_gps_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::VelodynePositioningPacketRaw::gps_timestamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "vppr",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:219:3, col:30>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:220:3, col:52>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::TimeReference_<std::allocator<void>>::time_ref",
+                "unqualified_variable": "time_ref",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:221:3, col:59>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::TimeReference_<std::allocator<void>>::source",
+                "unqualified_variable": "source",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "Sensor On-Board Clock"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:222:3, col:34>",
+                "kind": "publish",
+                "publisher": "gpstime_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:225:3, col:66>",
+                "kind": "assignment",
+                "variable": "nmea_sentence",
+                "unqualified_variable": "nmea_sentence",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:226:3, col:32>",
+                "kind": "assignment",
+                "variable": "nmea_msgs::Sentence_<std::allocator<void>>::sentence",
+                "unqualified_variable": "sentence",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "nmea_sentence",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:227:3, col:36>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:228:3, col:39>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gps"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:229:3, col:37>",
+                "kind": "publish",
+                "publisher": "nmea_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:233:3, col:39>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:234:3, col:25>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:236:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:237:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:238:3, col:106>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_x",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::accel_y",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 2.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:239:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:240:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:241:3, col:58>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::gyro",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:243:3, col:25>",
+                "kind": "publish",
+                "publisher": "imu_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:249:5, col:27>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "topic_publish_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:252:5, col:37>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:253:5, col:42>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:254:5, col:53>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::Temperature_<std::allocator<void>>::temperature",
+                "unqualified_variable": "temperature",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "velodyne_packet_structs::GyroTempAccelBlock::temp",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:255:5, col:35>",
+                "kind": "publish",
+                "publisher": "temperature_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "GpsImuDriver::GpsImuDriver",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:22:3, col:17>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::udp_socket_",
+                "unqualified_variable": "udp_socket_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:23:3, col:19>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::is_connected_",
+                "unqualified_variable": "is_connected_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:24:3, col:25>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::last_gps_timestamp_",
+                "unqualified_variable": "last_gps_timestamp_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:25:3, col:16>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::hour_time_",
+                "unqualified_variable": "hour_time_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:3, col:68>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::nmea_pub",
+                "unqualified_variable": "nmea_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/nmea_sentence"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:14, col:68>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/nmea_sentence"
+                  }
+                },
+                "format": "nmea_msgs/Sentence",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:14, col:68>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:3, col:72>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::gpstime_pub",
+                "unqualified_variable": "gpstime_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gpstime"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:17, col:72>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/gpstime"
+                  }
+                },
+                "format": "sensor_msgs/TimeReference",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:17, col:72>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:33:3, col:47>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device_ip"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:34:3, col:36>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "udpport"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:22:3, col:17>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::udp_socket_",
+                "unqualified_variable": "udp_socket_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:23:3, col:19>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::is_connected_",
+                "unqualified_variable": "is_connected_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:24:3, col:25>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::last_gps_timestamp_",
+                "unqualified_variable": "last_gps_timestamp_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:25:3, col:16>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::hour_time_",
+                "unqualified_variable": "hour_time_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:3, col:68>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::nmea_pub",
+                "unqualified_variable": "nmea_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/nmea_sentence"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:14, col:68>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/nmea_sentence"
+                  }
+                },
+                "format": "nmea_msgs/Sentence",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:29:14, col:68>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:3, col:72>",
+                "kind": "assignment",
+                "variable": "GpsImuDriver::gpstime_pub",
+                "unqualified_variable": "gpstime_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gpstime"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:17, col:72>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/gpstime"
+                  }
+                },
+                "format": "sensor_msgs/TimeReference",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:31:17, col:72>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:33:3, col:47>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "device_ip"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/gnss/packages/garmin/src/garmin_gps_18x_lvc.cc:34:3, col:36>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "udpport"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

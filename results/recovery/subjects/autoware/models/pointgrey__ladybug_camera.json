@@ -1,0 +1,628 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "ladybug_camera",
+  "package": {
+    "name": "pointgrey",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:273:2, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "ladybug_camera"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:282:2, col:16>",
+                "kind": "assignment",
+                "variable": "m_frameRate",
+                "unqualified_variable": "m_frameRate",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 10
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:283:2, col:22>",
+                "kind": "assignment",
+                "variable": "m_isFrameRateAuto",
+                "unqualified_variable": "m_isFrameRateAuto",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:284:2, col:28>",
+                "kind": "assignment",
+                "variable": "m_jpegQualityPercentage",
+                "unqualified_variable": "m_jpegQualityPercentage",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 80
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:314:6, col:46>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "scale"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:321:3, col:15>",
+                "kind": "assignment",
+                "variable": "image_scale",
+                "unqualified_variable": "image_scale",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 20
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "image_scale",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 100
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "image_scale",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 100
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 100
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:326:2, col:87>",
+                "kind": "assignment",
+                "variable": "camera_info_pub",
+                "unqualified_variable": "camera_info_pub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:382:3, col:19>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 10.0
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:273:2, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "ladybug_camera"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:282:2, col:16>",
+                "kind": "assignment",
+                "variable": "m_frameRate",
+                "unqualified_variable": "m_frameRate",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 10
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:283:2, col:22>",
+                "kind": "assignment",
+                "variable": "m_isFrameRateAuto",
+                "unqualified_variable": "m_isFrameRateAuto",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:284:2, col:28>",
+                "kind": "assignment",
+                "variable": "m_jpegQualityPercentage",
+                "unqualified_variable": "m_jpegQualityPercentage",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 80
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:314:2, line:322:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:321:3, col:15>",
+                      "kind": "assignment",
+                      "variable": "image_scale",
+                      "unqualified_variable": "image_scale",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 20
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "bool-literal",
+                                "literal": false
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "bool-literal",
+                                "literal": false
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "image_scale",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 100
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "image_scale",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 100
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 100
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:321:3, col:15>",
+                      "kind": "assignment",
+                      "variable": "image_scale",
+                      "unqualified_variable": "image_scale",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 20
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "bool-literal",
+                                "literal": false
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "bool-literal",
+                                "literal": false
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "image_scale",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 100
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "image_scale",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 100
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 100
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:326:2, col:87>",
+                "kind": "assignment",
+                "variable": "camera_info_pub",
+                "unqualified_variable": "camera_info_pub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:341:2, line:384:2>",
+                "kind": "while",
+                "body": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:382:3, col:19>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:382:3, col:19>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "GetMatricesFromFile",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "nh",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:94:6, col:45>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "nh"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "calibrationfile"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/camera/packages/pointgrey/nodes/ladybug/ladybug.cpp:94:2, line:103:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

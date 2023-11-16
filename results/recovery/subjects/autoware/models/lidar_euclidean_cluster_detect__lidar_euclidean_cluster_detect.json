@@ -1,0 +1,3177 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "lidar_euclidean_cluster_detect",
+  "package": {
+    "name": "lidar_euclidean_cluster_detect",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/cluster.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "publishCentroids",
+          "parameters": [
+            {
+              "index": 2,
+              "name": "in_target_frame",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "in_publisher",
+              "type": "publisher"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:290:5, col:36>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::Centroids_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:291:5, col:45>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_target_frame",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:295:7, col:28>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:296:7, col:28>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                "unqualified_variable": "point",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:309:5, col:48>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:312:5, col:39>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:287:3, line:313:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:290:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::Centroids_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:291:5, col:45>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_target_frame",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:295:7, col:28>",
+                      "kind": "assignment",
+                      "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:296:7, col:28>",
+                      "kind": "assignment",
+                      "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "unqualified_variable": "point",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:309:5, col:48>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:290:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::Centroids_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:291:5, col:45>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_target_frame",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:295:7, col:28>",
+                      "kind": "assignment",
+                      "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:296:7, col:28>",
+                      "kind": "assignment",
+                      "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "unqualified_variable": "point",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:309:5, col:48>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:312:5, col:39>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:312:5, col:39>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "publishColorCloud",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "in_publisher",
+              "type": "publisher"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:329:3, col:22>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_velodyne_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:330:3, col:34>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:329:3, col:22>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_velodyne_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:330:3, col:34>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "publishDetectedObjects",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:218:3, col:41>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_clusters",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:223:5, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_clusters",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:224:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::label",
+                "unqualified_variable": "label",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:225:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:226:5, col:54>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::space_frame",
+                "unqualified_variable": "space_frame",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_clusters",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:227:5, col:65>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pose",
+                "unqualified_variable": "pose",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:228:5, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::dimensions",
+                "unqualified_variable": "dimensions",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:229:5, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pointcloud",
+                "unqualified_variable": "pointcloud",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::cloud",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:230:5, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::convex_hull",
+                "unqualified_variable": "convex_hull",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::convex_hull",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:231:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::valid",
+                "unqualified_variable": "valid",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:235:3, col:49>",
+                "kind": "publish",
+                "publisher": "_pub_detected_objects",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:218:3, col:41>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_clusters",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:223:5, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_clusters",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:224:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::label",
+                "unqualified_variable": "label",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:225:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:226:5, col:54>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::space_frame",
+                "unqualified_variable": "space_frame",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_clusters",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:227:5, col:65>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pose",
+                "unqualified_variable": "pose",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:228:5, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::dimensions",
+                "unqualified_variable": "dimensions",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:229:5, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pointcloud",
+                "unqualified_variable": "pointcloud",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::cloud",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:230:5, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::convex_hull",
+                "unqualified_variable": "convex_hull",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::convex_hull",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:231:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::valid",
+                "unqualified_variable": "valid",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:235:3, col:49>",
+                "kind": "publish",
+                "publisher": "_pub_detected_objects",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "publishCloudClusters",
+          "parameters": [
+            {
+              "index": 2,
+              "name": "in_target_frame",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "in_publisher",
+              "type": "publisher"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:244:5, col:35>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:245:5, col:44>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_target_frame",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:249:7, col:36>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "in_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:264:9, col:45>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                "unqualified_variable": "dimensions",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:265:9, col:47>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                "unqualified_variable": "eigen_values",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:266:9, col:48>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                "unqualified_variable": "eigen_vectors",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:275:5, col:47>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:276:5, col:48>",
+                "kind": "call",
+                "callee": "publishDetectedObjects",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_target_frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_header",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:279:5, col:38>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:280:5, col:39>",
+                "kind": "call",
+                "callee": "publishDetectedObjects",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "in_target_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:241:3, line:281:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:244:5, col:35>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:245:5, col:44>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_target_frame",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:249:7, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:264:9, col:45>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                      "unqualified_variable": "dimensions",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:265:9, col:47>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                      "unqualified_variable": "eigen_values",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:266:9, col:48>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                      "unqualified_variable": "eigen_vectors",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:275:5, col:47>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:276:5, col:48>",
+                      "kind": "call",
+                      "callee": "publishDetectedObjects",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:244:5, col:35>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:245:5, col:44>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_target_frame",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:249:7, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "in_header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:264:9, col:45>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                      "unqualified_variable": "dimensions",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::dimensions",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:265:9, col:47>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                      "unqualified_variable": "eigen_values",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_values",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:266:9, col:48>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                      "unqualified_variable": "eigen_vectors",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::eigen_vectors",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:275:5, col:47>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:276:5, col:48>",
+                      "kind": "call",
+                      "callee": "publishDetectedObjects",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_target_frame",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_header",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:279:5, col:38>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:280:5, col:39>",
+                      "kind": "call",
+                      "callee": "publishDetectedObjects",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:279:5, col:38>",
+                      "kind": "publish",
+                      "publisher": "in_publisher",
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:280:5, col:39>",
+                      "kind": "call",
+                      "callee": "publishDetectedObjects",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "in_target_frame",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "in_header",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "publishCloud",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "in_publisher",
+              "type": "publisher"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:320:3, col:22>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_velodyne_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:321:3, col:34>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:320:3, col:22>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_velodyne_header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_euclidean_cluster_detect/nodes/lidar_euclidean_cluster_detect/lidar_euclidean_cluster_detect.cpp:321:3, col:34>",
+                "kind": "publish",
+                "publisher": "in_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

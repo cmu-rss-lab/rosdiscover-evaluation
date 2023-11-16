@@ -1,0 +1,491 @@
+{
+  "image": {
+    "sha256": "731a90edb37a0e029e67f42a8bfe17fec09476242b07e8d981854118d6542bd5"
+  },
+  "node-name": "navfn_node",
+  "package": {
+    "name": "navfn",
+    "path": "/ros_ws/src/navigation/navfn"
+  },
+  "sources": [
+    "/ros_ws/src/navigation/navfn/src/navfn_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:104:3, col:41>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "global_planner"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:111:27, col:54>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::NavfnWithCostmap",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:104:3, col:41>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "global_planner"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:111:27, col:54>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::NavfnWithCostmap",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "navfn::NavfnWithCostmap::NavfnWithCostmap",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:95:3, col:11>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::cmap_",
+                "unqualified_variable": "cmap_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "cmap",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:3, col:105>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::make_plan_service_",
+                "unqualified_variable": "make_plan_service_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:24, col:105>",
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "make_plan"
+                  }
+                },
+                "format": "navfn/MakeNavPlan",
+                "callback-name": "navfn::NavfnWithCostmap::makePlanService"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:24, col:105>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::makePlanService",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:3, col:101>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::pose_sub_",
+                "unqualified_variable": "pose_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:15, col:101>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "goal"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "navfn::NavfnWithCostmap::poseCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:15, col:101>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::poseCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:95:3, col:11>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::cmap_",
+                "unqualified_variable": "cmap_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "cmap",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:3, col:105>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::make_plan_service_",
+                "unqualified_variable": "make_plan_service_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:24, col:105>",
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "make_plan"
+                  }
+                },
+                "format": "navfn/MakeNavPlan",
+                "callback-name": "navfn::NavfnWithCostmap::makePlanService"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:96:24, col:105>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::makePlanService",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:3, col:101>",
+                "kind": "assignment",
+                "variable": "navfn::NavfnWithCostmap::pose_sub_",
+                "unqualified_variable": "pose_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:15, col:101>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "goal"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "navfn::NavfnWithCostmap::poseCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:97:15, col:101>",
+                "kind": "call",
+                "callee": "navfn::NavfnWithCostmap::poseCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "navfn::NavfnWithCostmap::poseCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "navfn::NavfnWithCostmap::makePlanService",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:72:3, col:31>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:73:3, col:30>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:75:3, col:21>",
+                "kind": "assignment",
+                "variable": "navfn::MakeNavPlanResponse_<std::allocator<void>>::plan_found",
+                "unqualified_variable": "plan_found",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "success",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:77:5, col:17>",
+                "kind": "assignment",
+                "variable": "navfn::MakeNavPlanResponse_<std::allocator<void>>::path",
+                "unqualified_variable": "path",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "path",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "success",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:72:3, col:31>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:73:3, col:30>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:75:3, col:21>",
+                "kind": "assignment",
+                "variable": "navfn::MakeNavPlanResponse_<std::allocator<void>>::plan_found",
+                "unqualified_variable": "plan_found",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "success",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:76:3, line:78:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:77:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "navfn::MakeNavPlanResponse_<std::allocator<void>>::path",
+                      "unqualified_variable": "path",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "path",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "success",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/navigation/navfn/src/navfn_node.cpp:77:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "navfn::MakeNavPlanResponse_<std::allocator<void>>::path",
+                      "unqualified_variable": "path",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "path",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "success",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

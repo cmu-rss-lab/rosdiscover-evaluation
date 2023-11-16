@@ -1,0 +1,1594 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "vision_lane_detect",
+  "package": {
+    "name": "vision_lane_detect",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:565:3, col:35>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "line_ocv"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:569:3, col:82>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:572:32, col:89>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "lane_cannyhough_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:572:32, col:89>",
+                "kind": "call",
+                "callee": "lane_cannyhough_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:3, col:85>",
+                "kind": "assignment",
+                "variable": "image_lane_objects",
+                "unqualified_variable": "image_lane_objects",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "lane_pos_xy"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:24, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_pos_xy"
+                  }
+                },
+                "format": "autoware_msgs/ImageLaneObjects",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:24, col:85>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:565:3, col:35>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "line_ocv"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:569:3, col:82>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:572:32, col:89>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "lane_cannyhough_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:572:32, col:89>",
+                "kind": "call",
+                "callee": "lane_cannyhough_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:3, col:85>",
+                "kind": "assignment",
+                "variable": "image_lane_objects",
+                "unqualified_variable": "image_lane_objects",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "lane_pos_xy"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:24, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_pos_xy"
+                  }
+                },
+                "format": "autoware_msgs/ImageLaneObjects",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:574:24, col:85>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "process_image_common",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:481:3, col:30>",
+                "kind": "assignment",
+                "variable": "CvSize::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "_IplImage::height",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:482:3, col:30>",
+                "kind": "assignment",
+                "variable": "CvSize::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "_IplImage::width",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:509:3, col:47>",
+                "kind": "call",
+                "callee": "processLanes",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:481:3, col:30>",
+                "kind": "assignment",
+                "variable": "CvSize::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "_IplImage::height",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:482:3, col:30>",
+                "kind": "assignment",
+                "variable": "CvSize::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "_IplImage::width",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "frame",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:509:3, col:47>",
+                "kind": "call",
+                "callee": "processLanes",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "processLanes",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:381:7, col:28>",
+                "kind": "assignment",
+                "variable": "dx",
+                "unqualified_variable": "dx",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "CvSeq::total",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "lines",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "enum-ref",
+                        "qualified_name": "LINE_REJECT_DEGREES",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 10
+                        },
+                        "value": {
+                          "kind": "int-literal",
+                          "literal": 10
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:402:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p0",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:404:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p1",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:415:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p0",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:417:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p1",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:442:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_x1",
+                "unqualified_variable": "lane_r_x1",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:443:3, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_y1",
+                "unqualified_variable": "lane_r_y1",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:444:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_x2",
+                "unqualified_variable": "lane_r_x2",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x2",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:445:3, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_y2",
+                "unqualified_variable": "lane_r_y2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x2",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:448:3, col:27>",
+                "kind": "assignment",
+                "variable": "x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "_IplImage::width",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "temp_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:449:3, col:28>",
+                "kind": "assignment",
+                "variable": "x2",
+                "unqualified_variable": "x2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "_IplImage::width",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "temp_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.44999998807907104
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:459:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_x1",
+                "unqualified_variable": "lane_l_x1",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:460:3, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_y1",
+                "unqualified_variable": "lane_l_y1",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:461:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_x2",
+                "unqualified_variable": "lane_l_x2",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x2",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:462:3, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_y2",
+                "unqualified_variable": "lane_l_y2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x2",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:464:3, col:38>",
+                "kind": "publish",
+                "publisher": "image_lane_objects",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:381:7, col:28>",
+                "kind": "assignment",
+                "variable": "dx",
+                "unqualified_variable": "dx",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "CvSeq::total",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "lines",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "enum-ref",
+                        "qualified_name": "LINE_REJECT_DEGREES",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 10
+                        },
+                        "value": {
+                          "kind": "int-literal",
+                          "literal": 10
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:402:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p0",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:404:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p1",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:415:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p0",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:417:7, col:19>",
+                "kind": "assignment",
+                "variable": "CvPoint::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "CvPoint::y",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "org_p1",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:442:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_x1",
+                "unqualified_variable": "lane_r_x1",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:443:3, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_y1",
+                "unqualified_variable": "lane_r_y1",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:444:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_x2",
+                "unqualified_variable": "lane_r_x2",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x2",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:445:3, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_r_y2",
+                "unqualified_variable": "lane_r_y2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x2",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:448:3, col:27>",
+                "kind": "assignment",
+                "variable": "x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "_IplImage::width",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "temp_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:449:3, col:28>",
+                "kind": "assignment",
+                "variable": "x2",
+                "unqualified_variable": "x2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "_IplImage::width",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "temp_frame",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.44999998807907104
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:459:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_x1",
+                "unqualified_variable": "lane_l_x1",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:460:3, col:58>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_y1",
+                "unqualified_variable": "lane_l_y1",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:461:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_x2",
+                "unqualified_variable": "lane_l_x2",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x2",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:462:3, col:59>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageLaneObjects_<std::allocator<void>>::lane_l_y2",
+                "unqualified_variable": "lane_l_y2",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "x2",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "org_offset",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:464:3, col:38>",
+                "kind": "publish",
+                "publisher": "image_lane_objects",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_cannyhough_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:545:3, col:30>",
+                "kind": "call",
+                "callee": "process_image_common",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_lane_detect/nodes/vision_lane_detect/vision_lane_detect.cpp:545:3, col:30>",
+                "kind": "call",
+                "callee": "process_image_common",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

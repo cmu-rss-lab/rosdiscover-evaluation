@@ -1,0 +1,2707 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "op_perception_simulator",
+  "package": {
+    "name": "op_simulation_package",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::OpenPlannerSimulatorPerception",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:46:2, col:23>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                "unqualified_variable": "m_bSetSimulatedObj",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:47:2, col:77>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/simObjNumber"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:48:2, col:84>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/GuassianErrorFactor"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:49:2, col:91>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/pointCloudPointsNumber"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:2, col:89>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::pub_DetectedObjects",
+                "unqualified_variable": "pub_DetectedObjects",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "cloud_clusters"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:24, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud_clusters"
+                  }
+                },
+                "format": "autoware_msgs/CloudClusterArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:24, col:89>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:2, col:130>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::sub_simulated_obstacle_pose_rviz",
+                "unqualified_variable": "sub_simulated_obstacle_pose_rviz",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:37, col:130>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/clicked_point"
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetRvizPoint"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:37, col:130>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetRvizPoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:3, col:102>",
+                "kind": "assignment",
+                "variable": "_sub",
+                "unqualified_variable": "_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "PerceptionSimulatorNS::DetectionCommandParams::nSimuObjs",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_DecParams",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:11, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:11, col:102>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:2, col:106>",
+                "kind": "assignment",
+                "variable": "_sub",
+                "unqualified_variable": "_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:10, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/sim_box_pose_ego"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:10, col:106>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:46:2, col:23>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                "unqualified_variable": "m_bSetSimulatedObj",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:47:2, col:77>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/simObjNumber"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:48:2, col:84>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/GuassianErrorFactor"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:49:2, col:91>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/op_perception_simulator/pointCloudPointsNumber"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:2, col:89>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::pub_DetectedObjects",
+                "unqualified_variable": "pub_DetectedObjects",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "cloud_clusters"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:24, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud_clusters"
+                  }
+                },
+                "format": "autoware_msgs/CloudClusterArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:51:24, col:89>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:2, col:130>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::sub_simulated_obstacle_pose_rviz",
+                "unqualified_variable": "sub_simulated_obstacle_pose_rviz",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:37, col:130>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/clicked_point"
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetRvizPoint"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:53:37, col:130>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetRvizPoint",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:3, col:102>",
+                "kind": "assignment",
+                "variable": "_sub",
+                "unqualified_variable": "_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "PerceptionSimulatorNS::DetectionCommandParams::nSimuObjs",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_DecParams",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:11, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:63:11, col:102>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:2, col:106>",
+                "kind": "assignment",
+                "variable": "_sub",
+                "unqualified_variable": "_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:10, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/sim_box_pose_ego"
+                  }
+                },
+                "format": "geometry_msgs/PoseArray",
+                "callback-name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:68:10, col:106>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:22:2, col:49>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "op_perception_simulator"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:23:57>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::OpenPlannerSimulatorPerception",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:24:2, col:20>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::MainLoop",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:22:2, col:49>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "op_perception_simulator"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:23:57>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::OpenPlannerSimulatorPerception",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator.cpp:24:2, col:20>",
+                "kind": "call",
+                "callee": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::MainLoop",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetRvizPoint",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:86:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:87:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:88:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:89:2, col:70>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                "unqualified_variable": "orientation",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:91:2, col:152>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_SimulatedCluter",
+                "unqualified_variable": "m_SimulatedCluter",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:92:2, col:25>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "PerceptionSimulatorNS::SIMU_OBSTACLE_ID",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 100001
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:93:2, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:94:2, col:38>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::indicator_state",
+                "unqualified_variable": "indicator_state",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 3
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:96:2, col:23>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                "unqualified_variable": "m_bSetSimulatedObj",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:86:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:87:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:88:2, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::PointStamped_<std::allocator<void>>::point",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:89:2, col:70>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                "unqualified_variable": "orientation",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:91:2, col:152>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_SimulatedCluter",
+                "unqualified_variable": "m_SimulatedCluter",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:92:2, col:25>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "PerceptionSimulatorNS::SIMU_OBSTACLE_ID",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 100001
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:93:2, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:94:2, col:38>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::indicator_state",
+                "unqualified_variable": "indicator_state",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 3
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:96:2, col:23>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                "unqualified_variable": "m_bSetSimulatedObj",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::MainLoop",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:236:5, col:32>",
+                "kind": "assignment",
+                "variable": "std::pair<int, double>::second",
+                "unqualified_variable": "second",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "std::pair<int, double>::second",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 1
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "std::pair<int, double>::second",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:241:4, col:28>",
+                "kind": "assignment",
+                "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_AllObjClustersArray",
+                "unqualified_variable": "m_AllObjClustersArray",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_ObjClustersArray",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:243:4, col:53>",
+                "kind": "publish",
+                "publisher": "pub_DetectedObjects",
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:247:4, col:50>",
+                "kind": "publish",
+                "publisher": "pub_DetectedObjects",
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:250:3, col:19>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 15.0
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:222:2, line:251:2>",
+                "kind": "while",
+                "body": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:229:4, line:236:32>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:236:5, col:32>",
+                            "kind": "assignment",
+                            "variable": "std::pair<int, double>::second",
+                            "unqualified_variable": "second",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "-",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "std::pair<int, double>::second",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 1
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "i",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "<=",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "std::pair<int, double>::second",
+                                    "type": "float",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:236:5, col:32>",
+                            "kind": "assignment",
+                            "variable": "std::pair<int, double>::second",
+                            "unqualified_variable": "second",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "-",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "std::pair<int, double>::second",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 1
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "i",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "<=",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "std::pair<int, double>::second",
+                                    "type": "float",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:239:3, line:248:3>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:241:4, col:28>",
+                            "kind": "assignment",
+                            "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_AllObjClustersArray",
+                            "unqualified_variable": "m_AllObjClustersArray",
+                            "value": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_ObjClustersArray",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                              "type": "bool",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:243:4, col:53>",
+                            "kind": "publish",
+                            "publisher": "pub_DetectedObjects",
+                            "path_condition": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                              "type": "bool",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:241:4, col:28>",
+                            "kind": "assignment",
+                            "variable": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_AllObjClustersArray",
+                            "unqualified_variable": "m_AllObjClustersArray",
+                            "value": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_ObjClustersArray",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                              "type": "bool",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:243:4, col:53>",
+                            "kind": "publish",
+                            "publisher": "pub_DetectedObjects",
+                            "path_condition": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                              "type": "bool",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "this-expr"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:247:4, col:50>",
+                            "kind": "publish",
+                            "publisher": "pub_DetectedObjects",
+                            "path_condition": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:247:4, col:50>",
+                            "kind": "publish",
+                            "publisher": "pub_DetectedObjects",
+                            "path_condition": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::m_bSetSimulatedObj",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:250:3, col:19>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 15.0
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:250:3, col:19>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 15.0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "PerceptionSimulatorNS::OpenPlannerSimulatorPerception::callbackGetSimuData",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:108:3, col:37>",
+                "kind": "assignment",
+                "variable": "obj_id",
+                "unqualified_variable": "obj_id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:109:3, col:43>",
+                "kind": "assignment",
+                "variable": "actual_speed",
+                "unqualified_variable": "actual_speed",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:110:3, col:46>",
+                "kind": "assignment",
+                "variable": "actual_steering",
+                "unqualified_variable": "actual_steering",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:115:3, col:43>",
+                "kind": "assignment",
+                "variable": "indicator",
+                "unqualified_variable": "indicator",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Quaternion_<std::allocator<void>>::w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 4
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:126:4, col:12>",
+                "kind": "assignment",
+                "variable": "index",
+                "unqualified_variable": "index",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "i",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "obj_id",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": -1
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:137:2, col:9>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "obj_id",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": -1
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:138:2, col:12>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "actual_speed",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:139:2, col:22>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::indicator_state",
+                "unqualified_variable": "indicator_state",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "indicator",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:144:3, col:33 <Spelling=/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/include/op_perception_simulator_core.h:41:26>>",
+                "kind": "assignment",
+                "variable": "std::pair<int, double>::second",
+                "unqualified_variable": "second",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "obj_id",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": -1
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": ">=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "index",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:106:2, line:111:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:108:3, col:37>",
+                      "kind": "assignment",
+                      "variable": "obj_id",
+                      "unqualified_variable": "obj_id",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:109:3, col:43>",
+                      "kind": "assignment",
+                      "variable": "actual_speed",
+                      "unqualified_variable": "actual_speed",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:110:3, col:46>",
+                      "kind": "assignment",
+                      "variable": "actual_steering",
+                      "unqualified_variable": "actual_steering",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:108:3, col:37>",
+                      "kind": "assignment",
+                      "variable": "obj_id",
+                      "unqualified_variable": "obj_id",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:109:3, col:43>",
+                      "kind": "assignment",
+                      "variable": "actual_speed",
+                      "unqualified_variable": "actual_speed",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:110:3, col:46>",
+                      "kind": "assignment",
+                      "variable": "actual_steering",
+                      "unqualified_variable": "actual_steering",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:113:2, line:116:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:115:3, col:43>",
+                      "kind": "assignment",
+                      "variable": "indicator",
+                      "unqualified_variable": "indicator",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Quaternion_<std::allocator<void>>::w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 4
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:115:3, col:43>",
+                      "kind": "assignment",
+                      "variable": "indicator",
+                      "unqualified_variable": "indicator",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Quaternion_<std::allocator<void>>::w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 4
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:124:3, line:128:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:126:4, col:12>",
+                      "kind": "assignment",
+                      "variable": "index",
+                      "unqualified_variable": "index",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "obj_id",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": -1
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "obj_id",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": -1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:126:4, col:12>",
+                      "kind": "assignment",
+                      "variable": "index",
+                      "unqualified_variable": "index",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "obj_id",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": -1
+                                }
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "obj_id",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": -1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:137:2, col:9>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "obj_id",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": -1
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:138:2, col:12>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "actual_speed",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:139:2, col:22>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::indicator_state",
+                "unqualified_variable": "indicator_state",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "indicator",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 3
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "obj_id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": -1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:141:2, line:150:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:144:3, col:33 <Spelling=/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/include/op_perception_simulator_core.h:41:26>>",
+                      "kind": "assignment",
+                      "variable": "std::pair<int, double>::second",
+                      "unqualified_variable": "second",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "obj_id",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": -1
+                              }
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "index",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": -1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/nodes/op_perception_simulator/op_perception_simulator_core.cpp:144:3, col:33 <Spelling=/home/autoware/Autoware/ros/src/computing/planning/motion/packages/op_simulation_package/include/op_perception_simulator_core.h:41:26>>",
+                      "kind": "assignment",
+                      "variable": "std::pair<int, double>::second",
+                      "unqualified_variable": "second",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "obj_id",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": -1
+                              }
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "index",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": -1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

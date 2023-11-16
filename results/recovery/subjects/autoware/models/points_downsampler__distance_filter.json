@@ -1,0 +1,2934 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "distance_filter",
+  "package": {
+    "name": "points_downsampler",
+    "path": "/home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:140:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "distance_filter"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:145:3, col:51>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "points_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:146:3, col:48>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "output_log"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:152:4, col:58>",
+                "kind": "assignment",
+                "variable": "filename",
+                "unqualified_variable": "filename",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "_output_log",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    }
+                  },
+                  "rhs": {
+                    "kind": "bool-literal",
+                    "literal": true
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:3, col:86>",
+                "kind": "assignment",
+                "variable": "filtered_points_pub",
+                "unqualified_variable": "filtered_points_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/filtered_points"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:25, col:86>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/filtered_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:25, col:86>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:3, col:121>",
+                "kind": "assignment",
+                "variable": "points_downsampler_info_pub",
+                "unqualified_variable": "points_downsampler_info_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/points_downsampler_info"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:33, col:121>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/points_downsampler_info"
+                  }
+                },
+                "format": "points_downsampler/PointsDownsamplerInfo",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:33, col:121>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:161:32, col:90>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "config/distance_filter"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigDistanceFilter",
+                "callback-name": "config_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:161:32, col:90>",
+                "kind": "call",
+                "callee": "config_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:162:30, col:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "scan_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:162:30, col:74>",
+                "kind": "call",
+                "callee": "scan_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:140:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "distance_filter"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:145:3, col:51>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "points_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:146:3, col:48>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "output_log"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:147:3, line:154:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:152:4, col:58>",
+                      "kind": "assignment",
+                      "variable": "filename",
+                      "unqualified_variable": "filename",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "_output_log",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          }
+                        },
+                        "rhs": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:152:4, col:58>",
+                      "kind": "assignment",
+                      "variable": "filename",
+                      "unqualified_variable": "filename",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "_output_log",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          }
+                        },
+                        "rhs": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:3, col:86>",
+                "kind": "assignment",
+                "variable": "filtered_points_pub",
+                "unqualified_variable": "filtered_points_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/filtered_points"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:25, col:86>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/filtered_points"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:157:25, col:86>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:3, col:121>",
+                "kind": "assignment",
+                "variable": "points_downsampler_info_pub",
+                "unqualified_variable": "points_downsampler_info_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/points_downsampler_info"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:33, col:121>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/points_downsampler_info"
+                  }
+                },
+                "format": "points_downsampler/PointsDownsamplerInfo",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:158:33, col:121>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:161:32, col:90>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "config/distance_filter"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigDistanceFilter",
+                "callback-name": "config_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:161:32, col:90>",
+                "kind": "call",
+                "callee": "config_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:162:30, col:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "scan_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:162:30, col:74>",
+                "kind": "call",
+                "callee": "scan_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "scan_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:65:5, col:58>",
+                "kind": "assignment",
+                "variable": "scan",
+                "unqualified_variable": "scan",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "measurement_range",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 200.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 200.0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:69:3, col:36>",
+                "kind": "assignment",
+                "variable": "pcl::PointCloud<pcl::PointXYZI>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::PointCloud<pcl::PointXYZI>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "scan",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:78:3, col:49>",
+                "kind": "assignment",
+                "variable": "filter_start",
+                "unqualified_variable": "filter_start",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:82:5, col:72>",
+                "kind": "assignment",
+                "variable": "w_total",
+                "unqualified_variable": "w_total",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "w_total",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "+",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "item",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:84:3, col:22>",
+                "kind": "assignment",
+                "variable": "w_step",
+                "unqualified_variable": "w_step",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "w_total",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:87:8, col:12>",
+                "kind": "assignment",
+                "variable": "m",
+                "unqualified_variable": "m",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:92:7, col:68>",
+                "kind": "assignment",
+                "variable": "c",
+                "unqualified_variable": "c",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "c",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "+",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "m",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "sample_num",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 1000
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": ">",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "m",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w_step",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "c",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:94:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:95:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:96:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:97:5, col:33>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                "unqualified_variable": "intensity",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:104:3, col:47>",
+                "kind": "assignment",
+                "variable": "filter_end",
+                "unqualified_variable": "filter_end",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:106:3, col:32>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:107:3, col:43>",
+                "kind": "publish",
+                "publisher": "filtered_points_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:109:3, col:47>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:110:3, col:45>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::filter_name",
+                "unqualified_variable": "filter_name",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "distance_filter"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:111:3, col:51>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::measurement_range",
+                "unqualified_variable": "measurement_range",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "measurement_range",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 200.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:112:3, col:54>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_points_size",
+                "unqualified_variable": "original_points_size",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "points_num",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:113:3, col:105>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::filtered_points_size",
+                "unqualified_variable": "filtered_points_size",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:114:3, col:52>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_ring_size",
+                "unqualified_variable": "original_ring_size",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:115:3, col:52>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_ring_size",
+                "unqualified_variable": "original_ring_size",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:116:3, col:133>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::exe_time",
+                "unqualified_variable": "exe_time",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 1000.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:117:3, col:66>",
+                "kind": "publish",
+                "publisher": "points_downsampler_info_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:64:3, line:66:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:65:5, col:58>",
+                      "kind": "assignment",
+                      "variable": "scan",
+                      "unqualified_variable": "scan",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "measurement_range",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 200.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 200.0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:65:5, col:58>",
+                      "kind": "assignment",
+                      "variable": "scan",
+                      "unqualified_variable": "scan",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "measurement_range",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 200.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 200.0
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:69:3, col:36>",
+                "kind": "assignment",
+                "variable": "pcl::PointCloud<pcl::PointXYZI>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::PointCloud<pcl::PointXYZI>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "scan",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:78:3, col:49>",
+                "kind": "assignment",
+                "variable": "filter_start",
+                "unqualified_variable": "filter_start",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:82:5, col:72>",
+                "kind": "assignment",
+                "variable": "w_total",
+                "unqualified_variable": "w_total",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "w_total",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "+",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "+",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "*",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "item",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:84:3, col:22>",
+                "kind": "assignment",
+                "variable": "w_step",
+                "unqualified_variable": "w_step",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "w_total",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:87:8, col:12>",
+                "kind": "assignment",
+                "variable": "m",
+                "unqualified_variable": "m",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:89:5, line:93:5>",
+                "kind": "while",
+                "body": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:92:7, col:68>",
+                      "kind": "assignment",
+                      "variable": "c",
+                      "unqualified_variable": "c",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "c",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "+",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "+",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "*",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "m",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "sample_num",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 1000
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "*",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "m",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "w_step",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "c",
+                            "type": "float",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:92:7, col:68>",
+                      "kind": "assignment",
+                      "variable": "c",
+                      "unqualified_variable": "c",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "c",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "+",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "+",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "*",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "m",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "sample_num",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 1000
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": ">",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "*",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "m",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "w_step",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "c",
+                            "type": "float",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:94:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:95:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:96:5, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:97:5, col:33>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                "unqualified_variable": "intensity",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "m",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "sample_num",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 1000
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:104:3, col:47>",
+                "kind": "assignment",
+                "variable": "filter_end",
+                "unqualified_variable": "filter_end",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:106:3, col:32>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:107:3, col:43>",
+                "kind": "publish",
+                "publisher": "filtered_points_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:109:3, col:47>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:110:3, col:45>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::filter_name",
+                "unqualified_variable": "filter_name",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "distance_filter"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:111:3, col:51>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::measurement_range",
+                "unqualified_variable": "measurement_range",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "measurement_range",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 200.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:112:3, col:54>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_points_size",
+                "unqualified_variable": "original_points_size",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "points_num",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:113:3, col:105>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::filtered_points_size",
+                "unqualified_variable": "filtered_points_size",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:114:3, col:52>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_ring_size",
+                "unqualified_variable": "original_ring_size",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:115:3, col:52>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::original_ring_size",
+                "unqualified_variable": "original_ring_size",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:116:3, col:133>",
+                "kind": "assignment",
+                "variable": "points_downsampler::PointsDownsamplerInfo_<std::allocator<void>>::exe_time",
+                "unqualified_variable": "exe_time",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 1000.0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:117:3, col:66>",
+                "kind": "publish",
+                "publisher": "points_downsampler_info_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "config_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:53:3, col:23>",
+                "kind": "assignment",
+                "variable": "sample_num",
+                "unqualified_variable": "sample_num",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigDistanceFilter_<std::allocator<void>>::sample_num",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:54:3, col:30>",
+                "kind": "assignment",
+                "variable": "measurement_range",
+                "unqualified_variable": "measurement_range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigDistanceFilter_<std::allocator<void>>::measurement_range",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:53:3, col:23>",
+                "kind": "assignment",
+                "variable": "sample_num",
+                "unqualified_variable": "sample_num",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigDistanceFilter_<std::allocator<void>>::sample_num",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/filters/packages/points_downsampler/nodes/distance_filter/distance_filter.cpp:54:3, col:30>",
+                "kind": "assignment",
+                "variable": "measurement_range",
+                "unqualified_variable": "measurement_range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigDistanceFilter_<std::allocator<void>>::measurement_range",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

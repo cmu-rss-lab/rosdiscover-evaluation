@@ -1,0 +1,1182 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "vision_darknet_detect",
+  "package": {
+    "name": "vision_darknet_detect",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect_node.cpp",
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.h"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect_node.cpp:25:5, col:50>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "vision_darknet_detect"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect_node.cpp:29:5, col:13>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect_node.cpp:25:5, col:50>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "vision_darknet_detect"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect_node.cpp:29:5, col:13>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Yolo3DetectorNode::config_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:271:5, col:31>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::score_threshold_",
+                "unqualified_variable": "score_threshold_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigSSD_<std::allocator<void>>::score_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:271:5, col:31>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::score_threshold_",
+                "unqualified_variable": "score_threshold_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigSSD_<std::allocator<void>>::score_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Yolo3DetectorNode::Run",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:294:9, col:75>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_node"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:301:9, col:31>",
+                "kind": "assignment",
+                "variable": "image_raw_topic_str",
+                "unqualified_variable": "image_raw_topic_str",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/image_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:306:9, col:88>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "network_definition_file"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:315:9, col:84>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "pretrained_model_file"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:325:9, col:62>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "names_file"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:328:9, col:27>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::use_coco_names_",
+                "unqualified_variable": "use_coco_names_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:329:9, col:58>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::custom_names_",
+                "unqualified_variable": "custom_names_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:334:9, col:27>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::use_coco_names_",
+                "unqualified_variable": "use_coco_names_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:337:5, col:78>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "score_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:340:5, col:75>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "nms_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:5, col:123>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::publisher_objects_",
+                "unqualified_variable": "publisher_objects_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/detection/image_detector/objects"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:26, col:123>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/detection/image_detector/objects"
+                  }
+                },
+                "format": "autoware_msgs/DetectedObjectArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:26, col:123>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:5, col:116>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:29, col:116>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "Yolo3DetectorNode::image_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:29, col:116>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::image_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:360:5, col:21>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/Yolo3"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:5, col:106>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::subscriber_yolo_config_",
+                "unqualified_variable": "subscriber_yolo_config_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:31, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigSSD",
+                "callback-name": "Yolo3DetectorNode::config_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:31, col:106>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::config_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:294:5, line:302:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:301:9, col:31>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:301:9, col:31>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:306:5, line:314:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:315:5, line:323:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:325:5, line:335:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:328:9, col:27>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::use_coco_names_",
+                      "unqualified_variable": "use_coco_names_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:329:9, col:58>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::custom_names_",
+                      "unqualified_variable": "custom_names_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:328:9, col:27>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::use_coco_names_",
+                      "unqualified_variable": "use_coco_names_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:329:9, col:58>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::custom_names_",
+                      "unqualified_variable": "custom_names_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:334:9, col:27>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::use_coco_names_",
+                      "unqualified_variable": "use_coco_names_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:334:9, col:27>",
+                      "kind": "assignment",
+                      "variable": "Yolo3DetectorNode::use_coco_names_",
+                      "unqualified_variable": "use_coco_names_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:337:5, col:78>",
+                "kind": "assignment",
+                "variable": "v6",
+                "unqualified_variable": "v6",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "score_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:340:5, col:75>",
+                "kind": "assignment",
+                "variable": "v7",
+                "unqualified_variable": "v7",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "nms_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:5, col:123>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::publisher_objects_",
+                "unqualified_variable": "publisher_objects_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/detection/image_detector/objects"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:26, col:123>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/detection/image_detector/objects"
+                  }
+                },
+                "format": "autoware_msgs/DetectedObjectArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:354:26, col:123>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:5, col:116>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:29, col:116>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "Yolo3DetectorNode::image_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:357:29, col:116>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::image_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:360:5, col:21>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/Yolo3"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:5, col:106>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::subscriber_yolo_config_",
+                "unqualified_variable": "subscriber_yolo_config_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:31, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigSSD",
+                "callback-name": "Yolo3DetectorNode::config_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:361:31, col:106>",
+                "kind": "call",
+                "callee": "Yolo3DetectorNode::config_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Yolo3DetectorNode::image_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:254:5, col:59>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::darknet_image_",
+                "unqualified_variable": "darknet_image_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:256:5, col:54>",
+                "kind": "assignment",
+                "variable": "detections",
+                "unqualified_variable": "detections",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:260:5, col:47>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:264:5, col:46>",
+                "kind": "publish",
+                "publisher": "publisher_objects_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:254:5, col:59>",
+                "kind": "assignment",
+                "variable": "Yolo3DetectorNode::darknet_image_",
+                "unqualified_variable": "darknet_image_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:256:5, col:54>",
+                "kind": "assignment",
+                "variable": "detections",
+                "unqualified_variable": "detections",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:260:5, col:47>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/src/vision_darknet_detect.cpp:264:5, col:46>",
+                "kind": "publish",
+                "publisher": "publisher_objects_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,955 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "image_d_viewer",
+  "package": {
+    "name": "viewers",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:253:5, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "image_d_viewer"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:282:9, col:59>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:286:7, col:21>",
+                "kind": "assignment",
+                "variable": "image_topic",
+                "unqualified_variable": "image_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/image_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:289:10, col:52>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "car_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:290:7, col:19>",
+                "kind": "assignment",
+                "variable": "car_topic",
+                "unqualified_variable": "car_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/obj_car/image_obj_ranged"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:293:10, col:58>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "person_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:294:7, col:22>",
+                "kind": "assignment",
+                "variable": "person_topic",
+                "unqualified_variable": "person_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/obj_person/image_obj_ranged"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:299:7, col:93>",
+                "kind": "assignment",
+                "variable": "window_name",
+                "unqualified_variable": "window_name",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:302:7, col:49>",
+                "kind": "assignment",
+                "variable": "window_name",
+                "unqualified_variable": "window_name",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_d_viewer"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "name_space_str",
+                      "type": "string",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:306:5, col:13 <Spelling=/opt/rosdiscover/lib/clang/11.1.0/include/stddef.h:84:18>>",
+                "kind": "assignment",
+                "variable": "image",
+                "unqualified_variable": "image",
+                "value": {
+                  "kind": "null-expr"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:310:33, col:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "imageCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:310:33, col:74>",
+                "kind": "call",
+                "callee": "imageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:311:35, col:76>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "obj_carCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:311:35, col:76>",
+                "kind": "call",
+                "callee": "obj_carCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:312:38, col:85>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "obj_personCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:312:38, col:85>",
+                "kind": "call",
+                "callee": "obj_personCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:253:5, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "image_d_viewer"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:282:5, line:287:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:286:7, col:21>",
+                      "kind": "assignment",
+                      "variable": "image_topic",
+                      "unqualified_variable": "image_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:286:7, col:21>",
+                      "kind": "assignment",
+                      "variable": "image_topic",
+                      "unqualified_variable": "image_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:289:5, line:291:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:290:7, col:19>",
+                      "kind": "assignment",
+                      "variable": "car_topic",
+                      "unqualified_variable": "car_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/obj_car/image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:290:7, col:19>",
+                      "kind": "assignment",
+                      "variable": "car_topic",
+                      "unqualified_variable": "car_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/obj_car/image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:293:5, line:295:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:294:7, col:22>",
+                      "kind": "assignment",
+                      "variable": "person_topic",
+                      "unqualified_variable": "person_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/obj_person/image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:294:7, col:22>",
+                      "kind": "assignment",
+                      "variable": "person_topic",
+                      "unqualified_variable": "person_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/obj_person/image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:298:5, line:303:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:299:7, col:93>",
+                      "kind": "assignment",
+                      "variable": "window_name",
+                      "unqualified_variable": "window_name",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:299:7, col:93>",
+                      "kind": "assignment",
+                      "variable": "window_name",
+                      "unqualified_variable": "window_name",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:302:7, col:49>",
+                      "kind": "assignment",
+                      "variable": "window_name",
+                      "unqualified_variable": "window_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "image_d_viewer"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "name_space_str",
+                            "type": "string",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:302:7, col:49>",
+                      "kind": "assignment",
+                      "variable": "window_name",
+                      "unqualified_variable": "window_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "image_d_viewer"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "name_space_str",
+                            "type": "string",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:306:5, col:13 <Spelling=/opt/rosdiscover/lib/clang/11.1.0/include/stddef.h:84:18>>",
+                "kind": "assignment",
+                "variable": "image",
+                "unqualified_variable": "image",
+                "value": {
+                  "kind": "null-expr"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:310:33, col:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "imageCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:310:33, col:74>",
+                "kind": "call",
+                "callee": "imageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:311:35, col:76>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "obj_carCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:311:35, col:76>",
+                "kind": "call",
+                "callee": "obj_carCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:312:38, col:85>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "obj_personCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:312:38, col:85>",
+                "kind": "call",
+                "callee": "obj_personCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "imageCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:89:5, col:84>",
+                "kind": "assignment",
+                "variable": "cv_image",
+                "unqualified_variable": "cv_image",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:90:5, col:22>",
+                "kind": "assignment",
+                "variable": "temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:91:5, col:14>",
+                "kind": "assignment",
+                "variable": "image",
+                "unqualified_variable": "image",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:89:5, col:84>",
+                "kind": "assignment",
+                "variable": "cv_image",
+                "unqualified_variable": "cv_image",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:90:5, col:22>",
+                "kind": "assignment",
+                "variable": "temp",
+                "unqualified_variable": "temp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:91:5, col:14>",
+                "kind": "assignment",
+                "variable": "image",
+                "unqualified_variable": "image",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "obj_personCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:83:5, col:32>",
+                "kind": "assignment",
+                "variable": "pedestrian_fused_objects",
+                "unqualified_variable": "pedestrian_fused_objects",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "fused_objects",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "null-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:83:5, col:32>",
+                "kind": "assignment",
+                "variable": "pedestrian_fused_objects",
+                "unqualified_variable": "pedestrian_fused_objects",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "fused_objects",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "null-expr"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "obj_carCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:74:5, col:25>",
+                "kind": "assignment",
+                "variable": "car_fused_objects",
+                "unqualified_variable": "car_fused_objects",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "fused_objects",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "null-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/image_d_viewer/image_d_viewer.cpp:74:5, col:25>",
+                "kind": "assignment",
+                "variable": "car_fused_objects",
+                "unqualified_variable": "car_fused_objects",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "fused_objects",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "null-expr"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

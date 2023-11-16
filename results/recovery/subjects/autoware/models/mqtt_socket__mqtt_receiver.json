@@ -1,0 +1,2557 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "mqtt_receiver",
+  "package": {
+    "name": "mqtt_socket",
+    "path": "/home/autoware/Autoware/ros/src/socket/packages/mqtt_socket"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:184:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "mqtt_receiver"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:185:16>",
+                "kind": "call",
+                "callee": "MqttReceiver::MqttReceiver",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:184:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "mqtt_receiver"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:185:16>",
+                "kind": "call",
+                "callee": "MqttReceiver::MqttReceiver",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "MqttReceiver::on_message",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:143:7, col:57>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::SteerCmd_<std::allocator<void>>::steer",
+                "unqualified_variable": "steer",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "steer_max_val",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:144:7, col:57>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::AccelCmd_<std::allocator<void>>::accel",
+                "unqualified_variable": "accel",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "accel_max_val",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:145:7, col:57>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::BrakeCmd_<std::allocator<void>>::brake",
+                "unqualified_variable": "brake",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "brake_max_val",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:146:7, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::gear",
+                "unqualified_variable": "gear",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:149:9, col:38>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                "unqualified_variable": "l",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:150:9, col:38>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:154:11, col:40>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                "unqualified_variable": "l",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "mosquitto_message::payloadlen",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "message",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 8
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:157:11, col:40>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "mosquitto_message::payloadlen",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "message",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 8
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:160:11, col:40>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                "unqualified_variable": "l",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "mosquitto_message::payloadlen",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "message",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 8
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:161:11, col:40>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "mosquitto_message::payloadlen",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "variable-reference",
+                        "qualified_name": "message",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 8
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:167:7, col:66>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "linear_x_max_val",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:168:7, col:63>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:169:7, col:66>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_velocity",
+                "unqualified_variable": "linear_velocity",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "linear_x_max_val",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:170:7, col:65>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::steering_angle",
+                "unqualified_variable": "steering_angle",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "steer_max_val",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:171:7, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:172:7, col:47>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::emergency",
+                "unqualified_variable": "emergency",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:173:7, col:38>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::RemoteCmd_<std::allocator<void>>::control_mode",
+                "unqualified_variable": "control_mode",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:174:7, col:33>",
+                "kind": "publish",
+                "publisher": "remote_cmd_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "mosquitto_message::payloadlen",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "message",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 8
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:135:3, line:179:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:141:5, line:178:5>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:143:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::SteerCmd_<std::allocator<void>>::steer",
+                            "unqualified_variable": "steer",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "steer_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:144:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::AccelCmd_<std::allocator<void>>::accel",
+                            "unqualified_variable": "accel",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "accel_max_val",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:145:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::BrakeCmd_<std::allocator<void>>::brake",
+                            "unqualified_variable": "brake",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "brake_max_val",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:146:7, col:42>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::gear",
+                            "unqualified_variable": "gear",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:149:9, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:150:9, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:154:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:157:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:160:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:161:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:167:7, col:66>",
+                            "kind": "assignment",
+                            "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                            "unqualified_variable": "x",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "linear_x_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:168:7, col:63>",
+                            "kind": "assignment",
+                            "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                            "unqualified_variable": "z",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:169:7, col:66>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_velocity",
+                            "unqualified_variable": "linear_velocity",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "linear_x_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:170:7, col:65>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::steering_angle",
+                            "unqualified_variable": "steering_angle",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "steer_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:171:7, col:42>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::mode",
+                            "unqualified_variable": "mode",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:172:7, col:47>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::emergency",
+                            "unqualified_variable": "emergency",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:173:7, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::RemoteCmd_<std::allocator<void>>::control_mode",
+                            "unqualified_variable": "control_mode",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:174:7, col:33>",
+                            "kind": "publish",
+                            "publisher": "remote_cmd_pub",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:143:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::SteerCmd_<std::allocator<void>>::steer",
+                            "unqualified_variable": "steer",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "steer_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:144:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::AccelCmd_<std::allocator<void>>::accel",
+                            "unqualified_variable": "accel",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "accel_max_val",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:145:7, col:57>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::BrakeCmd_<std::allocator<void>>::brake",
+                            "unqualified_variable": "brake",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "brake_max_val",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:146:7, col:42>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::gear",
+                            "unqualified_variable": "gear",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:149:9, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:150:9, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "bool-literal",
+                              "literal": true
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:154:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:157:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:160:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::l",
+                            "unqualified_variable": "l",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:161:11, col:40>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::LampCmd_<std::allocator<void>>::r",
+                            "unqualified_variable": "r",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "mosquitto_message::payloadlen",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "message",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "unknown"
+                                  },
+                                  "rhs": {
+                                    "kind": "int-literal",
+                                    "literal": 8
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:167:7, col:66>",
+                            "kind": "assignment",
+                            "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                            "unqualified_variable": "x",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "linear_x_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:168:7, col:63>",
+                            "kind": "assignment",
+                            "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                            "unqualified_variable": "z",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:169:7, col:66>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::linear_velocity",
+                            "unqualified_variable": "linear_velocity",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "linear_x_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:170:7, col:65>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::ControlCommand_<std::allocator<void>>::steering_angle",
+                            "unqualified_variable": "steering_angle",
+                            "value": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "unknown"
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "steer_max_val",
+                                "type": "float",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:171:7, col:42>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::mode",
+                            "unqualified_variable": "mode",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:172:7, col:47>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::VehicleCmd_<std::allocator<void>>::emergency",
+                            "unqualified_variable": "emergency",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:173:7, col:38>",
+                            "kind": "assignment",
+                            "variable": "autoware_msgs::RemoteCmd_<std::allocator<void>>::control_mode",
+                            "unqualified_variable": "control_mode",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:174:7, col:33>",
+                            "kind": "publish",
+                            "publisher": "remote_cmd_pub",
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "mosquitto_message::payloadlen",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "message",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 8
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "MqttReceiver::MqttReceiver",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:3, col:85>",
+                "kind": "assignment",
+                "variable": "remote_cmd_pub",
+                "unqualified_variable": "remote_cmd_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/remote_cmd"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:20, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/remote_cmd"
+                  }
+                },
+                "format": "autoware_msgs/RemoteCmd",
+                "source_location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:20, col:85>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:72:3, col:65>",
+                "kind": "assignment",
+                "variable": "mqtt_client",
+                "unqualified_variable": "mqtt_client",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:85:3, col:41>",
+                "kind": "assignment",
+                "variable": "ret",
+                "unqualified_variable": "ret",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:3, col:85>",
+                "kind": "assignment",
+                "variable": "remote_cmd_pub",
+                "unqualified_variable": "remote_cmd_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/remote_cmd"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:20, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/remote_cmd"
+                  }
+                },
+                "format": "autoware_msgs/RemoteCmd",
+                "source_location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:64:20, col:85>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:72:3, col:65>",
+                "kind": "assignment",
+                "variable": "mqtt_client",
+                "unqualified_variable": "mqtt_client",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/socket/packages/mqtt_socket/nodes/mqtt_receiver/mqtt_receiver.cpp:85:3, col:41>",
+                "kind": "assignment",
+                "variable": "ret",
+                "unqualified_variable": "ret",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

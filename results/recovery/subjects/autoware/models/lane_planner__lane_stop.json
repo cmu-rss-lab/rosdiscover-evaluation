@@ -1,0 +1,1365 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "lane_stop",
+  "package": {
+    "name": "lane_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "(anonymous namespace)::config_parameter",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:88:2, col:32>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_manual_detection",
+                "unqualified_variable": "config_manual_detection",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneStop_<std::allocator<void>>::manual_detection",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:88:2, col:32>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::config_manual_detection",
+                "unqualified_variable": "config_manual_detection",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneStop_<std::allocator<void>>::manual_detection",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::select_current_lane",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:41:3, col:14>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:44:3, col:14>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:47:3, col:13>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "(anonymous namespace)::previous_lane",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:59:2, col:30>",
+                "kind": "publish",
+                "publisher": "traffic_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "msg",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:61:2, col:18>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::previous_lane",
+                "unqualified_variable": "previous_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "current",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "msg",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:41:3, col:14>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:44:3, col:14>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:47:3, col:13>",
+                "kind": "assignment",
+                "variable": "current",
+                "unqualified_variable": "current",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "(anonymous namespace)::previous_lane",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:59:2, col:30>",
+                "kind": "publish",
+                "publisher": "traffic_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "msg",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:61:2, col:18>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::previous_lane",
+                "unqualified_variable": "previous_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "current",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::TrafficLight_<std::allocator<void>>::traffic_light",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "msg",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::receive_auto_detection",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:67:3, col:26>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::select_current_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "variable-reference",
+                    "qualified_name": "(anonymous namespace)::config_manual_detection",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:66:2, line:67:26>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:67:3, col:26>",
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::select_current_lane",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "(anonymous namespace)::config_manual_detection",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:67:3, col:26>",
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::select_current_lane",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "(anonymous namespace)::config_manual_detection",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_green_lane",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:83:2, col:23>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::current_green_lane",
+                "unqualified_variable": "current_green_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:83:2, col:23>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::current_green_lane",
+                "unqualified_variable": "current_green_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:95:2, col:35>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_stop"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:100:2, col:73>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/sub_light_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:102:2, col:79>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/sub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:104:2, col:75>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_config_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:106:2, col:79>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:108:2, col:73>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:2, line:111:27>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::traffic_pub",
+                "unqualified_variable": "traffic_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/traffic_waypoints_array"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:16, line:111:27>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:16, line:111:27>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:113:30, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/light_color"
+                  }
+                },
+                "format": "autoware_msgs/TrafficLight",
+                "callback-name": "(anonymous namespace)::receive_auto_detection"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:113:30, col:102>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::receive_auto_detection",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:114:38, line:115:32>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/light_color_managed"
+                  }
+                },
+                "format": "autoware_msgs/TrafficLight",
+                "callback-name": "(anonymous namespace)::receive_manual_detection"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:114:38, line:115:32>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::receive_manual_detection",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:116:28, col:103>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/red_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_red_lane"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:116:28, col:103>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_red_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:117:30, col:109>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/green_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_green_lane"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:117:30, col:109>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_green_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:118:31, col:103>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_stop"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneStop",
+                "callback-name": "(anonymous namespace)::config_parameter"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:118:31, col:103>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::config_parameter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:95:2, col:35>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_stop"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:100:2, col:73>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/sub_light_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:102:2, col:79>",
+                "kind": "assignment",
+                "variable": "v6",
+                "unqualified_variable": "v6",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/sub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:104:2, col:75>",
+                "kind": "assignment",
+                "variable": "v7",
+                "unqualified_variable": "v7",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_rule/sub_config_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:106:2, col:79>",
+                "kind": "assignment",
+                "variable": "v8",
+                "unqualified_variable": "v8",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/pub_waypoint_queue_size"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:108:2, col:73>",
+                "kind": "assignment",
+                "variable": "v9",
+                "unqualified_variable": "v9",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/lane_stop/pub_waypoint_latch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:2, line:111:27>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::traffic_pub",
+                "unqualified_variable": "traffic_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/traffic_waypoints_array"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:16, line:111:27>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:110:16, line:111:27>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:113:30, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/light_color"
+                  }
+                },
+                "format": "autoware_msgs/TrafficLight",
+                "callback-name": "(anonymous namespace)::receive_auto_detection"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:113:30, col:102>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::receive_auto_detection",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:114:38, line:115:32>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/light_color_managed"
+                  }
+                },
+                "format": "autoware_msgs/TrafficLight",
+                "callback-name": "(anonymous namespace)::receive_manual_detection"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:114:38, line:115:32>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::receive_manual_detection",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:116:28, col:103>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/red_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_red_lane"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:116:28, col:103>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_red_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:117:30, col:109>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/green_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "(anonymous namespace)::cache_green_lane"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:117:30, col:109>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::cache_green_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:118:31, col:103>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_stop"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneStop",
+                "callback-name": "(anonymous namespace)::config_parameter"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:118:31, col:103>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::config_parameter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::cache_red_lane",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:78:2, col:21>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::current_red_lane",
+                "unqualified_variable": "current_red_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:78:2, col:21>",
+                "kind": "assignment",
+                "variable": "(anonymous namespace)::current_red_lane",
+                "unqualified_variable": "current_red_lane",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "(anonymous namespace)::receive_manual_detection",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:73:3, col:26>",
+                "kind": "call",
+                "callee": "(anonymous namespace)::select_current_lane",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "(anonymous namespace)::config_manual_detection",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": true
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:72:2, line:73:26>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:73:3, col:26>",
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::select_current_lane",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "(anonymous namespace)::config_manual_detection",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_stop/lane_stop.cpp:73:3, col:26>",
+                      "kind": "call",
+                      "callee": "(anonymous namespace)::select_current_lane",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "(anonymous namespace)::config_manual_detection",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

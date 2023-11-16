@@ -1,0 +1,1570 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "mapping",
+  "package": {
+    "name": "lidar_localizer",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:113:3, col:34>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "mapping"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:121:3, col:57>",
+                "kind": "assignment",
+                "variable": "filename",
+                "unqualified_variable": "filename",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:124:32, col:77>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "points_raw"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "callback-name": "points_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:124:32, col:77>",
+                "kind": "call",
+                "callee": "points_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:3, col:89>",
+                "kind": "assignment",
+                "variable": "velodyne_pub",
+                "unqualified_variable": "velodyne_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "velodyne_points/world"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:18, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points/world"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:18, col:89>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:127:3, col:43>",
+                "kind": "assignment",
+                "variable": "tf_listener",
+                "unqualified_variable": "tf_listener",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:132:5, col:14>",
+                "kind": "assignment",
+                "variable": "is_dir",
+                "unqualified_variable": "is_dir",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "argc",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 1
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:113:3, col:34>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "mapping"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:121:3, col:57>",
+                "kind": "assignment",
+                "variable": "filename",
+                "unqualified_variable": "filename",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:124:32, col:77>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "points_raw"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "callback-name": "points_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:124:32, col:77>",
+                "kind": "call",
+                "callee": "points_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:3, col:89>",
+                "kind": "assignment",
+                "variable": "velodyne_pub",
+                "unqualified_variable": "velodyne_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "velodyne_points/world"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:18, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "velodyne_points/world"
+                  }
+                },
+                "format": "pcl/PointCloud",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:125:18, col:89>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:127:3, col:43>",
+                "kind": "assignment",
+                "variable": "tf_listener",
+                "unqualified_variable": "tf_listener",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:129:3, line:133:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:132:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "is_dir",
+                      "unqualified_variable": "is_dir",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "argc",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 1
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:132:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "is_dir",
+                      "unqualified_variable": "is_dir",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "argc",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 1
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "points_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:76:7, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:77:7, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:78:7, col:25>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:79:7, col:37>",
+                "kind": "assignment",
+                "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                "unqualified_variable": "intensity",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": ">",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 3
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:83:5, col:34>",
+                "kind": "assignment",
+                "variable": "pcl::PointCloud<pcl::PointXYZI>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pcl::PointCloud<pcl::PointXYZI>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "prev_points",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:84:5, col:31>",
+                "kind": "assignment",
+                "variable": "pcl::PCLHeader::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:85:5, col:33>",
+                "kind": "publish",
+                "publisher": "velodyne_pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:107:3, col:18>",
+                "kind": "assignment",
+                "variable": "prev_points",
+                "unqualified_variable": "prev_points",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:108:3, col:22>",
+                "kind": "assignment",
+                "variable": "prev_time",
+                "unqualified_variable": "prev_time",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:47:3, line:106:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:76:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                      "unqualified_variable": "x",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:77:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                      "unqualified_variable": "y",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:78:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                      "unqualified_variable": "z",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:79:7, col:37>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                      "unqualified_variable": "intensity",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:83:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "pcl::PointCloud<pcl::PointXYZI>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::PointCloud<pcl::PointXYZI>::header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "prev_points",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:84:5, col:31>",
+                      "kind": "assignment",
+                      "variable": "pcl::PCLHeader::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "map"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:85:5, col:33>",
+                      "kind": "publish",
+                      "publisher": "velodyne_pub",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:76:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::x",
+                      "unqualified_variable": "x",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:77:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::y",
+                      "unqualified_variable": "y",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:78:7, col:25>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::z",
+                      "unqualified_variable": "z",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:79:7, col:37>",
+                      "kind": "assignment",
+                      "variable": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                      "unqualified_variable": "intensity",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous struct)::intensity",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pcl::_PointXYZI::(anonymous union)::(anonymous)",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "pcl::_PointXYZI::(anonymous)",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": ">",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "i",
+                              "type": "integer",
+                              "initial-value": {
+                                "kind": "int-literal",
+                                "literal": 0
+                              }
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "*",
+                              "lhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              },
+                              "rhs": {
+                                "kind": "int-literal",
+                                "literal": 3
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:83:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "pcl::PointCloud<pcl::PointXYZI>::header",
+                      "unqualified_variable": "header",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pcl::PointCloud<pcl::PointXYZI>::header",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "prev_points",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:84:5, col:31>",
+                      "kind": "assignment",
+                      "variable": "pcl::PCLHeader::frame_id",
+                      "unqualified_variable": "frame_id",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "map"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:85:5, col:33>",
+                      "kind": "publish",
+                      "publisher": "velodyne_pub",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:107:3, col:18>",
+                "kind": "assignment",
+                "variable": "prev_points",
+                "unqualified_variable": "prev_points",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/lidar_localizer/nodes/ndt_mapping_tku/mapping.cpp:108:3, col:22>",
+                "kind": "assignment",
+                "variable": "prev_time",
+                "unqualified_variable": "prev_time",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

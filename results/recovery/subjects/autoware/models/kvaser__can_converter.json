@@ -1,0 +1,4588 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "can_converter",
+  "package": {
+    "name": "kvaser",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:86:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "can_converter"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:88:25, col:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "can_raw"
+                  }
+                },
+                "format": "autoware_can_msgs/CANPacket",
+                "callback-name": "chatterCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:88:25, col:69>",
+                "kind": "call",
+                "callee": "chatterCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:86:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "can_converter"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:88:25, col:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "can_raw"
+                  }
+                },
+                "format": "autoware_can_msgs/CANPacket",
+                "callback-name": "chatterCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:88:25, col:69>",
+                "kind": "call",
+                "callee": "chatterCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "chatterCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:21:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:22:5, col:10>",
+                "kind": "assignment",
+                "variable": "gyro",
+                "unqualified_variable": "gyro",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:23:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:24:5, col:10>",
+                "kind": "assignment",
+                "variable": "accx",
+                "unqualified_variable": "accx",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:25:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:26:5, col:10>",
+                "kind": "assignment",
+                "variable": "accy",
+                "unqualified_variable": "accy",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:27:5, col:17>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:28:5, col:10>",
+                "kind": "assignment",
+                "variable": "accz",
+                "unqualified_variable": "accz",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:29:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 36
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:32:5, col:36>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 4096
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 16
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 37
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:33:5, col:11>",
+                "kind": "assignment",
+                "variable": "steer",
+                "unqualified_variable": "steer",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 37
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:34:5, col:17>",
+                "kind": "assignment",
+                "variable": "steer",
+                "unqualified_variable": "steer",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "/",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "steer",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 16
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 37
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:35:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 37
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:39:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:40:5, col:12>",
+                "kind": "assignment",
+                "variable": "wheel1",
+                "unqualified_variable": "wheel1",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:41:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:42:5, col:12>",
+                "kind": "assignment",
+                "variable": "wheel2",
+                "unqualified_variable": "wheel2",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:43:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:44:5, col:12>",
+                "kind": "assignment",
+                "variable": "wheel3",
+                "unqualified_variable": "wheel3",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:45:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:46:5, col:12>",
+                "kind": "assignment",
+                "variable": "wheel4",
+                "unqualified_variable": "wheel4",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:47:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 170
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:50:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 180
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:51:5, col:12>",
+                "kind": "assignment",
+                "variable": "speed3",
+                "unqualified_variable": "speed3",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 180
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:52:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 180
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:55:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 548
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:56:5, col:11>",
+                "kind": "assignment",
+                "variable": "brake",
+                "unqualified_variable": "brake",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 548
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:57:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 548
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:60:5, col:21>",
+                "kind": "assignment",
+                "variable": "shift",
+                "unqualified_variable": "shift",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 295
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:61:5, col:21>",
+                "kind": "assignment",
+                "variable": "speed",
+                "unqualified_variable": "speed",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 295
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:62:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 295
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:65:5, col:33>",
+                "kind": "assignment",
+                "variable": "w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "*",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 256
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:66:5, col:11>",
+                "kind": "assignment",
+                "variable": "enc_p",
+                "unqualified_variable": "enc_p",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "enc",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:67:5, col:9>",
+                "kind": "assignment",
+                "variable": "enc",
+                "unqualified_variable": "enc",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "w",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:68:5, col:14>",
+                "kind": "assignment",
+                "variable": "diff",
+                "unqualified_variable": "diff",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "enc",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "enc_p",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:69:5, col:14>",
+                "kind": "assignment",
+                "variable": "enc_diff",
+                "unqualified_variable": "enc_diff",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "diff",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:70:5, col:14>",
+                "kind": "assignment",
+                "variable": "enc_sum",
+                "unqualified_variable": "enc_sum",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "enc_sum",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "diff",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:71:5, col:13>",
+                "kind": "assignment",
+                "variable": "changed",
+                "unqualified_variable": "changed",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 560
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:74:16, col:47>",
+                "kind": "assignment",
+                "variable": "log_fp",
+                "unqualified_variable": "log_fp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "changed",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "variable-reference",
+                      "qualified_name": "log_fp",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:20:3, line:30:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:21:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:22:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "gyro",
+                      "unqualified_variable": "gyro",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:23:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:24:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accx",
+                      "unqualified_variable": "accx",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:25:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:26:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accy",
+                      "unqualified_variable": "accy",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:27:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:28:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accz",
+                      "unqualified_variable": "accz",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:29:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:21:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:22:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "gyro",
+                      "unqualified_variable": "gyro",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:23:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:24:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accx",
+                      "unqualified_variable": "accx",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:25:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:26:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accy",
+                      "unqualified_variable": "accy",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:27:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:28:5, col:10>",
+                      "kind": "assignment",
+                      "variable": "accz",
+                      "unqualified_variable": "accz",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:29:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 36
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:31:3, line:36:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:32:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 4096
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 16
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:33:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "steer",
+                      "unqualified_variable": "steer",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:34:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "steer",
+                      "unqualified_variable": "steer",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "/",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "steer",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 16
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:35:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:32:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 4096
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 16
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:33:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "steer",
+                      "unqualified_variable": "steer",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:34:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "steer",
+                      "unqualified_variable": "steer",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "/",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "steer",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 16
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:35:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 37
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:38:3, line:48:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:39:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:40:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel1",
+                      "unqualified_variable": "wheel1",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:41:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:42:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel2",
+                      "unqualified_variable": "wheel2",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:43:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:44:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel3",
+                      "unqualified_variable": "wheel3",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:45:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:46:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel4",
+                      "unqualified_variable": "wheel4",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:47:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:39:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:40:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel1",
+                      "unqualified_variable": "wheel1",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:41:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:42:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel2",
+                      "unqualified_variable": "wheel2",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:43:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:44:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel3",
+                      "unqualified_variable": "wheel3",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:45:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:46:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "wheel4",
+                      "unqualified_variable": "wheel4",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:47:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 170
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:49:3, line:53:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:50:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:51:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "speed3",
+                      "unqualified_variable": "speed3",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:52:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:50:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:51:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "speed3",
+                      "unqualified_variable": "speed3",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:52:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 180
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:54:3, line:58:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:55:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:56:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "brake",
+                      "unqualified_variable": "brake",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:57:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:55:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:56:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "brake",
+                      "unqualified_variable": "brake",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:57:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 548
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:59:3, line:63:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:60:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "shift",
+                      "unqualified_variable": "shift",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:61:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "speed",
+                      "unqualified_variable": "speed",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:62:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:60:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "shift",
+                      "unqualified_variable": "shift",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:61:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "speed",
+                      "unqualified_variable": "speed",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:62:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 295
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:64:3, line:72:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:65:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:66:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "enc_p",
+                      "unqualified_variable": "enc_p",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "enc",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:67:5, col:9>",
+                      "kind": "assignment",
+                      "variable": "enc",
+                      "unqualified_variable": "enc",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:68:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "diff",
+                      "unqualified_variable": "diff",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "-",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc_p",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:69:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "enc_diff",
+                      "unqualified_variable": "enc_diff",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "diff",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:70:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "enc_sum",
+                      "unqualified_variable": "enc_sum",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc_sum",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "diff",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:71:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:65:5, col:33>",
+                      "kind": "assignment",
+                      "variable": "w",
+                      "unqualified_variable": "w",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "*",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 256
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:66:5, col:11>",
+                      "kind": "assignment",
+                      "variable": "enc_p",
+                      "unqualified_variable": "enc_p",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "enc",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:67:5, col:9>",
+                      "kind": "assignment",
+                      "variable": "enc",
+                      "unqualified_variable": "enc",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "w",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:68:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "diff",
+                      "unqualified_variable": "diff",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "-",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc_p",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:69:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "enc_diff",
+                      "unqualified_variable": "enc_diff",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "diff",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:70:5, col:14>",
+                      "kind": "assignment",
+                      "variable": "enc_sum",
+                      "unqualified_variable": "enc_sum",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "+",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enc_sum",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "diff",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:71:5, col:13>",
+                      "kind": "assignment",
+                      "variable": "changed",
+                      "unqualified_variable": "changed",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_can_msgs::CANPacket_<std::allocator<void>>::id",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 560
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:73:3, line:79:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:74:5, col:47>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:74:16, col:47>",
+                            "kind": "assignment",
+                            "variable": "log_fp",
+                            "unqualified_variable": "log_fp",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "changed",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "log_fp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/can/packages/kvaser/nodes/can_converter/can_converter.cpp:74:16, col:47>",
+                            "kind": "assignment",
+                            "variable": "log_fp",
+                            "unqualified_variable": "log_fp",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "changed",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "log_fp",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "unknown"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

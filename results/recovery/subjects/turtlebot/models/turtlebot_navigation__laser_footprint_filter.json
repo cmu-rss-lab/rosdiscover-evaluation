@@ -1,0 +1,848 @@
+{
+  "image": {
+    "sha256": "d0c095577d379e64eda5f04a034479d39a0e5fe4ade901e38cd4a46ce3532fe5"
+  },
+  "node-name": "laser_footprint_filter",
+  "package": {
+    "name": "turtlebot_navigation",
+    "path": "/ros_ws/src/turtlebot_apps/turtlebot_navigation"
+  },
+  "sources": [
+    "/ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:109:3, col:49>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "laser_footprint_filter"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:111:24>",
+                "kind": "call",
+                "callee": "LaserFootprintFilter::LaserFootprintFilter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:109:3, col:49>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "laser_footprint_filter"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:111:24>",
+                "kind": "call",
+                "callee": "LaserFootprintFilter::LaserFootprintFilter",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "LaserFootprintFilter::update",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:56:5, col:21>",
+                "kind": "assignment",
+                "variable": "filtered_scan",
+                "unqualified_variable": "filtered_scan",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "input_scan",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:60:5, col:33>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "input_scan",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:64:9, col:32>",
+                "kind": "assignment",
+                "variable": "angle",
+                "unqualified_variable": "angle",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "angle",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::angle_increment",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "filtered_scan",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:67:9, col:62>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": ">=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::range_max",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "filtered_scan",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:68:9, col:62>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": ">=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::range_max",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "filtered_scan",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:85:5, col:45>",
+                "kind": "publish",
+                "publisher": "scan_filtered_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:56:5, col:21>",
+                "kind": "assignment",
+                "variable": "filtered_scan",
+                "unqualified_variable": "filtered_scan",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "input_scan",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:60:5, col:33>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PointStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "input_scan",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:64:9, col:32>",
+                "kind": "assignment",
+                "variable": "angle",
+                "unqualified_variable": "angle",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "angle",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::angle_increment",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "filtered_scan",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:67:9, col:62>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": ">=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::range_max",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "filtered_scan",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:68:9, col:62>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": ">=",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::LaserScan_<std::allocator<void>>::range_max",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "filtered_scan",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:78:9, line:81:9>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:85:5, col:45>",
+                "kind": "publish",
+                "publisher": "scan_filtered_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "LaserFootprintFilter::LaserFootprintFilter",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:5, col:83>",
+                "kind": "assignment",
+                "variable": "LaserFootprintFilter::scan_filtered_pub_",
+                "unqualified_variable": "scan_filtered_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/scan_filtered"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:26, col:83>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/scan_filtered"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "source_location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:26, col:83>"
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:5, col:81>",
+                "kind": "assignment",
+                "variable": "LaserFootprintFilter::scan_sub_",
+                "unqualified_variable": "scan_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:17, col:81>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "LaserFootprintFilter::update"
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:17, col:81>",
+                "kind": "call",
+                "callee": "LaserFootprintFilter::update",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:49:5, col:83>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "footprint_inscribed_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:50:5, col:67>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "base_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:5, col:83>",
+                "kind": "assignment",
+                "variable": "LaserFootprintFilter::scan_filtered_pub_",
+                "unqualified_variable": "scan_filtered_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/scan_filtered"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:26, col:83>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/scan_filtered"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "source_location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:46:26, col:83>"
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:5, col:81>",
+                "kind": "assignment",
+                "variable": "LaserFootprintFilter::scan_sub_",
+                "unqualified_variable": "scan_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:17, col:81>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/scan"
+                  }
+                },
+                "format": "sensor_msgs/LaserScan",
+                "callback-name": "LaserFootprintFilter::update"
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:47:17, col:81>",
+                "kind": "call",
+                "callee": "LaserFootprintFilter::update",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:49:5, col:83>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "footprint_inscribed_radius"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/turtlebot_apps/turtlebot_navigation/src/laser_footprint_filter.cpp:50:5, col:67>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "base_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

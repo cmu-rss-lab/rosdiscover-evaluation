@@ -1,0 +1,705 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "waypoint_loader",
+  "package": {
+    "name": "waypoint_maker",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_node.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/velocity_replanner.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "waypoint_maker::WaypointLoaderNode::initPubSub",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:34:3, col:82>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "disable_decision_maker"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:5, col:90>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                "unqualified_variable": "lane_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/lane_waypoints_array"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:5, col:96>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                "unqualified_variable": "lane_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/based/lane_waypoints_array"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/based/lane_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:3, col:102>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::config_sub_",
+                "unqualified_variable": "config_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:17, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/waypoint_loader"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigWaypointLoader",
+                "callback-name": "waypoint_maker::WaypointLoaderNode::configCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:17, col:102>",
+                "kind": "call",
+                "callee": "waypoint_maker::WaypointLoaderNode::configCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:45:3, line:46:106>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::output_cmd_sub_",
+                "unqualified_variable": "output_cmd_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:46:7, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/waypoint_loader_output"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "callback-name": "waypoint_maker::WaypointLoaderNode::outputCommandCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:46:7, col:106>",
+                "kind": "call",
+                "callee": "waypoint_maker::WaypointLoaderNode::outputCommandCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:34:3, col:82>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "disable_decision_maker"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:36:3, line:43:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:5, col:90>",
+                      "kind": "assignment",
+                      "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                      "unqualified_variable": "lane_pub_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/lane_waypoints_array"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/lane_waypoints_array"
+                        }
+                      },
+                      "format": "autoware_msgs/LaneArray",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>"
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:5, col:90>",
+                      "kind": "assignment",
+                      "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                      "unqualified_variable": "lane_pub_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/lane_waypoints_array"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/lane_waypoints_array"
+                        }
+                      },
+                      "format": "autoware_msgs/LaneArray",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:38:17, col:90>"
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:5, col:96>",
+                      "kind": "assignment",
+                      "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                      "unqualified_variable": "lane_pub_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/based/lane_waypoints_array"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/based/lane_waypoints_array"
+                        }
+                      },
+                      "format": "autoware_msgs/LaneArray",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>"
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:5, col:96>",
+                      "kind": "assignment",
+                      "variable": "waypoint_maker::WaypointLoaderNode::lane_pub_",
+                      "unqualified_variable": "lane_pub_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/based/lane_waypoints_array"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "waypoint_maker::WaypointLoaderNode::disable_decision_maker_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/based/lane_waypoints_array"
+                        }
+                      },
+                      "format": "autoware_msgs/LaneArray",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:42:17, col:96>"
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:3, col:102>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::config_sub_",
+                "unqualified_variable": "config_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:17, col:102>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/waypoint_loader"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigWaypointLoader",
+                "callback-name": "waypoint_maker::WaypointLoaderNode::configCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:44:17, col:102>",
+                "kind": "call",
+                "callee": "waypoint_maker::WaypointLoaderNode::configCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:45:3, line:46:106>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::output_cmd_sub_",
+                "unqualified_variable": "output_cmd_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:46:7, col:106>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/waypoint_loader_output"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "callback-name": "waypoint_maker::WaypointLoaderNode::outputCommandCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:46:7, col:106>",
+                "kind": "call",
+                "callee": "waypoint_maker::WaypointLoaderNode::outputCommandCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_node.cpp:24:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "waypoint_loader"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_node.cpp:24:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "waypoint_loader"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_maker::WaypointLoaderNode::outputCommandCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:74:5, col:40>",
+                "kind": "assignment",
+                "variable": "el",
+                "unqualified_variable": "el",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__begin1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__end1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:74:5, col:40>",
+                "kind": "assignment",
+                "variable": "el",
+                "unqualified_variable": "el",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__begin1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__end1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "waypoint_maker::WaypointLoaderNode::configCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:65:3, col:31>",
+                "kind": "publish",
+                "publisher": "lane_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:66:3, col:24>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::output_lane_array_",
+                "unqualified_variable": "output_lane_array_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "lane_array",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:65:3, col:31>",
+                "kind": "publish",
+                "publisher": "lane_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/waypoint_maker/nodes/waypoint_loader/waypoint_loader_core.cpp:66:3, col:24>",
+                "kind": "assignment",
+                "variable": "waypoint_maker::WaypointLoaderNode::output_lane_array_",
+                "unqualified_variable": "output_lane_array_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "lane_array",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

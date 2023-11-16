@@ -1,0 +1,1299 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "autoware_camera_lidar_calibration_node",
+  "package": {
+    "name": "autoware_camera_lidar_calibrator",
+    "path": "/home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "ROSCameraLidarApp::Run",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:252:3, col:94>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_src"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:253:3, col:97>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_src"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:261:4, col:43>",
+                "kind": "assignment",
+                "variable": "image_raw_topic_str",
+                "unqualified_variable": "image_raw_topic_str",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:262:4, col:45>",
+                "kind": "assignment",
+                "variable": "camera_info_topic_str",
+                "unqualified_variable": "camera_info_topic_str",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:3, col:113>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:27, col:113>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROSCameraLidarApp::ImageCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:27, col:113>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::ImageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:3, col:121>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_intrinsics_",
+                "unqualified_variable": "subscriber_intrinsics_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:28, col:121>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "ROSCameraLidarApp::IntrinsicsCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:28, col:121>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::IntrinsicsCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:3, col:125>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_clicked_point_",
+                "unqualified_variable": "subscriber_clicked_point_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:31, col:125>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/clicked_point"
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "ROSCameraLidarApp::RvizClickedPointCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:31, col:125>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::RvizClickedPointCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:3, col:142>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_image_point_",
+                "unqualified_variable": "subscriber_image_point_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:29, col:142>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/screenpoint"
+                    }
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "ROSCameraLidarApp::ImageClickedPointCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:29, col:142>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::ImageClickedPointCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:252:3, col:94>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_src"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:253:3, col:97>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_src"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:255:3, line:263:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:261:4, col:43>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:262:4, col:45>",
+                      "kind": "assignment",
+                      "variable": "camera_info_topic_str",
+                      "unqualified_variable": "camera_info_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:261:4, col:43>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:262:4, col:45>",
+                      "kind": "assignment",
+                      "variable": "camera_info_topic_str",
+                      "unqualified_variable": "camera_info_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:3, col:113>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:27, col:113>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROSCameraLidarApp::ImageCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:270:27, col:113>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::ImageCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:3, col:121>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_intrinsics_",
+                "unqualified_variable": "subscriber_intrinsics_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:28, col:121>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "ROSCameraLidarApp::IntrinsicsCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:274:28, col:121>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::IntrinsicsCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:3, col:125>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_clicked_point_",
+                "unqualified_variable": "subscriber_clicked_point_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:31, col:125>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/clicked_point"
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "ROSCameraLidarApp::RvizClickedPointCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:277:31, col:125>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::RvizClickedPointCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:3, col:142>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::subscriber_image_point_",
+                "unqualified_variable": "subscriber_image_point_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:29, col:142>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/screenpoint"
+                    }
+                  }
+                },
+                "format": "geometry_msgs/PointStamped",
+                "callback-name": "ROSCameraLidarApp::ImageClickedPointCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:280:29, col:142>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::ImageClickedPointCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSCameraLidarApp::ImageCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:292:2, col:36>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "autoware_camera_lidar_calibration_node"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:296:2, col:10>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:292:2, col:36>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "autoware_camera_lidar_calibration_node"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:296:2, col:10>",
+                "kind": "call",
+                "callee": "ROSCameraLidarApp::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSCameraLidarApp::RvizClickedPointCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "ROSCameraLidarApp::IntrinsicsCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:223:4, col:36>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_message",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:224:4, col:35>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "in_message",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:226:4, col:46>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::camera_instrinsics_",
+                "unqualified_variable": "camera_instrinsics_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:235:4, col:51>",
+                "kind": "assignment",
+                "variable": "ROSCameraLidarApp::distortion_coefficients_",
+                "unqualified_variable": "distortion_coefficients_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:221:3, line:241:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:223:4, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Size_<int>::height",
+                      "unqualified_variable": "height",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_message",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:224:4, col:35>",
+                      "kind": "assignment",
+                      "variable": "cv::Size_<int>::width",
+                      "unqualified_variable": "width",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_message",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:226:4, col:46>",
+                      "kind": "assignment",
+                      "variable": "ROSCameraLidarApp::camera_instrinsics_",
+                      "unqualified_variable": "camera_instrinsics_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:235:4, col:51>",
+                      "kind": "assignment",
+                      "variable": "ROSCameraLidarApp::distortion_coefficients_",
+                      "unqualified_variable": "distortion_coefficients_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:223:4, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Size_<int>::height",
+                      "unqualified_variable": "height",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_message",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:224:4, col:35>",
+                      "kind": "assignment",
+                      "variable": "cv::Size_<int>::width",
+                      "unqualified_variable": "width",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "in_message",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:226:4, col:46>",
+                      "kind": "assignment",
+                      "variable": "ROSCameraLidarApp::camera_instrinsics_",
+                      "unqualified_variable": "camera_instrinsics_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/autoware_camera_lidar_calibrator/src/autoware_camera_lidar_calibration/camera_lidar_calibration_node.cpp:235:4, col:51>",
+                      "kind": "assignment",
+                      "variable": "ROSCameraLidarApp::distortion_coefficients_",
+                      "unqualified_variable": "distortion_coefficients_",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSCameraLidarApp::ImageClickedPointCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}
