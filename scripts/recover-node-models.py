@@ -313,9 +313,10 @@ def recover_node_from_sources(
     restrict_to_paths = node_sources["restrict-analysis-to-paths"]
     logger.info(f"statically recovering model for node [{node}] in package [{package}]")
 
-    if (node == "ff_waypoint_follower" and package== "ff_waypoint_follower") or (node == "LDMRS_Example") or (node == "op_car_simulator" and package == "op_simulation_package") or (node == "vector_map_loader" and package == "map_file") or (node =="kitti_player" and package == "kitti_player") or (node == "gpsHemisphereInterface" and  package == "autorally_core") or (node == "joy_node" and package == "joy"):  
-        logger.info(f"Skipping Node")
-        return 
+    #if (node == "ff_waypoint_follower" and package== "ff_waypoint_follower") or (node == "LDMRS_Example") or (node == "op_car_simulator" and package == "op_simulation_package") or (node == "vector_map_loader" and package == "map_file") or (node =="kitti_player" and package == "kitti_player") or (node == "gpsHemisphereInterface" and  package == "autorally_core") or (node == "joy_node" and package == "joy"):  
+    #if (node == "kitti_player" and package== "kitti_player"):
+    #    logger.info(f"Skipping Node")
+    #    return 
 
     # ensure that a models output directory exists for this system
     experiment_directory = experiment_config["directory"]
