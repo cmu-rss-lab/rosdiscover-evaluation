@@ -1,0 +1,1014 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "sick_ldmrs_remove_background",
+  "package": {
+    "name": "sick_ldmrs_tools",
+    "path": "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:132:3, col:55>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "sick_ldmrs_remove_background"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:139:3, col:60>",
+                "kind": "assignment",
+                "variable": "min_dist_ratio_",
+                "unqualified_variable": "min_dist_ratio_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:139:21, col:60>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_dist_ratio"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:141:25, col:59>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:141:25, col:59>",
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:3, col:64>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "foreground"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:9, col:64>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "foreground"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:9, col:64>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:3, col:67>",
+                "kind": "assignment",
+                "variable": "pub_bg",
+                "unqualified_variable": "pub_bg",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "background"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:12, col:67>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "background"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:12, col:67>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:132:3, col:55>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "sick_ldmrs_remove_background"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:139:3, col:60>",
+                "kind": "assignment",
+                "variable": "min_dist_ratio_",
+                "unqualified_variable": "min_dist_ratio_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:139:21, col:60>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "min_dist_ratio"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:141:25, col:59>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "cloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:141:25, col:59>",
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:3, col:64>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "foreground"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:9, col:64>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "foreground"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:142:9, col:64>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:3, col:67>",
+                "kind": "assignment",
+                "variable": "pub_bg",
+                "unqualified_variable": "pub_bg",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "background"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:12, col:67>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "background"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:143:12, col:67>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:7>, /home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:28>>",
+                "kind": "assignment",
+                "variable": "last_hit",
+                "unqualified_variable": "last_hit",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:72:5, col:17>",
+                "kind": "assignment",
+                "variable": "cloud_bg_",
+                "unqualified_variable": "cloud_bg_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "cloud",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "variable-reference",
+                      "qualified_name": "cloud_bg_",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:3, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:15, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:27, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:121:3, col:21>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:122:3, col:18>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:126:3, col:24>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:127:3, col:24>",
+                "kind": "publish",
+                "publisher": "pub_bg",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:58:3, line:62:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:452:5>, /home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:456:5>>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:7>, /home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:28>>",
+                            "kind": "assignment",
+                            "variable": "last_hit",
+                            "unqualified_variable": "last_hit",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:7>, /home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:60:5 <Spelling=/opt/ros/kinetic/include/ros/console.h:454:28>>",
+                            "kind": "assignment",
+                            "variable": "last_hit",
+                            "unqualified_variable": "last_hit",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:70:3, line:74:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:72:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "cloud_bg_",
+                      "unqualified_variable": "cloud_bg_",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "cloud",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "variable-reference",
+                            "qualified_name": "cloud_bg_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:72:5, col:17>",
+                      "kind": "assignment",
+                      "variable": "cloud_bg_",
+                      "unqualified_variable": "cloud_bg_",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "cloud",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "variable-reference",
+                            "qualified_name": "cloud_bg_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:3, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:15, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:77:27, col:77>",
+                "kind": "assignment",
+                "variable": "sick_ldmrs_msgs::SICK_LDMRS_Point::(anonymous union)::(anonymous struct)::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:93:5, line:97:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:104:5, line:114:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:110:10, line:114:5>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:121:3, col:21>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:122:3, col:18>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:126:3, col:24>",
+                "kind": "assignment",
+                "variable": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::PointCloud2_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/drivers/lidar/packages/sick/ldmrs/sick_ldmrs_tools/src/sick_ldmrs_remove_background.cpp:127:3, col:24>",
+                "kind": "publish",
+                "publisher": "pub_bg",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "cloud_bg_",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

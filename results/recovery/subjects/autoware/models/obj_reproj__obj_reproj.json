@@ -1,0 +1,2078 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "obj_reproj",
+  "package": {
+    "name": "obj_reproj",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "camera_info_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        },
+        {
+          "name": "obj_pos_xyzCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:304:3, col:49>",
+                "kind": "assignment",
+                "variable": "image_obj_tracked_time",
+                "unqualified_variable": "image_obj_tracked_time",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "fused_objects",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:310:3, col:31>",
+                "kind": "assignment",
+                "variable": "object_type",
+                "unqualified_variable": "object_type",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::type",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "fused_objects",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:321:5, col:50>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::x1",
+                "unqualified_variable": "x1",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:322:5, col:50>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::y1",
+                "unqualified_variable": "y1",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:323:5, line:324:23>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::x2",
+                "unqualified_variable": "x2",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:325:5, line:326:23>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::y2",
+                "unqualified_variable": "y2",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:335:5, line:336:72>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::distance",
+                "unqualified_variable": "distance",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "-",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 10
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:337:5, col:38>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:342:3, col:19>",
+                "kind": "call",
+                "callee": "locatePublisher",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:304:3, col:49>",
+                "kind": "assignment",
+                "variable": "image_obj_tracked_time",
+                "unqualified_variable": "image_obj_tracked_time",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "fused_objects",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:310:3, col:31>",
+                "kind": "assignment",
+                "variable": "object_type",
+                "unqualified_variable": "object_type",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::type",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "fused_objects",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:321:5, col:50>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::x1",
+                "unqualified_variable": "x1",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:322:5, col:50>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::y1",
+                "unqualified_variable": "y1",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:323:5, line:324:23>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::x2",
+                "unqualified_variable": "x2",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:325:5, line:326:23>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::y2",
+                "unqualified_variable": "y2",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:335:5, line:336:72>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::distance",
+                "unqualified_variable": "distance",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "-",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "int-literal",
+                    "literal": 10
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:337:5, col:38>",
+                "kind": "assignment",
+                "variable": "_OBJPOS::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<=",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:342:3, col:19>",
+                "kind": "call",
+                "callee": "locatePublisher",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "ready_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:349:3, col:37>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "obj_reproj"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:352:3, col:12>",
+                "kind": "assignment",
+                "variable": "ready_",
+                "unqualified_variable": "ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:363:3, line:364:79>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "projection_matrix_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:366:3, line:367:47>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:370:3, col:19>",
+                "kind": "assignment",
+                "variable": "camera_id_str",
+                "unqualified_variable": "camera_id_str",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "camera_info_topic_name",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:373:5, col:21>",
+                "kind": "assignment",
+                "variable": "camera_id_str",
+                "unqualified_variable": "camera_id_str",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "camera"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "==",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "camera_id_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:377:7, col:62>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_tracked"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjTracked",
+                "callback-name": "obj_pos_xyzCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:377:7, col:62>",
+                "kind": "call",
+                "callee": "obj_pos_xyzCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:3, col:60>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:9, col:60>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label"
+                  }
+                },
+                "format": "autoware_msgs/ObjLabel",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:9, col:60>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:380:3, line:381:73>",
+                "kind": "assignment",
+                "variable": "marker_pub",
+                "unqualified_variable": "marker_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label_marker"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:381:7, col:73>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:381:7, col:73>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:3, line:384:34>",
+                "kind": "assignment",
+                "variable": "jsk_bounding_box_pub",
+                "unqualified_variable": "jsk_bounding_box_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label_bounding_box"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:26, line:384:34>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label_bounding_box"
+                  }
+                },
+                "format": "jsk_recognition_msgs/BoundingBoxArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:26, line:384:34>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:387:7, col:67>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:387:7, col:67>",
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:389:7, col:66>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "camera_info_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:389:7, col:66>",
+                "kind": "call",
+                "callee": "camera_info_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:349:3, col:37>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "obj_reproj"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:352:3, col:12>",
+                "kind": "assignment",
+                "variable": "ready_",
+                "unqualified_variable": "ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:363:3, line:364:79>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "projection_matrix_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:366:3, line:367:47>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:370:3, col:19>",
+                "kind": "assignment",
+                "variable": "camera_id_str",
+                "unqualified_variable": "camera_id_str",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "camera_info_topic_name",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:372:3, line:374:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:373:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "camera_id_str",
+                      "unqualified_variable": "camera_id_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "camera"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "camera_id_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:373:5, col:21>",
+                      "kind": "assignment",
+                      "variable": "camera_id_str",
+                      "unqualified_variable": "camera_id_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "camera"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "camera_id_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:377:7, col:62>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_tracked"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjTracked",
+                "callback-name": "obj_pos_xyzCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:377:7, col:62>",
+                "kind": "call",
+                "callee": "obj_pos_xyzCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:3, col:60>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:9, col:60>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label"
+                  }
+                },
+                "format": "autoware_msgs/ObjLabel",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:379:9, col:60>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:380:3, line:381:73>",
+                "kind": "assignment",
+                "variable": "marker_pub",
+                "unqualified_variable": "marker_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label_marker"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:381:7, col:73>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:381:7, col:73>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:3, line:384:34>",
+                "kind": "assignment",
+                "variable": "jsk_bounding_box_pub",
+                "unqualified_variable": "jsk_bounding_box_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obj_label_bounding_box"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:26, line:384:34>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obj_label_bounding_box"
+                  }
+                },
+                "format": "jsk_recognition_msgs/BoundingBoxArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:383:26, line:384:34>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:387:7, col:67>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:387:7, col:67>",
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:389:7, col:66>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "camera_info_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:389:7, col:66>",
+                "kind": "call",
+                "callee": "camera_info_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "projection_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:199:3, col:12>",
+                "kind": "assignment",
+                "variable": "ready_",
+                "unqualified_variable": "ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:199:3, col:12>",
+                "kind": "assignment",
+                "variable": "ready_",
+                "unqualified_variable": "ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "locatePublisher",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:273:3, col:43>",
+                "kind": "assignment",
+                "variable": "cp_iterator",
+                "unqualified_variable": "cp_iterator",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:281:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ObjLabel_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "object_type",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:282:3, col:61>",
+                "kind": "assignment",
+                "variable": "obj_label_marker_msgs",
+                "unqualified_variable": "obj_label_marker_msgs",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:289:3, col:32>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "image_obj_tracked_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:292:3, col:28>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:293:3, col:43>",
+                "kind": "publish",
+                "publisher": "marker_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:297:3, col:59>",
+                "kind": "publish",
+                "publisher": "jsk_bounding_box_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:273:3, col:43>",
+                "kind": "assignment",
+                "variable": "cp_iterator",
+                "unqualified_variable": "cp_iterator",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:281:3, col:24>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ObjLabel_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "object_type",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:282:3, col:61>",
+                "kind": "assignment",
+                "variable": "obj_label_marker_msgs",
+                "unqualified_variable": "obj_label_marker_msgs",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:289:3, col:32>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "image_obj_tracked_time",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:292:3, col:28>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:293:3, col:43>",
+                "kind": "publish",
+                "publisher": "marker_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp:297:3, col:59>",
+                "kind": "publish",
+                "publisher": "jsk_bounding_box_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3496 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "lidar_euclidean_track",
+  "package": {
+    "name": "lidar_euclidean_track",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:126:3, col:48>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "euclidean_lidar_track"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:131:8, col:59>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "threshold_dist"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:132:5, col:22>",
+                "kind": "assignment",
+                "variable": "threshold_dist",
+                "unqualified_variable": "threshold_dist",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 2.0
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:135:7, col:57>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "format": "boost/shared_ptr",
+                "callback-name": "cluster_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:135:7, col:57>",
+                "kind": "call",
+                "callee": "cluster_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:136:3, line:137:77>",
+                "kind": "assignment",
+                "variable": "tracked_pub",
+                "unqualified_variable": "tracked_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/detected_objects"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:137:7, col:77>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/detected_objects"
+                  }
+                },
+                "format": "autoware_msgs/DetectedObjectArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:137:7, col:77>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:3, line:139:47>",
+                "kind": "assignment",
+                "variable": "tracked_bba_pub",
+                "unqualified_variable": "tracked_bba_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/cloud_cluster_tracked_bounding_box"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:21, line:139:47>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_bounding_box"
+                  }
+                },
+                "format": "jsk_recognition_msgs/BoundingBoxArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:21, line:139:47>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:3, line:141:39>",
+                "kind": "assignment",
+                "variable": "tracked_bba_textlabel_pub",
+                "unqualified_variable": "tracked_bba_textlabel_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/cloud_cluster_tracked_text"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:31, line:141:39>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_text"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:31, line:141:39>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:126:3, col:48>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "euclidean_lidar_track"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:131:3, line:133:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:132:5, col:22>",
+                      "kind": "assignment",
+                      "variable": "threshold_dist",
+                      "unqualified_variable": "threshold_dist",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": 2.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:132:5, col:22>",
+                      "kind": "assignment",
+                      "variable": "threshold_dist",
+                      "unqualified_variable": "threshold_dist",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": 2.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:135:7, col:57>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "format": "boost/shared_ptr",
+                "callback-name": "cluster_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:135:7, col:57>",
+                "kind": "call",
+                "callee": "cluster_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:136:3, line:137:77>",
+                "kind": "assignment",
+                "variable": "tracked_pub",
+                "unqualified_variable": "tracked_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/detected_objects"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:137:7, col:77>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/detected_objects"
+                  }
+                },
+                "format": "autoware_msgs/DetectedObjectArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:137:7, col:77>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:3, line:139:47>",
+                "kind": "assignment",
+                "variable": "tracked_bba_pub",
+                "unqualified_variable": "tracked_bba_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/cloud_cluster_tracked_bounding_box"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:21, line:139:47>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_bounding_box"
+                  }
+                },
+                "format": "jsk_recognition_msgs/BoundingBoxArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:138:21, line:139:47>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:3, line:141:39>",
+                "kind": "assignment",
+                "variable": "tracked_bba_textlabel_pub",
+                "unqualified_variable": "tracked_bba_textlabel_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/cloud_cluster_tracked_text"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:31, line:141:39>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_cluster_tracked_text"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:140:31, line:141:39>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "cluster_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:52:9, col:24>",
+                "kind": "assignment",
+                "variable": "min_distance",
+                "unqualified_variable": "min_distance",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "distance",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "i",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "j",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "threshold_dist",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:53:9, col:64>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "i",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "j",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "threshold_dist",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:54:9, col:22>",
+                "kind": "assignment",
+                "variable": "stamped_id",
+                "unqualified_variable": "stamped_id",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "i",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "j",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "min_distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 1.7976931348623157e+308
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "threshold_dist",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:58:7, col:36>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "id",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 1
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "variable-reference",
+                      "qualified_name": "stamped_id",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:61:9, col:14>",
+                "kind": "assignment",
+                "variable": "id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "variable-reference",
+                        "qualified_name": "stamped_id",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": ">",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "id",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 100
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:72:3, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "base_msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:75:5, col:33>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:76:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:77:5, col:32>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::label",
+                "unqualified_variable": "label",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::label",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:78:5, col:50>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::dimensions",
+                "unqualified_variable": "dimensions",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::dimensions",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:79:5, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pose",
+                "unqualified_variable": "pose",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:83:3, col:43>",
+                "kind": "publish",
+                "publisher": "tracked_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:86:3, col:32>",
+                "kind": "assignment",
+                "variable": "jsk_recognition_msgs::BoundingBoxArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "base_msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:89:5, col:60>",
+                "kind": "assignment",
+                "variable": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::value",
+                "unqualified_variable": "value",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:91:3, col:37>",
+                "kind": "publish",
+                "publisher": "tracked_bba_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:95:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:96:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:97:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:98:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:101:5, col:40>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "velodyne"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:102:5, col:27>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "cluster"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:103:5, col:27>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "i",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:105:5, col:57>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::TEXT_VIEW_FACING",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 9
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 9
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:106:5, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:107:5, line:108:70>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::text",
+                "unqualified_variable": "text",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:109:5, line:110:51>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                "unqualified_variable": "position",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:111:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:112:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:113:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:114:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:115:5, col:41>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "marker_textlabel",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 1.5
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:116:5, col:30>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::color",
+                "unqualified_variable": "color",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "color_white",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:117:5, col:50>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::lifetime",
+                "unqualified_variable": "lifetime",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:120:3, col:54>",
+                "kind": "publish",
+                "publisher": "tracked_bba_textlabel_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:51:7, line:55:7>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:52:9, col:24>",
+                      "kind": "assignment",
+                      "variable": "min_distance",
+                      "unqualified_variable": "min_distance",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:53:9, col:64>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                      "unqualified_variable": "id",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:54:9, col:22>",
+                      "kind": "assignment",
+                      "variable": "stamped_id",
+                      "unqualified_variable": "stamped_id",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:52:9, col:24>",
+                      "kind": "assignment",
+                      "variable": "min_distance",
+                      "unqualified_variable": "min_distance",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "distance",
+                        "type": "float",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:53:9, col:64>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                      "unqualified_variable": "id",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:54:9, col:22>",
+                      "kind": "assignment",
+                      "variable": "stamped_id",
+                      "unqualified_variable": "stamped_id",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "i",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "<",
+                              "lhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "j",
+                                "type": "integer",
+                                "initial-value": {
+                                  "kind": "int-literal",
+                                  "literal": 0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "min_distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 1.7976931348623157e+308
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "<",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "distance",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "threshold_dist",
+                              "type": "float",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:57:5, line:62:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:58:7, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                      "unqualified_variable": "id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "id",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 1
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "variable-reference",
+                            "qualified_name": "stamped_id",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:60:7, line:61:14>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:61:9, col:14>",
+                            "kind": "assignment",
+                            "variable": "id",
+                            "unqualified_variable": "id",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "i",
+                                    "type": "integer",
+                                    "initial-value": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "stamped_id",
+                                    "type": "bool",
+                                    "initial-value": {
+                                      "kind": "bool-literal",
+                                      "literal": false
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "id",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 1
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 100
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:61:9, col:14>",
+                            "kind": "assignment",
+                            "variable": "id",
+                            "unqualified_variable": "id",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "i",
+                                    "type": "integer",
+                                    "initial-value": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "stamped_id",
+                                    "type": "bool",
+                                    "initial-value": {
+                                      "kind": "bool-literal",
+                                      "literal": false
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "id",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "int-literal",
+                                    "literal": 1
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 100
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:58:7, col:36>",
+                      "kind": "assignment",
+                      "variable": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                      "unqualified_variable": "id",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "id",
+                        "type": "integer",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 1
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "variable-reference",
+                            "qualified_name": "stamped_id",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "bool-literal",
+                              "literal": false
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:72:3, col:42>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObjectArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "base_msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:75:5, col:33>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:76:5, col:29>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:77:5, col:32>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::label",
+                "unqualified_variable": "label",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::label",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:78:5, col:50>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::dimensions",
+                "unqualified_variable": "dimensions",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::dimensions",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:79:5, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::DetectedObject_<std::allocator<void>>::pose",
+                "unqualified_variable": "pose",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:83:3, col:43>",
+                "kind": "publish",
+                "publisher": "tracked_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:86:3, col:32>",
+                "kind": "assignment",
+                "variable": "jsk_recognition_msgs::BoundingBoxArray_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudClusterArray_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "base_msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:89:5, col:60>",
+                "kind": "assignment",
+                "variable": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::value",
+                "unqualified_variable": "value",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:91:3, col:37>",
+                "kind": "publish",
+                "publisher": "tracked_bba_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:95:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:96:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:97:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:98:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:101:5, col:40>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "velodyne"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:102:5, col:27>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "cluster"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:103:5, col:27>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "i",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:105:5, col:57>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::TEXT_VIEW_FACING",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 9
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 9
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:106:5, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:107:5, line:108:70>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::text",
+                "unqualified_variable": "text",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:109:5, line:110:51>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                "unqualified_variable": "position",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "jsk_recognition_msgs::BoundingBox_<std::allocator<void>>::pose",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autoware_msgs::CloudCluster_<std::allocator<void>>::bounding_box",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:111:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:112:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:113:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:114:5, col:43>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Quaternion_<std::allocator<void>>::w",
+                "unqualified_variable": "w",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:115:5, col:41>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "marker_textlabel",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 1.5
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:116:5, col:30>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::color",
+                "unqualified_variable": "color",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "color_white",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:117:5, col:50>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::lifetime",
+                "unqualified_variable": "lifetime",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "integer",
+                    "initial-value": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_euclidean_track/nodes/lidar_euclidean_track/lidar_euclidean_track.cpp:120:3, col:54>",
+                "kind": "publish",
+                "publisher": "tracked_bba_textlabel_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "lidar_svm_detect",
+  "package": {
+    "name": "lidar_svm_detect",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:111:3, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "svm_lidar_detect"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:115:3, col:12>",
+                "kind": "call",
+                "callee": "SvmDetect::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:111:3, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "svm_lidar_detect"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:115:3, col:12>",
+                "kind": "call",
+                "callee": "SvmDetect::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "SvmDetect::Run",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:71:3, line:72:78>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "svm_model_file_path"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:74:3, line:75:79>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "clusters_node_name"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:3, line:79:70>",
+                "kind": "assignment",
+                "variable": "SvmDetect::cloud_clusters_sub_",
+                "unqualified_variable": "cloud_clusters_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:25, line:79:70>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "boost/shared_ptr",
+                "callback-name": "SvmDetect::CloudClustersCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:25, line:79:70>",
+                "kind": "call",
+                "callee": "SvmDetect::CloudClustersCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:80:3, line:82:38>",
+                "kind": "assignment",
+                "variable": "SvmDetect::cloud_clusters_pub_",
+                "unqualified_variable": "cloud_clusters_pub_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "out_clusters_topic_name",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:81:7, line:82:38>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "format": "autoware_msgs/CloudClusterArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:81:7, line:82:38>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:71:3, line:72:78>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "svm_model_file_path"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:74:3, line:75:79>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "clusters_node_name"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:3, line:79:70>",
+                "kind": "assignment",
+                "variable": "SvmDetect::cloud_clusters_sub_",
+                "unqualified_variable": "cloud_clusters_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:25, line:79:70>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "boost/shared_ptr",
+                "callback-name": "SvmDetect::CloudClustersCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:78:25, line:79:70>",
+                "kind": "call",
+                "callee": "SvmDetect::CloudClustersCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:80:3, line:82:38>",
+                "kind": "assignment",
+                "variable": "SvmDetect::cloud_clusters_pub_",
+                "unqualified_variable": "cloud_clusters_pub_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "out_clusters_topic_name",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:81:7, line:82:38>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/cloud_clusters_class"
+                  }
+                },
+                "format": "autoware_msgs/CloudClusterArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:81:7, line:82:38>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "SvmDetect::CloudClustersCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:106:3, col:58>",
+                "kind": "publish",
+                "publisher": "cloud_clusters_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/lidar_detector/packages/lidar_svm_detect/nodes/lidar_svm_detect/lidar_svm_detect.cpp:106:3, col:58>",
+                "kind": "publish",
+                "publisher": "cloud_clusters_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

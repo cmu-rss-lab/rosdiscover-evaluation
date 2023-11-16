@@ -1,0 +1,1529 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "vision_dpm_ttic_detect",
+  "package": {
+    "name": "vision_dpm_ttic_detect",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:122:2, col:34>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "dpm_ttic"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:127:7, col:62>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:128:3, col:22>",
+                "kind": "assignment",
+                "variable": "image_topic_name",
+                "unqualified_variable": "image_topic_name",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/image_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:131:7, col:63>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "detection_class_name"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:132:3, col:18>",
+                "kind": "assignment",
+                "variable": "object_class",
+                "unqualified_variable": "object_class",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "car"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:136:7, col:59>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "comp_model_path"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:137:3, col:34>",
+                "kind": "assignment",
+                "variable": "comp_csv_path",
+                "unqualified_variable": "comp_csv_path",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_comp.csv"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:141:7, col:59>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "root_model_path"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:142:3, col:34>",
+                "kind": "assignment",
+                "variable": "root_csv_path",
+                "unqualified_variable": "root_csv_path",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_root.csv"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:146:7, col:59>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "part_model_path"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:147:3, col:34>",
+                "kind": "assignment",
+                "variable": "part_csv_path",
+                "unqualified_variable": "part_csv_path",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_part.csv"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:151:7, col:45>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "use_gpu"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:152:3, col:13>",
+                "kind": "assignment",
+                "variable": "use_gpu",
+                "unqualified_variable": "use_gpu",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:155:22, col:58>",
+                "kind": "call",
+                "callee": "get_cubin_path",
+                "arguments": {
+                  "default_path": {
+                    "kind": "string-literal",
+                    "literal": "/home/autoware/Autoware/ros/devel/lib/GPU_function.cubin"
+                  },
+                  "n": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:169:3, col:57>",
+                "kind": "assignment",
+                "variable": "gpu_model",
+                "unqualified_variable": "gpu_model",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "use_gpu",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": true
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:172:3, col:55>",
+                "kind": "assignment",
+                "variable": "ttic_model",
+                "unqualified_variable": "ttic_model",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "variable-reference",
+                    "qualified_name": "use_gpu",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:177:24, col:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "image_raw_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:177:24, col:69>",
+                "kind": "call",
+                "callee": "image_raw_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:2, col:69>",
+                "kind": "assignment",
+                "variable": "image_obj_pub",
+                "unqualified_variable": "image_obj_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_obj"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:18, col:69>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj"
+                  }
+                },
+                "format": "autoware_msgs/ImageObj",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:18, col:69>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:182:2, col:51>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:2, col:53>",
+                "kind": "assignment",
+                "variable": "config_sub",
+                "unqualified_variable": "config_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:15, col:53>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigPedestrianDPM",
+                "callback-name": "config_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:15, col:53>",
+                "kind": "call",
+                "callee": "config_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:122:2, col:34>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "dpm_ttic"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:127:2, line:129:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:128:3, col:22>",
+                      "kind": "assignment",
+                      "variable": "image_topic_name",
+                      "unqualified_variable": "image_topic_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:128:3, col:22>",
+                      "kind": "assignment",
+                      "variable": "image_topic_name",
+                      "unqualified_variable": "image_topic_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:131:2, line:133:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:132:3, col:18>",
+                      "kind": "assignment",
+                      "variable": "object_class",
+                      "unqualified_variable": "object_class",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "car"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:132:3, col:18>",
+                      "kind": "assignment",
+                      "variable": "object_class",
+                      "unqualified_variable": "object_class",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "car"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:136:2, line:138:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:137:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "comp_csv_path",
+                      "unqualified_variable": "comp_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_comp.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:137:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "comp_csv_path",
+                      "unqualified_variable": "comp_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_comp.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:141:2, line:143:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:142:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "root_csv_path",
+                      "unqualified_variable": "root_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_root.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:142:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "root_csv_path",
+                      "unqualified_variable": "root_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_root.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:146:2, line:148:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:147:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "part_csv_path",
+                      "unqualified_variable": "part_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_part.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:147:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "part_csv_path",
+                      "unqualified_variable": "part_csv_path",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/data/car_part.csv"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:151:2, line:153:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:152:3, col:13>",
+                      "kind": "assignment",
+                      "variable": "use_gpu",
+                      "unqualified_variable": "use_gpu",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:152:3, col:13>",
+                      "kind": "assignment",
+                      "variable": "use_gpu",
+                      "unqualified_variable": "use_gpu",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:155:22, col:58>",
+                "kind": "call",
+                "callee": "get_cubin_path",
+                "arguments": {
+                  "default_path": {
+                    "kind": "string-literal",
+                    "literal": "/home/autoware/Autoware/ros/devel/lib/GPU_function.cubin"
+                  },
+                  "n": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:168:2, line:174:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:169:3, col:57>",
+                      "kind": "assignment",
+                      "variable": "gpu_model",
+                      "unqualified_variable": "gpu_model",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "use_gpu",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:169:3, col:57>",
+                      "kind": "assignment",
+                      "variable": "gpu_model",
+                      "unqualified_variable": "gpu_model",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "use_gpu",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:172:3, col:55>",
+                      "kind": "assignment",
+                      "variable": "ttic_model",
+                      "unqualified_variable": "ttic_model",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "use_gpu",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:172:3, col:55>",
+                      "kind": "assignment",
+                      "variable": "ttic_model",
+                      "unqualified_variable": "ttic_model",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "use_gpu",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:177:24, col:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "image_raw_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:177:24, col:69>",
+                "kind": "call",
+                "callee": "image_raw_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:2, col:69>",
+                "kind": "assignment",
+                "variable": "image_obj_pub",
+                "unqualified_variable": "image_obj_pub",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_obj"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:18, col:69>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj"
+                  }
+                },
+                "format": "autoware_msgs/ImageObj",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:178:18, col:69>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:182:2, col:51>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:2, col:53>",
+                "kind": "assignment",
+                "variable": "config_sub",
+                "unqualified_variable": "config_sub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:15, col:53>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigPedestrianDPM",
+                "callback-name": "config_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:183:15, col:53>",
+                "kind": "call",
+                "callee": "config_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "config_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:100:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::threshold",
+                "unqualified_variable": "threshold",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::score_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:101:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::overlap",
+                "unqualified_variable": "overlap",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::group_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:102:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::lambda",
+                "unqualified_variable": "lambda",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::Lambda",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:103:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::num_cells",
+                "unqualified_variable": "num_cells",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::num_cells",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:100:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::threshold",
+                "unqualified_variable": "threshold",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::score_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:101:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::overlap",
+                "unqualified_variable": "overlap",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::group_threshold",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:102:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::lambda",
+                "unqualified_variable": "lambda",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::Lambda",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:103:2, col:32>",
+                "kind": "assignment",
+                "variable": "DPMTTICParam::num_cells",
+                "unqualified_variable": "num_cells",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigPedestrianDPM_<std::allocator<void>>::num_cells",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "get_cubin_path",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "default_path",
+              "type": "string"
+            },
+            {
+              "index": 0,
+              "name": "n",
+              "type": "node-handle"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:110:6, col:38>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "checks-for-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "n"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/car_detector/cubin"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:111:3, col:41>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "arg",
+                      "name": "n"
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "/car_detector/cubin"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:113:3, col:34>",
+                "kind": "assignment",
+                "variable": "path",
+                "unqualified_variable": "path",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:110:2, line:114:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:111:3, col:41>",
+                      "kind": "assignment",
+                      "variable": "v2",
+                      "unqualified_variable": "v2",
+                      "value": {
+                        "source-location": "",
+                        "kind": "reads-param",
+                        "name": {
+                          "kind": "concatenate",
+                          "lhs": {
+                            "kind": "arg",
+                            "name": "n"
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/car_detector/cubin"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:111:3, col:41>",
+                      "kind": "assignment",
+                      "variable": "v3",
+                      "unqualified_variable": "v3",
+                      "value": {
+                        "source-location": "",
+                        "kind": "reads-param",
+                        "name": {
+                          "kind": "concatenate",
+                          "lhs": {
+                            "kind": "arg",
+                            "name": "n"
+                          },
+                          "rhs": {
+                            "kind": "string-literal",
+                            "literal": "/car_detector/cubin"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:113:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "path",
+                      "unqualified_variable": "path",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:113:3, col:34>",
+                      "kind": "assignment",
+                      "variable": "path",
+                      "unqualified_variable": "path",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "image_raw_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:79:2, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObj_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "image_source",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:80:2, col:13>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObj_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "object_class",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:94:2, col:27>",
+                "kind": "publish",
+                "publisher": "image_obj_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:79:2, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObj_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "image_source",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:80:2, col:13>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObj_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "object_class",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_dpm_ttic_detect/nodes/vision_dpm_ttic_detect/vision_dpm_ttic_detect.cpp:94:2, col:27>",
+                "kind": "publish",
+                "publisher": "image_obj_pub",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1008 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "roi_extractor",
+  "package": {
+    "name": "trafficlight_recognizer",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:179:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "roi_extractor"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:187:3, col:92>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:188:3, col:107>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "target_directory"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:189:3, col:71>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "minimum_height"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:190:3, col:87>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "similarity_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:198:38, line:201:71>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROIExtractor::ImageRawCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:198:38, line:201:71>",
+                "kind": "call",
+                "callee": "ROIExtractor::ImageRawCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:203:43, line:206:76>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/roi_signal"
+                  }
+                },
+                "format": "autoware_msgs/Signals",
+                "callback-name": "ROIExtractor::ROISignalCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:203:43, line:206:76>",
+                "kind": "call",
+                "callee": "ROIExtractor::ROISignalCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:179:3, col:40>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "roi_extractor"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:187:3, col:92>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:188:3, col:107>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "target_directory"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:189:3, col:71>",
+                "kind": "assignment",
+                "variable": "v6",
+                "unqualified_variable": "v6",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "minimum_height"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:190:3, col:87>",
+                "kind": "assignment",
+                "variable": "v7",
+                "unqualified_variable": "v7",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "similarity_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:198:38, line:201:71>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROIExtractor::ImageRawCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:198:38, line:201:71>",
+                "kind": "call",
+                "callee": "ROIExtractor::ImageRawCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:203:43, line:206:76>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/roi_signal"
+                  }
+                },
+                "format": "autoware_msgs/Signals",
+                "callback-name": "ROIExtractor::ROISignalCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:203:43, line:206:76>",
+                "kind": "call",
+                "callee": "ROIExtractor::ROISignalCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROIExtractor::ROISignalCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:62:3, col:25>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::previous_timestamp_",
+                "unqualified_variable": "previous_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ROIExtractor::frame_timestamp_",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::frame_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::previous_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::height",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROIExtractor::k_minimum_height_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "ROIExtractor::k_similarity_threshold_",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:63:3, col:37>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::previous_saved_frame_",
+                "unqualified_variable": "previous_saved_frame_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::frame_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::previous_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::height",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROIExtractor::k_minimum_height_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "ROIExtractor::k_similarity_threshold_",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:62:3, col:25>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::previous_timestamp_",
+                "unqualified_variable": "previous_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ROIExtractor::frame_timestamp_",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::frame_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::previous_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::height",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROIExtractor::k_minimum_height_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "ROIExtractor::k_similarity_threshold_",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:63:3, col:37>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::previous_saved_frame_",
+                "unqualified_variable": "previous_saved_frame_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::frame_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROIExtractor::previous_timestamp_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "<",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::height",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROIExtractor::k_minimum_height_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "ROIExtractor::k_similarity_threshold_",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROIExtractor::ImageRawCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:23:3, col:34>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::frame_",
+                "unqualified_variable": "frame_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:26:3, col:35>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::frame_timestamp_",
+                "unqualified_variable": "frame_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:23:3, col:34>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::frame_",
+                "unqualified_variable": "frame_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/trafficlight_recognizer/nodes/roi_extractor/roi_extractor.cpp:26:3, col:35>",
+                "kind": "assignment",
+                "variable": "ROIExtractor::frame_timestamp_",
+                "unqualified_variable": "frame_timestamp_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::stamp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "image",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

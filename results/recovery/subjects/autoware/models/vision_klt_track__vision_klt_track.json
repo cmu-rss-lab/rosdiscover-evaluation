@@ -1,0 +1,3797 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "vision_klt_track",
+  "package": {
+    "name": "vision_klt_track",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "ROSTrackerApp::detections_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:305:7, col:41>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::tracked_type_",
+                "unqualified_variable": "tracked_type_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageObjRanged_<std::allocator<void>>::type",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "image_objects_msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ROSTrackerApp::detect_ready_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:312:9, col:36>",
+                "kind": "assignment",
+                "variable": "cv::Rect_<int>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:313:9, col:36>",
+                "kind": "assignment",
+                "variable": "cv::Rect_<int>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:314:9, col:40>",
+                "kind": "assignment",
+                "variable": "cv::Rect_<int>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:315:9, col:41>",
+                "kind": "assignment",
+                "variable": "cv::Rect_<int>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:317:9, col:24>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::rect",
+                "unqualified_variable": "rect",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "tmp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:318:9, col:25>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "num",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:324:7, col:23>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::detect_ready_",
+                "unqualified_variable": "detect_ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ROSTrackerApp::detect_ready_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:327:5, col:25>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::publish_if_possible",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:299:5, line:325:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:305:7, col:41>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::tracked_type_",
+                      "unqualified_variable": "tracked_type_",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageObjRanged_<std::allocator<void>>::type",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "image_objects_msg",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::detect_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:312:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::x",
+                      "unqualified_variable": "x",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:313:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::y",
+                      "unqualified_variable": "y",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:314:9, col:40>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::width",
+                      "unqualified_variable": "width",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:315:9, col:41>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::height",
+                      "unqualified_variable": "height",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:317:9, col:24>",
+                      "kind": "assignment",
+                      "variable": "ObjectDetection::rect",
+                      "unqualified_variable": "rect",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "tmp",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:318:9, col:25>",
+                      "kind": "assignment",
+                      "variable": "ObjectDetection::score",
+                      "unqualified_variable": "score",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:324:7, col:23>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::detect_ready_",
+                      "unqualified_variable": "detect_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::detect_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:305:7, col:41>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::tracked_type_",
+                      "unqualified_variable": "tracked_type_",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageObjRanged_<std::allocator<void>>::type",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "variable-reference",
+                          "qualified_name": "image_objects_msg",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::detect_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:312:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::x",
+                      "unqualified_variable": "x",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:313:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::y",
+                      "unqualified_variable": "y",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:314:9, col:40>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::width",
+                      "unqualified_variable": "width",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:315:9, col:41>",
+                      "kind": "assignment",
+                      "variable": "cv::Rect_<int>::height",
+                      "unqualified_variable": "height",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::rect",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "unknown"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:317:9, col:24>",
+                      "kind": "assignment",
+                      "variable": "ObjectDetection::rect",
+                      "unqualified_variable": "rect",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "tmp",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:318:9, col:25>",
+                      "kind": "assignment",
+                      "variable": "ObjectDetection::score",
+                      "unqualified_variable": "score",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "num",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:324:7, col:23>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::detect_ready_",
+                      "unqualified_variable": "detect_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::detect_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:327:5, col:25>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::publish_if_possible",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:408:3, col:30>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "klt"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:412:3, col:11>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:408:3, col:30>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "klt"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:412:3, col:11>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::Run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSTrackerApp::image_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:168:5, col:47>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::rect",
+                "unqualified_variable": "rect",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:169:5, col:29>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:176:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:196:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:208:11, col:27>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::num_trackers_",
+                "unqualified_variable": "num_trackers_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "i",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      },
+                      "rhs": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": ">",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::num_trackers_",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 10
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:222:10, col:35>",
+                "kind": "assignment",
+                "variable": "it",
+                "unqualified_variable": "it",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:224:9, col:36>",
+                "kind": "assignment",
+                "variable": "it",
+                "unqualified_variable": "it",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "it",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<=",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:240:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:243:7, col:64>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:244:7, col:64>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::y",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:245:7, col:68>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::width",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:246:7, col:69>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::height",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:247:7, col:63>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ObjectDetection::score",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:248:7, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::max_height",
+                "unqualified_variable": "max_height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::max_height_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:249:7, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::min_height",
+                "unqualified_variable": "min_height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::min_height_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:250:7, col:39>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                "unqualified_variable": "range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::range_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:270:5, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ROSTrackerApp::tracked_type_",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:271:5, col:33>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::total_num",
+                "unqualified_variable": "total_num",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "num",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:281:5, col:43>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "image_source",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:283:5, col:24>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::ros_objects_msg_",
+                "unqualified_variable": "ros_objects_msg_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "tmp_objects_msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:290:5, col:20>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::track_ready_",
+                "unqualified_variable": "track_ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:293:5, col:25>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::publish_if_possible",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:168:5, col:47>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::rect",
+                "unqualified_variable": "rect",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:169:5, col:29>",
+                "kind": "assignment",
+                "variable": "ObjectDetection::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:176:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:185:9, line:191:9>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:196:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:204:7, line:215:7>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:207:9, line:208:27>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:208:11, col:27>",
+                            "kind": "assignment",
+                            "variable": "ROSTrackerApp::num_trackers_",
+                            "unqualified_variable": "num_trackers_",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "i",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "ROSTrackerApp::num_trackers_",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 10
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:208:11, col:27>",
+                            "kind": "assignment",
+                            "variable": "ROSTrackerApp::num_trackers_",
+                            "unqualified_variable": "num_trackers_",
+                            "value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "i",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "int-literal",
+                                      "literal": 0
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "unknown"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "negate-expr",
+                                  "subExpr": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": ">",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "ROSTrackerApp::num_trackers_",
+                                  "type": "integer",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "int-literal",
+                                  "literal": 10
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:222:10, col:35>",
+                "kind": "assignment",
+                "variable": "it",
+                "unqualified_variable": "it",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:223:7, line:227:11>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:224:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "it",
+                      "unqualified_variable": "it",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "it",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<=",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:224:9, col:36>",
+                      "kind": "assignment",
+                      "variable": "it",
+                      "unqualified_variable": "it",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "it",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "<=",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:240:10, col:14>",
+                "kind": "assignment",
+                "variable": "i",
+                "unqualified_variable": "i",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:243:7, col:64>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::x",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:244:7, col:64>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::y",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:245:7, col:68>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::width",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:246:7, col:69>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "cv::Rect_<int>::height",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ObjectDetection::rect",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:247:7, col:63>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRect_<std::allocator<void>>::score",
+                "unqualified_variable": "score",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ObjectDetection::score",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:248:7, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::max_height",
+                "unqualified_variable": "max_height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::max_height_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:249:7, col:44>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::min_height",
+                "unqualified_variable": "min_height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::min_height_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:250:7, col:39>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageRectRanged_<std::allocator<void>>::range",
+                "unqualified_variable": "range",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "LkTracker::range_",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "tracker_tmp",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "i",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "num",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:256:7, line:257:24>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:270:5, col:28>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "ROSTrackerApp::tracked_type_",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:271:5, col:33>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::total_num",
+                "unqualified_variable": "total_num",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "num",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:281:5, col:43>",
+                "kind": "assignment",
+                "variable": "autoware_msgs::ImageObjTracked_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::Image_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "image_source",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:283:5, col:24>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::ros_objects_msg_",
+                "unqualified_variable": "ros_objects_msg_",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "tmp_objects_msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:290:5, col:20>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::track_ready_",
+                "unqualified_variable": "track_ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:293:5, col:25>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::publish_if_possible",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSTrackerApp::Run",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:362:9, col:75>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_node"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:367:7, col:29>",
+                "kind": "assignment",
+                "variable": "image_raw_topic_str",
+                "unqualified_variable": "image_raw_topic_str",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/image_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:369:9, line:371:57>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "concatenate",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "string-literal",
+                        "literal": "/img_obj_node"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:376:7, col:29>",
+                "kind": "assignment",
+                "variable": "image_obj_topic_str",
+                "unqualified_variable": "image_obj_topic_str",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_obj_ranged"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:379:5, line:381:35>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::publisher_tracked_objects_",
+                "unqualified_variable": "publisher_tracked_objects_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_obj_tracked"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:380:9, line:381:35>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_tracked"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjTracked",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:380:9, line:381:35>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:5, line:386:69>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:29, line:386:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROSTrackerApp::image_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:29, line:386:69>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::image_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:5, line:388:74>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::subscriber_image_obj_",
+                "unqualified_variable": "subscriber_image_obj_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:29, line:388:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "ROSTrackerApp::detections_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:29, line:388:74>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::detections_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:391:5, col:54>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:362:5, line:368:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:367:7, col:29>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:367:7, col:29>",
+                      "kind": "assignment",
+                      "variable": "image_raw_topic_str",
+                      "unqualified_variable": "image_raw_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:369:5, line:377:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:376:7, col:29>",
+                      "kind": "assignment",
+                      "variable": "image_obj_topic_str",
+                      "unqualified_variable": "image_obj_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:376:7, col:29>",
+                      "kind": "assignment",
+                      "variable": "image_obj_topic_str",
+                      "unqualified_variable": "image_obj_topic_str",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "image_obj_ranged"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:379:5, line:381:35>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::publisher_tracked_objects_",
+                "unqualified_variable": "publisher_tracked_objects_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "image_obj_tracked"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:380:9, line:381:35>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "image_obj_tracked"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjTracked",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:380:9, line:381:35>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:5, line:386:69>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::subscriber_image_raw_",
+                "unqualified_variable": "subscriber_image_raw_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:29, line:386:69>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "ROSTrackerApp::image_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:385:29, line:386:69>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::image_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:5, line:388:74>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::subscriber_image_obj_",
+                "unqualified_variable": "subscriber_image_obj_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:29, line:388:74>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ImageObjRanged",
+                "callback-name": "ROSTrackerApp::detections_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:387:29, line:388:74>",
+                "kind": "call",
+                "callee": "ROSTrackerApp::detections_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:391:5, col:54>",
+                "kind": "assignment",
+                "variable": "config_topic",
+                "unqualified_variable": "config_topic",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ROSTrackerApp::publish_if_possible",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:155:7, col:58>",
+                "kind": "publish",
+                "publisher": "publisher_tracked_objects_",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ROSTrackerApp::track_ready_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::track_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:156:7, col:22>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::track_ready_",
+                "unqualified_variable": "track_ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ROSTrackerApp::track_ready_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::track_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:157:7, col:23>",
+                "kind": "assignment",
+                "variable": "ROSTrackerApp::detect_ready_",
+                "unqualified_variable": "detect_ready_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "ROSTrackerApp::track_ready_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::track_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "ROSTrackerApp::detect_ready_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:154:5, line:158:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:155:7, col:58>",
+                      "kind": "publish",
+                      "publisher": "publisher_tracked_objects_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:156:7, col:22>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::track_ready_",
+                      "unqualified_variable": "track_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:157:7, col:23>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::detect_ready_",
+                      "unqualified_variable": "detect_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:155:7, col:58>",
+                      "kind": "publish",
+                      "publisher": "publisher_tracked_objects_",
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:156:7, col:22>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::track_ready_",
+                      "unqualified_variable": "track_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/vision_tracker/packages/vision_klt_track/nodes/vision_klt_track/vision_klt_track.cpp:157:7, col:23>",
+                      "kind": "assignment",
+                      "variable": "ROSTrackerApp::detect_ready_",
+                      "unqualified_variable": "detect_ready_",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "ROSTrackerApp::track_ready_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::track_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "ROSTrackerApp::detect_ready_",
+                            "type": "bool",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

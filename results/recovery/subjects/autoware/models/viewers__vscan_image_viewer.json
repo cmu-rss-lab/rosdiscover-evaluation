@@ -1,0 +1,413 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "vscan_image_viewer",
+  "package": {
+    "name": "viewers",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "points_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:93:2, col:15>",
+                "kind": "assignment",
+                "variable": "points_msg",
+                "unqualified_variable": "points_msg",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:94:2, col:16>",
+                "kind": "assignment",
+                "variable": "existPoints",
+                "unqualified_variable": "existPoints",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:93:2, col:15>",
+                "kind": "assignment",
+                "variable": "points_msg",
+                "unqualified_variable": "points_msg",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:94:2, col:16>",
+                "kind": "assignment",
+                "variable": "existPoints",
+                "unqualified_variable": "existPoints",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:104:2, col:44>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "vscan_image_viewer"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:109:6, col:61>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "image_raw_topic"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:113:3, col:22>",
+                "kind": "assignment",
+                "variable": "image_topic_name",
+                "unqualified_variable": "image_topic_name",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/image_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:116:30, col:71>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "image_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:116:30, col:71>",
+                "kind": "call",
+                "callee": "image_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:118:31, col:70>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "vscan_image"
+                  }
+                },
+                "format": "autoware_msgs/PointsImage",
+                "callback-name": "points_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:118:31, col:70>",
+                "kind": "call",
+                "callee": "points_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:104:2, col:44>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "vscan_image_viewer"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:109:2, line:114:2>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:113:3, col:22>",
+                      "kind": "assignment",
+                      "variable": "image_topic_name",
+                      "unqualified_variable": "image_topic_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:113:3, col:22>",
+                      "kind": "assignment",
+                      "variable": "image_topic_name",
+                      "unqualified_variable": "image_topic_name",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/image_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:116:30, col:71>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/Image",
+                "callback-name": "image_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:116:30, col:71>",
+                "kind": "call",
+                "callee": "image_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:118:31, col:70>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "vscan_image"
+                  }
+                },
+                "format": "autoware_msgs/PointsImage",
+                "callback-name": "points_cb"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:118:31, col:70>",
+                "kind": "call",
+                "callee": "points_cb",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "image_cb",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:86:2, col:14>",
+                "kind": "assignment",
+                "variable": "image_msg",
+                "unqualified_variable": "image_msg",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:87:2, col:15>",
+                "kind": "assignment",
+                "variable": "existImage",
+                "unqualified_variable": "existImage",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:86:2, col:14>",
+                "kind": "assignment",
+                "variable": "image_msg",
+                "unqualified_variable": "image_msg",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "msg",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/detection/visualizers/packages/viewers/nodes/vscan_image_viewer/vscan_image_viewer.cpp:87:2, col:15>",
+                "kind": "assignment",
+                "variable": "existImage",
+                "unqualified_variable": "existImage",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

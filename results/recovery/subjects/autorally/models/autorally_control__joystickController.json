@@ -1,0 +1,2412 @@
+{
+  "image": {
+    "sha256": "3764f817a92665e0d7415b1967e8d7170c9d1e903ed3751a8f40a8d7e36fd0dc"
+  },
+  "node-name": "joystickController",
+  "package": {
+    "name": "autorally_control",
+    "path": "/ros_ws/src/autorally/autorally_control"
+  },
+  "sources": [
+    "/ros_ws/src/autorally/autorally_control/./src/joystick/joystickControlMain.cpp",
+    "/ros_ws/src/autorally/autorally_control/./src/joystick/JoystickControl.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/joystickControlMain.cpp:40:3, col:45>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "joystickController"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/joystickControlMain.cpp:42:19>",
+                "kind": "call",
+                "callee": "JoystickControl::JoystickControl",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/joystickControlMain.cpp:40:3, col:45>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "joystickController"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/joystickControlMain.cpp:42:19>",
+                "kind": "call",
+                "callee": "JoystickControl::JoystickControl",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "JoystickControl::runstopCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:150:3, col:42>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:151:3, col:31>",
+                "kind": "publish",
+                "publisher": "runstopPub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:150:3, col:42>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:151:3, col:31>",
+                "kind": "publish",
+                "publisher": "runstopPub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "JoystickControl::JoystickControl",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:3, col:73>",
+                "kind": "assignment",
+                "variable": "JoystickControl::m_joySub",
+                "unqualified_variable": "m_joySub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:14, col:73>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joy"
+                  }
+                },
+                "format": "sensor_msgs/Joy",
+                "callback-name": "JoystickControl::joyCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:14, col:73>",
+                "kind": "call",
+                "callee": "JoystickControl::joyCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:3, line:49:31>",
+                "kind": "assignment",
+                "variable": "JoystickControl::runstopPub_",
+                "unqualified_variable": "runstopPub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "runstop"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:17, line:49:31>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "runstop"
+                  }
+                },
+                "format": "autorally_msgs/runstop",
+                "source_location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:17, line:49:31>"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:3, line:53:47>",
+                "kind": "assignment",
+                "variable": "JoystickControl::commandPub_",
+                "unqualified_variable": "commandPub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick/chassisCommand"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:17, line:53:47>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joystick/chassisCommand"
+                  }
+                },
+                "format": "autorally_msgs/chassisCommand",
+                "source_location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:17, line:53:47>"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:55:3, col:21>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::runstop_<std::allocator<void>>::sender",
+                "unqualified_variable": "sender",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:56:3, col:28>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                "unqualified_variable": "motionEnabled",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:59:7, col:74>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/throttleDamping"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:60:7, col:74>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/steeringDamping"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:61:7, col:68>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/throttleAxis"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:62:7, col:68>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/steeringAxis"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:63:7, col:84>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/throttleEnableButton"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:64:7, col:84>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/steeringEnableButton"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:65:7, col:62>",
+                "kind": "assignment",
+                "variable": "v6",
+                "unqualified_variable": "v6",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/brakeAxis"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:71:3, col:60>",
+                "kind": "assignment",
+                "variable": "v7",
+                "unqualified_variable": "v7",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/runstopToggleButtons"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:3, line:79:40>",
+                "kind": "assignment",
+                "variable": "JoystickControl::runstopTimer_",
+                "unqualified_variable": "runstopTimer_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:19, line:79:40>",
+                "kind": "createtimer",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 5.0
+                },
+                "callback-name": "JoystickControl::runstopCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:19, line:79:40>",
+                "kind": "call",
+                "callee": "JoystickControl::runstopCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:3, col:73>",
+                "kind": "assignment",
+                "variable": "JoystickControl::m_joySub",
+                "unqualified_variable": "m_joySub",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:14, col:73>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joy"
+                  }
+                },
+                "format": "sensor_msgs/Joy",
+                "callback-name": "JoystickControl::joyCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:45:14, col:73>",
+                "kind": "call",
+                "callee": "JoystickControl::joyCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:3, line:49:31>",
+                "kind": "assignment",
+                "variable": "JoystickControl::runstopPub_",
+                "unqualified_variable": "runstopPub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "runstop"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:17, line:49:31>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "runstop"
+                  }
+                },
+                "format": "autorally_msgs/runstop",
+                "source_location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:47:17, line:49:31>"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:3, line:53:47>",
+                "kind": "assignment",
+                "variable": "JoystickControl::commandPub_",
+                "unqualified_variable": "commandPub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick/chassisCommand"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:17, line:53:47>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "joystick/chassisCommand"
+                  }
+                },
+                "format": "autorally_msgs/chassisCommand",
+                "source_location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:51:17, line:53:47>"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:55:3, col:21>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::runstop_<std::allocator<void>>::sender",
+                "unqualified_variable": "sender",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:56:3, col:28>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                "unqualified_variable": "motionEnabled",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:59:3, line:68:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:71:3, col:60>",
+                "kind": "assignment",
+                "variable": "v8",
+                "unqualified_variable": "v8",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": ""
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "joystickController/runstopToggleButtons"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:3, line:79:40>",
+                "kind": "assignment",
+                "variable": "JoystickControl::runstopTimer_",
+                "unqualified_variable": "runstopTimer_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:19, line:79:40>",
+                "kind": "createtimer",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 5.0
+                },
+                "callback-name": "JoystickControl::runstopCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:77:19, line:79:40>",
+                "kind": "call",
+                "callee": "JoystickControl::runstopCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "JoystickControl::joyCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:99:7, col:42>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                "unqualified_variable": "motionEnabled",
+                "value": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "JoystickControl::runstop_",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "!=",
+                      "lhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "__begin1",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "rhs": {
+                        "kind": "variable-reference",
+                        "qualified_name": "__end1",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:106:5, col:25>",
+                "kind": "assignment",
+                "variable": "JoystickControl::throttleEnabled_",
+                "unqualified_variable": "throttleEnabled_",
+                "value": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 1
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:112:5, col:25>",
+                "kind": "assignment",
+                "variable": "JoystickControl::steeringEnabled_",
+                "unqualified_variable": "steeringEnabled_",
+                "value": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::steeringEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 1
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "unknown"
+                      },
+                      "rhs": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:117:5, col:74>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                "unqualified_variable": "steering",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "JoystickControl::steeringEnabled_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": true
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:120:5, col:34>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                "unqualified_variable": "steering",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": -10.0
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::steeringEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:126:5, col:73>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                "unqualified_variable": "throttle",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "*",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleDamping_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "JoystickControl::throttleEnabled_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": true
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:130:7, col:67>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                "unqualified_variable": "frontBrake",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "JoystickControl::chassis_command_",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:133:7, col:37>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                "unqualified_variable": "frontBrake",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "<",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::chassis_command_",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:137:5, col:34>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                "unqualified_variable": "throttle",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": -10.0
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:138:5, col:36>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                "unqualified_variable": "frontBrake",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": -10.0
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "JoystickControl::throttleEnabled_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": true
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:141:3, col:15>",
+                "kind": "assignment",
+                "variable": "JoystickControl::prevJoy_",
+                "unqualified_variable": "prevJoy_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:142:3, col:38>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:143:3, col:29>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::sender",
+                "unqualified_variable": "sender",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:144:3, col:50>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:145:3, col:39>",
+                "kind": "publish",
+                "publisher": "commandPub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:97:5, line:100:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:99:7, col:42>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                      "unqualified_variable": "motionEnabled",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "JoystickControl::runstop_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "!=",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "__begin1",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "__end1",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:99:7, col:42>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                      "unqualified_variable": "motionEnabled",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "autorally_msgs::runstop_<std::allocator<void>>::motionEnabled",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "JoystickControl::runstop_",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "this-expr"
+                            }
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "!=",
+                            "lhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "__begin1",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            },
+                            "rhs": {
+                              "kind": "variable-reference",
+                              "qualified_name": "__end1",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:104:3, line:107:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:106:5, col:25>",
+                      "kind": "assignment",
+                      "variable": "JoystickControl::throttleEnabled_",
+                      "unqualified_variable": "throttleEnabled_",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 1
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:106:5, col:25>",
+                      "kind": "assignment",
+                      "variable": "JoystickControl::throttleEnabled_",
+                      "unqualified_variable": "throttleEnabled_",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 1
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:110:3, line:113:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:112:5, col:25>",
+                      "kind": "assignment",
+                      "variable": "JoystickControl::steeringEnabled_",
+                      "unqualified_variable": "steeringEnabled_",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::steeringEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 1
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:112:5, col:25>",
+                      "kind": "assignment",
+                      "variable": "JoystickControl::steeringEnabled_",
+                      "unqualified_variable": "steeringEnabled_",
+                      "value": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::steeringEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 1
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:115:3, line:121:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:117:5, col:74>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                      "unqualified_variable": "steering",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "JoystickControl::steeringEnabled_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:117:5, col:74>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                      "unqualified_variable": "steering",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "JoystickControl::steeringEnabled_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:120:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                      "unqualified_variable": "steering",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::steeringEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:120:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::steering",
+                      "unqualified_variable": "steering",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::steeringEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:123:3, line:139:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:126:5, col:73>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                      "unqualified_variable": "throttle",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleDamping_",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "JoystickControl::throttleEnabled_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:128:5, line:134:5>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:130:7, col:67>",
+                            "kind": "assignment",
+                            "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                            "unqualified_variable": "frontBrake",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "JoystickControl::throttleEnabled_",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": true
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "JoystickControl::chassis_command_",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:130:7, col:67>",
+                            "kind": "assignment",
+                            "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                            "unqualified_variable": "frontBrake",
+                            "value": {
+                              "kind": "unknown"
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "JoystickControl::throttleEnabled_",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": true
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "<",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "JoystickControl::chassis_command_",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "this-expr"
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:133:7, col:37>",
+                            "kind": "assignment",
+                            "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                            "unqualified_variable": "frontBrake",
+                            "value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "JoystickControl::throttleEnabled_",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": true
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "JoystickControl::chassis_command_",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "this-expr"
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:133:7, col:37>",
+                            "kind": "assignment",
+                            "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                            "unqualified_variable": "frontBrake",
+                            "value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "JoystickControl::throttleEnabled_",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": true
+                                },
+                                "base": {
+                                  "kind": "this-expr"
+                                }
+                              },
+                              "rhs": {
+                                "kind": "negate-expr",
+                                "subExpr": {
+                                  "kind": "binary-expr",
+                                  "operator": "<",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "JoystickControl::chassis_command_",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "this-expr"
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:126:5, col:73>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                      "unqualified_variable": "throttle",
+                      "value": {
+                        "kind": "binary-expr",
+                        "operator": "*",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleDamping_",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "JoystickControl::throttleEnabled_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": true
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:137:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                      "unqualified_variable": "throttle",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:138:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                      "unqualified_variable": "frontBrake",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:137:5, col:34>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::throttle",
+                      "unqualified_variable": "throttle",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:138:5, col:36>",
+                      "kind": "assignment",
+                      "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::frontBrake",
+                      "unqualified_variable": "frontBrake",
+                      "value": {
+                        "kind": "float-literal",
+                        "literal": -10.0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "JoystickControl::throttleEnabled_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": true
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:141:3, col:15>",
+                "kind": "assignment",
+                "variable": "JoystickControl::prevJoy_",
+                "unqualified_variable": "prevJoy_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:142:3, col:38>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:143:3, col:29>",
+                "kind": "assignment",
+                "variable": "autorally_msgs::chassisCommand_<std::allocator<void>>::sender",
+                "unqualified_variable": "sender",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "joystick"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:144:3, col:50>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/autorally/autorally_control/src/joystick/JoystickControl.cpp:145:3, col:39>",
+                "kind": "publish",
+                "publisher": "commandPub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

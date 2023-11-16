@@ -1,0 +1,966 @@
+{
+  "image": {
+    "sha256": "b44a68ec6b77be4a6b184926233398821502330d02ca391cc08a48ba09dedc0f"
+  },
+  "node-name": "moveit_ompl_planner",
+  "package": {
+    "name": "moveit_planners_ompl",
+    "path": "/ros_ws/src/moveit/moveit_planners_ompl"
+  },
+  "sources": [
+    "/ros_ws/src/moveit/moveit_planners_ompl/./ompl_interface/src/ompl_planner.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "OMPLPlannerService::displaySolution",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:98:5, col:68>",
+                "kind": "assignment",
+                "variable": "moveit_msgs::DisplayTrajectory_<std::allocator<void>>::model_id",
+                "unqualified_variable": "model_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:99:5, col:36>",
+                "kind": "assignment",
+                "variable": "moveit_msgs::DisplayTrajectory_<std::allocator<void>>::trajectory_start",
+                "unqualified_variable": "trajectory_start",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "moveit_msgs::MotionPlanResponse_<std::allocator<void>>::trajectory_start",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "mplan_res",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:101:5, col:24>",
+                "kind": "publish",
+                "publisher": "pub_plan_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:98:5, col:68>",
+                "kind": "assignment",
+                "variable": "moveit_msgs::DisplayTrajectory_<std::allocator<void>>::model_id",
+                "unqualified_variable": "model_id",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:99:5, col:36>",
+                "kind": "assignment",
+                "variable": "moveit_msgs::DisplayTrajectory_<std::allocator<void>>::trajectory_start",
+                "unqualified_variable": "trajectory_start",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "moveit_msgs::MotionPlanResponse_<std::allocator<void>>::trajectory_start",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "mplan_res",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:101:5, col:24>",
+                "kind": "publish",
+                "publisher": "pub_plan_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:125:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "ompl_planning"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:130:7, col:15>",
+                "kind": "assignment",
+                "variable": "debug",
+                "unqualified_variable": "debug",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "<",
+                    "lhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "i",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      }
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "argc",
+                      "type": "integer",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "==",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "int-literal",
+                      "literal": 0
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:146:24, col:43>",
+                "kind": "call",
+                "callee": "OMPLPlannerService::OMPLPlannerService",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "unknown"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:125:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "ompl_planning"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:129:5, line:130:15>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:130:7, col:15>",
+                      "kind": "assignment",
+                      "variable": "debug",
+                      "unqualified_variable": "debug",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "argc",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:130:7, col:15>",
+                      "kind": "assignment",
+                      "variable": "debug",
+                      "unqualified_variable": "debug",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "<",
+                          "lhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "i",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 1
+                            }
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "argc",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:140:3, line:151:5 <Spelling=/ros_ws/src/rosconsole/include/ros/console.h:389:16>>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:146:24, col:43>",
+                      "kind": "call",
+                      "callee": "OMPLPlannerService::OMPLPlannerService",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "unknown"
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:146:24, col:43>",
+                      "kind": "call",
+                      "callee": "OMPLPlannerService::OMPLPlannerService",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "unknown"
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "OMPLPlannerService::computePlan",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:71:7, col:51>",
+                "kind": "publish",
+                "publisher": "pub_request_",
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "OMPLPlannerService::debug_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:88:9, col:49>",
+                "kind": "call",
+                "callee": "OMPLPlannerService::displaySolution",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "OMPLPlannerService::debug_",
+                      "type": "bool",
+                      "initial-value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "result",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:70:5, line:71:51>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:71:7, col:51>",
+                      "kind": "publish",
+                      "publisher": "pub_request_",
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:71:7, col:51>",
+                      "kind": "publish",
+                      "publisher": "pub_request_",
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:85:5, line:91:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:87:7, line:88:49>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:88:9, col:49>",
+                            "kind": "call",
+                            "callee": "OMPLPlannerService::displaySolution",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "OMPLPlannerService::debug_",
+                                  "type": "bool",
+                                  "initial-value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "result",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": false
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:88:9, col:49>",
+                            "kind": "call",
+                            "callee": "OMPLPlannerService::displaySolution",
+                            "arguments": {},
+                            "path_condition": {
+                              "kind": "binary-expr",
+                              "operator": "&&",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "&&",
+                                "lhs": {
+                                  "kind": "unknown"
+                                },
+                                "rhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "OMPLPlannerService::debug_",
+                                  "type": "bool",
+                                  "initial-value": {
+                                    "kind": "bool-literal",
+                                    "literal": false
+                                  },
+                                  "base": {
+                                    "kind": "this-expr"
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "variable-reference",
+                                "qualified_name": "result",
+                                "type": "bool",
+                                "initial-value": {
+                                  "kind": "bool-literal",
+                                  "literal": false
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "OMPLPlannerService::OMPLPlannerService",
+          "parameters": [
+            {
+              "index": 1,
+              "name": "debug",
+              "type": "bool"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:5, col:102>",
+                "kind": "assignment",
+                "variable": "OMPLPlannerService::plan_service_",
+                "unqualified_variable": "plan_service_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:21, col:102>",
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "plan_kinematic_path"
+                  }
+                },
+                "format": "moveit_msgs/GetMotionPlan",
+                "callback-name": "OMPLPlannerService::computePlan"
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:21, col:102>",
+                "kind": "call",
+                "callee": "OMPLPlannerService::computePlan",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:7, col:91>",
+                "kind": "assignment",
+                "variable": "OMPLPlannerService::pub_plan_",
+                "unqualified_variable": "pub_plan_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "display_motion_plan"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "OMPLPlannerService::debug_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "display_motion_plan"
+                  }
+                },
+                "format": "moveit_msgs/DisplayTrajectory",
+                "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>"
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:7, col:94>",
+                "kind": "assignment",
+                "variable": "OMPLPlannerService::pub_request_",
+                "unqualified_variable": "pub_request_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "motion_plan_request"
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "OMPLPlannerService::debug_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "motion_plan_request"
+                  }
+                },
+                "format": "moveit_msgs/MotionPlanRequest",
+                "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>"
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:5, col:102>",
+                "kind": "assignment",
+                "variable": "OMPLPlannerService::plan_service_",
+                "unqualified_variable": "plan_service_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:21, col:102>",
+                "kind": "provides-service",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": "~"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "plan_kinematic_path"
+                  }
+                },
+                "format": "moveit_msgs/GetMotionPlan",
+                "callback-name": "OMPLPlannerService::computePlan"
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:59:21, col:102>",
+                "kind": "call",
+                "callee": "OMPLPlannerService::computePlan",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:60:5, line:64:5>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:7, col:91>",
+                      "kind": "assignment",
+                      "variable": "OMPLPlannerService::pub_plan_",
+                      "unqualified_variable": "pub_plan_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "display_motion_plan"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": "~"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "display_motion_plan"
+                        }
+                      },
+                      "format": "moveit_msgs/DisplayTrajectory",
+                      "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>"
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:7, col:94>",
+                      "kind": "assignment",
+                      "variable": "OMPLPlannerService::pub_request_",
+                      "unqualified_variable": "pub_request_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "motion_plan_request"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": "~"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "motion_plan_request"
+                        }
+                      },
+                      "format": "moveit_msgs/MotionPlanRequest",
+                      "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>"
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:7, col:91>",
+                      "kind": "assignment",
+                      "variable": "OMPLPlannerService::pub_plan_",
+                      "unqualified_variable": "pub_plan_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "display_motion_plan"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": "~"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "display_motion_plan"
+                        }
+                      },
+                      "format": "moveit_msgs/DisplayTrajectory",
+                      "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:62:19, col:91>"
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:7, col:94>",
+                      "kind": "assignment",
+                      "variable": "OMPLPlannerService::pub_request_",
+                      "unqualified_variable": "pub_request_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "motion_plan_request"
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "OMPLPlannerService::debug_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": "~"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "motion_plan_request"
+                        }
+                      },
+                      "format": "moveit_msgs/MotionPlanRequest",
+                      "source_location": "</ros_ws/src/moveit/moveit_planners_ompl/ompl_interface/src/ompl_planner.cpp:63:22, col:94>"
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

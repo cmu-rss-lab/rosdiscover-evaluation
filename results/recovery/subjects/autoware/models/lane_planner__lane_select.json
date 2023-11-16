@@ -1,0 +1,2377 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "lane_select",
+  "package": {
+    "name": "lane_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/hermite_curve.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "lane_planner::LaneSelectNode::publishLane",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:596:3, col:21>",
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:596:3, col:21>",
+                "kind": "publish",
+                "publisher": "pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::initForROS",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:3, col:99>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub1_",
+                "unqualified_variable": "sub1_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:11, col:99>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromLaneArray"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:11, col:99>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:3, col:90>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub2_",
+                "unqualified_variable": "sub2_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:11, col:90>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromPoseStamped"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:11, col:90>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:3, col:95>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub3_",
+                "unqualified_variable": "sub3_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:11, col:95>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromTwistStamped"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:11, col:95>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:3, col:77>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub4_",
+                "unqualified_variable": "sub4_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:11, col:77>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "state"
+                  }
+                },
+                "format": "std_msgs/String",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromState"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:11, col:77>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromState",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:3, col:92>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub5_",
+                "unqualified_variable": "sub5_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:11, col:92>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_select"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneSelect",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromConfig"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:11, col:92>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:3, col:94>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub6_",
+                "unqualified_variable": "sub6_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:11, col:94>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/decisionmaker/states"
+                  }
+                },
+                "format": "autoware_msgs/State",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromStates"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:11, col:94>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromStates",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:58:3, col:90>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "enablePlannerDynamicSwitch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:3, col:65>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub1_",
+                "unqualified_variable": "pub1_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "base_waypoints"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:11, col:65>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "base_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:11, col:65>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:5, col:72>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub2_",
+                "unqualified_variable": "pub2_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/astar/closest_waypoint"
+                },
+                "path_condition": {
+                  "kind": "variable-reference",
+                  "qualified_name": "enablePlannerDynamicSwitch",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/astar/closest_waypoint"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:5, col:65>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub2_",
+                "unqualified_variable": "pub2_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "closest_waypoint"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "variable-reference",
+                    "qualified_name": "enablePlannerDynamicSwitch",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "closest_waypoint"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:3, col:58>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub3_",
+                "unqualified_variable": "pub3_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "change_flag"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:11, col:58>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "change_flag"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:11, col:58>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:3, col:62>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub4_",
+                "unqualified_variable": "pub4_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/current_lane_id"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:11, col:62>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_lane_id"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:11, col:62>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:3, col:85>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::vis_pub1_",
+                "unqualified_variable": "vis_pub1_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "lane_select_marker"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:15, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_select_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:15, col:85>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:78:3, col:85>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "lane_change_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:79:3, col:83>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "distance_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:3, col:99>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub1_",
+                "unqualified_variable": "sub1_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:11, col:99>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "traffic_waypoints_array"
+                  }
+                },
+                "format": "autoware_msgs/LaneArray",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromLaneArray"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:50:11, col:99>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:3, col:90>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub2_",
+                "unqualified_variable": "sub2_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:11, col:90>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromPoseStamped"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:51:11, col:90>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:3, col:95>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub3_",
+                "unqualified_variable": "sub3_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:11, col:95>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "current_velocity"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromTwistStamped"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:52:11, col:95>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:3, col:77>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub4_",
+                "unqualified_variable": "sub4_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:11, col:77>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "state"
+                  }
+                },
+                "format": "std_msgs/String",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromState"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:53:11, col:77>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromState",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:3, col:92>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub5_",
+                "unqualified_variable": "sub5_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:11, col:92>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/config/lane_select"
+                  }
+                },
+                "format": "autoware_config_msgs/ConfigLaneSelect",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromConfig"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:54:11, col:92>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromConfig",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:3, col:94>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::sub6_",
+                "unqualified_variable": "sub6_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:11, col:94>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/decisionmaker/states"
+                  }
+                },
+                "format": "autoware_msgs/State",
+                "callback-name": "lane_planner::LaneSelectNode::callbackFromStates"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:55:11, col:94>",
+                "kind": "call",
+                "callee": "lane_planner::LaneSelectNode::callbackFromStates",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:58:3, col:90>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "enablePlannerDynamicSwitch"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:3, col:65>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub1_",
+                "unqualified_variable": "pub1_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "base_waypoints"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:11, col:65>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "base_waypoints"
+                  }
+                },
+                "format": "autoware_msgs/Lane",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:61:11, col:65>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:63:3, line:70:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:5, col:72>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::pub2_",
+                      "unqualified_variable": "pub2_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/astar/closest_waypoint"
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "enablePlannerDynamicSwitch",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/astar/closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>"
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:5, col:72>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::pub2_",
+                      "unqualified_variable": "pub2_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/astar/closest_waypoint"
+                      },
+                      "path_condition": {
+                        "kind": "variable-reference",
+                        "qualified_name": "enablePlannerDynamicSwitch",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/astar/closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:65:13, col:72>"
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:5, col:65>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::pub2_",
+                      "unqualified_variable": "pub2_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "closest_waypoint"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enablePlannerDynamicSwitch",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>"
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:5, col:65>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::pub2_",
+                      "unqualified_variable": "pub2_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "closest_waypoint"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "variable-reference",
+                          "qualified_name": "enablePlannerDynamicSwitch",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>",
+                      "kind": "publishes-to",
+                      "name": {
+                        "kind": "concatenate",
+                        "lhs": {
+                          "kind": "node-handle",
+                          "namespace": {
+                            "kind": "string-literal",
+                            "literal": ""
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "closest_waypoint"
+                        }
+                      },
+                      "format": "std_msgs/Int32",
+                      "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:69:13, col:65>"
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:3, col:58>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub3_",
+                "unqualified_variable": "pub3_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "change_flag"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:11, col:58>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "change_flag"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:72:11, col:58>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:3, col:62>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::pub4_",
+                "unqualified_variable": "pub4_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/current_lane_id"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:11, col:62>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/current_lane_id"
+                  }
+                },
+                "format": "std_msgs/Int32",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:73:11, col:62>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:3, col:85>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::vis_pub1_",
+                "unqualified_variable": "vis_pub1_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "lane_select_marker"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:15, col:85>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "lane_select_marker"
+                  }
+                },
+                "format": "visualization_msgs/MarkerArray",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:75:15, col:85>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:78:3, col:85>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "lane_change_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:79:3, col:83>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "distance_threshold"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromStates",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:677:3, col:34>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_state_subscribed_",
+                "unqualified_variable": "is_current_state_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:681:5, col:47>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_state_",
+                "unqualified_variable": "current_state_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "LANE_CHANGE"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "unknown"
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:686:5, col:27>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_state_",
+                "unqualified_variable": "current_state_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::State_<std::allocator<void>>::main_state",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "binary-expr",
+                    "operator": "!=",
+                    "lhs": {
+                      "kind": "unknown"
+                    },
+                    "rhs": {
+                      "kind": "variable-reference",
+                      "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:677:3, col:34>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_state_subscribed_",
+                "unqualified_variable": "is_current_state_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:679:3, line:687:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:681:5, col:47>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::current_state_",
+                      "unqualified_variable": "current_state_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "LANE_CHANGE"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:681:5, col:47>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::current_state_",
+                      "unqualified_variable": "current_state_",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "LANE_CHANGE"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "unknown"
+                        },
+                        "rhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:686:5, col:27>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::current_state_",
+                      "unqualified_variable": "current_state_",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::State_<std::allocator<void>>::main_state",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:686:5, col:27>",
+                      "kind": "assignment",
+                      "variable": "lane_planner::LaneSelectNode::current_state_",
+                      "unqualified_variable": "current_state_",
+                      "value": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "autoware_msgs::State_<std::allocator<void>>::main_state",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "!=",
+                          "lhs": {
+                            "kind": "unknown"
+                          },
+                          "rhs": {
+                            "kind": "variable-reference",
+                            "qualified_name": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::npos",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromState",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:667:3, col:25>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_state_",
+                "unqualified_variable": "current_state_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::String_<std::allocator<void>>::data",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:668:3, col:34>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_state_subscribed_",
+                "unqualified_variable": "is_current_state_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:667:3, col:25>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_state_",
+                "unqualified_variable": "current_state_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::String_<std::allocator<void>>::data",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:668:3, col:34>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_state_subscribed_",
+                "unqualified_variable": "is_current_state_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromConfig",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:697:3, col:30>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::distance_threshold_",
+                "unqualified_variable": "distance_threshold_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::distance_threshold_neighbor_lanes",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:698:3, col:32>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_interval_",
+                "unqualified_variable": "lane_change_interval_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_interval",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:699:3, col:36>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_target_ratio_",
+                "unqualified_variable": "lane_change_target_ratio_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_target_ratio",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:700:3, col:38>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_target_minimum_",
+                "unqualified_variable": "lane_change_target_minimum_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_target_minimum",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:701:3, col:33>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::vlength_hermite_curve_",
+                "unqualified_variable": "vlength_hermite_curve_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::vector_length_hermite_curve",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:702:3, col:27>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_config_subscribed_",
+                "unqualified_variable": "is_config_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:697:3, col:30>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::distance_threshold_",
+                "unqualified_variable": "distance_threshold_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::distance_threshold_neighbor_lanes",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:698:3, col:32>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_interval_",
+                "unqualified_variable": "lane_change_interval_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_interval",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:699:3, col:36>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_target_ratio_",
+                "unqualified_variable": "lane_change_target_ratio_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_target_ratio",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:700:3, col:38>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::lane_change_target_minimum_",
+                "unqualified_variable": "lane_change_target_minimum_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::lane_change_target_minimum",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:701:3, col:33>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::vlength_hermite_curve_",
+                "unqualified_variable": "vlength_hermite_curve_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_config_msgs::ConfigLaneSelect_<std::allocator<void>>::vector_length_hermite_curve",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:702:3, col:27>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_config_subscribed_",
+                "unqualified_variable": "is_config_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishClosestWaypoint",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:610:3, col:27>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "clst_wp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:611:3, col:33>",
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:610:3, col:27>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "clst_wp",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:611:3, col:33>",
+                "kind": "publish",
+                "publisher": "pub2_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishChangeFlag",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:617:3, col:40>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:618:3, col:28>",
+                "kind": "publish",
+                "publisher": "pub3_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:617:3, col:40>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:618:3, col:28>",
+                "kind": "publish",
+                "publisher": "pub3_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishVisualizer",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:590:3, col:33>",
+                "kind": "publish",
+                "publisher": "vis_pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:590:3, col:33>",
+                "kind": "publish",
+                "publisher": "vis_pub1_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromLaneArray",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:632:3, col:24>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_lane_idx_",
+                "unqualified_variable": "current_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:633:3, col:22>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::right_lane_idx_",
+                "unqualified_variable": "right_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:634:3, col:21>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::left_lane_idx_",
+                "unqualified_variable": "left_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:635:3, col:31>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_lane_array_subscribed_",
+                "unqualified_variable": "is_lane_array_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:632:3, col:24>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_lane_idx_",
+                "unqualified_variable": "current_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:633:3, col:22>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::right_lane_idx_",
+                "unqualified_variable": "right_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:634:3, col:21>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::left_lane_idx_",
+                "unqualified_variable": "left_lane_idx_",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": -1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:635:3, col:31>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_lane_array_subscribed_",
+                "unqualified_variable": "is_lane_array_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromPoseStamped",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:645:3, col:20>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_pose_",
+                "unqualified_variable": "current_pose_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:646:3, col:33>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_pose_subscribed_",
+                "unqualified_variable": "is_current_pose_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:645:3, col:20>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_pose_",
+                "unqualified_variable": "current_pose_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:646:3, col:33>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_pose_subscribed_",
+                "unqualified_variable": "is_current_pose_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::callbackFromTwistStamped",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:656:3, col:24>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_velocity_",
+                "unqualified_variable": "current_velocity_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:657:3, col:37>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_velocity_subscribed_",
+                "unqualified_variable": "is_current_velocity_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:656:3, col:24>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::current_velocity_",
+                "unqualified_variable": "current_velocity_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:657:3, col:37>",
+                "kind": "assignment",
+                "variable": "lane_planner::LaneSelectNode::is_current_velocity_subscribed_",
+                "unqualified_variable": "is_current_velocity_subscribed_",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_node.cpp:24:3, col:38>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_select"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_node.cpp:24:3, col:38>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "lane_select"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "lane_planner::LaneSelectNode::publishLaneID",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:602:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::Lane_<std::allocator<void>>::lane_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lane",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:603:3, col:20>",
+                "kind": "publish",
+                "publisher": "pub4_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:602:3, col:19>",
+                "kind": "assignment",
+                "variable": "std_msgs::Int32_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "autoware_msgs::Lane_<std::allocator<void>>::lane_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lane",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/mission/packages/lane_planner/nodes/lane_select/lane_select_core.cpp:603:3, col:20>",
+                "kind": "publish",
+                "publisher": "pub4_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

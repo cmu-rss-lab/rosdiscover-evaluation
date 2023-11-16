@@ -1,0 +1,3081 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "fix2tfpose",
+  "package": {
+    "name": "gnss_localizer",
+    "path": "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:95:3, col:37>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fix2tfpose"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:98:3, col:38>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "plane"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:3, col:78>",
+                "kind": "assignment",
+                "variable": "pose_publisher",
+                "unqualified_variable": "pose_publisher",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "gnss_pose"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:20, col:78>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "gnss_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:20, col:78>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:3, col:67>",
+                "kind": "assignment",
+                "variable": "stat_publisher",
+                "unqualified_variable": "stat_publisher",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gnss_stat"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:20, col:67>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/gnss_stat"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:20, col:67>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:101:42, col:79>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "fix"
+                  }
+                },
+                "format": "sensor_msgs/NavSatFix",
+                "callback-name": "GNSSCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:101:42, col:79>",
+                "kind": "call",
+                "callee": "GNSSCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:95:3, col:37>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "fix2tfpose"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:98:3, col:38>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "plane"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:3, col:78>",
+                "kind": "assignment",
+                "variable": "pose_publisher",
+                "unqualified_variable": "pose_publisher",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "gnss_pose"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:20, col:78>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "gnss_pose"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:99:20, col:78>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:3, col:67>",
+                "kind": "assignment",
+                "variable": "stat_publisher",
+                "unqualified_variable": "stat_publisher",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/gnss_stat"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:20, col:67>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/gnss_stat"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:100:20, col:67>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:101:42, col:79>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "fix"
+                  }
+                },
+                "format": "sensor_msgs/NavSatFix",
+                "callback-name": "GNSSCallback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:101:42, col:79>",
+                "kind": "call",
+                "callee": "GNSSCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "GNSSCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:51:3, col:22>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PoseStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::NavSatFix_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:53:3, col:26>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:54:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:55:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:56:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:61:5, col:26>",
+                "kind": "assignment",
+                "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": false
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "||",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "variable-reference",
+                                "qualified_name": "pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "||",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "binary-expr",
+                      "operator": "==",
+                      "lhs": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        },
+                        "base": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "unknown"
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "pose",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "float-literal",
+                        "literal": 0.0
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:65:5, col:26>",
+                "kind": "assignment",
+                "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                "unqualified_variable": "data",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "variable-reference",
+                                "qualified_name": "pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "variable-reference",
+                                  "qualified_name": "pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                          "type": "unsupported",
+                          "initial-value": {
+                            "kind": "float-literal",
+                            "literal": 0.0
+                          },
+                          "base": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            },
+                            "base": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              },
+                              "base": {
+                                "kind": "variable-reference",
+                                "qualified_name": "pose",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.0
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:74:5, col:117>",
+                "kind": "assignment",
+                "variable": "yaw",
+                "unqualified_variable": "yaw",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "distance",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.2
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:75:5, col:47>",
+                "kind": "assignment",
+                "variable": "_quat",
+                "unqualified_variable": "_quat",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "distance",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.2
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:76:5, col:18>",
+                "kind": "assignment",
+                "variable": "_prev_pose",
+                "unqualified_variable": "_prev_pose",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "pose",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "distance",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "float-literal",
+                    "literal": 0.2
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:79:3, col:27>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                "unqualified_variable": "orientation",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_quat",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:80:3, col:30>",
+                "kind": "publish",
+                "publisher": "pose_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:81:3, col:39>",
+                "kind": "publish",
+                "publisher": "stat_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:90:3, col:84>",
+                "kind": "publish",
+                "publisher": "tf_broadcaster",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:51:3, col:22>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::PoseStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::NavSatFix_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:53:3, col:26>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "map"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:54:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:55:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:56:3, col:32>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:59:3, line:66:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:61:5, col:26>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                      "unqualified_variable": "data",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "pose",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "pose",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:61:5, col:26>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                      "unqualified_variable": "data",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "||",
+                                "lhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "pose",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "binary-expr",
+                                  "operator": "==",
+                                  "lhs": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "float-literal",
+                                      "literal": 0.0
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "member-var-ref",
+                                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        },
+                                        "base": {
+                                          "kind": "variable-reference",
+                                          "qualified_name": "pose",
+                                          "type": "unsupported",
+                                          "initial-value": {
+                                            "kind": "unknown"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "rhs": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "&&",
+                            "lhs": {
+                              "kind": "negate-expr",
+                              "subExpr": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "binary-expr",
+                            "operator": "==",
+                            "lhs": {
+                              "kind": "member-var-ref",
+                              "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              },
+                              "base": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "unknown"
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "variable-reference",
+                                    "qualified_name": "pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "float-literal",
+                              "literal": 0.0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:65:5, col:26>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                      "unqualified_variable": "data",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:65:5, col:26>",
+                      "kind": "assignment",
+                      "variable": "std_msgs::Bool_<std::allocator<void>>::data",
+                      "unqualified_variable": "data",
+                      "value": {
+                        "kind": "bool-literal",
+                        "literal": true
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "&&",
+                          "lhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "negate-expr",
+                            "subExpr": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "binary-expr",
+                              "operator": "||",
+                              "lhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              },
+                              "rhs": {
+                                "kind": "binary-expr",
+                                "operator": "==",
+                                "lhs": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "float-literal",
+                                    "literal": 0.0
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "member-var-ref",
+                                      "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      },
+                                      "base": {
+                                        "kind": "variable-reference",
+                                        "qualified_name": "pose",
+                                        "type": "unsupported",
+                                        "initial-value": {
+                                          "kind": "unknown"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "rhs": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                }
+                              }
+                            },
+                            "rhs": {
+                              "kind": "binary-expr",
+                              "operator": "==",
+                              "lhs": {
+                                "kind": "member-var-ref",
+                                "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::z",
+                                "type": "unsupported",
+                                "initial-value": {
+                                  "kind": "float-literal",
+                                  "literal": 0.0
+                                },
+                                "base": {
+                                  "kind": "member-var-ref",
+                                  "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                                  "type": "unsupported",
+                                  "initial-value": {
+                                    "kind": "unknown"
+                                  },
+                                  "base": {
+                                    "kind": "member-var-ref",
+                                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                                    "type": "unsupported",
+                                    "initial-value": {
+                                      "kind": "unknown"
+                                    },
+                                    "base": {
+                                      "kind": "variable-reference",
+                                      "qualified_name": "pose",
+                                      "type": "unsupported",
+                                      "initial-value": {
+                                        "kind": "unknown"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "rhs": {
+                                "kind": "float-literal",
+                                "literal": 0.0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:72:3, line:77:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:74:5, col:117>",
+                      "kind": "assignment",
+                      "variable": "yaw",
+                      "unqualified_variable": "yaw",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:75:5, col:47>",
+                      "kind": "assignment",
+                      "variable": "_quat",
+                      "unqualified_variable": "_quat",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:76:5, col:18>",
+                      "kind": "assignment",
+                      "variable": "_prev_pose",
+                      "unqualified_variable": "_prev_pose",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:74:5, col:117>",
+                      "kind": "assignment",
+                      "variable": "yaw",
+                      "unqualified_variable": "yaw",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:75:5, col:47>",
+                      "kind": "assignment",
+                      "variable": "_quat",
+                      "unqualified_variable": "_quat",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:76:5, col:18>",
+                      "kind": "assignment",
+                      "variable": "_prev_pose",
+                      "unqualified_variable": "_prev_pose",
+                      "value": {
+                        "kind": "variable-reference",
+                        "qualified_name": "pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        }
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": ">",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "distance",
+                          "type": "float",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "float-literal",
+                          "literal": 0.2
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:79:3, col:27>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Pose_<std::allocator<void>>::orientation",
+                "unqualified_variable": "orientation",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "_quat",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:80:3, col:30>",
+                "kind": "publish",
+                "publisher": "pose_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:81:3, col:39>",
+                "kind": "publish",
+                "publisher": "stat_publisher",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/fix2tfpose/fix2tfpose.cpp:90:3, col:84>",
+                "kind": "publish",
+                "publisher": "tf_broadcaster",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3504 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "obstacle_sim",
+  "package": {
+    "name": "astar_planner",
+    "path": "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp",
+    "/home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim_node.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "astar_planner::ObstacleSim::initForROS",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:54:3, col:69>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_height"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:55:3, col:67>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_width"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:56:3, col:69>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "points_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:57:3, col:80>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:3, col:100>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::nav_goal_sub_",
+                "unqualified_variable": "nav_goal_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:19, col:100>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "move_base_simple/goal"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "astar_planner::ObstacleSim::callbackFromNavGoal"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:19, col:100>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::callbackFromNavGoal",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:3, col:102>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_sim_points_pub_",
+                "unqualified_variable": "obstacle_sim_points_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim_points"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:30, col:102>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obstacle_sim_points"
+                  }
+                },
+                "format": "visualization_msgs/Marker",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:30, col:102>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:3, col:108>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_sim_pointcloud_pub_",
+                "unqualified_variable": "obstacle_sim_pointcloud_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim_pointcloud"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:34, col:108>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obstacle_sim_pointcloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:34, col:108>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:3, col:97>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_marker_pub_",
+                "unqualified_variable": "obstacle_marker_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "astar_sim_obstacle"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:26, col:97>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "astar_sim_obstacle"
+                  }
+                },
+                "format": "visualization_msgs/Marker",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:26, col:97>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:54:3, col:69>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_height"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:55:3, col:67>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_width"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:56:3, col:69>",
+                "kind": "assignment",
+                "variable": "v6",
+                "unqualified_variable": "v6",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "points_interval"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:57:3, col:80>",
+                "kind": "assignment",
+                "variable": "v7",
+                "unqualified_variable": "v7",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "obstacle_frame"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:3, col:100>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::nav_goal_sub_",
+                "unqualified_variable": "nav_goal_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:19, col:100>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "move_base_simple/goal"
+                  }
+                },
+                "format": "geometry_msgs/PoseStamped",
+                "callback-name": "astar_planner::ObstacleSim::callbackFromNavGoal"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:60:19, col:100>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::callbackFromNavGoal",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:3, col:102>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_sim_points_pub_",
+                "unqualified_variable": "obstacle_sim_points_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim_points"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:30, col:102>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obstacle_sim_points"
+                  }
+                },
+                "format": "visualization_msgs/Marker",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:63:30, col:102>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:3, col:108>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_sim_pointcloud_pub_",
+                "unqualified_variable": "obstacle_sim_pointcloud_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim_pointcloud"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:34, col:108>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "obstacle_sim_pointcloud"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:64:34, col:108>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:3, col:97>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::obstacle_marker_pub_",
+                "unqualified_variable": "obstacle_marker_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "astar_sim_obstacle"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:26, col:97>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "astar_sim_obstacle"
+                  }
+                },
+                "format": "visualization_msgs/Marker",
+                "source_location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:65:26, col:97>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "astar_planner::ObstacleSim::publishPoints",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:200:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__begin1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__end1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:207:3, col:36>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "astar_planner::ObstacleSim::obstacle_frame_",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:208:3, col:43>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:210:3, col:54>",
+                "kind": "publish",
+                "publisher": "obstacle_sim_pointcloud_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:200:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::z",
+                "unqualified_variable": "z",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__begin1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "__end1",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:207:3, col:36>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "astar_planner::ObstacleSim::obstacle_frame_",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:208:3, col:43>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:210:3, col:54>",
+                "kind": "publish",
+                "publisher": "obstacle_sim_pointcloud_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "astar_planner::ObstacleSim::callbackFromNavGoal",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:70:3, col:17>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::sub_navgoal",
+                "unqualified_variable": "sub_navgoal",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:73:3, col:30>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::world_frame_",
+                "unqualified_variable": "world_frame_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:80:3, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "astar_planner::ObstacleSim::obstacle_width_",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 2.0
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:81:3, col:61>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "astar_planner::ObstacleSim::obstacle_height_",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 2.0
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:82:3, col:34>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::obstacle_width_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:83:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:84:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:85:3, col:34>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::obstacle_height_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:86:3, col:31>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_right",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:87:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lower_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:90:52, col:57>",
+                "kind": "assignment",
+                "variable": "x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::points_interval_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:93:5, col:12>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:94:5, col:23>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:95:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:96:5, col:25>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lower_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:101:51, col:56>",
+                "kind": "assignment",
+                "variable": "y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::points_interval_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:104:5, col:25>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:105:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "y",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:106:5, col:27>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_right",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:107:5, col:15>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "y",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:113:3, col:87>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::displayObstacleMarker",
+                "arguments": {
+                  "frame": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:70:3, col:17>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::sub_navgoal",
+                "unqualified_variable": "sub_navgoal",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:73:3, col:30>",
+                "kind": "assignment",
+                "variable": "astar_planner::ObstacleSim::world_frame_",
+                "unqualified_variable": "world_frame_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::header",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:80:3, col:60>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "astar_planner::ObstacleSim::obstacle_width_",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 2.0
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:81:3, col:61>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::Pose_<std::allocator<void>>::position",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "geometry_msgs::PoseStamped_<std::allocator<void>>::pose",
+                        "type": "unsupported",
+                        "initial-value": {
+                          "kind": "unknown"
+                        },
+                        "base": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "binary-expr",
+                    "operator": "/",
+                    "lhs": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "astar_planner::ObstacleSim::obstacle_height_",
+                      "type": "float",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "this-expr"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "float-literal",
+                      "literal": 2.0
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:82:3, col:34>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::obstacle_width_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:83:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:84:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:85:3, col:34>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::obstacle_height_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:86:3, col:31>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_right",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:87:3, col:30>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lower_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:90:52, col:57>",
+                "kind": "assignment",
+                "variable": "x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "+",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::points_interval_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:93:5, col:12>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:94:5, col:23>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:95:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "x",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:96:5, col:25>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "lower_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "<",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "x",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "upper_right",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:101:51, col:56>",
+                "kind": "assignment",
+                "variable": "y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "binary-expr",
+                  "operator": "-",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "astar_planner::ObstacleSim::points_interval_",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:104:5, col:25>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_left",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:105:5, col:14>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "y",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:106:5, col:27>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "upper_right",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:107:5, col:15>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Point_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "y",
+                  "type": "float",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": ">",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "y",
+                    "type": "float",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Point_<std::allocator<void>>::y",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "float-literal",
+                      "literal": 0.0
+                    },
+                    "base": {
+                      "kind": "variable-reference",
+                      "qualified_name": "lower_left",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:113:3, col:87>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::displayObstacleMarker",
+                "arguments": {
+                  "frame": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "astar_planner::ObstacleSim::run",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:223:7, col:23>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 10.0
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:228:5, col:19>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::publishPoints",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "astar_planner::ObstacleSim::sub_navgoal",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:230:5, col:21>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 10.0
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:216:3, line:231:3>",
+                "kind": "while",
+                "body": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:221:5, line:225:5>",
+                      "kind": "if",
+                      "trueBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": [
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:223:7, col:23>",
+                            "kind": "ratesleep",
+                            "rate": {
+                              "kind": "float-literal",
+                              "literal": 10.0
+                            }
+                          },
+                          {
+                            "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:223:7, col:23>",
+                            "kind": "ratesleep",
+                            "rate": {
+                              "kind": "float-literal",
+                              "literal": 10.0
+                            }
+                          }
+                        ]
+                      },
+                      "falseBranchBody": {
+                        "source-location": "",
+                        "kind": "compound",
+                        "statements": []
+                      },
+                      "condition": {
+                        "kind": "bool-literal",
+                        "literal": false
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:228:5, col:19>",
+                      "kind": "call",
+                      "callee": "astar_planner::ObstacleSim::publishPoints",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "astar_planner::ObstacleSim::sub_navgoal",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:230:5, col:21>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:228:5, col:19>",
+                      "kind": "call",
+                      "callee": "astar_planner::ObstacleSim::publishPoints",
+                      "arguments": {},
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "astar_planner::ObstacleSim::sub_navgoal",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:230:5, col:21>",
+                      "kind": "ratesleep",
+                      "rate": {
+                        "kind": "float-literal",
+                        "literal": 10.0
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "astar_planner::ObstacleSim::displayObstaclePoints",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:123:3, col:28>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/world"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:124:3, col:35>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:125:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:126:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:127:3, col:45>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::POINTS",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 8
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 8
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:128:3, col:47>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::action",
+                "unqualified_variable": "action",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::ADD",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:134:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:135:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:136:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:137:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:138:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:139:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:141:3, col:25>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::frame_locked",
+                "unqualified_variable": "frame_locked",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:144:3, col:42>",
+                "kind": "publish",
+                "publisher": "obstacle_sim_points_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:123:3, col:28>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/world"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:124:3, col:35>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:125:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:126:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:127:3, col:45>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::POINTS",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 8
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 8
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:128:3, col:47>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::action",
+                "unqualified_variable": "action",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::ADD",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:134:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:135:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::y",
+                "unqualified_variable": "y",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:136:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:137:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:138:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:139:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:141:3, col:25>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::frame_locked",
+                "unqualified_variable": "frame_locked",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:144:3, col:42>",
+                "kind": "publish",
+                "publisher": "obstacle_sim_points_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "astar_planner::ObstacleSim::displayObstacleMarker",
+          "parameters": [
+            {
+              "index": 4,
+              "name": "frame",
+              "type": "string"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:150:3, col:28>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "frame",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:151:3, col:35>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:152:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:153:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:154:3, col:45>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::LINE_STRIP",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 4
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 4
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:155:3, col:47>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::action",
+                "unqualified_variable": "action",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::ADD",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:169:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:170:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:171:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:172:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:173:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:175:3, col:25>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::frame_locked",
+                "unqualified_variable": "frame_locked",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:177:3, col:38>",
+                "kind": "publish",
+                "publisher": "obstacle_marker_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:150:3, col:28>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::frame_id",
+                "unqualified_variable": "frame_id",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "frame",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:151:3, col:35>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:152:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::ns",
+                "unqualified_variable": "ns",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "obstacle_sim"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:153:3, col:15>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::id",
+                "unqualified_variable": "id",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:154:3, col:45>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::type",
+                "unqualified_variable": "type",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::LINE_STRIP",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 4
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 4
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:155:3, col:47>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::action",
+                "unqualified_variable": "action",
+                "value": {
+                  "kind": "enum-ref",
+                  "qualified_name": "visualization_msgs::Marker_<std::allocator<void>>::ADD",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:169:3, col:20>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.1
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:170:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::a",
+                "unqualified_variable": "a",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:171:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::r",
+                "unqualified_variable": "r",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:172:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::g",
+                "unqualified_variable": "g",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 1.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:173:3, col:20>",
+                "kind": "assignment",
+                "variable": "std_msgs::ColorRGBA_<std::allocator<void>>::b",
+                "unqualified_variable": "b",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:175:3, col:25>",
+                "kind": "assignment",
+                "variable": "visualization_msgs::Marker_<std::allocator<void>>::frame_locked",
+                "unqualified_variable": "frame_locked",
+                "value": {
+                  "kind": "bool-literal",
+                  "literal": true
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim.cpp:177:3, col:38>",
+                "kind": "publish",
+                "publisher": "obstacle_marker_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim_node.cpp:11:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "udon_translator"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim_node.cpp:14:3, col:20>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim_node.cpp:11:3, col:42>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "udon_translator"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/computing/planning/motion/packages/astar_planner/nodes/obstacle_avoid/obstacle_sim/obstacle_sim_node.cpp:14:3, col:20>",
+                "kind": "call",
+                "callee": "astar_planner::ObstacleSim::run",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

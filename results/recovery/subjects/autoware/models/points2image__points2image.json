@@ -1,0 +1,1357 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "points2image",
+  "package": {
+    "name": "points2image",
+    "path": "/home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:89:3, col:39>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "points2image"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:98:3, col:105>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "projection_matrix_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:99:3, col:91>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:111:5, col:38>",
+                "kind": "assignment",
+                "variable": "pub_topic_str",
+                "unqualified_variable": "pub_topic_str",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:112:5, col:48>",
+                "kind": "assignment",
+                "variable": "projection_matrix_topic",
+                "unqualified_variable": "projection_matrix_topic",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:113:5, col:46>",
+                "kind": "assignment",
+                "variable": "camera_info_topic_str",
+                "unqualified_variable": "camera_info_topic_str",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "!=",
+                  "lhs": {
+                    "kind": "variable-reference",
+                    "qualified_name": "name_space_str",
+                    "type": "string",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:117:7, col:54>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "points_node"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:124:5, col:20>",
+                "kind": "assignment",
+                "variable": "points_topic",
+                "unqualified_variable": "points_topic",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/points_raw"
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "unknown"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:3, col:66>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "pub_topic_str",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "string-literal",
+                    "literal": "/points_image"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:9, col:66>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/points_image"
+                  }
+                },
+                "format": "autoware_msgs/PointsImage",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:9, col:66>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:130:25, col:62>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:130:25, col:62>",
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:133:32, col:91>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:133:32, col:91>",
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:135:31, col:87>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "intrinsic_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:135:31, col:87>",
+                "kind": "call",
+                "callee": "intrinsic_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:89:3, col:39>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "points2image"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:98:3, col:105>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "projection_matrix_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:99:3, col:91>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "camera_info_topic"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:103:3, line:114:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:111:5, col:38>",
+                      "kind": "assignment",
+                      "variable": "pub_topic_str",
+                      "unqualified_variable": "pub_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:112:5, col:48>",
+                      "kind": "assignment",
+                      "variable": "projection_matrix_topic",
+                      "unqualified_variable": "projection_matrix_topic",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:113:5, col:46>",
+                      "kind": "assignment",
+                      "variable": "camera_info_topic_str",
+                      "unqualified_variable": "camera_info_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:111:5, col:38>",
+                      "kind": "assignment",
+                      "variable": "pub_topic_str",
+                      "unqualified_variable": "pub_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:112:5, col:48>",
+                      "kind": "assignment",
+                      "variable": "projection_matrix_topic",
+                      "unqualified_variable": "projection_matrix_topic",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:113:5, col:46>",
+                      "kind": "assignment",
+                      "variable": "camera_info_topic_str",
+                      "unqualified_variable": "camera_info_topic_str",
+                      "value": {
+                        "kind": "unknown"
+                      },
+                      "path_condition": {
+                        "kind": "binary-expr",
+                        "operator": "!=",
+                        "lhs": {
+                          "kind": "variable-reference",
+                          "qualified_name": "name_space_str",
+                          "type": "string",
+                          "initial-value": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "string-literal",
+                          "literal": "/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:117:3, line:125:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:124:5, col:20>",
+                      "kind": "assignment",
+                      "variable": "points_topic",
+                      "unqualified_variable": "points_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/points_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:124:5, col:20>",
+                      "kind": "assignment",
+                      "variable": "points_topic",
+                      "unqualified_variable": "points_topic",
+                      "value": {
+                        "kind": "string-literal",
+                        "literal": "/points_raw"
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "unknown"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:3, col:66>",
+                "kind": "assignment",
+                "variable": "pub",
+                "unqualified_variable": "pub",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "pub_topic_str",
+                  "type": "string",
+                  "initial-value": {
+                    "kind": "string-literal",
+                    "literal": "/points_image"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:9, col:66>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/points_image"
+                  }
+                },
+                "format": "autoware_msgs/PointsImage",
+                "source_location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:128:9, col:66>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:130:25, col:62>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/PointCloud2",
+                "callback-name": "callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:130:25, col:62>",
+                "kind": "call",
+                "callee": "callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:133:32, col:91>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "autoware_msgs/ProjectionMatrix",
+                "callback-name": "projection_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:133:32, col:91>",
+                "kind": "call",
+                "callee": "projection_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:135:31, col:87>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "unknown"
+                  }
+                },
+                "format": "sensor_msgs/CameraInfo",
+                "callback-name": "intrinsic_callback"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:135:31, col:87>",
+                "kind": "call",
+                "callee": "intrinsic_callback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "intrinsic_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:53:3, col:26>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:54:3, col:25>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:56:3, col:35>",
+                "kind": "assignment",
+                "variable": "cameraMat",
+                "unqualified_variable": "cameraMat",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:65:3, col:35>",
+                "kind": "assignment",
+                "variable": "distCoeff",
+                "unqualified_variable": "distCoeff",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:53:3, col:26>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::height",
+                "unqualified_variable": "height",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::height",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:54:3, col:25>",
+                "kind": "assignment",
+                "variable": "cv::Size_<int>::width",
+                "unqualified_variable": "width",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "sensor_msgs::CameraInfo_<std::allocator<void>>::width",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "int-literal",
+                    "literal": 0
+                  },
+                  "base": {
+                    "kind": "variable-reference",
+                    "qualified_name": "msg",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:56:3, col:35>",
+                "kind": "assignment",
+                "variable": "cameraMat",
+                "unqualified_variable": "cameraMat",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:65:3, col:35>",
+                "kind": "assignment",
+                "variable": "distCoeff",
+                "unqualified_variable": "distCoeff",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:84:3, col:22>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "cv::Size_<int>::height",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "imageSize",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "cv::Size_<int>::height",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "imageSize",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::width",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "imageSize",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:84:3, col:22>",
+                "kind": "publish",
+                "publisher": "pub",
+                "path_condition": {
+                  "kind": "binary-expr",
+                  "operator": "&&",
+                  "lhs": {
+                    "kind": "binary-expr",
+                    "operator": "&&",
+                    "lhs": {
+                      "kind": "binary-expr",
+                      "operator": "&&",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "&&",
+                        "lhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "negate-expr",
+                          "subExpr": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        }
+                      }
+                    },
+                    "rhs": {
+                      "kind": "negate-expr",
+                      "subExpr": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "cv::Size_<int>::height",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "imageSize",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "rhs": {
+                    "kind": "negate-expr",
+                    "subExpr": {
+                      "kind": "binary-expr",
+                      "operator": "||",
+                      "lhs": {
+                        "kind": "binary-expr",
+                        "operator": "||",
+                        "lhs": {
+                          "kind": "binary-expr",
+                          "operator": "||",
+                          "lhs": {
+                            "kind": "binary-expr",
+                            "operator": "||",
+                            "lhs": {
+                              "kind": "unknown"
+                            },
+                            "rhs": {
+                              "kind": "unknown"
+                            }
+                          },
+                          "rhs": {
+                            "kind": "unknown"
+                          }
+                        },
+                        "rhs": {
+                          "kind": "binary-expr",
+                          "operator": "==",
+                          "lhs": {
+                            "kind": "member-var-ref",
+                            "qualified_name": "cv::Size_<int>::height",
+                            "type": "integer",
+                            "initial-value": {
+                              "kind": "int-literal",
+                              "literal": 0
+                            },
+                            "base": {
+                              "kind": "variable-reference",
+                              "qualified_name": "imageSize",
+                              "type": "unsupported",
+                              "initial-value": {
+                                "kind": "unknown"
+                              }
+                            }
+                          },
+                          "rhs": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          }
+                        }
+                      },
+                      "rhs": {
+                        "kind": "binary-expr",
+                        "operator": "==",
+                        "lhs": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "cv::Size_<int>::width",
+                          "type": "integer",
+                          "initial-value": {
+                            "kind": "int-literal",
+                            "literal": 0
+                          },
+                          "base": {
+                            "kind": "variable-reference",
+                            "qualified_name": "imageSize",
+                            "type": "unsupported",
+                            "initial-value": {
+                              "kind": "unknown"
+                            }
+                          }
+                        },
+                        "rhs": {
+                          "kind": "int-literal",
+                          "literal": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "projection_callback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:40:3, col:44>",
+                "kind": "assignment",
+                "variable": "cameraExtrinsicMat",
+                "unqualified_variable": "cameraExtrinsicMat",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/sensing/fusion/packages/points2image/nodes/points2image/points2image.cpp:40:3, col:44>",
+                "kind": "assignment",
+                "variable": "cameraExtrinsicMat",
+                "unqualified_variable": "cameraExtrinsicMat",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

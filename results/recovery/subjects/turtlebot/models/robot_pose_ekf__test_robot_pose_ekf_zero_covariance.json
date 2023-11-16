@@ -1,0 +1,263 @@
+{
+  "image": {
+    "sha256": "d0c095577d379e64eda5f04a034479d39a0e5fe4ade901e38cd4a46ce3532fe5"
+  },
+  "node-name": "test_robot_pose_ekf_zero_covariance",
+  "package": {
+    "name": "robot_pose_ekf",
+    "path": "/ros_ws/src/navigation/robot_pose_ekf"
+  },
+  "sources": [
+    "/ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:107:3, col:12>",
+                "kind": "assignment",
+                "variable": "g_argc",
+                "unqualified_variable": "g_argc",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "argc",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:108:3, col:12>",
+                "kind": "assignment",
+                "variable": "g_argv",
+                "unqualified_variable": "g_argv",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "argv",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:110:3, col:33>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "testEKF"
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:107:3, col:12>",
+                "kind": "assignment",
+                "variable": "g_argc",
+                "unqualified_variable": "g_argc",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "argc",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:108:3, col:12>",
+                "kind": "assignment",
+                "variable": "g_argv",
+                "unqualified_variable": "g_argv",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "argv",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:110:3, col:33>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "testEKF"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TestEKF_test_Test::TestBody",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:3, col:104>",
+                "kind": "assignment",
+                "variable": "TestEKF::ekf_sub_",
+                "unqualified_variable": "ekf_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:14, col:104>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/robot_pose_ekf/odom_combined"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped",
+                "callback-name": "TestEKF::EKFCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:14, col:104>",
+                "kind": "call",
+                "callee": "TestEKF::EKFCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:93:3, col:27>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:3, col:104>",
+                "kind": "assignment",
+                "variable": "TestEKF::ekf_sub_",
+                "unqualified_variable": "ekf_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:14, col:104>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/robot_pose_ekf/odom_combined"
+                  }
+                },
+                "format": "geometry_msgs/PoseWithCovarianceStamped",
+                "callback-name": "TestEKF::EKFCallback"
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:89:14, col:104>",
+                "kind": "call",
+                "callee": "TestEKF::EKFCallback",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:93:3, col:27>",
+                "kind": "ratesleep",
+                "rate": {
+                  "kind": "float-literal",
+                  "literal": 0.05
+                }
+              },
+              {
+                "source-location": "</ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:96:3 <Spelling=/usr/include/gtest/gtest_pred_impl.h:77:3>, /ros_ws/src/navigation/robot_pose_ekf/test/test_robot_pose_ekf_zero_covariance.cpp:96:3 <Spelling=/usr/include/gtest/internal/gtest-internal.h:1026:26>>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": []
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "TestEKF::EKFCallback",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": []
+          }
+        }
+      ]
+    }
+  }
+}

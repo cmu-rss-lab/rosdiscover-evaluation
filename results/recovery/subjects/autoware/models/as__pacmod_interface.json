@@ -1,0 +1,1448 @@
+{
+  "image": {
+    "sha256": "95a3283df69676a0a64484edcf6b09f886abb9ab1dec292863aa0bffd2ce613b"
+  },
+  "node-name": "pacmod_interface",
+  "package": {
+    "name": "as",
+    "path": "/home/autoware/Autoware/ros/src/actuation/vehicles/packages/as"
+  },
+  "sources": [
+    "/home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface_node.cpp",
+    "/home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp"
+  ],
+  "program": {
+    "program": {
+      "entrypoint": "main",
+      "functions": [
+        {
+          "name": "pacmod::PacmodInterface::initForROS",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:37:3, col:75>",
+                "kind": "assignment",
+                "variable": "v0",
+                "unqualified_variable": "v0",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "acceleration_limit"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:38:3, col:75>",
+                "kind": "assignment",
+                "variable": "v1",
+                "unqualified_variable": "v1",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "deceleration_limit"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:39:3, col:76>",
+                "kind": "assignment",
+                "variable": "v2",
+                "unqualified_variable": "v2",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_curvature_rate"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:3, col:98>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::twist_cmd_sub_",
+                "unqualified_variable": "twist_cmd_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:23, col:98>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist_cmd"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "pacmod::PacmodInterface::callbackFromTwistCmd"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:23, col:98>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromTwistCmd",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:3, col:108>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::control_mode_sub_",
+                "unqualified_variable": "control_mode_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:23, col:108>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/control_mode"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "callback-name": "pacmod::PacmodInterface::callbackFromControlMode"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:23, col:108>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromControlMode",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:3, col:119>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::speed_sub_",
+                "unqualified_variable": "speed_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:23, col:119>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vehicle/steering_report"
+                  }
+                },
+                "format": "dbw_mkz_msgs/SteeringReport",
+                "callback-name": "pacmod::PacmodInterface::callbackFromSteeringReport"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:23, col:119>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromSteeringReport",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:3, col:113>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::steer_mode_pub_",
+                "unqualified_variable": "steer_mode_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/as/arbitrated_steering_commands"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:24, col:113>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/arbitrated_steering_commands"
+                  }
+                },
+                "format": "automotive_platform_msgs/SteerMode",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:24, col:113>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:3, col:110>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::speed_mode_pub_",
+                "unqualified_variable": "speed_mode_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/as/arbitrated_speed_commands"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:24, col:110>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/arbitrated_speed_commands"
+                  }
+                },
+                "format": "automotive_platform_msgs/SpeedMode",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:24, col:110>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:3, col:89>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::current_twist_pub_",
+                "unqualified_variable": "current_twist_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "as_current_twist"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:24, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "as_current_twist"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:24, col:89>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:37:3, col:75>",
+                "kind": "assignment",
+                "variable": "v3",
+                "unqualified_variable": "v3",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "acceleration_limit"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:38:3, col:75>",
+                "kind": "assignment",
+                "variable": "v4",
+                "unqualified_variable": "v4",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "deceleration_limit"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:39:3, col:76>",
+                "kind": "assignment",
+                "variable": "v5",
+                "unqualified_variable": "v5",
+                "value": {
+                  "source-location": "",
+                  "kind": "reads-param-with-default",
+                  "name": {
+                    "kind": "concatenate",
+                    "lhs": {
+                      "kind": "node-handle",
+                      "namespace": {
+                        "kind": "string-literal",
+                        "literal": "~"
+                      }
+                    },
+                    "rhs": {
+                      "kind": "string-literal",
+                      "literal": "max_curvature_rate"
+                    }
+                  },
+                  "default": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:3, col:98>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::twist_cmd_sub_",
+                "unqualified_variable": "twist_cmd_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:23, col:98>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "twist_cmd"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "callback-name": "pacmod::PacmodInterface::callbackFromTwistCmd"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:42:23, col:98>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromTwistCmd",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:3, col:108>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::control_mode_sub_",
+                "unqualified_variable": "control_mode_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:23, col:108>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/control_mode"
+                  }
+                },
+                "format": "std_msgs/Bool",
+                "callback-name": "pacmod::PacmodInterface::callbackFromControlMode"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:43:23, col:108>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromControlMode",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:3, col:119>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::speed_sub_",
+                "unqualified_variable": "speed_sub_",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:23, col:119>",
+                "kind": "subscribes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/vehicle/steering_report"
+                  }
+                },
+                "format": "dbw_mkz_msgs/SteeringReport",
+                "callback-name": "pacmod::PacmodInterface::callbackFromSteeringReport"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:44:23, col:119>",
+                "kind": "call",
+                "callee": "pacmod::PacmodInterface::callbackFromSteeringReport",
+                "arguments": {},
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:3, col:113>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::steer_mode_pub_",
+                "unqualified_variable": "steer_mode_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/as/arbitrated_steering_commands"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:24, col:113>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/arbitrated_steering_commands"
+                  }
+                },
+                "format": "automotive_platform_msgs/SteerMode",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:47:24, col:113>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:3, col:110>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::speed_mode_pub_",
+                "unqualified_variable": "speed_mode_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "/as/arbitrated_speed_commands"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:24, col:110>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "/as/arbitrated_speed_commands"
+                  }
+                },
+                "format": "automotive_platform_msgs/SpeedMode",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:48:24, col:110>"
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:3, col:89>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::current_twist_pub_",
+                "unqualified_variable": "current_twist_pub_",
+                "value": {
+                  "kind": "string-literal",
+                  "literal": "as_current_twist"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:24, col:89>",
+                "kind": "publishes-to",
+                "name": {
+                  "kind": "concatenate",
+                  "lhs": {
+                    "kind": "node-handle",
+                    "namespace": {
+                      "kind": "string-literal",
+                      "literal": ""
+                    }
+                  },
+                  "rhs": {
+                    "kind": "string-literal",
+                    "literal": "as_current_twist"
+                  }
+                },
+                "format": "geometry_msgs/TwistStamped",
+                "source_location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:49:24, col:89>"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pacmod::PacmodInterface::callbackFromTwistCmd",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:63:5, col:12>",
+                "kind": "assignment",
+                "variable": "mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 1
+                },
+                "path_condition": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                  "type": "bool",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "this-expr"
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:67:5, col:12>",
+                "kind": "assignment",
+                "variable": "mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "int-literal",
+                  "literal": 0
+                },
+                "path_condition": {
+                  "kind": "negate-expr",
+                  "subExpr": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                    "type": "bool",
+                    "initial-value": {
+                      "kind": "bool-literal",
+                      "literal": false
+                    },
+                    "base": {
+                      "kind": "this-expr"
+                    }
+                  }
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:71:3, col:28>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:72:3, col:21>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "mode",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:73:3, col:40>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::speed",
+                "unqualified_variable": "speed",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:74:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::acceleration_limit",
+                "unqualified_variable": "acceleration_limit",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 3.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:75:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::deceleration_limit",
+                "unqualified_variable": "deceleration_limit",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 3.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:78:3, col:28>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:79:3, col:21>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "mode",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:81:3, col:57>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::curvature",
+                "unqualified_variable": "curvature",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:82:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::max_curvature_rate",
+                "unqualified_variable": "max_curvature_rate",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.75
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:88:3, col:37>",
+                "kind": "publish",
+                "publisher": "speed_mode_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:89:3, col:37>",
+                "kind": "publish",
+                "publisher": "steer_mode_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:61:3, line:68:3>",
+                "kind": "if",
+                "trueBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:63:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "mode",
+                      "unqualified_variable": "mode",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:63:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "mode",
+                      "unqualified_variable": "mode",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 1
+                      },
+                      "path_condition": {
+                        "kind": "member-var-ref",
+                        "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                        "type": "bool",
+                        "initial-value": {
+                          "kind": "bool-literal",
+                          "literal": false
+                        },
+                        "base": {
+                          "kind": "this-expr"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBranchBody": {
+                  "source-location": "",
+                  "kind": "compound",
+                  "statements": [
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:67:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "mode",
+                      "unqualified_variable": "mode",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:67:5, col:12>",
+                      "kind": "assignment",
+                      "variable": "mode",
+                      "unqualified_variable": "mode",
+                      "value": {
+                        "kind": "int-literal",
+                        "literal": 0
+                      },
+                      "path_condition": {
+                        "kind": "negate-expr",
+                        "subExpr": {
+                          "kind": "member-var-ref",
+                          "qualified_name": "pacmod::PacmodInterface::control_mode_",
+                          "type": "bool",
+                          "initial-value": {
+                            "kind": "bool-literal",
+                            "literal": false
+                          },
+                          "base": {
+                            "kind": "this-expr"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "condition": {
+                  "kind": "bool-literal",
+                  "literal": false
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:71:3, col:28>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:72:3, col:21>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "mode",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:73:3, col:40>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::speed",
+                "unqualified_variable": "speed",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "member-var-ref",
+                    "qualified_name": "geometry_msgs::Twist_<std::allocator<void>>::linear",
+                    "type": "unsupported",
+                    "initial-value": {
+                      "kind": "unknown"
+                    },
+                    "base": {
+                      "kind": "member-var-ref",
+                      "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::twist",
+                      "type": "unsupported",
+                      "initial-value": {
+                        "kind": "unknown"
+                      },
+                      "base": {
+                        "kind": "unknown"
+                      }
+                    }
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:74:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::acceleration_limit",
+                "unqualified_variable": "acceleration_limit",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 3.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:75:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SpeedMode_<std::allocator<void>>::deceleration_limit",
+                "unqualified_variable": "deceleration_limit",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 3.0
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:78:3, col:28>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:79:3, col:21>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::mode",
+                "unqualified_variable": "mode",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "mode",
+                  "type": "integer",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:81:3, col:57>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::curvature",
+                "unqualified_variable": "curvature",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:82:3, col:35>",
+                "kind": "assignment",
+                "variable": "automotive_platform_msgs::SteerMode_<std::allocator<void>>::max_curvature_rate",
+                "unqualified_variable": "max_curvature_rate",
+                "value": {
+                  "kind": "float-literal",
+                  "literal": 0.75
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:88:3, col:37>",
+                "kind": "publish",
+                "publisher": "speed_mode_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:89:3, col:37>",
+                "kind": "publish",
+                "publisher": "steer_mode_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pacmod::PacmodInterface::callbackFromControlMode",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:94:3, col:24>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::control_mode_",
+                "unqualified_variable": "control_mode_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Bool_<std::allocator<void>>::data",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:94:3, col:24>",
+                "kind": "assignment",
+                "variable": "pacmod::PacmodInterface::control_mode_",
+                "unqualified_variable": "control_mode_",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "std_msgs::Bool_<std::allocator<void>>::data",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "bool-literal",
+                    "literal": false
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "pacmod::PacmodInterface::callbackFromSteeringReport",
+          "parameters": [],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:101:3, col:33>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:102:3, col:15>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:103:3, col:28>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "dbw_mkz_msgs::SteeringReport_<std::allocator<void>>::speed",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:106:3, col:32>",
+                "kind": "publish",
+                "publisher": "current_twist_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:101:3, col:33>",
+                "kind": "assignment",
+                "variable": "std_msgs::Header_<std::allocator<void>>::stamp",
+                "unqualified_variable": "stamp",
+                "value": {
+                  "kind": "unknown"
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:102:3, col:15>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::TwistStamped_<std::allocator<void>>::header",
+                "unqualified_variable": "header",
+                "value": {
+                  "kind": "variable-reference",
+                  "qualified_name": "header",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:103:3, col:28>",
+                "kind": "assignment",
+                "variable": "geometry_msgs::Vector3_<std::allocator<void>>::x",
+                "unqualified_variable": "x",
+                "value": {
+                  "kind": "member-var-ref",
+                  "qualified_name": "dbw_mkz_msgs::SteeringReport_<std::allocator<void>>::speed",
+                  "type": "unsupported",
+                  "initial-value": {
+                    "kind": "float-literal",
+                    "literal": 0.0
+                  },
+                  "base": {
+                    "kind": "unknown"
+                  }
+                },
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface.cpp:106:3, col:32>",
+                "kind": "publish",
+                "publisher": "current_twist_pub_",
+                "path_condition": {
+                  "kind": "bool-literal",
+                  "literal": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "main",
+          "parameters": [
+            {
+              "index": 0,
+              "name": "argc",
+              "type": "integer"
+            }
+          ],
+          "body": {
+            "source-location": "",
+            "kind": "compound",
+            "statements": [
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface_node.cpp:24:3, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "pacmod_interface"
+                }
+              },
+              {
+                "source-location": "</home/autoware/Autoware/ros/src/actuation/vehicles/packages/as/nodes/pacmod_interface/pacmod_interface_node.cpp:24:3, col:43>",
+                "kind": "ros-init",
+                "name": {
+                  "kind": "string-literal",
+                  "literal": "pacmod_interface"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
