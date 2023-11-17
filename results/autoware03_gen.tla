@@ -1,7 +1,7 @@
 
 ------------------------------- MODULE autoware03 -------------------------------
 EXTENDS Sequences, Integers, TLC, FiniteSets
-CONSTANTS Velocity_set, Localizer_pose, Odom_pose, Control_pose, Base_waypoints, Data, NULL, MaxQueue
+CONSTANTS Velocity_set, Odom_pose, Base_waypoints, Localizer_pose, Data, NULL, MaxQueue
 
 ASSUME NULL \notin Data
 
@@ -12,41 +12,29 @@ seq (+) elem == Append(seq, elem)
 
 (*--fair algorithm polling
 variables
-    	localizer_pose = <<>>;
-	localizer_pose_velocity_set = <<>>;
-	detection_range = <<>>;
-	odom_pose = <<>>;
-	odom_pose_lattice_trajectory_gen = <<>>;
+    	odom_pose = <<>>;
 	odom_pose_velocity_set = <<>>;
-	closest_waypoint = <<>>;
-	cubic_splines_viz = <<>>;
-	obstacle = <<>>;
-	control_pose = <<>>;
-	control_pose_lattice_trajectory_gen = <<>>;
 	base_waypoints = <<>>;
 	base_waypoints_velocity_set = <<>>;
-	base_waypoints_lattice_trajectory_gen = <<>>;
-	unknown_topic = <<>>;
+	closest_waypoint = <<>>;
+	obstacle = <<>>;
+	detection_range = <<>>;
 	temporal_waypoints = <<>>;
+	localizer_pose = <<>>;
+	localizer_pose_velocity_set = <<>>;
 
     define 
         TypeInvariant == 
- 	localizer_pose \in SeqOf(Data, MaxQueue) /\ 
-	localizer_pose_velocity_set \in SeqOf(Data, MaxQueue) /\ 
-	detection_range \in SeqOf(Data, MaxQueue) /\ 
-	odom_pose \in SeqOf(Data, MaxQueue) /\ 
-	odom_pose_lattice_trajectory_gen \in SeqOf(Data, MaxQueue) /\ 
+ 	odom_pose \in SeqOf(Data, MaxQueue) /\ 
 	odom_pose_velocity_set \in SeqOf(Data, MaxQueue) /\ 
-	closest_waypoint \in SeqOf(Data, MaxQueue) /\ 
-	cubic_splines_viz \in SeqOf(Data, MaxQueue) /\ 
-	obstacle \in SeqOf(Data, MaxQueue) /\ 
-	control_pose \in SeqOf(Data, MaxQueue) /\ 
-	control_pose_lattice_trajectory_gen \in SeqOf(Data, MaxQueue) /\ 
 	base_waypoints \in SeqOf(Data, MaxQueue) /\ 
 	base_waypoints_velocity_set \in SeqOf(Data, MaxQueue) /\ 
-	base_waypoints_lattice_trajectory_gen \in SeqOf(Data, MaxQueue) /\ 
-	unknown_topic \in SeqOf(Data, MaxQueue) /\ 
-	temporal_waypoints \in SeqOf(Data, MaxQueue)
+	closest_waypoint \in SeqOf(Data, MaxQueue) /\ 
+	obstacle \in SeqOf(Data, MaxQueue) /\ 
+	detection_range \in SeqOf(Data, MaxQueue) /\ 
+	temporal_waypoints \in SeqOf(Data, MaxQueue) /\ 
+	localizer_pose \in SeqOf(Data, MaxQueue) /\ 
+	localizer_pose_velocity_set \in SeqOf(Data, MaxQueue)
 
         Response == <>(closest_waypoint /= <<>>)
     end define;
@@ -112,18 +100,6 @@ variables
             
         end process;
     
-    fair process localizer_pose \in Localizer_pose
-        
-        begin 
-            Write: 
-                if localizer_pose /= <<>> then
-                    msg := Head(localizer_pose);
-                    localizer_pose := Tail(localizer_pose);
-                        localizer_pose_velocity_set := localizer_pose_velocity_set (+) msg;
-
-                end if;
-        end process;
-    
     fair process odom_pose \in Odom_pose
         
         begin 
@@ -131,20 +107,7 @@ variables
                 if odom_pose /= <<>> then
                     msg := Head(odom_pose);
                     odom_pose := Tail(odom_pose);
-                        odom_pose_lattice_trajectory_gen := odom_pose_lattice_trajectory_gen (+) msg;
                         odom_pose_velocity_set := odom_pose_velocity_set (+) msg;
-
-                end if;
-        end process;
-    
-    fair process control_pose \in Control_pose
-        
-        begin 
-            Write: 
-                if control_pose /= <<>> then
-                    msg := Head(control_pose);
-                    control_pose := Tail(control_pose);
-                        control_pose_lattice_trajectory_gen := control_pose_lattice_trajectory_gen (+) msg;
 
                 end if;
         end process;
@@ -157,7 +120,18 @@ variables
                     msg := Head(base_waypoints);
                     base_waypoints := Tail(base_waypoints);
                         base_waypoints_velocity_set := base_waypoints_velocity_set (+) msg;
-                        base_waypoints_lattice_trajectory_gen := base_waypoints_lattice_trajectory_gen (+) msg;
+
+                end if;
+        end process;
+    
+    fair process localizer_pose \in Localizer_pose
+        
+        begin 
+            Write: 
+                if localizer_pose /= <<>> then
+                    msg := Head(localizer_pose);
+                    localizer_pose := Tail(localizer_pose);
+                        localizer_pose_velocity_set := localizer_pose_velocity_set (+) msg;
 
                 end if;
         end process;
