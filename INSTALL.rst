@@ -122,6 +122,8 @@ Next, you can install ROSDiscover, its dependencies, and the experiment runner v
   $ pyenv local 3.9.5
   $ pipenv install --python 3.9.5
 
+Additionally, to check architectural rules with acme, a java installation is required. See [here](https://www.java.com/en/download/help/download_options.html). Please ensure that java is added to the path. 
+
 Finally, you will need to install the ROSDiscover C++ static analysis tool by executing the following at the root of the replication package:
 
 .. code:: command
