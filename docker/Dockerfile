@@ -158,7 +158,7 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
       --rosdistro="${ROS_DISTRO}" \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* ; exit 0 
- #Design for "it works" not for robustness. exit 0 ignores the errors from packages that could not be installed (e.g. , apt-get packages of newer versions)
+ #Designed for "it works" not for robustness. exit 0 ignores the errors from packages that could not be installed (e.g. , apt-get packages of newer versions)
 
 RUN do_prebuild
 
