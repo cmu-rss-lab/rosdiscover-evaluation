@@ -1,0 +1,55 @@
+type: detection
+subject: autoware
+distro: indigo
+build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+cuda_version: 8-0
+missing_ros_packages: []
+exclude_ros_packages: []
+apt_packages:
+  - ros-indigo-nmea-msgs
+  - ros-indigo-gazebo-ros-control
+  - ros-indigo-automotive-platform-msgs
+  - qt5-default
+  - ros-indigo-cv-bridge
+  - ros-indigo-image-transport
+  - ros-indigo-image-transport-plugins
+  - ros-indigo-pcl-ros
+  - ros-indigo-roslint
+  - ros-indigo-velodyne-pointcloud
+  - ros-indigo-sound-play
+  - ros-indigo-camera-info-manager
+  - ros-indigo-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:98cc789200144b247e4428b2b1b7b86fe2aa4b91
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: 98cc789200144b247e4428b2b1b7b86fe2aa4b91
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:f2750c7ab8418c458bbc7d0c1d2cf516c4ba3fab
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: f2750c7ab8418c458bbc7d0c1d2cf516c4ba3fab
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash

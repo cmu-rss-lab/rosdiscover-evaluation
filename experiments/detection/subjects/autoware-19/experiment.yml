@@ -1,0 +1,92 @@
+type: detection
+subject: autoware
+distro: kinetic
+build_command: cd /ros_ws/src/autoware/ros; ./catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+cuda_version: 8-0
+missing_ros_packages: []
+exclude_ros_packages: []
+apt_packages:
+  - ros-kinetic-autoware-msgs
+  - ros-kinetic-gazebo-ros-control
+  - ros-kinetic-automotive-platform-msgs
+  - libproj-dev
+  - ros-kinetic-velodyne-pointcloud
+  - ros-kinetic-sound-play
+  - ros-kinetic-roslint
+  - ros-kinetic-camera-info-manager
+  - ros-kinetic-rviz
+  - ros-kinetic-grid-map-ros
+  - ros-kinetic-gps-common
+  - ros-kinetic-xacro
+  - ros-kinetic-pacmod-msgs
+  - ros-kinetic-rqt-gui
+  - ros-kinetic-rqt-gui-py
+  - ros-kinetic-tf2-geometry-msgs
+  - ros-kinetic-robot-state-publisher
+  - ros-kinetic-joint-state-controller
+  - ros-kinetic-nmea-msgs
+  - qt5-default
+  - ros-kinetic-cv-bridge
+  - ros-kinetic-image-transport
+  - ros-kinetic-image-transport-plugins
+  - ros-kinetic-pcl-ros
+  - ros-kinetic-jsk-recognition-msgs
+  - libqt5opengl5-dev
+  - libssh2-1-dev
+  - libarmadillo-dev
+  - libpcap-dev
+  - gksu
+  - libboost-all-dev
+  - libflann-dev
+  - libgsl0-dev
+  - libgoogle-perftools-dev
+  - libeigen3-dev
+  - libnlopt-dev
+  - freeglut3-dev
+  - qtbase5-dev
+  - libdc1394-22
+  - libdc1394-22-dev
+  - libjpeg-dev
+  - libpng12-0
+  - libjasper-dev
+  - libavcodec-dev
+  - libavformat-dev
+  - libswscale-dev
+  - libgstreamer0.10-dev
+  - libgstreamer-plugins-base0.10-dev
+  - libv4l-dev
+  - libtbb-dev
+  - libqt4-dev
+  - libmp3lame-dev
+  - libopencore-amrnb-dev
+  - libopencore-amrwb-dev
+  - libtheora-dev
+  - libvorbis-dev
+  - libxvidcore-dev
+  - x264
+  - v4l-utils
+  - unzip
+  - libglew-dev
+  - ros-kinetic-jsk-rviz-plugins
+  - ros-kinetic-automotive-navigation-msgs
+
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:c84004fdb17706ded11f28864c54067783eacd7b
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: c84004fdb17706ded11f28864c54067783eacd7b
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autoware:c96d529dc1666fd4a9fd8b90a0adb893e31b99a2
+  repositories:
+  - name: autoware
+    url: https://github.com/Autoware-AI/autoware.ai
+    version: c96d529dc1666fd4a9fd8b90a0adb893e31b99a2
+
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/src/autoware/ros/devel/setup.bash
