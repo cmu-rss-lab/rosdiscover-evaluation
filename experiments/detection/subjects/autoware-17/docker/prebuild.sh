@@ -26,7 +26,7 @@ sudo apt-get install -y doxygen
 sudo apt-get install -y unzip wget
 wget https://github.com/opencv/opencv/archive/3.2.0.zip -O OpenCV320.zip
 unzip OpenCV320.zip
-cd OpenCV320
+cd opencv-3.2.0
 mkdir build
 cd build
 cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON ..
