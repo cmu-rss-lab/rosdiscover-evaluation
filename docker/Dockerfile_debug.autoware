@@ -34,25 +34,3 @@ RUN cd /home/autoware \
  && tar zxfv sample_moriyama_data.tar.gz \
  && wget https://autoware-ai.s3.us-east-2.amazonaws.com/my_launch.sh
 
-
-RUN sed -i '385iROS_ERROR(("ROSTIMER (obj_reproj:projectionMat_topic_name): " + projectionMat_topic_name).c_str());' /home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp 
-RUN sed -i '55i#include <ros/console.h>' /home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp 
-COPY files /
-
-RUN cp fake_camera.cpp /home/autoware/Autoware/ros/src/util/packages/fake_drivers/nodes/fake_camera/
-
-#RUN sed -i '385iprintf(("ROSTIMER (obj_reproj:projectionMat_topic_name): " + projectionMat_topic_name).c_str());' /home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp 
-#RUN sed -i '55i#include <cstdio>' /home/autoware/Autoware/ros/src/computing/perception/detection/lidar_tracker/packages/obj_reproj/nodes/obj_reproj/obj_reproj.cpp 
-
-
-
-RUN cd /home/autoware/Autoware/ros \
- && . /opt/ros/kinetic/setup.sh \
- && eval './catkin_make_release -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
-
-
-RUN sudo chmod o+r+w+x /home/autoware/.autoware \
- && cd /home/autoware/.autoware \
- && bash ./my_launch.sh  \
- && sudo cp -r /home/autoware/.autoware /root/.autoware \
- && sudo chmod o+r+w+x /root/

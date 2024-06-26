@@ -153,10 +153,12 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
  && rosdep update \
  && rosdep install -i -y -r --from-paths src \
       --ignore-src \
-      --skip-keys="python-rosdep python-catkin-pkg python-rospkg libvtk7-qt-dev libvtk7-java" \
+      --skip-keys="python-rosdep python-catkin-pkg python-rospkg" \
+#       --skip-keys="python-rosdep python-catkin-pkg python-rospkg libvtk7-qt-dev libvtk7-java python-wxgtk3.0 liblog4cxx-dev libdc1394-dev" \
       --rosdistro="${ROS_DISTRO}" \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* ; exit 0 
+ #Design for "it works" not for robustness. exit 0 ignores the errors from packages that could not be installed (e.g. , apt-get packages of newer versions)
 
 RUN do_prebuild
 

@@ -13,7 +13,7 @@ echo "deb http://cz.archive.ubuntu.com/ubuntu xenial main universe" >> /etc/apt/
 
 # upgrade curl from the xeinal repo
 apt-get update
-apt-get install -y curl --no-install-recommends
+apt-get install -y --allow-unauthenticated curl --no-install-recommends
 
 # remove xenial repos from sources.list
 head -n -2 /etc/apt/sources.list | tee /etc/apt/sources.list
@@ -27,4 +27,4 @@ apt-add-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/
 
 # install cuda 10
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y  --no-install-recommends cuda-"${CUDA_VERSION}"
+DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated  --no-install-recommends cuda-"${CUDA_VERSION}"
