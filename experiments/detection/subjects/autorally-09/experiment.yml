@@ -1,0 +1,54 @@
+type: detection
+subject: autorally
+distro: indigo
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+cuda_version: 8-0
+missing_ros_packages: []
+exclude_ros_packages:
+- orocos_kdl
+- python_orocos_kdl
+- rviz
+- gazebo_ros_pkgs/gazebo_dev
+- gazebo_ros_pkgs/gazebo_msgs
+- gazebo_ros_pkgs/gazebo_plugins
+- gazebo_ros_pkgs/gazebo_ros
+- gazebo_ros_pkgs/gazebo_ros_control
+- gazebo_ros_pkgs/gazebo_ros_pkgs
+apt_packages:
+- git
+- doxygen
+- openssh-server
+- libusb-dev
+- lm-sensors
+- acpi
+- gpsd-clients
+- usbutils
+- ros-indigo-orocos-kdl
+- ros-indigo-gazebo-ros-control
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autorally:1738ddb0391eea015a7d99691aec7f8e2114e6f3
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: 1738ddb0391eea015a7d99691aec7f8e2114e6f3
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/autorally:d72bb278798635b4b09f8b63dae038a1ab01d40f
+  repositories:
+  - name: autorally
+    url: https://github.com/AutoRally/autorally.git
+    version: d72bb278798635b4b09f8b63dae038a1ab01d40f
+  - name: imu_3dm_gx4
+    url: https://github.com/AutoRally/imu_3dm_gx4.git
+    version: 13578756595a0e339b4024f517828e191628002f
+
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+- /ros_ws/src/autorally/autorally_util/setupEnvLocal.sh
