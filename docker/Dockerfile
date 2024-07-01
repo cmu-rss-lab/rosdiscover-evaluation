@@ -162,6 +162,9 @@ RUN mv /.dockerinstall/${ROSINSTALL_FILENAME} /ros_ws/${ROSINSTALL_FILENAME} \
 
 RUN do_prebuild
 
+ARG SCRIPT_NAME="/a_file_that_does_not_exist.sh"
+RUN do_something ${SCRIPT_NAME}
+
 ARG BUILD_COMMAND="catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 RUN eval "$(pyenv init --path)" \
  && eval "$(pyenv init -)" \

@@ -62,6 +62,7 @@ def build_templated_image(
     build_command: str,
     apt_packages: t.Optional[t.Sequence[str]],
     cuda_version: str,
+    script_name: str
 ) -> None:
     assert os.path.exists(directory)
 
@@ -82,6 +83,7 @@ def build_templated_image(
     command_args += ["--build-arg", f"DIRECTORY={rel_experiment_dir}"]
     command_args += ["--build-arg", f"ROSINSTALL_FILENAME={rosinstall_filename}"]
     command_args += ["--build-arg", f"DISTRO={distro}"]
+    command_args += ["--build-arg", f"SCRIPT_NAME={script_name}"]
     command_args += ["."]
     command_args += ["-t", image]
     command = " ".join(command_args)
@@ -132,6 +134,7 @@ def build_images_for_detection_experiment(config: DetectionExperimentConfig) -> 
                 build_command=config["build_command"],
                 apt_packages=config.get("apt_packages", []),
                 cuda_version=config.get("cuda_version", "0"),
+                script_name=config[version].get("script_name", "some_script_that_does_not_exist")
             )
         elif image_type == "custom":
             build_custom_image(
