@@ -1,0 +1,31 @@
+type: detection
+subject: husky
+distro: melodic
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages:
+- rviz
+- orocos_kdl
+- python_orocos_kdl
+apt_packages: []
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:e379ee8a558b20765d36c149a1361bc24c9836d8
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: e379ee8a558b20765d36c149a1361bc24c9836d8
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:e379ee8a558b20765d36c149a1361bc24c9836d8
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: e379ee8a558b20765d36c149a1361bc24c9836d8
+sources:
+- /opt/ros/melodic/setup.bash
+- /ros_ws/devel/setup.bash
+launches:
+- husky_control/launch/teleop.launch
