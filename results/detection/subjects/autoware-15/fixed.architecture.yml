@@ -1,0 +1,134 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/launch/imm_ukf_pda_track.launch
+  fullname: /ukf_track_relay_01
+  kind: relay
+  name: ukf_track_relay_01
+  namespace: /
+  nodelet: false
+  package: topic_tools
+  provenance: handwritten
+  provides: []
+  pubs:
+  - format: any
+    implicit: false
+    name: /detection/objects
+    source_location: <>
+  reads:
+  - dynamic: false
+    name: /ukf_track_relay_01/unreliable
+  - dynamic: false
+    name: /ukf_track_relay_01/monitor_rate
+  - dynamic: false
+    name: /ukf_track_relay_01/lazy
+  subs:
+  - format: any
+    implicit: false
+    name: /detection/object_tracker/objects
+    source_location: <>
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/launch/imm_ukf_pda_track.launch
+  fullname: /detection/object_tracker/ukf_track_visualization_01
+  kind: visualize_detected_objects
+  name: ukf_track_visualization_01
+  namespace: /detection/object_tracker/
+  nodelet: false
+  package: detected_objects_visualizer
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: visualization_msgs/MarkerArray
+    implicit: false
+    name: \unknown
+    source_location: </ros_ws/src/autoware/ros/src/computing/perception/detection/visualizers/packages/detected_objects_visualizer/src/visualize_detected_objects.cpp:80:24,
+      line:81:25>
+  reads:
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/centroid_color
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/marker_display_duration
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/arrow_speed_threshold
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/objects_src_topic
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/hull_color
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/box_color
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/object_speed_threshold
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/label_color
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/arrow_color
+  - dynamic: false
+    name: /detection/object_tracker/ukf_track_visualization_01/model_color
+  subs:
+  - format: autoware_msgs/DetectedObjectArray
+    implicit: false
+    name: \unknown
+    source_location: </ros_ws/src/autoware/ros/src/computing/perception/detection/visualizers/packages/detected_objects_visualizer/src/visualize_detected_objects.cpp:76:5,
+      line:77:84>
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/launch/imm_ukf_pda_track.launch
+  fullname: /imm_ukf_pda_01
+  kind: imm_ukf_pda
+  name: imm_ukf_pda_01
+  namespace: /
+  nodelet: false
+  package: lidar_imm_ukf_pda_track
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: autoware_msgs/DetectedObjectArray
+    implicit: false
+    name: /detection/object_tracker/objects
+    source_location: </ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/nodes/imm_ukf_pda/imm_ukf_pda.cpp:57:23,
+      col:105>
+  reads:
+  - dynamic: false
+    name: /imm_ukf_pda_01/static_velocity_history_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/static_velocity_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/use_sukf
+  - dynamic: false
+    name: /imm_ukf_pda_01/is_benchmark
+  - dynamic: false
+    name: /imm_ukf_pda_01/gate_probability
+  - dynamic: false
+    name: /imm_ukf_pda_01/life_time_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/lane_direction_chi_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/use_vectormap
+  - dynamic: false
+    name: /imm_ukf_pda_01/kitti_data_dir
+  - dynamic: false
+    name: /imm_ukf_pda_01/prevent_explosion_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/merge_distance_threshold
+  - dynamic: false
+    name: /imm_ukf_pda_01/tracking_frame
+  - dynamic: false
+    name: /imm_ukf_pda_01/nearest_lane_distance_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/vectormap_frame
+  - dynamic: false
+    name: /imm_ukf_pda_01/gating_thres
+  - dynamic: false
+    name: /imm_ukf_pda_01/detection_probability
+  subs:
+  - format: autoware_msgs/DetectedObjectArray
+    implicit: false
+    name: /detection/fusion_tools/objects
+    source_location: </ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/nodes/imm_ukf_pda/imm_ukf_pda.cpp:58:25,
+      col:112>
+  uses: []
+  writes: []

@@ -1,0 +1,2 @@
+sed -i 's/imm_ukf_pda_track/lidar_imm_ukf_pda_track/' /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/launch/imm_ukf_pda_track.launch
+sed -i 's/imm_ukf_pda_track/lidar_imm_ukf_pda_track/' /ros_ws/src/autoware/ros/src/computing/perception/detection/lidar_tracker/packages/lidar_imm_ukf_pda_track/package.xml

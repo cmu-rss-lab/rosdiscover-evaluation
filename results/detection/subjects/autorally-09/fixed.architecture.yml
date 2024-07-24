@@ -1,0 +1,178 @@
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/wheel_odometry.launch
+  fullname: /WheelOdometry
+  kind: WheelOdometry
+  name: WheelOdometry
+  namespace: /
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /wheel_odom
+    source_location: </ros_ws/src/autorally/autorally_core/src/WheelOdometry/wheel_odometry.cpp:62:11,
+      col:58>
+  reads:
+  - dynamic: false
+    name: /using_sim
+  - dynamic: false
+    name: /time_delay
+  - dynamic: false
+    name: /vehicle_width
+  - dynamic: false
+    name: /vehicle_wheelbase
+  - dynamic: false
+    name: /debug
+  subs:
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /pose_estimate
+    source_location: </ros_ws/src/autorally/autorally_core/src/WheelOdometry/wheel_odometry.cpp:54:28,
+      col:104>
+  - format: autorally_msgs/chassisState
+    implicit: false
+    name: /chassisState
+    source_location: </ros_ws/src/autorally/autorally_core/src/WheelOdometry/wheel_odometry.cpp:51:16,
+      col:82>
+  - format: autorally_msgs/wheelSpeeds
+    implicit: false
+    name: /wheelSpeeds
+    source_location: </ros_ws/src/autorally/autorally_core/src/WheelOdometry/wheel_odometry.cpp:52:23,
+      col:88>
+  uses: []
+  writes: []
+- action-clients: []
+  action-servers: []
+  filename: /ros_ws/src/autorally/autorally_core/launch/stateEstimator.launch
+  fullname: /state_estimator
+  kind: StateEstimator
+  name: state_estimator
+  namespace: /
+  nodelet: false
+  package: autorally_core
+  provenance: recovered
+  provides: []
+  pubs:
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /state_estimator/time_delays
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:213:17,
+      col:70>
+  - format: nav_msgs/Odometry
+    implicit: false
+    name: /pose_estimate
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:210:17,
+      col:61>
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /bias_gyro
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:212:21,
+      col:72>
+  - format: autorally_msgs/stateEstimatorStatus
+    implicit: false
+    name: /pose_estimate/status
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:214:19,
+      col:83>
+  - format: geometry_msgs/Point
+    implicit: false
+    name: /bias_acc
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:211:20,
+      col:70>
+  reads:
+  - dynamic: false
+    name: /state_estimator/lonOrigin
+  - dynamic: false
+    name: /state_estimator/GPSZ
+  - dynamic: false
+    name: /state_estimator/latOrigin
+  - dynamic: false
+    name: /state_estimator/AccelerometerSigma
+  - dynamic: false
+    name: /state_estimator/SensorTransformZ
+  - dynamic: false
+    name: /state_estimator/Imudt
+  - dynamic: false
+    name: /state_estimator/TimeWithoutGPS
+  - dynamic: false
+    name: /state_estimator/GPSY
+  - dynamic: false
+    name: /state_estimator/InitialBiasNoiseAcc
+  - dynamic: false
+    name: /state_estimator/InitialBiasNoiseGyro
+  - dynamic: false
+    name: /state_estimator/FactorFrequency
+  - dynamic: false
+    name: /state_estimator/Gravity
+  - dynamic: false
+    name: /state_estimator/InitialVelocityNoise
+  - dynamic: false
+    name: /state_estimator/initialRoll
+  - dynamic: false
+    name: /state_estimator/GyroSigma
+  - dynamic: false
+    name: /state_estimator/SensorTransformY
+  - dynamic: false
+    name: /state_estimator/CarXAngle
+  - dynamic: false
+    name: /state_estimator/FixedOrigin
+  - dynamic: false
+    name: /state_estimator/InvertY
+  - dynamic: false
+    name: /state_estimator/GyroBiasSigma
+  - dynamic: false
+    name: /state_estimator/SensorYAngle
+  - dynamic: false
+    name: /state_estimator/initialYaw
+  - dynamic: false
+    name: /state_estimator/altOrigin
+  - dynamic: false
+    name: /state_estimator/SensorXAngle
+  - dynamic: false
+    name: /state_estimator/SensorZAngle
+  - dynamic: false
+    name: /state_estimator/InvertX
+  - dynamic: false
+    name: /state_estimator/GPSSigma
+  - dynamic: false
+    name: /state_estimator/intialPitch
+  - dynamic: false
+    name: /state_estimator/FixedInitialPose
+  - dynamic: false
+    name: /state_estimator/UseOdom
+  - dynamic: false
+    name: /state_estimator/AccelBiasSigma
+  - dynamic: false
+    name: /state_estimator/InvertZ
+  - dynamic: false
+    name: /state_estimator/InitialRotationNoise
+  - dynamic: false
+    name: /state_estimator/CarYAngle
+  - dynamic: false
+    name: /state_estimator/MaxGPSError
+  - dynamic: false
+    name: /state_estimator/SensorTransformX
+  - dynamic: false
+    name: /state_estimator/CarZAngle
+  - dynamic: false
+    name: /state_estimator/GPSX
+  subs:
+  - format: boost/shared_ptr
+    implicit: false
+    name: /imu/imu
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:244:17,
+      col:78>
+  - format: boost/shared_ptr
+    implicit: false
+    name: /gpsRoverStatus
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:243:17,
+      col:78>
+  - format: boost/shared_ptr
+    implicit: false
+    name: /wheel_odom
+    source_location: </ros_ws/src/autorally/autorally_core/src/StateEstimator/StateEstimator.cpp:246:20,
+      col:94>
+  uses: []
+  writes: []
