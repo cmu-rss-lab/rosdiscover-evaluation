@@ -1,0 +1,36 @@
+type: detection
+subject: mavros
+distro: kinetic
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: [xmlrpcpp, uuid_msgs, geographic_msgs, diagnostic_updater, eigen_conversions, urdf]
+exclude_ros_packages: [lms1xx, orocos_kdl, python_orocos_kdl, opencv3, tf, tf2_ros, tf2_eigen]
+apt_packages:
+- ros-kinetic-orocos-kdl
+- ros-kinetic-ros-comm
+- ros-kinetic-tf
+- ros-kinetic-tf2-ros
+- ros-kinetic-tf2-eigen
+- libyaml-cpp-dev
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/mavros:mavros-03-buggy
+  repositories:
+  - name: mavros
+    url: https://github.com/mavlink/mavros.git
+    version: 7c9e984c9b3320ae3ac6ba02ffebf0db8c7caa0d
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/mavros:mavros-03-fixed
+  repositories:
+  - name: mavros
+    url: https://github.com/mavlink/mavros.git
+    version: e5ded4689475577eec7351ed810f289ee0aa62f2
+
+sources:
+- /opt/ros/kinetic/setup.bash
+- /ros_ws/devel/setup.bash
+
+launches:
+- /ros_ws/src/mavros/mavros/launch/px4.launch
