@@ -1,0 +1,31 @@
+type: detection
+subject: husky
+distro: indigo
+build_command: catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+missing_ros_packages: []
+exclude_ros_packages: []
+apt_packages:
+  - python3-sip-dev
+buggy:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:a23396c21a28f96103f94c8c991ee30a9bfda438
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: a23396c21a28f96103f94c8c991ee30a9bfda438
+fixed:
+  docker:
+    type: templated
+    image: rosdiscover-experiments/husky:dfc69a1b3f6eba23914f0c62a9d3e6befcc49577
+  repositories:
+  - name: husky
+    url: https://github.com/husky/husky.git
+    version: dfc69a1b3f6eba23914f0c62a9d3e6befcc49577
+sources:
+- /opt/ros/indigo/setup.bash
+- /ros_ws/devel/setup.bash
+launches:
+- /ros_ws/src/husky/launch/control.launch
+- /ros_ws/src/husky/launch/teleop.launch
+- /ros_ws/src/husky/husky_gazebo/launch/husky_playpen.launch
